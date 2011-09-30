@@ -1,0 +1,35 @@
+{# bootstrap compatible Sliding pagination control implementation #}
+{% if pageCount > 1 %}
+<div class="pagination">
+  <ul>
+    <li class="first {{ (first is defined and current == first) ? 'disabled' : ''}}">
+        <a href="{{ path(route, query|merge({'page': first})) }}">&lt;&lt;</a>
+    </li>
+
+    <li class="prev {{ (previous is not defined) ? 'disabled': ''}}">
+        <a href="{{ previous is defined ? path(route, query|merge({'page': previous})) :'#' }}">&larr; Previous</a>
+    </li>
+
+    {% for page in pagesInRange %}
+        <li class="{{ (page == current) ? 'active':''}}">
+            <a href="{{ path(route, query|merge({'page': page})) }}">{{ page }}</a>
+        </li>
+    {% endfor %}
+
+    <li class="next {{ (next is not defined) ? 'disabled': ''}}">
+        <a href="{{ (next is defined) ? path(route, query|merge({'page': next})) :'#' }}">&gt;</a>
+    </li>
+
+    <li class="last {{ (last is defined and current == last) ? 'disabled' : ''}}">
+        <a href="{{ (last is defined and current == last) ? '#' : path(route, query|merge({'page': last})) }}">Next &rarr;</a>
+    </li>
+  </ul>
+</div>
+{% endif %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.pagination li.disabled a').click(function (e) {
+        e.preventDefault()
+    });
+});
+</script>
