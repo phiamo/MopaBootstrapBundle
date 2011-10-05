@@ -1,6 +1,10 @@
-{% macro show(type) %}
-        <div class="alert-message {{ type }}" data-alert="alert">
-          <a class="close" href="#">×</a>
-          <p>{{ app.session.flash(type) }}</p>
-        </div>
+{% macro show(type, close) %}
+<div class="alert-message {{ type }}" data-alert="alert">
+	{% if close|default(false) %} 
+	<a class="close" href="#">×</a>
+	{% endif %}
+	<p>
+	{{ app.session.flash(type) }}
+	</p>
+</div>
 {% endmacro %}
