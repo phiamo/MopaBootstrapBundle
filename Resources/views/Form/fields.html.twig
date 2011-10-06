@@ -1,0 +1,156 @@
+{% extends 'form_div_layout.html.twig' %}
+{% macro form_legend(form, label) %}
+	{{ block('form_legend') }}
+{% endmacro %}
+ 
+{% block form_errors %}
+{% import 'MopaBootstrapBundle::bootstrap_flash.html.twig' as flash %}
+{% spaceless %}
+    {% for error in errors %}
+		{{ flash.show('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
+	{% endfor %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block field_errors %}
+{% spaceless %}
+    <span class="help-inline">
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endspaceless %}
+{% endblock field_errors %}
+ 
+{% block field_row %}
+{#% debug form.get('widget') %#}
+    {% if not('form' in form.get('types')) %}
+    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    {% endif %}
+    	{% if 'form' in form.get('types') and form.hasParent() == 0 %}
+    		{{ block('form_legend') }}
+    	{% elseif 'form' in form.get('types') and form.hasParent() != 0 %}
+    	{% else %}
+        	{{ form_label(form, label) }}
+        {% endif %}
+    {% if not ('form' in form.get('types')) %}
+        <div class="input">
+    {% endif %}
+            {% set class = '' %}
+            {% if errors|length > 0 %}
+                {% set class = 'error' %}
+            {% endif %}
+            {{ form_widget(form, { 'attr': { 'class': class } }) }}
+    {% if not ('form' in form.get('types')) %}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock field_row %}
+
+{% block form_widget %}
+    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
+    <div {{ block('widget_container_attributes') }}>
+    	<fieldset>
+    {% endif %}
+        {{ block('field_rows') }}
+        {{ form_rest(form) }}
+    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
+        </fieldset>
+    </div>
+    {% endif %}
+{% endblock form_widget %}
+
+{% block form_legend %}
+          <legend>{{ label }}</legend>
+{% endblock form_legend %} 
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    	{{ form_label(form, label) }}
+        <div class="input">
+	    	{% set attr = attr|merge({'class': 'inline-inputs'}) %}
+	        <div {{ block('widget_container_attributes')  }}>
+	            {{ date_pattern|replace({
+	                '{{ year }}':  form_widget(form.year),
+	                '{{ month }}': form_widget(form.month),
+	                '{{ day }}':   form_widget(form.day),
+	            })|raw }}
+	        </div>
+        </div>
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    	{{ form_label(form, label) }}
+        <div class="input">
+	    	{% set attr = attr|merge({'class': 'inline-inputs'}) %}
+	        <div {{ block('widget_container_attributes') }}>
+	            {{ form_errors(form.date) }}
+	            {{ form_errors(form.time) }}
+	            {{ form_widget(form.date) }}
+	            {{ form_widget(form.time) }}
+	        </div>
+        </div>
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+
+{% block radio_widget %}
+{% spaceless %}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{% block choice_widget %}
+{% spaceless %}
+    {% if expanded %}
+    <div class="clearfix">
+    	{{ form_label(form, label) }}
+			<div class="input">
+	    	{% set attr = attr|merge({'class': 'inputs-list'}) %}
+        	<ul {{ block('widget_container_attributes') }}>
+	        {% for child in form %}
+                <li>
+                	<label>
+		            	{{ form_widget(child) }}
+		            	<span>{{ child.get('label') }}</span>
+	                </label>
+                </li>
+	        {% endfor %}
+			</ul>
+		</div>
+	</div>
+    {% else %}
+   <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option value="">{{ empty_value|trans }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('widget_choice_options') }}
+            {% if choices|length > 0 %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('widget_choice_options') }}
+    </select>
+    {% endif %}
+{% endspaceless %}
+{% endblock choice_widget %}
