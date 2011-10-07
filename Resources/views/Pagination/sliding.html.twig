@@ -3,11 +3,11 @@
 <div class="pagination">
   <ul>
     <li class="first {{ (first is defined and current == first) ? 'disabled' : ''}}">
-        <a href="{{ path(route, query|merge({'page': first})) }}">&lt;&lt;</a>
+        <a href="{{ path(route, query|merge({'page': first})) }}">&#60;;&#60;</a>
     </li>
 
     <li class="prev {{ (previous is not defined) ? 'disabled': ''}}">
-        <a href="{{ previous is defined ? path(route, query|merge({'page': previous})) :'#' }}">&larr; Previous</a>
+        <a href="{{ previous is defined ? path(route, query|merge({'page': previous})) :'#' }}">&#8592; Previous</a>
     </li>
 
     {% for page in pagesInRange %}
@@ -17,11 +17,11 @@
     {% endfor %}
 
     <li class="next {{ (next is not defined) ? 'disabled': ''}}">
-        <a href="{{ (next is defined) ? path(route, query|merge({'page': next})) :'#' }}">Next &rarr;</a>
+        <a href="{{ (next is defined) ? path(route, query|merge({'page': next})) :'#' }}">Next &#8594;</a>
     </li>
 
     <li class="last {{ (last is defined and current == last) ? 'disabled' : ''}}">
-        <a href="{{ (last is defined and current == last) ? '#' : path(route, query|merge({'page': last})) }}">&gt;&gt;</a>
+        <a href="{{ (last is defined and current == last) ? '#' : path(route, query|merge({'page': last})) }}">&#62;&#62;</a>
     </li>
   </ul>
 </div>
