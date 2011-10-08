@@ -1,5 +1,9 @@
 services:
-    mopa.form.help_txt_extension:
+    mopa.form.help_extension:
            class: Mopa\BootstrapBundle\Form\Extension\HelpFieldTypeExtension
            tags:
                 - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
+    mopa.form.legend_extension:
+           class: Mopa\BootstrapBundle\Form\Extension\LegendFormTypeExtension
+           tags:
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class

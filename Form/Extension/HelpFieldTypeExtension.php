@@ -8,10 +8,6 @@ use Symfony\Component\Form\FormBuilder;
 
 class HelpFieldTypeExtension extends AbstractTypeExtension
 {
-    public function getExtendedType()
-    {
-        return 'field';
-    }
 
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -34,5 +30,9 @@ class HelpFieldTypeExtension extends AbstractTypeExtension
             'help_block' => null,
             'help_label' => null,
         );
+    }
+    public function getExtendedType()
+    {
+        return 'field';
     }
 }

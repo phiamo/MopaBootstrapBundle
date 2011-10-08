@@ -1,28 +1,10 @@
 {% extends 'form_div_layout.html.twig' %}
-{% macro form_legend(form, label) %}
-	{{ block('form_legend') }}
-{% endmacro %}
- 
-{% block form_errors %}
-{% import 'MopaBootstrapBundle::bootstrap_flash.html.twig' as flash %}
-{% spaceless %}
-    {% for error in errors %}
-		{{ flash.show('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
-	{% endfor %}
-{% endspaceless %}
-{% endblock form_errors %}
 
-{% block field_errors %}
-{% spaceless %}
-    <span class="help-block">
-        {% if errors|length > 0 %}
-            {% for error in errors %}
-                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
-            {% endfor %}
-        {% endif %}
-    </span>
-{% endspaceless %}
-{% endblock field_errors %}
+{# labels #}
+
+{% block form_legend %}
+          <legend>{{ label | trans }}</legend>
+{% endblock form_legend %} 
 
 {% block form_label %}
 {% spaceless %}
@@ -44,13 +26,58 @@
 {% endspaceless %}
 {% endblock %}
 
+{# Help #}
+{% block help %}
+    {% if help_inline %}<span class="help-inline">{{ help_inline|trans }}</span>{%endif %}
+    {% if help_block %}<span class="help-block">{{ help_block|trans }}</span>{%endif %}
+{% endblock %}
+
+{# Errors #}
+
+{% block form_errors %}
+{% import 'MopaBootstrapBundle::bootstrap_flash.html.twig' as flash %}
+{% spaceless %}
+    {% for error in errors %}
+		{{ flash.show('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
+	{% endfor %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block field_errors %}
+{% spaceless %}
+    <span class="help-block">
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endspaceless %}
+{% endblock field_errors %}
+
+
+{# Basic form and field blocks #}
+
+{% block form_widget %}
+    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
+    <div {{ block('widget_container_attributes') }}>
+    	<fieldset>
+    	{% if show_legend %}{{ block('form_legend') }}{% endif %}
+    {% endif %}
+        {{ block('field_rows') }}    
+        {{ form_rest(form) }}
+    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
+        </fieldset>
+    </div>
+    {% endif %}
+{% endblock form_widget %}
+
 {% block field_row %}
     {% if not('form' in form.get('types')) %}
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
     {% endif %}
-    	{% if 'form' in form.get('types') and form.hasParent() == 0 %}
-    		{{ block('form_legend') }}
-    	{% elseif 'form' in form.get('types') and form.hasParent() != 0 %}
+        {% if 'form' in form.get('types') and form.hasParent() != 0 %}
+            {# Wuerde bei sub forms aufgerufen werden #}
     	{% else %}
         	{{ form_label(form, label) }}
         {% endif %}
@@ -69,22 +96,8 @@
     {% endif %}
 {% endblock field_row %}
 
-{% block form_widget %}
-    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
-    <div {{ block('widget_container_attributes') }}>
-    	<fieldset>
-    {% endif %}
-        {{ block('field_rows') }}    
-        {{ form_rest(form) }}
-    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
-        </fieldset>
-    </div>
-    {% endif %}
-{% endblock form_widget %}
 
-{% block form_legend %}
-          <legend>{{ label }}</legend>
-{% endblock form_legend %} 
+{# Date and Time widgets #}
 
 {% block date_widget %}
 {% spaceless %}
@@ -109,12 +122,6 @@
 {% endspaceless %}
 {% endblock date_widget %}
 
-{% block help %}
-    {% if help_inline %}<span class="help-inline">{{ help_inline|trans }}</span>{%endif %}
-    {% if help_block %}<span class="help-block">{{ help_block|trans }}</span>{%endif %}
-{% endblock %}
-
-
 {% block datetime_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
@@ -138,6 +145,8 @@
 {% endblock datetime_widget %}
 
 
+{# basic form widgets #}
+
 {% block radio_widget %}
 {% spaceless %}
     <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
@@ -150,7 +159,7 @@
     <div class="clearfix">
     	{{ form_label(form, label) }}
 			<div class="input">
-	    	{% set attr = attr|merge({'class': 'inputs-list'}) %}
+			{% set attr = attr|merge({'class': attr.class|default('') ~ ' inputs-list'}) %}
         	<ul {{ block('widget_container_attributes') }}>
 	        {% for child in form %}
                 <li>
@@ -195,6 +204,9 @@
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
+
+
+{# widget attributes #}
 
 {% block widget_attributes %}
 {% spaceless %}
