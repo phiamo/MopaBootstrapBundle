@@ -1,16 +1,17 @@
 {% if flow.getStepDescriptions() | length == flow.getMaxSteps() %}
-	<ol class="craue_formflow_steplist">
+	<ul class="breadcrumb">
 		{% for stepDescription in flow.getStepDescriptions() %}
-			<li{% if loop.index == flow.getCurrentStep() %} class="craue_formflow_current_step"{% endif %}>
+			<li{% if loop.index == flow.getCurrentStep() %} class="active"{% endif %}>
 				{%- if flow.isAllowDynamicStepNavigation() and (loop.index == 1 or flow.isStepDone(loop.index - 1)) -%}
 					<a href="{{ path(app.request.attributes.get('_route'),
-							app.request.query.all | craue_addDynamicStepNavigationParameter(flow, loop.index)) }}">
-						{{- stepDescription -}}
+							app.request.query.all | craue_addDynamicStepNavigationParameter(flow, loop.index)|merge(app.request.attributes.all)) }}">
+						{{- stepDescription|trans -}}
 					</a>
 				{%- else -%}
-					{{- stepDescription -}}
+					{{- stepDescription|trans -}}
 				{%- endif -%}
+				<span class="divider">/</span>
 			</li>
 		{% endfor %}
-	</ol>
+	</ul>
 {% endif %}

@@ -14,7 +14,7 @@
 
 {% block field_errors %}
 {% spaceless %}
-    <span class="help-inline">
+    <span class="help-block">
         {% if errors|length > 0 %}
             {% for error in errors %}
                 {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
@@ -23,9 +23,28 @@
     </span>
 {% endspaceless %}
 {% endblock field_errors %}
- 
+
+{% block form_label %}
+{% spaceless %}
+    {{ block('generic_label') }}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block generic_label %}
+{% spaceless %}
+    {% if required %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    {{ label|trans }}
+    {% if help_label %}
+        <span class="help-block">{{ help_label|trans }}</span>
+    {%endif %}
+    </label>
+{% endspaceless %}
+{% endblock %}
+
 {% block field_row %}
-{#% debug form.get('widget') %#}
     {% if not('form' in form.get('types')) %}
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
     {% endif %}
@@ -38,12 +57,12 @@
     {% if not ('form' in form.get('types')) %}
         <div class="input">
     {% endif %}
-            {% set class = '' %}
             {% if errors|length > 0 %}
-                {% set class = 'error' %}
+                {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
             {% endif %}
-            {{ form_widget(form, { 'attr': { 'class': class } }) }}
+            {{ form_widget(form) }}
     {% if not ('form' in form.get('types')) %}
+	        {{ block('help') }}
             {{ form_errors(form) }}
         </div>
     </div>
@@ -55,7 +74,7 @@
     <div {{ block('widget_container_attributes') }}>
     	<fieldset>
     {% endif %}
-        {{ block('field_rows') }}
+        {{ block('field_rows') }}    
         {{ form_rest(form) }}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
         </fieldset>
@@ -83,11 +102,18 @@
 	                '{{ day }}':   form_widget(form.day),
 	            })|raw }}
 	        </div>
+	        {{ block('help') }}
         </div>
     </div>
     {% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
+
+{% block help %}
+    {% if help_inline %}<span class="help-inline">{{ help_inline|trans }}</span>{%endif %}
+    {% if help_block %}<span class="help-block">{{ help_block|trans }}</span>{%endif %}
+{% endblock %}
+
 
 {% block datetime_widget %}
 {% spaceless %}
@@ -104,6 +130,7 @@
 	            {{ form_widget(form.date) }}
 	            {{ form_widget(form.time) }}
 	        </div>
+	        {{ block('help') }}
         </div>
     </div>
     {% endif %}
@@ -154,3 +181,25 @@
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget %}
+
+{% block field_widget %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
+{% endspaceless %}
+{% endblock field_widget %}
+
+{% block textarea_widget %}
+{% spaceless %}
+	{% set attr = attr %}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block widget_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %} 
+    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}
+
+{% endspaceless %}
+{% endblock widget_attributes %}
