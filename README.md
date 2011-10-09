@@ -51,7 +51,7 @@ assetic:
 
 ```
 [MopaBootstrapBundle]
-    git=http://github.com/schmittjoh/JMSPaymentCoreBundle.git
+    git=http://github.com/MopaBootstrapBundle.git
     target=/bundles/Mopa/BootstrapBundle
 ```
 
