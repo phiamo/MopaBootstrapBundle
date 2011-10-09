@@ -100,7 +100,7 @@ If you do not have bootstrap in your project yet
 Just run
 
 ``` bash
-cd vendor/bundles/
+cd vendor/bundles/MopaBootstrapBundle
 git submodule init
 git submodule update
 ```
