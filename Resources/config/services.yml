@@ -5,5 +5,7 @@ services:
                 - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
     mopa.form.legend_extension:
            class: Mopa\BootstrapBundle\Form\Extension\LegendFormTypeExtension
+           arguments:
+                - { show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend% }
            tags:
                 - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class

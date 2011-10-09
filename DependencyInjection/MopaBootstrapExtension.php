@@ -25,5 +25,20 @@ class MopaBootstrapExtension extends Extension
        
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load("services.yml");
+        
+        if(isset($config['form'])){
+            if(isset($config['form']['show_legend'])){
+                $container->setParameter(
+                    'mopa_bootstrap.form.show_legend',
+                    $config['form']['show_legend']
+                );
+            }
+            if(isset($config['form']['show_child_legend'])){
+                $container->setParameter(
+                    'mopa_bootstrap.form.show_child_legend',
+                    $config['form']['show_child_legend']
+                );
+            }
+        }
     }
 }

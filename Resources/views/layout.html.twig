@@ -1,0 +1,81 @@
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    {% block head_style %}
+	    {% stylesheets filter='less,cssembed,?yui_css' 
+	    	'@MopaBootstrapBundle/Resources/bootstrap/lib/bootstrap.less'
+	    	'@MopaBootstrapBundle/Resources/public/less/paginator.less'
+	    %}
+	    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+	    {% endstylesheets %}
+    {% endblock head_style %}
+    {% block head_script %}
+        {# You can deactivate unneeded js by removing them, but be careful they rely on each other 
+           The Order they are provided here should be correct, so you may remove them bottom up    #}
+	    {%- javascripts
+	    	'@YourNiceBundle/Resources/public/js/jquery-1.6.2.min.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tabs.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-twipsy.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alerts.js'
+	    	'@YourNiceBundle/Resources/public/js/*' filter="?yui_js"
+	    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+    {%- endblock head_script %}
+    <title>{% block title %}Mopa Bootstap Bundle{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    <div class="topbar-inner">
+        <div class="container">
+          <h3><a href="#">MopaBootstrapBundle</a></h3>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="http://www.symfony.com">Symfony</a></li>
+            <li><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></li>
+            <li><a href="http://nodejs.org/">node.js</a></li>
+            <li><a href="http://lesscss.org/">lesscss</a></li>
+          </ul>
+          <form class="pull-left" action="">
+            <input type="text" placeholder="Search">
+          </form>
+          <ul class="nav secondary-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">Dropdown</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Another link</a></li>
+                <li class="divider"></li>
+                <li><a href="http://www.mohrenweiserpartner.de">Mohrenweiser % Partner</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <div class="container">
+        {% block flashes %}
+        	{% include 'MopaDealsBundle::flash_messages.html.twig' %}
+        {% endblock  %}
+        <div class="row">
+        {% block content %}
+	        <div class="span12">
+	        	<strong>Hier könnte Ihre Werbung stehen ... </strong>
+	        </div>
+	        <div class="span4">
+				{% block content_sidebar %}
+				
+				{% endblock %}
+	        </div>
+        {% endblock  %}
+        </div>
+	</div>
+{% block foot_script %}
+{% endblock %}
+</body>
+</html>

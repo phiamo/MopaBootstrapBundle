@@ -19,7 +19,20 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
-       
+        $rootNode
+            ->children()
+                ->arrayNode('form')
+                    ->children()
+                        ->booleanNode('show_legend')
+                            ->defaultValue(true)
+                            ->end()
+                        ->booleanNode('show_child_legend')
+                            ->defaultValue(false)
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
         return $treeBuilder;
     }
 }

@@ -1,0 +1,29 @@
+{% macro flash(type, message, close) %}
+<div class="alert-message {{ type }}" data-alert="alert">
+	{% if close|default(false) %} 
+	<a class="close" href="#">×</a>
+	{% endif %}
+	<p>
+	{{ message | trans }}
+	</p>
+</div>
+{% endmacro %}
+
+{% macro session_flash(type) %}
+{% set types = ['info', 'error', 'warning', 'success'] %}
+{% if app.session.getFlashes()|length > 0 %}
+<div class="row">
+        <div class="span16">
+            {% if type|default(false) %}
+            {% else %}
+                {% for type in types %}
+                    {% if app.session.hasFlash(type) %}
+                        {{ _self.flash(type, app.session.flash(type)) }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+</div>
+{% endif %}
+{% endmacro %}
+
