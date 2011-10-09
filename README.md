@@ -186,7 +186,7 @@ To enable it globally use:
 ``` yaml
 mopa_bootstrap:
     form:
-        show_legend: true # default is false
+        show_child_legend: true # default is false
 ```
 
 If you just want to have it in a special form do it like that: 
@@ -195,8 +195,8 @@ If you just want to have it in a special form do it like that:
 // e.g. a form only consiting of subforms
 public function buildForm(FormBuilder $builder, array $options)
 {
-    $builder->setAttribute('show_legend', No);
-    $child = $builder->create('user', $this->registerform, array('show_child_legend' => true));
+    $builder->setAttribute('show_legend', No); // no legend for main form
+    $child = $builder->create('user', new SomeSubFormType(), array('show_child_legend' => true)); // but legend for this subform
     $builder->add($child);
     // ... 
 ```
