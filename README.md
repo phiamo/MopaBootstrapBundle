@@ -18,19 +18,27 @@ If you do not want to use less ignore this, otherwise try:
  - node.js: https://github.com/joyent/node/wiki/Installation
  - npm: (node package manager) 
  
-          curl http://npmjs.org/install.sh | sh
-          
+``` bash
+curl http://npmjs.org/install.sh | sh
+```
+
+
  - less css:
- 
-          npm install less -g
-          
+
+``` bash
+npm install less -g
+
+```
+
  - configure assetic to make use of it (replace /usr with your prefix)
- 
-          assetic:
-              filters:
-                  less:
-                      node: /usr/bin/node
-                      node_paths: [/usr/lib/node_modules]
+
+``` yaml
+assetic:
+    filters:
+        less:
+  node: /usr/bin/node
+  node_paths: [/usr/lib/node_modules]
+```
 
  - Yui CSS and CSS Embed are quite nice, but just additional,
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
@@ -38,40 +46,62 @@ If you do not want to use less ignore this, otherwise try:
 
 ## Installation
 
-  1.1 Add this bundle to your project as via deps:
-        
-          [MopaBootstrapBundle]
-              git=http://github.com/schmittjoh/JMSPaymentCoreBundle.git
-              target=/bundles/Mopa/BootstrapBundle
-        
-  1.2 Or add this bundle to your project as a Git submodule:
+1.1 Add this bundle to your project as via deps:
 
-          $ git submodule add git@github.com:phiamo/MopaBootstrapBundle.git vendor/bundles/Mopa/BootstrapBundle
 
-  2. Add this bundle to your application's kernel:
+```
+[MopaBootstrapBundle]
+    git=http://github.com/schmittjoh/JMSPaymentCoreBundle.git
+    target=/bundles/Mopa/BootstrapBundle
+```
 
-          // application/ApplicationKernel.php
-          public function registerBundles()
-          {
-              return array(
-                  // ...
-                  new Mopa\BootstrapBundle\MopaBootstrapBundle(),
-                  // ...
-              );
-          }
+1.2 Or add this bundle to your project as a Git submodule:
 
-  3. Update your config.yml to activate forms integration (currently mandatory to make it work)
+``` bash
+git submodule add git@github.com:phiamo/MopaBootstrapBundle.git vendor/bundles/Mopa/BootstrapBundle
+```
 
-          mopa_bootstrap:
-              form: ~
+2. Add namespace to you app/autoload.php
+  
+``` php
+<?php
+// app/autoload.php
 
+$loader->registerNamespaces(array(
+    // ...
+    'Mopa'        => __DIR__.'/../vendor/bundles',
+));
+```
+
+3. Add this bundle to your app/AppKernel.php:
+
+``` php
+// application/ApplicationKernel.php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+        // ...
+    );
+}
+```
+
+  4. Update your config.yml to activate forms integration (currently mandatory to make it work)
+
+``` yaml
+mopa_bootstrap:
+    form: ~
+```
 
 ## Initialize Bootstrap submodule
 
 If you do not have bootstrap in your project yet
 Just run
 
-          cd vendor/bundles/
+``` bash
+cd vendor/bundles/
+```
 
 
 ## Including Bootstrap in your Layout
@@ -85,24 +115,31 @@ might explain howto use it by itself.
       
 You can either activate it for you whole project:
 
-          twig:
-              form:
-                  resources:
-                      - 'MopaBootstrapBundle:Form:fields.html.twig'
-                      
+``` yaml
+twig:
+    form:
+        resources:
+  - 'MopaBootstrapBundle:Form:fields.html.twig'
+```
 
 Or include the fields.html.twig in your template for a special form:
 
-          {% form_theme myform 'MopaBootstrapBundle:Form:field.html.twig' %}
-
+``` jinja
+{% form_theme myform 'MopaBootstrapBundle:Form:field.html.twig' %}
+```
 
 For FormFlow you can just use MopaBootstrap's templates instead of the ones given by the Bundles:
 
-          {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+``` jinja
+{% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+```
 
 And to use the Paginator templates copy them to
 
-          app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
+``` bash
+mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
+cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
+```
 
 
 ## Make use of FormExtensions
@@ -117,17 +154,21 @@ Every Form component representing a Form not a Field (e.g. subforms, widgets of 
 has now a attribute called show_legend which controls wether the "form legend" is shown or not.
       
 This can be controlled globally by adapting your config.yml:
-    
-          mopa_bootstrap:
-              form:
-                  show_legend: false # default is true
+
+``` yaml
+mopa_bootstrap:
+    form:
+        show_legend: false # default is true
+```
       
 Now you can tell a specific form to have the legend beeing shown by using:
-     
-          public function buildForm(FormBuilder $builder, array $options)
-          {
-              $builder->setAttribute('show_legend', true);
-              // ...
+
+``` php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder->setAttribute('show_legend', true);
+    // ...
+```
     
     
 #### Child Form Legends    
@@ -140,19 +181,23 @@ This might make sense or not. I decided to disable this by default, but enabling
 
 To enable it globally use:
 
-          mopa_bootstrap:
-              form:
-                  show_legend: true # default is false
+``` yaml
+mopa_bootstrap:
+    form:
+        show_legend: true # default is false
+```
 
 If you just want to have it in a special form do it like that: 
 
-          // e.g. a form only consiting of subforms
-          public function buildForm(FormBuilder $builder, array $options)
-          {
-              $builder->setAttribute('show_legend', No);
-              // ...           
-              $child = $builder->create('user', $this->registerform, array('show_child_legend' => true));
-              $builder->add($child);
+``` php
+// e.g. a form only consiting of subforms
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder->setAttribute('show_legend', No);
+    $child = $builder->create('user', $this->registerform, array('show_child_legend' => true));
+    $builder->add($child);
+    // ... 
+```
 
 
 ### Form Field Help
@@ -165,19 +210,25 @@ has three new attributes:
   - help_label:  beeing shown under the label of the element
 
 Now you can easily add a help text at different locations:
-      
-          $builder
-              ->add('title', null, array(
-                  "help_inline"=>"Please specify some understandable title"))
-              ->add('shortDescription', 'textarea', array(
-                  "attr" => array("rows"=>3, 'class'=>'xxlarge'),
-                  "help_block"=>"This is the short descriptions shown somewhere"
-              ))
-              ->add('longDescription', null, array(
-                  "attr"=>array("rows" => 10),
-                  "help_label"=>"Please enter a very very long description"
-              ))
-          ;
+
+``` php
+// e.g. a form only consiting of subforms
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+        ->add('title', null, array(
+            "help_inline"=>"Please specify some understandable title"))
+        ->add('shortDescription', 'textarea', array(
+            "attr" => array("rows"=>3, 'class'=>'xxlarge'),
+            "help_block"=>"This is the short descriptions shown somewhere"
+        ))
+        ->add('longDescription', null, array(
+            "attr"=>array("rows" => 10),
+            "help_label"=>"Please enter a very very long description"
+        ))
+    ;
+    //...
+``` 
 
 Hope you have fun with it.
 
