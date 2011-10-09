@@ -7,12 +7,6 @@
           <legend>{{ label | trans }}</legend>
 {% endblock form_legend %} 
 
-{% block form_label %}
-{% spaceless %}
-    {{ block('generic_label') }}
-{% endspaceless %}
-{% endblock form_label %}
-
 {% block generic_label %}
 {% spaceless %}
     {% if required %}
@@ -26,6 +20,13 @@
     </label>
 {% endspaceless %}
 {% endblock %}
+{# renders a formlabel without span class, if e.g field has it#}
+{% block form_spanaware_label %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': attr.class|default('')|replace({'span': ''})}) %}
+    {{ block('generic_label') }}
+{% endspaceless %}
+{% endblock form_spanaware_label %}
 
 {# Help #}
 {% block help %}
@@ -81,7 +82,7 @@
                 {{ block('form_legend') }}
             {% endif %}
     	{% else %}
-        	{{ form_label(form, label) }}
+        	{{ block('form_spanaware_label') }}
         {% endif %}
     {% if not ('form' in form.get('types')) %}
         <div class="input">
@@ -89,7 +90,9 @@
             {% if errors|length > 0 %}
                 {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
             {% endif %}
+            {{ widget_prefix }}
             {{ form_widget(form) }}
+            {{ widget_suffix }}
     {% if not ('form' in form.get('types')) %}
 	        {{ block('help') }}
             {{ form_errors(form) }}
@@ -109,7 +112,7 @@
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
         <div class="input">
-	    	{% set attr = attr|merge({'class': 'inline-inputs'}) %}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes')  }}>
 	            {{ date_pattern|replace({
 	                '{{ year }}':  form_widget(form.year),
@@ -132,7 +135,7 @@
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
         <div class="input">
-	    	{% set attr = attr|merge({'class': 'inline-inputs'}) %}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes') }}>
 	            {{ form_errors(form.date) }}
 	            {{ form_errors(form.time) }}

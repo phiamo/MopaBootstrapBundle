@@ -201,11 +201,16 @@ public function buildForm(FormBuilder $builder, array $options)
     // ... 
 ```
 
+### Field Labels
+
+To make use of bootstraps .span[0-9]+ classes to define width of inputs, there is a additional logic to 
+prevent labels from beeing addicted from the span class too. This is maybe a little hack but i didnt know
+howto come around the attr inheritance of the form to the label.
 
 ### Form Field Help
 
 Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
-has three new attributes:
+has several new attributes:
      
   - help_inline: beeing shown right of the element if there is space
   - help_block:  beeing shown under the element
@@ -214,7 +219,7 @@ has three new attributes:
 Now you can easily add a help text at different locations:
 
 ``` php
-// e.g. a form only consiting of subforms
+// e.g. a form needing a lot of help
 public function buildForm(FormBuilder $builder, array $options)
 {
     $builder
@@ -232,6 +237,22 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ``` 
 
+There are also suffix and prefix attributes for the widgets:
+
+``` php
+// e.g. a form where you want to give in a price
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+        ->add('price', null, array(
+            "attr" => array(
+                "class"=>"span1",
+            ),
+            "widget_suffix"=>"€"
+        ))
+    ;
+    //...
+``` 
 Hope you have fun with it.
 
 
