@@ -51,7 +51,7 @@ assetic:
 
 ```
 [MopaBootstrapBundle]
-    git=http://github.com/MopaBootstrapBundle.git
+    git=http://github.com/phiamo/MopaBootstrapBundle.git
     target=/bundles/Mopa/BootstrapBundle
 ```
 
