@@ -10,6 +10,31 @@ It includes various form template blocks for use with symfony2 Form Component
 as well as twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
 and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 
+## Prerequisites
+
+
+### OPTIONAL
+If you do not want to use less ignore this, otherwise try:
+ - node.js: https://github.com/joyent/node/wiki/Installation
+ - npm: (node package manager) 
+ 
+          curl http://npmjs.org/install.sh | sh
+          
+ - less css:
+ 
+          npm install less -g
+          
+ - configure assetic to make use of it (replace /usr with your prefix)
+ 
+          assetic:
+              filters:
+                  less:
+                      node: /usr/bin/node
+                      node_paths: [/usr/lib/node_modules]
+
+ - Yui CSS and CSS Embed are quite nice, but just additional,
+   to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
+
 
 ## Installation
 
