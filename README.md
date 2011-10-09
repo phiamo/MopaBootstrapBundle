@@ -101,6 +101,8 @@ Just run
 
 ``` bash
 cd vendor/bundles/
+git submodule init
+git submodule update
 ```
 
 
