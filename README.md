@@ -134,7 +134,16 @@ For FormFlow you can just use MopaBootstrap's templates instead of the ones give
 
 ``` jinja
 {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' with {'formident': '#myform}%}
+``
+
+For KnpPaginatorBundle use the following to override template:
+
+``` yaml
+knp_paginator:
+    templating: # enables view helper and twig
+        template: 'MopaBootstrapBundle:Pagination:sliding.html.twig'
 ```
+
 
 where formident is used by jquery to bind the submit form handler to the "next" or "finish" button, instead of the first defined like in html it is
 This is mainly necessary if you have more than one form.
