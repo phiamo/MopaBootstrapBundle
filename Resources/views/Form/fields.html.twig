@@ -38,6 +38,8 @@
 
 {% block form_errors %}
 {% spaceless %}
+{# prevent deep nesting wrong context copy error #}
+{% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
 		{{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
 	{% endfor %}
