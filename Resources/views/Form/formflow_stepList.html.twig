@@ -10,7 +10,9 @@
 				{%- else -%}
 					{{- stepDescription|trans -}}
 				{%- endif -%}
+				{% if loop.index != flow.getMaxSteps() %}
 				<span class="divider">/</span>
+				{%- endif -%}
 			</li>
 		{% endfor %}
 	</ul>
