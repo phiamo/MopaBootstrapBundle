@@ -223,9 +223,23 @@ public function buildForm(FormBuilder $builder, array $options)
 
 ### Field Labels
 
-To make use of bootstraps .span[0-9]+ classes to define width of inputs, there is a additional logic to 
-prevent labels from beeing addicted from the span class too. This is maybe a little hack but i didnt know
-howto come around the attr inheritance of the form to the label.
+This is maybe a little hack but i didn't know howto come around the attr inheritance of the form to the label.
+So i made another form extenstion so you can explicitly set the classes of the label, 
+by default there is only the required class rendered into it, if the widget has the required attribute true (which is default):
+
+``` php
+       $builder
+            ->add('somefield', null, array( 
+                'label_attr' => array('class'=>'mylabelclass')
+            ))
+```
+
+will result in
+ 
+``` html
+<label class="mylabelclass required" for="somefield"> 
+...
+```
 
 ### Form Field Help
 

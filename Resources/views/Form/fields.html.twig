@@ -20,13 +20,13 @@
     </label>
 {% endspaceless %}
 {% endblock %}
-{# renders a formlabel without span class, if e.g field has it#}
-{% block form_spanaware_label %}
+{# renders a field label without span class, if e.g field has it#}
+{% block field_label_attr_aware_label %}
 {% spaceless %}
-    {% set attr = attr|merge({'class': attr.class|default('')|replace({'span': ''})}) %}
+    {% set attr = label_attr|merge({'for': id}) %}
     {{ block('generic_label') }}
 {% endspaceless %}
-{% endblock form_spanaware_label %}
+{% endblock field_label_attr_aware_label %}
 
 {# Help #}
 {% block help %}
@@ -84,7 +84,7 @@
                 {{ block('form_legend') }}
             {% endif %}
     	{% else %}
-        	{{ block('form_spanaware_label') }}
+        	{{ block('field_label_attr_aware_label') }}
         {% endif %}
     {% if not ('form' in form.get('types')) %}
         <div class="input">
