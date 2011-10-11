@@ -108,13 +108,35 @@ git submodule init
 git submodule update
 ```
 
-
-## Including Bootstrap in your Layout
-
+## Using bootstrap in the layout:
 
 Have a look at the provided layout.html.twig its a fully working bootstrap layout and 
 might explain howto use it by itself.
 
+In detail:
+If you are using less just include the mopabootstrap.less as described in layout.html.twig
+
+``` jinja
+{% stylesheets filter='less,cssembed,?yui_css' 
+   '@MopaBootstrapBundle/Resources/public/less/bootstrapbundle.less'
+   '@YourNiceBundle/Resources/public/less/*'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+{% endstylesheets %}
+```
+If you would like to use the css try this:
+
+``` jinja
+  
+{% block head_style %}
+{% stylesheets filter='less,cssembed,?yui_css' 
+   '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
+   '@YourNiceBundle/Resources/public/css/*'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet"
+   media="screen" />
+{% endstylesheets %}
+```
 
 ## Use Bootstrap for Theming
       
