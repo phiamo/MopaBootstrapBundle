@@ -87,11 +87,14 @@ public function registerBundles()
 }
 ```
 
-  4. Update your config.yml to activate forms integration (currently mandatory to make it work)
-
+  4. If you like configure your config.yml (not mandatory anymore)
+     
 ``` yaml
 mopa_bootstrap:
-    form: ~
+    form:
+        show_legend: false # default is true
+        show_legend: false # default is true
+        
 ```
 
 ## Initialize Bootstrap submodule
@@ -166,7 +169,7 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 
 ## Make use of FormExtensions
 
-This bundle extends the Form Componen via its native way to achieve having 
+This bundle extends the Form Component via its native way to achieve having 
 several more attributes on several form components
 
 
@@ -206,7 +209,7 @@ To enable it globally use:
 ``` yaml
 mopa_bootstrap:
     form:
-        show_child_legend: true # default is false
+        show_legend: false # default is true
 ```
 
 If you just want to have it in a special form do it like that: 
