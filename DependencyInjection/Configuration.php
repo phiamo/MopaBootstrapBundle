@@ -20,8 +20,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('form')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('show_legend')
                             ->defaultValue(true)
