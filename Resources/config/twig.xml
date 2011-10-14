@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="mopa_twig_extensions.bootstrap_form.class">Mopa\BootstrapBundle\Twig\Extension\BootstrapFormExtension</parameter>
+	</parameters>
+
+	<services>
+		<service id="twig.extension.mopa_bootstrap_form" class="%mopa_twig_extensions.bootstrap_form.class%">
+			<tag name="twig.extension" />
+            <argument>%twig.form.resources%</argument>
+		</service>
+	</services>
+
+</container>

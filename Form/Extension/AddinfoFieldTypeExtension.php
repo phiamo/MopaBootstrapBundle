@@ -13,12 +13,14 @@ class AddinfoFieldTypeExtension extends AbstractTypeExtension
     {
         $builder->setAttribute('widget_prefix', $options['widget_prefix']);
         $builder->setAttribute('widget_suffix', $options['widget_suffix']);
+        $builder->setAttribute('widget_remove_btn', $options['widget_remove_btn']);
     }
 
     public function buildView(FormView $view, FormInterface $form)
     {
         $view->set('widget_prefix', $form->getAttribute('widget_prefix'));
         $view->set('widget_suffix', $form->getAttribute('widget_suffix'));
+        $view->set('widget_remove_btn', $form->getAttribute('widget_remove_btn'));
     }
 
     public function getDefaultOptions(array $options)
@@ -26,6 +28,7 @@ class AddinfoFieldTypeExtension extends AbstractTypeExtension
         return array(
             'widget_prefix' => null,
             'widget_suffix' => null,
+            'widget_remove_btn' => null,
         );
     }
     public function getExtendedType()

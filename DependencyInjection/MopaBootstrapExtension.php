@@ -26,6 +26,10 @@ class MopaBootstrapExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load("services.yml");
         
+        
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load("twig.xml");
+        
         if(isset($config['form'])){
             if(isset($config['form']['show_legend'])){
                 $container->setParameter(

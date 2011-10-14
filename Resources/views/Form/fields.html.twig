@@ -14,13 +14,15 @@
     {% endif %}
     <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {{ label|trans }}
-    {% if help_label %}
+    {% if help_label %}{# TODO erstzten durch function form_help) #}
         <span class="help-block">{{ help_label|trans }}</span>
-    {%endif %}
+    {% endif %}
     </label>
 {% endspaceless %}
 {% endblock %}
+
 {# renders a field label without span class, if e.g field has it#}
+
 {% block field_label_attr_aware_label %}
 {% spaceless %}
     {% set attr = label_attr|merge({'for': id}) %}
@@ -29,14 +31,21 @@
 {% endblock field_label_attr_aware_label %}
 
 {# Help #}
-{% block help %}
+
+{% block field_help %}
     {% if help_inline %}<span class="help-inline">{{ help_inline|trans }}</span>{%endif %}
     {% if help_block %}<span class="help-block">{{ help_block|trans }}</span>{%endif %}
-{% endblock %}
+{% endblock field_help %}
+
+{% block field_widget_remove_btn %}
+    {% if widget_remove_btn %}
+    <input type="button" value="{{ widget_remove_btn }}" onclick="$(this).parents('.clearfix').remove(); return false;">
+    {% endif %}
+{% endblock field_widget_remove_btn %}
 
 {# Errors #}
 
-{% block form_errors %}
+{% block form_errors %}{# merge with field errors #}
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
@@ -62,6 +71,11 @@
 {# Basic form and field blocks #}
 
 {% block form_widget %}
+    {% if prototype is defined %}
+    <script type="text/html" {{ block('widget_container_attributes') }}>
+        {{ form_row(prototype) }}
+    </script>
+    {% endif %}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
     <div {{ block('widget_container_attributes') }}>
     	<fieldset>
@@ -95,14 +109,18 @@
             {{ widget_prefix }}
             {{ form_widget(form) }}
             {{ widget_suffix }}
+            {{ form_widget_remove_btn(form) }}
     {% if not ('form' in form.get('types')) %}
-	        {{ block('help') }}
+	        {{ form_help(form) }}
             {{ form_errors(form) }}
         </div>
     </div>
     {% endif %}
 {% endblock field_row %}
 
+{% block collection_widget %}
+    {{ block('form_widget') }}
+{% endblock collection_widget %}
 
 {# Date and Time widgets #}
 
@@ -144,7 +162,7 @@
 	            {{ form_widget(form.date) }}
 	            {{ form_widget(form.time) }}
 	        </div>
-	        {{ block('help') }}
+	        {{ form_help(form) }}
         </div>
     </div>
     {% endif %}
@@ -213,6 +231,25 @@
 {% endblock textarea_widget %}
 
 
+{% block imagefile_widget %}
+{% spaceless %}
+    {% if errors|length != 0 or value == ''%}
+    {% set value = '' %}
+    {% set type = type|default('file') %}
+    {{ block('field_widget') }}
+    {% else %}
+        {#% debug form %#}
+{#
+        <span class="help-inline">
+        <a href="{{ path('_partner_deal_image_cropping', {'id': image.vars.value.id, 'slug': 'test'}) }}">
+			<img src="{{ image.vars.value.getWebPath() | apply_filter('_partner_thumb') }}"/>
+			{{ image.vars.value.cropped ? 'OK' : 'Need to be cropped! Please click here' }}
+		</a>
+		</span>
+#}
+    {% endif %}    
+{% endspaceless %}
+{% endblock imagefile_widget %}
 {# widget attributes #}
 
 {% block widget_attributes %}
