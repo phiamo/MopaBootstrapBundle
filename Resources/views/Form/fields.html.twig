@@ -25,8 +25,10 @@
 
 {% block field_label_attr_aware_label %}
 {% spaceless %}
+    {% if label_render %}
     {% set attr = label_attr|merge({'for': id}) %}
     {{ block('generic_label') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock field_label_attr_aware_label %}
 

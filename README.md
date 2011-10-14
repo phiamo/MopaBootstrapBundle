@@ -266,6 +266,16 @@ will result in
 ...
 ```
 
+Also you have the option to remove a specific field label by setting label_render to false
+
+``` php
+       $builder
+            ->add('somefield', null, array( 
+                'label_render' => false
+            ))
+```
+
+
 ### Form Field Help
 
 Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
