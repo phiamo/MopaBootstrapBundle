@@ -111,8 +111,8 @@
             {{ widget_prefix }}
             {{ form_widget(form) }}
             {{ widget_suffix }}
-            {{ form_widget_remove_btn(form) }}
     {% if not ('form' in form.get('types')) %}
+            {{ form_widget_remove_btn(form) }}
 	        {{ form_help(form) }}
             {{ form_errors(form) }}
         </div>
