@@ -94,6 +94,7 @@ mopa_bootstrap:
     form:
         show_legend: false # default is true
         show_legend: false # default is true
+        error_type: block # or inline which is default
         
 ```
 
@@ -322,6 +323,58 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ``` 
+
+
+
+### Form Errors
+
+Generally you may want to define your errors to be displayed inline OR block (see bootstrap) you may define it globally in your conf:
+
+``` yaml
+mopa_bootstrap:
+    form:
+        error_type: block # or inline which is default
+        
+```
+
+Or on a special Form:
+
+``` php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+    //...
+            ->setAttribute('error_type', "inline")
+    ;
+    //...
+``` 
+Or on a special field:
+
+``` php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+    //...
+           ->add('country', null, array('field_error_type'=>'block'))
+    ;
+    //...
+``` 
+In some special cases you may also want to not have a form error but an field error
+so you can use error delay, which will delay the error to the first next field rendered in a child form:
+
+``` php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+    //...
+            ->add('plainPassword', 'repeated', array(
+                   'type' => 'password',
+                   'error_delay'=>true
+            ))
+    ;
+    //...
+```
+
 Hope you have fun with it.
 
 

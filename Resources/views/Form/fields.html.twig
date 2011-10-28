@@ -14,6 +14,8 @@
     {% endif %}
     <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {{ label|trans }}
+    {% if required %}*
+    {% endif %}
     {% if help_label %}{# TODO erstzten durch function form_help) #}
         <span class="help-block">{{ help_label|trans }}</span>
     {% endif %}
@@ -41,7 +43,7 @@
 
 {% block field_widget_remove_btn %}
     {% if widget_remove_btn %}
-    <input type="button" value="{{ widget_remove_btn }}" onclick="$(this).parents('.clearfix').remove(); return false;">
+    <input type="button" class="removebtn" value="{{ widget_remove_btn }}">
     {% endif %}
 {% endblock field_widget_remove_btn %}
 
@@ -49,26 +51,47 @@
 
 {% block form_errors %}{# merge with field errors #}
 {% spaceless %}
+{% if error_delay %}
+    {% for child in form %}
+        {% if loop.index == 1 %}
+            {% if child.set('errors', errors) %}{% endif %}
+        {% endif %}
+    {% endfor %}
+{% else %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
 		{{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
 	{% endfor %}
+{% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
 
 {% block field_errors %}
 {% spaceless %}
-    <span class="help-block">
+    <span class="help-{{ block('error_type') }}">
         {% if errors|length > 0 %}
             {% for error in errors %}
-                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
+                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }} <br>
             {% endfor %}
         {% endif %}
     </span>
 {% endspaceless %}
 {% endblock field_errors %}
 
+{# used to determine which type of error #}
+{% block error_type %}
+{% spaceless %}
+{% if field_error_type %}
+{{ field_error_type }}
+{% elseif form.hasParent() != 0 %}
+    {% set form = form.parent %}
+    {{ block('error_type') }}
+{% elseif form.hasParent() == 0 %}
+    {{ form.get('error_type') }}
+{% endif %}
+{% endspaceless %}
+{% endblock error_type %}
 
 {# Basic form and field blocks #}
 
@@ -231,7 +254,6 @@
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
-
 
 {% block imagefile_widget %}
 {% spaceless %}

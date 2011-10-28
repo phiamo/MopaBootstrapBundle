@@ -7,24 +7,24 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilder;
 
  
-class LabelFormTypeExtension extends AbstractTypeExtension
+class ErrorTypeFieldTypeExtension extends AbstractTypeExtension
 {
 	public function buildForm(FormBuilder $builder, array $options)
 	{
-        $builder->setAttribute('label_attr', $options['label_attr']);
-        $builder->setAttribute('label_render', $options['label_render']);
+        $builder->setAttribute('field_error_type', $options['field_error_type']);
+        $builder->setAttribute('error_delay', $options['error_delay']);
 	}
 	
 	public function buildView(FormView $view, FormInterface $form)
 	{
-	    $view->set('label_attr', $form->getAttribute('label_attr'));
-	    $view->set('label_render', $form->getAttribute('label_render'));
+	    $view->set('field_error_type', $form->getAttribute('field_error_type'));
+	    $view->set('error_delay', $form->getAttribute('error_delay'));
 	}
     public function getDefaultOptions(array $options)
     {
         return array(
-            'label_attr' => array(),
-            'label_render' => true,
+            'field_error_type' => false,
+            'error_delay'=>false
         );
     }
 	public function getExtendedType()

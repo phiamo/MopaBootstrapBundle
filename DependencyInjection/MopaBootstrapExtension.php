@@ -43,6 +43,12 @@ class MopaBootstrapExtension extends Extension
                     $config['form']['show_child_legend']
                 );
             }
+            if(isset($config['form']['error_type'])){
+                $container->setParameter(
+                    'mopa_bootstrap.form.error_type',
+                    $config['form']['error_type']
+                );
+            }
         }
     }
 }
