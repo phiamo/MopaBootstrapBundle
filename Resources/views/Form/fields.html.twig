@@ -151,6 +151,7 @@
 
 {% block date_widget %}
 {% spaceless %}
+    {% set size = size|default('medium') %}
     {% if widget == 'single_text' %}
         {{ block('field_widget') }}
     {% else %}
@@ -160,9 +161,9 @@
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes')  }}>
 	            {{ date_pattern|replace({
-	                '{{ year }}':  form_widget(form.year),
-	                '{{ month }}': form_widget(form.month),
-	                '{{ day }}':   form_widget(form.day),
+	                '{{ year }}':  form_widget(form.year, { 'attr' : {'class' : size } }),
+	                '{{ month }}': form_widget(form.month, { 'attr' : {'class' : size } }),
+	                '{{ day }}':   form_widget(form.day, { 'attr' : {'class' : size } }),
 	            })|raw }}
 	        </div>
 	        {{ block('help') }}
