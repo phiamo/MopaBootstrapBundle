@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8" />
 {% block head_style %}
+{# Add your own bundles css here, to get them generated into final files #}
 {% stylesheets filter='less,cssembed,?yui_css' 
-	    	'@MopaBootstrapBundle/Resources/public/less/bootstrapbundle.less'
-	    	'@YourNiceBundle/Resources/public/less/*'
+	    	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 	    %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
 	media="screen" />
@@ -29,11 +29,13 @@
 
 {% endblock head_style %}
 {% block head_script %}
-{# You can deactivate unneeded js by removing them, but be careful they
+{#
+Add your own bundles js here, to get them generated into final files
+You can deactivate unneeded js by removing them, but be careful they
 rely on each other The Order they are provided here should be correct,
 so you may remove them bottom up #}
 {%- javascripts
-	    	'@YourNiceBundle/Resources/public/js/jquery-1.6.2.min.js'
+	    	'http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
@@ -41,7 +43,7 @@ so you may remove them bottom up #}
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-twipsy.js'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alerts.js'
-	    	'@YourNiceBundle/Resources/public/js/*' filter="?yui_js"
+	    	filter="?yui_js"
 	    %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
@@ -58,10 +60,10 @@ so you may remove them bottom up #}
 				</h3>
 				<ul class="nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="http://www.symfony.com">Symfony</a></li>
-					<li><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></li>
-					<li><a href="http://nodejs.org/">node.js</a></li>
-					<li><a href="http://lesscss.org/">lesscss</a></li>
+					<li><a href="http://www.symfony.com" target="_blank">Symfony</a></li>
+					<li><a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a></li>
+					<li><a href="http://nodejs.org/" target="_blank">node.js</a></li>
+					<li><a href="http://lesscss.org/" target="_blank">lesscss</a></li>
 				</ul>
 				<form class="pull-left" action="">
 					<input type="text" placeholder="Search">
@@ -69,7 +71,7 @@ so you may remove them bottom up #}
 				<ul class="nav secondary-nav">
 					<li class="menu"><a href="#" class="dropdown-toggle">Dropdown</a>
 						<ul class="menu-dropdown">
-							<li><a href="http://www.mohrenweiserpartner.de">Mohrenweiser &
+							<li><a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser &
 									Partner</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Another link</a></li>
@@ -79,7 +81,14 @@ so you may remove them bottom up #}
 			</div>
 		</div>
 	</div>
+    <div class="container">
+
+    </div> <!-- /container -->
 	<div class="container">
+      <div class="content">
+        <div class="page-header">
+              <h1>{% block headline %}Mopa Bootstap Bundle{% endblock %}</h1>
+        </div>
 		{% block flashes %}
 		    {{ session_flash() }}
 		{% endblock  %}
@@ -95,6 +104,11 @@ so you may remove them bottom up #}
 			</div>
 			{% endblock  %}
 		</div>
+      </div>
+
+      <footer>
+        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
+      </footer>
 	</div>
 	{% block foot_script %}
 	{% endblock %}
