@@ -3,7 +3,7 @@
 <div class="pagination">
   <ul>
     <li class="first {{ (first is defined and current == first) ? 'disabled' : ''}}">
-        <a href="{{ path(route, query|merge({'page': first})) }}">&#60;;&#60;</a>
+        <a href="{{ path(route, query|merge({'page': first})) }}">&#60;&#60;</a>
     </li>
 
     <li class="prev {{ (previous is not defined) ? 'disabled': ''}}">
