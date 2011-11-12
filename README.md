@@ -104,7 +104,7 @@ If you do not have bootstrap in your project yet
 Just run
 
 ``` bash
-cd vendor/bundles/MopaBootstrapBundle
+cd vendor/bundles/Mopa/BootstrapBundle
 git submodule init
 git submodule update
 ```
@@ -153,7 +153,7 @@ twig:
 Or include the fields.html.twig in your template for a special form:
 
 ``` jinja
-{% form_theme myform 'MopaBootstrapBundle:Form:field.html.twig' %}
+{% form_theme myform 'MopaBootstrapBundle:Form:fields.html.twig' %}
 ```
 
 For FormFlow you can just use MopaBootstrap's templates instead of the ones given by the Bundles:
