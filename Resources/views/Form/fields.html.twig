@@ -255,25 +255,6 @@
 {% endspaceless %}
 {% endblock textarea_widget %}
 
-{% block imagefile_widget %}
-{% spaceless %}
-    {% if errors|length != 0 or value == ''%}
-    {% set value = '' %}
-    {% set type = type|default('file') %}
-    {{ block('field_widget') }}
-    {% else %}
-        {#% debug form %#}
-{#
-        <span class="help-inline">
-        <a href="{{ path('_partner_deal_image_cropping', {'id': image.vars.value.id, 'slug': 'test'}) }}">
-			<img src="{{ image.vars.value.getWebPath() | apply_filter('_partner_thumb') }}"/>
-			{{ image.vars.value.cropped ? 'OK' : 'Need to be cropped! Please click here' }}
-		</a>
-		</span>
-#}
-    {% endif %}    
-{% endspaceless %}
-{% endblock imagefile_widget %}
 {# widget attributes #}
 
 {% block widget_attributes %}
