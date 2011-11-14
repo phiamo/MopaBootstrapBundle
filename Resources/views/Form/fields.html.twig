@@ -160,9 +160,9 @@
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes')  }}>
 	            {{ date_pattern|replace({
-                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class}}),
-                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class}}),
-                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class}}),
+                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('')}}),
+                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('')}}),
+                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('')}}),
 	            })|raw }}
 	        </div>
 	        {{ block('help') }}
@@ -184,8 +184,8 @@
 	        <div {{ block('widget_container_attributes') }}>
 	            {{ form_errors(form.date) }}
 	            {{ form_errors(form.time) }}
-	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class}}) }}
-	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class}}) }}
+	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
+	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
 	        </div>
 	        {{ form_help(form) }}
         </div>
@@ -214,7 +214,7 @@
 	        {% for child in form %}
                 <li>
                 	<label>
-		            	{{ form_widget(child, {'attr': {'class': attr.widget_class}}) }}
+		            	{{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
 		            	<span>{{ child.get('label') }}</span>
 	                </label>
                 </li>
