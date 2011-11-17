@@ -135,7 +135,9 @@
             {{ form_widget(form) }}
             {{ widget_suffix }}
     {% if not ('form' in form.get('types')) %}
+        {% if widget_remove_btn is defined %}
             {{ form_widget_remove_btn(form) }}
+        {% endif %}
 	        {{ form_help(form) }}
             {{ form_errors(form) }}
         </div>
