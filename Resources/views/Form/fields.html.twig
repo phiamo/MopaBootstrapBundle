@@ -189,7 +189,7 @@
 	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
 	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
 	        </div>
-	        {{ form_help(form) }}
+	        {{ block('field_help') }}
         </div>
     </div>
     {% endif %}
