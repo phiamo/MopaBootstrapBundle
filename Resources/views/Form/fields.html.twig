@@ -115,7 +115,7 @@
 {% endblock form_widget %}
 
 {% block field_row %}
-    {% if not('form' in form.get('types')) %}
+    {% if not ('form' in form.get('types')) %}
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
     {% endif %}
         {% if 'form' in form.get('types') and form.hasParent() != 0 %}
@@ -136,9 +136,9 @@
             {{ widget_suffix }}
     {% if not ('form' in form.get('types')) %}
         {% if widget_remove_btn is defined %}
-            {{ form_widget_remove_btn(form) }}
+            {{ block('field_widget_remove_btn') }}
         {% endif %}
-	        {{ form_help(form) }}
+	        {{ block('field_help') }}
             {{ form_errors(form) }}
         </div>
     </div>

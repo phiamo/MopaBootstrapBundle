@@ -93,7 +93,7 @@ public function registerBundles()
 mopa_bootstrap:
     form:
         show_legend: false # default is true
-        show_legend: false # default is true
+        show_child_legend: false # default is true
         error_type: block # or inline which is default
         
 ```
