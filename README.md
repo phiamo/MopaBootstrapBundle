@@ -375,6 +375,12 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ```
 
+### Generation CRUD controllers based on a Doctrine 2 schema
+
+Bundle provide new command for console: 'mopa:generate:crud'. It extend base doctrine CRUD generator and modify theme by supports bootstrap layout.
+
+
+
 Hope you have fun with it.
 
 
