@@ -1,5 +1,6 @@
-{{ "{% extends '::base.html.twig' %}" }}
-{{ "{% block body %}" }}
+{% extends 'MopaBootstrapBundle::layout.html.twig' %}
+
+{{ "{% block content %}" }}
 <form action="{{ "{{ path('"~ route_name_prefix ~"_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
   <fieldset>
   <legend>{{ entity }} creation</legend>
