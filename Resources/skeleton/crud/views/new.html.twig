@@ -1,4 +1,4 @@
-{% extends 'MopaBootstrapBundle::layout.html.twig' %}
+{{ "{% extends 'MopaBootstrapBundle::layout.html.twig' %}" }}
 
 {{ "{% block content %}" }}
 <form action="{{ "{{ path('"~ route_name_prefix ~"_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
@@ -8,10 +8,9 @@
     {{ "{{ form_widget(form) }}" }}
     <div class="actions">
         <button type="submit" class="btn primary">Create</button>
+        {% set hide_edit, hide_delete = true, true %}
+        {% include 'views/others/record_actions.html.twig' %}
     </div>
   </fieldset>
 </form>
-
-{% set hide_edit, hide_delete = true, true %}
-{% include 'views/others/record_actions.html.twig' %}
 {{ "{% endblock %}" }}

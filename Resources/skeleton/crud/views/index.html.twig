@@ -1,4 +1,4 @@
-{% extends 'MopaBootstrapBundle::layout.html.twig' %}
+{{ "{% extends 'MopaBootstrapBundle::layout.html.twig' %}" }}
 
 {{ "{% block content %}" }}
 <h1>{{ entity }} list</h1>
@@ -49,12 +49,8 @@
 </table>
 
 {% if 'new' in actions %}
-<ul>
-    <li>
-        <a href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+<a href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}"  class="btn primary">
+    Create a new entry
+</a>
 {% endif %}
 {{ "{% endblock %}" }}
