@@ -1,0 +1,32 @@
+{{ "{% extends 'MopaBootstrapBundle::layout.html.twig' %}" }}
+
+{{ "{% block content %}" }}
+<h1>{{ entity }}</h1>
+
+<table class="record_properties">
+    <tbody>
+    {%- for field, metadata in fields %}
+
+        <tr>
+            <th>{{ field|capitalize }}</th>
+
+        {%- if metadata.type in ['date', 'datetime'] %}
+
+            <td>{{ '{{ entity.'~ field|replace({'_': ''}) ~'|date(\'Y-m-d H:i:s\') }}' }}</td>
+
+        {%- else %}
+
+            <td>{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</td>
+
+        {%- endif %}
+
+        </tr>
+
+    {%- endfor %}
+
+    </tbody>
+</table>
+
+{% set hide_edit, hide_delete = false, false %}
+{% include 'views/others/record_actions.html.twig' %}
+{{ "{% endblock %}" }}
