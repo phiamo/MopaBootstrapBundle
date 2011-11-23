@@ -254,7 +254,7 @@ mopa_bootstrap:
 If you just want to have it in a special form do it like that: 
 
 ``` php
-// e.g. a form only consiting of subforms
+// e.g. a form only consisting of subforms
 public function buildForm(FormBuilder $builder, array $options)
 {
     $builder->setAttribute('show_legend', false); // no legend for main form
