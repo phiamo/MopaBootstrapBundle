@@ -1,7 +1,6 @@
 # README
 
-
-## Introduction
+<h2 id="Introduction">Introduction</h2>
 
 MopaBootstrapBundle is a small collection of useful code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2 (http://www.symfony.com) Project.
@@ -10,10 +9,30 @@ It includes various form template blocks for use with symfony2 Form Component
 as well as twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
 and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 
-## Prerequisites
+<h3 id="Outline">Outline</h3>
 
+*   [Introduction](#introduction)
+   *   [Outline](#Outline)
+*   [Prerequisites](#Prerequisites)
+   *   [OPTIONAL](#OPTIONAL)
+*   [Installation](#Installation)
+*   [Initialize Bootstrap submodule](#Initialize)
+*   [Using bootstrap in the layout](#Using)
+*   [Using bootstrap for Form Theming](#Form_Theming)
+   *   [Make use of FormExtensions](#FormExtensions)
+   *   [FormLegends](#Form_Legends)
+   *   [Child Form_Legends](#Child_Form_Legends)
+   *   [Field Labels](#Field_Labels)
+   *   [Form Field Help](#Form_Field_Help)
+   *   [Form Field Prefix / Suffix](#Form_Field_presuf)
+   *   [Form Errors](#Form_Errors)
+*   [Generation of CRUD controllers based on a Doctrine 2 schema](#Generation_CRUD)
+*   [TODO](#TODO)
+*   [Known Issues](#Known_Issues)
+    
+<h2 id="Prerequisites">Prerequisites</h2>
 
-### OPTIONAL
+<h3 id="OPTIONAL">OPTIONAL</h3>
 If you do not want to use less ignore this, otherwise try:
  - node.js: https://github.com/joyent/node/wiki/Installation
  - npm: (node package manager) 
@@ -22,12 +41,10 @@ If you do not want to use less ignore this, otherwise try:
 curl http://npmjs.org/install.sh | sh
 ```
 
-
  - less css:
 
 ``` bash
 npm install less -g
-
 ```
 
  - configure assetic to make use of it (replace /usr with your prefix)
@@ -44,10 +61,9 @@ assetic:
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
 
 
-## Installation
+<h2 id="Installation">Installation</h2>
 
 1.1 Add this bundle to your project as via deps:
-
 
 ```
 [MopaBootstrapBundle]
@@ -62,16 +78,16 @@ git submodule add git@github.com:phiamo/MopaBootstrapBundle.git vendor/bundles/M
 ```
 
 2. Add namespace to you app/autoload.php
-  
+
 ``` php
 <?php
 // app/autoload.php
-
 $loader->registerNamespaces(array(
     // ...
     'Mopa'        => __DIR__.'/../vendor/bundles',
 ));
 ```
+
 
 3. Add this bundle to your app/AppKernel.php:
 
@@ -88,17 +104,16 @@ public function registerBundles()
 ```
 
   4. If you like configure your config.yml (not mandatory anymore)
-     
+
 ``` yaml
 mopa_bootstrap:
     form:
         show_legend: false # default is true
         show_child_legend: false # default is true
         error_type: block # or inline which is default
-        
 ```
 
-## Initialize Bootstrap submodule
+<h2 id="Initialize">Initialize Bootstrap submodule</h2>
 
 If you do not have bootstrap in your project yet
 Just run
@@ -109,7 +124,7 @@ git submodule init
 git submodule update
 ```
 
-## Using bootstrap in the layout:
+<h2 id="Using">Using bootstrap in the layout</h2>
 
 Have a look at the provided layout.html.twig its a fully working bootstrap layout and 
 might explain howto use it by itself.
@@ -125,10 +140,10 @@ If you are using less just include the mopabootstrap.less as described in layout
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}
 ```
+
 If you would like to use the css try this:
 
 ``` jinja
-  
 {% block head_style %}
 {% stylesheets filter='less,cssembed,?yui_css' 
    '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
@@ -139,7 +154,8 @@ If you would like to use the css try this:
 {% endstylesheets %}
 ```
 
-## Use Bootstrap for Theming
+<h2 id="Form_Theming">Using bootstrap for Form Theming</h2>
+ 
       
 You can either activate it for you whole project:
 
@@ -160,7 +176,7 @@ For FormFlow you can just use MopaBootstrap's templates instead of the ones give
 
 ``` jinja
 {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' with {'formident': '#myform}%}
-``
+```
 
 For KnpPaginatorBundle use the following to override template:
 
@@ -190,13 +206,13 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 ```
 
 
-## Make use of FormExtensions
+<h3 id="FormExtensions">Make use of FormExtensions</h3>
 
 This bundle extends the Form Component via its native way to achieve having 
 several more attributes on several form components
 
 
-### Form Legends
+<h3 id="Form_Legends">Form Legends</h3>
 
 Every Form component representing a Form not a Field (e.g. subforms, widgets of type date beeing expanded, etc)
 has now a attribute called show_legend which controls wether the "form legend" is shown or not.
@@ -219,7 +235,7 @@ public function buildForm(FormBuilder $builder, array $options)
 ```
     
     
-#### Child Form Legends    
+<h3 id="Child_Form_Legends">Child Form Legends</h3>
 
 
 In symfony2 you can easily glue different forms together and build a nice tree. 
@@ -247,7 +263,8 @@ public function buildForm(FormBuilder $builder, array $options)
     // ... 
 ```
 
-### Field Labels
+<h3 id="Field_Labels">Field Labels</h3>
+
 
 This is maybe a little hack but i didn't know howto come around the attr inheritance of the form to the label.
 So i made another form extenstion so you can explicitly set the classes of the label, 
@@ -277,7 +294,7 @@ Also you have the option to remove a specific field label by setting label_rende
 ```
 
 
-### Form Field Help
+<h3 id="Form_Field_Help">Form Field Help</h3>
 
 Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
 has several new attributes:
@@ -307,6 +324,8 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ``` 
 
+<h3 id="Form_Field_presuf">Form Field Prefix / Suffix</h3>
+
 There are also suffix and prefix attributes for the widgets:
 
 ``` php
@@ -325,8 +344,7 @@ public function buildForm(FormBuilder $builder, array $options)
 ``` 
 
 
-
-### Form Errors
+<h3 id="Form_Errors">Form Errors</h3>
 
 Generally you may want to define your errors to be displayed inline OR block (see bootstrap) you may define it globally in your conf:
 
@@ -375,23 +393,25 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ```
 
-### Generation CRUD controllers based on a Doctrine 2 schema
+<h2 id="Generation_CRUD">Generation of CRUD controllers based on a Doctrine 2 schema</h2>
 
-Bundle provide new command for console: 'mopa:generate:crud'. It extend base doctrine CRUD generator and modify theme by supports bootstrap layout.
+The Bundle provides a new console command: 
+```bash
+./app/console mopa:generate:crud
 
-
+It extends the base doctrine CRUD generator and modifies the theme to support the bootstrap layout.
 
 Hope you have fun with it.
 
 
-## TODO
+<h2 id="TODO">TODO</h2>
 
     - Probably make a command to deal with bootstrap library submodule for init and update
     - Probably add more form components
     - Add more useful bootstrap stuff
  
  
-## Known Issues
+<h2 id="Known_Issues">Known Issues</h2>
 
     - Nothing what could not be done in another way, probably some will arise as soon as its published
       So make issues!
