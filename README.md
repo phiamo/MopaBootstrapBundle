@@ -124,6 +124,8 @@ git submodule init
 git submodule update
 ```
 
+To deploy with capifony modify bin/vendors: `clone --recursive` instead of `clone` 
+
 <h2 id="Using">Using bootstrap in the layout</h2>
 
 Have a look at the provided layout.html.twig its a fully working bootstrap layout and 
