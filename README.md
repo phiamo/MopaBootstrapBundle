@@ -135,7 +135,7 @@ In detail:
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
 
 ``` jinja
-{% stylesheets filter='less,cssembed,?yui_css' 
+{% stylesheets filter='less,cssrewrite,?yui_css' 
    '@MopaBootstrapBundle/Resources/public/less/bootstrapbundle.less'
    '@YourNiceBundle/Resources/public/less/*'
 %}
@@ -147,7 +147,7 @@ If you would like to use the css try this:
 
 ``` jinja
 {% block head_style %}
-{% stylesheets filter='less,cssembed,?yui_css' 
+{% stylesheets filter='cssrewrite,?yui_css' 
    '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
