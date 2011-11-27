@@ -1,0 +1,34 @@
+{
+    "name": "mopa/bootstrap-bundle",
+    "type": "symfony-bundle",
+    "description": "Easy integration of twitters bootstrap into symfony2",
+    "keywords": ["form", "extra form", "bootstrap", "bootstrap form", "template"],
+    "version": "0.5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philipp A. Mohrenweiser",
+            "email": "phiamo@googlemail.com"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "2.*",
+        "symfony/form": "2.*"
+    },
+    "recommend": {
+        "symfony/twig-bridge": "2.*",
+        "symfony/http-kernel": "2.*",
+        "symfony/finder": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mopa\\BootstrapBundle": ""
+        }
+    },
+    "target-dir": "Mopa/BootstrapBundle"
+}
