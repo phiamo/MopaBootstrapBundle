@@ -53,6 +53,7 @@ so you may remove them bottom up #}
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
+    {% block topbar %}
 	<div class="topbar" data-dropdown="dropdown">
 		<div class="topbar-inner">
 			<div class="container">
@@ -82,9 +83,9 @@ so you may remove them bottom up #}
 			</div>
 		</div>
 	</div>
-    <div class="container">
-
-    </div> <!-- /container -->
+	{% endblock topbar %}
+	
+	{% block container %}
 	<div class="container">
       <div class="content">
         <div class="page-header">
@@ -92,7 +93,7 @@ so you may remove them bottom up #}
         </div>
 		{% block flashes %}
 		    {{ session_flash() }}
-		{% endblock  %}
+		{% endblock flashes %}
 		<div class="row">
 			{% block content %}
 			<div class="span12">
@@ -101,17 +102,18 @@ so you may remove them bottom up #}
 			<div class="span4">
 				{% block content_sidebar %}
 
-				{% endblock %}
+				{% endblock content_sidebar %}
 			</div>
-			{% endblock  %}
+			{% endblock content %}
 		</div>
       </div>
 
       <footer>
         <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
       </footer>
-	</div>
+	</div> <!-- /container -->
+	{% endblock container %}
 	{% block foot_script %}
-	{% endblock %}
+	{% endblock foot_script %}
 </body>
 </html>
