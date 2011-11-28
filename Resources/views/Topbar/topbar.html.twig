@@ -1,0 +1,28 @@
+{% block topbar %}
+<div class="topbar">
+	<div class="topbar-inner">
+		<div class="container">
+			<h3>
+				<a href="{{ path(topbar.titleRoute) }}">{{ topbar.title }}</a>
+			</h3>
+        {{ topbar.leftmenu ? knp_menu_render(topbar.leftmenu) : '' }}
+        {% if topbar.form %}
+        {% form_theme topbar.form _self %}
+        <form method="post" action="{{ path(topbar.formRoute) }}">
+        {{ form_widget(topbar.form) }}
+        </form>
+        {% endif %}
+        {{ topbar.rightmenu ? knp_menu_render(topbar.rightmenu) : '' }}
+        
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block form_widget %}
+{{ block('field_rows') }}  
+{% endblock %}
+
+{% block field_row %}
+{{ form_widget(form) }}
+{% endblock field_row %}

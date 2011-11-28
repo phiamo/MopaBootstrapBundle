@@ -54,35 +54,7 @@ so you may remove them bottom up #}
 </head>
 <body>
     {% block topbar %}
-	<div class="topbar" data-dropdown="dropdown">
-		<div class="topbar-inner">
-			<div class="container">
-				<h3>
-					<a href="http://www.mohrenweiserpartner.de">MopaBootstrapBundle</a>
-				</h3>
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="http://www.symfony.com" target="_blank">Symfony</a></li>
-					<li><a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a></li>
-					<li><a href="http://nodejs.org/" target="_blank">node.js</a></li>
-					<li><a href="http://lesscss.org/" target="_blank">lesscss</a></li>
-				</ul>
-				<form class="pull-left" action="">
-					<input type="text" placeholder="Search">
-				</form>
-				<ul class="nav secondary-nav">
-					<li class="menu"><a href="#" class="dropdown-toggle">Dropdown</a>
-						<ul class="menu-dropdown">
-							<li><a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser &
-									Partner</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Another link</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    {{ mopa_bootstrap_topbar() }}
 	{% endblock topbar %}
 	
 	{% block container %}

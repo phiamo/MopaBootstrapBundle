@@ -1,0 +1,22 @@
+services:
+    mopa_bootstrap.examplemenu_builder:
+        class: Mopa\BootstrapBundle\Topbar\Example\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+
+    mopa_bootstrap.examplemenu:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: mopa_bootstrap.examplemenu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: examplemain } # The alias is what is used to retrieve the menu
+            
+    mopa_bootstrap.exampledropdown:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: mopa_bootstrap.examplemenu_builder
+        factory_method: createDropdownMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: exampledropdown } # The alias is what is used to retrieve the menu

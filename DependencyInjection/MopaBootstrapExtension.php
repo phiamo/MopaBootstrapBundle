@@ -22,9 +22,11 @@ class MopaBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         
-       
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load("services.yml");
+        
+        $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $yamlloader->load("form_extensions.yml");
+        $yamlloader->load("topbar_extension.yml");
         
         if(isset($config['form'])){
             if(isset($config['form']['show_legend'])){
@@ -46,5 +48,28 @@ class MopaBootstrapExtension extends Extension
                 );
             }
         }
+        if(isset($config['topbar'])){
+            if(isset($config['topbar']['template'])){
+                $container->setParameter(
+                    'mopa_bootstrap.topbar.template',
+                    $config['topbar']['template']
+                );
+            }
+            if(isset($config['topbar']['service'])){
+                if($config['topbar']['service'] == 'mopa_bootstrap.example.topbar'){
+                    $this->loadExamples($container);
+                }
+                $container->setAlias(
+                    'mopa_bootstrap.topbar.service',
+                    $config['topbar']['service']
+                );
+            }
+        }
+    }
+    protected function loadExamples(ContainerBuilder $container){
+        $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
+        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
+        $yamlloader->load("example_menu.yml");
+        $xmlloader->load("example_topbar.xml");
     }
 }

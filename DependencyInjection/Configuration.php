@@ -2,6 +2,7 @@
 
 namespace Mopa\BootstrapBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -19,8 +20,26 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
+        $this->addFormConfig($rootNode);
         $rootNode
-            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('topbar')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('service')
+                            ->defaultValue('mopa_bootstrap.example.topbar')
+                            ->cannotBeEmpty()
+                            ->end()
+                        ->scalarNode('template')
+                            ->defaultValue('MopaBootstrapBundle:Topbar:topbar.html.twig')
+                            ->end()
+                    ->end()
+                ->end()
+            ->end();
+        return $treeBuilder;
+    }
+    protected function addFormConfig(ArrayNodeDefinition $rootNode){
+        $rootNode
             ->children()
                 ->arrayNode('form')
                     ->addDefaultsIfNotSet()
@@ -33,11 +52,12 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->scalarNode('error_type')
                             ->defaultValue('inline')
-                            ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
-        return $treeBuilder;
+            ->end()
+            ;   
+    }
+    protected function addTopbarConfig(ArrayNodeDefinition $rootNode){
     }
 }
