@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Mopa\BootstrapBundle\Topbar;
 
 use Symfony\Component\Form\FormView;
