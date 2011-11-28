@@ -4,7 +4,7 @@ parameters:
 services:
     mopa_bootstrap.topbar_renderer:
         class: Mopa\BootstrapBundle\Topbar\Renderer\TopbarRenderer
-        arguments: [ @twig, @form.factory, @mopa_bootstrap.topbar.service, %mopa_bootstrap.topbar.template% ]
+        arguments: [ @service_container, %mopa_bootstrap.topbar.template% ]
         tags:
             # The alias is what is used to retrieve the menu
             - { name: knp_menu.renderer, alias: topbar }
@@ -14,7 +14,3 @@ services:
         arguments: [ @mopa_bootstrap.topbar_renderer ]
         tags:
             -  { name: twig.extension }
-            
-    mopa_bootstrap.topbar.helper:
-        class:  Mopa\BootstrapBundle\Twig\Helper
-        arguments: [knp_menu.renderer_provider, knp_menu.menu_provider]

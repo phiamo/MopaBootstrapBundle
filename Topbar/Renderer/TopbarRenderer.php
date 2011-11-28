@@ -1,22 +1,23 @@
 <?php
 namespace Mopa\BootstrapBundle\Topbar\Renderer;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Symfony\Component\Form\FormFactoryInterface;
 use Mopa\BootstrapBundle\Topbar\TopbarInterface;
 use Symfony\Component\Form\AbstractType;
 
 class TopbarRenderer{
     
+    private $container;
     private $template;
     private $formFactory;
     private $topbar;
     private $environment;
     
-    public function __construct(\Twig_Environment $environment, FormFactoryInterface $formFactory, $topbar, $template)
+    public function __construct(ContainerInterface $container, $template)
     {
-        $this->environment = $environment;
-        $this->formFactory = $formFactory;
-        $this->topbar = $topbar;
+        $this->container = $container;
         $this->template = $template;
     }
     /**
@@ -29,10 +30,10 @@ class TopbarRenderer{
     public function renderTopbar(array $options = array())
     {
         $options = array_merge($this->getTopbarDefaultOptions(), $options);
-    
+        
         $template = $options['template'];
         if (!$template instanceof \Twig_Template) {
-            $template = $this->environment->loadTemplate($template);
+            $template = $this->container->get('twig')->loadTemplate($template);
         }
         $topbar = $this->getTopbar($options['topbar']);
         $this->createFormView($topbar);
@@ -53,7 +54,7 @@ class TopbarRenderer{
         }
         if($formType && $formType instanceof AbstractType){
             $topbar->setFormType($formType);
-            $form = $this->formFactory->create($formType);
+            $form = $this->container->get('form.factory')->create($formType);
             $topbar->setForm($form->createView());
         }
         return null;
@@ -77,7 +78,7 @@ class TopbarRenderer{
     {
         return array(
             'template' => $this->template,
-            'topbar' => $this->topbar
+            'topbar' => $this->container->get('mopa_bootstrap.topbar.service')
         );
     }
 }

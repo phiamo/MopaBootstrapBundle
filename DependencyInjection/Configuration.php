@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->scalarNode('template')
                             ->defaultValue('MopaBootstrapBundle:Topbar:topbar.html.twig')
+                            ->cannotBeEmpty()
                             ->end()
                     ->end()
                 ->end()
