@@ -1,23 +1,34 @@
 ###
 
-Generating a bootstrap topbar should be sraight forward.
-We try to solve that by just reusing the Excellent KnpMenu and KnpMenuBundle to create the menues and decorate our topbar with these and forms and more:
+Generating a bootstrap topbar should be straight forward.
+We try to solve that by just reusing the Excellent KnpMenu and KnpMenuBundle to create the menues and decorate our Topbar with these and forms and more.
 
-By default if you include the Bootstrap Bundle the examples are loaded as if you were loading the fololowing config:
+So remember to install these Bundles if you want to use the Topbar features!
 
-imports:
-    - { resource: ../../vendor/bundles/Mopa/BootstrapBundle/Resources/config/examples/example_topbar.xml }
-    - { resource: ../../vendor/bundles/Mopa/BootstrapBundle/Resources/config/examples/example_menu.yml }
+If you want to see the example topbar:
 
-and by default the example topbar is configured to be used:
+```yaml
+mopa_bootstrap:
+    topbar: ~
+```
 
+To get rid of the example topbar, just do the configure in your config.yml
+
+```yaml
 mopa_bootstrap:
     topbar:
-        service: mopa_bootstrap.example.topbar
-        
-To get rid of the default topbar, just do the configure statement above in your config.yml and create the neccessary service definitions.
+         service: your.topbar.service
+```
 
-if you do not extend the provided layout file its as easy as
+A Topbar Service can be generated easyly be generating a Topbar Service like in
+ or if you prefer yaml Resources/config/examples/example_topbar.yml
+ 
+You need also some KnpMenu definitions like in  
+Resources/config/examples/example_menu.yml
+
+If you leave any of the arguments blank (don't omit them!) they should just not render
+
+If you do not extend the provided layout file its as easy as
 
 {% block topbar %}
    {{ mopa_bootstrap_topbar() }}
@@ -28,3 +39,7 @@ to get your topbar displayed.
 And if you extend the Base Layout but dont wanna have the Topbar, just override the block:
 
 {% block topbar %}{% endblock topbar %}
+
+You may also Create a own topbar class by implementing TopbarInterface or extending GenericTopbar.
+
+Feel free to commit any PR's.

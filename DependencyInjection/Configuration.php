@@ -21,22 +21,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
-        $rootNode
-            ->children()
-                ->arrayNode('topbar')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('service')
-                            ->defaultValue('mopa_bootstrap.example.topbar')
-                            ->cannotBeEmpty()
-                            ->end()
-                        ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Topbar:topbar.html.twig')
-                            ->cannotBeEmpty()
-                            ->end()
-                    ->end()
-                ->end()
-            ->end();
+        $this->addTopbarConfig($rootNode);
         return $treeBuilder;
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode){
@@ -57,8 +42,23 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end()
-            ;   
+            ;
     }
     protected function addTopbarConfig(ArrayNodeDefinition $rootNode){
+        $rootNode
+            ->children()
+                ->arrayNode('topbar')
+                    ->children()
+                        ->scalarNode('service')
+                            ->defaultValue('mopa_bootstrap.example.topbar')
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('template')
+                            ->defaultValue('MopaBootstrapBundle:Topbar:topbar.html.twig')
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
     }
 }

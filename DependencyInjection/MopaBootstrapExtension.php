@@ -21,13 +21,10 @@ class MopaBootstrapExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        
-        
-        $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $yamlloader->load("form_extensions.yml");
-        $yamlloader->load("topbar_extension.yml");
-        
+
         if(isset($config['form'])){
             if(isset($config['form']['show_legend'])){
                 $container->setParameter(
@@ -49,6 +46,8 @@ class MopaBootstrapExtension extends Extension
             }
         }
         if(isset($config['topbar'])){
+            $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+            $yamlloader->load("topbar_extension.yml");
             if(isset($config['topbar']['template'])){
                 $container->setParameter(
                     'mopa_bootstrap.topbar.template',
@@ -56,6 +55,7 @@ class MopaBootstrapExtension extends Extension
                 );
             }
             if(isset($config['topbar']['service'])){
+
                 if($config['topbar']['service'] == 'mopa_bootstrap.example.topbar'){
                     $this->loadExamples($container);
                 }
