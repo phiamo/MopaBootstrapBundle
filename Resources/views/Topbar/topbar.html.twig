@@ -10,17 +10,20 @@
         {% form_theme topbar.form _self %}
         <form method="post" action="{{ path(topbar.formRoute) }}">
         {{ form_widget(topbar.form) }}
+        {% if topbar.buttonValue %}
+        <input class="btn primary" value="{{ topbar.buttonValue }}" type="submit">
+        {% endif %}
         </form>
         {% endif %}
         {{ topbar.rightmenu ? knp_menu_render(topbar.rightmenu) : '' }}
-        
+
 		</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block form_widget %}
-{{ block('field_rows') }}  
+{{ block('field_rows') }}
 {% endblock %}
 
 {% block field_row %}

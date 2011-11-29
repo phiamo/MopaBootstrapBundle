@@ -13,7 +13,7 @@ class GenericTopbar implements TopbarInterface
     protected $formTypeClass;
     protected $formType;
     protected $formView;
-    
+
     public function __construct($title, $titleRoute = null, $leftMenu = null, $formTypeClass = null, $rightMenu = null){
         $this->title = $title;
         $this->titleRoute = $titleRoute;
@@ -69,9 +69,13 @@ class GenericTopbar implements TopbarInterface
         $this->formView = $formView;
     }
     public function getFormRoute(){
-        var_dump($this->formType && $this->formType->getRoute());
         if($this->formView && $this->formType->getRoute()){
             return $this->formType->getRoute();
+        }
+    }
+    public function getButtonValue(){
+        if($this->formView && $this->formType->getButtonValue()){
+            return $this->formType->getButtonValue();
         }
     }
     public function makeDropdown($menuItem){
