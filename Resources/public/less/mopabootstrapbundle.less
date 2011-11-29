@@ -9,6 +9,11 @@
  * OR
  * Add it to the stylesheets of assetic or 
  * Add it as described on http://www.lesscss.org with the less.js (maybe pathes must be adapted in that case)
+ *
+ * Be careful when using less this way, might be most straight forwart, but assetic doesnt check the included files 
+ * for changes, and will only regenerate the css if it detects changes in this file!
+ * 
+ * For development it might be easier to include all you less files in the layout directly
  */
 
 // Main bootstrap.less entry point
@@ -17,5 +22,5 @@
 // The Paginator less for Bootstrap
 @import "paginator.less";
 
-// The Example less for this bundle
-@import "example.less";
+// The Example less for this bundle (downsizes container to 820px so be sure you want it :)
+// @import "example.less";

@@ -6,7 +6,7 @@
 <meta charset="UTF-8" />
 {% block head_style %}
 {# Add your own bundles css here, to get them generated into final files #}
-{% stylesheets filter='less,cssembed,?yui_css' 
+{% stylesheets filter='less,cssembed,?yui_css'
 	    	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 	    %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
@@ -16,7 +16,7 @@
    be warned paginator.less isnt compiled yet so its missing
 
 {% block head_style %}
-{% stylesheets filter='less,cssembed,?yui_css' 
+{% stylesheets filter='less,cssembed,?yui_css'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
 	    	'@YourNiceBundle/Resources/public/css/*'
 	    %}
@@ -24,10 +24,9 @@
 	media="screen" />
 {% endstylesheets %}
 
-
 #}
-
 {% endblock head_style %}
+
 {% block head_script %}
 {#
 Add your own bundles js here, to get them generated into final files
@@ -56,7 +55,7 @@ so you may remove them bottom up #}
     {% block topbar %}
     {{ mopa_bootstrap_topbar() }}
 	{% endblock topbar %}
-	
+
 	{% block container %}
 	<div class="container">
       <div class="content">
@@ -73,15 +72,16 @@ so you may remove them bottom up #}
 			</div>
 			<div class="span4">
 				{% block content_sidebar %}
-
+                <h2>Sidebar</h2>
 				{% endblock content_sidebar %}
 			</div>
 			{% endblock content %}
 		</div>
       </div>
-
       <footer>
+        {% block footer %}
         <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
+        {% endblock footer %}
       </footer>
 	</div> <!-- /container -->
 	{% endblock container %}
