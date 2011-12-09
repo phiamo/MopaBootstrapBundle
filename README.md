@@ -136,7 +136,7 @@ If you are using less just include the mopabootstrap.less as described in layout
 
 ``` jinja
 {% stylesheets filter='less,cssrewrite,?yui_css' 
-   '@MopaBootstrapBundle/Resources/public/less/bootstrapbundle.less'
+   '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
    '@YourNiceBundle/Resources/public/less/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
