@@ -165,7 +165,7 @@ You can either activate it for you whole project:
 twig:
     form:
         resources:
-  - 'MopaBootstrapBundle:Form:fields.html.twig'
+            - 'MopaBootstrapBundle:Form:fields.html.twig'
 ```
 
 Or include the fields.html.twig in your template for a special form:
@@ -182,12 +182,20 @@ For FormFlow you can just use MopaBootstrap's templates instead of the ones give
 
 For KnpPaginatorBundle use the following to override template:
 
-``` yaml
-knp_paginator:
-    templating: # enables view helper and twig
-        template: 'MopaBootstrapBundle:Pagination:sliding.html.twig'
+``` ini
+; File: app/configs/parameters.ini
+
+knp_paginator.template.pagination = MopaBootstrapBundle:Pagination:sliding.html.twig
 ```
 
+or
+
+``` yml
+# File: app/configs/parameters.yml
+
+parameters:
+  knp_paginator.template.pagination: MyBundle:Pagination:pagination.html.twig7
+```
 
 where formident is used by jquery to bind the submit form handler to the "next" or "finish" button, instead of the first defined like in html it is
 This is mainly necessary if you have more than one form.
