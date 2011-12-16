@@ -16,7 +16,7 @@
         </li>
     {% endfor %}
 
-    <li class="next {{ (next is not defined) ? 'disabled': ''}}">
+    <li class="{{ (next is not defined) ? 'disabled': ''}}">
         <a href="{{ (next is defined) ? path(route, query|merge({'page': next})) :'#' }}">Next &#8594;</a>
     </li>
 
