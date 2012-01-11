@@ -194,7 +194,7 @@ or
 # File: app/configs/parameters.yml
 
 parameters:
-  knp_paginator.template.pagination: MyBundle:Pagination:pagination.html.twig7
+    knp_paginator.template.pagination: MopaBootstrapBundle:Pagination:sliding.html.twig
 ```
 
 where formident is used by jquery to bind the submit form handler to the "next" or "finish" button, instead of the first defined like in html it is
