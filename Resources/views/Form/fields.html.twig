@@ -216,7 +216,7 @@
                 <li>
                 	<label>
 		            	{{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-		            	<span>{{ child.get('label') }}</span>
+		            	<span>{{ child.get('label')|trans }}</span>
 	                </label>
                 </li>
 	        {% endfor %}
