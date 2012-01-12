@@ -5,7 +5,7 @@
 
 {% block form_legend %}
           <legend>{{ label | trans }}</legend>
-{% endblock form_legend %} 
+{% endblock form_legend %}
 
 {% block generic_label %}
 {% spaceless %}
@@ -105,7 +105,7 @@
     	<fieldset>
     	{% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
-        {{ block('field_rows') }}    
+        {{ block('field_rows') }}
         {{ form_rest(form) }}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
         </fieldset>
@@ -134,15 +134,19 @@
             {{ form_widget(form) }}
             {{ widget_suffix }}
     {% if not ('form' in form.get('types')) %}
-        {% if widget_remove_btn is defined %}
-            {{ block('field_widget_remove_btn') }}
-        {% endif %}
-	        {{ block('field_help') }}
-            {{ form_errors(form) }}
+            {{ block('field_message') }}
         </div>
     </div>
     {% endif %}
 {% endblock field_row %}
+
+{% block field_message %}
+    {% if widget_remove_btn is defined %}
+        {{ block('field_widget_remove_btn') }}
+    {% endif %}
+        {{ block('field_help') }}
+    {{ form_errors(form) }}
+{% endblock field_message %}
 
 {% block collection_widget %}
     {{ block('form_widget') }}
@@ -260,7 +264,7 @@
 
 {% block widget_attributes %}
 {% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %} 
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
     {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
