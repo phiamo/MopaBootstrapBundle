@@ -1,35 +1,42 @@
-{% macro flash(type, message, close) %}
-<div class="alert-message {{ type }}" data-alert="alert">
+{% macro flash(type, message, close, use_raw) %}
+    <div class="alert-message {{ type }}" data-alert="alert">
 	{% if close|default(false) %}
-	<a class="close" href="#">×</a>
+            <a class="close" href="#">×</a>
 	{% endif %}
 	<p>
-	{{ message | trans }}
+            {% if use_raw|default(false) %}
+                {{ message|trans|raw }}
+            {% else %}
+                {{ message|trans }}
+            {% endif %}
 	</p>
-</div>
+    </div>
 {% endmacro %}
 
-{% macro session_flash(type, close) %}
-{% set types = ['info', 'error', 'warning', 'success'] %}
-{% if close is not defined %}
-{% set close = false %}
-{% endif %}
-{% if app.session.getFlashes()|length > 0 %}
-<div class="row">
-        <div class="span16">
-            {% if type|default(false) %}
-                {% if app.session.hasFlash(type) %}
-                    {{ _self.flash(type, app.session.flash(type), close) }}
-                {% endif %}
-            {% else %}
-                {% for type in types %}
+{% macro session_flash(type, close, use_raw) %}
+    {% set types = ['info', 'error', 'warning', 'success'] %}
+    {% if close is not defined %}
+        {% set close = false %}
+    {% endif %}
+    {% if use_raw is not defined %}
+        {% set use_raw = false %}
+    {% endif %}
+    {% if app.session.getFlashes()|length > 0 %}
+        <div class="row">
+            <div class="span16">
+                {% if type|default(false) %}
                     {% if app.session.hasFlash(type) %}
-                        {{ _self.flash(type, app.session.flash(type), close) }}
+                        {{ _self.flash(type, app.session.flash(type), close, use_raw) }}
                     {% endif %}
-                {% endfor %}
-            {% endif %}
+                {% else %}
+                    {% for type in types %}
+                        {% if app.session.hasFlash(type) %}
+                            {{ _self.flash(type, app.session.flash(type), close, use_raw) }}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
-</div>
-{% endif %}
+    {% endif %}
 {% endmacro %}
 
