@@ -68,13 +68,13 @@
 
 {% block field_errors %}
 {% spaceless %}
+    {% if errors|length > 0 %}
     <span class="help-{{ block('error_type') }}">
-        {% if errors|length > 0 %}
             {% for error in errors %}
                 {{ error.messageTemplate|trans(error.messageParameters, 'validators') }} <br>
             {% endfor %}
-        {% endif %}
     </span>
+    {% endif %}
 {% endspaceless %}
 {% endblock field_errors %}
 
