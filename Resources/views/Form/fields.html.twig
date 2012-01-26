@@ -144,8 +144,8 @@
     {% if widget_remove_btn is defined %}
         {{ block('field_widget_remove_btn') }}
     {% endif %}
-        {{ block('field_help') }}
     {{ form_errors(form) }}
+    {{ block('field_help') }}
 {% endblock field_message %}
 
 {% block collection_widget %}
