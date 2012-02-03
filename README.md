@@ -20,9 +20,9 @@ and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 *   [Introduction](#introduction)
    *   [Outline](#Outline)
 *   [Prerequisites](#Prerequisites)
-   *   [OPTIONAL](#OPTIONAL)
+   *   [Less (recommended)](#RECOMMENDED)
 *   [Installation](#Installation)
-*   [Initialize Bootstrap submodule](#Initialize)
+*   [Include Bootstrap](#Including)
 *   [Using bootstrap in the layout](#Using)
 *   [Using bootstrap for Form Theming](#Form_Theming)
    *   [Make use of FormExtensions](#FormExtensions)
@@ -38,7 +38,7 @@ and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
     
 <h2 id="Prerequisites">Prerequisites</h2>
 
-<h3 id="RECOMMENDED">RECOMMENDED</h3>
+<h3 id="RECOMMENDED">Less (recommended)</h3>
 
 If you do not want to use less ignore this, otherwise have a look into:
 
@@ -96,18 +96,22 @@ mopa_bootstrap:
         error_type: block # or inline which is default
 ```
 
-<h2 id="Initialize">Initialize Bootstrap submodule</h2>
+<h2 id="Including">Including Bootstrap </h2>
 
-If you do not have bootstrap in your project yet
-Just run
+For including bootstrap there are several ways have a look into
+ 
+[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md
 
-``` bash
-cd vendor/bundles/Mopa/BootstrapBundle
-git submodule init
-git submodule update
+or quick start e.g. with
+
+```
+[TwitterBootstrap2]
+    git=git://github.com/twitter/bootstrap.git
+    target=/twitter/bootstrap/v2/
+    version=v2.0.0
 ```
 
-To deploy with capifony modify bin/vendors: `clone --recursive` instead of `clone` 
+in your deps
 
 <h2 id="Using">Using bootstrap in the layout</h2>
 
