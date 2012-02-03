@@ -100,7 +100,7 @@ mopa_bootstrap:
 
 For including bootstrap there are several ways have a look into
  
-[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md
+[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
 
 or quick start e.g. with
 

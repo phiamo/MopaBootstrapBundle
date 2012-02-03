@@ -22,16 +22,15 @@ abstract class AbstractTopbarMenuBuilder
     {
         $this->factory = $factory;
     }
-    
+
     /**
      * get a preconfigured Dropdown menu where to easily add childs
-     * 
+     *
      * @param string $title Title of the item
      * @param boolean $push_right Make if float right default: true
      */
     protected function getDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true){
         $rootItem
-            ->setAttribute('data-dropdown', 'dropdown')
             ->setAttribute('class', 'nav')
         ;
         if($push_right){
@@ -39,17 +38,19 @@ abstract class AbstractTopbarMenuBuilder
         }
         $dropdown = $rootItem->addChild($title, array('uri'=>'#'))
             ->setLinkattribute('class', 'dropdown-toggle')
+            ->setLinkattribute('data-toggle', 'dropdown')
+            ->setAttribute('class', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu')
         ;
         return $dropdown;
     }
     protected function pushRight(ItemInterface $item){
-        $item->setAttribute('class', 'nav secondary-nav');
-        return $item; 
+        $item->setAttribute('class', 'nav pull-right');
+        return $item;
     }
     /**
      * add a divider to the dropdown Menu
-     * 
+     *
      * @param ItemInterface $dropdown The dropdown Menu
      */
     protected function addDivider(ItemInterface $dropdown){

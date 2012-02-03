@@ -28,8 +28,8 @@
                 "dist": {
                     "url": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
                     "type": "zip"
-                },
-            }
+                }
+            },
             "package": {
                 "name": "twitter/bootstrap2",
                 "version": "2.0-wip",
@@ -38,7 +38,7 @@
                     "type": "git",
                     "reference": "2.0-wip"
                 }
-            }
+            },
             "package": {
                 "name": "twitter/bootstrap2",
                 "version": "master",
