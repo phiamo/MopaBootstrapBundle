@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Easy integration of twitters bootstrap into symfony2",
     "keywords": ["form", "extra form", "bootstrap", "bootstrap form", "template"],
-    "version": "master",
+    "version": "v1.x",
     "license": "MIT",
     "authors": [
         {
