@@ -6,7 +6,7 @@
 <meta charset="UTF-8" />
 {% block head_style %}
 {# Add your own bundles css here, to get them generated into final files #}
-{% stylesheets filter='less,cssembed,?yui_css'
+{% stylesheets filter='less,?yui_css'
 	    	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 	    %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
@@ -16,7 +16,7 @@
    be warned paginator.less isnt compiled yet so its missing
 
 {% block head_style %}
-{% stylesheets filter='less,cssembed,?yui_css'
+{% stylesheets filter='less,?yui_css'
 	    	'@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
 	    	'@YourNiceBundle/Resources/public/css/*'
 	    %}
@@ -28,26 +28,9 @@
 {% endblock head_style %}
 
 {% block head_script %}
-{#
-Add your own bundles js here, to get them generated into final files
-You can deactivate unneeded js by removing them, but be careful they
-rely on each other The Order they are provided here should be correct,
-so you may remove them bottom up #}
-{%- javascripts
-	    	'http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tabs.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-twipsy.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alerts.js'
-	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-buttons.js'
-	    	filter="?yui_js"
-	    %}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{%- endblock head_script %}
+{# Overwrite this block to add your own js here, to get them generated into final files #}
+{% endblock head_script %}
+
 <title>{% block title %}Mopa Bootstap Bundle{% endblock %}</title>
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -86,6 +69,25 @@ so you may remove them bottom up #}
 	</div> <!-- /container -->
 	{% endblock container %}
 	{% block foot_script %}
+	{# To only use a subset or add more js overwrite and copy paste this block #}
+	{%- javascripts
+	    	'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
+	    	filter="?yui_js"
+	    %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 	{% endblock foot_script %}
 </body>
 </html>
