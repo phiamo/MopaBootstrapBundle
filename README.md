@@ -1,4 +1,10 @@
 # README
+<h2 id="Warning">Warning</h2>
+
+There are now two branches for 1.x (v1.x) and 2.x (master) bootstrap of this bundle.
+The bundle itself is successively updated in master branch currently please be careful,
+the docs are not yet up to date!
+
 
 <h2 id="Introduction">Introduction</h2>
 
