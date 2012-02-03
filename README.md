@@ -1,9 +1,9 @@
 # README
 <h2 id="Warning">Warning</h2>
 
-There are now two branches for 1.x (v1.x) and 2.x (master) bootstrap of this bundle.
-The bundle itself is successively updated in master branch currently please be careful,
-the docs are not yet up to date!
+> There are now two branches for 1.x (v1.x) and 2.x (master) bootstrap of this bundle.
+> The bundle itself is successively updated in master branch currently please be careful,
+> the docs are not yet up to date!
 
 
 <h2 id="Introduction">Introduction</h2>
@@ -38,34 +38,11 @@ and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
     
 <h2 id="Prerequisites">Prerequisites</h2>
 
-<h3 id="OPTIONAL">OPTIONAL</h3>
-If you do not want to use less ignore this, otherwise try:
- - node.js: https://github.com/joyent/node/wiki/Installation
- - npm: (node package manager) 
- 
-``` bash
-curl http://npmjs.org/install.sh | sh
-```
+<h3 id="RECOMMENDED">RECOMMENDED</h3>
 
- - less css:
+If you do not want to use less ignore this, otherwise have a look into:
 
-``` bash
-npm install less -g
-```
-
- - configure assetic to make use of it (replace /usr with your prefix)
-
-``` yaml
-assetic:
-    filters:
-        less:
-  node: /usr/bin/node
-  node_paths: [/usr/lib/node_modules]
-```
-
- - Yui CSS and CSS Embed are quite nice, but just additional,
-   to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
-
+[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less_installation.md)
 
 <h2 id="Installation">Installation</h2>
 

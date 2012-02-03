@@ -20,10 +20,44 @@
         "symfony/framework-bundle": "2.*",
         "symfony/form": "2.*"
     },
+    "repositories": {
+        "TwitterBootstrap2": {
+            "package": {
+                "name": "twitter/bootstrap2",
+                "version": "2.0-dist",
+                "dist": {
+                    "url": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
+                    "type": "zip"
+                },
+            }
+            "package": {
+                "name": "twitter/bootstrap2",
+                "version": "2.0-wip",
+                "source": {
+                    "url": "git://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "2.0-wip"
+                }
+            }
+            "package": {
+                "name": "twitter/bootstrap2",
+                "version": "master",
+                "source": {
+                    "url": "git://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    },
     "recommend": {
         "symfony/twig-bridge": "2.*",
         "symfony/http-kernel": "2.*",
-        "symfony/finder": "2.*"
+        "symfony/finder": "2.*",
+        "twitter/bootstrap2": "2.0-dist",
+        "twitter/bootstrap2": "2.0-wip",
+        "twitter/bootstrap2": "master",
+        "leafo/lessphp" : "origin/master"
     },
     "autoload": {
         "psr-0": {
