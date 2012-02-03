@@ -12,11 +12,12 @@
     {% if required %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
     {% endif %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
     <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {{ label|trans }}
     {% if required %}*{% endif %}
     {% if help_label %}
-        <span class="help-block">{{ help_label|trans }}</span>
+        <p class="help-block">{{ help_label|trans }}</p>
     {% endif %}
     </label>
 {% endspaceless %}
@@ -36,8 +37,8 @@
 {# Help #}
 
 {% block field_help %}
-    {% if help_inline %}<span class="help-inline">{{ help_inline|trans }}</span>{%endif %}
-    {% if help_block %}<span class="help-block">{{ help_block|trans }}</span>{%endif %}
+    {% if help_inline %}<p class="help-inline">{{ help_inline|trans }}</p>{%endif %}
+    {% if help_block %}<p class="help-block">{{ help_block|trans }}</p>{%endif %}
 {% endblock field_help %}
 
 {% block field_widget_remove_btn %}
@@ -115,7 +116,7 @@
 
 {% block field_row %}
     {% if not ('form' in form.get('types')) %}
-    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
     {% endif %}
         {% if 'form' in form.get('types') and form.hasParent() != 0 %}
             {% if show_child_legend %}
@@ -125,7 +126,7 @@
         	{{ block('field_label_attr_aware_label') }}
         {% endif %}
     {% if not ('form' in form.get('types')) %}
-        <div class="input">
+        <div class="controls">
     {% endif %}
             {% if errors|length > 0 %}
                 {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
@@ -159,9 +160,9 @@
     {% if widget == 'single_text' %}
         {{ block('field_widget') }}
     {% else %}
-    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
-        <div class="input">
+        <div class="controls">
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes')  }}>
 	            {{ date_pattern|replace({
@@ -182,9 +183,9 @@
     {% if widget == 'single_text' %}
         {{ block('field_widget') }}
     {% else %}
-    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
-        <div class="input">
+        <div class="controls">
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
 	        <div {{ block('widget_container_attributes') }}>
 	            {{ form_errors(form.date) }}
@@ -211,37 +212,42 @@
 {% block choice_widget %}
 {% spaceless %}
     {% if expanded %}
-    <div class="clearfix">
+    <div class="control-group">
     	{{ form_label(form, label) }}
-			<div class="input">
-			{% set attr = attr|merge({'class': attr.class|default('') ~ ' inputs-list'}) %}
-        	<ul {{ block('widget_container_attributes') }}>
-	        {% for child in form %}
+        <div class="controls">
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inputs-list'}) %}
+            <ul {{ block('widget_container_attributes') }}>
+                {% for child in form %}
                 <li>
-                	<label>
-		            	{{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-		            	<span>{{ child.get('label')|trans }}</span>
-	                </label>
+                    <label>
+                        {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
+		        <span>{{ child.get('label')|trans }}</span>
+	            </label>
                 </li>
 	        {% endfor %}
-			</ul>
-		</div>
+            </ul>
 	</div>
+    </div>
     {% else %}
-   <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-        {% if empty_value is not none %}
-            <option value="">{{ empty_value|trans }}</option>
-        {% endif %}
-        {% if preferred_choices|length > 0 %}
-            {% set options = preferred_choices %}
-            {{ block('widget_choice_options') }}
-            {% if choices|length > 0 %}
+    <div class="control-group">
+        {{ form_label(form, label) }}
+        <div class="controls">
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                {% if empty_value is not none %}
+                <option value="">{{ empty_value|trans }}</option>
+                {% endif %}
+                {% if preferred_choices|length > 0 %}
+                    {% set options = preferred_choices %}
+                    {{ block('widget_choice_options') }}
+                    {% if choices|length > 0 %}
                 <option disabled="disabled">{{ separator }}</option>
-            {% endif %}
-        {% endif %}
-        {% set options = choices %}
-        {{ block('widget_choice_options') }}
-    </select>
+                    {% endif %}
+                {% endif %}
+                {% set options = choices %}
+                {{ block('widget_choice_options') }}
+            </select>
+        </div>
+    </div>
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget %}
