@@ -19,22 +19,6 @@
         "symfony/framework-bundle": "2.*",
         "symfony/form": "2.*"
     },
-    "repositories": {
-        "TwitterBootstrap2": {
-            "package": {
-                "name": "twitter/bootstrap2",
-                "version": "2.0",
-                "source": {
-                    "url": "git://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "2.0-wip"
-                }
-            },
-        }
-    },
-    "recommend": {
-        "twitter/bootstrap2": "2.0",
-    },
     "autoload": {
         "psr-0": {
             "Mopa\\BootstrapBundle": ""
