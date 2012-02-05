@@ -54,7 +54,7 @@ abstract class AbstractTopbarMenuBuilder
      * @param ItemInterface $dropdown The dropdown Menu
      */
     protected function addDivider(ItemInterface $dropdown){
-        $divider = $dropdown->addChild('divider')
+        $divider = $dropdown->addChild('divider_'.rand())
             ->setLabel('')
             ->setAttribute('class', 'divider')
         ;
