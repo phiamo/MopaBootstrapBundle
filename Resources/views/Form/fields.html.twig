@@ -37,8 +37,8 @@
 {# Help #}
 
 {% block field_help %}
-    {% if help_inline %}<p class="help-inline">{{ help_inline|trans }}</p>{%endif %}
-    {% if help_block %}<p class="help-block">{{ help_block|trans }}</p>{%endif %}
+    {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
+    {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
 {% endblock field_help %}
 
 {% block field_widget_remove_btn %}
@@ -102,42 +102,44 @@
     </script>
     {% endif %}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
-    <div {{ block('widget_container_attributes') }}>
-    	<fieldset>
+    	{% if render_fieldset %}<fieldset>{% endif %}
     	{% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
         {{ block('field_rows') }}
         {{ form_rest(form) }}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
-        </fieldset>
-    </div>
+    	{% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
 {% endblock form_widget %}
 
 {% block field_row %}
     {% if not ('form' in form.get('types')) %}
+        {% if widget_controls %}
     <div class="control-group{% if errors|length > 0 %} error{% endif %}">
-    {% endif %}
-        {% if 'form' in form.get('types') and form.hasParent() != 0 %}
-            {% if show_child_legend %}
-                {{ block('form_legend') }}
-            {% endif %}
-    	{% else %}
-        	{{ block('field_label_attr_aware_label') }}
         {% endif %}
-    {% if not ('form' in form.get('types')) %}
-        <div class="controls">
     {% endif %}
-            {% if errors|length > 0 %}
-                {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
-            {% endif %}
-            {{ widget_prefix }}
-            {{ form_widget(form) }}
-            {{ widget_suffix }}
+    {% if 'form' in form.get('types') and form.hasParent() != 0 %}
+        {% if show_child_legend %}
+            {{ block('form_legend') }}
+        {% endif %}
+	{% else %}
+    	{{ block('field_label_attr_aware_label') }}
+    {% endif %}
+    {% if not ('form' in form.get('types')) %}
+    	{% if widget_controls %}
+        <div class="controls">
+        {% endif %}
+    {% endif %}
+    {% if errors|length > 0 %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
+    {% endif %}
+        {{ widget_prefix|raw }} {{ form_widget(form) }} {{ widget_suffix|raw }}
     {% if not ('form' in form.get('types')) %}
             {{ block('field_message') }}
+        {% if widget_controls %}
         </div>
     </div>
+        {% endif %}
     {% endif %}
 {% endblock field_row %}
 
@@ -179,7 +181,6 @@
 {% endblock date_widget %}
 
 {% block datetime_widget %}
-{% spaceless %}
     {% if widget == 'single_text' %}
         {{ block('field_widget') }}
     {% else %}
@@ -197,7 +198,6 @@
         </div>
     </div>
     {% endif %}
-{% endspaceless %}
 {% endblock datetime_widget %}
 
 
@@ -210,10 +210,11 @@
 {% endblock radio_widget %}
 
 {% block choice_widget %}
-{% spaceless %}
     {% if expanded %}
     <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    	{% if label_render %}
     	{{ form_label(form, label) }}
+    	{% endif %}
         <div class="controls">
             {% for child in form %}
                 <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
@@ -221,6 +222,7 @@
             		{{ child.get('label')|trans }}
             	</label>
             {% endfor %}
+            {{ block('field_message') }}
         </div>
     </div>
     {% else %}
@@ -239,15 +241,32 @@
                 {{ block('widget_choice_options') }}
             </select>
     {% endif %}
-{% endspaceless %}
 {% endblock choice_widget %}
 
 {% block field_widget %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
+    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
+    	{% if not widget_addon.append %}
+    	{{ block('widget_addon') }}
+    	{% endif %}
+    {% endif %}
+    	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
+    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    	{% if widget_addon.append %}
+    	{{ block('widget_addon') }}
+    	{% endif %}
+    </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock field_widget %}
+
+{% block widget_addon %}
+{# prevent deep nesting wrong context copy error #}
+{% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
+<span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+{% endblock widget_addon %}
 
 {% block textarea_widget %}
 {% spaceless %}

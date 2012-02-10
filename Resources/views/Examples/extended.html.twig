@@ -1,0 +1,22 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block content %}
+</div>
+<h2>Extended forms Example</h2>
+<div class="row">
+    <div class="span8">
+      <form class="form-horizontal">
+		{{ form_widget(form) }}
+		<div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div class="span4">
+      <h3>Everything's included</h3>
+      <p>All things shown here are directly inlcuded via the bundle.</p>
+      <p>You can completely direct the appearence within the form classes, and hopefully updates wont change the view!</p>
+    </div>
+{% endblock content %}

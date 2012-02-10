@@ -8,7 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Mopa\BootstrapBundle\Form\Type\ExampleInputFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleFormsType;
 use Mopa\BootstrapBundle\Form\Type\ExampleChoiceFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleInlineFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleHorizontalFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleExtendedFormType;
+
 
 class ExamplesController extends Controller{
     /**
@@ -24,7 +30,44 @@ class ExamplesController extends Controller{
     */
     public function inputsAction(Request $request){
         $form = $this->createForm(new ExampleInputFormType());
-        return array('form'=>$form->createView());
+        return array(
+        	'form'=>$form->createView()
+        );
+    }
+
+    /**
+    * @Route("/mopa/bootstrap/forms/extended", name="mopa_bootstrap_forms_extended")
+     * @Template
+    */
+    public function extendedAction(Request $request){
+    $form = $this->createForm(new ExampleExtendedFormType());
+    return array(
+    'form'=>$form->createView()
+    );
+    }
+    /**
+    * @Route("/mopa/bootstrap/forms/horizontal", name="mopa_bootstrap_forms_horizontal")
+    * @Template
+    */
+    public function horizontalAction(Request $request){
+        $form = $this->createForm(new ExampleHorizontalFormType());
+        return array(
+        	'form'=>$form->createView()
+        );
+    }
+    /**
+    * @Route("/mopa/bootstrap/forms/examples", name="mopa_bootstrap_forms_examples")
+    * @Template
+    */
+    public function formsAction(Request $request){
+        $form = $this->createForm(new ExampleFormsType());
+        $searchform = $this->createForm(new ExampleSearchFormType());
+        $inlineform = $this->createForm(new ExampleInlineFormType());
+        return array(
+        	'form'=>$form->createView(),
+        	'searchform'=>$searchform->createView(),
+        	'inlineform'=>$inlineform->createView()
+        );
     }
 
     /**

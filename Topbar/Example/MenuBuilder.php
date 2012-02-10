@@ -20,6 +20,9 @@ class MenuBuilder extends AbstractTopbarMenuBuilder
         $menu->setCurrentUri($request->getRequestUri());
 
         $dropdown = $this->createDropdownMenuItem($menu, "Forms", false);
+        $dropdown->addChild('Form Examples', array('route' => 'mopa_bootstrap_forms_examples'));
+        $dropdown->addChild('Horizontal Examples', array('route' => 'mopa_bootstrap_forms_horizontal'));
+        $dropdown->addChild('Extended Examples', array('route' => 'mopa_bootstrap_forms_extended'));
         $dropdown->addChild('Input Fields', array('route' => 'mopa_bootstrap_forms_inputs'));
         $dropdown->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
         // ... add more children

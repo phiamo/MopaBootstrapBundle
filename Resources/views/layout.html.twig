@@ -6,7 +6,7 @@
 <meta charset="UTF-8" />
 {% block head_style %}
 {# Add your own bundles css here, to get them generated into final files #}
-{% stylesheets filter='less,?yui_css'
+{% stylesheets filter='less,cssembed,?yui_css'
 	    	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 	    %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"

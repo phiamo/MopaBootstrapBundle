@@ -10,10 +10,14 @@ class ExampleSearchFormType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
+            ->setAttribute('render_fieldset', false)
+            ->setAttribute('show_legend', false)
             ->add('search', 'text', array(
+                'label_render' => false,
+                'widget_controls' => false,
                 'attr' => array(
                 	'placeholder' => "search",
-                	 'class' => "search-query"
+                	'class' => "input-medium search-query"
                 )
             ))
         ;

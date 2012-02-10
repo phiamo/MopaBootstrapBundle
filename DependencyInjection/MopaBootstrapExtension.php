@@ -26,6 +26,12 @@ class MopaBootstrapExtension extends Extension
         $yamlloader->load("form_extensions.yml");
 
         if(isset($config['form'])){
+            if(isset($config['form']['render_fieldset'])){
+                $container->setParameter(
+                    'mopa_bootstrap.form.render_fieldset',
+                    $config['form']['render_fieldset']
+                );
+            }
             if(isset($config['form']['show_legend'])){
                 $container->setParameter(
                     'mopa_bootstrap.form.show_legend',
