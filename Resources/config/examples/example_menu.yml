@@ -15,7 +15,7 @@ services:
     mopa_bootstrap.exampledropdown:
         class: Knp\Menu\MenuItem # the service definition requires setting the class
         factory_service: mopa_bootstrap.examplemenu_builder
-        factory_method: createDropdownMenu
+        factory_method: createRightSideDropdownMenu
         arguments: ["@request"]
         scope: request # needed as we have the request as a dependency here
         tags:

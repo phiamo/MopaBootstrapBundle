@@ -6,8 +6,8 @@
 
     <services>
         <service id="mopa_bootstrap.example.topbar" class="%mopa_bootstrap.topbar.generic%">
-            <argument>Bootstrap</argument>
-            <argument>welcome</argument>
+            <argument>MopaBootstrapBundle</argument>
+            <argument>mopa_bootstrap_welcome</argument>
             <argument type="service" id="mopa_bootstrap.examplemenu" strict="false"/><!--  have to use strict here, or rewrite a lot (TODO: investigate on this once again, prob is scope: request of menus) -->
             <argument>Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType</argument>
             <argument type="service" id="mopa_bootstrap.exampledropdown" strict="false"/><!--  have to use strict here, or rewrite a lot (TODO: investigate on this once again, prob is scope: request of menus) -->

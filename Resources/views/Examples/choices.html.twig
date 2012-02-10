@@ -1,0 +1,20 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block content %}
+<div class="span8">
+    <form action="#" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+    	<div class="form-actions">
+            <button type="submit">Submit</button>
+    	</div>
+    </form>
+</div>
+<div class="span4">
+	<h3>Choice form widgets</h3>
+	<p>Here we try to show all possible choice form widgets</p>
+	<hr>
+	<p>And there is a lot to do</p>
+</div>
+{% endblock content %}

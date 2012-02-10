@@ -212,26 +212,18 @@
 {% block choice_widget %}
 {% spaceless %}
     {% if expanded %}
-    <div class="control-group">
+    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
         <div class="controls">
-            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inputs-list'}) %}
-            <ul {{ block('widget_container_attributes') }}>
-                {% for child in form %}
-                <li>
-                    <label>
-                        {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-		        <span>{{ child.get('label')|trans }}</span>
-	            </label>
-                </li>
-	        {% endfor %}
-            </ul>
-	</div>
+            {% for child in form %}
+                <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
+                    {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
+            		{{ child.get('label')|trans }}
+            	</label>
+            {% endfor %}
+        </div>
     </div>
     {% else %}
-    <div class="control-group">
-        {{ form_label(form, label) }}
-        <div class="controls">
             <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
                 <option value="">{{ empty_value|trans }}</option>
@@ -246,8 +238,6 @@
                 {% set options = choices %}
                 {{ block('widget_choice_options') }}
             </select>
-        </div>
-    </div>
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget %}

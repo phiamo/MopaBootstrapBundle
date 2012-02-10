@@ -29,7 +29,7 @@ abstract class AbstractTopbarMenuBuilder
      * @param string $title Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function getDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true){
+    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true){
         $rootItem
             ->setAttribute('class', 'nav')
         ;
