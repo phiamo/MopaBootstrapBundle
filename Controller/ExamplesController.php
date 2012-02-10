@@ -25,17 +25,6 @@ class ExamplesController extends Controller{
         return array();
     }
     /**
-    * @Route("/mopa/bootstrap/forms/input", name="mopa_bootstrap_forms_inputs")
-    * @Template
-    */
-    public function inputsAction(Request $request){
-        $form = $this->createForm(new ExampleInputFormType());
-        return array(
-        	'form'=>$form->createView()
-        );
-    }
-
-    /**
     * @Route("/mopa/bootstrap/forms/extended", name="mopa_bootstrap_forms_extended")
      * @Template
     */
