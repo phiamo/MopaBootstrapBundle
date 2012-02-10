@@ -5,37 +5,37 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
 
-class ExampleTestFormType extends AbstractType
+class ExampleChoiceFormType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
             ->add('Choice', 'choice', array(
-                'label'        => 'Label:',
+                'label'        => 'Select list',
                 'help_inline'  => 'Default settings',
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
             ->add('Choice multiple', 'choice', array(
-                'label'        => 'Label:',
+                'label'        => 'Multicon-select',
                 'help_inline'  => 'Multiple',
                 'multiple'     => true,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
             ->add('Radio Buttons', 'choice', array(
-                'label'        => 'Label:',
+                'label'        => 'Radio buttons',
                 'help_inline'  => 'Expanded',
                 'expanded'	   => true,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
             ->add('Checkboxes', 'choice', array(
-                'label'        => 'Label:',
+                'label'        => 'Checkboxes',
                 'help_inline'  => 'Expanded and multiple',
                 'multiple'     => true,
                 'expanded'	   => true,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
             ->add('Checkboxes Inline', 'choice', array(
-                'label'        => 'Label:',
+                'label'        => 'Inline checkboxes',
                 'help_inline'  => 'Expanded and multiple (inline)',
                 'multiple'     => true,
                 'expanded'	   => true,
@@ -45,7 +45,7 @@ class ExampleTestFormType extends AbstractType
         ;
     }
     public function getName(){
-        return "mopa_bootstrap_test_form";
+        return "MopaBootstraBundle_Choice_Possibilies";
     }
 }
 

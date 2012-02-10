@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Mopa\BootstrapBundle\Form\Type\ExampleTestFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleInputFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleChoiceFormType;
 
 class ExamplesController extends Controller{
     /**
@@ -22,7 +23,7 @@ class ExamplesController extends Controller{
     * @Template
     */
     public function inputsAction(Request $request){
-        $form = $this->createForm(new ExampleTestFormType());
+        $form = $this->createForm(new ExampleInputFormType());
         return array('form'=>$form->createView());
     }
 
@@ -31,7 +32,7 @@ class ExamplesController extends Controller{
     * @Template
     */
     public function choicesAction(Request $request){
-        $form = $this->createForm(new ExampleTestFormType());
+        $form = $this->createForm(new ExampleChoiceFormType());
         return array('form'=>$form->createView());
     }
 
