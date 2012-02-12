@@ -19,13 +19,15 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri());
         $menu->setAttribute('class', 'nav');
-        $menu->addChild('Form Examples', array('route' => 'mopa_bootstrap_forms_examples'));
-        $menu->addChild('Horizontal', array('route' => 'mopa_bootstrap_forms_horizontal'));
-        $menu->addChild('Extended', array('route' => 'mopa_bootstrap_forms_extended'));
-        $menu->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
+
+        $dropdown = $this->createDropdownMenuItem($menu, "Forms", false);
+        $dropdown->addChild('Horizontal', array('route' => 'mopa_bootstrap_forms_horizontal'));
+                $dropdown->addChild('Extended', array('route' => 'mopa_bootstrap_forms_extended'));
+                $dropdown->addChild('ExtendedView', array('route' => 'mopa_bootstrap_forms_view_extended'));
+                $dropdown->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
+                $dropdown->addChild('Navbars', array('route' => 'mopa_bootstrap_navbar'));
         $menu->addChild('Navbars', array('route' => 'mopa_bootstrap_navbar'));
         // ... add more children
-
         return $menu;
     }
     public function createRightSideDropdownMenu(Request $request)

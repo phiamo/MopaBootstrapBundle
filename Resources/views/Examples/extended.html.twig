@@ -34,6 +34,15 @@ $builder
     ))
 ;
 </pre>
+<p>And in your markup you just need one line: </p>
+<pre class="prettyprint
+ linenums">
+{% raw %}
+      &lt;form class=&quot;form-horizontal&quot;&gt;
+        {{ form_widget(form) }}
+      &lt;/form&gt;
+{% endraw %}
+</pre>
       <h3>Absolutely responsive!</h3>
       <p>Resize your browser to see responsiveness in action, if you make your browser small enough (e.g. as small as a smartphone display) you will see all forms still work and look really good!</p>
     </div>

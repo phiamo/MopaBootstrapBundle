@@ -14,6 +14,7 @@ use Mopa\BootstrapBundle\Form\Type\ExampleInlineFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleHorizontalFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleExtendedFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleExtendedViewFormType;
 
 
 class ExamplesController extends Controller{
@@ -29,10 +30,20 @@ class ExamplesController extends Controller{
      * @Template
     */
     public function extendedAction(Request $request){
-    $form = $this->createForm(new ExampleExtendedFormType());
-    return array(
-    'form'=>$form->createView()
-    );
+        $form = $this->createForm(new ExampleExtendedFormType());
+        return array(
+        	'form'=>$form->createView()
+        );
+    }
+    /**
+    * @Route("/mopa/bootstrap/forms/extended_view", name="mopa_bootstrap_forms_view_extended")
+     * @Template
+    */
+    public function extended_viewAction(Request $request){
+        $form = $this->createForm(new ExampleExtendedViewFormType());
+        return array(
+        	'form'=>$form->createView()
+        );
     }
     /**
     * @Route("/mopa/bootstrap/forms/horizontal", name="mopa_bootstrap_forms_horizontal")

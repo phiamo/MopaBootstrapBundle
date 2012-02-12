@@ -133,7 +133,7 @@
     {% if errors|length > 0 %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form) }} {{ widget_suffix|raw }}
+        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block}) }} {{ widget_suffix|raw }}
     {% if not ('form' in form.get('types')) %}
             {{ block('field_message') }}
         {% if widget_controls %}

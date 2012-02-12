@@ -1,0 +1,54 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block content %}
+</div>
+<h2>Extended forms Example in the view Layer</h2>
+<div class="row">
+    <div class="span8">
+      <form class="form-horizontal">
+        {{ form_row(form.textfield1, {'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+        {{ form_row(form.textfield2, {'attr': {'class': 'span2', 'placeholder': 'span2'}}) }}
+        {{ form_row(form.textfield3, {'attr': {'class': 'span3', 'placeholder': 'span3'}}) }}
+        {{ form_row(form.select1, {'attr': {'class': 'span1'}}) }}
+        {{ form_row(form.select2, {'attr': {'class': 'span2'}}) }}
+        {{ form_row(form.select3, {'attr': {'class': 'span3'}}) }}
+        {{ form_row(form.prepend1, {'label': 'Prepended Text', 'widget_addon': {'text': '@'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+        {{ form_row(form.prepend2, {'label': 'Prepended Icon', 'widget_addon': {'icon': 'headphones'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of musik?'}}) }}
+        {{ form_row(form.append1, {'label': 'Appended Text', 'widget_addon': {'append': true, 'text': '.00'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+        {{ form_row(form.append2, {'label': 'Appended Icon', 'widget_addon': {'append': true, 'icon': 'pencil'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of Books?'}}) }}
+        {{ form_row(form.checkboxesinline, {'label': 'Inline Checkboxes', 'widget_type': 'inline'}) }}
+        {{ form_row(form.checkboxes, {'label': 'Checkboxes'}) }}
+        {{ form_row(form.radiobuttons, {'help_block': '<strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.'}) }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div class="span4">
+      <h3>Everything's included</h3>
+      <p>All things shown here are directly included via the bundle.</p>
+      <p>You can completely drive the appearence within view too, and hopefully updates wont change the anything!!</p>
+      <p>An example: to generate a nice input field with appended icon:</p>
+<pre class="prettyprint
+ linenums">
+$builder
+    ->add('appendedicon')
+;
+</pre>
+<p>and in your twig template:</p>
+<pre class="prettyprint
+ linenums">{% raw %}
+{{ form_row(form.appendedicon,
+    {'label': 'Appended Icon',
+     'widget_addon': {'append': true,
+                      'icon': 'headphones'},
+     'attr': {'class': 'span3',
+              'placeholder': 'What kind of music do you like?'}
+    }) }}
+{% endraw %}</pre>
+      <h3>Detailed Examples!</h3>
+      <p>Have a look into the <a href="https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Examples/extended_view.html.twig">source code</a> of this template and its <a href="https://github.com/phiamo/MopaBootstrapBundle/blob/master/Form/Type/ExampleExtendedViewFormType.php">form class</a> and see how this page is completely view driven</p>
+    </div>
+{% endblock content %}

@@ -13,7 +13,7 @@
                 {% if navbar.form %}
                     {% form_theme navbar.form _self %}
                         <form  class="navbar-search pull-left" method="post" action="{{ path(navbar.formRoute) }}">
-                        {{ form_widget(navbar.form) }}
+                        {#{ form_widget(navbar.form) }#}
                         {% if navbar.buttonValue %}
                         	<input class="btn primary" value="{{ navbar.buttonValue }}" type="submit">
                         {% endif %}
