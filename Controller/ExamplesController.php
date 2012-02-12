@@ -61,11 +61,18 @@ class ExamplesController extends Controller{
 
     /**
     * @Route("/mopa/bootstrap/forms/choice", name="mopa_bootstrap_forms_choices")
-    * @Template
+     * @Template
     */
     public function choicesAction(Request $request){
         $form = $this->createForm(new ExampleChoiceFormType());
         return array('form'=>$form->createView());
+    }
+    /**
+    * @Route("/mopa/bootstrap/navbar", name="mopa_bootstrap_navbar")
+    * @Template
+    */
+    public function navbarAction(Request $request){
+        return array();
     }
 
 }

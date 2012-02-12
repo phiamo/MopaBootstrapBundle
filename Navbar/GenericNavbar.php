@@ -1,12 +1,13 @@
 <?php
-namespace Mopa\BootstrapBundle\Topbar;
+namespace Mopa\BootstrapBundle\Navbar;
 
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\AbstractType;
 
-class GenericTopbar implements TopbarInterface
+class GenericNavbar implements NavbarInterface
 {
     protected $title;
+    protected $fixedTop;
     protected $titleRoute;
     protected $leftMenu;
     protected $rightMenu;
@@ -14,8 +15,9 @@ class GenericTopbar implements TopbarInterface
     protected $formType;
     protected $formView;
 
-    public function __construct($title, $titleRoute = null, $leftMenu = null, $formTypeClass = null, $rightMenu = null){
+    public function __construct($title, $fixedTop, $titleRoute = null, $leftMenu = null, $formTypeClass = null, $rightMenu = null){
         $this->title = $title;
+        $this->fixedTop = $fixedTop;
         $this->titleRoute = $titleRoute;
         $this->leftMenu = $leftMenu;
         $this->rightMenu = $rightMenu;
@@ -26,6 +28,12 @@ class GenericTopbar implements TopbarInterface
     }
     public function setTitle($title){
         $this->title = $title;
+    }
+    public function getFixedTop(){
+        return $this->fixedTop;
+    }
+    public function setFixedTop($fixedTop){
+        $this->fixedTop = $fixedTop;
     }
     public function getTitleRoute() {
         return $this->titleRoute;

@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\Topbar;
+namespace Mopa\BootstrapBundle\Navbar;
 
 use Knp\Menu\ItemInterface;
 
@@ -7,11 +7,11 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Base class for Topbar Menubuilder's which has some useful methods for bootstrap generation
+ * Base class for Navbar Menubuilder's which has some useful methods for bootstrap generation
  * @author phiamo
  *
  */
-abstract class AbstractTopbarMenuBuilder
+abstract class AbstractNavbarMenuBuilder
 {
     protected $factory;
 

@@ -1,0 +1,36 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block content %}
+<div class="span10">
+	<h2>Navbars</h2>
+	<p>Creating and using Navbars is quite easy:</p>
+	<pre>
+services:
+    mopa_bootstrap.examplemenu_builder:
+        class: %mopa_bootstrap.navbar.generic%
+        arguments: ["MopaBootstrapBundle", true, "mopa_bootstrap_welcome", @mopa_bootstrap.examplemenu, @mopa_bootstrap.exampledropdown]
+        tags:
+            - { name: mopa_bootstrap.navbar, alias: frontendNavbar } # The alias is what is used to retrieve the menu
+	</pre>
+    </pre>
+    	<p>And to show the bar in your template just use</p>
+    	<pre>
+    	{% raw %}
+        {% block navbar %}
+        {{ mopa_bootstrap_navbar('frontendNavbar') }}
+        {% endblock navbar %}
+    	</pre>
+    	{% endraw %}
+	<p>The menues are created Knpmenu Style and the AbstractNavbarMenuBuilder helps you adding the correct styles to e.g. Dropdown menues:</p>
+	<pre>
+    public function createRightSideDropdownMenu(Request $request)
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setCurrentUri($request->getRequestUri());
+        $dropdown = $this->createDropdownMenuItem($menu, "Tools Menu", true);
+        $dropdown->addChild('Symfony', array('uri' => 'http://www.symfony.com'));
+        $this->addDivider($dropdown);
+    }
+</div>
+{% endblock content %}

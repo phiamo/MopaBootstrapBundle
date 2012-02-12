@@ -1,18 +1,18 @@
 <?php
-namespace Mopa\BootstrapBundle\Topbar\Example;
+namespace Mopa\BootstrapBundle\Navbar\Example;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Mopa\BootstrapBundle\Topbar\AbstractTopbarMenuBuilder;
+use Mopa\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
 
 /**
- * An example howto inject a default KnpMenu to the Topbar
+ * An example howto inject a default KnpMenu to the Navbar
  * see also Resources/config/example_menu.yml
- * and example_topbar.yml
+ * and example_navbar.yml
  * @author phiamo
  *
  */
-class MenuBuilder extends AbstractTopbarMenuBuilder
+class MenuBuilder extends AbstractNavbarMenuBuilder
 {
     public function createMainMenu(Request $request)
     {
@@ -23,6 +23,7 @@ class MenuBuilder extends AbstractTopbarMenuBuilder
         $menu->addChild('Horizontal', array('route' => 'mopa_bootstrap_forms_horizontal'));
         $menu->addChild('Extended', array('route' => 'mopa_bootstrap_forms_extended'));
         $menu->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
+        $menu->addChild('Navbars', array('route' => 'mopa_bootstrap_navbar'));
         // ... add more children
 
         return $menu;

@@ -1,0 +1,16 @@
+parameters:
+    mopa_bootstrap.navbar.generic: Mopa\BootstrapBundle\Navbar\GenericNavbar
+
+services:
+    mopa_bootstrap.navbar_renderer:
+        class: Mopa\BootstrapBundle\Navbar\Renderer\NavbarRenderer
+        arguments: [ @service_container, %mopa_bootstrap.navbar.template%, [] ]
+        tags:
+            # The alias is what is used to retrieve the menu
+            - { name: knp_menu.renderer, alias: navbar }
+            
+    mopa_bootstrap.navbar.twig.extension:
+        class: Mopa\BootstrapBundle\Navbar\Twig\NavbarExtension
+        arguments: [ @mopa_bootstrap.navbar_renderer ]
+        tags:
+            -  { name: twig.extension }

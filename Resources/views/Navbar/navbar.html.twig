@@ -1,0 +1,36 @@
+{% block navbar %}
+<div class="navbar {% if navbar.fixedTop %}navbar-fixed-top{% endif %}">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+    		<a class="brand" href="{{ path(navbar.titleRoute) }}">{{ navbar.title }}</a>
+            <div class="nav-collapse">
+                {{ navbar.leftmenu ? knp_menu_render(navbar.leftmenu) : '' }}
+                {% if navbar.form %}
+                    {% form_theme navbar.form _self %}
+                        <form  class="navbar-search pull-left" method="post" action="{{ path(navbar.formRoute) }}">
+                        {{ form_widget(navbar.form) }}
+                        {% if navbar.buttonValue %}
+                        	<input class="btn primary" value="{{ navbar.buttonValue }}" type="submit">
+                        {% endif %}
+                    </form>
+                {% endif %}
+                {{ navbar.rightmenu ? knp_menu_render(navbar.rightmenu) : '' }}
+            </div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block form_widget %}
+{{ block('field_rows') }}
+{% endblock %}
+
+{% block field_row %}
+{{ form_widget(form) }}
+{% endblock field_row %}

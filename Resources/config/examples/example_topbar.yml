@@ -1,4 +1,0 @@
-services:
-    mopa_bootstrap.examplemenu_builder:
-        class: %mopa_bootstrap.topbar.generic%
-        arguments: ["MopaBootstrapBundle", "mopa_bootstrap_welcome", @mopa_bootstrap.examplemenu, @mopa_bootstrap.exampledropdown]

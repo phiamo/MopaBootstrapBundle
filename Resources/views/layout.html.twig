@@ -35,9 +35,9 @@
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-    {% block topbar %}
-    {{ mopa_bootstrap_topbar() }}
-	{% endblock topbar %}
+    {% block navbar %}
+    {{ mopa_bootstrap_navbar('frontendNavbar') }}
+	{% endblock navbar %}
 
 	{% block container %}
 	<div class="container">
