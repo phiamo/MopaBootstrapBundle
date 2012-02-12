@@ -31,14 +31,10 @@ class ExampleExtendedViewFormType extends AbstractType
                 'label_render'        => false,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
-            ->add('prepend1', 'text', array(
-            ))
-            ->add('prepend2', 'text', array(
-            ))
-            ->add('append1', 'text', array(
-            ))
-            ->add('append2', 'text', array(
-            ))
+            ->add('prepend1')
+            ->add('prepend2')
+            ->add('append1')
+            ->add('append2')
             ->add('checkboxesinline', 'choice', array(
                 'multiple'     => true,
                 'expanded'	   => true,

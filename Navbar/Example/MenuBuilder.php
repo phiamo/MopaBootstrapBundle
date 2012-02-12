@@ -21,11 +21,11 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu->setAttribute('class', 'nav');
 
         $dropdown = $this->createDropdownMenuItem($menu, "Forms", false);
+        $dropdown->addChild('Examples', array('route' => 'mopa_bootstrap_forms_examples'));
         $dropdown->addChild('Horizontal', array('route' => 'mopa_bootstrap_forms_horizontal'));
-                $dropdown->addChild('Extended', array('route' => 'mopa_bootstrap_forms_extended'));
-                $dropdown->addChild('ExtendedView', array('route' => 'mopa_bootstrap_forms_view_extended'));
-                $dropdown->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
-                $dropdown->addChild('Navbars', array('route' => 'mopa_bootstrap_navbar'));
+        $dropdown->addChild('Extended Forms', array('route' => 'mopa_bootstrap_forms_extended'));
+        $dropdown->addChild('Extended Views', array('route' => 'mopa_bootstrap_forms_view_extended'));
+        $dropdown->addChild('Choice Fields', array('route' => 'mopa_bootstrap_forms_choices'));
         $menu->addChild('Navbars', array('route' => 'mopa_bootstrap_navbar'));
         // ... add more children
         return $menu;
