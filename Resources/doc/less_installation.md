@@ -30,8 +30,8 @@ npm install less -g
 assetic:
     filters:
         less:
-  node: /usr/bin/node
-  node_paths: [/usr/lib/node_modules]
+            node: /usr/bin/node
+            node_paths: [/usr/lib/node_modules]
 ```
 
  - Yui CSS and CSS Embed are quite nice, but just additional,
