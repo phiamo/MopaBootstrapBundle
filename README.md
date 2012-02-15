@@ -62,6 +62,16 @@ If you do not want to use less ignore this, otherwise have a look into:
     git=http://github.com/phiamo/MopaBootstrapBundle.git
     target=/bundles/Mopa/BootstrapBundle
 ```
+Note: You will still want to run git submodule update --init --recursive
+
+Better way to accomplish this could be to use git_command branch of SE or the PR available and:
+
+```sh
+[MopaBootstrapBundle]
+    git=http://github.com/cordoval/MopaBootstrapBundle.git
+    target=/bundles/Mopa/BootstrapBundle
+    git_command=submodule update --init --recursive
+```
 
 1.2 Or add this bundle to your project as a Git submodule:
 
