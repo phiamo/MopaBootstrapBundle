@@ -117,6 +117,10 @@ class ExampleExtendedFormType extends AbstractType
                  	'3' => 'Option three can—yes, you guessed it—also be checked and included in form results'
              	),
             ))
+            ->add('publicVisible', 'checkbox', array('required'=> false))
+            ->add('time1', 'time', array(
+				'widget' => 'choice',
+            ))
         ;
     }
     public function getName()

@@ -258,6 +258,25 @@
 {% endspaceless %}
 {% endblock field_widget %}
 
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+        <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+            {{ form_label(form, label) }}
+            <div class="controls">
+                {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
+                <div {{ block('widget_container_attributes')  }}>
+                    {{ form_widget(form.hour, { 'attr': { 'size': '1', 'class': 'span1' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'span1' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'span1' } }) }}{% endif %}
+                </div>
+                {{ block('help') }}
+            </div>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
 {% block widget_addon %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
