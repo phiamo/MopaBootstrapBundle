@@ -161,12 +161,12 @@
     <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
         <div class="controls">
-            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
+            {% set attr = attr|merge({'class': attr.class|default('')}) %}
 	        <div {{ block('widget_container_attributes')  }}>
 	            {{ date_pattern|replace({
-                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('')}}),
-                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('')}}),
-                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('')}}),
+                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
 	            })|raw }}
 	        </div>
 	        {{ block('help') }}
@@ -183,7 +183,7 @@
     <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
         <div class="controls">
-            {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
+            {% set attr = attr|merge({'class': attr.class|default('')}) %}
 	        <div {{ block('widget_container_attributes') }}>
 	            {{ form_errors(form.date) }}
 	            {{ form_errors(form.time) }}
@@ -266,9 +266,9 @@
         <div class="control-group {% if errors|length > 0 %}error{% endif %}">
             {{ form_label(form, label) }}
             <div class="controls">
-                {% set attr = attr|merge({'class': attr.class|default('') ~ ' inline-inputs'}) %}
+                {% set attr = attr|merge({'class': attr.class|default('')}) %}
                 <div {{ block('widget_container_attributes')  }}>
-                    {{ form_widget(form.hour, { 'attr': { 'size': '1', 'class': 'span1' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'span1' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'span1' } }) }}{% endif %}
+                    {{ form_widget(form.hour, { 'attr': { 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'class': 'input-mini' } }) }}{% endif %}
                 </div>
                 {{ block('help') }}
             </div>
