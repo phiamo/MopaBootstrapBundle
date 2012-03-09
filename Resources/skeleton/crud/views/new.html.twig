@@ -6,8 +6,8 @@
   <legend>{{ entity }} creation</legend>
 
     {{ "{{ form_widget(form) }}" }}
-    <div class="actions">
-        <button type="submit" class="btn primary">Create</button>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Create</button>
         {% set hide_edit, hide_delete = true, true %}
         {% include 'views/others/record_actions.html.twig' %}
     </div>
