@@ -52,11 +52,16 @@ abstract class AbstractNavbarMenuBuilder
      * add a divider to the dropdown Menu
      *
      * @param ItemInterface $dropdown The dropdown Menu
+     * @param bool $vertical Whether to add a vertical or horizontal divider.
+     *
+     * @return ItemInterface
      */
-    protected function addDivider(ItemInterface $dropdown){
-        $divider = $dropdown->addChild('divider_'.rand())
+    protected function addDivider(ItemInterface $dropdown, $vertical = false){
+        $class = $vertical ? 'divider-vertical' : 'divider';
+
+        return $dropdown->addChild('divider_'.rand())
             ->setLabel('')
-            ->setAttribute('class', 'divider')
+            ->setAttribute('class', $class)
         ;
     }
 }
