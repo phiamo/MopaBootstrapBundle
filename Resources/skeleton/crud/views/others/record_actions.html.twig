@@ -2,13 +2,15 @@
     Back to the list
 </a>
 {% if ('edit' in actions) and (not hide_edit) %}
-    <a href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id': entity.id }) }}" }}" class="btn primary">
+    <a href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id': entity.id }) }}" }}" class="btn btn-primary">
         Edit
     </a>
 {% endif %}
 {% if ('delete' in actions) and (not hide_delete) %}
     <form action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': entity.id }) }}" }}" method="post">
-        {{ '{{ form_widget(delete_form) }}' }}
-        <button type="submit" class="btn danger">Delete</button>
+        <div class="form-actions">
+            {{ '{{ form_widget(delete_form) }}' }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
     </form>
 {% endif %}

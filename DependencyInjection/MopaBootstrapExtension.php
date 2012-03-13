@@ -73,9 +73,9 @@ class MopaBootstrapExtension extends Extension
         }
     }
     protected function loadExamples(ContainerBuilder $container){
-        $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
+        //$xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
         $yamlloader->load("example_menu.yml");
-        $xmlloader->load("example_navbar.xml");
+        $yamlloader->load("example_navbar.yml");
     }
 }
