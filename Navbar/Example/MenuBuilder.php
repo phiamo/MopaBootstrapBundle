@@ -34,7 +34,7 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri());
-        $menu->setChildrenAttribute('class', 'nav');
+        $menu->setChildrenAttribute('class', 'nav pull-right');
 
         $dropdown = $this->createDropdownMenuItem($menu, "Tools Menu", true);
         $dropdown->addChild('Symfony', array('uri' => 'http://www.symfony.com'));
