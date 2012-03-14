@@ -21,17 +21,17 @@
     {% if use_raw is not defined %}
         {% set use_raw = false %}
     {% endif %}
-    {% if app.session.getFlashes()|length > 0 %}
+    {% if app.session.flashbag.peekAll|length > 0 %}
         <div class="row">
             <div class="{{ class|default('span12') }}">
                 {% if type|default(false) %}
-                    {% if app.session.hasFlash(type) %}
-                        {{ _self.flash(type, app.session.flash(type), close, use_raw) }}
+                    {% if app.session.flashbag.has(type) %}
+                        {{ _self.flash(type, app.session.flashbag.get(type), close, use_raw) }}
                     {% endif %}
                 {% else %}
                     {% for type in types %}
-                        {% if app.session.hasFlash(type) %}
-                            {{ _self.flash(type, app.session.flash(type), close, use_raw) }}
+                        {% if app.session.flashbag.has(type) %}
+                            {{ _self.flash(type, app.session.flashbag.get(type), close, use_raw) }}
                         {% endif %}
                     {% endfor %}
                 {% endif %}
@@ -39,4 +39,3 @@
         </div>
     {% endif %}
 {% endmacro %}
-
