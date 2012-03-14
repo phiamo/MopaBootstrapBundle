@@ -14,6 +14,7 @@ class GenericNavbar implements NavbarInterface
     protected $formTypeClass;
     protected $formType;
     protected $formView;
+    protected $isFluid = false;
 
     public function __construct($title, $fixedTop, $titleRoute = null, $leftMenu = null, $formTypeClass = null, $rightMenu = null){
         $this->title = $title;
@@ -90,5 +91,11 @@ class GenericNavbar implements NavbarInterface
         $menuItem
             ->setDisplay(false)
             ->setAttribute('class', 'nav secondary-nav');
+    }
+    public function setFluid($value){
+        $this->isFluid = (bool) $value;
+    }
+    public function getFluid(){
+        return $this->isFluid;
     }
 }
