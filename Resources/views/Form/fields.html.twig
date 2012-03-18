@@ -105,12 +105,34 @@
     	{% if render_fieldset %}<fieldset>{% endif %}
     	{% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
-        {{ block('field_rows') }}
+        {{ block('field_rows_visible') }}
         {{ form_rest(form) }}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
     	{% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
 {% endblock form_widget %}
+
+{# only display non hidden fields #}
+{% block field_rows_visible %}
+    {% if form_errors(form) %}
+        <div class="symfony-form-errors">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    {% for child in form.children %}
+        {% set isVisible = true %}
+
+        {% for type in child.get('types') %}
+            {% if type == 'hidden' %}
+                {% set isVisible = false %}
+            {% endif %}
+        {% endfor %}
+
+        {% if isVisible %}
+            {{ form_row(child) }}
+        {% endif %}
+    {% endfor %}
+{% endblock field_rows_visible %}
 
 {% block field_row %}
     {% if not ('form' in form.get('types')) %}
