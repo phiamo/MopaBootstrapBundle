@@ -1,5 +1,5 @@
 services:
-    mopa_bootstrap.examplemenu_builder:
+    mopa_bootstrap.example.navbar:
         class: %mopa_bootstrap.navbar.generic%
         # Make the navbar fluid for use in container-fluid.
         #calls:
