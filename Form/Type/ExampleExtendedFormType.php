@@ -127,8 +127,5 @@ class ExampleExtendedFormType extends AbstractType
     {
         return 'mopa_bootstrap_example_extended_forms';
     }
-    public function getDefaultOptions(array $options){
-        return array('csrf_protection' => false); // disabled due to display error for form legend TODO: FIND A BETTER FIX!!
-    }
 }
 

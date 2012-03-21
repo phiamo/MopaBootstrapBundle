@@ -54,9 +54,5 @@ class ExampleHorizontalFormType extends AbstractType
     public function getName(){
         return "Controls_Bootstrap_supports";
     }
-
-    public function getDefaultOptions(array $options){
-        return array('csrf_protection' => false); // disabled due to display error for form legend TODO: FIND A BETTER FIX!!
-    }
 }
 
