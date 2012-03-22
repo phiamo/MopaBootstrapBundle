@@ -12,6 +12,7 @@ class WidgetFieldTypeExtension extends AbstractTypeExtension
 
     public function buildForm(FormBuilder $builder, array $options)
     {
+        $builder->setAttribute('widget_control_group', $options['widget_control_group']);
         $builder->setAttribute('widget_controls', $options['widget_controls']);
         if(!is_array($options['widget_addon'])){
             throw new CreationException("The 'widget_addon' option must be an array");
@@ -29,6 +30,7 @@ class WidgetFieldTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormView $view, FormInterface $form)
     {
+        $view->set('widget_control_group', $form->getAttribute('widget_control_group'));
         $view->set('widget_controls', $form->getAttribute('widget_controls'));
         $view->set('widget_addon', $form->getAttribute('widget_addon'));
         $view->set('widget_prefix', $form->getAttribute('widget_prefix'));
@@ -40,6 +42,7 @@ class WidgetFieldTypeExtension extends AbstractTypeExtension
     public function getDefaultOptions(array $options)
     {
         return array(
+            'widget_control_group' => true,
             'widget_controls' => true,
             'widget_addon' => array(
                 'append' => false,

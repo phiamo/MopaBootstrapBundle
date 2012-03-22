@@ -1,19 +1,58 @@
 {% extends "MopaBootstrapBundle::layout.html.twig" %}
 {% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
 
+{% block foot_script %}
+	{{ parent() }}
+	<script type="text/javascript">
+	var addRow = function(id){
+			var index = $(id + ' ').children('div').length;
+			if(false){ // some condition that must match
+				//how some sort of error
+				alert('sorry cant add');
+				return false;
+			}
+			var row = $(id).attr('data-prototype').replace(/\$\$name\$\$/g, index);
+			$(id + ' div.controls').append(row);
+	}
+	jQuery(document).ready(function() {
+		$('#addRow').click(function(event) {
+			addRow('#mopa_bootstrap_example_extended_forms_email_collection');
+			event.preventDefault();
+		});
+		$(".removebtn").live('click', function(){
+			//this is called for a specific input inside the row...
+			
+			if($(this).parents('.input-prepend').length){
+				$(this).parents('.input-prepend').remove();
+			}
+			else if($(this).parents('.input-append').length){
+				$(this).parents('.input-append').remove();
+			}
+			else{
+				$(this).prev().remove();
+				$(this).remove();
+			}
+		    //do something else
+		});
+	}); 
+	</script>
+{% endblock foot_script %}
+
 {% block content %}
 </div>
 <h2>Extended forms Example</h2>
 <div class="row">
     <div class="span8">
-      <form class="form-horizontal">
+      <form class="form-horizontal" id="your_form_name">
         {{ form_widget(form) }}
+        <button class="btn" type="button" id="addRow">add</button>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Save changes</button>
             <button type="reset" class="btn">Cancel</button>
         </div>
       </form>
     </div>
+    
     <div class="span4">
       <h3>Everything's included</h3>
       <p>All things shown here are directly included via the bundle.</p>
@@ -47,3 +86,4 @@ $builder
       <p>Resize your browser to see responsiveness in action, if you make your browser small enough (e.g. as small as a smartphone display) you will see all forms still work and look really good!</p>
     </div>
 {% endblock content %}
+

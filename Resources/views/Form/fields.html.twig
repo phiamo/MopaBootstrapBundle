@@ -1,7 +1,7 @@
 {% extends 'form_div_layout.html.twig' %}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
 
-{# labels #}
+{# legends & labels #}
 
 {% block form_legend %}
           <legend>{{ label | trans }}</legend>
@@ -80,6 +80,7 @@
 {% endblock field_errors %}
 
 {# used to determine which type of error #}
+
 {% block error_type %}
 {% spaceless %}
 {% if field_error_type %}
@@ -96,11 +97,6 @@
 {# Basic form and field blocks #}
 
 {% block form_widget %}
-    {% if prototype is defined %}
-    <script type="text/html" {{ block('widget_container_attributes') }}>
-        {{ form_row(prototype) }}
-    </script>
-    {% endif %}
     {% if 'form' in form.get('types') and form.hasParent() == 0 %}
     	{% if render_fieldset %}<fieldset>{% endif %}
     	{% if show_legend %}{{ block('form_legend') }}{% endif %}
@@ -135,91 +131,87 @@
 {% endblock field_rows_visible %}
 
 {% block field_row %}
-    {% if not ('form' in form.get('types')) %}
-        {% if widget_controls %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+    {% if form.get('prototype') or not ('form' in form.get('types')) %}
+        {% if widget_control_group %}
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}{% if form.get('prototype') %} data-prototype="{{ form_widget(form.get('prototype')) | e }}"{% endif %}>
         {% endif %}
     {% endif %}
-    {% if 'form' in form.get('types') and form.hasParent() != 0 %}
+    {% if not form.get('prototype') and ('form' in form.get('types') and form.hasParent() != 0) %}
         {% if show_child_legend %}
             {{ block('form_legend') }}
         {% endif %}
 	{% else %}
     	{{ block('field_label_attr_aware_label') }}
     {% endif %}
-    {% if not ('form' in form.get('types')) %}
+    {% if form.get('prototype') or not ('form' in form.get('types')) %}
     	{% if widget_controls %}
-        <div class="controls">
+        <div class="controls{{ form.get('prototype') ? ' prototyped' : ''}}">
         {% endif %}
     {% endif %}
     {% if errors|length > 0 %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block}) }} {{ widget_suffix|raw }}
-    {% if not ('form' in form.get('types')) %}
-            {{ block('field_message') }}
+        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block}) }} {{ widget_suffix|raw }}
+    {% if form.get('prototype') or not ('form' in form.get('types')) %}
+           {{ block('field_message') }}
         {% if widget_controls %}
         </div>
+        {% endif %}
+	    {% if widget_control_group %}
     </div>
         {% endif %}
     {% endif %}
 {% endblock field_row %}
 
 {% block field_message %}
-    {% if widget_remove_btn is defined %}
-        {{ block('field_widget_remove_btn') }}
-    {% endif %}
     {{ form_errors(form) }}
     {{ block('field_help') }}
 {% endblock field_message %}
 
-{# Date and Time widgets #}
+{# basic form widgets #}
 
-{% block date_widget %}
+{% block field_widget %}
 {% spaceless %}
-    {% if widget == 'single_text' %}
-        {{ block('field_widget') }}
-    {% else %}
-    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
-    	{{ form_label(form, label) }}
-        <div class="controls">
-            {% set attr = attr|merge({'class': attr.class|default('')}) %}
-	        <div {{ block('widget_container_attributes')  }}>
-	            {{ date_pattern|replace({
-                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
-                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-	            })|raw }}
-	        </div>
-	        {{ block('help') }}
-        </div>
+    {% set type = type|default('text') %}
+    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
+    	{% if not widget_addon.append %}
+    	{{ block('widget_addon') }}
+    	{% endif %}
+    {% endif %}
+    {# add class to style display block #}
+    {% if not widget_remove_btn|default(false) %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
+    {% endif %}
+    	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
+    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    	{% if widget_addon.append %}
+    	{{ block('widget_addon') }}
+    	{% endif %}
+    {% endif %}
+    {% if widget_remove_btn is defined %}
+        {{ block('field_widget_remove_btn') }}
+    {% endif %}    
+    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     </div>
     {% endif %}
 {% endspaceless %}
-{% endblock date_widget %}
+{% endblock field_widget %}
 
-{% block datetime_widget %}
-    {% if widget == 'single_text' %}
-        {{ block('field_widget') }}
-    {% else %}
-    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
-    	{{ form_label(form, label) }}
-        <div class="controls">
-            {% set attr = attr|merge({'class': attr.class|default('')}) %}
-	        <div {{ block('widget_container_attributes') }}>
-	            {{ form_errors(form.date) }}
-	            {{ form_errors(form.time) }}
-	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
-	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
-	        </div>
-	        {{ block('field_help') }}
-        </div>
-    </div>
-    {% endif %}
-{% endblock datetime_widget %}
+{% block widget_addon %}
+{# prevent deep nesting wrong context copy error #}
+{% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
+<span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+{% endblock widget_addon %}
 
+{# more form widgets #}
 
-{# basic form widgets #}
+{% block textarea_widget %}
+{% spaceless %}
+	{% set attr = attr %}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{% endspaceless %}
+{% endblock textarea_widget %}
 
 {% block radio_widget %}
 {% spaceless %}
@@ -261,24 +253,39 @@
     {% endif %}
 {% endblock choice_widget %}
 
-{% block field_widget %}
+{# widget attributes #}
+
+{% block widget_attributes %}
 {% spaceless %}
-    {% set type = type|default('text') %}
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
-    <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
-    	{% if not widget_addon.append %}
-    	{{ block('widget_addon') }}
-    	{% endif %}
-    {% endif %}
-    	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" />
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
-    	{% if widget_addon.append %}
-    	{{ block('widget_addon') }}
-    	{% endif %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
+{% endspaceless %}
+{% endblock widget_attributes %}
+
+{# Date and Time widgets #}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    	{{ form_label(form, label) }}
+        <div class="controls">
+            {% set attr = attr|merge({'class': attr.class|default('')}) %}
+	        <div {{ block('widget_container_attributes')  }}>
+	            {{ date_pattern|replace({
+                    '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                    '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+                    '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+	            })|raw }}
+	        </div>
+	        {{ block('help') }}
+        </div>
     </div>
     {% endif %}
 {% endspaceless %}
-{% endblock field_widget %}
+{% endblock date_widget %}
 
 {% block time_widget %}
 {% spaceless %}
@@ -299,24 +306,22 @@
 {% endspaceless %}
 {% endblock time_widget %}
 
-{% block widget_addon %}
-{# prevent deep nesting wrong context copy error #}
-{% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
-{% endblock widget_addon %}
-
-{% block textarea_widget %}
-{% spaceless %}
-	{% set attr = attr %}
-    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
-{% endspaceless %}
-{% endblock textarea_widget %}
-
-{# widget attributes #}
-
-{% block widget_attributes %}
-{% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
-{% endspaceless %}
-{% endblock widget_attributes %}
+{% block datetime_widget %}
+    {% if widget == 'single_text' %}
+        {{ block('field_widget') }}
+    {% else %}
+    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    	{{ form_label(form, label) }}
+        <div class="controls">
+            {% set attr = attr|merge({'class': attr.class|default('')}) %}
+	        <div {{ block('widget_container_attributes') }}>
+	            {{ form_errors(form.date) }}
+	            {{ form_errors(form.time) }}
+	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
+	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
+	        </div>
+	        {{ block('field_help') }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock datetime_widget %}
