@@ -43,6 +43,7 @@ Known Problems:
 If you have problems with your less version 
 for istance, less 1.2.1 did not work for me with bootstrap 2.0.2
 there was an error like:
+
 ```
 [RuntimeException]                                                           
   TypeError: Cannot call method 'charAt' of undefined                          
@@ -58,7 +59,18 @@ there was an error like:
       at /usr/lib/node_modules/less/lib/less/index.js:113:15  
 ```
 
-I installed a own copy of the less master:
+another error i had was 
+
+```
+  [RuntimeException]                                                                                                                                                                         
+  Syntax Error on line 396 in /var/www/virtual/mohrenweiserpartner.de/bootstrap/checkout/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
+  395 .reset-filter() {                                                                                                                                                            
+  396   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);                                                                                              
+  397 }                            
+```
+
+To solve it , i installed a own copy of the less master (currently 1.3.0):
+
 ```bash
 sudo git clone https://github.com/cloudhead/less.js.git /opt/lessc
 ```
