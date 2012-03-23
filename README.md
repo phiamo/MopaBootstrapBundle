@@ -43,6 +43,7 @@ and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
    *   [Form Field Help](#Form_Field_Help)
    *   [Form Field Prefix / Suffix](#Form_Field_presuf)
    *   [Form Errors](#Form_Errors)
+   *   [Field Collections](#Field_Collections)
 *   [Generation of CRUD controllers based on a Doctrine 2 schema](#Generation_CRUD)
 *   [TODO](#TODO)
 *   [Known Issues](#Known_Issues)
@@ -400,6 +401,20 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ```
+
+
+<h3 id="Field_Collections">Field Collections</h3>
+
+Since collections often tend to make probs, we added some code to ease the use:
+
+http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
+
+Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
+
+Some things are currently missing :
+ - examples on howto extend the functionality with check functions for adding and removing
+ - in depth example on howto use Custom FormTypes easily
+ - and maybe more
 
 <h2 id="Generation_CRUD">Generation of CRUD controllers based on a Doctrine 2 schema</h2>
 

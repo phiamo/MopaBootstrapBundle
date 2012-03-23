@@ -16,6 +16,9 @@
     <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {{ label|trans }}
     {% if required %}*{% endif %}
+    {% if widget_add_btn %}
+        {{ block('field_widget_add_btn') }}
+    {% endif %}
     {% if help_label %}
         <p class="help-block">{{ help_label|trans }}</p>
     {% endif %}
@@ -41,9 +44,15 @@
     {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
 {% endblock field_help %}
 
+{% block field_widget_add_btn %}
+    {% if widget_add_btn %}
+    <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}" value="{{ widget_add_btn }}">
+    {% endif %}
+{% endblock field_widget_add_btn %}
+
 {% block field_widget_remove_btn %}
     {% if widget_remove_btn %}
-    <input type="button" class="removebtn" value="{{ widget_remove_btn }}">
+    <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}" value="{{ widget_remove_btn }}">
     {% endif %}
 {% endblock field_widget_remove_btn %}
 
@@ -109,6 +118,7 @@
 {% endblock form_widget %}
 
 {# only display non hidden fields #}
+
 {% block field_rows_visible %}
     {% if form_errors(form) %}
         <div class="symfony-form-errors">
@@ -116,48 +126,54 @@
         </div>
     {% endif %}
     {% for child in form.children %}
-        {% set isVisible = true %}
-
-        {% for type in child.get('types') %}
-            {% if type == 'hidden' %}
-                {% set isVisible = false %}
-            {% endif %}
-        {% endfor %}
-
-        {% if isVisible %}
+        {% if 'hidden' not in child.get('types') %}
+			{#% debug child %#}
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
 {% endblock field_rows_visible %}
 
 {% block field_row %}
-    {% if form.get('prototype') or not ('form' in form.get('types')) %}
-        {% if widget_control_group %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}{% if form.get('prototype') %} data-prototype="{{ form_widget(form.get('prototype')) | e }}"{% endif %}>
+    {% set _isCollectionItem = (form.hasParent()|default(false) and form.getParent().get('prototype') ) %}
+	{% set _isSubform = ('form' in form.get('types')) %}
+	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
+    {% if not _isSubform %}
+        {% if widget_control_group and not _isCollectionItem %}
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
         {% endif %}
     {% endif %}
-    {% if not form.get('prototype') and ('form' in form.get('types') and form.hasParent() != 0) %}
-        {% if show_child_legend %}
+    {% if _isSubform and form.hasParent() != 0 %}
+        {% if show_child_legend|default(false) %}
             {{ block('form_legend') }}
         {% endif %}
-	{% else %}
+	{% elseif not _isCollectionItem  %}
     	{{ block('field_label_attr_aware_label') }}
     {% endif %}
-    {% if form.get('prototype') or not ('form' in form.get('types')) %}
-    	{% if widget_controls %}
-        <div class="controls{{ form.get('prototype') ? ' prototyped' : ''}}">
+    {% if not _isSubform %}
+    	{% if widget_controls and not _isCollectionItem %}
+        <div class="controls">
         {% endif %}
     {% endif %}
-    {% if errors|length > 0 %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
+    {% if _isCollectionItem %}
+		<div class="collection-item">
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block}) }} {{ widget_suffix|raw }}
-    {% if form.get('prototype') or not ('form' in form.get('types')) %}
+        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype')}) }} {{ widget_suffix|raw }}
+    {% if widget_remove_btn is defined %}
+        &nbsp;{{ block('field_widget_remove_btn') }}
+    {% endif %}
+    {% if not _isSubform %}
            {{ block('field_message') }}
-        {% if widget_controls %}
+    {% endif %}
+    {% if _isCollectionItem %}
+		</div>
+    {% endif %}
+    {% if not _isSubform %}
+        {% if widget_controls and not _isCollectionItem %}
         </div>
         {% endif %}
-	    {% if widget_control_group %}
+    {% endif %}
+    {% if not _isSubform %}
+	    {% if widget_control_group and not _isCollectionItem %}
     </div>
         {% endif %}
     {% endif %}
@@ -189,9 +205,6 @@
     	{{ block('widget_addon') }}
     	{% endif %}
     {% endif %}
-    {% if widget_remove_btn is defined %}
-        {{ block('field_widget_remove_btn') }}
-    {% endif %}    
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     </div>
     {% endif %}
@@ -204,6 +217,44 @@
 <span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
 {% endblock widget_addon %}
 
+{% block collection_row %}
+	{% set _isSubform = ('form' in form.get('types')) %}
+	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
+    {% if widget_control_group %}
+		{% if prototype is defined %}
+			{% set attr = attr|merge({'data-prototype': form_row(prototype), 'data-collection': 'true' }) %}
+		{% endif %}
+    <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+    {% endif %}
+	{{ block('field_label_attr_aware_label') }}
+   	{% if widget_controls %}
+        <div class="collection controls">
+    {% endif %}    
+    {{ form_widget(form) }}
+   	{% if widget_controls %}
+        </div>
+    {% endif %}    
+    {% if widget_control_group %}
+    </div>
+    {% endif %}
+{% endblock collection_row %}
+
+{% block collection_widget %}
+{% spaceless %}
+    {% for child in form.children %}
+        {% if 'hidden' not in child.get('types') %}
+			{#% debug child.get('attr') %#}
+            {#{ form_row(child) }#}
+        {% endif %}
+    {% endfor %}
+    {% if errors|length > 0 %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
+    {% endif %}
+    {% set coll_item = "BlUB" %}
+    {{ block('form_widget', coll_item) }}
+{% endspaceless %}
+{% endblock collection_widget %}	
+
 {# more form widgets #}
 
 {% block textarea_widget %}
@@ -212,12 +263,6 @@
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
-
-{% block radio_widget %}
-{% spaceless %}
-    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-{% endspaceless %}
-{% endblock radio_widget %}
 
 {% block choice_widget %}
     {% if expanded %}
@@ -252,15 +297,6 @@
             </select>
     {% endif %}
 {% endblock choice_widget %}
-
-{# widget attributes #}
-
-{% block widget_attributes %}
-{% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
-{% endspaceless %}
-{% endblock widget_attributes %}
 
 {# Date and Time widgets #}
 
@@ -325,3 +361,12 @@
     </div>
     {% endif %}
 {% endblock datetime_widget %}
+
+{# widget attributes #}
+
+{% block widget_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
+{% endspaceless %}
+{% endblock widget_attributes %}

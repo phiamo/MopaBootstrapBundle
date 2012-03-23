@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Mopa\BootstrapBundle\Form\Type\ExampleInputFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleFormsType;
 use Mopa\BootstrapBundle\Form\Type\ExampleChoiceFormType;
+use Mopa\BootstrapBundle\Form\Type\ExampleCollectionsFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleInlineFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType;
 use Mopa\BootstrapBundle\Form\Type\ExampleHorizontalFormType;
@@ -31,6 +32,30 @@ class ExamplesController extends Controller{
     */
     public function extendedAction(Request $request){
         $form = $this->createForm(new ExampleExtendedFormType());
+        return array(
+        	'form'=>$form->createView()
+        );
+    }
+    /**
+    * @Route("/mopa/bootstrap/forms/collections", name="mopa_bootstrap_forms_collections")
+    * @Template
+    */
+    public function collectionsAction(Request $request){
+        $form = $this->createForm(new ExampleCollectionsFormType());
+		$form->setData(array(
+			"email_collection" => array(
+				"phiamo@googlemail.com",
+				"some@other.com",
+			),
+			"nice_email_collection" => array(
+				"some@other.com",
+				"phiamo@googlemail.com",
+			),
+			"dates_collection" => array(array(
+                'startAt' => new \DateTime(),
+                'endAt' => new \DateTime(),
+			))
+		));
         return array(
         	'form'=>$form->createView()
         );

@@ -9,11 +9,6 @@ services:
            tags:
                 - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
 
-    mopa.form.widget_extension:
-           class: Mopa\BootstrapBundle\Form\Extension\WidgetFieldTypeExtension
-           tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
-                
     mopa.form.field_error_type:
            class: Mopa\BootstrapBundle\Form\Extension\ErrorTypeFieldTypeExtension
            tags:
@@ -32,4 +27,14 @@ services:
                 - { error_type: %mopa_bootstrap.form.error_type% }
            tags:
                 - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
+                
+    mopa.form.widget_extension:
+           class: Mopa\BootstrapBundle\Form\Extension\WidgetFieldTypeExtension
+           tags:
+                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
+                
+    mopa.form.widget_collection_extension:
+           class: Mopa\BootstrapBundle\Form\Extension\WidgetCollectionFieldTypeExtension
+           tags:
+                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
                 

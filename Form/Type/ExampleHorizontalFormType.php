@@ -13,6 +13,10 @@ class ExampleHorizontalFormType extends AbstractType
             ->add('Text input', null, array(
                 'help_block'  => 'In addition to freeform text, any HTML5 text-based input appears like so.',
             ))
+            ->add('Text input ohne label', null, array(
+				'label_render' => false,
+                'help_block'  => 'In addition this one has no label.',
+            ))
             ->add('Checkboxes', 'choice', array(
                 'label'        => 'Checkbox',
                 'help_inline'  => 'Expanded and multiple',

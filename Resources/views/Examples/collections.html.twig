@@ -1,0 +1,56 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block content %}
+</div>
+<h2>Collection Examples</h2>
+<div class="row">
+    <div class="span7">
+      <form class="form-horizontal" id="your_form_name">
+        {{ form_widget(form) }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="span5">
+      <h3>Easy use of collections</h3>
+      <p>We often saw probs when using collection, so we added some code to ease the use</p>
+      <p>Please review your javascript includes, we provide a new mopabotstrap-collection.js<p>
+      <p>Include it in your layout, or per page, as you like.<p>
+      <p>For an easy collection with e.g. just a bunch of mail adresses just add the collection to your form</p>
+      
+      <p>An example: to generate nice inputs with icons you dont write one line of html:</p>
+      <pre class="prettyprint
+         linenums">
+$builder
+	->add('nice_email_collection','collection', array(
+		'type' => 'email',
+		'allow_add' => true,
+		'allow_delete' => true, // should render default button, change text with widget_remove_btn
+		'prototype' => true,
+		'widget_add_btn' => "add email",
+		'options' => array( // options for collection fields
+			'widget_remove_btn' => "remove this",
+			'attr' => array('class' => 'span3'),
+			'widget_addon' => array(
+				'text' => '@',
+			),
+		)
+	))
+	;
+</pre>
+<p>And in your markup you just need one line: </p>
+<pre class="prettyprint
+ linenums">
+{% raw %}
+      &lt;form class=&quot;form-horizontal&quot;&gt;
+        {{ form_widget(form) }}
+      &lt;/form&gt;
+{% endraw %}
+</pre>
+      </div>
+{% endblock content %}
+
