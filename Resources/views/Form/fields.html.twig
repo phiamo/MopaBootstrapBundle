@@ -127,7 +127,6 @@
     {% endif %}
     {% for child in form.children %}
         {% if 'hidden' not in child.get('types') %}
-			{#% debug child %#}
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
