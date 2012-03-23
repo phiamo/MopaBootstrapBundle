@@ -46,18 +46,6 @@
       }
     , remove: function ( ) {
 		//this is called for a specific input inside the row...
-		console.log(this.$element);
-		/*
-		if(this.$element.parents('.input-prepend').length){
-			this.$element.parents('.input-prepend').remove();
-		}
-		else if(this.$element.parents('.input-append').length){
-			this.$element.parents('.input-append').remove();
-		}
-		else{
-			this.$element.prev().remove();
-			this.$element.remove();
-		}*/
 		
 		if(this.$element.parents('.collection-item').length){
 			this.$element.parents('.collection-item').remove();

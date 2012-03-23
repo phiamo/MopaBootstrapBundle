@@ -46,13 +46,13 @@
 
 {% block field_widget_add_btn %}
     {% if widget_add_btn %}
-    <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}" value="{{ widget_add_btn }}">
+    <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}_control_group" value="{{ widget_add_btn }}">
     {% endif %}
 {% endblock field_widget_add_btn %}
 
 {% block field_widget_remove_btn %}
     {% if widget_remove_btn %}
-    <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}" value="{{ widget_remove_btn }}">
+    <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}_control_group" value="{{ widget_remove_btn }}">
     {% endif %}
 {% endblock field_widget_remove_btn %}
 
@@ -138,7 +138,10 @@
 	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
     {% if not _isSubform %}
         {% if widget_control_group and not _isCollectionItem %}
+            {% set oid = id %}
+            {% set id = oid ~ "_control_group" %}
     <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+            {% set id = oid %}
         {% endif %}
     {% endif %}
     {% if _isSubform and form.hasParent() != 0 %}
@@ -223,7 +226,10 @@
 		{% if prototype is defined %}
 			{% set attr = attr|merge({'data-prototype': form_row(prototype), 'data-collection': 'true' }) %}
 		{% endif %}
+        {% set oid = id %}
+        {% set id = oid ~ "_control_group" %}
     <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+        {% set id = oid %}
     {% endif %}
 	{{ block('field_label_attr_aware_label') }}
    	{% if widget_controls %}
