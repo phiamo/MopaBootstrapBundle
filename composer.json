@@ -41,10 +41,10 @@
     },
      "scripts": {
         "post-package-install": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::symlinkTwitterBootstrap"
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageSymlinkTwitterBootstrap"
         ],
         "post-package-update": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::symlinkTwitterBootstrap"
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageSymlinkTwitterBootstrap"
         ]
     }
 }
