@@ -21,18 +21,20 @@
         }
     },
     "target-dir": "Mopa/BootstrapBundle",
-    "repositories": {
-        "type": "package",
-        "package": {
-            "version": "2.0.2",
-            "name": "twitter/bootstrap",
-            "source": {
-                "url": "https://github.com/twitter/bootstrap.git",
-                "type": "git",
-                "reference": "master"
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                }
             }
         }
-    },
+    ]
     "require": {
         "php": ">=5.3.2",
         "twitter/bootstrap": "master"
