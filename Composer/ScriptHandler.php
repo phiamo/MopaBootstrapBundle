@@ -61,26 +61,26 @@ class ScriptHandler
     }
     static protected function checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO){
         $IO->write("<info>Checking Symlink: " . $absolutSymlinkName . "</info>");
+        if(is_link($absolutSymlinkName)){
+            $linkTarget = readlink($absolutSymlinkName);
+            if($linkTarget != $symlinkTarget){
+                $IO->write("<error>Symlink " . $absolutSymlinkName . "</error>");
+                $IO->write("<error>Points  to " . $linkTarget . "</error>");
+                $IO->write("<error>Instead of " . $symlinkTarget . "</error>");
+                return;
+            }
+            else{
+                $IO->write("<info>Symlink OK: " . $absolutSymlinkName . "</info>");
+                return;
+            }
+        }
         if(file_exists($absolutSymlinkName)){
             $type = filetype($absolutSymlinkName);
             if($type != "link"){
                 $IO->write("<error>" . ucfirst($type) . " exists: " . $absolutSymlinkName . "</error>");
                 return;
             }
-            if(is_link($absolutSymlinkName)){
-                $linkTarget = readlink($absolutSymlinkName);
-                if($linkTarget != $symlinkTarget){
-                    $IO->write("<error>Symlink " . $absolutSymlinkName . "</error>");
-                    $IO->write("<error>Points  to " . $linkTarget . "</error>");
-                    $IO->write("<error>Instead of " . $symlinkTarget . "</error>");
-                    return;
-                }
-                else{
-                    $IO->write("<info>Symlink OK: " . $absolutSymlinkName . "</info>");
-                    return;
-                }
-            }
-        }
+        } 
         
         $IO->write("<info>Creating Symlink: " . $absolutSymlinkName . "</info>");
         $IO->write("<info>for Target: " . $symlinkTarget . "</info>");
