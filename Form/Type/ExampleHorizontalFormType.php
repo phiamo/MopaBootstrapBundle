@@ -10,10 +10,10 @@ class ExampleHorizontalFormType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('Text input', null, array(
+            ->add('Text_input', null, array(
                 'help_block'  => 'In addition to freeform text, any HTML5 text-based input appears like so.',
             ))
-            ->add('Text input ohne label', null, array(
+            ->add('Text_input_ohne_label', null, array(
 				'label_render' => false,
                 'help_block'  => 'In addition this one has no label.',
             ))
@@ -24,7 +24,7 @@ class ExampleHorizontalFormType extends AbstractType
                 'expanded'	   => true,
                 'choices'      => array('1' => "Option one is this and that—be sure to include why it's great"),
             ))
-            ->add('Select list', 'choice', array(
+            ->add('Select_list', 'choice', array(
                 'label'        => 'Checkbox',
                 'choices'      => array(
                 	'1' => "something",

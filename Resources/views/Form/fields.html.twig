@@ -181,6 +181,13 @@
     {% endif %}
 {% endblock field_row %}
 
+
+{% block form_row %}
+{% spaceless %}
+        {{ form_widget(form) }}
+{% endspaceless %}
+{% endblock form_row %}
+
 {% block field_message %}
     {{ form_errors(form) }}
     {{ block('field_help') }}
@@ -231,7 +238,7 @@
     <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
         {% set id = oid %}
     {% endif %}
-	{{ block('field_label_attr_aware_label') }}
+    {{ block('field_label_attr_aware_label') }}
    	{% if widget_controls %}
         <div class="collection controls">
     {% endif %}    

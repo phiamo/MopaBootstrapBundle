@@ -17,7 +17,7 @@ class ExampleFormsType extends AbstractType
                 	'placeholder' => "Some text",
                 )
             ))
-            ->add('Checkboxes Inline', 'choice', array(
+            ->add('Checkboxes_Inline', 'choice', array(
                 'label_render'        => false,
                 'help_block'  => 'Expanded and multiple (inline)',
                 'multiple'     => true,
