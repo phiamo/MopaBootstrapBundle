@@ -58,33 +58,18 @@ If you do not want to use less ignore this, otherwise have a look into:
 
 <h2 id="Installation">Installation</h2>
 
-1.1 Add this bundle to your project as via deps:
+1.1 Add this bundle to your project in composer.lock:
 
 ```
-[MopaBootstrapBundle]
-    git=http://github.com/phiamo/MopaBootstrapBundle.git
-    target=/bundles/Mopa/BootstrapBundle
+...
+        {
+            "package": "mopa/bootstrap-bundle",
+            "version": "dev-master"
+        },
+...
 ```
 
-1.2 Or add this bundle to your project as a Git submodule:
-
-``` bash
-git submodule add git@github.com:phiamo/MopaBootstrapBundle.git vendor/bundles/Mopa/BootstrapBundle
-```
-
-2. Add namespace to you app/autoload.php
-
-``` php
-<?php
-// app/autoload.php
-$loader->registerNamespaces(array(
-    // ...
-    'Mopa'        => __DIR__.'/../vendor/bundles',
-));
-```
-
-
-3. Add this bundle to your app/AppKernel.php:
+2. Add this bundle to your app/AppKernel.php:
 
 ``` php
 // application/ApplicationKernel.php
@@ -98,7 +83,7 @@ public function registerBundles()
 }
 ```
 
-  4. If you like configure your config.yml (not mandatory anymore)
+3. If you like configure your config.yml (not mandatory anymore)
 
 ``` yaml
 mopa_bootstrap:
