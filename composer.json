@@ -34,9 +34,14 @@
                 }
             }
         }
-    ]
+    ],
     "require": {
         "php": ">=5.3.2",
         "twitter/bootstrap": "master"
+    },
+     "scripts": {
+        "post-install-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::symlinkTwitterBootstrap"
+        ]
     }
 }
