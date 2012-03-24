@@ -7,7 +7,7 @@ class ScriptHandler
 {
     static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
     static $twitterBootstrapName = "twitter/bootstrap";
-    static public function postSymlinkTwitterBootstrap(Event $event)
+    static public function postInstallSymlinkTwitterBootstrap(Event $event)
     {
         $IO = $event->getIO();
         $composer = $event->getComposer();
@@ -19,7 +19,7 @@ class ScriptHandler
             }
         }
     }
-    static public function postPackageSymlinkTwitterBootstrap(Event $event){
+    static public function postPackageInstallSymlinkTwitterBootstrap(Event $event){
         $IO = $event->getIO();
         $composer = $event->getComposer();
         $mopaBootstrapBundlePackage = $composer->getPackage();
