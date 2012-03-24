@@ -15,31 +15,27 @@
             "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
         }
     ],
-    "require": {
-        "php": ">=5.3.2",
-        "symfony/framework-bundle": "2.*",
-        "symfony/form": "2.*",
-        "twitter/bootstrap2": "master"
-    },
     "autoload": {
         "psr-0": {
             "Mopa\\BootstrapBundle": ""
         }
     },
     "target-dir": "Mopa/BootstrapBundle",
-    "repositories": [
-        {
-            "type": "package",
+    "repositories": {
+        "twitter-bootstrap": {
             "package": {
-                "name": "twitter/bootstrap2",
-                "version": "master",
+                "version": "2.0.0",
+                "name": "twitter/bootstrap",
                 "source": {
-                    "url": "git://github.com/twitter/bootstrap.git",
+                    "url": "https://github.com/twitter/bootstrap.git",
                     "type": "git",
                     "reference": "master"
-                },
-                "target-dir": "Resources/bootstrap"
+                }
             }
-        }
-    ]
+        }        
+    },
+    "require": {
+        "php": ">=5.3.2",
+        "twitter/bootstrap": "*"
+    }
 }
