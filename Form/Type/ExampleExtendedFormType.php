@@ -52,7 +52,7 @@ class ExampleExtendedFormType extends AbstractType
                     'class' => 'span3',
                 )
             ))
-            ->add('Prepended Text', 'text', array(
+            ->add('Prepended_Text', 'text', array(
                 'widget_addon' => array(
                 	'text' => '@'
                 ),
@@ -61,7 +61,7 @@ class ExampleExtendedFormType extends AbstractType
                 	'placeholder' => 'span1',
                 )
             ))
-            ->add('Prepended Icon', 'text', array(
+            ->add('Prepended_Icon', 'text', array(
                 'widget_addon' => array(
                 	'icon' => 'headphones'
                 ),
@@ -70,7 +70,7 @@ class ExampleExtendedFormType extends AbstractType
                 	'placeholder' => 'span1',
                 )
             ))
-            ->add('Appended Text', 'text', array(
+            ->add('Appended_Text', 'text', array(
                 'widget_addon' => array(
                 	'text' => '.00',
                 	'append' => true
@@ -80,7 +80,7 @@ class ExampleExtendedFormType extends AbstractType
                 	'placeholder' => 'span1',
                 )
             ))
-            ->add('Appended Icon', 'text', array(
+            ->add('Appended_Icon', 'text', array(
                 'widget_addon' => array(
                 	'icon' => 'pencil',
                 	'append'=>true
@@ -90,7 +90,7 @@ class ExampleExtendedFormType extends AbstractType
                 	'placeholder' => 'span1',
                 )
             ))
-            ->add('Checkboxes Inline', 'choice', array(
+            ->add('Checkboxes_Inline', 'choice', array(
                 'label'        => 'Inline checkboxes',
                 'multiple'     => true,
                 'expanded'	   => true,
@@ -108,7 +108,7 @@ class ExampleExtendedFormType extends AbstractType
                  	'3' => 'Option three can—yes, you guessed it—also be checked and included in form results'
              	),
             ))
-            ->add('Radio Buttons', 'choice', array(
+            ->add('Radio_Buttons', 'choice', array(
                 'label'        => 'Radio buttons',
                 'expanded'	   => true,
                 'choices'      => array(
@@ -122,14 +122,14 @@ class ExampleExtendedFormType extends AbstractType
 				'widget' => 'choice',
             ))
             
-            ->add('Prefix Text', 'text', array(
+            ->add('Prefix_Text', 'text', array(
                 'widget_prefix' => "Prefix Text",
                 'attr' => array(
                     'class' => 'span1',
                 	'placeholder' => 'span1',
                 )
             ))
-            ->add('Suffix Text', 'text', array(
+            ->add('Suffix_Text', 'text', array(
                 'widget_suffix' => "Suffix Text",
                 'attr' => array(
                     'class' => 'span1',

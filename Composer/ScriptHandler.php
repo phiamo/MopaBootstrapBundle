@@ -50,7 +50,7 @@ class ScriptHandler
                 $symlinkName = $mopaBootstrapBundlePackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
                 $absolutSymlinkName = getcwd() . DIRECTORY_SEPARATOR . $symlinkName;
                 $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
-                $upwards = ".." . implode("..", array_fill(0, $dscount + 1, DIRECTORY_SEPARATOR));
+                $upwards = ".." . implode("..", array_fill(0, $dscount, DIRECTORY_SEPARATOR));
                 $symlinkTarget = $upwards . $twitterBootstrapPackagePath;
                 self::checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO);
                 return;
@@ -81,6 +81,9 @@ class ScriptHandler
                 }
             }
         }
+        
+        $IO->write("<info>Creating Symlink: " . $absolutSymlinkName . "</info>");
+        $IO->write("<info>for Target: " . $symlinkTarget . "</info>");
         if(false === symlink($symlinkTarget, $absolutSymlinkName)){
             $IO->write("<error>An error occured while creating symlink" . $absolutSymlinkName . "</error>");
             exit;

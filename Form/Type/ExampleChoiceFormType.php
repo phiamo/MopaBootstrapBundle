@@ -15,13 +15,13 @@ class ExampleChoiceFormType extends AbstractType
                 'help_inline'  => 'Default settings',
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
-            ->add('Choice multiple', 'choice', array(
+            ->add('Choice_multiple', 'choice', array(
                 'label'        => 'Multicon-select',
                 'help_inline'  => 'Multiple',
                 'multiple'     => true,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
-            ->add('Radio Buttons', 'choice', array(
+            ->add('Radio_Buttons', 'choice', array(
                 'label'        => 'Radio buttons',
                 'help_inline'  => 'Expanded',
                 'expanded'	   => true,
@@ -34,7 +34,7 @@ class ExampleChoiceFormType extends AbstractType
                 'expanded'	   => true,
                 'choices'      => array('1' => 'one', '2' => 'two'),
             ))
-            ->add('Checkboxes Inline', 'choice', array(
+            ->add('Checkboxes_Inline', 'choice', array(
                 'label'        => 'Inline checkboxes',
                 'help_inline'  => 'Expanded and multiple (inline)',
                 'multiple'     => true,

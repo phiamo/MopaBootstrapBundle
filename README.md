@@ -58,16 +58,54 @@ If you do not want to use less ignore this, otherwise have a look into:
 
 <h2 id="Installation">Installation</h2>
 
-1.1 Add this bundle to your project in composer.lock:
+1.1 Add this bundle to your project in composer.json:
 
-```
-...
+symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
+
+Add in your composer.json:
+
+```json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-master",
+        "knplabs/knp-components": "dev-master",
+        "knplabs/knp-menu": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master"
+    },
+    "repositories": [
         {
-            "package": "mopa/bootstrap-bundle",
-            "version": "dev-master"
-        },
-...
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
+}
 ```
+
+To activate auto symlinking and checking after composer update/install add also to your existing scripts:
+
+```json
+{
+    "scripts": {
+        "post-install-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ],
+        "post-update-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ]
+    }
+}
+```
+
+With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
+been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
 2. Add this bundle to your app/AppKernel.php:
 
@@ -93,22 +131,9 @@ mopa_bootstrap:
         error_type: block # or inline which is default
 ```
 
-<h2 id="Including">Including Bootstrap </h2>
-
-For including bootstrap there are several ways have a look into
+For including bootstrap there are several ways, have a look into
  
 [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
-
-or quick start e.g. with
-
-```
-[TwitterBootstrap2]
-    git=git://github.com/twitter/bootstrap.git
-    target=/twitter/bootstrap/v2/
-    version=v2.0.0
-```
-
-in your deps
 
 <h2 id="Using">Using bootstrap in the layout</h2>
 

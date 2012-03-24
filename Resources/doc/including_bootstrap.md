@@ -5,12 +5,58 @@ We decided not to take the bootstrap distribution into this repo to seperate con
 So you have to include bootstrap in some manner into your project, here are some examples on howto do it:
 
 
+### (RECOMMENDED) Include in your project composer.json / composer.lock:
+
+Since 2.1 symfony2 uses composer (http://www.getcomposer.org) to organize dependencies.
+
+Add in your composer.json:
+
+```json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-master",
+        "knplabs/knp-components": "dev-master",
+        "knplabs/knp-menu": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
+}
+```
+
+To activate auto symlinking and checking after composer update/install add also to your existing scripts:
+
+```json
+{
+    "scripts": {
+        "post-install-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ],
+        "post-update-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ]
+    }
+}
+```
+
 **Warning:**
 
 > The path to bootstrap might change depending on how you decide to include it into your project.
 > So please be careful when including it in twig, less etc. to have the correct path in mind! 
 
-### Including as Submodule
+### (OLD STYLE) Including as Submodule
 
 You can include twitters bootstrap as a submodule directly by changing into the MopaBootstrapBundle folder and executing:
 
@@ -21,7 +67,7 @@ git submodule update
 ```
 
 
-### Including Bootstrap as own vendor dependency in deps:
+### (OLD STYLE) Including Bootstrap as own vendor dependency in deps:
 
 To have bootstrap installed by the vendors script of symfony use the following in your deps file:
 
@@ -32,12 +78,7 @@ To have bootstrap installed by the vendors script of symfony use the following i
     version=v2.0.0
 ```
 
-### Including Bootstrap automatically by composer:
-
-To use MopaBootstrapBundle with composer you can rely on the recommended packages which show different bootstrap2 versions to install
-
-
-### Including Bootstrap manually
+### (NOT RECOMMENDED) Including Bootstrap manually
 
 To use bootstrap without less just download the zipped distribution
 
