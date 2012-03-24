@@ -1,4 +1,5 @@
-namespace Mopa\BootstrapBundle\Composer\Script;
+<?php
+namespace Mopa\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
 

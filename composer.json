@@ -40,7 +40,10 @@
         "twitter/bootstrap": "master"
     },
      "scripts": {
-        "post-install-cmd": [
+        "post-package-install": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::symlinkTwitterBootstrap"
+        ],
+        "post-package-update": [
             "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::symlinkTwitterBootstrap"
         ]
     }
