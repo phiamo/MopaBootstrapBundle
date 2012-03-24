@@ -45,7 +45,7 @@
         ],
         "post-package-update": [
             "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
-        ],        
+        ],
         "post-install-cmd": [
             "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],

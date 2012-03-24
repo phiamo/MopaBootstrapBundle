@@ -1,4 +1,9 @@
 <?php
+/**
+ * Script for composer, to symlink boostrap lib into Bundle
+ * 
+ * Maybe nice to convert this to a command and then reuse command in here.
+ */
 namespace Mopa\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
@@ -47,13 +52,12 @@ class ScriptHandler
                 $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
                 $upwards = ".." . implode("..", array_fill(0, $dscount + 1, DIRECTORY_SEPARATOR));
                 $symlinkTarget = $upwards . $twitterBootstrapPackagePath;
-                var_dump($twitterBootstrapPackagePath, $mopaBootstrapBundlePackagePath);
                 self::checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO);
-            }
-            else{
-                $IO->write("<error>Package: " . self::$twitterBootstrapName . " is not required!</error>");
+                return;
             }
         }
+        $IO->write("<error>Package: " . self::$twitterBootstrapName . " is not required!</error>");
+        exit;
     }
     static protected function checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO){
         $IO->write("<info>Checking Symlink: " . $absolutSymlinkName . "</info>");
