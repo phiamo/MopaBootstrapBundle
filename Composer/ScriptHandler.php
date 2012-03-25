@@ -48,7 +48,7 @@ class ScriptHandler
                 $twitterBootstrapPackagePath = $composer->getInstallationManager()->getInstallPath($twitterBootstrapPackage);
                 $mopaBootstrapBundlePackagePath = $composer->getInstallationManager()->getInstallPath($mopaBootstrapBundlePackage);
                 $symlinkName = $mopaBootstrapBundlePackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
-                $absolutSymlinkName = getcwd() . DIRECTORY_SEPARATOR . $symlinkName;
+                $absolutSymlinkName = $symlinkName;
                 $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
                 $upwards = ".." . implode("..", array_fill(0, $dscount, DIRECTORY_SEPARATOR));
                 $symlinkTarget = $upwards . $twitterBootstrapPackagePath;
