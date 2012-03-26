@@ -48,9 +48,12 @@ class GenericNavbar implements NavbarInterface
     public function getFormClasses(){
         return $this->formClasses;
     }
-    
+
+    public function hasFormView($key) {
+        return in_array($key, array_keys($this->formViews));
+    }
     public function getFormView($key){
-        if(in_array($key, array_keys($this->formViews))){
+        if($this->hasFormView($key)){
             return $this->formViews[$key];
         }
         throw new \Exception("FormView " . $key . " not found!");
