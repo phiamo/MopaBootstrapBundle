@@ -60,7 +60,7 @@ class NavbarRenderer{
                 $navbar->setFormView($key, $form->createView());
             }
             else{
-                throw new Exception("Form Type Created ". $formTypeString . " is not a NavbarFormInterface");
+                throw new \Exception("Form Type Created ". $formTypeString . " is not a NavbarFormInterface");
             }
         }
         return $navbar;

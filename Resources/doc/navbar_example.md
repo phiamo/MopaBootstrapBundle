@@ -1,6 +1,6 @@
 Thanks to havvg giving this example
 -----------------------------------
-Surce: https://github.com/phiamo/MopaBootstrapBundle/issues/66
+Original Source: https://github.com/phiamo/MopaBootstrapBundle/issues/66
 Look at the examples here: https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/config/examples
 
 A complete example:
@@ -14,6 +14,7 @@ mopa_bootstrap:
 ```
 
 ## services.yml
+This has been adapted to match the current master status:
 
 ```yaml
 services:
@@ -21,12 +22,9 @@ services:
         class: '%mopa_bootstrap.navbar.generic%'
         scope: request
         arguments:
-            - "Sternenbund"
-            - true
-            - "welcome"
-            - '@sternenbund.navbar_main_menu'
-            - null
-            - '@sternenbund.navbar_right_menu'
+            - { leftmenu: @sternenbund.navbar_main_menu=, rightmenu: @sternenbund.navbar_right_menu= }
+            - {}
+            - { title: "Sternenbund", titleRoute: "mopa_bootstrap_welcome", fixedTop: true, isFluid: false }
         tags:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 
