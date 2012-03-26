@@ -48,47 +48,46 @@ class ScriptHandler
                 $twitterBootstrapPackagePath = $composer->getInstallationManager()->getInstallPath($twitterBootstrapPackage);
                 $mopaBootstrapBundlePackagePath = $composer->getInstallationManager()->getInstallPath($mopaBootstrapBundlePackage);
                 $symlinkName = $mopaBootstrapBundlePackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
-                $absolutSymlinkName = $symlinkName;
                 $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
                 $upwards = ".." . implode("..", array_fill(0, $dscount, DIRECTORY_SEPARATOR));
                 $symlinkTarget = $upwards . $twitterBootstrapPackagePath;
-                self::checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO);
+                self::checkAndCreateSymlink($symlinkTarget, $symlinkName, $IO);
                 return;
             }
         }
         $IO->write("<error>Package: " . self::$twitterBootstrapName . " is not required!</error>");
         exit;
     }
-    static protected function checkAndCreateSymlink($symlinkTarget, $absolutSymlinkName, $IO){
-        $IO->write("<info>Checking Symlink: " . $absolutSymlinkName . "</info>");
-        if(is_link($absolutSymlinkName)){
-            $linkTarget = readlink($absolutSymlinkName);
+    static protected function checkAndCreateSymlink($symlinkTarget, $symlinkName, $IO){
+        $IO->write("<info>Checking Symlink: " . $symlinkName . "</info>");
+        if(is_link($symlinkName)){
+            $linkTarget = readlink($symlinkName);
             if($linkTarget != $symlinkTarget){
-                $IO->write("<error>Symlink " . $absolutSymlinkName . "</error>");
+                $IO->write("<error>Symlink " . $symlinkName . "</error>");
                 $IO->write("<error>Points  to " . $linkTarget . "</error>");
                 $IO->write("<error>Instead of " . $symlinkTarget . "</error>");
                 return;
             }
             else{
-                $IO->write("<info>Symlink OK: " . $absolutSymlinkName . "</info>");
+                $IO->write("<info>Symlink OK: " . $symlinkName . "</info>");
                 return;
             }
         }
-        if(file_exists($absolutSymlinkName)){
-            $type = filetype($absolutSymlinkName);
+        if(file_exists($symlinkName)){
+            $type = filetype($symlinkName);
             if($type != "link"){
-                $IO->write("<error>" . ucfirst($type) . " exists: " . $absolutSymlinkName . "</error>");
+                $IO->write("<error>" . ucfirst($type) . " exists: " . $symlinkName . "</error>");
                 return;
             }
         } 
         
-        $IO->write("<info>Creating Symlink: " . $absolutSymlinkName . "</info>");
+        $IO->write("<info>Creating Symlink: " . $symlinkName . "</info>");
         $IO->write("<info>for Target: " . $symlinkTarget . "</info>");
-        if(false === symlink($symlinkTarget, $absolutSymlinkName)){
-            $IO->write("<error>An error occured while creating symlink" . $absolutSymlinkName . "</error>");
+        if(false === symlink($symlinkTarget, $symlinkName)){
+            $IO->write("<error>An error occured while creating symlink" . $symlinkName . "</error>");
             exit;
         }
-        $IO->write("<info>Symlink creation OK: " . $absolutSymlinkName . "</info>");
+        $IO->write("<info>Symlink creation OK: " . $symlinkName . "</info>");
     }
         
 }
