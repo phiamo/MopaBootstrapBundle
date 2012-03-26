@@ -6,30 +6,18 @@ use Symfony\Component\Form\AbstractType;
 
 interface NavbarInterface
 {
+    public function getFormClasses();
+    public function getMenu($key);
+    public function getOption($key);
 
-    public function getTitle();
-    public function setTitle($title);
 
-    public function getFixedTop();
-    public function setFixedTop($fixedTop);
+    public function getFormType($key);
+    public function setFormType($key, AbstractType $formType);
 
-    public function getTitleRoute();
-    public function setTitleRoute($titleRoute);
+    public function getFormClass($key);
 
-    public function getLeftMenu();
-    public function setLeftMenu($leftMenu);
+    public function getFormView($key);
+    public function setFormView($key, FormView $formView);
 
-    public function getRightMenu();
-    public function setRightMenu($rightMenu);
-
-    public function getFormType();
-    public function setFormType(AbstractType $formType);
-
-    public function getFormTypeClass();
-    public function setFormTypeClass($formTypeClass);
-
-    public function getForm();
-    public function setForm(FormView $formView);
-
-    public function getFormRoute();
+    public function getFormRoute($key);
 }

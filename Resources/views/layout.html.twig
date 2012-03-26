@@ -26,7 +26,7 @@
 
 #}
 {% endblock head_style %}
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% block head_script %}
 {# Overwrite this block to add your own js here, to get them generated into final files #}
 {% endblock head_script %}
@@ -34,7 +34,7 @@
 <title>{% block title %}Mopa Bootstap Bundle{% endblock %}</title>
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
-<body>
+<body data-spy="scroll">
     {% block navbar %}
     {{ mopa_bootstrap_navbar('frontendNavbar') }}
 	{% endblock navbar %}

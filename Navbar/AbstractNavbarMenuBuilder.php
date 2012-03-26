@@ -23,6 +23,24 @@ abstract class AbstractNavbarMenuBuilder
         $this->factory = $factory;
     }
 
+
+    /**
+     * get a preconfigured menu item for navbar where to easily add childs
+     *
+     * @param string $title Title of the item
+     * @param boolean $push_right Make if float right default: true
+     */
+    protected function createNavbarMenuItem($push_right = true){
+        
+        $rootItem = $this->factory->createItem('root');
+        $rootItem
+            ->setChildrenAttributes(array('class' => 'nav'))
+        ;
+        if($push_right){
+            $this->pushRight($rootItem);
+        }
+        return $rootItem;
+    }
     /**
      * get a preconfigured Dropdown menu where to easily add childs
      *

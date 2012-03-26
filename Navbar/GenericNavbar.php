@@ -6,96 +6,81 @@ use Symfony\Component\Form\AbstractType;
 
 class GenericNavbar implements NavbarInterface
 {
-    protected $title;
-    protected $fixedTop;
-    protected $titleRoute;
-    protected $leftMenu;
-    protected $rightMenu;
-    protected $formTypeClass;
-    protected $formType;
-    protected $formView;
-    protected $isFluid = false;
+    
+    protected $options = array();
+    protected $formClasses = array();
+    protected $formTypes = array();
+    protected $formViews = array();
+    protected $menus = array();
 
-    public function __construct($title, $fixedTop, $titleRoute = null, $leftMenu = null, $formTypeClass = null, $rightMenu = null){
-        $this->title = $title;
-        $this->fixedTop = $fixedTop;
-        $this->titleRoute = $titleRoute;
-        $this->leftMenu = $leftMenu;
-        $this->rightMenu = $rightMenu;
-        $this->formTypeClass = $formTypeClass;
+    public function __construct(array $menus, array $formClasses, array $options){
+        $this->menus = $menus;
+        $this->formClasses = $formClasses;
+        $this->options = $options;
     }
-    public function getTitle(){
-        return $this->title;
-    }
-    public function setTitle($title){
-        $this->title = $title;
-    }
-    public function getFixedTop(){
-        return $this->fixedTop;
-    }
-    public function setFixedTop($fixedTop){
-        $this->fixedTop = $fixedTop;
-    }
-    public function getTitleRoute() {
-        return $this->titleRoute;
-    }
-    public function setTitleRoute($titleRoute){
-        $this->titleRoute = $titleRoute;
-    }
-    public function getLeftMenu(){
-        return $this->leftMenu;
-    }
-    public function setLeftMenu($leftMenu){
-        $this->leftMenu = $leftMenu;
-    }
-    public function getRightmenu(){
-        return $this->rightMenu;
-    }
-    public function setRightMenu($rightMenu){
-        $this->rightMenu;
-    }
-    public function getFormTypeClass(){
-        if($this->formTypeClass){
-            return $this->formTypeClass;
+    public function getMenu($key){
+        if(array_key_exists($key, $this->menus)){
+            return $this->menus[$key];
         }
-        return null;
+        throw new \Exception("Menu " . $key . " not found!");
     }
-    public function setFormTypeClass($formTypeClass){
-        $this->formTypeClass = $formTypeClass;
+    public function getFormClass($key){
+        if(array_key_exists($key, $this->formClasses)){
+            return $this->formClasses[$key];
+        }
+        throw new \Exception("FormClass " . $key . " not found!");
     }
-    public function getFormType(){
-        return $this->formType;
+    public function getFormType($key){
+        if(array_key_exists($key, $this->formTypes)){
+            return $this->formTypes[$key];
+        }
+        throw new \Exception("FormType " . $key . " not found!");
     }
-    public function setFormType(AbstractType $formType){
-        $this->formType = $formType;
+    public function setFormType($key, AbstractType $formView){
+        $this->formTypes[$key] = $formView;
     }
-    public function getForm(){
-        if($this->formView){
-            return $this->formView;
+    public function getOption($key){
+        if(array_key_exists($key, $this->options)){
+            return $this->options[$key];
+        }
+        throw new \Exception("Option " . $key . " not found!");
+    }
+    public function getFormClasses(){
+        return $this->formClasses;
+    }
+    
+    public function getFormView($key){
+        if(in_array($key, array_keys($this->formViews))){
+            return $this->formViews[$key];
+        }
+        throw new \Exception("FormView " . $key . " not found!");
+    }
+    public function setFormView($key, FormView $formView){
+        $this->formViews[$key] = $formView;
+    }
+    public function getButtonValue($key){
+        if(array_key_exists($key, $this->formTypes)){
+            if (($this->formTypes[$key]) instanceof NavbarFormInterface){
+                return $this->formTypes[$key]->getButtonValue();
+            }
+            else{
+                throw new \Exception("FormType " . get_class($this->formType[$key]) . " must implement NavbarFormInterface");
+            }
         }
     }
-    public function setForm(FormView $formView){
-        $this->formView = $formView;
-    }
-    public function getFormRoute(){
-        if($this->formView && $this->formType->getRoute()){
-            return $this->formType->getRoute();
-        }
-    }
-    public function getButtonValue(){
-        if($this->formView && $this->formType->getButtonValue()){
-            return $this->formType->getButtonValue();
+    public function getFormRoute($key){
+        if(array_key_exists($key, $this->formTypes)){
+            if (($this->formTypes[$key]) instanceof NavbarFormInterface){
+                return $this->formTypes[$key]->getRoute();
+            }
+            else{
+                throw new \Exception("FormType " . get_class($this->formType[$key]) . " must implement NavbarFormInterface");
+            }
         }
     }
     public function makeDropdown($menuItem){
         $menuItem
             ->setDisplay(false)
             ->setAttribute('class', 'nav secondary-nav');
-    }
-    public function setFluid($value){
-        $this->isFluid = (bool) $value;
-    }
-    public function getFluid(){
-        return $this->isFluid;
     }
 }
