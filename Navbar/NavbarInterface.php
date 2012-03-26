@@ -18,6 +18,7 @@ interface NavbarInterface
 
     public function getFormView($key);
     public function setFormView($key, FormView $formView);
+    public function hasFormView($key);
 
     public function getFormRoute($key);
 }
