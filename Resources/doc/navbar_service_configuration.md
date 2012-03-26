@@ -1,7 +1,7 @@
 ###
 
 Generating a bootstrap navbar should be straight forward.
-We try to solve that by just reusing the Excellent KnpMenu and KnpMenuBundle to create the menues and decorate our Navbar with these and forms and more.
+We try to solve that by just reusing the excellent knp-components, KnpMenu and KnpMenuBundle to create the menues and decorate our Navbar with these and forms and more.
 
 So remember to install these Bundles if you want to use the Navbar features!
 
@@ -22,16 +22,16 @@ mopa_bootstrap:
 
 A Navbar Service can be generated easyly be generating a Navbar Service like in
  or if you prefer yaml Resources/config/examples/example_navbar.yml
- 
+
+Please be sure your Navbarclass implements Mopa\BootstrapBundle\Navbar\NavbarFormInterface.
+
 You need also some KnpMenu definitions like in  
 Resources/config/examples/example_menu.yml
-
-If you leave any of the arguments blank (don't omit them!) they should just not render
 
 If you do not extend the provided layout file its as easy as
 
 {% block navbar %}
-   {{ mopa_bootstrap_navbar() }}
+   {{ mopa_bootstrap_navbar('navbaralias') }}
 {% endblock navbar %}
 
 to get your navbar displayed.
