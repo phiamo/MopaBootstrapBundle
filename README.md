@@ -66,7 +66,7 @@ If you want to have a easier life, have a look into:
 
 <h2 id="Installation">Installation</h2>
 
-1.1 Add this bundle to your project in composer.json:
+1. Add this bundle to your project in composer.json:
 
 symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
 
