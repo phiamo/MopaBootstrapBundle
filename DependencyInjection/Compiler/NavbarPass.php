@@ -9,6 +9,7 @@ class NavbarPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition('mopa_bootstrap.navbar_renderer')) {
+            var_dump("SCHRUMPELOT");
             return;
         }
         $definition = $container->getDefinition('mopa_bootstrap.navbar_renderer');

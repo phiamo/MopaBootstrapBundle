@@ -24,7 +24,6 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
             ->addArgument('pathToTwitterBootstrap', InputArgument::OPTIONAL, 'Where is twitters/bootstrap2 located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
-            
             ->setHelp(<<<EOT
 The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the twitters/bootstrap2 library.
 
@@ -55,7 +54,7 @@ EOT
             list($symlinkTarget, $symlinkName) = $this->getPathsFromComposer($pathToComposer);
         }
         else{
-            $this->output->writeln("Could not find composer and manual option not secified!");
+            $this->output->writeln("<comment>Could not find composer and manual option not secified!</comment>");
             return;
         }
         $this->checkAndCreateSymlink($symlinkTarget, $symlinkName);

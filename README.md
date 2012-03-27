@@ -145,10 +145,25 @@ If you want to have a easier life, have a look into:
 
 <h2 id="Using">Using bootstrap in the layout</h2>
 
-Have a look at the provided [layout.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/layout.html.twig)
+Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/layout.html.twig)
  its a fully working bootstrap layout and might explain howto use it by itself.
 
-In detail:
+To make use of the supplied base.html.twig template just use it, or
+defining a new template:
+
+app/Resources/MopaBootstrapBundle/views/layout.html.twig
+
+```jinja
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block title %}Yourapp{% endblock %}
+
+{# and define more blocks ... #}
+
+```
+
+You are free to overwrite any defined blocks
+
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
 
 ``` jinja
@@ -205,7 +220,7 @@ For FormFlow you can just use MopaBootstrap's templates instead of the ones give
 
 For KnpPaginatorBundle use the following to override template:
 
-``` yml
+```yaml
 # File: app/configs/parameters.yml
 
 parameters:
@@ -264,6 +279,14 @@ It extends the base doctrine CRUD generator and modifies the theme to support th
 Hope you have fun with it.
 
 <h2 id="NAVBAR">Generating a Navbar</h2>
+
+for the example navbars add the following to your config.yml:
+
+```yaml
+imports:
+    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_menu.yml }
+    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_navbar.yml }
+```
 
 For in depth doc into Navbars have a look into
 https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar_configuration.md
