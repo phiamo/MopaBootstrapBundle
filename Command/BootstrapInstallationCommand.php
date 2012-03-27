@@ -29,11 +29,14 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
         $this->output = $output;
         if($pathToComposer = $this->whichComposer()){
             $this->composer = $this->getComposer($pathToComposer, $input, $output);
+            $this->output->write("Getting package info for: " . self::$mopaBootstrapBundleName);
             $required = $this->composer->getPackage()->getRequires();
             foreach($required as $requireLink){
                 if($requireLink->getTarget() == self::$mopaBootstrapBundleName){
                     $mopaBootstrapBundlePackage = $this->composer->getRepositoryManager()->findPackage($requireLink->getTarget(), $requireLink->getPrettyConstraint());
+                    $this->output->write(" ... done.");
                     $this->findAndBootstrapSymlinkTo($mopaBootstrapBundlePackage);
+                    break;
                 }
             }
         }
@@ -111,24 +114,27 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
         return false;
     }
     protected function getComposer($pathToComposer){
-        $this->output->write("Initializing composer");
-        try {
-            \Phar::loadPhar($pathToComposer, 'composer.phar');
-            include_once("phar://composer.phar/src/bootstrap.php");
-        } catch (PharException $e) {
-            echo $e;
-        }
-        if (null === $this->composer) {
+        if(!$this->composer){
+            $this->output->write("Initializing composer ...");
             try {
-                $this->composer = \Composer\Factory::create(new \Composer\IO\ConsoleIO($this->input, $this->output, new HelperSet()));       
-            } catch (\InvalidArgumentException $e) {
-                if ($required) {
-                    $this->io->write($e->getMessage());
-                    exit(1);
-                }
-
-                return;
+                \Phar::loadPhar($pathToComposer, 'composer.phar');
+                include_once("phar://composer.phar/src/bootstrap.php");
+            } catch (PharException $e) {
+                echo $e;
             }
+            if (null === $this->composer) {
+                try {
+                    $this->composer = \Composer\Factory::create(new \Composer\IO\ConsoleIO($this->input, $this->output, new HelperSet()));       
+                } catch (\InvalidArgumentException $e) {
+                    if ($required) {
+                        $this->io->write($e->getMessage());
+                        exit(1);
+                    }
+
+                    return;
+                }
+            }
+            $this->output->writeln(" ... done. ");
         }
         return $this->composer;
     }
