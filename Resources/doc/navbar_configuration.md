@@ -44,15 +44,19 @@ Resources/config/examples/example_menu.yml
 
 If you do not extend the provided layout.html.twig its as easy as
 
+```jinja
 {% block navbar %}
    {{ mopa_bootstrap_navbar('yourNavbarAlias') }}
 {% endblock navbar %}
+```
 
 to get your navbar displayed.
 
 And if you extend the Base Layout but dont wanna have the Navbar, just override the block:
 
+```jinja
 {% block navbar %}{% endblock navbar %}
+```
 
 ## Change the navbar template
 
@@ -66,8 +70,10 @@ mopa_bootstrap:
 
 To display a specific navbar with another template use:
 
+```jinja
 {% block navbar %}
    {{ mopa_bootstrap_navbar('yourNavbarAlias', {'template': 'AcmeDemoBundle:Backend:navbar.twig.html'}) }}
 {% endblock navbar %}
+```
 
 Feel free to commit any PR's.
