@@ -26,12 +26,16 @@
             <div class="{{ class|default('span12') }}">
                 {% if type|default(false) %}
                     {% if app.session.flashbag.has(type) %}
-                        {{ _self.flash(type, app.session.flashbag.get(type), close, use_raw) }}
+                        {% for message in app.session.flashbag.get(type) %}
+                            {{ _self.flash(type, message, close, use_raw) }}
+                        {% endfor %}
                     {% endif %}
                 {% else %}
                     {% for type in types %}
                         {% if app.session.flashbag.has(type) %}
-                            {{ _self.flash(type, app.session.flashbag.get(type), close, use_raw) }}
+                            {% for message in app.session.flashbag.get(type) %}
+                                {{ _self.flash(type, message, close, use_raw) }}
+                            {% endfor %}
                         {% endif %}
                     {% endfor %}
                 {% endif %}
