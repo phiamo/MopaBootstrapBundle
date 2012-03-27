@@ -141,8 +141,6 @@ If you want to have a easier life, have a look into:
             show_legend: false # default is true
             show_child_legend: false # default is true
             error_type: block # or inline which is default
-        navbar:
-            service: your_navbar_service.navbar
     ```
 
 <h2 id="Using">Using bootstrap in the layout</h2>
@@ -264,6 +262,11 @@ The Bundle provides a new console command:
 It extends the base doctrine CRUD generator and modifies the theme to support the bootstrap layout.
 
 Hope you have fun with it.
+
+<h2 id="NAVBAR">Generating a Navbar</h2>
+
+For in depth doc into Navbars have a look into
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar_configuration.md
 
 
 <h2 id="TODO">TODO</h2>
