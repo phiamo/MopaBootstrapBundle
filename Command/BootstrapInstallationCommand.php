@@ -7,11 +7,15 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Helper\HelperSet;
+use Mopa\BootstrapBundle\Composer;
 
+
+/**
+ * Command to check and create bootstrap symlink into MopaBootstrapBundle
+ */
 class BootstrapInstallationCommand extends ContainerAwareCommand
 {
-    protected $composer;
+    
     protected static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
     protected static $twitterBootstrapName = "twitter/bootstrap";
     
@@ -24,6 +28,7 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
             ->addArgument('pathToTwitterBootstrap', InputArgument::OPTIONAL, 'Where is twitters/bootstrap2 located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
+            
             ->setHelp(<<<EOT
 The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the twitters/bootstrap2 library.
 
@@ -48,18 +53,23 @@ EOT
         $this->input = $input;
         $this->output = $output;
         if($input->getOption('manual')){
-            list($symlinkTarget, $symlinkName) = $this->getPathsfromUser();
+            list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsfromUser();
         }
-        elseif($pathToComposer = $this->whichComposer()){
-            list($symlinkTarget, $symlinkName) = $this->getPathsFromComposer($pathToComposer);
+        elseif(false !== $composer = Composer\ComposerAdapter::getComposer($input, $output)){
+            $cmanager = new Composer\ComposerPathFinder($composer);
+            $options = array(
+                    'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
+                    'sourceSuffix' => 'bootstrap' 
+                );
+            list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(self::$mopaBootstrapBundleName, self::$twitterBootstrapName, $options);
         }
         else{
-            $this->output->writeln("<comment>Could not find composer and manual option not secified!</comment>");
+            $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
             return;
         }
         $this->checkAndCreateSymlink($symlinkTarget, $symlinkName);
     }
-    protected function getPathsfromUser(){
+    protected function getBootstrapPathsfromUser(){
         
             $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrap');
             $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
@@ -120,46 +130,6 @@ EOF
         }
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
-    protected function getPathsFromComposer($pathToComposer){
-        $this->composer = $this->getComposer($pathToComposer);
-        $required = $this->composer->getPackage()->getRequires();
-        foreach($required as $requireLink){
-            if($requireLink->getTarget() == self::$mopaBootstrapBundleName){
-                $this->output->write("Getting package info for: " . self::$mopaBootstrapBundleName . " ... ");
-                $mopaBootstrapBundlePackage = $this->composer->getRepositoryManager()->findPackage($requireLink->getTarget(), $requireLink->getPrettyConstraint());
-                $this->output->writeln("<info>done</info>.");
-                return $this->findAndBootstrapSymlinkTo($mopaBootstrapBundlePackage);
-            }
-        }
-        $this->output->writeln("<error>Could not find paths with composer, please try with -m option</error");        
-    }
-    protected function findAndBootstrapSymlinkTo($mopaBootstrapBundlePackage)
-    {
-        if(!$this->composer->getInstallationManager()->isPackageInstalled($mopaBootstrapBundlePackage)){
-            $this->output->write("<error>Package: " . self::$mopaBootstrapBundleName . " is not installed!</error>");
-            exit;
-        }
-        $required = $mopaBootstrapBundlePackage->getRequires();
-        foreach($required as $requireLink){
-            if($requireLink->getTarget() == self::$twitterBootstrapName){
-					 $this->output->write("Getting package info for: " . self::$twitterBootstrapName . " ... ");
-                $twitterBootstrapPackage = $this->composer->getRepositoryManager()->findPackage($requireLink->getTarget(), $requireLink->getPrettyConstraint());
-                $this->output->writeln("<info>done</info>.");
-                if(!$twitterBootstrapPackage){
-                    throw new \Exception(sprintf("Could not find Package: %s in Version: %s ", $requireLink->getTarget(), $requireLink->getPrettyConstraint()));
-                }
-                $twitterBootstrapPackagePath = $this->composer->getInstallationManager()->getInstallPath($twitterBootstrapPackage);
-                $mopaBootstrapBundlePackagePath = $this->composer->getInstallationManager()->getInstallPath($mopaBootstrapBundlePackage);
-                $symlinkName = $mopaBootstrapBundlePackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
-                $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
-                $upwards = ".." . implode("..", array_fill(0, $dscount, DIRECTORY_SEPARATOR));
-                $symlinkTarget = $upwards . $twitterBootstrapPackagePath;
-                return array($symlinkTarget, $symlinkName);
-            }
-        }
-        $this->output->write("<error>Package: " . self::$twitterBootstrapName . " is not required!</error>");
-        exit;
-    }
     protected function checkAndCreateSymlink($symlinkTarget, $symlinkName)
     {
         $this->output->write("Checking Symlink: ");
@@ -196,41 +166,5 @@ EOF
             exit;
         }
         $this->output->writeln("<info>OK</info>");
-    }
-    protected function whichComposer()
-    {
-        $pathToComposer = exec("which composer.phar");
-        if(file_exists($pathToComposer)){
-            return $pathToComposer;
-        }
-        if(file_exists("composer.phar")){
-            return "composer.phar";
-        }
-        return false;
-    }
-    protected function getComposer($pathToComposer){
-        if(!$this->composer){
-            $this->output->write("Initializing composer ... ");
-            try {
-                \Phar::loadPhar($pathToComposer, 'composer.phar');
-                include_once("phar://composer.phar/src/bootstrap.php");
-            } catch (PharException $e) {
-                echo $e;
-            }
-            if (null === $this->composer) {
-                try {
-                    $this->composer = \Composer\Factory::create(new \Composer\IO\ConsoleIO($this->input, $this->output, new HelperSet()));       
-                } catch (\InvalidArgumentException $e) {
-                    if ($required) {
-                        $this->io->write($e->getMessage());
-                        exit(1);
-                    }
-
-                    return;
-                }
-            }
-            $this->output->writeln("<info>done</info>.");
-        }
-        return $this->composer;
     }
 }
