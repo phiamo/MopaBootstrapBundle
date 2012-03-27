@@ -34,7 +34,7 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
             foreach($required as $requireLink){
                 if($requireLink->getTarget() == self::$mopaBootstrapBundleName){
                     $mopaBootstrapBundlePackage = $this->composer->getRepositoryManager()->findPackage($requireLink->getTarget(), $requireLink->getPrettyConstraint());
-                    $this->output->write(" ... done.");
+                    $this->output->writeln(" ... done.");
                     $this->findAndBootstrapSymlinkTo($mopaBootstrapBundlePackage);
                     break;
                 }
@@ -56,7 +56,9 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
         $required = $mopaBootstrapBundlePackage->getRequires();
         foreach($required as $requireLink){
             if($requireLink->getTarget() == self::$twitterBootstrapName){
+					 $this->output->write("Getting package info for: " . self::$twitterBootstrapName);
                 $twitterBootstrapPackage = $this->composer->getRepositoryManager()->findPackage($requireLink->getTarget(), $requireLink->getPrettyConstraint());
+                $this->output->writeln(" ... done.");
                 $twitterBootstrapPackagePath = $this->composer->getInstallationManager()->getInstallPath($twitterBootstrapPackage);
                 $mopaBootstrapBundlePackagePath = $this->composer->getInstallationManager()->getInstallPath($mopaBootstrapBundlePackage);
                 $symlinkName = $mopaBootstrapBundlePackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
