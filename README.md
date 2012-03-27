@@ -21,24 +21,26 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://www.symfony.com) Project.
 
 It includes:
-- twig templates for use with symfony2 Form component
-  - control your form either via the form builder or the template engine
-  - control nearly every bootstrap2 form feature 
-  - javascript and twig blocks for dynamic collections  
-- A generic Navbar class to generate your Navbar outside the template
-  - helpers for dropdowns, seperators, etc.
-- twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
-- twig templates for  CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
+
+* twig templates for use with symfony2 Form component
+  * control your form either via the form builder or the template engine
+  * control nearly every bootstrap2 form feature 
+  * javascript and twig blocks for dynamic collections  
+* A generic Navbar class to generate your Navbar outside the template
+  * helpers for dropdowns, seperators, etc.
+* twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
+* twig templates for  CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 
 <h3 id="Documentation">Documentation</h3>
 
 Besides this file, there is a growing collection of documentation:
-- in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc)
-- in the various examples:
-    - [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
-    - [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
-    - [Navbar](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/config/examples)
-    - [MenuBuilder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Navbar/Example)
+
+* in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc)
+* in the various examples:
+    * [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
+    * [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
+    * [Navbar](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/config/examples)
+    * [MenuBuilder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Navbar/Example)
     
 <h3 id="Outline">Outline</h3>
 
@@ -232,9 +234,10 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 ```
 
 More in detail doc for Forms:
-    - [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
-    - [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
-    - [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
+
+    * [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
+    * [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
+    * [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
 
@@ -247,9 +250,10 @@ https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Exampl
 Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
 
 Some things are currently missing :
- - examples on howto extend the functionality with check functions for adding and removing
- - in depth example on howto use Custom FormTypes easily
- - and maybe more
+
+ * examples on howto extend the functionality with check functions for adding and removing
+ * in depth example on howto use Custom FormTypes easily
+ * and maybe more
 
 <h2 id="Generation_CRUD">Generation of CRUD controllers based on a Doctrine 2 schema</h2>
 
