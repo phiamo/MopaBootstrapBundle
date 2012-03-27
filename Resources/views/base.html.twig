@@ -1,0 +1,100 @@
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8" />
+{% block head_style %}
+{# Add your own bundles less here, to get them generated into final files #}
+{% stylesheets filter='less,cssembed,?yui_css'
+	    	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+	    %}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet"
+	media="screen" />
+{% endstylesheets %}
+
+{# if you dont use less, try this:
+   be warned paginator.less isnt compiled yet so its missing
+
+{% block head_style %}
+{% stylesheets filter='less,?yui_css'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
+	    	'@YourNiceBundle/Resources/public/css/*'
+	    %}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet"
+	media="screen" />
+{% endstylesheets %}
+
+#}
+{% endblock head_style %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% block head_script %}
+{# Overwrite this block to add your own js here, to get them generated into final files #}
+{% endblock head_script %}
+
+<title>{% block title %}Mopa Bootstap Bundle{% endblock %}</title>
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body data-spy="scroll">
+{% block body %}
+    {% block navbar %}
+    {{ mopa_bootstrap_navbar('frontendNavbar') }}
+	{% endblock navbar %}
+
+	{% block container %}
+	<div class="container">
+      <div class="content">
+        <div class="page-header">
+              <h1>{% block headline %}Mopa Bootstap Bundle{% endblock %}</h1>
+        </div>
+		{% block flashes %}
+		    {{ session_flash() }}
+		{% endblock flashes %}
+		<div class="row">
+			{% block content %}
+			<div class="span9">
+				<strong>Hier könnte Ihre Werbung stehen ... </strong>
+			</div>
+			<div class="span3">
+				{% block content_sidebar %}
+                <h2>Sidebar</h2>
+				{% endblock content_sidebar %}
+			</div>
+			{% endblock content %}
+		</div>
+      </div>
+      <footer>
+        {% block footer %}
+        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
+        {% endblock footer %}
+      </footer>
+	</div> <!-- /container -->
+	{% endblock container %}
+	{% block foot_script %}
+	{# To only use a subset or add more js overwrite and copy paste this block #}
+	{%- javascripts
+	    	'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
+	    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
+	    	'@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+	    	filter="?yui_js"
+	    %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock foot_script %}
+{% endblock body %}
+</body>
+</html>
