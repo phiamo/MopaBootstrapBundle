@@ -113,11 +113,11 @@ If you want to have a easier life, have a look into:
     With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
-1.1 Include bootstrap in another way: 
+    1.1 Include bootstrap in another way: 
 
-    For including bootstrap there are other ways, why using composer? have a look into
-     
-    [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
+        For including bootstrap there are other ways, why using composer? have a look into
+         
+        [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
 
 2. Add this bundle to your app/AppKernel.php:
 
