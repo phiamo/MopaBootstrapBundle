@@ -67,10 +67,15 @@ EOT
             $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
             return;
         }
-        $this->checkAndCreateSymlink($symlinkTarget, $symlinkName);
+        if(false === self::checkSymlink($symlinkTarget, $symlinkName)){
+            $this->output->writeln("Creating Symlink: " . $symlinkName);
+            $this->output->write("for Target: " . $symlinkTarget . " ... ");
+            self::createSymlink($symlinkTarget, $symlinkName);
+            $this->output->writeln("<info>OK</info>");
+        }
     }
-    protected function getBootstrapPathsfromUser(){
-        
+    protected function getBootstrapPathsfromUser()
+    {
             $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrap');
             $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
             if(empty($symlinkName)){
@@ -116,7 +121,8 @@ EOF
             }
             return array($symlinkTarget, $symlinkName);
     }
-    protected static function get_absolute_path($path) {
+    protected static function get_absolute_path($path)
+    {
         $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
         $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
         $absolutes = array();
@@ -130,41 +136,31 @@ EOF
         }
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
-    protected function checkAndCreateSymlink($symlinkTarget, $symlinkName)
+    protected static function checkSymlink($symlinkTarget, $symlinkName)
     {
-        $this->output->write("Checking Symlink: ");
-        if(is_link($symlinkName)){
-            $linkTarget = readlink($symlinkName);
-            if($linkTarget != $symlinkTarget){
-                $this->output->writeln("<error>failed</error>");
-                $this->output->writeln("<error>Symlink " . $symlinkName . "</error>");
-                $this->output->writeln("<error>Points  to " . $linkTarget . "</error>");
-                $this->output->writeln("<error>Instead of " . $symlinkTarget . "</error>");
-                return;
-            }
-            else{
-                $this->output->writeln("<info> ... OK.</info>");
-                $this->output->writeln("Symlink " . $symlinkName . "");
-                $this->output->writeln("Points to " . $symlinkTarget . "");
-                return;
-            }
-        }
-        if(file_exists($symlinkName)){
+        if(file_exists($symlinkName) && !is_link($symlinkName)){
             $type = filetype($symlinkName);
             if($type != "link"){
-                $this->output->write("<error>" . ucfirst($type) . " exists: " . $symlinkName . "</error>");
-                return;
+                throw new \Exception($symlinkName . " exists and is no link!");
             }
-        } 
-        $this->output->writeln("<comment>not here yet</comment>");
-        
-        $this->output->writeln("Creating Symlink: " . $symlinkName);
-        $this->output->write("for Target: " . $symlinkTarget . " ... ");
-        if(false === symlink($symlinkTarget, $symlinkName)){
-            $this->output->writeln("<error>failed</error>");
-            $this->output->writeln("<error>An error occured while creating symlink" . $symlinkName . "</error>");
-            exit;
         }
-        $this->output->writeln("<info>OK</info>");
+        elseif(is_link($symlinkName)){
+            $linkTarget = readlink($symlinkName);
+            if($linkTarget != $symlinkTarget){
+                throw new \Exception("Symlink " . $symlinkName . 
+                    "Points  to " . $linkTarget . 
+                    " instead of " . $symlinkTarget);
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+    }
+    protected static function createSymlink($symlinkTarget, $symlinkName)
+    {
+       if(false === symlink($symlinkTarget, $symlinkName)){
+            throw new \Exception("An error occured while creating symlink" . $symlinkName);
+       }
     }
 }
