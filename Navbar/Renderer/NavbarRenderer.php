@@ -35,7 +35,12 @@ class NavbarRenderer{
 
         $template = $options['template'];
         if (!$template instanceof \Twig_Template) {
-            $template = $this->container->get('twig')->loadTemplate($template);
+            try{
+                $template = $this->container->get('twig')->loadTemplate($template);
+            }
+            catch(\ErrorException $e){
+                throw new \Exception("Could not load template: " . $template, 99, $e);
+            }
         }
         $navbar = $this->getNavbar($name);
         $navbar = $this->createFormViews($navbar);
