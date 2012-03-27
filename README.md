@@ -228,16 +228,16 @@ e.g.
           
 And to use the Paginator templates copy them to
 
-``` bash
+```bash
 mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 ```
 
 More in detail doc for Forms:
 
-    * [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
-    * [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
-    * [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
+* [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
+* [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
+* [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
 
