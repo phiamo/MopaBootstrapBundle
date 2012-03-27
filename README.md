@@ -68,82 +68,82 @@ If you want to have a easier life, have a look into:
 
 1. Add this bundle to your project in composer.json:
 
-symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
+    symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
 
-Add in your composer.json:
+    Add in your composer.json:
 
-```json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "dev-master",
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "version": "master", /* whatever version you want */
-                "name": "twitter/bootstrap",
-                "source": {
-                    "url": "https://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
+    ```json
+    {
+        "require": {
+            "mopa/bootstrap-bundle": "dev-master",
+        },
+        "repositories": [
+            {
+                "type": "package",
+                "package": {
+                    "version": "master", /* whatever version you want */
+                    "name": "twitter/bootstrap",
+                    "source": {
+                        "url": "https://github.com/twitter/bootstrap.git",
+                        "type": "git",
+                        "reference": "master"
+                    }
                 }
             }
-        }
-    ]
-}
-```
-
-To activate auto symlinking and checking after composer update/install add also to your existing scripts:
-(recommended!)
-
-```json
-{
-    "scripts": {
-        "post-install-cmd": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-        ],
-        "post-update-cmd": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     }
-}
-```
+    ```
 
-With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
-been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
+    To activate auto symlinking and checking after composer update/install add also to your existing scripts:
+    (recommended!)
+
+    ```json
+    {
+        "scripts": {
+            "post-install-cmd": [
+                "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            ],
+            "post-update-cmd": [
+                "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            ]
+        }
+    }
+    ```
+
+    With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
+    been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
 1.1 Include bootstrap in another way: 
 
-For including bootstrap there are other ways, why using composer? have a look into
- 
-[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
+    For including bootstrap there are other ways, why using composer? have a look into
+     
+    [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
 
 2. Add this bundle to your app/AppKernel.php:
 
-``` php
-// application/ApplicationKernel.php
-public function registerBundles()
-{
-    return array(
-        // ...
-        new Mopa\BootstrapBundle\MopaBootstrapBundle(),
-        // ...
-    );
-}
-```
+    ``` php
+    // application/ApplicationKernel.php
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+            // ...
+        );
+    }
+    ```
 
 3. If you like configure your config.yml (not mandatory)
 
-``` yaml
-mopa_bootstrap:
-    form:
-        show_legend: false # default is true
-        show_child_legend: false # default is true
-        error_type: block # or inline which is default
-    navbar:
-        service: your_navbar_service.navbar
-```
+    ``` yaml
+    mopa_bootstrap:
+        form:
+            show_legend: false # default is true
+            show_child_legend: false # default is true
+            error_type: block # or inline which is default
+        navbar:
+            service: your_navbar_service.navbar
+    ```
 
 <h2 id="Using">Using bootstrap in the layout</h2>
 
