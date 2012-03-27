@@ -7,7 +7,8 @@ So you have to include bootstrap in some manner into your project, here are some
 
 ### (RECOMMENDED) Include in your project composer.json / composer.lock:
 
-Since 2.1 symfony2 uses composer (http://www.getcomposer.org) to organize dependencies.
+Since symfony2.1 will use composer (http://www.getcomposer.org) to organize dependencies, 
+it is highly recommended to ease your life to do it this way:
 
 Add in your composer.json:
 
@@ -15,15 +16,12 @@ Add in your composer.json:
 {
     "require": {
         "mopa/bootstrap-bundle": "dev-master",
-        "knplabs/knp-components": "dev-master",
-        "knplabs/knp-menu": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master"
     },
     "repositories": [
         {
             "type": "package",
             "package": {
-                "version": "master",
+                "version": "master", /* whatever version you want */
                 "name": "twitter/bootstrap",
                 "source": {
                     "url": "https://github.com/twitter/bootstrap.git",
@@ -55,6 +53,8 @@ To activate auto symlinking and checking after composer update/install add also 
 
 > The path to bootstrap might change depending on how you decide to include it into your project.
 > So please be careful when including it in twig, less etc. to have the correct path in mind! 
+>
+> You have been warned, if your are knowing what you do, don't complain!
 
 ### (OLD STYLE) Including as Submodule
 

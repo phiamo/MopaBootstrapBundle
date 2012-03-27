@@ -39,7 +39,13 @@
         "php": ">=5.3.2",
         "twitter/bootstrap": ">=2.0.0"
     },
-     "scripts": {
+    "recommend": {
+        "knplabs/knp-components": "dev-master",
+        "knplabs/knp-menu": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "craue/formflow-bundle": "dev-master"
+    },
+    "scripts": {
         "post-package-install": [
             "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
         ],

@@ -11,40 +11,45 @@
 
 To see the bundle and its capabilities online just have a look on
 [MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
-And this is also available as sandbox to start ....
-[symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox)
+And the [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
 
 
 <h2 id="Introduction">Introduction</h2>
 
-MopaBootstrapBundle is a small collection of useful code to integrate twitter's bootstrap
-(http://twitter.github.com/bootstrap/) as easy as possible into your symfony2 (http://www.symfony.com) Project.
+MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
+(http://twitter.github.com/bootstrap/) as easy as possible into your symfony2 
+(http://www.symfony.com) Project.
 
-It includes various form template blocks for use with symfony2 Form Component
-as well as twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
-and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
+It includes:
+- twig templates for use with symfony2 Form component
+  - control your form either via the form builder or the template engine
+  - control nearly every bootstrap2 form feature 
+  - javascript and twig blocks for dynamic collections  
+- A generic Navbar class to generate your Navbar outside the template
+  - helpers for dropdowns, seperators, etc.
+- twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
+- twig templates for  CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 
+<h3 id="Documentation">Documentation</h3>
+
+Besides this file, there is a growing collection of documentation:
+- in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc)
+- in the various examples:
+    - [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
+    - [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
+    - [Navbar](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/config/examples)
+    - [MenuBuilder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Navbar/Example)
+    
 <h3 id="Outline">Outline</h3>
 
-*   [Warning](#Warning)
-*   [Live Show](#Live_Show)
-*   [Introduction](#introduction)
-   *   [Outline](#Outline)
 *   [Prerequisites](#Prerequisites)
-   *   [Less (recommended)](#RECOMMENDED)
 *   [Installation](#Installation)
 *   [Include Bootstrap](#Including)
 *   [Using bootstrap in the layout](#Using)
-*   [Using bootstrap for Form Theming](#Form_Theming)
-   *   [Make use of FormExtensions](#FormExtensions)
-   *   [FormLegends](#Form_Legends)
-   *   [Child Form_Legends](#Child_Form_Legends)
-   *   [Field Labels](#Field_Labels)
-   *   [Form Field Help](#Form_Field_Help)
-   *   [Form Field Prefix / Suffix](#Form_Field_presuf)
-   *   [Form Errors](#Form_Errors)
-   *   [Field Collections](#Field_Collections)
+*   [Using bootstrap for Theming](#Theming)
+*   [Field Collections](#Field_Collections)
 *   [Generation of CRUD controllers based on a Doctrine 2 schema](#Generation_CRUD)
+*   [Generating a Navbar](#NAVBAR)
 *   [TODO](#TODO)
 *   [Known Issues](#Known_Issues)
     
@@ -52,7 +57,8 @@ and CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
 
 <h3 id="RECOMMENDED">Less (recommended)</h3>
 
-If you do not want to use less ignore this, otherwise have a look into:
+Less is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
+If you want to have a easier life, have a look into:
 
 [Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less_installation.md)
 
@@ -68,15 +74,12 @@ Add in your composer.json:
 {
     "require": {
         "mopa/bootstrap-bundle": "dev-master",
-        "knplabs/knp-components": "dev-master",
-        "knplabs/knp-menu": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master"
     },
     "repositories": [
         {
             "type": "package",
             "package": {
-                "version": "master",
+                "version": "master", /* whatever version you want */
                 "name": "twitter/bootstrap",
                 "source": {
                     "url": "https://github.com/twitter/bootstrap.git",
@@ -90,6 +93,7 @@ Add in your composer.json:
 ```
 
 To activate auto symlinking and checking after composer update/install add also to your existing scripts:
+(recommended!)
 
 ```json
 {
@@ -107,6 +111,12 @@ To activate auto symlinking and checking after composer update/install add also 
 With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
 been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
+1.1 Include bootstrap in another way: 
+
+For including bootstrap there are other ways, why using composer? have a look into
+ 
+[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
+
 2. Add this bundle to your app/AppKernel.php:
 
 ``` php
@@ -121,7 +131,7 @@ public function registerBundles()
 }
 ```
 
-3. If you like configure your config.yml (not mandatory anymore)
+3. If you like configure your config.yml (not mandatory)
 
 ``` yaml
 mopa_bootstrap:
@@ -129,16 +139,14 @@ mopa_bootstrap:
         show_legend: false # default is true
         show_child_legend: false # default is true
         error_type: block # or inline which is default
+    navbar:
+        service: your_navbar_service.navbar
 ```
-
-For including bootstrap there are several ways, have a look into
- 
-[Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
 
 <h2 id="Using">Using bootstrap in the layout</h2>
 
-Have a look at the provided layout.html.twig its a fully working bootstrap layout and 
-might explain howto use it by itself.
+Have a look at the provided [layout.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/layout.html.twig)
+ its a fully working bootstrap layout and might explain howto use it by itself.
 
 In detail:
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
@@ -154,6 +162,12 @@ If you are using less just include the mopabootstrap.less as described in layout
 
 If you would like to use the css try this:
 
+```bash
+cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+make
+```
+if it doesnt work, why not use the less way?
+
 ``` jinja
 {% block head_style %}
 {% stylesheets filter='cssrewrite,?yui_css' 
@@ -165,10 +179,10 @@ If you would like to use the css try this:
 {% endstylesheets %}
 ```
 
-<h2 id="Form_Theming">Using bootstrap for Form Theming</h2>
+<h2 id="Theming">Using bootstrap for Theming</h2>
  
       
-You can either activate it for you whole project:
+Forms can either be activated for you whole project (app/config.yml):
 
 ``` yaml
 twig:
@@ -191,14 +205,6 @@ For FormFlow you can just use MopaBootstrap's templates instead of the ones give
 
 For KnpPaginatorBundle use the following to override template:
 
-``` ini
-; File: app/configs/parameters.ini
-
-knp_paginator.template.pagination = MopaBootstrapBundle:Pagination:sliding.html.twig
-```
-
-or
-
 ``` yml
 # File: app/configs/parameters.yml
 
@@ -210,6 +216,7 @@ where formident is used by jquery to bind the submit form handler to the "next" 
 This is mainly necessary if you have more than one form.
 It need to be the id or class of the form itself
 e.g.
+
          <form id="myform" class="myformclass" ...>
          
          {'formident': '.myformclass'}
@@ -224,200 +231,18 @@ mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 ```
 
-
-<h3 id="FormExtensions">Make use of FormExtensions</h3>
-
-This bundle extends the Form Component via its native way to achieve having 
-several more attributes on several form components
-
-
-<h3 id="Form_Legends">Form Legends</h3>
-
-Every Form component representing a Form not a Field (e.g. subforms, widgets of type date beeing expanded, etc)
-has now a attribute called show_legend which controls wether the "form legend" is shown or not.
-      
-This can be controlled globally by adapting your config.yml:
-
-``` yaml
-mopa_bootstrap:
-    form:
-        show_legend: false # default is true
-```
-      
-Now you can tell a specific form to have the legend beeing shown by using:
-
-``` php
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder->setAttribute('show_legend', true);
-    // ...
-```
-    
-    
-<h3 id="Child_Form_Legends">Child Form Legends</h3>
-
-
-In symfony2 you can easily glue different forms together and build a nice tree. 
-Normally there is for every sub form (including special widgets like date expanded, radio button expanded, etc)
-a label with the name of the Subform rendered.
-This might make sense or not. I decided to disable this by default, but enabling it is easy:
-
-To enable it globally use:
-
-``` yaml
-mopa_bootstrap:
-    form:
-        show_legend: false # default is true
-```
-
-If you just want to have it in a special form do it like that: 
-
-``` php
-// e.g. a form only consisting of subforms
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder->setAttribute('show_legend', false); // no legend for main form
-    $child = $builder->create('user', new SomeSubFormType(), array('show_child_legend' => true)); // but legend for this subform
-    $builder->add($child);
-    // ... 
-```
-
-<h3 id="Field_Labels">Field Labels</h3>
-
-
-This is maybe a little hack but i didn't know howto come around the attr inheritance of the form to the label.
-So i made another form extenstion so you can explicitly set the classes of the label, 
-by default there is only the required class rendered into it, if the widget has the required attribute true (which is default):
-
-``` php
-       $builder
-            ->add('somefield', null, array( 
-                'label_attr' => array('class'=>'mylabelclass')
-            ))
-```
-
-will result in
- 
-``` html
-<label class="mylabelclass required" for="somefield"> 
-...
-```
-
-Also you have the option to remove a specific field label by setting label_render to false
-
-``` php
-       $builder
-            ->add('somefield', null, array( 
-                'label_render' => false
-            ))
-```
-
-
-<h3 id="Form_Field_Help">Form Field Help</h3>
-
-Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
-has several new attributes:
-     
-  - help_inline: beeing shown right of the element if there is space
-  - help_block:  beeing shown under the element
-  - help_label:  beeing shown under the label of the element
-
-Now you can easily add a help text at different locations:
-
-``` php
-// e.g. a form needing a lot of help
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder
-        ->add('title', null, array(
-            "help_inline"=>"Please specify some understandable title"))
-        ->add('shortDescription', 'textarea', array(
-            "attr" => array("rows"=>3, 'class'=>'xxlarge'),
-            "help_block"=>"This is the short descriptions shown somewhere"
-        ))
-        ->add('longDescription', null, array(
-            "attr"=>array("rows" => 10),
-            "help_label"=>"Please enter a very very long description"
-        ))
-    ;
-    //...
-``` 
-
-<h3 id="Form_Field_presuf">Form Field Prefix / Suffix</h3>
-
-There are also suffix and prefix attributes for the widgets:
-
-``` php
-// e.g. a form where you want to give in a price
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder
-        ->add('price', null, array(
-            "attr" => array(
-                "class"=>"span1",
-            ),
-            "widget_suffix"=>"€"
-        ))
-    ;
-    //...
-``` 
-
-
-<h3 id="Form_Errors">Form Errors</h3>
-
-Generally you may want to define your errors to be displayed inline OR block (see bootstrap) you may define it globally in your conf:
-
-``` yaml
-mopa_bootstrap:
-    form:
-        error_type: block # or inline which is default
-        
-```
-
-Or on a special Form:
-
-``` php
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder
-    //...
-            ->setAttribute('error_type', "inline")
-    ;
-    //...
-``` 
-Or on a special field:
-
-``` php
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder
-    //...
-           ->add('country', null, array('field_error_type'=>'block'))
-    ;
-    //...
-``` 
-In some special cases you may also want to not have a form error but an field error
-so you can use error delay, which will delay the error to the first next field rendered in a child form:
-
-``` php
-public function buildForm(FormBuilder $builder, array $options)
-{
-    $builder
-    //...
-            ->add('plainPassword', 'repeated', array(
-                   'type' => 'password',
-                   'error_delay'=>true
-            ))
-    ;
-    //...
-```
-
+More in detail doc for Forms:
+    - [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
+    - [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
+    - [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
 
 Since collections often tend to make probs, we added some code to ease the use:
 
 http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Examples/collections.html.twig
 
 Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
 
