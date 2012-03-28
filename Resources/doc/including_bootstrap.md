@@ -1,19 +1,17 @@
 MopaBootstrapBundle Twitters Bootstrap integration
 ==================================================
 
-We decided not to take the bootstrap distribution into this repo to seperate concerns more efficently.
-So you have to include bootstrap in some manner into your project, here are some examples on howto do it:
+We decided not to take the twitter/bootstrap distribution into this repo to seperate concerns more efficently.
+So you have to include twitter/bootstrap in some manner into your project, here are some examples on howto do it
 
+Since symfony2.1 will use composer (http://www.getcomposer.org) to organize dependencies, it is highly recommended to ease your life to do it the recommended way
 
-# (RECOMMENDED) Include in your project composer.json / composer.lock:
+## Include in your project composer.json (RECOMMENDED):
 
-Since symfony2.1 will use composer (http://www.getcomposer.org) to organize dependencies, 
-it is highly recommended to ease your life to do it this way:
+### Managing twitter/bootstrap installation automatically
 
-# Managing twitters/bootstrap installation automatically
-
-To have composer managing twitters bootstrap too, you can either run it with
---install-suggests or add the following to your composer.json:
+To have composer managing twitter/bootstrap too, you can either run it with
+--install-suggests or add the following to your composer.json (recommended):
 
 ```json
 {
