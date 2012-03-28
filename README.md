@@ -1,11 +1,17 @@
 # README
 <h2 id="Warning">Warning</h2>
 
-> Besides that there are two branches for bootstrap 1.x (v1.x) and 2.x (master) of this bundle,
-> we are now also following symfony master (ucoming sf2.1) in our master branch. 
-> To use bootstrap 2.x with symfony 2.0 use the newly created v2.x_sf2.0 branch which is hopefully updated with backwards compatible commits.
-> Since there are a lot of commits by the community, docs are improving, and i have not seen showblockers.
-> Anyways, this is a master branch and it will have bugs...
+> Make sure you update your namespaces:
+> we changed the Bundles namespace from
+> Mopa\BootstrapBundle
+> to
+> Mopa\Bundle\BootstrapBundle
+> 
+> Due to a problem with composer/packagist this is currently probably not reflected in your checkouts.
+> As soon as this prob is fixed, you must change the namespace references in:
+>  * app/AppKernel.php 
+>  * Your code makeing use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
+>  * Configuration referencing any classes (e.g. service definitions for menu, navbar, etc.)
 
 <h2 id="Live_Show">Live Show</h2>
 
