@@ -16,8 +16,8 @@ use Mopa\BootstrapBundle\Composer;
 class BootstrapInstallationCommand extends ContainerAwareCommand
 {
     
-    protected static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    protected static $twitterBootstrapName = "twitter/bootstrap";
+    public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
+    public static $twitterBootstrapName = "twitter/bootstrap";
     
     protected function configure()
     {
