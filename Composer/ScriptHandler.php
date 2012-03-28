@@ -28,11 +28,11 @@ class ScriptHandler
         
         $IO->write("Checking Symlink");
         if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName)){
-            $IO->writeln(" ... <comment>not existing</comment>");
-            $IO->writeln("Creating Symlink: " . $symlinkName);
+            $IO->write(" ... <comment>not existing</comment>");
+            $IO->write("Creating Symlink: " . $symlinkName);
             $IO->write("for Target: " . $symlinkTarget . " ... ");
             BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
         }
-        $IO->writeln(" ... <info>OK</info>");
+        $IO->write(" ... <info>OK</info>");
     }
 }
