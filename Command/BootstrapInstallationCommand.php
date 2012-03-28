@@ -27,6 +27,7 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
             ->setDescription("Check and if possible install symlink to bootstrap")
             ->addArgument('pathToTwitterBootstrap', InputArgument::OPTIONAL, 'Where is twitters/bootstrap2 located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
             
             ->setHelp(<<<EOT
@@ -69,10 +70,16 @@ EOT
         }
         
         $this->output->write("Checking Symlink");
-        if(false === self::checkSymlink($symlinkTarget, $symlinkName)){
+        echo "\n\n";
+        echo "\nTARG:".$symlinkTarget;
+        echo "\nname:".$symlinkName;
+        
+        echo "\n\n";
+        
+        if(false === self::checkSymlink($symlinkTarget, $symlinkName, true)){
             $this->output->writeln(" ... <comment>not existing</comment>");
             $this->output->writeln("Creating Symlink: " . $symlinkName);
-            $this->output->write("for Target: " . $symlinkTarget . " ... ");
+            $this->output->write("for Target: " . $symlinkTarget);
             self::createSymlink($symlinkTarget, $symlinkName);
         }
         $this->output->writeln(" ... <info>OK</info>");
@@ -142,9 +149,9 @@ EOF
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
     
-    public static function checkSymlink($symlinkTarget, $symlinkName)
+    public static function checkSymlink($symlinkTarget, $symlinkName, $justSymlink = false)
     {
-        if(file_exists($symlinkName) && !is_link($symlinkName)){
+        if(!$justSymlink and file_exists($symlinkName) && !is_link($symlinkName)){
             $type = filetype($symlinkName);
             if($type != "link"){
                 throw new \Exception($symlinkName . " exists and is no link!");
@@ -153,9 +160,13 @@ EOF
         elseif(is_link($symlinkName)){
             $linkTarget = readlink($symlinkName);
             if($linkTarget != $symlinkTarget){
-                throw new \Exception("Symlink " . $symlinkName . 
-                    " Points  to " . $linkTarget . 
-                    " instead of " . $symlinkTarget);
+                if(!$justSymlink){
+                    throw new \Exception("Symlink " . $symlinkName . 
+                        " Points  to " . $linkTarget . 
+                        " instead of " . $symlinkTarget);
+                }
+                unlink($symlinkName);
+                return false;
             }
             else{
                 return true;
