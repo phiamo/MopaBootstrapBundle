@@ -62,7 +62,7 @@ namespace Sternenbund\Bundle\ApplicationBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Mopa\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
+use Mopa\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
 
 class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 {

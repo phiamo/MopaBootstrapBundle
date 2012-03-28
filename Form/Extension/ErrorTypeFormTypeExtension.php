@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\Form\Extension;
+namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;

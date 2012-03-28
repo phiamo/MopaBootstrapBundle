@@ -17,10 +17,10 @@
     ],
     "autoload": {
         "psr-0": {
-            "Mopa\\BootstrapBundle": ""
+            "Mopa\\Bundle\\BootstrapBundle": ""
         }
     },
-    "target-dir": "Mopa/BootstrapBundle",
+    "target-dir": "Mopa/Bundle/BootstrapBundle",
     "repositories": [
         {
             "type": "package",
@@ -49,16 +49,16 @@
     },
     "scripts": {
         "post-package-install": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
         ],
         "post-package-update": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"
         ],
         "post-install-cmd": [
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],
         "post-update-cmd": [ 
-            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     }
 }

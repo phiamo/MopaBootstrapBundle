@@ -1,6 +1,6 @@
 <?php
 
-namespace Mopa\BootstrapBundle\Command;
+namespace Mopa\Bundle\BootstrapBundle\Command;
 
 use Sensio\Bundle\GeneratorBundle\Generator\DoctrineCrudGenerator;
 use Sensio\Bundle\GeneratorBundle\Command\GenerateDoctrineCrudCommand as BaseGenerator;

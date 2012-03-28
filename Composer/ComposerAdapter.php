@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\Composer;
+namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer;
 use Symfony\Component\Console\Helper\HelperSet;

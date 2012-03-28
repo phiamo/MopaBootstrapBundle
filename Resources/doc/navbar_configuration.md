@@ -26,7 +26,7 @@ services:
             # first argument: a named array of menues:
             - { leftmenu: @mopa_bootstrap.examplemenu=, rightmenu: @mopa_bootstrap.exampledropdown= }
             # second argument: a named array of FormType Classes  
-            - { searchform: Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType }
+            - { searchform: Mopa\Bundle\BootstrapSandboxBundle\Form\Type\ExampleSearchFormType }
             # third argument: a named array of options
             - { title: "MopaBootstrapBundle", titleRoute: "mopa_bootstrap_welcome", fixedTop: true, isFluid: false }
         tags:
@@ -34,8 +34,8 @@ services:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 ```
 
-Make sure your FormTypes implement Mopa\BootstrapBundle\Navbar\NavbarFormInterface.
-If you write a own Navbar class be sure it implements Mopa\BootstrapBundle\Navbar\NavbarInterface.
+Make sure your FormTypes implement Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface.
+If you write a own Navbar class be sure it implements Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface.
 
 For example menu definitions have a look into:  
 Resources/config/examples/example_menu.yml

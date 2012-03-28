@@ -1,13 +1,13 @@
 <?php
 
-namespace Mopa\BootstrapBundle\Command;
+namespace Mopa\Bundle\BootstrapBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Mopa\BootstrapBundle\Composer;
+use Mopa\Bundle\BootstrapBundle\Composer;
 
 
 /**

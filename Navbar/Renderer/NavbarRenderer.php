@@ -1,11 +1,11 @@
 <?php
-namespace Mopa\BootstrapBundle\Navbar\Renderer;
+namespace Mopa\Bundle\BootstrapBundle\Navbar\Renderer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Symfony\Component\Form\FormFactoryInterface;
-use Mopa\BootstrapBundle\Navbar\NavbarInterface;
-use Mopa\BootstrapBundle\Navbar\NavbarFormInterface;
+use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
+use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
 
 use Symfony\Component\Form\AbstractType;
 

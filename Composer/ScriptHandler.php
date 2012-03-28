@@ -4,11 +4,11 @@
  * 
  * Maybe nice to convert this to a command and then reuse command in here.
  */
-namespace Mopa\BootstrapBundle\Composer;
+namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
-use Mopa\BootstrapBundle\Composer\ComposerPathFinder;
-use Mopa\BootstrapBundle\Command\BootstrapInstallationCommand;
+use Mopa\Bundle\BootstrapBundle\Composer\ComposerPathFinder;
+use Mopa\Bundle\BootstrapBundle\Command\BootstrapInstallationCommand;
 
 class ScriptHandler
 {

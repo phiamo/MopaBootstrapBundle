@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\Navbar;
+namespace Mopa\Bundle\BootstrapBundle\Navbar;
 
 interface NavbarFormInterface
 {

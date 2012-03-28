@@ -104,10 +104,10 @@ If you want to have a easier life, have a look into:
     {
         "scripts": {
             "post-install-cmd": [
-                "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
             ],
             "post-update-cmd": [
-                "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
             ]
         }
     }
@@ -134,7 +134,7 @@ If you want to have a easier life, have a look into:
     {
         return array(
             // ...
-            new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             // ...
         );
     }
