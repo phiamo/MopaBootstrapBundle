@@ -9,6 +9,7 @@ namespace Mopa\BootstrapBundle\Composer;
 use Composer\Script\Event;
 use Mopa\BootstrapBundle\Composer\ComposerPathFinder;
 use Mopa\BootstrapBundle\Command\BootstrapInstallationCommand;
+
 class ScriptHandler
 {
     
@@ -16,7 +17,7 @@ class ScriptHandler
     {
         $IO = $event->getIO();
         $composer = $event->getComposer();
-        $cmanager = new Composer\ComposerPathFinder($composer);
+        $cmanager = new ComposerPathFinder($composer);
         $options = array(
             'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap"
         );
