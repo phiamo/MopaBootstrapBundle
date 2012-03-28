@@ -37,10 +37,10 @@ Besides this file, there is a growing collection of documentation:
 
 * in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc)
 * in the various examples:
-    * [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
-    * [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
-    * [Navbar](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/config/examples)
-    * [MenuBuilder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Navbar/Example)
+    * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples) 
+    * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
+    * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
+    * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
     
 <h3 id="Outline">Outline</h3>
 
@@ -258,16 +258,16 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 More in detail doc for Forms:
 
 * [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
-* [twig templates](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/views/Examples) 
-* [Form Types](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Form/Type)
+* [twig templates](https://github.com/phiamo/MopaBootstrapSanxboxBundle/tree/master/Resources/views/Examples) 
+* [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
 
 Since collections often tend to make probs, we added some code to ease the use:
 
 http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Examples/collections.html.twig
+https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
+https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/Examples/collections.html.twig
 
 Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
 
