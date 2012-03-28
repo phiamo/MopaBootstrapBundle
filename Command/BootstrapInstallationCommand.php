@@ -154,7 +154,7 @@ EOF
             $linkTarget = readlink($symlinkName);
             if($linkTarget != $symlinkTarget){
                 throw new \Exception("Symlink " . $symlinkName . 
-                    "Points  to " . $linkTarget . 
+                    " Points  to " . $linkTarget . 
                     " instead of " . $symlinkTarget);
             }
             else{

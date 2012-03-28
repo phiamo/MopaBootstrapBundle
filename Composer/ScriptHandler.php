@@ -26,11 +26,11 @@ class ScriptHandler
                                 BootstrapInstallationCommand::$twitterBootstrapName, 
                                 $options);
         
-        $IO->write("Checking Symlink");
+        $IO->write("Checking Symlink", FALSE);
         if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName)){
             $IO->write(" ... <comment>not existing</comment>");
             $IO->write("Creating Symlink: " . $symlinkName);
-            $IO->write("for Target: " . $symlinkTarget . " ... ");
+            $IO->write("for Target: " . $symlinkTarget . " ... ", FALSE);
             BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
