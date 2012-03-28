@@ -83,51 +83,50 @@ If you want to have a easier life, have a look into:
     To have composer managing twitters bootstrap too, you can either run it with
     --install-suggests or add the following to your composer.json:
 
- 
-    ```json
-    {
-        "require": {
-            "mopa/bootstrap-bundle": "dev-master",
-            "twitter/bootstrap": "master"
-        }
-        "repositories": [
-            {
-                "type": "package",
-                "package": {
-                    "version": "master", /* whatever version you want */
-                    "name": "twitter/bootstrap",
-                    "source": {
-                        "url": "https://github.com/twitter/bootstrap.git",
-                        "type": "git",
-                        "reference": "master"
-                    }
-                }
-            }
-        ]
-    }
-    ```
+       ```json
+       {
+           "require": {
+               "mopa/bootstrap-bundle": "dev-master",
+               "twitter/bootstrap": "master"
+           }
+           "repositories": [
+               {
+                   "type": "package",
+                   "package": {
+                       "version": "master", /* whatever version you want */
+                       "name": "twitter/bootstrap",
+                       "source": {
+                           "url": "https://github.com/twitter/bootstrap.git",
+                           "type": "git",
+                           "reference": "master"
+                       }
+                   }
+               }
+           ]
+       }
+       ```
 
     To activate auto symlinking and checking after composer update/install add also to your existing scripts:
     (recommended!)
 
-    ```json
-    {
-        "scripts": {
-            "post-install-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-            ],
-            "post-update-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-            ]
-        }
-    }
+       ```json
+       {
+           "scripts": {
+               "post-install-cmd": [
+                   "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+               ],
+               "post-update-cmd": [
+                   "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+               ]
+           }
+       }
+       ```
 
-    ```
     There is also a console command to check and / or install this symlink:
     
-    ```bash
-    php app/console mopa:bootstrap:install
-    ```
+       ```bash
+       php app/console mopa:bootstrap:install
+       ```
     
     With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
