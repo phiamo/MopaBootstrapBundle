@@ -67,12 +67,15 @@ EOT
             $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
             return;
         }
+        
+        $this->output->write("Checking Symlink");
         if(false === self::checkSymlink($symlinkTarget, $symlinkName)){
+            $this->output->writeln(" ... <comment>not existing</comment>");
             $this->output->writeln("Creating Symlink: " . $symlinkName);
             $this->output->write("for Target: " . $symlinkTarget . " ... ");
             self::createSymlink($symlinkTarget, $symlinkName);
-            $this->output->writeln("<info>OK</info>");
         }
+        $this->output->writeln(" ... <info>OK</info>");
     }
     protected function getBootstrapPathsfromUser()
     {
