@@ -7,11 +7,18 @@
 	<p>Creating and using Navbars is quite easy:</p>
 	<pre>
 services:
-    mopa_bootstrap.examplemenu_builder:
+    mopa_bootstrap.example.navbar:
         class: %mopa_bootstrap.navbar.generic%
-        arguments: ["MopaBootstrapBundle", true, "mopa_bootstrap_welcome", @mopa_bootstrap.examplemenu, @mopa_bootstrap.exampledropdown]
+        arguments:
+            # first argument: a named array of menues:
+            - { leftmenu: @mopa_bootstrap.examplemenu=, rightmenu: @mopa_bootstrap.exampledropdown= }
+            # second argument: a named array of FormType Classes  
+            - { searchform: Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType }
+            # third argument: a named array of options
+            - { title: "MopaBootstrapBundle", titleRoute: "mopa_bootstrap_welcome", fixedTop: true, isFluid: false }
         tags:
-            - { name: mopa_bootstrap.navbar, alias: frontendNavbar } # The alias is what is used to retrieve the menu
+            # The alias is used to retrieve the navbar in templates
+            - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 	</pre>
     </pre>
     	<p>And to show the bar in your template just use</p>
