@@ -3,13 +3,12 @@
 	{% if close|default(false) %}
             <a class="close" data-dismiss="alert" href="#">×</a>
 	{% endif %}
-	<p>
-            {% if use_raw|default(false) %}
-                {{ message|trans|raw }}
-            {% else %}
-                {{ message|trans }}
-            {% endif %}
-	</p>
+	
+	{% if use_raw|default(false) %}
+	    {{ message|trans|raw }}    
+	{% else %}
+	    {{ message|trans }}
+	{% endif %}
     </div>
 {% endmacro %}
 
