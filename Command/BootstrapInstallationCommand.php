@@ -149,9 +149,9 @@ EOF
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
     
-    public static function checkSymlink($symlinkTarget, $symlinkName, $justSymlink = false)
+    public static function checkSymlink($symlinkTarget, $symlinkName, $forceSymlink = false)
     {
-        if(!$justSymlink and file_exists($symlinkName) && !is_link($symlinkName)){
+        if(!$forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)){
             $type = filetype($symlinkName);
             if($type != "link"){
                 throw new \Exception($symlinkName . " exists and is no link!");
@@ -160,7 +160,7 @@ EOF
         elseif(is_link($symlinkName)){
             $linkTarget = readlink($symlinkName);
             if($linkTarget != $symlinkTarget){
-                if(!$justSymlink){
+                if(!$forceSymlink){
                     throw new \Exception("Symlink " . $symlinkName . 
                         " Points  to " . $linkTarget . 
                         " instead of " . $symlinkTarget);

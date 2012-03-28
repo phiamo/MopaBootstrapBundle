@@ -7,23 +7,26 @@
 <div class="row">
     <div class="span8">
       <form class="form-horizontal">
-        {{ form_row(form.textfield1, {'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
-        {{ form_row(form.textfield2, {'attr': {'class': 'span2', 'placeholder': 'span2'}}) }}
-        {{ form_row(form.textfield3, {'attr': {'class': 'span3', 'placeholder': 'span3'}}) }}
-        {{ form_row(form.select1, {'attr': {'class': 'span1'}}) }}
-        {{ form_row(form.select2, {'attr': {'class': 'span2'}}) }}
-        {{ form_row(form.select3, {'attr': {'class': 'span3'}}) }}
-        {{ form_row(form.prepend1, {'label': 'Prepended Text', 'widget_addon': {'text': '@'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
-        {{ form_row(form.prepend2, {'label': 'Prepended Icon', 'widget_addon': {'icon': 'headphones'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of musik?'}}) }}
-        {{ form_row(form.append1, {'label': 'Appended Text', 'widget_addon': {'append': true, 'text': '.00'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
-        {{ form_row(form.append2, {'label': 'Appended Icon', 'widget_addon': {'append': true, 'icon': 'pencil'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of Books?'}}) }}
-        {{ form_row(form.checkboxesinline, {'label': 'Inline Checkboxes', 'widget_type': 'inline'}) }}
-        {{ form_row(form.checkboxes, {'label': 'Checkboxes'}) }}
-        {{ form_row(form.radiobuttons, {'help_block': '<strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.'}) }}
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
-        </div>
+          <fieldset>
+            <legend>Example extended forms via view</legend>
+            {{ form_row(form.textfield1, {'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+            {{ form_row(form.textfield2, {'attr': {'class': 'span2', 'placeholder': 'span2'}}) }}
+            {{ form_row(form.textfield3, {'attr': {'class': 'span3', 'placeholder': 'span3'}}) }}
+            {{ form_row(form.select1, {'attr': {'class': 'span1'}}) }}
+            {{ form_row(form.select2, {'attr': {'class': 'span2'}}) }}
+            {{ form_row(form.select3, {'attr': {'class': 'span3'}}) }}
+            {{ form_row(form.prepend1, {'label': 'Prepended Text', 'widget_addon': {'text': '@'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+            {{ form_row(form.prepend2, {'label': 'Prepended Icon', 'widget_addon': {'icon': 'headphones'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of musik?'}}) }}
+            {{ form_row(form.append1, {'label': 'Appended Text', 'widget_addon': {'append': true, 'text': '.00'}, 'attr': {'class': 'span1', 'placeholder': 'span1'}}) }}
+            {{ form_row(form.append2, {'label': 'Appended Icon', 'widget_addon': {'append': true, 'icon': 'pencil'}, 'attr': {'class': 'span3', 'placeholder': 'Which kind of Books?'}}) }}
+            {{ form_row(form.checkboxesinline, {'label': 'Inline Checkboxes', 'widget_type': 'inline'}) }}
+            {{ form_row(form.checkboxes, {'label': 'Checkboxes'}) }}
+            {{ form_row(form.radiobuttons, {'help_block': '<strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.'}) }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="reset" class="btn">Cancel</button>
+            </div>
+        </fieldset>
       </form>
     </div>
     <div class="span4">
