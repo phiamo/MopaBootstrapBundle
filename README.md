@@ -12,6 +12,8 @@
 >  * app/AppKernel.php 
 >  * Your code makeing use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
 >  * Configuration referencing any classes (e.g. service definitions for menu, navbar, etc.)
+> 
+> For info about the branches read https://github.com/phiamo/MopaBootstrapBundle/wiki/Branches-&-Versions
 
 <h2 id="Live_Show">Live Show</h2>
 
