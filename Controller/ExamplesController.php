@@ -37,9 +37,10 @@ class ExamplesController extends Controller{
      * @Template
     */
     public function extendedAction(Request $request){
-        $form = $this->createForm(new ExampleExtendedFormType());
+        $form = $this->createForm($formType = new ExampleExtendedFormType());
         return array(
-        	'form'=>$form->createView()
+        	'form'=>$form->createView(),
+            'formType' => $formType
         );
     }
     /**
@@ -47,7 +48,7 @@ class ExamplesController extends Controller{
     * @Template
     */
     public function collectionsAction(Request $request){
-        $form = $this->createForm(new ExampleCollectionsFormType());
+        $form = $this->createForm($formType = new ExampleCollectionsFormType());
 		$form->setData(array(
 			"email_collection" => array(
 				"phiamo@googlemail.com",
@@ -63,7 +64,8 @@ class ExamplesController extends Controller{
 			))
 		));
         return array(
-        	'form'=>$form->createView()
+        	'form'=>$form->createView(),
+        	'formType' => $formType
         );
     }
     /**
@@ -71,9 +73,10 @@ class ExamplesController extends Controller{
      * @Template
     */
     public function extended_viewAction(Request $request){
-        $form = $this->createForm(new ExampleExtendedViewFormType());
+        $form = $this->createForm($formType = new ExampleExtendedViewFormType());
         return array(
-        	'form'=>$form->createView()
+        	'form'=>$form->createView(),
+            'formType' => $formType
         );
     }
     /**
@@ -81,9 +84,10 @@ class ExamplesController extends Controller{
     * @Template
     */
     public function horizontalAction(Request $request){
-        $form = $this->createForm(new ExampleHorizontalFormType());
+        $form = $this->createForm($formType = new ExampleHorizontalFormType());
         return array(
-        	'form'=>$form->createView()
+        	'form'=>$form->createView(),
+            'formType' => $formType
         );
     }
     /**
@@ -91,13 +95,14 @@ class ExamplesController extends Controller{
     * @Template
     */
     public function formsAction(Request $request){
-        $form = $this->createForm(new ExampleFormsType());
+        $form = $this->createForm($formType = new ExampleFormsType());
         $searchform = $this->createForm(new ExampleSearchFormType());
         $inlineform = $this->createForm(new ExampleInlineFormType());
         return array(
         	'form'=>$form->createView(),
         	'searchform'=>$searchform->createView(),
-        	'inlineform'=>$inlineform->createView()
+        	'inlineform'=>$inlineform->createView(),
+            'formType' => $formType
         );
     }
 
@@ -106,8 +111,11 @@ class ExamplesController extends Controller{
      * @Template
     */
     public function choicesAction(Request $request){
-        $form = $this->createForm(new ExampleChoiceFormType());
-        return array('form'=>$form->createView());
+        $form = $this->createForm($formType = new ExampleChoiceFormType());
+        return array(
+            'form'=>$form->createView(),
+            'formType' => $formType
+        );
     }
     /**
     * @Route("/mopa/bootstrap/navbar", name="mopa_bootstrap_navbar")
