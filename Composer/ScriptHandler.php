@@ -1,6 +1,6 @@
 <?php
 /**
- * Script for composer, to symlink boostrap lib into Bundle
+ * Script for composer, to symlink bootstrap lib into Bundle
  * 
  * Maybe nice to convert this to a command and then reuse command in here.
  */
