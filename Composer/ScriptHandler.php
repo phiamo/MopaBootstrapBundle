@@ -9,6 +9,7 @@ namespace Mopa\BootstrapBundle\Composer;
 use Composer\Script\Event;
 use Mopa\BootstrapBundle\Composer\ComposerPathFinder;
 use Mopa\BootstrapBundle\Command\BootstrapInstallationCommand;
+
 class ScriptHandler
 {
     
