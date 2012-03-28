@@ -1,0 +1,21 @@
+{% extends "MopaBootstrapBundle::layout.html.twig" %}
+
+{% block content %}
+<div class="span10">
+	<h2>Layouts </h2>
+	<p>To kick start development</p>
+	just create a file in app/Resources/MopaBootstrapBundle/views/layout.html.twig
+
+    <pre>
+{% raw %}
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block title %}Yourapp{% endblock %}
+
+{# and define more blocks ... #}
+{% endraw %}
+    </pre>
+    a good example is the sandbox itself:
+    <a href="https://github.com/phiamo/symfony-bootstrap-sandbox/blob/master/app/Resources/MopaBootstrapBundle/views/layout.html.twig">https://github.com/phiamo/symfony-bootstrap-sandbox/blob/master/app/Resources/MopaBootstrapBundle/views/layout.html.twig</a>
+</div>
+{% endblock content %}

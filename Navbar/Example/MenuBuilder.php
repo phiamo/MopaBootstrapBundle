@@ -19,7 +19,8 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setCurrentUri($request->getRequestUri());
         $menu->setChildrenAttribute('class', 'nav');
-
+        $menu->addChild('Layout', array('route' => 'mopa_bootstrap_layout_example'));
+        
         $dropdown = $this->createDropdownMenuItem($menu, "Forms", false);
         $dropdown->addChild('Examples', array('route' => 'mopa_bootstrap_forms_examples'));
         $dropdown->addChild('Horizontal', array('route' => 'mopa_bootstrap_forms_horizontal'));

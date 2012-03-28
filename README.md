@@ -162,7 +162,11 @@ app/Resources/MopaBootstrapBundle/views/layout.html.twig
 
 ```
 
-You are free to overwrite any defined blocks
+You are free to overwrite any defined blocks.
+Have a look into the sandbox too:
+
+ * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/layout
+ * https://github.com/phiamo/symfony-bootstrap-sandbox/blob/master/app/Resources/MopaBootstrapBundle/views/layout.html.twig
 
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
 
