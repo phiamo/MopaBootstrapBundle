@@ -77,6 +77,7 @@ EOT
         }
         $this->output->writeln(" ... <info>OK</info>");
     }
+
     protected function getBootstrapPathsfromUser()
     {
             $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrap');
@@ -124,6 +125,7 @@ EOF
             }
             return array($symlinkTarget, $symlinkName);
     }
+
     protected static function get_absolute_path($path)
     {
         $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
@@ -139,7 +141,8 @@ EOF
         }
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
-    protected static function checkSymlink($symlinkTarget, $symlinkName)
+    
+    public static function checkSymlink($symlinkTarget, $symlinkName)
     {
         if(file_exists($symlinkName) && !is_link($symlinkName)){
             $type = filetype($symlinkName);
@@ -160,7 +163,8 @@ EOF
         }
         return false;
     }
-    protected static function createSymlink($symlinkTarget, $symlinkName)
+    
+    public static function createSymlink($symlinkTarget, $symlinkName)
     {
        if(false === symlink($symlinkTarget, $symlinkName)){
             throw new \Exception("An error occured while creating symlink" . $symlinkName);
