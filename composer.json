@@ -37,6 +37,9 @@
     ],
     "require": {
         "php": ">=5.3.2",
+    },
+    "suggest":  {
+        "php": ">=5.3.2",
         "twitter/bootstrap": "master"
     },
     "recommend": {

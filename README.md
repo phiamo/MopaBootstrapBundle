@@ -70,13 +70,16 @@ If you want to have a easier life, have a look into:
 
     symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
 
-    Add in your composer.json:
+    To have composer managing twitters bootstrap too, you can either run it with
+    --install-suggests or add the following to your composer.json:
 
+ 
     ```json
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-        },
+            "twitter/bootstrap": "master"
+        }
         "repositories": [
             {
                 "type": "package",
@@ -92,8 +95,6 @@ If you want to have a easier life, have a look into:
             }
         ]
     }
-    ```
-
     To activate auto symlinking and checking after composer update/install add also to your existing scripts:
     (recommended!)
 
@@ -118,11 +119,10 @@ If you want to have a easier life, have a look into:
     With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
-    1.1. Include bootstrap in another way: 
+    1.1. Include bootstrap manually or in another way: 
 
-        For including bootstrap there are other ways, why using composer? have a look into
-         
-        [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
+        For including bootstrap there are different solutions, why using this one?
+        have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
 
 2. Add this bundle to your app/AppKernel.php:
 

@@ -5,23 +5,27 @@ We decided not to take the bootstrap distribution into this repo to seperate con
 So you have to include bootstrap in some manner into your project, here are some examples on howto do it:
 
 
-### (RECOMMENDED) Include in your project composer.json / composer.lock:
+# (RECOMMENDED) Include in your project composer.json / composer.lock:
 
 Since symfony2.1 will use composer (http://www.getcomposer.org) to organize dependencies, 
 it is highly recommended to ease your life to do it this way:
 
-Add in your composer.json:
+# Managing twitters/bootstrap installation automatically
+
+To have composer managing twitters bootstrap too, you can either run it with
+--install-suggests or add the following to your composer.json:
 
 ```json
 {
     "require": {
         "mopa/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "master"
     },
     "repositories": [
         {
             "type": "package",
             "package": {
-                "version": "master", /* whatever version you want */
+                "version": "master",
                 "name": "twitter/bootstrap",
                 "source": {
                     "url": "https://github.com/twitter/bootstrap.git",
@@ -48,6 +52,19 @@ To activate auto symlinking and checking after composer update/install add also 
     }
 }
 ```
+
+## Managing twitters/bootstrap location manually
+
+To manage the location of twitters/bootstrap manually just add in your composer.json:
+
+    ```json
+    {
+        "require": {
+            "mopa/bootstrap-bundle": "dev-master",
+        }
+    }
+    ```
+ 
 
 **Warning:**
 
