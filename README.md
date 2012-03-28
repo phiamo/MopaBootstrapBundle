@@ -105,6 +105,8 @@ If you want to have a easier life, have a look into:
             }
         ]
     }
+    ```
+
     To activate auto symlinking and checking after composer update/install add also to your existing scripts:
     (recommended!)
 
@@ -119,6 +121,7 @@ If you want to have a easier life, have a look into:
             ]
         }
     }
+
     ```
     There is also a console command to check and / or install this symlink:
     
