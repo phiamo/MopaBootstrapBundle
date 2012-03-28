@@ -5,7 +5,7 @@ To effectively use all features of bootstrap you might want to use less together
 Have a look into the following docs what it is and then maybe install it on your systems.
 
 [Twitters Less Doc](http://twitter.github.com/bootstrap/less.html)
-[Lessscss](http://lesscss.org/)
+[Lesscss](http://lesscss.org/)
 
 
 Install nodejs and less css manually
