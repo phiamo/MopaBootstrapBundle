@@ -11,8 +11,10 @@
 
 To see the bundle and its capabilities online just have a look on
 [MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
-And the [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
 
+*  [MopaBootstrapBundle](http://github.com/phiamo/MopaBootstrapBundle) - Easy integration of twitters bootstrap into symfony2
+*  [MopaBootstrapSanboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
+*  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
 
 <h2 id="Introduction">Introduction</h2>
 
