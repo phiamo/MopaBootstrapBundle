@@ -1,35 +1,46 @@
 {% extends "MopaBootstrapBundle::layout.html.twig" %}
 {% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
-
+{% block page_header %}{% endblock page_header %}
 {% block content %}
 <div class="span8">
-	<h2>Starting</h2>
-	<p>Creating a working copy of this site should be as easy to:</p>
-	<ul>
-		<li>Download and install latest symfony edition</li>
-		<li>Install Mopa Bootstrap Bundle</li>
-		<li>Activate Examples in your Symfony installation</li>
-	</ul>
-	<p>Finished :) </p>
-	<p>or use the <a href="https://github.com/phiamo/symfony-bootstrap-sandbox">sandbox</a>!</p>
-	<h2>Intention</h2>
-	<p>The main purpose of this bundle was to provide a template for the forms, because the markup of bootstrap, and the markup of symfon2 was too different.</p>
-	<p>In the meantime we also adapted, e.g a intuitive form of Navbar/Navbar classes and a bunch of marcos and other bootstrap features.</p>
-	<p>Please feel free to commit new Ideas via Pull Request's or create issues for the problems you have at the moment!</p>
-	<h2>The Idea</h2>
-	<p>Bootstrap has a bunch of features included, and we think it would be nice if you just can show you want to use them, but effectively have no drawback on updates.</p>
-	<p>Adapting the markup of e.g. Form to the requirements of a CSS Framework like bootstrap can be quite a mess</p>
-	<p>This sandbox and the examples of MopaBootstrapBundle try to give you a feeling on how easy it can be to be up-to-date with your logic to the frontend</p>
-	<h2>Usage</h2>
-	<p>These examples are part of the Mopa Bootstrap Bundle, and are only meant to show you how easy it could be to have a fully working bootstrap Site working. </p>
-	<p>To kickstart you could just use the <a href="https://github.com/phiamo/symfony-bootstrap-sandbox">sandbox</a> and start over creating you own Symfony2 project</p>
+    <div class="hero-unit">
+    	<h2>{% block headline %}Mopa Bootstrap Bundle{% endblock %}</h2>
+    	<p>Creating a working copy of this site should be as easy to:</p>
+    	<ul>
+    		<li>Download and install latest symfony edition</li>
+    		<li>Install Mopa Bootstrap Bundle</li>
+    		<li>Activate Examples in your Symfony installation</li>
+    	</ul>
+    	<p>Finished :) </p>
+    	<p>or use the <a href="https://github.com/phiamo/symfony-bootstrap-sandbox">sandbox</a>!</p>
+    </div>
+	<div class="row">
+        <div class="span4">
+            <h2>Intention</h2>
+            <p>The main purpose of this bundle was to provide a template for the forms, because the markup of bootstrap, and the markup of symfon2 was too different.</p>
+            <p>In the meantime we also adapted, e.g a intuitive form of Navbar/Navbar classes and a bunch of marcos and other bootstrap features.</p>
+            <p>Please feel free to commit new Ideas via Pull Request's or create issues for the problems you have at the moment!</p>
+            <h2>what it is made of</h2>
+            <ul>
+                <li><a href="http://www.symfony.com">Symfony2</a></li>
+                <li><a href="http://twitter.github.com/bootstrap/">bootstrap2</a></li>
+                <li>and a lot more</li>
+            </ul>
+	    </div>
+        <div class="span4">
+            <h2>The Idea</h2>
+        	<p>Bootstrap has a bunch of features included, and we think it would be nice if you just can show you want to use them, but effectively have no drawback on updates.</p>
+        	<p>Adapting the markup of e.g. Form to the requirements of a CSS Framework like bootstrap can be quite a mess</p>
+        	<p>This sandbox and the examples of MopaBootstrapBundle try to give you a feeling on how easy it can be to be up-to-date with your logic to the frontend</p>
+            <h2>Usage</h2>
+        	<p>These examples are part of the Mopa Bootstrap Bundle, and are only meant to show you how easy it could be to have a fully working bootstrap Site working. </p>
+        	<p>To kickstart you could just use the <a href="https://github.com/phiamo/symfony-bootstrap-sandbox">sandbox</a> and start over creating you own Symfony2 project</p>
+    	</div>
+	</div>
 </div>
 <div class="span4">
-	<h1>what it is made of</h1>
-	<ul>
-    	<li><a href="http://www.symfony.com">Symfony2</a></li>
-    	<li><a href="http://twitter.github.com/bootstrap/">bootstrap2</a></li>
-    	<li>and a lot more</li>
-	</ul>
+    <div class="hero-unit advertising high">
+        <h2>Advertising</h2>
+    </div>
 </div>
 {% endblock content %}
