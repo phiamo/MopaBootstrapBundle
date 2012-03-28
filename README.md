@@ -88,7 +88,7 @@ If you want to have a easier life, have a look into:
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
                "twitter/bootstrap": "master"
-           }
+           },
            "repositories": [
                {
                    "type": "package",
