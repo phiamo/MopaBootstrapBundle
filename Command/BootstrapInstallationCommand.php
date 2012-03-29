@@ -60,7 +60,7 @@ EOT
             $cmanager = new Composer\ComposerPathFinder($composer);
             $options = array(
                     'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
-                    'sourceSuffix' => 'bootstrap' 
+                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR 
                 );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                                 self::$mopaBootstrapBundleName, 
@@ -175,8 +175,11 @@ EOF
     
     public static function createSymlink($symlinkTarget, $symlinkName)
     {
-       if(false === symlink($symlinkTarget, $symlinkName)){
+        if(false === symlink($symlinkTarget, $symlinkName)){
             throw new \Exception("An error occured while creating symlink" . $symlinkName);
-       }
+        }
+        if(false === $target = readlink($symlinkName)){
+            throw new \Exception("Symlink $symlinkName points to target $target");
+        }
     }
 }

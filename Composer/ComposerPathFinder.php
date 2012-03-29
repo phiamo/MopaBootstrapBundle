@@ -42,12 +42,37 @@ class ComposerPathFinder{
     }
     protected function generateSymlink($targetPackage, $sourcePackage, $options)
     {
+        $options = array_merge($this->getDefaultOptions(), $options);
         $sourcePackagePath = $this->composer->getInstallationManager()->getInstallPath($sourcePackage);
         $targetPackagePath = $this->composer->getInstallationManager()->getInstallPath($targetPackage);
-        $symlinkName = $targetPackagePath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap";
-        $dscount = substr_count($symlinkName, DIRECTORY_SEPARATOR);
-        $upwards = ".." . implode("..", array_fill(0, $dscount, DIRECTORY_SEPARATOR));
-        $symlinkTarget = $upwards . $sourcePackagePath;
+        $symlinkTarget = realpath($sourcePackagePath);
+        $symlinkName = realpath($targetPackagePath);
+        // add source prefix
+        $symlinkTarget = $options['sourcePrefix'] . 
+                $this->generateRelativePath($symlinkName, $symlinkTarget);
+        // add target suffix
+        $symlinkName = $symlinkName . $options['targetSuffix'];
         return array($symlinkTarget, $symlinkName);
+    }
+    /**
+     * borrowed from http://www.php.net/manual/de/function.realpath.php#105876
+     */
+    function generateRelativePath($from, $to, $ps = DIRECTORY_SEPARATOR)
+    {
+        $arFrom = explode($ps, rtrim($from, $ps));
+        $arTo = explode($ps, rtrim($to, $ps));
+        while(count($arFrom) && count($arTo) && ($arFrom[0] == $arTo[0]))
+        {
+            array_shift($arFrom);
+            array_shift($arTo);
+        }
+        return str_pad("", count($arFrom) * 3, '..'.$ps).implode($ps, $arTo);
+    }
+    protected function getDefaultOptions(){
+        return array(
+            'targetSuffix' => "",
+            'sourcePrefix' => "",
+            'sourceSuffix' => ""
+        );
     }
 }

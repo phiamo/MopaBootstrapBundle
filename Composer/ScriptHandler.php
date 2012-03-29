@@ -19,7 +19,8 @@ class ScriptHandler
         $composer = $event->getComposer();
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
-            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap"
+            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
+            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                                 BootstrapInstallationCommand::$mopaBootstrapBundleName, 
