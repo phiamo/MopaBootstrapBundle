@@ -1,23 +1,20 @@
 # README
 <h2 id="Warning">Warning</h2>
 
-> Make sure you update your namespaces:
-> we changed the Bundles namespace from
+> Make sure you update your namespaces, we changed the Bundles namespace from
 > Mopa\BootstrapBundle
 > to
 > Mopa\Bundle\BootstrapBundle
 > 
-> Due to a problem with composer/packagist this is currently probably not reflected in your checkouts.
-> As soon as this prob is fixed, you must change the namespace references in:
+> AYou must change the namespace references in:
 > 
 >  * app/AppKernel.php 
->  * Your code makeing use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
+>  * Your code making use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
 >  * Configuration referencing any classes (e.g. service definitions for menu, navbar, etc.)
 > 
 > For info about the branches read https://github.com/phiamo/MopaBootstrapBundle/wiki/Branches-&-Versions
 > 
-> If you dont want to care about the twitter/bootstrap dependency,
-> please make sure your [composer.json](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md) is correct
+> If you dont want to care about the twitter/bootstrap dependency, please make sure your [composer.json](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md) is correct
 
 <h2 id="Live_Show">Live Show</h2>
 
