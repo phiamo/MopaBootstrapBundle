@@ -29,7 +29,11 @@ To have composer managing twitter/bootstrap too, you can either run it with
                     "url": "https://github.com/twitter/bootstrap.git",
                     "type": "git",
                     "reference": "master"
-                }
+                },
+                "dist": {
+                    "url": "https://github.com/twitter/bootstrap/zipball/master",
+                    "type": "zip"
+                 }
             }
         }
     ]
