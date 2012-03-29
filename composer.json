@@ -8,8 +8,7 @@
     "authors": [
         {
             "name": "Philipp A. Mohrenweiser",
-            "email": "phiamo@googlemail.com",
-            "homepage": "http://bootstrap.mohrenweiserpartner.de"
+            "email": "phiamo@googlemail.com"
         },
         {
             "name": "Community contributions",
@@ -26,9 +25,7 @@
         "php": ">=5.3.2"
     },
     "suggest":  {
-        "twitter/bootstrap": "dev-master"
-    },
-    "recommend": {
+        "twitter/bootstrap": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
         "craue/formflow-bundle": "dev-master"
