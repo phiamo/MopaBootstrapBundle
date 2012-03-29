@@ -1,4 +1,5 @@
 # README
+
 <h2 id="Warning">Warning</h2>
 
 > Make sure you update your namespaces, we changed the Bundles namespace from
@@ -6,7 +7,7 @@
 > to
 > Mopa\Bundle\BootstrapBundle
 > 
-> AYou must change the namespace references in:
+> You must change the namespace references in:
 > 
 >  * app/AppKernel.php 
 >  * Your code making use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
@@ -84,7 +85,7 @@ If you want to have a easier life, have a look into:
     To have composer managing twitters bootstrap too, you can either run it with
     --install-suggests or add the following to your composer.json:
 
-       ```json
+    ```json
        {
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
@@ -109,7 +110,42 @@ If you want to have a easier life, have a look into:
                }
            ]
        }
-       ```
+    ```
+       
+    <h2 id="Warning">Warning</h2>
+    > Composer doesn't install suggests from mopa/boostrap-bundle!
+    > If you need e.g knplabs menues or paginator, craue/formflow, 
+    > please add them to YOUR composer.json too!
+    
+    ```json
+       {
+           "require": {
+               "mopa/bootstrap-bundle": "dev-master",
+               "twitter/bootstrap": "master",
+               "knplabs/knp-paginator-bundle": "dev-master",
+               "knplabs/knp-menu-bundle": "dev-master",
+               "craue/formflow-bundle": "dev-master"
+           },
+           "repositories": [
+               {
+                   "type": "package",
+                   "package": {
+                       "version": "master", /* whatever version you want */
+                       "name": "twitter/bootstrap",
+                       "source": {
+                           "url": "https://github.com/twitter/bootstrap.git",
+                           "type": "git",
+                           "reference": "master"
+                       },
+                       "dist": {
+                           "url": "https://github.com/twitter/bootstrap/zipball/master",
+                           "type": "zip"
+                       }
+                   }
+               }
+           ]
+       }
+    ```
 
     To activate auto symlinking and checking after composer update/install add also to your existing scripts:
     (recommended!)

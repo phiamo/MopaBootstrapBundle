@@ -40,6 +40,42 @@ To have composer managing twitter/bootstrap too, you can either run it with
 }
 ```
 
+       
+<h2 id="Warning">Warning</h2>
+> Composer doesn't install suggests from mopa/boostrap-bundle!
+> If you need e.g knplabs menues or paginator, craue/formflow, 
+> please add them to YOUR composer.json too!
+
+```json
+   {
+       "require": {
+           "mopa/bootstrap-bundle": "dev-master",
+           "twitter/bootstrap": "master",
+           "knplabs/knp-paginator-bundle": "dev-master",
+           "knplabs/knp-menu-bundle": "dev-master",
+           "craue/formflow-bundle": "dev-master"
+       },
+       "repositories": [
+           {
+               "type": "package",
+               "package": {
+                   "version": "master", /* whatever version you want */
+                   "name": "twitter/bootstrap",
+                   "source": {
+                       "url": "https://github.com/twitter/bootstrap.git",
+                       "type": "git",
+                       "reference": "master"
+                   },
+                   "dist": {
+                       "url": "https://github.com/twitter/bootstrap/zipball/master",
+                       "type": "zip"
+                   }
+               }
+           }
+       ]
+   }
+```
+
 To activate auto symlinking and checking after composer update/install add also to your existing scripts:
 
 ```json
