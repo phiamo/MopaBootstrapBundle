@@ -103,6 +103,10 @@ If you want to have a easier life, have a look into:
                            "url": "https://github.com/twitter/bootstrap.git",
                            "type": "git",
                            "reference": "master"
+                       },
+                       "dist": {
+                           "url": "https://github.com/twitter/bootstrap/zipball/master",
+                           "type": "zip"
                        }
                    }
                }
