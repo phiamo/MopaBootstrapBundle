@@ -14,13 +14,13 @@ class ComposerPathFinder{
         $this->composer = $composer;
     }
     public function getSymlinkFromComposer($targetPackageName, $sourcePackageName, array $options){
-        if(null === $targetPackage = $this->findPackage($targetPackageName, $this->composer->getPackage())){
+        if(null === $targetPackage = $this->findPackage($targetPackageName)){
             throw new \Exception("Could not find targetPackage: " . $targetPackageName . ": " . " with composer");
         }
         if(!$this->composer->getInstallationManager()->isPackageInstalled($targetPackage)){
             throw new \Exception("Package: " . $targetPackageName . " is not installed!");
         }
-        if(null === $sourcePackage = $this->findPackage($sourcePackageName, $targetPackage)){
+        if(null === $sourcePackage = $this->findPackage($sourcePackageName)){
             throw new \Exception("Could not find sourcePackage: " . $sourcePackageName . " with composer");
         }
         if(!$this->composer->getInstallationManager()->isPackageInstalled($sourcePackage)){
@@ -28,14 +28,15 @@ class ComposerPathFinder{
         }
         return $this->generateSymlink($targetPackage, $sourcePackage, $options);
     }
-    protected function findPackage($packageName, MemoryPackage $sourcePackage)
+    /**
+     * return MemoryPackage
+     */
+    protected function findPackage($packageName)
     {
-        $list = $sourcePackage->getRequires();
-        $list += $sourcePackage->getRecommends();
-        $list += $sourcePackage->getSuggests();
-        foreach($list as $packageLink){
-            if($packageLink->getTarget() == $packageName){
-                return $this->composer->getRepositoryManager()->findPackage($packageLink->getTarget(), $packageLink->getPrettyConstraint());
+        $packages = $this->composer->getRepositoryManager()->findPackages($packageName, null);
+        foreach($packages as $package){
+            if($this->composer->getInstallationManager()->isPackageInstalled($package)){
+                return $package;
             }
         }
     }

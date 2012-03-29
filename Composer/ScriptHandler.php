@@ -24,7 +24,8 @@ class ScriptHandler
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                                 BootstrapInstallationCommand::$mopaBootstrapBundleName, 
                                 BootstrapInstallationCommand::$twitterBootstrapName, 
-                                $options);
+                                $options
+        );
         
         $IO->write("Checking Symlink", FALSE);
         if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)){

@@ -62,7 +62,11 @@ EOT
                     'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
                     'sourceSuffix' => 'bootstrap' 
                 );
-            list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(self::$mopaBootstrapBundleName, self::$twitterBootstrapName, $options);
+            list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+                                self::$mopaBootstrapBundleName, 
+                                self::$twitterBootstrapName, 
+                                $options
+            );
         }
         else{
             $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
@@ -70,12 +74,6 @@ EOT
         }
         
         $this->output->write("Checking Symlink");
-        echo "\n\n";
-        echo "\nTARG:".$symlinkTarget;
-        echo "\nname:".$symlinkName;
-        
-        echo "\n\n";
-        
         if(false === self::checkSymlink($symlinkTarget, $symlinkName, true)){
             $this->output->writeln(" ... <comment>not existing</comment>");
             $this->output->writeln("Creating Symlink: " . $symlinkName);
