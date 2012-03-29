@@ -21,11 +21,22 @@
         }
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "suggest":  {
+        "twitter/bootstrap": "dev-master"
+    },
+    "recommend": {
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "craue/formflow-bundle": "dev-master"
+    },
     "repositories": [
         {
             "type": "package",
             "package": {
-                "version": "master",
+                "version": "dev-master",
                 "name": "twitter/bootstrap",
                 "source": {
                     "url": "https://github.com/twitter/bootstrap.git",
@@ -35,17 +46,6 @@
             }
         }
     ],
-    "require": {
-        "php": ">=5.3.2"
-    },
-    "suggest":  {
-        "twitter/bootstrap": "master"
-    },
-    "recommend": {
-        "knplabs/knp-paginator-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "craue/formflow-bundle": "dev-master"
-    },
     "scripts": {
         "post-package-install": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postPackageInstallSymlinkTwitterBootstrap"

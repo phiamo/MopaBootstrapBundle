@@ -2,6 +2,7 @@
 namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer\Composer;
+use Composer\Package\MemoryPackage;
 
 /**
  * ComposerAdapter to support Composer in symfony2
@@ -13,13 +14,13 @@ class ComposerPathFinder{
         $this->composer = $composer;
     }
     public function getSymlinkFromComposer($targetPackageName, $sourcePackageName, array $options){
-        if(null === $targetPackage = $this->findPackage($targetPackageName, $this->composer->getPackage()->getRequires())){
-            throw new \Exception("Could not find targetPackage: " . $targetPackageName . " with composer");
+        if(null === $targetPackage = $this->findPackage($targetPackageName, $this->composer->getPackage())){
+            throw new \Exception("Could not find targetPackage: " . $targetPackageName . ": " . " with composer");
         }
         if(!$this->composer->getInstallationManager()->isPackageInstalled($targetPackage)){
             throw new \Exception("Package: " . $targetPackageName . " is not installed!");
         }
-        if(null === $sourcePackage = $this->findPackage($sourcePackageName, $targetPackage->getRequires())){
+        if(null === $sourcePackage = $this->findPackage($sourcePackageName, $targetPackage)){
             throw new \Exception("Could not find sourcePackage: " . $sourcePackageName . " with composer");
         }
         if(!$this->composer->getInstallationManager()->isPackageInstalled($sourcePackage)){
@@ -27,8 +28,11 @@ class ComposerPathFinder{
         }
         return $this->generateSymlink($targetPackage, $sourcePackage, $options);
     }
-    protected function findPackage($packageName, array $list)
+    protected function findPackage($packageName, MemoryPackage $sourcePackage)
     {
+        $list = $sourcePackage->getRequires();
+        $list += $sourcePackage->getRecommends();
+        $list += $sourcePackage->getSuggests();
         foreach($list as $packageLink){
             if($packageLink->getTarget() == $packageName){
                 return $this->composer->getRepositoryManager()->findPackage($packageLink->getTarget(), $packageLink->getPrettyConstraint());
