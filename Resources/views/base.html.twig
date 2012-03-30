@@ -42,35 +42,37 @@
 
 	{% block container %}
 	<div class="container-fluid">
-      <div class="content">
-        {% block page_header %}
-        <div class="page-header">
-              <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock %}</h1>
+        <div class="content">
+	        {% block page_header %}
+	        <div class="page-header">
+	              <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock %}</h1>
+	        </div>
+	        {% endblock page_header %}
+
+			{% block flashes %}
+			    {{ session_flash() }}
+			{% endblock flashes %}
+
+			{% block content_row %}
+			<div class="row-fluid">
+				{% block content %}
+				<div class="span9">
+					<strong>Hier könnte Ihre Werbung stehen ... </strong>
+				</div>
+				<div class="span3">
+					{% block content_sidebar %}
+	                <h2>Sidebar</h2>
+					{% endblock content_sidebar %}
+				</div>
+				{% endblock content %}
+			</div>
+	        {% endblock content_row %}
         </div>
-        {% endblock page_header %}
-		{% block flashes %}
-		    {{ session_flash() }}
-		{% endblock flashes %}
-		{% block content_row %}
-		<div class="row-fluid">
-			{% block content %}
-			<div class="span9">
-				<strong>Hier könnte Ihre Werbung stehen ... </strong>
-			</div>
-			<div class="span3">
-				{% block content_sidebar %}
-                <h2>Sidebar</h2>
-				{% endblock content_sidebar %}
-			</div>
-			{% endblock content %}
-		</div>
-        {% endblock content_row %}
-      </div>
-      <footer>
-        {% block footer %}
-        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
-        {% endblock footer %}
-      </footer>
+        <footer>
+	        {% block footer %}
+	        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011</p>
+	        {% endblock footer %}
+        </footer>
 	</div> <!-- /container -->
 	{% endblock container %}
 	{% block foot_script %}
