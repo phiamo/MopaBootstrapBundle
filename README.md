@@ -64,6 +64,7 @@ If you do not want to use less ignore this, otherwise have a look into:
 [MopaBootstrapBundle]
     git=http://github.com/phiamo/MopaBootstrapBundle.git
     target=/bundles/Mopa/BootstrapBundle
+    version=v2.x_sf2.0
 ```
 
 1.2 Or add this bundle to your project as a Git submodule:
@@ -156,8 +157,7 @@ If you would like to use the css try this:
 ```
 
 <h2 id="Form_Theming">Using bootstrap for Form Theming</h2>
- 
-      
+
 You can either activate it for you whole project:
 
 ``` yaml
