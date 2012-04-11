@@ -23,7 +23,7 @@ class HelpFieldTypeExtension extends AbstractTypeExtension
         $view->set('help_label', $form->getAttribute('help_label'));
     }
 
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'help_inline' => null,

@@ -37,7 +37,7 @@ class WidgetFieldTypeExtension extends AbstractTypeExtension
         $view->set('widget_type',   $form->getAttribute('widget_type'));
     }
 
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'widget_control_group' => true,
@@ -52,7 +52,7 @@ class WidgetFieldTypeExtension extends AbstractTypeExtension
             'widget_type' => '',
         );
     }
-    public function getAllowedOptionValues(array $options)
+    public function getAllowedOptionValues()
     {
         return array(
             'widget_type' => array(

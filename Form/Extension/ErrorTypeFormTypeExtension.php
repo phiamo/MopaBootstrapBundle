@@ -23,7 +23,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 	{
 	    $view->set('error_type', $form->getAttribute('error_type'));
 	}
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'error_type' => $this->error_type,

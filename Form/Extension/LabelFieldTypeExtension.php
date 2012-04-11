@@ -20,7 +20,7 @@ class LabelFieldTypeExtension extends AbstractTypeExtension
 	    $view->set('label_attr', $form->getAttribute('label_attr'));
 	    $view->set('label_render', $form->getAttribute('label_render'));
 	}
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'label_attr' => array(),

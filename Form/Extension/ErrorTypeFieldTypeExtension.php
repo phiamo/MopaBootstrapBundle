@@ -20,7 +20,7 @@ class ErrorTypeFieldTypeExtension extends AbstractTypeExtension
 	    $view->set('field_error_type', $form->getAttribute('field_error_type'));
 	    $view->set('error_delay', $form->getAttribute('error_delay'));
 	}
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'field_error_type' => false,

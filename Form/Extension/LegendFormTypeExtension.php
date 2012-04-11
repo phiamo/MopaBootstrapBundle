@@ -31,7 +31,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
 	    $view->set('show_legend', $form->getAttribute('show_legend'));
 	    $view->set('show_child_legend', $form->getAttribute('show_child_legend'));
 	}
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'render_fieldset' => $this->render_fieldset,
