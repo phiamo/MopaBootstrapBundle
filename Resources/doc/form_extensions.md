@@ -131,7 +131,10 @@ public function buildForm(FormBuilder $builder, array $options)
 ``` 
 
 <h3 id="Widget_Addons">Widget Addons</h3>
-<h3 id="Form_Field_presuf">Form Field Prefix / Suffix</h3>
+
+To get the addons working, i had to increase max nesting level of xdebug to 200.
+
+<h4 id="Form_Field_presuf">Form Field Prefix / Suffix</h4>
 
 There are also suffix and prefix attributes for the widgets:
 
