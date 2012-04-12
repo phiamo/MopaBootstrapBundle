@@ -1,18 +1,23 @@
+<h2>Form Extensions</h2>
 
    *   [Make use of FormExtensions](#FormExtensions)
    *   [FormLegends](#Form_Legends)
    *   [Child Form_Legends](#Child_Form_Legends)
    *   [Field Labels](#Field_Labels)
    *   [Form Field Help](#Form_Field_Help)
-   *   [Form Field Prefix / Suffix](#Form_Field_presuf)
+   *   [Widget Addons](#Widget_Addons)
+     *   [Form Field Prefix / Suffix](#Form_Field_presuf)
    *   [Form Errors](#Form_Errors)
-   
-   
+
+
 <h3 id="FormExtensions">Make use of FormExtensions</h3>
 
-This bundle extends the Form Component via its native way to achieve having 
-several more attributes on several form components
+This bundle extends the Form Component via its native way to achieve having several more attributes on several form components.
 
+Have a look into the examples in the sandbox:
+
+ * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/examples
+ * https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type
 
 <h3 id="Form_Legends">Form Legends</h3>
 
@@ -95,7 +100,6 @@ Also you have the option to remove a specific field label by setting label_rende
             ))
 ```
 
-
 <h3 id="Form_Field_Help">Form Field Help</h3>
 
 Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
@@ -126,6 +130,7 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ``` 
 
+<h3 id="Widget_Addons">Widget Addons</h3>
 <h3 id="Form_Field_presuf">Form Field Prefix / Suffix</h3>
 
 There are also suffix and prefix attributes for the widgets:
