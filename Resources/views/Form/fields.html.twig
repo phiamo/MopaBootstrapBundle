@@ -159,7 +159,7 @@
     {% if _isCollectionItem %}
 		<div class="collection-item">
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype')}) }} {{ widget_suffix|raw }}
+        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype'), 'widget_remove_btn': widget_remove_btn}) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
         &nbsp;{{ block('field_widget_remove_btn') }}
     {% endif %}
@@ -181,10 +181,9 @@
     {% endif %}
 {% endblock field_row %}
 
-
 {% block form_row %}
 {% spaceless %}
-        {{ form_widget(form) }}
+    {{ form_widget(form) }}
 {% endspaceless %}
 {% endblock form_row %}
 
@@ -241,11 +240,11 @@
     {{ block('field_label_attr_aware_label') }}
    	{% if widget_controls %}
         <div class="collection controls">
-    {% endif %}    
+    {% endif %}
     {{ form_widget(form) }}
    	{% if widget_controls %}
         </div>
-    {% endif %}    
+    {% endif %}
     {% if widget_control_group %}
     </div>
     {% endif %}
@@ -253,19 +252,12 @@
 
 {% block collection_widget %}
 {% spaceless %}
-    {% for child in form.children %}
-        {% if 'hidden' not in child.get('types') %}
-			{#% debug child.get('attr') %#}
-            {#{ form_row(child) }#}
-        {% endif %}
-    {% endfor %}
     {% if errors|length > 0 %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
     {% endif %}
-    {% set coll_item = "BlUB" %}
-    {{ block('form_widget', coll_item) }}
+    {{ block('form_widget') }}
 {% endspaceless %}
-{% endblock collection_widget %}	
+{% endblock collection_widget %}
 
 {# more form widgets #}
 
