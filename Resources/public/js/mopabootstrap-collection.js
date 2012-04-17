@@ -27,7 +27,9 @@
   var Collection = function ( element, options ) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.collection.defaults, options)
-    this.options.index = this.$element.parents('div'+this.options.collection_id+' .collection.controls').length;
+
+    var embeddedForms = 'div'+this.options.collection_id+'>.collection.controls>.collection-item';
+    this.options.index = $( embeddedForms ).length - 1;
   }
 
   Collection.prototype = {
@@ -64,7 +66,10 @@
         , collection_id = '#'+$this.data('collection-add-btn')
         , collection = $(collection_id)
         , data = $this.data('collection')
-        , options = typeof option == 'object' && option
+        , options = typeof option == 'object' ? option : {}
+
+      options.collection_id = collection_id;
+
       if (!data) $this.data('collection', (data = new Collection(this, options)))
       data.options.collection_id = collection_id;
       if (option == 'add') data.add()
