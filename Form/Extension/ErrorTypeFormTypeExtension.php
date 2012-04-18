@@ -11,18 +11,18 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 {
 	public function buildForm(FormBuilder $builder, array $options)
 	{
-        $builder->setAttribute('field_error_type', $options['field_error_type']);
+        $builder->setAttribute('form_error_type', $options['form_error_type']);
         $builder->setAttribute('error_delay', $options['error_delay']);
 	}
 	public function buildView(FormView $view, FormInterface $form)
 	{
-	    $view->set('field_error_type', $form->getAttribute('field_error_type'));
+	    $view->set('form_error_type', $form->getAttribute('form_error_type'));
 	    $view->set('error_delay', $form->getAttribute('error_delay'));
 	}
     public function getDefaultOptions()
     {
         return array(
-            'field_error_type' => false,
+            'form_error_type' => false,
             'error_delay'=>false
         );
     }
