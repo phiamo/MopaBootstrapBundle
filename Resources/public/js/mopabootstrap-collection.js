@@ -42,7 +42,7 @@
 			if($.isFunction(this.options.addfailedfunc)) this.options.addfailedfunc()
 			return false;
 		}
-		var row = $(this.options.collection_id).attr('data-prototype').replace(/\$\$name\$\$/g, index);
+		var row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
 		$(this.options.collection_id + ' div.collection.controls').append(row);
 		event.preventDefault();
       }
