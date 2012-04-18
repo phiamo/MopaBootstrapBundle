@@ -72,7 +72,7 @@ EOT
             $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
             return;
         }
-        
+
         $this->output->write("Checking Symlink");
         if(false === self::checkSymlink($symlinkTarget, $symlinkName, true)){
             $this->output->writeln(" ... <comment>not existing</comment>");
@@ -103,7 +103,7 @@ EOT
                     }
                 }
                 else{
-                    $resolve =  
+                    $resolve =
                         $symlinkName . DIRECTORY_SEPARATOR .
                         ".." . DIRECTORY_SEPARATOR .
                         $symlinkTarget;
@@ -124,7 +124,6 @@ EOF
                 $this->getHelperSet()->get('formatter')->formatBlock($text, $style = 'bg=blue;fg=white', true),
                 '',
             ));
-            
             if (!$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
                 exit;
             }
@@ -146,7 +145,6 @@ EOF
         }
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
-    
     public static function checkSymlink($symlinkTarget, $symlinkName, $forceSymlink = false)
     {
         if(!$forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)){
@@ -172,10 +170,10 @@ EOF
         }
         return false;
     }
-    
+
     public static function createSymlink($symlinkTarget, $symlinkName)
     {
-        if(false === symlink($symlinkTarget, $symlinkName)){
+        if(false === @symlink($symlinkTarget, $symlinkName)){
             throw new \Exception("An error occured while creating symlink" . $symlinkName);
         }
         if(false === $target = readlink($symlinkName)){

@@ -3,14 +3,14 @@ namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer;
 use Symfony\Component\Console\Helper\HelperSet;
+use Composer\IO\IOInterface;
 
 /**
  * ComposerAdapter to support Composer in symfony2
  */
 class ComposerAdapter{
-    
     protected static $composer;
-    
+
     public static function whichComposer()
     {
         $pathToComposer = exec("which composer.phar");
@@ -25,11 +25,11 @@ class ComposerAdapter{
     public static function setComposer(Composer $composer){
         self::$composer = $composer;
     }
-    public static function getComposer($input, $output){
+    public static function getComposer($input, $output, $debug = false){
         if(null === self::$composer){
             if(false === $pathToComposer = self::whichComposer()){
                 return false;
-            } 
+            }
             $output->write("Initializing composer ... ");
             try {
                 \Phar::loadPhar($pathToComposer, 'composer.phar');
@@ -38,7 +38,15 @@ class ComposerAdapter{
                 echo $e;
             }
             try {
-                self::$composer = Composer\Factory::create(new Composer\IO\ConsoleIO($input, $output, new HelperSet()));       
+                $HelperSet = new HelperSet();
+                if($debug){
+                    self::$composer = self::getDebugComposer(
+                        new Composer\IO\ConsoleIO($input, $output, $HelperSet));
+                }
+                else{
+                    self::$composer = Composer\Factory::create(
+                        new Composer\IO\ConsoleIO($input, $output, $HelperSet));
+                }
             } catch (\InvalidArgumentException $e) {
                 if ($required) {
                     $output->write($e->getMessage());
@@ -50,5 +58,9 @@ class ComposerAdapter{
             $output->writeln("<info>done</info>.");
         }
         return self::$composer;
+    }
+    public static function getDebugComposer(IOInterface $io, $config = null)
+    {
+        return new DebugComposer();
     }
 }

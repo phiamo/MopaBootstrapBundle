@@ -2,14 +2,14 @@
 namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer\Composer;
-use Composer\Package\MemoryPackage;
+use Composer\Package\PackageInterface;
 
 /**
- * ComposerAdapter to support Composer in symfony2
+ * ComposerPathFinder get Pathes from one to another package
  */
 class ComposerPathFinder{
     protected $composer;
-    
+
     public function __construct(Composer $composer){
         $this->composer = $composer;
     }
@@ -17,25 +17,35 @@ class ComposerPathFinder{
         if(null === $targetPackage = $this->findPackage($targetPackageName)){
             throw new \Exception("Could not find targetPackage: " . $targetPackageName . ": " . " with composer");
         }
-        if(!$this->composer->getInstallationManager()->isPackageInstalled($targetPackage)){
+        if(!$this->isPackageInstalled($targetPackage)){
             throw new \Exception("Package: " . $targetPackageName . " is not installed!");
         }
         if(null === $sourcePackage = $this->findPackage($sourcePackageName)){
             throw new \Exception("Could not find sourcePackage: " . $sourcePackageName . " with composer");
         }
-        if(!$this->composer->getInstallationManager()->isPackageInstalled($sourcePackage)){
+        if(!$this->isPackageInstalled($sourcePackage)){
             throw new \Exception("Package: " . $sourcePackageName . " is not installed!");
         }
         return $this->generateSymlink($targetPackage, $sourcePackage, $options);
     }
+
+    protected function isPackageInstalled(PackageInterface $package){
+        foreach ($this->composer->getRepositoryManager()
+                ->getLocalRepositories() as $repo) {
+            $installer = $this->composer->getInstallationManager()
+                                ->getInstaller($package->getType());
+            return $installer->isInstalled($repo, $package);
+        }
+        return false;
+    }
     /**
-     * return MemoryPackage
+     * return PackageInterface
      */
     protected function findPackage($packageName)
     {
         $packages = $this->composer->getRepositoryManager()->findPackages($packageName, null);
         foreach($packages as $package){
-            if($this->composer->getInstallationManager()->isPackageInstalled($package)){
+            if($this->isPackageInstalled($package)){
                 return $package;
             }
         }
@@ -45,11 +55,13 @@ class ComposerPathFinder{
         $options = array_merge($this->getDefaultOptions(), $options);
         $sourcePackagePath = $this->composer->getInstallationManager()->getInstallPath($sourcePackage);
         $targetPackagePath = $this->composer->getInstallationManager()->getInstallPath($targetPackage);
+
         $symlinkTarget = realpath($sourcePackagePath);
         $symlinkName = realpath($targetPackagePath);
         // add source prefix
-        $symlinkTarget = $options['sourcePrefix'] . 
+        $symlinkTarget = $options['sourcePrefix'] .
                 $this->generateRelativePath($symlinkName, $symlinkTarget);
+
         // add target suffix
         $symlinkName = $symlinkName . $options['targetSuffix'];
         return array($symlinkTarget, $symlinkName);
