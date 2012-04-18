@@ -1,7 +1,7 @@
 Thanks to havvg giving this example
 -----------------------------------
 Original Source: https://github.com/phiamo/MopaBootstrapBundle/issues/66
-Look at the examples here: https://github.com/phiamo/MopaBootstrapSanboxBundle/tree/master/Resources/config/examples
+Look at the examples here: https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples
 
 A complete example:
 
