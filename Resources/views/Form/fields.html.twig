@@ -17,7 +17,7 @@
     {{ label|trans }}
     {% if required %}*{% endif %}
     {% if widget_add_btn %}
-        {{ block('field_widget_add_btn') }}
+        {{ block('form_widget_add_btn') }}
     {% endif %}
     {% if help_label %}
         <p class="help-block">{{ help_label|trans }}</p>
@@ -28,51 +28,53 @@
 
 {# renders a field label without span class, if e.g field has it#}
 
-{% block field_label_attr_aware_label %}
+{% block form_label %}
 {% spaceless %}
     {% if label_render %}
-    {% set attr = label_attr|merge({'for': id}) %}
-    {{ block('field_label') }}
+        {% if form.children|length == 0 %}
+            {% set attr = attr|merge({'for': id}) %}
+        {% endif %}
+        {{ block('generic_label') }}
     {% endif %}
 {% endspaceless %}
-{% endblock field_label_attr_aware_label %}
+{% endblock form_label %}
 
 {# Help #}
 
-{% block field_help %}
+{% block form_help %}
     {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
     {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
-{% endblock field_help %}
+{% endblock form_help %}
 
-{% block field_widget_add_btn %}
+{% block form_widget_add_btn %}
     {% if widget_add_btn %}
     <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}_control_group" value="{{ widget_add_btn }}">
     {% endif %}
-{% endblock field_widget_add_btn %}
+{% endblock form_widget_add_btn %}
 
-{% block field_widget_remove_btn %}
+{% block form_widget_remove_btn %}
     {% if widget_remove_btn %}
     <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}_control_group" value="{{ widget_remove_btn }}">
     {% endif %}
-{% endblock field_widget_remove_btn %}
+{% endblock form_widget_remove_btn %}
 
 {# Errors #}
 
 {% block form_errors %}
 {% spaceless %}
-{#% if error_delay %}
+{% if error_delay %}
     {% for child in form %}
         {% if loop.index == 1 %}
             {% if child.set('errors', errors) %}{% endif %}
         {% endif %}
     {% endfor %}
-{% else %#}
+{% else %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
 		{{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
 	{% endfor %}
-{#% endif %#}
+{% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
 
@@ -92,8 +94,8 @@
 
 {% block error_type %}
 {% spaceless %}
-{% if field_error_type %}
-{{ field_error_type }}
+{% if form_error_type %}
+{{ form_error_type }}
 {% elseif form.hasParent() != 0 %}
     {% set form = form.parent %}
     {{ block('error_type') }}
@@ -106,37 +108,36 @@
 {# Basic form and field blocks #}
 
 {% block form_widget %}
-    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
+    {% if form.children|length > 0 %}
     	{% if render_fieldset %}<fieldset>{% endif %}
     	{% if show_legend %}{{ block('form_legend') }}{% endif %}
-    {% endif %}
-        {{ block('field_rows_visible') }}
+        {{ block('form_rows_visible') }}
         {{ form_rest(form) }}
-    {% if 'form' in form.get('types') and form.hasParent() == 0 %}
     	{% if render_fieldset %}</fieldset>{% endif %}
+    {% else %}
+        {{ block('input') }}
     {% endif %}
 {% endblock form_widget %}
 
 {# only display non hidden fields #}
 
-{% block field_rows_visible %}
+{% block form_rows_visible %}
     {% if form_errors(form) %}
         <div class="symfony-form-errors">
             {{ form_errors(form) }}
         </div>
     {% endif %}
-    {% for child in form.children %}
+    {% for child in form %}
         {% if 'hidden' not in child.get('types') %}
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
-{% endblock field_rows_visible %}
+{% endblock form_rows_visible %}
 
-{% block field_row %}
+{% block form_row %}
     {% set _isCollectionItem = (form.hasParent()|default(false) and form.getParent().get('prototype') ) %}
-	{% set _isSubform = ('form' in form.get('types')) %}
 	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
-    {% if not _isSubform %}
+    {% if form.children|length == 0 %}
         {% if widget_control_group and not _isCollectionItem %}
             {% set oid = id %}
             {% set id = oid ~ "_control_group" %}
@@ -144,14 +145,14 @@
             {% set id = oid %}
         {% endif %}
     {% endif %}
-    {% if _isSubform and form.hasParent() != 0 %}
+    {% if form.children|length > 0 and form.hasParent() != 0 %}
         {% if show_child_legend|default(false) %}
             {{ block('form_legend') }}
         {% endif %}
 	{% elseif not _isCollectionItem  %}
-    	{{ block('field_label_attr_aware_label') }}
+    	{{ block('form_label') }}
     {% endif %}
-    {% if not _isSubform %}
+    {% if form.children|length == 0 %}
     	{% if widget_controls and not _isCollectionItem %}
         <div class="controls">
         {% endif %}
@@ -161,40 +162,35 @@
     {% endif %}
         {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype'), 'widget_remove_btn': widget_remove_btn}) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
-        &nbsp;{{ block('field_widget_remove_btn') }}
+        &nbsp;{{ block('form_widget_remove_btn') }}
     {% endif %}
-    {% if not _isSubform %}
-           {{ block('field_message') }}
+
+    {% if form.children|length == 0 %}
+        {{ block('form_message') }}
     {% endif %}
     {% if _isCollectionItem %}
 		</div>
     {% endif %}
-    {% if not _isSubform %}
+    {% if form.children|length == 0 %}
         {% if widget_controls and not _isCollectionItem %}
         </div>
         {% endif %}
     {% endif %}
-    {% if not _isSubform %}
+    {% if form.children|length == 0 %}
 	    {% if widget_control_group and not _isCollectionItem %}
     </div>
         {% endif %}
     {% endif %}
-{% endblock field_row %}
-
-{% block form_row %}
-{% spaceless %}
-    {{ form_widget(form) }}
-{% endspaceless %}
 {% endblock form_row %}
 
-{% block field_message %}
+{% block form_message %}
     {{ form_errors(form) }}
-    {{ block('field_help') }}
-{% endblock field_message %}
+    {{ block('form_help') }}
+{% endblock form_message %}
 
 {# basic form widgets #}
 
-{% block field_widget %}
+{#% block field_widget %}
 {% spaceless %}
     {% set type = type|default('text') %}
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
@@ -203,7 +199,6 @@
     	{{ block('widget_addon') }}
     	{% endif %}
     {% endif %}
-    {# add class to style display block #}
     {% if not widget_remove_btn|default(false) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
@@ -213,11 +208,12 @@
     	{{ block('widget_addon') }}
     	{% endif %}
     {% endif %}
+
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     </div>
     {% endif %}
 {% endspaceless %}
-{% endblock field_widget %}
+{% endblock form_widget %#}
 
 {% block widget_addon %}
 {# prevent deep nesting wrong context copy error #}
@@ -237,7 +233,7 @@
     <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
         {% set id = oid %}
     {% endif %}
-    {{ block('field_label_attr_aware_label') }}
+    {{ block('form_label') }}
    	{% if widget_controls %}
         <div class="collection controls">
     {% endif %}
@@ -281,7 +277,7 @@
             		{{ child.get('label')|trans }}
             	</label>
             {% endfor %}
-            {{ block('field_message') }}
+            {{ block('form_message') }}
         </div>
     </div>
     {% else %}
@@ -307,7 +303,7 @@
 {% block date_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
-        {{ block('field_widget') }}
+        {{ block('form_widget') }}
     {% else %}
     <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
@@ -330,7 +326,7 @@
 {% block time_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
-        {{ block('field_widget') }}
+        {{ block('form_widget') }}
     {% else %}
         <div class="control-group {% if errors|length > 0 %}error{% endif %}">
             {{ form_label(form, label) }}
@@ -348,7 +344,7 @@
 
 {% block datetime_widget %}
     {% if widget == 'single_text' %}
-        {{ block('field_widget') }}
+        {{ block('form_widget') }}
     {% else %}
     <div class="control-group {% if errors|length > 0 %}error{% endif %}">
     	{{ form_label(form, label) }}
@@ -360,7 +356,7 @@
 	            {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
 	            {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
 	        </div>
-	        {{ block('field_help') }}
+	        {{ block('form_help') }}
         </div>
     </div>
     {% endif %}
@@ -369,7 +365,7 @@
 {% block money_widget %}
     {% spaceless %}
         {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
-        {{ block('field_widget') }}
+        {{ block('form_widget') }}
     {% endspaceless %}
 {% endblock money_widget %}
 
