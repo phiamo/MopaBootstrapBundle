@@ -15,13 +15,11 @@ use Mopa\Bundle\BootstrapBundle\Composer;
  */
 class BootstrapInstallationCommand extends ContainerAwareCommand
 {
-    
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
     public static $twitterBootstrapName = "twitter/bootstrap";
-    
+
     protected function configure()
     {
-        
         $this
             ->setName('mopa:bootstrap:install')
             ->setDescription("Check and if possible install symlink to bootstrap")
@@ -29,7 +27,6 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
-            
             ->setHelp(<<<EOT
 The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the twitters/bootstrap2 library.
 

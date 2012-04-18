@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Exception\CreationException;
 
-class WidgetCollectionFieldTypeExtension extends AbstractTypeExtension
+class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 {
 
     public function buildForm(FormBuilder $builder, array $options)
@@ -39,6 +39,6 @@ class WidgetCollectionFieldTypeExtension extends AbstractTypeExtension
     }
     public function getExtendedType()
     {
-        return 'field';
+        return 'form';
     }
 }

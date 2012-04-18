@@ -60,19 +60,19 @@
 
 {% block form_errors %}
 {% spaceless %}
-{% if error_delay %}
+{#% if error_delay %}
     {% for child in form %}
         {% if loop.index == 1 %}
             {% if child.set('errors', errors) %}{% endif %}
         {% endif %}
     {% endfor %}
-{% else %}
+{% else %#}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
 		{{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
 	{% endfor %}
-{% endif %}
+{#% endif %#}
 {% endspaceless %}
 {% endblock form_errors %}
 

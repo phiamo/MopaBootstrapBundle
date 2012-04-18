@@ -6,7 +6,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilder;
 
-class HelpFieldTypeExtension extends AbstractTypeExtension
+class HelpFormTypeExtension extends AbstractTypeExtension
 {
 
     public function buildForm(FormBuilder $builder, array $options)
@@ -33,6 +33,6 @@ class HelpFieldTypeExtension extends AbstractTypeExtension
     }
     public function getExtendedType()
     {
-        return 'field';
-    }    
+        return 'form';
+    }
 }

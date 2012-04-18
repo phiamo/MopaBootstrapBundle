@@ -1,18 +1,18 @@
 services:
     mopa.form.help_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFieldTypeExtension
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
            tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
 
     mopa.form.label_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\LabelFieldTypeExtension
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\LabelFormTypeExtension
            tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
 
     mopa.form.field_error_type:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFieldTypeExtension
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension
            tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
 
     mopa.form.legend_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
@@ -27,14 +27,14 @@ services:
                 - { error_type: %mopa_bootstrap.form.error_type% }
            tags:
                 - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
-                
+
     mopa.form.widget_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFieldTypeExtension
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
            tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
-                
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
+
     mopa.form.widget_collection_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFieldTypeExtension
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension
            tags:
-                - { name: form.type_extension, alias: field } # the alias is the same than getExtendedType in the class
-                
+                - { name: form.type_extension, alias: form } # the alias is the same than getExtendedType in the class
+
