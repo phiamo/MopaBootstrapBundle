@@ -59,9 +59,11 @@ class ComposerPathFinder{
         $symlinkTarget = realpath($sourcePackagePath);
         $symlinkName = realpath($targetPackagePath);
         // add source prefix
-        $symlinkTarget = $options['sourcePrefix'] .
-                $this->generateRelativePath($symlinkName, $symlinkTarget);
-
+        // win doesnt support relative filenames
+        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+            $symlinkTarget = $options['sourcePrefix'] .
+                    $this->generateRelativePath($symlinkName, $symlinkTarget);
+        }
         // add target suffix
         $symlinkName = $symlinkName . $options['targetSuffix'];
         return array($symlinkTarget, $symlinkName);
