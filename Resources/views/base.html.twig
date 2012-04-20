@@ -7,22 +7,22 @@
 <meta charset="UTF-8" />
 {% block head_style %}
 {# Override this block to add your own files! #}
-{% stylesheets filter='less,cssembed,?yui_css' 
-       '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+{% stylesheets filter='less,cssembed,?yui_css'
+	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 %}
-<link href="{{ asset_url }}" type="text/css" rel="stylesheet"
-    media="screen" />
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
-{# if you dont use less, try this:
- #  be warned paginator.less isnt compiled yet so its missing
- # {% stylesheets filter='less,?yui_css'
- #     '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
- #     '@YourNiceBundle/Resources/public/css/*'
- # %}
- # <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
- #     media="screen" />
- # {% endstylesheets %}
- # #}
+
+{# This is how it could be done without using less features:
+ # Be sure you understand whats going on: have a look into
+ # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
+{% stylesheets filter='?yui_css'
+ 	'@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
+    '@YourNiceBundle/Resources/public/css/*'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+{% endstylesheets %}
+#}
 {% endblock head_style %}
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
