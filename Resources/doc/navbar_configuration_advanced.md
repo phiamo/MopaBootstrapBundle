@@ -9,8 +9,7 @@ A complete example:
 
 ```yaml
 mopa_bootstrap:
-    navbar:
-        service: sternenbund.navbar
+    navbar: ~
 ```
 
 ## services.yml
