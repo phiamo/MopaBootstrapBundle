@@ -41,7 +41,7 @@
             {% for child in form %}
                 <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
                     {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-                    {{ child.get('label')|trans }}
+                    {{ child.get('label')|trans({}, translation_domain) }}
                 </label>
             {% endfor %}
             {{ block('form_message') }}
@@ -50,7 +50,7 @@
     {% else %}
             <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
-                <option value="">{{ empty_value|trans }}</option>
+                <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
                 {% endif %}
                 {% if preferred_choices|length > 0 %}
                     {% set options = preferred_choices %}
@@ -139,7 +139,7 @@
 {# Labels #}
 
 {% block form_legend %}
-          <legend>{{ label | trans }}</legend>
+          <legend>{{ label|trans({}, translation_domain) }}</legend>
 {% endblock form_legend %}
 
 {% block generic_label %}
@@ -149,13 +149,13 @@
     {% endif %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
     <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {{ label|trans }}
+    {{ label|trans({}, translation_domain) }}
     {% if required %}*{% endif %}
     {% if widget_add_btn %}
         {{ block('form_widget_add_btn') }}
     {% endif %}
     {% if help_label %}
-        <p class="help-block">{{ help_label|trans }}</p>
+        <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
     {% endif %}
     </label>
 {% endspaceless %}
@@ -368,7 +368,7 @@
 
 {% block widget_attributes %}
 {% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue|trans}}" {% endfor %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
