@@ -17,89 +17,100 @@
  * limitations under the License.
  * ============================================================ */
 
-!function( $ ){
+!function ($) {
 
-  "use strict"
+    "use strict";
 
- /* Collection PUBLIC CLASS DEFINITION
-  * ============================== */
+   /* Collection PUBLIC CLASS DEFINITION
+    * ============================== */
 
-  var Collection = function ( element, options ) {
-    this.$element = $(element)
-    this.options = $.extend({}, $.fn.collection.defaults, options)
+    var Collection = function (element, options) {
+        this.$element = $(element);
+        this.options = $.extend({}, $.fn.collection.defaults, options);
 
-    var embeddedForms = 'div'+this.options.collection_id+'>.collection.controls>.collection-item';
-    this.options.index = $( embeddedForms ).length - 1;
-  }
+        var embeddedForms = 'div' + this.options.collection_id + '>.collection.controls>.collection-item';
+        this.options.index = $(embeddedForms).length - 1;
+    };
 
-  Collection.prototype = {
+    Collection.prototype = {
+        constructor: Collection,
+        add: function () {
+            var index, row;
+            this.options.index = this.options.index + 1;
+            index = this.options.index;
+            if ($.isFunction(this.options.addcheckfunc) && !this.options.addcheckfunc()) {
+                if ($.isFunction(this.options.addfailedfunc)) {
+                    this.options.addfailedfunc();
+                }
+                return;
+            }
+            row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
+            $(this.options.collection_id + ' div.collection.controls').append(row);
+        },
+        remove: function () {
+                console.log(this.$element);
+                console.log(this.$element.parents('.collection-item'));
+                if (this.$element.parents('.collection-item').length !== 0){
+                    this.$element.parents('.collection-item').remove();
+                }
+          }
 
-      constructor: Collection
-
-    , add: function ( ) {
-		var index = ++this.options.index;
-		if($.isFunction(this.options.addcheckfunc) && !addcheckfunc()){ 
-			if($.isFunction(this.options.addfailedfunc)) this.options.addfailedfunc()
-			return false;
-		}
-		var row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-		$(this.options.collection_id + ' div.collection.controls').append(row);
-		event.preventDefault();
-      }
-    , remove: function ( ) {
-		//this is called for a specific input inside the row...
-		
-		if(this.$element.parents('.collection-item').length){
-			this.$element.parents('.collection-item').remove();
-		}
-	}
-
-  }
+    };
 
 
  /* COLLECTION PLUGIN DEFINITION
   * ======================== */
 
   $.fn.collection = function ( option ) {
-    return this.each(function () {
-      var $this = $(this)
-        , collection_id = '#'+$this.data('collection-add-btn')
-        , collection = $(collection_id)
-        , data = $this.data('collection')
-        , options = typeof option == 'object' ? option : {}
+      return this.each(function () {
+          var $this = $(this),
+            collection_id = '#'+$this.data('collection-add-btn'),
+            collection = $(collection_id),
+            data = $this.data('collection'),
+            options = typeof option == 'object' ? option : {};
 
-      options.collection_id = collection_id;
+          options.collection_id = collection_id;
 
-      if (!data) $this.data('collection', (data = new Collection(this, options)))
-      data.options.collection_id = collection_id;
-      if (option == 'add') data.add()
-      if (option == 'remove') data.remove()
-    })
-  }
+          if (!data){
+              $this.data('collection', (data = new Collection(this, options)));
+          }
+          data.options.collection_id = collection_id;
+          if (option == 'add') {
+              data.add();
+          }
+          if (option == 'remove'){
+              data.remove();
+          }
+      });
+  };
 
   $.fn.collection.defaults = {
-	collection_id: null,
+    collection_id: null,
     addcheckfunc: false,
     addfailedfunc: false
-  }
-  
-  $.fn.collection.Constructor = Collection
+  };
+
+  $.fn.collection.Constructor = Collection;
 
 
  /* COLLECTION DATA-API
   * =============== */
 
   $(function () {
-    $('body').on('click.collection.data-api', '[data-collection-add-btn]', function ( e ) {
-      var $btn = $(e.target)
-      if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
-      $btn.collection('add')
-    })
-    $('body').on('click.collection.data-api', '[data-collection-remove-btn]', function ( e ) {
-      var $btn = $(e.target)
-      if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
-      $btn.collection('remove')
-    })
-  })
+      $('body').on('click.collection.data-api', '[data-collection-add-btn]', function ( e ) {
+        var $btn = $(e.target);
+        if (!$btn.hasClass('btn')){
+            $btn = $btn.closest('.btn');
+        }
+        $btn.collection('add');
+      });
+      $('body').on('click.collection.data-api', '[data-collection-remove-btn]', function ( e ) {
+        var $btn = $(e.target);
+        if (!$btn.hasClass('btn')){
+            $btn = $btn.closest('.btn');
+        }
+        $btn.collection('remove');
+      });
+  });
 
-}( window.jQuery );
+} ( window.jQuery );
