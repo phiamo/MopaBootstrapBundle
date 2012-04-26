@@ -358,7 +358,7 @@
     {% set form = form.parent %}
     {{ block('error_type') }}
 {% elseif form.hasParent() == 0 %}
-    {{ form.get('error_type') }}
+    {{ form.get('form_error_type') }}
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}
