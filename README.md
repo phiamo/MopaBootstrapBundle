@@ -311,7 +311,7 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 More in detail doc for Forms:
 
 * [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
-* [twig templates](https://github.com/phiamo/MopaBootstrapSanxboxBundle/tree/master/Resources/views/Examples) 
+* [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples) 
 * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
