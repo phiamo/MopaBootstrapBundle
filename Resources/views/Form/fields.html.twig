@@ -194,7 +194,7 @@
         {% if widget_control_group and not _isCollectionItem %}
             {% set oid = id %}
             {% set id = oid ~ "_control_group" %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
             {% set id = oid %}
         {% endif %}
     {% endif %}
@@ -274,7 +274,7 @@
 		{% endif %}
         {% set oid = id %}
         {% set id = oid ~ "_control_group" %}
-    <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+    <div class="collection control-group{% if errors|length > 0 %} error{% endif %}">
         {% set id = oid %}
     {% endif %}
     {{ block('form_label') }}
