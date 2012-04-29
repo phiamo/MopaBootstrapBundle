@@ -192,9 +192,12 @@
 	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
     {% if form.children|length == 0 %}
         {% if widget_control_group and not _isCollectionItem %}
-            {% set oid = id %}
-            {% set id = oid ~ "_control_group" %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
+            {% set control_attr = control_attr|merge({'class': control_attr.class|default('') ~ ' control-group'}) %}
+            {% set control_attr = control_attr|merge({'id': id ~ "_control_group"}) %}
+            {% if errors|length > 0 %}
+                {% set control_attr = control_attr|merge({'class': control_attr.class|default('') ~ ' error'}) %}
+            {% endif %}
+    <div{% for attrname,attrvalue in control_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
             {% set id = oid %}
         {% endif %}
     {% endif %}
