@@ -35,7 +35,7 @@
         {{ block('widget_controls_end') }}
     {{ block('widget_control_group_end') }}
     {% else %}
-            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            <select {{ block('widget_control_group_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
                 <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
                 {% endif %}
@@ -134,10 +134,10 @@
 {% spaceless %}
     {% if label_render %}
         {% if required %}
-            {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+            {% set widget_label_attr = widget_label_attr|merge({'class': widget_label_attr.class|default('') ~ ' required'}) %}
         {% endif %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
-        <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+        {% set widget_label_attr = widget_label_attr|merge({'class': widget_label_attr.class|default('') ~ ' control-label'}) %}
+        <label{% for attrname,attrvalue in widget_label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {% if required %}*{% endif %}
         {% if widget_add_btn %}
@@ -217,7 +217,7 @@
     {% if not widget_remove_btn|default(false) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
-        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        <input type="{{ type }}" {{ block('widget_control_group_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     	{% if widget_addon.append %}
     	{{ block('widget_addon') }}
@@ -327,12 +327,12 @@
 
 {% block widget_control_group_start %}
 {% if widget_control_group %}
-    {% set widget_attr = widget_attr|merge({'class': widget_attr.class|default('') ~ ' control-group'}) %}
-    {% set widget_attr = widget_attr|merge({'id': id ~ "_control_group"}) %}
+    {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
+    {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ "_control_group"}) %}
     {% if errors|length > 0 %}
-        {% set widget_attr = widget_attr|merge({'class': widget_attr.class|default('') ~ ' error'}) %}
+        {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
-    <div {% for attrname,attrvalue in widget_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
 {% endif %}
 {% endblock widget_control_group_start %}
 
@@ -344,8 +344,8 @@
 
 {% block widget_controls_start %}
 {% if widget_controls %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' controls'}) %}
-    <div {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
+    {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
+    <div {% for attrname,attrvalue in widget_controls_attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
 {% endif %}
 {% endblock widget_controls_start %}
 

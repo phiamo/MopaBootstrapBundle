@@ -8,6 +8,7 @@
    *   [Widget Addons](#Widget_Addons)
      *   [Form Field Prefix / Suffix](#Form_Field_presuf)
    *   [Form Errors](#Form_Errors)
+   *   [Widget Attrs](#Widget_Attrs)
 
 
 <h3 id="FormExtensions">Make use of FormExtensions</h3>
@@ -203,22 +204,28 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ```
 
-<h3 id="Control_Tags">Control tag</h3>
+<h3 id="Widget_Attrs">Widget Attrs</h3>
 
 // Thanks to JohanLopes and PR #105:
-So i made another form extenstion so you can explicitly set the classes of the control tag, 
+There are a bunch of other form extenstions, so you can explicitly set the classes of the control tags, 
 by default there is only the control-group and the error (if the widget has error) classes rendered into it :
 
 ``` php
        $builder
             ->add('somefield', null, array( 
-                'widget_attr' => array('class'=>'mycontrolclass')
+                'widget_control_group_attr' => array('class'=>'mycontrolgroupclass'),
+                'widget_controls_attr' => array('class'=>'mycontrolsclass'),
+                'widget_label_attr' => array('class'=>'mylabelclass')
             ))
 ```
 
 will result in
  
 ``` html
-<div id="myWidgetName_control_group" class="mycontrolclass control-group">
+<div id="myWidgetName_control_group" class="mycontrolgroupclass control-group">
+    <label class="mylabelclass required control-label">My Label</label>
+    <div class="mycontrolsclass controls">
+    
+    ...
 ... 
 ```
