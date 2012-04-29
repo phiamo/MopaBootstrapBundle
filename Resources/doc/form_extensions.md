@@ -73,26 +73,7 @@ public function buildForm(FormBuilder $builder, array $options)
 
 <h3 id="Field_Labels">Field Labels</h3>
 
-
-This is maybe a little hack but i didn't know howto come around the attr inheritance of the form to the label.
-So i made another form extenstion so you can explicitly set the classes of the label, 
-by default there is only the required class rendered into it, if the widget has the required attribute true (which is default):
-
-``` php
-       $builder
-            ->add('somefield', null, array( 
-                'label_attr' => array('class'=>'mylabelclass')
-            ))
-```
-
-will result in
- 
-``` html
-<label class="mylabelclass required" for="somefield"> 
-...
-```
-
-Also you have the option to remove a specific field label by setting label_render to false
+You have the option to remove a specific field label by setting label_render to false
 
 ``` php
        $builder
