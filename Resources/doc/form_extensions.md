@@ -202,3 +202,24 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ```
+
+<h3 id="Control_Tags">Control tag</h3>
+
+
+This is maybe a little hack but i didn't know howto come around the attr inheritance of the form to the control tag.
+So i made another form extenstion so you can explicitly set the classes of the control tag, 
+by default there is only the control-group and the error (if the widget has error) classes rendered into it :
+
+``` php
+       $builder
+            ->add('somefield', null, array( 
+                'control_attr' => array('class'=>'mycontrolclass')
+            ))
+```
+
+will result in
+ 
+``` html
+<div id="myWidgetName_control_group" class="mycontrolclass control-group">
+... 
+```
