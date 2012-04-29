@@ -3,17 +3,15 @@
 
 {# Widgets #}
 
-{% block form_widget %}
-    {% if form.children|length > 0 %}
-        {% if render_fieldset %}<fieldset>{% endif %}
-        {% if show_legend %}{{ block('form_legend') }}{% endif %}
-        {{ block('form_rows_visible') }}
-        {{ form_rest(form) }}
-        {% if render_fieldset %}</fieldset>{% endif %}
-    {% else %}
-        {{ block('input') }}
-    {% endif %}
-{% endblock form_widget %}
+{% block form_widget_compound %}
+{% spaceless %}
+    {% if render_fieldset %}<fieldset>{% endif %}
+    {% if show_legend %}{{ block('form_legend') }}{% endif %}
+    {{ block('form_rows_visible') }}
+    {{ form_rest(form) }}
+    {% if render_fieldset %}</fieldset>{% endif %}
+{% endspaceless %}
+{% endblock form_widget_compound %}
 
 {% block collection_widget %}
     {% if errors|length > 0 %}
@@ -25,9 +23,7 @@
 {% block choice_widget %}
     {% if expanded %}
     {{ block('widget_control_group_start') }}
-        {% if label_render %}
         {{ form_label(form, label) }}
-        {% endif %}
         {{ block('widget_controls_start') }}
             {% for child in form %}
                 <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
@@ -134,33 +130,25 @@
           <legend>{{ label|trans({}, translation_domain) }}</legend>
 {% endblock form_legend %}
 
-{# TODO: rebuild since its depreciated#}
-{% block generic_label %}
-{% spaceless %}
-    {% if required %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
-    {% endif %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
-    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {{ label|trans({}, translation_domain) }}
-    {% if required %}*{% endif %}
-    {% if widget_add_btn %}
-        {{ block('form_widget_add_btn') }}
-    {% endif %}
-    {% if help_label %}
-        <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
-    {% endif %}
-    </label>
-{% endspaceless %}
-{% endblock %}
-
 {% block form_label %}
+{% spaceless %}
     {% if label_render %}
-        {% if form.children|length == 0 %}
-            {% set attr = label_attr|merge({'for': id}) %}
+        {% if required %}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
         {% endif %}
-        {{ parent() }}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
+        <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+        {{ label|trans({}, translation_domain) }}
+        {% if required %}*{% endif %}
+        {% if widget_add_btn %}
+            {{ block('form_widget_add_btn') }}
+        {% endif %}
+        {% if help_label %}
+            <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
+        {% endif %}
+        </label>
     {% endif %}
+{% endspaceless %}
 {% endblock form_label %}
 
 {# Rows #}
@@ -341,7 +329,7 @@
     {% if widget_control_group %}
     {% set oid = id %}
     {% set id = oid ~ "_control_group" %}
-    {% set attr = attr|merge({'class': attr.class|default('control-group') ~ (errors|length > 0 ? ' error' : '') }) %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-group' ~ (errors|length > 0 ? ' error' : '') }) %}
     <div {{ block('widget_container_attributes') }}>
     {% set id = oid %}
     {% endif %}
@@ -355,8 +343,8 @@
 
 {% block widget_controls_start %}
     {% if widget_controls %}
-    {% set attr = attr|merge({'class': attr.class|default('controls')}) %}
-    <div{% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' controls'}) %}
+    <div {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
 	{% endif %}
 {% endblock widget_controls_start %}
 
