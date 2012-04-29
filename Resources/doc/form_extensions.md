@@ -202,3 +202,23 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ```
+
+<h3 id="Control_Tags">Control tag</h3>
+
+// Thanks to JohanLopes and PR #105:
+So i made another form extenstion so you can explicitly set the classes of the control tag, 
+by default there is only the control-group and the error (if the widget has error) classes rendered into it :
+
+``` php
+       $builder
+            ->add('somefield', null, array( 
+                'widget_attr' => array('class'=>'mycontrolclass')
+            ))
+```
+
+will result in
+ 
+``` html
+<div id="myWidgetName_control_group" class="mycontrolclass control-group">
+... 
+```
