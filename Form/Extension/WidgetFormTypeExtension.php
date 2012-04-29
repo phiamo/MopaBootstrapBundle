@@ -25,6 +25,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $builder->setAttribute('widget_prefix', $options['widget_prefix']);
         $builder->setAttribute('widget_suffix', $options['widget_suffix']);
         $builder->setAttribute('widget_type',   $options['widget_type']);
+        $builder->setAttribute('widget_attr', $options['widget_attr']);
     }
 
     public function buildView(FormView $view, FormInterface $form)
@@ -35,6 +36,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->set('widget_prefix', $form->getAttribute('widget_prefix'));
         $view->set('widget_suffix', $form->getAttribute('widget_suffix'));
         $view->set('widget_type',   $form->getAttribute('widget_type'));
+        $view->set('widget_attr',   $form->getAttribute('widget_attr'));
     }
 
     public function getDefaultOptions()
@@ -50,6 +52,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_prefix' => null,
             'widget_suffix' => null,
             'widget_type' => '',
+            'widget_attr' => array(),
         );
     }
     public function getAllowedOptionValues()

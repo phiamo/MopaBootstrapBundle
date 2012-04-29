@@ -326,30 +326,31 @@
 {# widget helper blocks #}
 
 {% block widget_control_group_start %}
-    {% if widget_control_group %}
-    {% set oid = id %}
-    {% set id = oid ~ "_control_group" %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-group' ~ (errors|length > 0 ? ' error' : '') }) %}
-    <div {{ block('widget_container_attributes') }}>
-    {% set id = oid %}
+{% if widget_control_group %}
+    {% set widget_attr = widget_attr|merge({'class': widget_attr.class|default('') ~ ' control-group'}) %}
+    {% set widget_attr = widget_attr|merge({'id': id ~ "_control_group"}) %}
+    {% if errors|length > 0 %}
+        {% set widget_attr = widget_attr|merge({'class': widget_attr.class|default('') ~ ' error'}) %}
     {% endif %}
+    <div {% for attrname,attrvalue in widget_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+{% endif %}
 {% endblock widget_control_group_start %}
 
 {% block widget_control_group_end %}
-    {% if widget_control_group %}
+{% if widget_control_group %}
     </div>
-    {% endif %}
+{% endif %}
 {% endblock widget_control_group_end %}
 
 {% block widget_controls_start %}
-    {% if widget_controls %}
+{% if widget_controls %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' controls'}) %}
     <div {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
-	{% endif %}
+{% endif %}
 {% endblock widget_controls_start %}
 
 {% block widget_controls_end %}
-    {% if widget_controls %}
+{% if widget_controls %}
     </div>
-	{% endif %}
+{% endif %}
 {% endblock widget_controls_end %}
