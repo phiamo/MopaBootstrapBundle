@@ -16,28 +16,19 @@
 {% endblock form_widget %}
 
 {% block collection_widget %}
-{% spaceless %}
     {% if errors|length > 0 %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
     {% endif %}
     {{ block('form_widget') }}
-{% endspaceless %}
 {% endblock collection_widget %}
-
-{% block textarea_widget %}
-{% spaceless %}
-    {% set attr = attr %}
-    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
-{% endspaceless %}
-{% endblock textarea_widget %}
 
 {% block choice_widget %}
     {% if expanded %}
-    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    {{ block('widget_control_group_start') }}
         {% if label_render %}
         {{ form_label(form, label) }}
         {% endif %}
-        <div class="controls">
+        {{ block('widget_controls_start') }}
             {% for child in form %}
                 <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
                     {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
@@ -45,8 +36,8 @@
                 </label>
             {% endfor %}
             {{ block('form_message') }}
-        </div>
-    </div>
+        {{ block('widget_controls_end') }}
+    {{ block('widget_control_group_end') }}
     {% else %}
             <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
@@ -69,12 +60,12 @@
 
 {% block date_widget %}
 {% spaceless %}
-    {% if widget == 'single_text' %}
-        {{ block('form_widget') }}
-    {% else %}
-    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+{% if widget == 'single_text' %}
+    {{ block('form_widget') }}
+{% else %}
+    {{ block('widget_control_group_start') }}
         {{ form_label(form, label) }}
-        <div class="controls">
+        {{ block('widget_controls_start') }}
             {% set attr = attr|merge({'class': attr.class|default('')}) %}
             <div {{ block('widget_container_attributes')  }}>
                 {{ date_pattern|replace({
@@ -84,9 +75,10 @@
                 })|raw }}
             </div>
             {{ block('help') }}
-        </div>
-    </div>
-    {% endif %}
+
+        {{ block('widget_controls_end') }}
+    {{ block('widget_control_group_end') }}
+{% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
 
@@ -95,16 +87,16 @@
     {% if widget == 'single_text' %}
         {{ block('form_widget') }}
     {% else %}
-        <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    {{ block('widget_control_group_start') }}
             {{ form_label(form, label) }}
-            <div class="controls">
+            {{ block('widget_controls_start') }}
                 {% set attr = attr|merge({'class': attr.class|default('')}) %}
                 <div {{ block('widget_container_attributes')  }}>
                     {{ form_widget(form.hour, { 'attr': { 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'class': 'input-mini' } }) }}{% endif %}
                 </div>
                 {{ block('help') }}
-            </div>
-        </div>
+        {{ block('widget_controls_end') }}
+    {{ block('widget_control_group_end') }}
     {% endif %}
 {% endspaceless %}
 {% endblock time_widget %}
@@ -113,9 +105,9 @@
     {% if widget == 'single_text' %}
         {{ block('form_widget') }}
     {% else %}
-    <div class="control-group {% if errors|length > 0 %}error{% endif %}">
+    {{ block('widget_control_group_start') }}
         {{ form_label(form, label) }}
-        <div class="controls">
+        {{ block('widget_controls_start') }}
             {% set attr = attr|merge({'class': attr.class|default('')}) %}
             <div {{ block('widget_container_attributes') }}>
                 {{ form_errors(form.date) }}
@@ -124,8 +116,8 @@
                 {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
             </div>
             {{ block('form_help') }}
-        </div>
-    </div>
+        {{ block('widget_controls_end') }}
+    {{ block('widget_control_group_end') }}
     {% endif %}
 {% endblock datetime_widget %}
 
@@ -142,6 +134,7 @@
           <legend>{{ label|trans({}, translation_domain) }}</legend>
 {% endblock form_legend %}
 
+{# TODO: rebuild since its depreciated#}
 {% block generic_label %}
 {% spaceless %}
     {% if required %}
@@ -162,14 +155,12 @@
 {% endblock %}
 
 {% block form_label %}
-{% spaceless %}
     {% if label_render %}
         {% if form.children|length == 0 %}
             {% set attr = label_attr|merge({'for': id}) %}
         {% endif %}
-        {{ block('generic_label') }}
+        {{ parent() }}
     {% endif %}
-{% endspaceless %}
 {% endblock form_label %}
 
 {# Rows #}
@@ -190,13 +181,8 @@
 {% block form_row %}
     {% set _isCollectionItem = (form.hasParent()|default(false) and form.getParent().get('prototype') ) %}
 	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
-    {% if form.children|length == 0 %}
-        {% if widget_control_group and not _isCollectionItem %}
-            {% set oid = id %}
-            {% set id = oid ~ "_control_group" %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
-            {% set id = oid %}
-        {% endif %}
+    {% if form.children|length == 0 and not _isCollectionItem %}
+        {{ block('widget_control_group_start') }}
     {% endif %}
     {% if form.children|length > 0 and form.hasParent() != 0 %}
         {% if show_child_legend|default(false) %}
@@ -205,34 +191,27 @@
 	{% elseif not _isCollectionItem  %}
     	{{ block('form_label') }}
     {% endif %}
-    {% if form.children|length == 0 %}
-    	{% if widget_controls and not _isCollectionItem %}
-        <div class="controls">
-        {% endif %}
+    {% if form.children|length == 0 and not _isCollectionItem %}
+        {{ block('widget_controls_start') }}
     {% endif %}
     {% if _isCollectionItem %}
 		<div class="collection-item">
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype'), 'widget_remove_btn': widget_remove_btn}) }} {{ widget_suffix|raw }}
+        {{ widget_prefix|raw }} {{ form_widget(form) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
         &nbsp;{{ block('form_widget_remove_btn') }}
     {% endif %}
-
     {% if form.children|length == 0 %}
         {{ block('form_message') }}
     {% endif %}
     {% if _isCollectionItem %}
 		</div>
     {% endif %}
-    {% if form.children|length == 0 %}
-        {% if widget_controls and not _isCollectionItem %}
-        </div>
-        {% endif %}
+    {% if form.children|length == 0 and not _isCollectionItem %}
+        {{ block('widget_controls_end') }}
     {% endif %}
-    {% if form.children|length == 0 %}
-	    {% if widget_control_group and not _isCollectionItem %}
-    </div>
-        {% endif %}
+    {% if form.children|length == 0 and not _isCollectionItem %}
+        {{ block('widget_control_group_end') }}
     {% endif %}
 {% endblock form_row %}
 
@@ -272,22 +251,15 @@
 		{% if prototype is defined %}
 			{% set attr = attr|merge({'data-prototype': form_row(prototype), 'data-collection': 'true' }) %}
 		{% endif %}
-        {% set oid = id %}
-        {% set id = oid ~ "_control_group" %}
-    <div class="collection control-group{% if errors|length > 0 %} error{% endif %}" {{ block('widget_attributes') }}>
-        {% set id = oid %}
+    {% set attr = attr|merge({'class': attr.class~"collection control-group"}) %}
+    {{ block('widget_control_group_start') }}
     {% endif %}
     {{ block('form_label') }}
-   	{% if widget_controls %}
-        <div class="collection controls">
-    {% endif %}
+    {% set attr = attr|merge({'class': attr.class~"collection controls"}) %}
+    {{ block('widget_controls_start') }}
     {{ form_widget(form) }}
-   	{% if widget_controls %}
-        </div>
-    {% endif %}
-    {% if widget_control_group %}
-    </div>
-    {% endif %}
+    {{ block('widget_controls_end') }}
+    {{ block('widget_control_group_end') }}
 {% endblock collection_row %}
 
 {# Help #}
@@ -327,8 +299,8 @@
         {% endif %}
     {% endfor %}
 {% else %}
-{# prevent deep nesting wrong context copy error #}
-{% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
+    {# prevent deep nesting wrong context copy error #}
+    {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
         {{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
     {% endfor %}
@@ -363,12 +335,33 @@
 {% endspaceless %}
 {% endblock error_type %}
 
+{# widget helper blocks #}
 
-{# widget attributes #}
+{% block widget_control_group_start %}
+    {% if widget_control_group %}
+    {% set oid = id %}
+    {% set id = oid ~ "_control_group" %}
+    {% set attr = attr|merge({'class': attr.class|default('control-group') ~ (errors|length > 0 ? ' error' : '') }) %}
+    <div {{ block('widget_container_attributes') }}>
+    {% set id = oid %}
+    {% endif %}
+{% endblock widget_control_group_start %}
 
-{% block widget_attributes %}
-{% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}
-{% endspaceless %}
-{% endblock widget_attributes %}
+{% block widget_control_group_end %}
+    {% if widget_control_group %}
+    </div>
+    {% endif %}
+{% endblock widget_control_group_end %}
+
+{% block widget_controls_start %}
+    {% if widget_controls %}
+    {% set attr = attr|merge({'class': attr.class|default('controls')}) %}
+    <div{% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
+	{% endif %}
+{% endblock widget_controls_start %}
+
+{% block widget_controls_end %}
+    {% if widget_controls %}
+    </div>
+	{% endif %}
+{% endblock widget_controls_end %}
