@@ -7,7 +7,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Mopa\Bundle\BootstrapBundle\Composer;
+use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
+use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
 
 /**
@@ -38,7 +39,7 @@ php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitte
 
 Defaults if installed by composer would be :
 
-pathToTwitterBootstrap:    ../../../../../../vendor/twitter/bootstrap 
+pathToTwitterBootstrap:    ../../../../../../vendor/twitter/bootstrap
 pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
 
 EOT
@@ -53,15 +54,15 @@ EOT
         if($input->getOption('manual')){
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsfromUser();
         }
-        elseif(false !== $composer = Composer\ComposerAdapter::getComposer($input, $output)){
-            $cmanager = new Composer\ComposerPathFinder($composer);
+        elseif(false !== $composer = ComposerAdapter::getComposer($input, $output)){
+            $cmanager = new ComposerPathFinder($composer);
             $options = array(
                     'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
-                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR 
+                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
                 );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-                                self::$mopaBootstrapBundleName, 
-                                self::$twitterBootstrapName, 
+                                self::$mopaBootstrapBundleName,
+                                self::$twitterBootstrapName,
                                 $options
             );
         }
@@ -107,7 +108,7 @@ EOT
                     $symlinkTarget = self::get_absolute_path($resolve);
                 }
                 if(!is_dir($symlinkTarget)){
-                    throw new \Exception("pathToTwitterBootstrap would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));                    
+                    throw new \Exception("pathToTwitterBootstrap would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));
                 }
             }
             $dialog = $this->getHelperSet()->get('dialog');
@@ -154,8 +155,8 @@ EOF
             $linkTarget = readlink($symlinkName);
             if($linkTarget != $symlinkTarget){
                 if(!$forceSymlink){
-                    throw new \Exception("Symlink " . $symlinkName . 
-                        " Points  to " . $linkTarget . 
+                    throw new \Exception("Symlink " . $symlinkName .
+                        " Points  to " . $linkTarget .
                         " instead of " . $symlinkTarget);
                 }
                 unlink($symlinkName);

@@ -23,6 +23,7 @@
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
         "php": ">=5.3.2"
+        "mopa/composer-bridge": "dev-master",
     },
     "suggest":  {
         "twitter/bootstrap": "dev-master",
