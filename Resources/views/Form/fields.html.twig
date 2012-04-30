@@ -5,11 +5,15 @@
 
 {% block form_widget_compound %}
 {% spaceless %}
-    {% if render_fieldset %}<fieldset>{% endif %}
+    {% if not form.hasParent()|default(false) %}
+    {% if render_fieldset %}<fieldset>{{ form.get('id') }}{% endif %}
     {% if show_legend %}{{ block('form_legend') }}{% endif %}
+    {% endif %}
     {{ block('form_rows_visible') }}
     {{ form_rest(form) }}
+    {% if not form.hasParent()|default(false) %}
     {% if render_fieldset %}</fieldset>{% endif %}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
