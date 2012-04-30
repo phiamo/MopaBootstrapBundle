@@ -6,7 +6,7 @@
 {% block form_widget_compound %}
 {% spaceless %}
     {% if not form.hasParent()|default(false) %}
-    {% if render_fieldset %}<fieldset>{{ form.get('id') }}{% endif %}
+    {% if render_fieldset %}<fieldset>{% endif %}
     {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
     {{ block('form_rows_visible') }}
