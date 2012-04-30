@@ -41,13 +41,7 @@
 
 {% block collection_widget %}
 {% spaceless %}
-    {% if prototype is defined %}
-        {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
-    {% endif %}
-    {% if errors|length > 0 %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' error'}) %}
-    {% endif %}
-    {{ block('form_widget_single_control') }}
+    {{ block('form_widget') }}
 {% endspaceless %}
 {% endblock collection_widget %}
 
@@ -96,6 +90,7 @@
 {% endblock time_widget %}
 
 {% block datetime_widget %}
+{% spaceless %}
     {% if widget == 'single_text' %}
         {{ block('form_widget_single_control') }}
     {% else %}
@@ -109,12 +104,15 @@
             </div>
             {{ block('form_help') }}
     {% endif %}
+{% endspaceless %}
 {% endblock datetime_widget %}
 
 {# Labels #}
 
 {% block form_legend %}
+{% spaceless %}
     <legend>{{ label|trans({}, translation_domain) }}</legend>
+{% endspaceless %}
 {% endblock form_legend %}
 
 {% block form_label %}
@@ -141,6 +139,7 @@
 {# Rows #}
 
 {% block form_rows_visible %}
+{% spaceless %}
     {% if form_errors(form) %}
         <div class="symfony-form-errors">
             {{ form_errors(form) }}
@@ -151,67 +150,78 @@
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
+{% endspaceless %}
 {% endblock form_rows_visible %}
 
 {% block form_row %}
-{{ block('widget_control_group_start') }}
+{% spaceless %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
+    {% if 'collection' in form.get('types') %}
+        {% if prototype is defined %}
+            {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': form_row(prototype) }) | e %}
+        {% endif %}
+        {% set widget_control_group_attr = widget_control_group_attr|merge({'class':widget_control_group_attr.class|default('') ~ ' collection' }) | e %}
+    {% endif %}
+    {% if form.getParent()| default(false) and 'collection' in form.getParent().get('types') %}
+    <div class="collection-item">
+    {% else %}
+    {{ block('widget_control_group_start') }}
+    {% endif %}
     {{ widget_prefix|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
-        &nbsp;{{ block('form_widget_remove_btn') }}
-    {% endif %}
+        {{ block('form_widget_remove_btn') }}
+    {% endif -%}
     {% if form.children|length == 0 %}
         {{ block('form_message') }}
     {% endif %}
-{{ block('widget_control_group_end') }}
+    {% if form.getParent()| default(false) and 'collection' in form.getParent().get('types') %}
+    </div>
+    {% else %}
+    {{ block('widget_control_group_end') }}
+    {% endif %}
+{% endspaceless %}
 {% endblock form_row %}
 
 {# Support #}
 
 {% block form_message %}
+{% spaceless %}
     {{ form_errors(form) }}
     {{ block('form_help') }}
+{% endspaceless %}
 {% endblock form_message %}
-
-{% block collection_row__ %}COLLECTION ROW START
-	{% set _isSubform = ('form' in form.get('types')) %}
-	{% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
-    {% if widget_control_group %}
-        {% set attr = attr|merge({'class': attr.class~"collection control-group"}) %}
-        {{ block('widget_control_group_start') }}
-    {% endif %}
-    {{ block('form_label') }}
-    {% set attr = attr|merge({'class': attr.class~"collection controls"}) %}
-    {{ block('widget_controls_start') }}
-    {{ form_widget(form) }}
-    {{ block('widget_controls_end') }}
-    {{ block('widget_control_group_end') }}
-{% endblock collection_row__ %}
 
 {# Help #}
 
 {% block form_help %}
+{% spaceless %}
     {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
     {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
+{% endspaceless %}
 {% endblock form_help %}
 
 {% block form_widget_add_btn %}
+{% spaceless %}
     {% if widget_add_btn %}
     <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}_control_group" value="{{ widget_add_btn }}">
     {% endif %}
+{% endspaceless %}
 {% endblock form_widget_add_btn %}
 
 {% block form_widget_remove_btn %}
+{% spaceless %}
     {% if widget_remove_btn %}
     <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}_control_group" value="{{ widget_remove_btn }}">
     {% endif %}
+{% endspaceless %}
 {% endblock form_widget_remove_btn %}
 
-
 {% block widget_addon %}
+{% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
 <span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+{% endspaceless %}
 {% endblock widget_addon %}
 
 {# Errors #}
@@ -264,6 +274,7 @@
 {# widget helper blocks #}
 
 {% block widget_control_group_start %}
+{% spaceless %}
 {% if widget_control_group|default(false) or not form.hasParent() %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ "_control_group"}) %}
@@ -274,20 +285,23 @@
     {% if form.children|length > 0 and form.hasParent() and show_child_legend %}
         {{ block('form_legend') }}
 	{% else %}
-    	{{ block('form_label') }}
+    	{{ form_label(form) }}
     {% endif %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
         <div {% for attrname,attrvalue in widget_controls_attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
     {% endif %}
 {% endif %}
+{% endspaceless %}
 {% endblock widget_control_group_start %}
 
 {% block widget_control_group_end %}
+{% spaceless %}
 {% if widget_control_group|default(false) or not form.hasParent() %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         </div>
     {% endif %}
     </div>
 {% endif %}
+{% endspaceless %}
 {% endblock widget_control_group_end %}

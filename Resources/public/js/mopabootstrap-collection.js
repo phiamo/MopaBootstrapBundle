@@ -28,7 +28,7 @@
         this.$element = $(element);
         this.options = $.extend({}, $.fn.collection.defaults, options);
 
-        var embeddedForms = 'div' + this.options.collection_id + '>.collection.controls>.collection-item';
+        var embeddedForms = 'div' + this.options.collection_id + '.collection .collection-item';
         this.options.index = $(embeddedForms).length - 1;
     };
 
@@ -45,11 +45,9 @@
                 return;
             }
             row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            $(this.options.collection_id + ' div.collection.controls').append(row);
+            $('div' + this.options.collection_id + '.collection .controls').append(row);
         },
         remove: function () {
-                console.log(this.$element);
-                console.log(this.$element.parents('.collection-item'));
                 if (this.$element.parents('.collection-item').length !== 0){
                     this.$element.parents('.collection-item').remove();
                 }
@@ -65,7 +63,6 @@
       return this.each(function () {
           var $this = $(this),
             collection_id = '#'+$this.data('collection-add-btn'),
-            collection = $(collection_id),
             data = $this.data('collection'),
             options = typeof option == 'object' ? option : {};
 
