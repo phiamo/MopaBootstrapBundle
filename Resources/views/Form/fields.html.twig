@@ -185,7 +185,7 @@
     {% if _isCollectionItem %}
 		<div class="collection-item">
     {% endif %}
-        {{ widget_prefix|raw }} {{ form_widget(form) }} {{ widget_suffix|raw }}
+    {{ widget_prefix|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
         &nbsp;{{ block('form_widget_remove_btn') }}
     {% endif %}
@@ -205,7 +205,7 @@
 
 {# Support #}
 
-{% block input %}
+{% block form_widget_single_control %}
 {% spaceless %}
     {% set type = type|default('text') %}
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
@@ -217,7 +217,7 @@
     {% if not widget_remove_btn|default(false) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
-        <input type="{{ type }}" {{ block('widget_control_group_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     	{% if widget_addon.append %}
     	{{ block('widget_addon') }}
@@ -225,7 +225,7 @@
     </div>
     {% endif %}
 {% endspaceless %}
-{% endblock input %}
+{% endblock form_widget_single_control %}
 
 {% block form_message %}
     {{ form_errors(form) }}
