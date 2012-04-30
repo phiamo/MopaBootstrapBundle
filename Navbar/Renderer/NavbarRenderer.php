@@ -2,12 +2,11 @@
 namespace Mopa\Bundle\BootstrapBundle\Navbar\Renderer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\AbstractType;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
-
-use Symfony\Component\Form\AbstractType;
+use Mopa\Bundle\BootstrapBundle\Navbar\OptionNotFoundException;
 
 class NavbarRenderer{
 
@@ -33,7 +32,15 @@ class NavbarRenderer{
     {
         $options = array_merge($this->getNavbarDefaultOptions(), $options);
 
-        $template = $options['template'];
+        $navbar = $this->getNavbar($name);
+        $navbar = $this->createFormViews($navbar);
+        $block = 'navbar';
+        try{
+            $template = $navbar->getOption('template');
+        }
+        catch(OptionNotFoundException $e){
+            $template = $options['template'];
+        }
         if (!$template instanceof \Twig_Template) {
             try{
                 $template = $this->container->get('twig')->loadTemplate($template);
@@ -42,9 +49,6 @@ class NavbarRenderer{
                 throw new \Exception("Could not load template: " . $template, 99, $e);
             }
         }
-        $navbar = $this->getNavbar($name);
-        $navbar = $this->createFormViews($navbar);
-        $block = 'navbar';
 
         // we do not call renderBlock here to avoid too many nested level calls (XDebug limits the level to 100 by default)
         ob_start();

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 
 class GenericNavbar implements NavbarInterface
 {
-    
+
     protected $options = array();
     protected $formClasses = array();
     protected $formTypes = array();
@@ -43,7 +43,7 @@ class GenericNavbar implements NavbarInterface
         if(array_key_exists($key, $this->options)){
             return $this->options[$key];
         }
-        throw new \Exception("Option " . $key . " not found!");
+        throw new OptionNotFoundException("Option " . $key . " not found!");
     }
     public function getFormClasses(){
         return $this->formClasses;
