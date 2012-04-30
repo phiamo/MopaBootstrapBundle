@@ -35,7 +35,7 @@
         {{ block('widget_controls_end') }}
     {{ block('widget_control_group_end') }}
     {% else %}
-            <select {{ block('widget_control_group_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
                 <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
                 {% endif %}
