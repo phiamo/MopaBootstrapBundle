@@ -117,12 +117,15 @@
 
 {% block form_label %}
 {% spaceless %}
+    {% if single_control %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
     {% if label_render %}
         {% if required %}
-            {% set widget_label_attr = widget_label_attr|merge({'class': widget_label_attr.class|default('') ~ ' required'}) %}
+            {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
         {% endif %}
-        {% set widget_label_attr = widget_label_attr|merge({'class': widget_label_attr.class|default('') ~ ' control-label'}) %}
-        <label{% for attrname,attrvalue in widget_label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
+        <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {% if required %}*{% endif %}
         {% if widget_add_btn %}
