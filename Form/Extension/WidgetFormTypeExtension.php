@@ -27,7 +27,6 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $builder->setAttribute('widget_type',   $options['widget_type']);
         $builder->setAttribute('widget_control_group_attr', $options['widget_control_group_attr']);
         $builder->setAttribute('widget_controls_attr', $options['widget_controls_attr']);
-        $builder->setAttribute('widget_label_attr', $options['widget_label_attr']);
     }
 
     public function buildView(FormView $view, FormInterface $form)
@@ -40,7 +39,6 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->set('widget_type',   $form->getAttribute('widget_type'));
         $view->set('widget_control_group_attr',   $form->getAttribute('widget_control_group_attr'));
         $view->set('widget_controls_attr',   $form->getAttribute('widget_controls_attr'));
-        $view->set('widget_label_attr',   $form->getAttribute('widget_label_attr'));
     }
 
     public function getDefaultOptions()
@@ -58,7 +56,6 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_type' => '',
             'widget_control_group_attr' => array(),
             'widget_controls_attr' => array(),
-            'widget_label_attr' => array(),
         );
     }
     public function getAllowedOptionValues()

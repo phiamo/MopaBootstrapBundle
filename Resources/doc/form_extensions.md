@@ -196,7 +196,7 @@ by default there is only the control-group and the error (if the widget has erro
             ->add('somefield', null, array( 
                 'widget_control_group_attr' => array('class'=>'mycontrolgroupclass'),
                 'widget_controls_attr' => array('class'=>'mycontrolsclass'),
-                'widget_label_attr' => array('class'=>'mylabelclass')
+                'label_attr' => array('class'=>'mylabelclass') // this is new in sf2.1 form component
             ))
 ```
 
