@@ -3,6 +3,16 @@
 
 {# Widgets #}
 
+{% block checkbox_widget %}
+{% spaceless %}
+	<label class="checkbox">
+    	<input type="checkbox" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} {% if value == 1 %}checked="checked" {% endif %}> {{ label }}
+  	</label>
+{{ block('form_message') }}
+
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
 {% block form_widget_single_control %}
 {% spaceless %}
     {% set type = type|default('text') %}
