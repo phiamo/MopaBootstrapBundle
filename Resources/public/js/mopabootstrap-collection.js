@@ -45,7 +45,7 @@
                 return;
             }
             row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            $('div' + this.options.collection_id + '.collection .controls').append(row);
+            $('div' + this.options.collection_id + '.collection .controls').append($('<div />').html(row).text());
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
