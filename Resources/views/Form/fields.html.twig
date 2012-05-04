@@ -288,8 +288,7 @@
     	{% endset %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype|e}) %}
     {% endif %}
-    {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
-    {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ "_control_group"}) %}
+    {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
     {% if errors|length > 0 %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
