@@ -114,6 +114,13 @@
 {% endspaceless %}
 {% endblock percent_widget %}
 
+{% block money_widget %}
+{% spaceless %}
+    {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
+    {{ block('form_widget_single_control') }}
+{% endspaceless %}
+{% endblock money_widget %}
+
 {# Labels #}
 
 {% block form_legend %}
