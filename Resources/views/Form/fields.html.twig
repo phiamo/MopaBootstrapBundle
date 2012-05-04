@@ -107,6 +107,13 @@
 {% endspaceless %}
 {% endblock datetime_widget %}
 
+{% block percent_widget %}
+{% spaceless %}
+    {% set widget_addon = widget_addon|merge({'text': '%', 'append': true}) %}
+    {{ block('form_widget_single_control') }}
+{% endspaceless %}
+{% endblock percent_widget %}
+
 {# Labels #}
 
 {% block form_legend %}
