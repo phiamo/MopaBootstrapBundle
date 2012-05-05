@@ -52,7 +52,6 @@ class MopaBootstrapExtension extends Extension
             }
         }
         if(isset($config['navbar'])){
-            $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
             $yamlloader->load("navbar_extension.yml");
             if(isset($config['navbar']['template'])){
                 $container->setParameter(
