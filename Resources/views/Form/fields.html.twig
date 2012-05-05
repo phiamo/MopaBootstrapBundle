@@ -161,7 +161,7 @@
     {% endif %}
         {{ widget_prefix|raw }} {{ form_widget(form, {'label': label, 'label_render': label_render, 'widget_remove_btn': widget_remove_btn, 'attr': attr, 'widget_addon': widget_addon, 'widget_type': widget_type, 'help_inline': help_inline, 'help_block': help_block, 'widget_control-group': widget_control_group, 'prototype': form.get('prototype')}) }} {{ widget_suffix|raw }}
     {% if widget_remove_btn is defined %}
-        &nbsp;{{ block('field_widget_remove_btn') }}
+        {{ block('field_widget_remove_btn') }}
     {% endif %}
     {% if not _isSubform %}
            {{ block('field_message') }}
