@@ -60,6 +60,19 @@
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
+{% block checkbox_widget %}
+{% spaceless %}
+{% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
+  <label class="checkbox">
+{% endif %}
+      <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline }}
+{% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
+{% set help_inline = false %}
+</label>
+{% endif %}
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
 {% block date_widget %}
 {% spaceless %}
 {% if widget == 'single_text' %}
@@ -197,8 +210,10 @@
 
 {% block form_help %}
 {% spaceless %}
+{% if 'checkbox' not in form.get('types') %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
     {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
-    {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
+{% endif %}
+{% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
 {% endspaceless %}
 {% endblock form_help %}
 
