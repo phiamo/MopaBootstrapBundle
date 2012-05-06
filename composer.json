@@ -22,7 +22,7 @@
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/symfony: "2.1.*",
+        "symfony/symfony": "2.1.*",
         "mopa/composer-bridge": "dev-master"
     },
     "suggest":  {
