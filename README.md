@@ -6,15 +6,15 @@
 > Mopa\BootstrapBundle
 > to
 > Mopa\Bundle\BootstrapBundle
-> 
+>
 > You must change the namespace references in:
-> 
->  * app/AppKernel.php 
+>
+>  * app/AppKernel.php
 >  * Your code making use of any MopaBootstrapBundle classes (e.g. Navbar, MenuBuilder, etc.)
 >  * Configuration referencing any classes (e.g. service definitions for menu, navbar, etc.)
-> 
+>
 > For info about the branches read https://github.com/phiamo/MopaBootstrapBundle/wiki/Branches-&-Versions
-> 
+>
 > If you dont want to care about the twitter/bootstrap dependency, please make sure your [composer.json](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md) is correct
 
 <h2 id="Live_Show">Live Show</h2>
@@ -29,15 +29,15 @@ To see the bundle and its capabilities online just have a look on
 <h2 id="Introduction">Introduction</h2>
 
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
-(http://twitter.github.com/bootstrap/) as easy as possible into your symfony2 
+(http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
 It includes:
 
 * twig templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
-  * control nearly every bootstrap2 form feature 
-  * javascript and twig blocks for dynamic collections  
+  * control nearly every bootstrap2 form feature
+  * javascript and twig blocks for dynamic collections
 * A generic Navbar class to generate your Navbar outside the template
   * helpers for dropdowns, seperators, etc.
 * twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
@@ -49,11 +49,11 @@ Besides this file, there is a growing collection of documentation:
 
 * in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc)
 * in the various examples:
-    * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples) 
+    * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
     * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
     * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
-    
+
 <h3 id="Outline">Outline</h3>
 
 *   [Prerequisites](#Prerequisites)
@@ -66,7 +66,7 @@ Besides this file, there is a growing collection of documentation:
 *   [Generating a Navbar](#NAVBAR)
 *   [TODO](#TODO)
 *   [Known Issues](#Known_Issues)
-    
+
 <h2 id="Prerequisites">Prerequisites</h2>
 
 <h3 id="RECOMMENDED">Less (recommended)</h3>
@@ -111,12 +111,12 @@ If you want to have a easier life, have a look into:
            ]
        }
     ```
-       
+
     <h2 id="Warning">Warning</h2>
     > Composer doesn't install suggests from mopa/boostrap-bundle!
-    > If you need e.g knplabs menues or paginator, craue/formflow, 
+    > If you need e.g knplabs menues or paginator, craue/formflow,
     > please add them to YOUR composer.json too!
-    
+
     ```json
        {
            "require": {
@@ -164,15 +164,15 @@ If you want to have a easier life, have a look into:
        ```
 
     There is also a console command to check and / or install this symlink:
-    
+
        ```bash
        php app/console mopa:bootstrap:install
        ```
-    
+
     With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
 
-    1.1. Include bootstrap manually or in another way: 
+    1.1. Include bootstrap manually or in another way:
 
         For including bootstrap there are different solutions, why using this one?
         have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including_bootstrap.md)
@@ -191,7 +191,16 @@ If you want to have a easier life, have a look into:
     }
     ```
 
-3. If you like configure your config.yml (not mandatory)
+3. Configure routing for bundle if your default is other than annotation:
+
+    ``` yaml
+    #app/config/routing.yml
+    mopa_bootstrap:
+        resource: "@MopaBootstrapBundle/Controller/ExamplesController.php"
+        type: annotation
+    ```
+
+4. If you like configure your config.yml (not mandatory)
 
     ``` yaml
     mopa_bootstrap:
@@ -229,7 +238,7 @@ Have a look into the sandbox too:
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
 
 ``` jinja
-{% stylesheets filter='less,cssrewrite,?yui_css' 
+{% stylesheets filter='less,cssrewrite,?yui_css'
    '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
    '@YourNiceBundle/Resources/public/less/*'
 %}
@@ -247,7 +256,7 @@ if it doesnt work, why not use the less way?
 
 ``` jinja
 {% block head_style %}
-{% stylesheets filter='cssrewrite,?yui_css' 
+{% stylesheets filter='cssrewrite,?yui_css'
    '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
@@ -257,8 +266,8 @@ if it doesnt work, why not use the less way?
 ```
 
 <h2 id="Theming">Using bootstrap for Theming</h2>
- 
-      
+
+
 Forms can either be activated for you whole project (app/config.yml):
 
 ``` yaml
@@ -295,12 +304,12 @@ It need to be the id or class of the form itself
 e.g.
 
          <form id="myform" class="myformclass" ...>
-         
+
          {'formident': '.myformclass'}
          or
          {'formident': '#myform'}
-          
-          
+
+
 And to use the Paginator templates copy them to
 
 ```bash
@@ -310,8 +319,8 @@ cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resource
 
 More in detail doc for Forms:
 
-* [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md) 
-* [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples) 
+* [form extenstion details](https://github.com/phiamo/MopaBootstrapBundle/tree/master/Resources/doc/form_extensions.md)
+* [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
 * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
 
 <h3 id="Field_Collections">Field Collections</h3>
@@ -332,7 +341,7 @@ Some things are currently missing :
 
 <h2 id="Generation_CRUD">Generation of CRUD controllers based on a Doctrine 2 schema</h2>
 
-The Bundle provides a new console command: 
+The Bundle provides a new console command:
 ```bash
 ./app/console mopa:generate:crud
 
@@ -359,10 +368,10 @@ https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar_c
     - Probably make a command to deal with bootstrap library submodule for init and update
     - Probably add more form components
     - Add more useful bootstrap stuff
- 
- 
+
+
 <h2 id="Known_Issues">Known Issues</h2>
 
     - Nothing what could not be done in another way, probably some will arise as soon as its published
       So make issues!
-    - There are probably things missing, so make PR's 
+    - There are probably things missing, so make PR's
