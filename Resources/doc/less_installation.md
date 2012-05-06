@@ -34,8 +34,29 @@ assetic:
             node_paths: [/usr/lib/node_modules]
 ```
 
- - Yui CSS and CSS Embed are quite nice, but just additional,
+ - Yui CSS and CSS Embed are very nice and recommended.
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
+here is an example config:
+
+
+``` yaml
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    filters:
+        less:
+            node: /usr/bin/node
+            node_paths: [/usr/lib/node_modules]
+        cssembed:
+            jar: %kernel.root_dir%/Resources/java/cssembed-0.3.6.jar
+        yui_css:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar
+        yui_js:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar
+```
+
+Do not forget to add the jars to your app.
+
 
 Known Problems:
 ---------------
