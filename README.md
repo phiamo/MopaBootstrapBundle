@@ -190,12 +190,12 @@ If you want to have a easier life, have a look into:
         );
     }
     ```
-3
-. Configure routing for bundle if your default is other than annotation:
+
+3. Configure routing for bundle if your default is other than annotation:
 
     ``` yaml
-     #app/config/routing.yml
-     mopa_bootstrap:
+    #app/config/routing.yml
+    mopa_bootstrap:
         resource: "@MopaBootstrapBundle/Controller/ExamplesController.php"
         type: annotation
     ```
