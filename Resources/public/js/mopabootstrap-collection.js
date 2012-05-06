@@ -28,7 +28,7 @@
         this.$element = $(element);
         this.options = $.extend({}, $.fn.collection.defaults, options);
 
-        var embeddedForms = 'div' + this.options.collection_id + '.collection .collection-item';
+        var embeddedForms = 'div' + this.options.collection_id + ' .collection-item';
         this.options.index = $(embeddedForms).length - 1;
     };
 
@@ -45,7 +45,7 @@
                 return;
             }
             row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            $('div' + this.options.collection_id + '.collection .controls').append(row);
+            $('div' + this.options.collection_id + ' .controls').append($('<div />').html(row).text());
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
