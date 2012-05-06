@@ -62,9 +62,9 @@ If you do not want to use less ignore this, otherwise have a look into:
 
 ```
 [MopaBootstrapBundle]
-    git=http://github.com/phiamo/MopaBootstrapBundle.git
-    target=/bundles/Mopa/BootstrapBundle
-    version=origin/v2.x_sf2.0
+    git = "http://github.com/phiamo/MopaBootstrapBundle.git"
+    target = "/bundles/Mopa/BootstrapBundle"
+    version=origin/v2.x_sf2.0s
 ```
 
 1.2 Or add this bundle to your project as a Git submodule:
@@ -118,10 +118,11 @@ For including bootstrap there are several ways have a look into
 or quick start e.g. with
 
 ```
-[TwitterBootstrap2]
-    git=git://github.com/twitter/bootstrap.git
-    target=/twitter/bootstrap/v2/
-    version=v2.0.0
+[twittersbootstrap]
+    git = "git://github.com/twitter/bootstrap.git"
+    target = "/bundles/Mopa/BootstrapBundle/Resources/bootstrap"
+    version = v2.0.3
+    
 ```
 
 in your deps
