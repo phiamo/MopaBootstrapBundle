@@ -9,7 +9,7 @@
 <meta charset="UTF-8" />
 {% block head_style %}
 {# Override this block to add your own files! #}
-{% stylesheets filter='less,cssembed,?yui_css'
+{% stylesheets
 	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
@@ -95,7 +95,6 @@
     	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
     	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
     	'@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
-    	filter="?yui_js"
     %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
