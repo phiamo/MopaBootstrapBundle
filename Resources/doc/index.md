@@ -9,13 +9,18 @@ Getting Started With MopaBootstrapBundle
 
 MopaBootstrapBundle provides several features to assist you quickly building applications:
 
-2. [Base Templates](2-base-templates.md)
-3. [Form Extension and Template](3-form-extension-templates.md)
-4. [Generating Navbars](4-navbar-generation.md)
+- [Base Templates](2-base-templates.md)
+- [Form Extension and Template](3-form-extension-templates.md)
+- [Generating Navbars](4-navbar-generation.md)
 
+Additional doc:
 
-98. [CRUD Generation](98-crud-generation.md)
-99. [Support for other Bundles](99-support-for-other-bundles.md)
+- [Including bootstrap](including-bootstrap.md)
+- [Css vs less](css-vs-less.md)
+- [Assetic cionfiguration](assetic-configuration.md)
+- [Advanced Navbar Example](navbar-configuration-advanced.md)
+- [CRUD Generation](98-crud-generation.md)
+- [Support for other Bundles](99-support-for-other-bundles.md)
 
 
 
@@ -31,10 +36,6 @@ There is a bunch of documentation for this bundle, have a look:
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
 *  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
 *  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
-
-### Config reference
-
-Check out the [configuration reference](configuration-reference.md) for a reference on the available configuration options.
 
 
 ### Example application(s)

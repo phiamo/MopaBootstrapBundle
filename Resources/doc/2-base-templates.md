@@ -14,7 +14,7 @@ If you want to have a easier life, have a look into:
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/layout.html.twig) its a fully working bootstrap layout and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout and might explain howto use it by itself.
 
 There is also a [base_lessjs.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
 
