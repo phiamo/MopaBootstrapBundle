@@ -1,14 +1,14 @@
 MopaBootstrapBundle Less installation
 =====================================
 
-To effectively use all features of bootstrap you might want to use less together with bootstrap.
-Have a look into the following docs what it is and then maybe install it on your systems.
+To effectively use all features of bootstrap you want to use less together with bootstrap.
+Have a look into the following docs what it is and then install it on your system.
 
  * [Twitters Less Doc](http://twitter.github.com/bootstrap/less.html)
  * [Lesscss](http://lesscss.org/)
 
 
-Install nodejs and less css manually
+Installing nodejs and less css manually
 ------------------------------------
 
  - node.js: https://github.com/joyent/node/wiki/Installation
@@ -32,30 +32,12 @@ assetic:
         less:
             node: /usr/bin/node
             node_paths: [/usr/lib/node_modules]
+            apply_to: "\.less$"
 ```
 
  - Yui CSS and CSS Embed are very nice and recommended.
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
-here is an example config:
-
-
-``` yaml
-assetic:
-    debug:          %kernel.debug%
-    use_controller: false
-    filters:
-        less:
-            node: /usr/bin/node
-            node_paths: [/usr/lib/node_modules]
-        cssembed:
-            jar: %kernel.root_dir%/Resources/java/cssembed-0.3.6.jar
-        yui_css:
-            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar
-        yui_js:
-            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar
-```
-
-Do not forget to add the jars to your app.
+   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/assetic-configuration.md)
 
 
 Known Problems:

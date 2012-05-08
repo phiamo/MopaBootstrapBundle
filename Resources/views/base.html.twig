@@ -14,17 +14,10 @@
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
-
-{# This is how it could be done without using less features:
+{# To use this without less use the base_css.html.twig template as your base
  # Be sure you understand whats going on: have a look into
  # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
-{% stylesheets filter='?yui_css'
- 	'@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
-    '@YourNiceBundle/Resources/public/css/*'
-%}
-<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-{% endstylesheets %}
-#}
+ #}
 {% endblock head_style %}
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
