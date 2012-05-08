@@ -12,55 +12,39 @@
 
 <head>
 {% block head %}
-    {# DISCUSS: would blocks be better solution?
-       http://stackoverflow.com/questions/10496618/symfony2-twig-better-use-block-or-variable #}
-    {% block initializr_variables %}
-        {% set meta = {'description': ''} %}
-        {% set meta = {'keywords': ''} %}
-        {% set meta = {'author.name': ''} %}
-        {% set meta = {'author.url': ''} %}
-        {% set meta = {'title': ''} %}
-    {# Define "meta.nofollow" to disable robots from following links. #}     
-        {% set meta = {'nofollow': false} %}
-    {# Define "meta.noindex" to disable robots from indexing page. #}
-        {% set meta = {'noindex': true} %}
-    {# Define "google.wt" to validate your site Google Webmaster Tools #}   
-        {% set google = {'wt': ''} %}
-    {# Define "google[analytics]" to enable Google Analytics Tracking #}    
-        {% set google = {'wt': ''} %}
-    {% endblock initializr_variables %}
+    {# TODO: meta variable format, associative array or underscored string type #}
 	<meta charset="utf-8">
-    
+
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
     {% block dns_prefetch %}
         <link rel="dns-prefetch" href="//ajax.googleapis.com">
     {% endblock dns_prefetch %}
-    
-    {# IE10 does not support plugins, such as Flash, in Metro Mode. 
-       If your site requires plugins, you can let users know that via the 
+
+    {# IE10 does not support plugins, such as Flash, in Metro Mode.
+       If your site requires plugins, you can let users know that via the
        X-UA-Compatible meta element, which will prompt them to switch to Desktop Mode.
-       http://html5boilerplate.com/docs/html-head/#prompt-users-to-switch-to-desktop-mode-in-ie10-metro 
+       http://html5boilerplate.com/docs/html-head/#prompt-users-to-switch-to-desktop-mode-in-ie10-metro
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true"> #}
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
        https://github.com/h5bp/html5-boilerplate/issues/824 #}
 	<meta name="viewport" content="width=device-width">
-    <meta name="description" content="{{ meta.description }}">
-    <meta name="keywords" content="{{ meta.keywords }}">
-	<meta name="author" content="{{ meta.author.name }}">
+    <meta name="description" content="{{ meta_description|default('') }}">
+    <meta name="keywords" content="{{ meta_keyword|default('') }}">
+	<meta name="author" content="{{ meta_author_name|default('') }}">
     {# example: href="/humans.txt" #}
-    <link rel="author" href="{{ meta.author.url }}" title="{{ meta.author.name }}" />
-    
+    <link rel="author" href="{{ meta_author_url|default('') }}" title="{{ meta_author_name|default('') }}" />
+
     {# <title>{% block title %}{% endblock %}</title> #}
-    <meta name="title" content="{{ meta.title }}">
-    <title>{{ meta.title }}</title>
+    <meta name="title" content="{{ meta_title|default('') }}">
+    <title>{{ meta_title|default('') }}</title>
 
     {# TODO: read more about canonical urls and then decide whether enable this part or remove
        http://html5boilerplate.com/docs/html-head/#canonical-url
     <link rel="canonical" href=""> #}
-    
+
     {# Official short link, poorly supported now
     <link rel="shortlink" href="h5bp.com"> #}
 
@@ -70,20 +54,20 @@
     {# TODO: uncomment to allow BOTs see SITEMAP
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" /> #}
 
-    {% if meta.noindex %}
-        {% set meta.robots = 'noindex,' %}
+    {% if meta_noindex|default(false) %}
+        {% set meta_robots = 'noindex,' %}
     {% else %}
-        {% set meta.robots = '' %}
+        {% set meta_robots = '' %}
     {% endif %}
-    {% if meta.nofollow %}
-        {% set meta.robots = meta.robots ~ 'nofollow' %}
+    {% if meta_nofollow|default(false) %}
+        {% set meta_robots = meta_robots ~ 'nofollow' %}
     {% else %}
-        {% set meta.robots = meta.robots ~ 'follow' %}
+        {% set meta_robots = meta_robots ~ 'follow' %}
     {% endif %}
-    <meta name="robots" content="{{ meta.robots }}">
-    
-    {# Define "google.wt" to validate your site Google Webmaster Tools #}
-    <meta name="google-site-verification" content="{{ google.wt }}">
+    <meta name="robots" content="{{ meta_robots }}">
+
+    {# Define "google_wt" to validate your site Google Webmaster Tools #}
+    <meta name="google-site-verification" content="{{ google_wt|default('') }}">
 
     {# TODO: RSS & ATOM
     <link rel="alternate" type="application/atom+xml" title="Atom" href="/atom.xml">
@@ -116,7 +100,7 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock head_scripts %}
-    {% endblock head %}
+{% endblock head %}
 </head>
 
 {% block body_tag %}
@@ -140,11 +124,11 @@
         <footer>
         {% block footer %}
 	        <p>&copy; <a href="" target="_blank">OWNER</a> 2012</p>
-        {% endblock footer %}    
+        {% endblock footer %}
         </footer>
 	</div> <!-- /container -->
 
-{% block foot_script %}
+{% block foot_scripts %}
         {# TODO: second line purpose??, duplicated jQuery below and in Assetic #}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../js/libs/jquery-1.7.2.min.js"><\/script>')
@@ -155,7 +139,7 @@
         {# more GA tweaks:
            http://html5boilerplate.com/docs/ga-augments/ #}
         <script>
-            var _gaq = [['_setAccount', '{{ google.analytics }}'], ['_trackPageview']];
+            var _gaq = [['_setAccount', '{{ google_analytics|default('') }}'], ['_trackPageview']];
             (function(d, t) {
                 var g = d.createElement(t),
                     s = d.getElementsByTagName(t)[0];
@@ -176,7 +160,7 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-{% endblock foot_script %}
+{% endblock foot_scripts %}
 {% endblock body %}
 </body>
 </html>
