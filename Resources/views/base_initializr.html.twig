@@ -7,39 +7,62 @@
 {% endblock html_tag %}
 
 <head>
-    {% block head %}
+{% block head %}
+    {# DISCUSS: would blocks be better solution?
+       http://stackoverflow.com/questions/10496618/symfony2-twig-better-use-block-or-variable #}
+    {% block initializr_variables %}
+        {% set meta.description = '' %}
+        {% set meta.keywords = '' %}
+        {% set meta.author.name = '' %}
+        {% set meta.author.url = '' %}
+        {% set meta.title = '' %}
+    {# Define "meta.nofollow" to disable robots from following links. #}     
+        {% set meta.nofollow = false %}
+    {# Define "meta.noindex" to disable robots from indexing page. #}
+        {% set meta.noindex = true %}
+    {# Define "google.wt" to validate your site Google Webmaster Tools #}   
+        {% set google.wt = '' %}
+    {% endblock initializr_variables %}
 	<meta charset="utf-8">
+    
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
-    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    {% block dns_prefetch %}
+        <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    {% endblock dns_prefetch %}
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-	<meta name="description" content="{% block description %}{% endblock description%}">
-    <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
-	<meta name="author" content="">
-
-    <title>{% block title %}{% endblock %}</title>
-    {# ?? <meta name="title" content=""> #}
 
     {# WARNING: do not add "initial-scale=1.0" to viewport, breaks iOS view #}
 	<meta name="viewport" content="width=device-width">
+    <meta name="description" content="{{ meta.description }}">
+    <meta name="keywords" content="{{ meta.keywords }}">
+	<meta name="author" content="{{ meta.author.name }}">
+    <link rel="author" href="{{ meta.author.url }}" title="{{ meta.author.name }}"/>
+    
+    {# <title>{% block title %}{% endblock %}</title> #}
+    <meta name="title" content="{{ meta.title }}">
+    <title>{{ meta.title }}</title>
+
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
     {# TODO: uncomment to allow BOTs see SITEMAP
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"> #}
 
-    {# Define "meta.noindex" to disable robots from indexing page.
-       Examples: admin panel, contact form etc. #}
-    {#<meta name="robots" content="noindex,follow">
-<!— instructs search engines not to index this page, but to follow links from the page —>#}
-    {% if meta.noindex is defined %}
-    <meta name="robots" content="noindex">
+    {% if meta.noindex %}
+        {% set meta.robots = 'noindex,' %}
+    {% else %}
+        {% set meta.robots = '' %}
     {% endif %}
-
+    {% if meta.nofollow %}
+        {% set meta.robots = meta.robots ~ 'nofollow' %}
+    {% else $}
+        {% set meta.robots = meta.robots ~ 'follow' %}
+    {% endif %}
+    <meta name="robots" content="{{ meta.robots }}">
+    
     {# Define "google.wt" to validate your site Google Webmaster Tools #}
-    {% if google.wt is defined %}
     <meta name="google-site-verification" content="{{ google.wt }}">
-    {% endif %}
 
     {# TODO: RSS & ATOM
     <link rel="alternate" type="application/atom+xml" title="Atom" href="/atom.xml">
@@ -47,30 +70,30 @@
 
     {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
 
-    {# TODO: Author ??
-    <link rel="author" href="/humans.txt"> #}
-
-	<link rel="stylesheet/less" href="/bundles/pminitializr/less/style.less">
-	<script src="/bundles/pminitializr/js/libs/less-1.3.0.min.js"></script>
     {# '@ToolsTFIBundle/Resources/public/css/diagnostic.css' #}
 
-	<!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
-	to style.css, and replace the 2 lines above by this one:
+    {% block head_style %}
+        {# TODO: change to initializr styling #}
+        {# Override this block to add your own files! #}
+        {% stylesheets
+            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+            output='css/compiled/screen.css'
+        %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+        {% endstylesheets %}
+    {% endblock head_style %}
 
-	<link rel="stylesheet" href="less/style.css">
-	 -->
-    {# RECOMENDED JS COMPRESSOR yui_js - configure in config.yml or remove #}
     {% block head_scripts %}
         {% javascripts
             '@MopaBoostrapBundle/Resources/public/js/modernizr-2.5.3-respond-1.1.0.min.js'
             output='js/compiled/head.js'
-            filter='?yui_js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock head_scripts %}
     {% endblock head %}
 </head>
+
 {% block body_tag %}
 <body data-spy="scroll">
 {% endblock body_tag %}
@@ -81,20 +104,20 @@
 
 {% block body %}
     {% block navbar %}
-
+        {# Put here top navigation bar/menu #}
 	{% endblock navbar %}
 
-	{% block container %}
+    <div><!-- containter -->
+	{% block content %}
+        {# Put here main content #}
+	{% endblock content %}
 
-    {% block footer %}
         <footer>
-	        {% block footer_containter %}
-	        <p>&copy; <a href="" target="_blank">Mohrenweiser & Partner</a> 2011</p>
-	        {% endblock footer_containter %}
+        {% block footer %}
+	        <p>&copy; <a href="" target="_blank">OWNER</a> 2012</p>
+        {% endblock footer %}    
         </footer>
-        {% endblock footer %}
 	</div> <!-- /container -->
-{% endblock container %}
 
 {% block foot_script %}
         {# TODO: second line purpose??, duplicated jQuery below and in Assetic #}
@@ -104,7 +127,7 @@
 
         <script>
             var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-XXXXXXX-X']);
+            _gaq.push(['_setAccount', '{{ google.analytics }}']);
             _gaq.push(['_trackPageview']);
             (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -117,7 +140,7 @@
        this block to include the correct path. Otherwise the regeneration is
        done on every load in dev more with use_controller: true #}
 	{% javascripts
-        'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'
+        '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'
     	'@MopaBootstrapBundle/Resources/bootstrap/js/*'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
