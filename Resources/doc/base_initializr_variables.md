@@ -70,3 +70,16 @@ Blocks
     * <span id="content">content</span>
     * <span id="footer">footer</span>
     * <span id="foot_scripts">foot_scripts</span>
+
+Example variable usage
+--------------
+    {% block head %}
+    {% set meta_description = 'this is my page description' %}
+    {% set meta_keywords = 'twitter bootstrap, html5boilerplate' %}
+    {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
+    {% endblock head %}
+
+    {% block foot_scripts %}
+    {% set google_analytics = 'UA-123' %}
+    {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
+    {% endblock foot_scripts %}
