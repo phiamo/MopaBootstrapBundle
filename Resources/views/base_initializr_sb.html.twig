@@ -116,10 +116,20 @@
         {# Put here top navigation bar/menu #}
 	{% endblock navbar %}
 
-    <div><!-- containter -->
-	{% block content %}
-        {# Put here main content #}
-	{% endblock content %}
+    <div class="container-fluid">
+        <div class="content"><!-- containter -->
+        {% block page_header %}
+	        <div class="page-header">
+	              <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock headline %}</h1>
+	        </div>
+        {% endblock page_header %}
+
+            <div class="row-fluid">
+        {% block content %}
+            {# Put here main content #}
+        {% endblock content %}
+            </div>
+        </div>
 
         <footer>
         {% block footer %}
