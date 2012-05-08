@@ -15,17 +15,19 @@
     {# DISCUSS: would blocks be better solution?
        http://stackoverflow.com/questions/10496618/symfony2-twig-better-use-block-or-variable #}
     {% block initializr_variables %}
-        {% set meta.description = '' %}
-        {% set meta.keywords = '' %}
-        {% set meta.author.name = '' %}
-        {% set meta.author.url = '' %}
-        {% set meta.title = '' %}
+        {% set meta = {'description': ''} %}
+        {% set meta = {'keywords': ''} %}
+        {% set meta = {'author.name': ''} %}
+        {% set meta = {'author.url': ''} %}
+        {% set meta = {'title': ''} %}
     {# Define "meta.nofollow" to disable robots from following links. #}     
-        {% set meta.nofollow = false %}
+        {% set meta = {'nofollow': false} %}
     {# Define "meta.noindex" to disable robots from indexing page. #}
-        {% set meta.noindex = true %}
+        {% set meta = {'noindex': true} %}
     {# Define "google.wt" to validate your site Google Webmaster Tools #}   
-        {% set google.wt = '' %}
+        {% set google = {'wt': ''} %}
+    {# Define "google[analytics]" to enable Google Analytics Tracking #}    
+        {% set google = {'wt': ''} %}
     {% endblock initializr_variables %}
 	<meta charset="utf-8">
     
@@ -75,7 +77,7 @@
     {% endif %}
     {% if meta.nofollow %}
         {% set meta.robots = meta.robots ~ 'nofollow' %}
-    {% else $}
+    {% else %}
         {% set meta.robots = meta.robots ~ 'follow' %}
     {% endif %}
     <meta name="robots" content="{{ meta.robots }}">
