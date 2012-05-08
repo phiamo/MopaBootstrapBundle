@@ -2,13 +2,18 @@
 
 
 {% block head_style %}
+{#
+uncomment and adapt this to your path
 {% stylesheets
  	'/Resources/public/css/bootstrap.css'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
+#}
 {% endblock head_style %}
 
+{#
+uncomment and adapt this to your path
 {% block foot_script %}
 {%- javascripts
     'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
@@ -28,4 +33,5 @@
 %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+#}
 {% endblock foot_script %}
