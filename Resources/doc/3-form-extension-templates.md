@@ -1,26 +1,38 @@
-<h2>Form Extensions</h2>
+Form Extensions
+===============
 
-   *   [Make use of FormExtensions](#FormExtensions)
-   *   [FormLegends](#Form_Legends)
-   *   [Child Form_Legends](#Child_Form_Legends)
-   *   [Field Labels](#Field_Labels)
-   *   [Form Field Help](#Form_Field_Help)
-   *   [Widget Addons](#Widget_Addons)
-     *   [Form Field Prefix / Suffix](#Form_Field_presuf)
-   *   [Form Errors](#Form_Errors)
-   *   [Widget Attrs](#Widget_Attrs)
+Make use of FormExtensions
+--------------------------
 
-
-<h3 id="FormExtensions">Make use of FormExtensions</h3>
-
-This bundle extends the Form Component via its native way to achieve having several more attributes on several form components.
+This bundle extends the Symfony Form Component via its native way to achieve having several more attributes on several form components.
 
 Have a look into the examples in the sandbox:
 
  * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/examples
  * https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type
 
-<h3 id="Form_Legends">Form Legends</h3>
+
+### Using bootstrap for Theming
+
+
+Forms can either be activated for you whole project (app/config.yml):
+
+``` yaml
+twig:
+    form:
+        resources:
+            - 'MopaBootstrapBundle:Form:fields.html.twig'
+```
+
+Or include the fields.html.twig in your template for a certain form:
+
+``` jinja
+{% form_theme myform 'MopaBootstrapBundle:Form:fields.html.twig' %}
+```
+
+
+Form Legends
+------------
 
 Every Form component representing a Form not a Field (e.g. subforms, widgets of type date beeing expanded, etc)
 has now a attribute called show_legend which controls wether the "form legend" is shown or not.
@@ -43,8 +55,8 @@ public function buildForm(FormBuilder $builder, array $options)
 ```
     
     
-<h3 id="Child_Form_Legends">Child Form Legends</h3>
-
+Child Form Legends
+------------------
 
 In symfony2 you can easily glue different forms together and build a nice tree. 
 Normally there is for every sub form (including special widgets like date expanded, radio button expanded, etc)
@@ -71,7 +83,8 @@ public function buildForm(FormBuilder $builder, array $options)
     // ... 
 ```
 
-<h3 id="Field_Labels">Field Labels</h3>
+Field Labels
+------------
 
 You have the option to remove a specific field label by setting label_render to false
 
@@ -82,7 +95,10 @@ You have the option to remove a specific field label by setting label_render to 
             ))
 ```
 
-<h3 id="Form_Field_Help">Form Field Help</h3>
+Since symfony 2.1 the label_attr is included in the base, to add special attr to the labels
+
+Form Field Help
+---------------
 
 Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
 has several new attributes:
@@ -112,11 +128,12 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ``` 
 
-<h3 id="Widget_Addons">Widget Addons</h3>
+Widget Addons
+-------------
 
 To get the addons working, i had to increase max nesting level of xdebug to 200.
 
-<h4 id="Form_Field_presuf">Form Field Prefix / Suffix</h4>
+### Form Field Prefix / Suffix
 
 There are also suffix and prefix attributes for the widgets:
 
@@ -136,7 +153,8 @@ public function buildForm(FormBuilder $builder, array $options)
 ``` 
 
 
-<h3 id="Form_Errors">Form Errors</h3>
+Form Errors
+-----------
 
 Generally you may want to define your errors to be displayed inline OR block (see bootstrap) you may define it globally in your conf:
 
@@ -158,6 +176,7 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ``` 
+
 Or on a special field:
 
 ``` php
@@ -169,6 +188,7 @@ public function buildForm(FormBuilder $builder, array $options)
     ;
     //...
 ``` 
+
 In some special cases you may also want to not have a form error but an field error
 so you can use error delay, which will delay the error to the first next field rendered in a child form:
 
@@ -185,7 +205,8 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ```
 
-<h3 id="Widget_Attrs">Widget Attrs</h3>
+Widget Attrs
+------------
 
 // Thanks to JohanLopes and PR #105:
 There are a bunch of other form extenstions, so you can explicitly set the classes of the control tags, 
@@ -208,5 +229,21 @@ will result in
     <div class="mycontrolsclass controls">
     
     ...
-... 
 ```
+
+
+Field Collections
+-----------------
+
+Since collections often tend to make probs, we added some code to ease the use:
+
+ * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
+ * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
+ * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/Examples/collections.html.twig
+
+Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
+
+Some things are currently missing :
+
+ * examples on howto extend the functionality with check functions for adding and removing
+ * in depth example on howto use Custom FormTypes easily

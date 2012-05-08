@@ -1,15 +1,27 @@
 Css vs. Less
 ============
 
-Which is faster to kickstart?
+Bootstrap is written in [http://lesscss.org](less) and compiled to css.
+You can download a pure css distribution from http://twitter.github.com/bootstrap/
 
-Depends on what you want to achieve, and what your knowledge is.
+But then you must manage it yourself. e.g.
+ - Install it in Ressources/public/
+ - use the pure css template
 
-The recommended way would be this:
-If you feel goot hacking your system, installing newer programs and maintaining your dev environment.
-You probably should invest the time to get a working setup, and  after that relax, and see less beeing integrated well, and providing what it should.
+If you want to make use e.g. of mixins, variables etc. you must use less see http://twitter.github.com/bootstrap/less.html
+There are several ways of including it
 
-If you dont feel comfortable to install adittional software and maintain them, and you are not experienced in less, probabaly you could start with css version.
+- either you let assetic manage the compilation of your less files 
+- you use the less js
+### Which is faster to kickstart?
+
+Depends on what you want to achieve, and what your knowledge is:
+
+- If you feel good hacking your system, installing newer programs and maintaining your dev environment, 
+the recommended way would be to install less.
+  You probably should invest the time to get a working setup, and  after that relax, and see less beeing integrated well, and providing what it should.
+
+- If you dont feel comfortable to install adittional software and maintain them, and you are not experienced in less, probabaly you could start with css version.
 
 But be warned:
 
@@ -30,7 +42,7 @@ make
 ```
 
 If you get any error have a look into
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less_installation.md
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md
 
 If there is still an error like
 
@@ -43,7 +55,7 @@ lessc 1.2.1 (LESS Compiler) [JavaScript]
 So you need to use a newer lessc version:
 lessc 1.3.0 (LESS Compiler) [JavaScript]
 
-so you need to tell your shell which version to use, if you already installed a newer lessc as suposed in https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less_installation.md
+so you need to tell your shell which version to use, if you already installed a newer lessc as suposed in https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md
 
 Try:
 
