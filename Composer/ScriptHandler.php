@@ -1,0 +1,38 @@
+<?php
+/**
+ * Script for composer, to symlink bootstrap lib into Bundle
+ *
+ * Maybe nice to convert this to a command and then reuse command in here.
+ */
+namespace Mopa\BootstrapBundle\Composer;
+
+use Composer\Script\Event;
+use Mopa\Bridge\Composer\Util\ComposerPathFinder;
+use Mopa\BootstrapBundle\Command\BootstrapInstallationCommand;
+
+class ScriptHandler
+{
+
+    public static function postInstallSymlinkTwitterBootstrap(Event $event)
+    {
+        $IO = $event->getIO();
+        $composer = $event->getComposer();
+        $cmanager = new ComposerPathFinder($composer);
+        $options = array(
+            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
+            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
+        );
+        list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+                                BootstrapInstallationCommand::$mopaBootstrapBundleName,
+                                BootstrapInstallationCommand::$twitterBootstrapName,
+                                $options
+        );
+
+        $IO->write("Checking Symlink", FALSE);
+        if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)){
+            $IO->write("Creating Symlink: " . $symlinkName, FALSE);
+            BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
+        }
+        $IO->write(" ... <info>OK</info>");
+    }
+}

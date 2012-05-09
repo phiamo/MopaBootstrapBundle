@@ -15,27 +15,39 @@
             "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
         }
     ],
-    "repositories": {
-        "twitter-bootstrap": {
-            "package": {
-                "version": "2.0.0",
-                "name": "twitter/bootstrap",
-                "source": {
-                    "url": "https://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        }        
-    },
-    "require": {
-        "php": ">=5.3.2",
-        "twitter/bootstrap": "*"
-    },
     "autoload": {
         "psr-0": {
             "Mopa\\BootstrapBundle": ""
         }
     },
-    "target-dir": "Mopa/BootstrapBundle"
+    "require": {
+        "symfony/symfony": "2.0.*",
+        "mopa/composer-bridge": "dev-master"
+    },
+    "suggest":  {
+        "twitter/bootstrap": "2.0.3",
+        "knplabs/knp-menu-bundle": "dev-master"
+    },
+    "target-dir": "Mopa/BootstrapBundle",
+    "repositories": {
+        "twitter-bootstrap": {
+            "package": {
+                "version": "2.0.3",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "v2.0.3"
+                }
+            }
+        }        
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ],
+        "post-update-cmd": [ 
+            "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ]
+    }
 }
