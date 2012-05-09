@@ -1,11 +1,17 @@
-@import "bootstrap/bootstrap.less";
+/* Main bootstrap.less entry point */
+@import "../../bootstrap/less/bootstrap.less";
 
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
+/* Bootstrap subnav definition */
+@import "addons.less"
 
-@import "bootstrap/responsive.less";
+/* The Paginator less for MopaBootstrapBundle */
+@import "paginator.less";
+
+/* Collection support for MopaBootstrapBundle */
+@import "collections.less";
+
+/* include the responsive after all of your stuff!
+@import "../../bootstrap/less/responsive.less"; */
 
 
 /* ===== Primary Styles ========================================================

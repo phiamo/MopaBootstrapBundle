@@ -13,7 +13,7 @@
 <head>
 {% block head %}
     {# TODO: meta variable format, associative array or underscored string type #}
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
@@ -26,14 +26,14 @@
        X-UA-Compatible meta element, which will prompt them to switch to Desktop Mode.
        http://html5boilerplate.com/docs/html-head/#prompt-users-to-switch-to-desktop-mode-in-ie10-metro
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true"> #}
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
        https://github.com/h5bp/html5-boilerplate/issues/824 #}
-	<meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width">
     <meta name="description" content="{{ meta_description|default('') }}">
     <meta name="keywords" content="{{ meta_keyword|default('') }}">
-	<meta name="author" content="{{ meta_author_name|default('') }}">
+    <meta name="author" content="{{ meta_author_name|default('') }}">
     {# example: href="/humans.txt" #}
     <link rel="author" href="{{ meta_author_url|default('') }}" title="{{ meta_author_name|default('') }}" />
 
@@ -85,8 +85,8 @@
         {# TODO: change to initializr styling #}
         {# Override this block to add your own files! #}
         {% stylesheets
-            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-            output='css/compiled/screen.css'
+            '@MopaBootstrapBundle/Resources/public/less/initializr_style.less'
+            output='css/screen_compiled.css'
         %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
         {% endstylesheets %}
@@ -95,7 +95,7 @@
     {% block head_scripts %}
         {% javascripts
             '@MopaBootstrapBundle/Resources/public/js/modernizr-2.5.3-respond-1.1.0.min.js'
-            output='js/compiled/head.js'
+            output='js/head_compiled.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -114,19 +114,19 @@
 {% block body %}
     {% block navbar %}
         {# Put here top navigation bar/menu #}
-	{% endblock navbar %}
+    {% endblock navbar %}
 
     <div><!-- containter -->
-	{% block content %}
+    {% block content %}
         {# Put here main content #}
-	{% endblock content %}
+    {% endblock content %}
 
         <footer>
         {% block footer %}
-	        <p>&copy; <a href="" target="_blank">OWNER</a> 2012</p>
+            <p>&copy; <a href="" target="_blank">OWNER</a> 2012</p>
         {% endblock footer %}
         </footer>
-	</div> <!-- /container -->
+    </div> <!-- /container -->
 
 {% block foot_scripts %}
         {# TODO: second line purpose??, duplicated jQuery below and in Assetic #}
@@ -148,15 +148,18 @@
             }(document, 'script'));
         </script>
 
-	{# To only use a subset or add more js overwrite and copy paste this block
+    {# To only use a subset or add more js overwrite and copy paste this block
        To speed up page loads save a copy of jQuery in your project and override
        this block to include the correct path. Otherwise the regeneration is
        done on every load in dev more with use_controller: true #}
-	{% javascripts
-        '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/*.js'
+
+    {# removed jQuery from assetic load as it is loaded from Google CDN above
+       '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' #}
+    {% javascripts
+        '@MopaBootstrapBundle/Resources/bootstrap/js/*.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
+        output='js/foot_compiled.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
