@@ -318,7 +318,7 @@
     {% if form.children|length > 0 and form.hasParent() and show_child_legend %}
         {{ block('form_legend') }}
 	{% else %}
-    	{{ form_label(form) }}
+    	{{ form_label(form, label|default(null)) }}
     {% endif %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
