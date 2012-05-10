@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
+        $this->addInitializrConfig($rootNode);
         return $treeBuilder;
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode){
@@ -59,5 +60,69 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
+    }
+    protected function addInitializrConfig(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('initializr')
+                    ->isRequired()
+                    ->children()
+                        ->arrayNode('meta')
+                            ->isRequired()
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('title')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('description')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('keywords')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('author_name')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('author_url')
+                                        ->defaultValue('#')
+                                    ->end()
+                                    ->scalarNode('nofollow')
+                                        ->defaultFalse()
+                                    ->end()
+                                    ->scalarNode('noindex')
+                                        ->defaultFalse()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('dns_prefetch')
+                            //->useAttributeAsKey('domains')
+                            ->prototype('array')
+                                ->treatNullLike(array())
+                                ->children()
+                                    ->scalarNode('domains')
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('google')
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('wt')
+                                        ->end()
+                                    ->scalarNode('analytics')
+                                        ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->booleanNode('diagnostic_mode')
+                            ->defaultFalse()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

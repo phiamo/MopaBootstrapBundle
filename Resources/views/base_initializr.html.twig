@@ -17,6 +17,8 @@
 
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
+
+    {# TODO: Define DNS prefetch array config #}
     {% block dns_prefetch %}
         <link rel="dns-prefetch" href="//ajax.googleapis.com">
     {% endblock dns_prefetch %}
@@ -81,11 +83,11 @@
        http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
     <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
 
-    {# '../Resources/public/css/diagnostic.css' #}
+    {# http://meyerweb.com/eric/tools/css/diagnostics/'
+       @MopaBootstrapBundle/Resources/public/css/diagnostic.css' #}
 
+    {# Override this block to add your own files! #}
     {% block head_style %}
-        {# TODO: change to initializr styling #}
-        {# Override this block to add your own files! #}
         {% stylesheets
             '@MopaBootstrapBundle/Resources/public/less/initializr_style.less'
             output='css/screen_compiled.css'
