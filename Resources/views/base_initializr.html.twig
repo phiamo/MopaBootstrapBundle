@@ -35,11 +35,13 @@
     <meta name="keywords" content="{{ meta_keyword|default('') }}">
     <meta name="author" content="{{ meta_author_name|default('') }}">
     {# example: href="/humans.txt" #}
-    <link rel="author" href="{{ meta_author_url|default('') }}" title="{{ meta_author_name|default('') }}" />
+    <link rel="author" href="{{ meta_author_url|default('#') }}" title="{{ meta_author_name|default('') }}" />
 
     {# <title>{% block title %}{% endblock %}</title> #}
-    <meta name="title" content="{{ meta_title|default('') }}">
     <title>{{ meta_title|default('') }}</title>
+
+    {# TODO: to be removed as HTML5 has no such tag
+    <meta name="title" content="{{ meta_title|default('') }}"> #}
 
     {# TODO: read more about canonical urls and then decide whether enable this part or remove
        http://html5boilerplate.com/docs/html-head/#canonical-url
@@ -156,7 +158,20 @@
     {# removed jQuery from assetic load as it is loaded from Google CDN above
        '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' #}
     {% javascripts
-        '@MopaBootstrapBundle/Resources/bootstrap/js/*.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
+    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
+
+    	'@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
         '@MopaBootstrapBundle/Resources/public/js/initializr_addons.js'
