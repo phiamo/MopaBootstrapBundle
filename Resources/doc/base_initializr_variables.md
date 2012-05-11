@@ -83,3 +83,17 @@ Example variable usage
     {% set google_analytics = 'UA-123' %}
     {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
     {% endblock foot_scripts %}
+
+Example config.yml configuration
+-----------
+
+```yaml
+# app/config/config.yml
+mopa_bootstrap:
+    initializr:
+        meta: 
+            title: "Test site"
+            description: "This is test site"
+            keywords: "keyword1,keyword 2"
+            author_name: "this is me"
+```

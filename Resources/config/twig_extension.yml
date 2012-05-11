@@ -1,0 +1,9 @@
+parameters:
+   twig.extension.mopa.initializr.class: Mopa\Bundle\BootstrapBundle\DependencyInjection\MopaBootstrapTwigExtension
+
+services:
+   twig.extension.mopa.initializr:
+       class: %twig.extension.mopa.initializr.class%
+       arguments: [ @service_container ]
+
+
