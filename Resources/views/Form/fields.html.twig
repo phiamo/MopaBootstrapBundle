@@ -6,6 +6,7 @@
 {% block form_widget_single_control %}
 {% spaceless %}
     {% set type = type|default('text') %}
+    {% set widget_addon = {'append': false, 'icon': null, 'text': null}|merge(widget_addon) %}
     {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
     	{% if not widget_addon.append %}
@@ -122,14 +123,14 @@
 
 {% block percent_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': '%', 'append': true}) %}
+    {% set widget_addon = {'text': '%', 'append': true}|merge(widget_addon) %}
     {{ block('form_widget_single_control') }}
 {% endspaceless %}
 {% endblock percent_widget %}
 
 {% block money_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
+    {% set widget_addon = {'text': money_pattern|replace({ '{{ widget }}': ''})}|merge(widget_addon) %}
     {{ block('form_widget_single_control') }}
 {% endspaceless %}
 {% endblock money_widget %}
