@@ -65,7 +65,7 @@
 {% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
   <label class="checkbox">
 {% endif %}
-      <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline }}
+      <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans|raw }}
 {% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
 {% set help_inline = false %}
 </label>
