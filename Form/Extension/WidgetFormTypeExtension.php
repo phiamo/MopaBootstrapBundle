@@ -46,11 +46,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         return array(
             'widget_control_group' => true,
             'widget_controls' => true,
-            'widget_addon' => array(
-                'append' => false,
-                'icon' => null,
-                'text' => null,
-            ),
+            'widget_addon' => array(),
             'widget_prefix' => null,
             'widget_suffix' => null,
             'widget_type' => '',
