@@ -1,6 +1,26 @@
 base_initializr template
 ============
 
+Examp
+```yaml
+# app/config/config.yml
+mopa_bootstrap:
+    initializr:
+        meta:
+            title:        "YYY"
+            description:  "This is test site"
+            keywords:     "keyword1,keyword 2"
+            author_name:  "this is me"
+            author_url:   "/human.txt"
+            nofollow:     false
+            noindex:      false
+        dns_prefetch:
+              - '//ajax.googleapis.com'
+        google:
+            wt: 'xxx'
+            analytics: 'UA-xxxxxxx-xx'
+        diagnostic_mode: true
+```
 
 Variables
 ------------
@@ -8,15 +28,15 @@ Variables
 
 * **meta\_description**
 
-    default value:  _empty_ _string_
-    parent block:  _[head](#head)_
+    default value:  _empty_ _string_  
+    parent block:  _[head](#head)_  
 
 * **meta\_keywords**
 
-    default value: _empty_ _string_
-    parent block: _[head](#head)_
+    default value: _empty_ _string_  
+    parent block: _[head](#head)_  
 
-* **meta\_author_name**
+* **meta\_author_name**  
 
     default value: _empty_ _string_
     parent block: _[head](#head)_
@@ -83,3 +103,4 @@ Example variable usage
     {% set google_analytics = 'UA-123' %}
     {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
     {% endblock foot_scripts %}
+

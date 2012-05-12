@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -22,6 +29,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
+        $this->addInitializrConfig($rootNode);
         return $treeBuilder;
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode){
@@ -59,5 +67,69 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
+    }
+
+    /**
+     * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
+     *
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
+     */
+    protected function addInitializrConfig(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('initializr')
+                    ->isRequired()
+                    ->children()
+                        ->arrayNode('meta')
+                            ->isRequired()
+                                ->treatNullLike(array())
+                                ->children()
+                                    ->scalarNode('title')
+                                        ->isRequired()
+                                        ->cannotBeEmpty()
+                                    ->end()
+                                    ->scalarNode('description')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('keywords')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('author_name')
+                                        ->isRequired()
+                                    ->end()
+                                    ->scalarNode('author_url')
+                                        ->defaultValue('#')
+                                        ->cannotBeEmpty()
+                                    ->end()
+                                    ->booleanNode('nofollow')
+                                        ->defaultFalse()
+                                    ->end()
+                                    ->booleanNode('noindex')
+                                        ->defaultFalse()
+                                    ->end()
+                                ->end()
+                        ->end()
+                        ->arrayNode('dns_prefetch')
+                            ->treatNullLike(array())
+                            ->prototype('scalar')
+                            ->end()
+                        ->end()
+                        ->arrayNode('google')
+                            ->children()
+                                ->scalarNode('wt')
+                                    ->end()
+                                ->scalarNode('analytics')
+                                    ->end()
+                            ->end()
+                        ->end()
+                        ->booleanNode('diagnostic_mode')
+                            ->defaultFalse()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }
