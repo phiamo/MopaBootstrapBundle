@@ -64,7 +64,7 @@ If you do not want to use less ignore this, otherwise have a look into:
 [MopaBootstrapBundle]
     git = "http://github.com/phiamo/MopaBootstrapBundle.git"
     target = "/bundles/Mopa/BootstrapBundle"
-    version=origin/v2.x_sf2.0s
+    version=origin/v2.x_sf2.0
 ```
 
 1.2 Or add this bundle to your project as a Git submodule:
