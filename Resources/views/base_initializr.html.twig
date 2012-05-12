@@ -17,10 +17,10 @@
 
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
-
-    {# TODO: Define DNS prefetch array config #}
     {% block dns_prefetch %}
-        <link rel="dns-prefetch" href="//ajax.googleapis.com">
+        {% for domain in dns_prefetch %}
+        <link rel="dns-prefetch" href="{{ domain }}">
+        {% endfor %}
     {% endblock dns_prefetch %}
 
     {# IE10 does not support plugins, such as Flash, in Metro Mode.
@@ -33,14 +33,14 @@
     {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
        https://github.com/h5bp/html5-boilerplate/issues/824 #}
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="{{ meta_description|default('') }}">
-    <meta name="keywords" content="{{ meta_keyword|default('') }}">
-    <meta name="author" content="{{ meta_author_name|default('') }}">
+    <meta name="description" content="{{ meta['description'] }}">
+    <meta name="keywords" content="{{ meta['keywords'] }}">
+    <meta name="author" content="{{ meta['author_name'] }}">
     {# example: href="/humans.txt" #}
-    <link rel="author" href="{{ meta_author_url|default('#') }}" title="{{ meta_author_name|default('') }}" />
+    <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
 
     {# <title>{% block title %}{% endblock %}</title> #}
-    <title>{{  meta_title|default('aaa') }}</title>
+    <title>{{ meta['title'] }}</title>
 
     {# TODO: to be removed as HTML5 has no such tag
     <meta name="title" content="{{ meta_title|default('') }}"> #}
@@ -49,7 +49,7 @@
        http://html5boilerplate.com/docs/html-head/#canonical-url
     <link rel="canonical" href=""> #}
 
-    {# Official short link, poorly supported now
+    {# TODO: Official short link, poorly supported now
     <link rel="shortlink" href="h5bp.com"> #}
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
@@ -58,20 +58,21 @@
     {# TODO: uncomment to allow BOTs see SITEMAP
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" /> #}
 
-    {% if meta_noindex|default(false) %}
+    {% if meta['noindex'] %}
         {% set meta_robots = 'noindex,' %}
     {% else %}
         {% set meta_robots = '' %}
     {% endif %}
-    {% if meta_nofollow|default(false) %}
+    {% if meta['nofollow'] %}
         {% set meta_robots = meta_robots ~ 'nofollow' %}
     {% else %}
         {% set meta_robots = meta_robots ~ 'follow' %}
     {% endif %}
     <meta name="robots" content="{{ meta_robots }}">
 
-    {# Define "google_wt" to validate your site Google Webmaster Tools #}
-    <meta name="google-site-verification" content="{{ google_wt|default('') }}">
+    {% if google['wt'] is defined %}
+    <meta name="google-site-verification" content="{{ google['wt'] }}">
+    {% endif %}
 
     {# TODO: RSS & ATOM
     <link rel="alternate" type="application/atom+xml" title="Atom" href="/atom.xml">
@@ -83,17 +84,25 @@
        http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
     <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
 
-    {# http://meyerweb.com/eric/tools/css/diagnostics/'
-       @MopaBootstrapBundle/Resources/public/css/diagnostic.css' #}
-
     {# Override this block to add your own files! #}
     {% block head_style %}
         {% stylesheets
             '@MopaBootstrapBundle/Resources/public/less/initializr_style.less'
             output='css/screen_compiled.css'
         %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
         {% endstylesheets %}
+
+        {# Find places where your CSS is broken, docs how to use:
+           http://meyerweb.com/eric/tools/css/diagnostics/' #}
+        {% if diagnostic_mode %}
+        {% stylesheets
+            '@MopaBootstrapBundle/Resources/public/css/diagnostic.css'
+            output='css/screen_diagnostic.css'
+        %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+        {% endstylesheets %}
+        {% endif %}
     {% endblock head_style %}
 
     {% block head_scripts %}
@@ -133,32 +142,35 @@
     </div> <!-- /container -->
 
 {% block foot_scripts %}
-        {# TODO: second line purpose??, duplicated jQuery below and in Assetic #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../js/libs/jquery-1.7.2.min.js"><\/script>')
-        </script>
+    {# Load jQuery from Google CDN
+       http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/ #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../js/libs/jquery-1.7.2.min.js"><\/script>')
+    </script>
 
-        {# Asynchronous Google Analytics snippet:
-           http://mathiasbynens.be/notes/async-analytics-snippet#dont-push-it #}
-        {# more GA tweaks:
-           http://html5boilerplate.com/docs/ga-augments/ #}
-        <script>
-            var _gaq = [['_setAccount', '{{ google_analytics|default('') }}'], ['_trackPageview']];
-            (function(d, t) {
-                var g = d.createElement(t),
-                    s = d.getElementsByTagName(t)[0];
-                g.async = g.src = '//www.google-analytics.com/ga.js';
-                s.parentNode.insertBefore(g, s);
-            }(document, 'script'));
-        </script>
+    {# Asynchronous Google Analytics snippet grabbed from:
+       http://mathiasbynens.be/notes/async-analytics-snippet#dont-push-it #}
+    {# more GA tweaks:
+       http://html5boilerplate.com/docs/ga-augments/ #}
+    {% if google['analytics'] is defined %}
+    <script>
+        var _gaq = [['_setAccount', '{{ google['analytics'] }}'], ['_trackPageview']];
+        (function(d, t) {
+            var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+            g.async = g.src = '//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s);
+        }(document, 'script'));
+    </script>
+    {% endif %}
 
     {# To only use a subset or add more js overwrite and copy paste this block
        To speed up page loads save a copy of jQuery in your project and override
        this block to include the correct path. Otherwise the regeneration is
        done on every load in dev more with use_controller: true #}
 
-    {# removed jQuery from assetic load as it is loaded from Google CDN above
-       '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' #}
+    {# removed jQuery from assetic load as it is loaded from Google CDN above #}
     {% javascripts
     	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
     	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'

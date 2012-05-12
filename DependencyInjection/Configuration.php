@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -61,6 +68,12 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
     }
+
+    /**
+     * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
+     *
+     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
+     */
     protected function addInitializrConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
@@ -97,26 +110,18 @@ class Configuration implements ConfigurationInterface
                                         ->defaultFalse()
                                     ->end()
                                 ->end()
-                            //->end()
                         ->end()
                         ->arrayNode('dns_prefetch')
-                            //->useAttributeAsKey('domains')
-                            ->prototype('array')
-                                ->treatNullLike(array())
-                                ->children()
-                                    ->scalarNode('domains')
-                                    ->end()
-                                ->end()
+                            ->treatNullLike(array())
+                            ->prototype('scalar')
                             ->end()
                         ->end()
                         ->arrayNode('google')
-                            ->prototype('array')
-                                ->children()
-                                    ->scalarNode('wt')
-                                        ->end()
-                                    ->scalarNode('analytics')
-                                        ->end()
-                                ->end()
+                            ->children()
+                                ->scalarNode('wt')
+                                    ->end()
+                                ->scalarNode('analytics')
+                                    ->end()
                             ->end()
                         ->end()
                         ->booleanNode('diagnostic_mode')

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,9 +31,7 @@ class MopaBootstrapExtension extends Extension
 
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $yamlloader->load("form_extensions.yml");
-        
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('twig_extension.yml');
+        $yamlloader->load('twig_extension.yml');
 
         if(isset($config['form'])){
             if(isset($config['form']['render_fieldset'])){
@@ -63,8 +68,19 @@ class MopaBootstrapExtension extends Extension
                 );
             }
         }
+
+        // set container parameters for Initializr base template
+        $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
+        $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
+        $container->setParameter('mopa_bootstrap.initializr.dns_prefetch',$config['initializr']['dns_prefetch']);
+
+        // TODO: think about setting this default as kernel debug,
+        // what about PROD env which does not need diagnostic mode and test
+        $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode',$config['initializr']['diagnostic_mode']);
     }
-    protected function loadExamples(ContainerBuilder $container){
+
+    protected function loadExamples(ContainerBuilder $container)
+    {
         //$xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
         $yamlloader->load("example_menu.yml");
