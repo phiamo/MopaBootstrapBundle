@@ -94,3 +94,21 @@ assetic:
 
 ```
 
+
+MAC and MAMP Problems
+---------------------
+
+MAMP has some strange settings so you need to find your apache envvars file
+
+/Applications/MAMP/Library/bin/envvars
+
+ and comment out the two lines for $DYLD_LIBRARY_PATH
+
+Without that it seems the dev environment wont be abled to use less in assetic.
+
+these Tips are from:
+
+
+https://github.com/kriswallsmith/assetic/issues/166
+http://typo3blog.at/blog/artikel/typo3-mamp-imagemagick/
+
