@@ -31,7 +31,7 @@ abstract class AbstractNavbarMenuBuilder
      * @param boolean $push_right Make if float right default: true
      */
     protected function createNavbarMenuItem($push_right = true){
-        
+
         $rootItem = $this->factory->createItem('root');
         $rootItem
             ->setChildrenAttributes(array('class' => 'nav'))
@@ -47,7 +47,7 @@ abstract class AbstractNavbarMenuBuilder
      * @param string $title Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true){
+    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = null){
         $rootItem
             ->setAttribute('class', 'nav')
         ;
@@ -60,6 +60,11 @@ abstract class AbstractNavbarMenuBuilder
             ->setAttribute('class', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu')
         ;
+        // TODO: make XSS safe $icon contents escaping
+        if ($icon != null) {
+            $dropdown->setLabel($title. ' <b class="'.$icon.'"></b>')
+                     ->setExtra('safe_label', true);
+        }
         return $dropdown;
     }
     protected function pushRight(ItemInterface $item){
