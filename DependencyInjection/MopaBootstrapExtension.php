@@ -60,6 +60,16 @@ class MopaBootstrapExtension extends Extension
             }
         }
 
+        if(isset($config['subnavbar'])){
+            $yamlloader->load("subnavbar_extension.yml");
+            if(isset($config['subnavbar']['template'])){
+                $container->setParameter(
+                    'mopa_bootstrap.subnavbar.template',
+                    $config['subnavbar']['template']
+                );
+            }
+        }
+
         // set container parameters for Initializr base template
         if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals

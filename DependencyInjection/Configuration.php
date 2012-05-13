@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
+        $this->addSubnavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
@@ -109,6 +110,19 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('template')
                             ->defaultValue('MopaBootstrapBundle:Navbar:navbar.html.twig')
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+    protected function addSubnavbarConfig(ArrayNodeDefinition $rootNode){
+        $rootNode
+            ->children()
+                ->arrayNode('subnavbar')
+                    ->children()
+                        ->scalarNode('template')
+                            ->defaultValue('MopaBootstrapBundle:Navbar:subnavbar.html.twig')
                             ->cannotBeEmpty()
                         ->end()
                     ->end()
