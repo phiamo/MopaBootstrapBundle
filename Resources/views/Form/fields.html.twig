@@ -6,7 +6,7 @@
 {% block form_widget_single_control %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
     	{% if not widget_addon.append %}
     	{{ block('widget_addon') }}
