@@ -40,7 +40,7 @@ file in this bundle:
 Installation
 ------------
 
-All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/doc/1-installation.md).
+All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
 
 License
 -------
