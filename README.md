@@ -11,7 +11,7 @@ to this bundle features from [HTML5 BoilerPlate Project](http://html5boilerplate
 Integration was done using setup pregenerated with support of [Initializr](http://www.initializr.com/).  
 Actually we support __HTML5__ __BoilerPlate__ _v3.0.3_ with __Modernizr__ _v2.5.3_ and __Respond__.
 
-To learn how to use this features read [Initializr docs](/Resources/docs/initializr.md).  
+To learn how to use this features read [Initializr docs (50-Initializr.md)](Resources/docs/initializr.md).  
 This implementation is maintained by [Pawel Madej (nysander)](http://github.com/nysander)
 
 Live Show

@@ -1,7 +1,8 @@
 base_initializr template
 ============
 
-Examp
+Example config
+
 ```yaml
 # app/config/config.yml
 mopa_bootstrap:
@@ -38,42 +39,48 @@ Variables
 
 * **meta\_author_name**  
 
-    default value: _empty_ _string_
-    parent block: _[head](#head)_
+    default value: _empty_ _string_  
+    parent block: _[head](#head)_  
 
 * **meta\_author_url**
 
-    default value: _empty_ _string_
-    parent block: _[head](#head)_
-    examples:
+    default value: _empty_ _string_  
+    parent block: _[head](#head)_  
+    examples:  
 
-    * _/humans.txt_
-    * _mailto:example@example.com_
-    * _http://example.com_
+    * _/humans.txt_  
+    * _mailto:example@example.com_  
+    * _http://example.com_  
 
 * **meta\_nofollow**
 
-    default value: _false_
-    parent block: _[head](#head)_
-    comment: set true to disable robots from following links
+    default value: _false_  
+    parent block: _[head](#head)_  
+    comment: set true to disable robots from following links  
 
 * **meta\_noindex**
 
-    default value: _false_
-    parent block: _[head](#head)_
-    comment: set true to disable robots from indexing page
+    default value: _false_  
+    parent block: _[head](#head)_  
+    comment: set true to disable robots from indexing page  
 
 * **google\_wt**
 
-    default value: _empty_ _string_
-    parent block: _[head](#head)_
-    comment: set Google Webmaster Tools veryfication code
+    default value: _empty_ _string_  
+    parent block: _[head](#head)_  
+    comment: set Google Webmaster Tools veryfication code  
 
 * **google\_analytics**
 
-    default value: _empty_ _string_
-    parent block: _[foot\_scripts](#foot_scripts)_
-    comment: set Google Analytics UA page code
+    default value: _empty_ _string_  
+    parent block: _[foot\_scripts](#foot_scripts)_  
+    comment: set Google Analytics UA page code  
+* **diagnostic\_mode**
+
+    default value: _false_
+    parent block: _[head](#head)_  
+    comment: set this to true to check your CSS for implementation errors  
+        read more about used diagnostic file on: http://meyerweb.com/eric/tools/css/diagnostics/
 
 Blocks
 ------------
@@ -90,17 +97,3 @@ Blocks
     * <span id="content">content</span>
     * <span id="footer">footer</span>
     * <span id="foot_scripts">foot_scripts</span>
-
-Example variable usage
---------------
-    {% block head %}
-    {% set meta_description = 'this is my page description' %}
-    {% set meta_keywords = 'twitter bootstrap, html5boilerplate' %}
-    {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
-    {% endblock head %}
-
-    {% block foot_scripts %}
-    {% set google_analytics = 'UA-123' %}
-    {{ parent() }} {# << -- IMPORTANT to be after setting variables #}
-    {% endblock foot_scripts %}
-
