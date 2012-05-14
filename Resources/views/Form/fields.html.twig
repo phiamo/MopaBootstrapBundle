@@ -16,7 +16,7 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     	{% if widget_addon.append %}
     	{{ block('widget_addon') }}
     	{% endif %}
