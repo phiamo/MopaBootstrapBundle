@@ -5,6 +5,15 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
+**NEW:**  
+To make your base HTML5 even better and let you use good practices we added  
+to this bundle features from [HTML5 BoilerPlate Project](http://html5boilerplate.com/).  
+Integration was done using setup pregenerated with support of [Initializr](http://www.initializr.com/).  
+Actually we support __HTML5__ __BoilerPlate__ _v3.0.3_ with __Modernizr__ _v2.5.3_ and __Respond__.
+
+To learn how to use this features read [Initializr docs](/Resources/docs/initializr.md).  
+This implementation is maintained by [Pawel Madej (nysander)](http://github.com/nysander)
+
 Live Show
 ---------
 
