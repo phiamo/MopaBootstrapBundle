@@ -301,14 +301,7 @@
 {% spaceless %}
 {% if widget_control_group|default(false) or not form.hasParent() %}
     {% if prototype is defined %}
-    	{% set data_prototype %}
-    	{% spaceless %}
-    	<div class="collection-item">
-    		{{ form_row(prototype) }}
-    	</div>
-    	{% endspaceless %}
-    	{% endset %}
-        {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype|e}) %}
+        {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': form_widget(prototype)}) %}
     {% endif %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
     {% if errors|length > 0 %}
