@@ -241,6 +241,18 @@ Since collections often tend to make probs, we added some code to ease the use:
  * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
  * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/Examples/collections.html.twig
 
+And for Subforms:
+
+ * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleDateFormType.php
+
+Make especially sure that your subforms have these options set:
+
+```
+    'widget_control_group' => false,
+    'widget_controls' => false,
+```
+Otherwise you will have unexpected repeating forms ...
+
 Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
 
 Some things are currently missing :
