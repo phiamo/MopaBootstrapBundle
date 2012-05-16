@@ -30,9 +30,12 @@ class Configuration implements ConfigurationInterface
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
+
         return $treeBuilder;
     }
-    protected function addFormConfig(ArrayNodeDefinition $rootNode){
+
+    protected function addFormConfig(ArrayNodeDefinition $rootNode)
+    {
         $rootNode
             ->children()
                 ->arrayNode('form')
@@ -52,10 +55,11 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-            ;
+            ->end();
     }
-    protected function addNavbarConfig(ArrayNodeDefinition $rootNode){
+
+    protected function addNavbarConfig(ArrayNodeDefinition $rootNode)
+    {
         $rootNode
             ->children()
                 ->arrayNode('navbar')
@@ -70,9 +74,9 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
-     *
      * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
+     *
+     * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
      */
     protected function addInitializrConfig(ArrayNodeDefinition $rootNode)
     {
@@ -101,6 +105,12 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('author_url')
                                     ->defaultValue('#')
                                     ->cannotBeEmpty()
+                                ->end()
+                                ->scalarNode('feed_atom')
+                                ->end()
+                                ->scalarNode('feed_rss')
+                                ->end()
+                                ->scalarNode('sitemap')
                                 ->end()
                                 ->booleanNode('nofollow')
                                     ->defaultFalse()
@@ -131,7 +141,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+            ->end();
     }
 }
