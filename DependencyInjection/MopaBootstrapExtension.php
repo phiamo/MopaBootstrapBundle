@@ -26,30 +26,12 @@ class MopaBootstrapExtension extends Extension
         $yamlloader->load("form_extensions.yml");
 
         if(isset($config['form'])){
-            if(isset($config['form']['render_fieldset'])){
-                $container->setParameter(
-                    'mopa_bootstrap.form.render_fieldset',
-                    $config['form']['render_fieldset']
-                );
-            }
-            if(isset($config['form']['show_legend'])){
-                $container->setParameter(
-                    'mopa_bootstrap.form.show_legend',
-                    $config['form']['show_legend']
-                );
-            }
-            if(isset($config['form']['show_child_legend'])){
-                $container->setParameter(
-                    'mopa_bootstrap.form.show_child_legend',
-                    $config['form']['show_child_legend']
-                );
-            }
-            if(isset($config['form']['error_type'])){
-                $container->setParameter(
-                    'mopa_bootstrap.form.error_type',
-                    $config['form']['error_type']
-                );
-            }
+        	foreach($config['form'] as $key => $value){
+        		$container->setParameter(
+        				'mopa_bootstrap.form.'.$key,
+        				$value
+        		);
+        	}
         }
         if(isset($config['navbar'])){
             $yamlloader->load("navbar_extension.yml");

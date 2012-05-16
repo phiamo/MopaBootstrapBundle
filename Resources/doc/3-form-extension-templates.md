@@ -184,7 +184,7 @@ public function buildForm(FormBuilder $builder, array $options)
 {
     $builder
     //...
-           ->add('country', null, array('field_error_type'=>'block'))
+           ->add('country', null, array('error_type'=>'block'))
     ;
     //...
 ``` 

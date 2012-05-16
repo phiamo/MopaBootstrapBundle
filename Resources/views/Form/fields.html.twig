@@ -284,13 +284,13 @@
 
 {% block error_type %}
 {% spaceless %}
-{% if form_error_type %}
-{{ form_error_type }}
+{% if error_type %}
+{{ error_type }}
 {% elseif form.hasParent() != 0 %}
     {% set form = form.parent %}
     {{ block('error_type') }}
 {% elseif form.hasParent() == 0 %}
-    {{ form.get('form_error_type') }}
+    {{ form.get('error_type') | default('inline') }}
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}
