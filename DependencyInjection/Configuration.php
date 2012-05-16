@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -39,7 +46,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('show_child_legend')
                             ->defaultValue(false)
                             ->end()
-                        ->booleanNode('error_type')
+                        ->scalarNode('error_type')
                             ->defaultValue(null)
                             ->end()
                     ->end()

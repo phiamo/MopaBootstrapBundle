@@ -285,7 +285,7 @@
 {% block error_type %}
 {% spaceless %}
 {% if error_type %}
-{{ error_type }}
+    {{ error_type }}
 {% elseif form.hasParent() != 0 %}
     {% set form = form.parent %}
     {{ block('error_type') }}
