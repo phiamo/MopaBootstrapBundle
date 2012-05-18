@@ -42,6 +42,16 @@ Installation
 
 All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
 
+Translation
+------------
+If you use KnpPaginatorBundle with MopaBootstrapBundle, you can translate labels to your language.  
+To do this add new file  
+
+```Resources/translations/pagination.[YOUR LOCALE CODE].yml```  
+
+As example you have there Polish translation.
+
+
 License
 -------
 
