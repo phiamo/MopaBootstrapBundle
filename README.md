@@ -1,11 +1,17 @@
 # README
 <h2 id="Warning">Warning</h2>
 
-> Besides that there are two branches for bootstrap 1.x (v1.x) and 2.x (master) of this bundle,
-> we are now also following symfony master (ucoming sf2.1) in our master branch. 
-> To use bootstrap 2.x with symfony 2.0 use the newly created v2.x_sf2.0 branch which is hopefully updated with backwards compatible commits.
-> Since there are a lot of commits by the community, docs are improving, and i have not seen showblockers.
-> Anyways, this is a master branch and it will have bugs...
+> We changed the Namespace of the Bundle as we did with the master branch, to reduce a real lot of changes in the Sandbox etc.
+> Also to ease the merging of master features into the 2.0 branch.
+> Make sre you update all references to the Namespace from Mopa\BootstrapBundle to Mopa\Bundle\BootstrapBundle in your AppKernel.php, configs etc.
+> If you are not abled to apply the changes currently, you can use the tag v1.0.0 we just created. It points to the last version in the old Namespace.
+
+<h2 id="Warning">NEW Warning</h2>
+
+> The branching strategy has been adapted to be more flexible:
+> * The old branch for bootstrap 1.x (v1.x) still exists.
+> * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
+> * The master branch is following Symfony master with bootstrap 2.x
 
 <h2 id="Live_Show">Live Show</h2>
 
