@@ -140,7 +140,7 @@ public function registerBundles()
 {
     return array(
         // ...
-        new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+        new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
         // ...
     );
 }

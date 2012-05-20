@@ -4,6 +4,6 @@ services:
         # Make the navbar fluid for use in container-fluid.
         #calls:
         #    - [ setFluid, [ true ] ]
-        arguments: ["MopaBootstrapBundle", true, "mopa_bootstrap_welcome", @mopa_bootstrap.examplemenu=, Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType, @mopa_bootstrap.exampledropdown=]
+        arguments: ["MopaBootstrapBundle", true, "mopa_bootstrap_welcome", @mopa_bootstrap.examplemenu=, Mopa\Bundle\BootstrapBundle\Form\Type\ExampleSearchFormType, @mopa_bootstrap.exampledropdown=]
         tags:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar } # The alias is what is used to retrieve the navbar

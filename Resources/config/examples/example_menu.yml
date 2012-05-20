@@ -1,6 +1,6 @@
 services:
     mopa_bootstrap.examplemenu_builder:
-        class: Mopa\BootstrapBundle\Navbar\Example\MenuBuilder
+        class: Mopa\Bundle\BootstrapBundle\Navbar\Example\MenuBuilder
         arguments: ["@knp_menu.factory"]
 
     mopa_bootstrap.examplemenu:

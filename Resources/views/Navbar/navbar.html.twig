@@ -1,25 +1,25 @@
 {% block navbar %}
-<div class="navbar {% if navbar.fixedTop %}navbar-fixed-top{% endif %}">
+<div class="navbar {% if navbar.getOption('fixedTop') %}navbar-fixed-top{% endif %}">
 	<div class="navbar-inner">
-		<div class="container{% if navbar.fluid %}-fluid{% endif %}">
+		<div class="container{% if navbar.getOption('isFluid') %}-fluid{% endif %}">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-    		<a class="brand" href="{{ path(navbar.titleRoute) }}">{{ navbar.title }}</a>
+    		<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ navbar.getOption('title') }}</a>
             <div class="nav-collapse">
-                {{ navbar.leftmenu ? knp_menu_render(navbar.leftmenu, {'currentClass': 'active', 'ancestorClass': 'active'}) : '' }}
-                {% if navbar.form %}
-                    {% form_theme navbar.form _self %}
-                        <form  class="navbar-search pull-left" method="post" action="{{ path(navbar.formRoute) }}">
-                        {{ form_widget(navbar.form) }}
-                        {% if navbar.buttonValue %}
-                        	<input class="btn primary" value="{{ navbar.buttonValue }}" type="submit">
+                {{ navbar.getMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active'}) : 'no left menu defined' }}
+                {% if navbar.hasFormView('searchform') %}
+                    {% form_theme navbar.getFormView('searchform') _self %}
+                        <form  class="navbar-search pull-left" method="post" action="{{ navbar.getFormRoute('searchform') }}">
+                        {{ form_row(navbar.getFormView('searchform')) }}
+                        {% if navbar.getFormType('searchform').getButtonValue() %}
+                        	<input class="btn primary" value="{{ navbar.getFormType('searchform').getButtonValue() }}" type="submit">
                         {% endif %}
                     </form>
                 {% endif %}
-                {{ navbar.rightmenu ? knp_menu_render(navbar.rightmenu, {'currentClass': 'active', 'ancestorClass': 'active'}) : '' }}
+                {{ navbar.getMenu('rightmenu') ? knp_menu_render(navbar.getMenu('rightmenu'), {'currentClass': 'active', 'ancestorClass': 'active'}) : '' }}
             </div>
 
 		</div>

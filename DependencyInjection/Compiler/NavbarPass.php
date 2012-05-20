@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\DependencyInjection\Compiler;
+namespace Mopa\Bundle\BootstrapBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

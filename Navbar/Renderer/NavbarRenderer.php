@@ -1,11 +1,12 @@
 <?php
-namespace Mopa\BootstrapBundle\Navbar\Renderer;
+namespace Mopa\Bundle\BootstrapBundle\Navbar\Renderer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Symfony\Component\Form\FormFactoryInterface;
-use Mopa\BootstrapBundle\Navbar\NavbarInterface;
 use Symfony\Component\Form\AbstractType;
+use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
+use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
+use Mopa\Bundle\BootstrapBundle\Navbar\OptionNotFoundException;
 
 class NavbarRenderer{
 
@@ -31,13 +32,23 @@ class NavbarRenderer{
     {
         $options = array_merge($this->getNavbarDefaultOptions(), $options);
 
-        $template = $options['template'];
-        if (!$template instanceof \Twig_Template) {
-            $template = $this->container->get('twig')->loadTemplate($template);
-        }
         $navbar = $this->getNavbar($name);
-        $this->createFormView($navbar);
+        $navbar = $this->createFormViews($navbar);
         $block = 'navbar';
+        try{
+            $template = $navbar->getOption('template');
+        }
+        catch(OptionNotFoundException $e){
+            $template = $options['template'];
+        }
+        if (!$template instanceof \Twig_Template) {
+            try{
+                $template = $this->container->get('twig')->loadTemplate($template);
+            }
+            catch(\ErrorException $e){
+                throw new \Exception("Could not load template: " . $template, 99, $e);
+            }
+        }
 
         // we do not call renderBlock here to avoid too many nested level calls (XDebug limits the level to 100 by default)
         ob_start();
@@ -46,18 +57,22 @@ class NavbarRenderer{
 
         return $html;
     }
-    protected function createFormView(NavbarInterface $navbar){
-        $formType = null;
-        if(is_string($navbar->getFormTypeClass())){
-            $formType = $navbar->getFormTypeClass();
-            $formType = new $formType();
+    protected function createFormViews(NavbarInterface $navbar){
+        foreach($navbar->getFormClasses() as $key => $formTypeString){
+            $formType = null;
+            if(is_string($formTypeString) && strlen($formTypeString) > 0){
+                $formType = new $formTypeString();
+            }
+            if($formType && $formType instanceof NavbarFormInterface){
+                $navbar->setFormType($key, $formType);
+                $form = $this->container->get('form.factory')->create($formType);
+                $navbar->setFormView($key, $form->createView());
+            }
+            else{
+                throw new \Exception("Form Type Created ". $formTypeString . " is not a NavbarFormInterface");
+            }
         }
-        if($formType && $formType instanceof AbstractType){
-            $navbar->setFormType($formType);
-            $form = $this->container->get('form.factory')->create($formType);
-            $navbar->setForm($form->createView());
-        }
-        return null;
+        return $navbar;
     }
     protected function getNavbar($name){
         if(!in_array($name, array_keys($this->navbars))){

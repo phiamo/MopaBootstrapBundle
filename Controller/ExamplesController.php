@@ -1,5 +1,5 @@
 <?php
-namespace Mopa\BootstrapBundle\Controller;
+namespace Mopa\Bundle\BootstrapBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -7,15 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Mopa\BootstrapBundle\Form\Type\ExampleInputFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleFormsType;
-use Mopa\BootstrapBundle\Form\Type\ExampleChoiceFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleCollectionsFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleInlineFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleSearchFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleHorizontalFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleExtendedFormType;
-use Mopa\BootstrapBundle\Form\Type\ExampleExtendedViewFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleInputFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleFormsType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleChoiceFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleCollectionsFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleInlineFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleSearchFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleHorizontalFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleExtendedFormType;
+use Mopa\Bundle\BootstrapBundle\Form\Type\ExampleExtendedViewFormType;
 
 
 class ExamplesController extends Controller{

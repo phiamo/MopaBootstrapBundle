@@ -1,6 +1,6 @@
 <?php
 
-namespace Mopa\BootstrapBundle\Command;
+namespace Mopa\Bundle\BootstrapBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;

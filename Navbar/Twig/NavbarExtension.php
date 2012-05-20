@@ -1,8 +1,8 @@
 <?php
 
-namespace Mopa\BootstrapBundle\Navbar\Twig;
+namespace Mopa\Bundle\BootstrapBundle\Navbar\Twig;
 
-use Mopa\BootstrapBundle\Navbar\Renderer\NavbarRenderer;
+use Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer;
 
 class NavbarExtension extends \Twig_Extension
 {
