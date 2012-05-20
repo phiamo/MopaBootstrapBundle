@@ -28,7 +28,7 @@
         "twitter/bootstrap": "2.0.3",
         "knplabs/knp-menu-bundle": "dev-master"
     },
-    "target-dir": "Mopa/BootstrapBundle",
+    "target-dir": "Mopa/Bundle/BootstrapBundle",
     "repositories": {
         "twitter-bootstrap": {
             "package": {
