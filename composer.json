@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Mopa\\BootstrapBundle": ""
+            "Mopa\\Bundle\\BootstrapBundle": ""
         }
     },
     "require": {
