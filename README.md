@@ -84,6 +84,53 @@ $loader->registerNamespaces(array(
 ));
 ```
 
+1.3 Installation with composer:
+
+to install this with composer have a look into:
+
+https://github.com/KnpLabs/symfony-with-composer
+
+and add this to your composer.json:
+
+```json
+{
+    "require": {
+        "mopa/bootstrap-bundle":          "dev-v2.x_sf2.0",
+        "twitter/bootstrap":              "dev-master",
+        "knplabs/knp-paginator-bundle":   "v2.0",
+        "knplabs/knp-menu-bundle":        "dev-master",
+        "craue/formflow-bundle":          "1.0.0"
+    },
+    "repositories": [
+       {
+           "type": "package",
+           "package": {
+               "version": "dev-master",
+               "name": "twitter/bootstrap",
+               "source": {
+                   "url": "https://github.com/twitter/bootstrap.git",
+                   "type": "git",
+                   "reference": "master"
+               },
+               "dist": {
+                   "url": "https://github.com/twitter/bootstrap/zipball/master",
+                   "type": "zip"
+                }
+           }
+       }
+    ],
+    "scripts": {
+       "post-install-cmd": [
+           "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+       ],
+       "post-update-cmd": [
+           "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+       ]
+    }
+}
+
+```
+
 
 3. Add this bundle to your app/AppKernel.php:
 
