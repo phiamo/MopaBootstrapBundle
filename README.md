@@ -101,7 +101,7 @@ and add this to your composer.json:
 ```json
 {
     "require": {
-        "mopa/bootstrap-bundle":          "dev-v2.x_sf2.0",
+        "mopa/bootstrap-bundle":          "v2.0.x-dev",
         "twitter/bootstrap":              "dev-master",
         "knplabs/knp-paginator-bundle":   "v2.0",
         "knplabs/knp-menu-bundle":        "dev-master",
