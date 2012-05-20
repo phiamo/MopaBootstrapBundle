@@ -51,8 +51,8 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue(false)
                             ->end()
                         ->scalarNode('error_type')
-                            ->defaultValue('inline')
-                        ->end()
+                            ->defaultValue(null)
+                            ->end()
                     ->end()
                 ->end()
             ->end();

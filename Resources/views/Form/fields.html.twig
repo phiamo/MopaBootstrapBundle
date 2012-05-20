@@ -6,7 +6,7 @@
 {% block form_widget_single_control %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
     	{% if not widget_addon.append %}
     	{{ block('widget_addon') }}
@@ -16,7 +16,7 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if widget_addon.text|default(false) or widget_addon.icon|default(false) %}
+    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     	{% if widget_addon.append %}
     	{{ block('widget_addon') }}
     	{% endif %}
@@ -284,13 +284,13 @@
 
 {% block error_type %}
 {% spaceless %}
-{% if form_error_type %}
-{{ form_error_type }}
+{% if error_type %}
+    {{ error_type }}
 {% elseif form.hasParent() != 0 %}
     {% set form = form.parent %}
     {{ block('error_type') }}
 {% elseif form.hasParent() == 0 %}
-    {{ form.get('form_error_type') }}
+    {{ form.get('error_type') | default('inline') }}
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}

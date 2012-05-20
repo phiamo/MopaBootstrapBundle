@@ -184,7 +184,7 @@ public function buildForm(FormBuilder $builder, array $options)
 {
     $builder
     //...
-           ->add('country', null, array('field_error_type'=>'block'))
+           ->add('country', null, array('error_type'=>'block'))
     ;
     //...
 ``` 
@@ -240,6 +240,18 @@ Since collections often tend to make probs, we added some code to ease the use:
  * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
  * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
  * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/Examples/collections.html.twig
+
+And for Subforms:
+
+ * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleDateFormType.php
+
+Make especially sure that your subforms have these options set:
+
+```
+    'widget_control_group' => false,
+    'widget_controls' => false,
+```
+Otherwise you will have unexpected repeating forms ...
 
 Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
 

@@ -1,6 +1,13 @@
 MopaBootstrapBundle
 ===================
 
+<h2 id="Warning">NEW Warning</h2>
+
+> The branching strategy has been adapted to be more flexible:
+> * The old branch for bootstrap 1.x (v1.x) still exists.
+> * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
+> * The master branch is following Symfony master with bootstrap 2.x
+
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
@@ -45,11 +52,22 @@ The bulk of the documentation is stored in the `Resources/doc/index.md`
 file in this bundle:
 
 [Read the Documentation for master](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
+[Read the Documentation for v2.0.x](https://github.com/phiamo/MopaBootstrapBundle/blob/master/README.md)
 
 Installation
 ------------
 
-All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/doc/1-installation.md).
+All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
+
+Translation
+------------
+If you use KnpPaginatorBundle with MopaBootstrapBundle, you can translate labels to your language.  
+To do this add new file  
+
+```Resources/translations/pagination.[YOUR LOCALE CODE].yml```  
+
+As example you have there Polish translation.
+
 
 License
 -------
