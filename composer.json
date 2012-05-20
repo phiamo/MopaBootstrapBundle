@@ -49,5 +49,10 @@
         "post-update-cmd": [ 
             "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-v2.0.x": "dev-v2.x_sf2.0"
+        }
     }
 }
