@@ -124,30 +124,18 @@
 </head>
 {% endblock head %}
 
-{% block body_tag %}
-<body data-spy="scroll">
-{% endblock body_tag %}
-
 {% block body_start %}
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 {% endblock body_start %}
 
 {% block body %}
     {% block navbar %}
-        {# Put here top navigation bar/menu #}
+	{{ parent() }}
     {% endblock navbar %}
 
-    <div><!-- containter -->
-    {% block content %}
-        {# Put here main content #}
-    {% endblock content %}
-
-        <footer>
-        {% block footer %}
-            <p>&copy; <a href="" target="_blank">OWNER</a> 2012</p>
-        {% endblock footer %}
-        </footer>
-    </div> <!-- /container -->
+	{% block container %}
+	{{ parent() }}
+	{% endblock container %}
 
 {% block foot_scripts %}
     {# Load jQuery from Google CDN

@@ -7,28 +7,28 @@
 {% endblock html_tag %}
 {% block head %}
 <head>
-<meta charset="UTF-8" />
-{% block head_style %}
-{# Override this block to add your own files! #}
-{% stylesheets
-	'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-%}
-<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-{% endstylesheets %}
-{# To use this without less use the base_css.html.twig template as your base
- # Be sure you understand whats going on: have a look into
- # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
- #}
-{% endblock head_style %}
+	<meta charset="UTF-8" />
+	{% block head_style %}
+	{# Override this block to add your own files! #}
+	{% stylesheets
+		'@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+	%}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+	{% endstylesheets %}
+	{# To use this without less use the base_css.html.twig template as your base
+	 # Be sure you understand whats going on: have a look into
+	 # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
+	 #}
+	{% endblock head_style %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block head_script %}
-{# Overwrite this block to add your own js here, to get them generated into final files #}
-{% endblock head_script %}
+	{% block head_script %}
+	{# Overwrite this block to add your own js here, to get them generated into final files #}
+	{% endblock head_script %}
 
-<title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
-<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+	<title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
+	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
 {% endblock head %}
 
