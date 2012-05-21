@@ -61,20 +61,11 @@ class MopaBootstrapExtension extends Extension
                 );
             }
             if(isset($config['navbar']['service'])){
-                if($config['navbar']['service'] == 'mopa_bootstrap.example.navbar'){
-                    $this->loadExamples($container);
-                }
                 $container->setAlias(
                     'mopa_bootstrap.navbar.service',
                     $config['navbar']['service']
                 );
             }
         }
-    }
-    protected function loadExamples(ContainerBuilder $container){
-        //$xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
-        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
-        $yamlloader->load("example_menu.yml");
-        $yamlloader->load("example_navbar.yml");
     }
 }
