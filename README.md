@@ -173,7 +173,7 @@ or quick start e.g. with
 ```
 [twittersbootstrap]
     git = "git://github.com/twitter/bootstrap.git"
-    target = "/bundles/Mopa/BootstrapBundle/Resources/bootstrap"
+    target = "/bundles/Mopa/Bundle/BootstrapBundle/Resources/bootstrap"
     version = v2.0.3
     
 ```
