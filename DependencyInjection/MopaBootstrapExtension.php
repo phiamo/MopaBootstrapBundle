@@ -61,7 +61,9 @@ class MopaBootstrapExtension extends Extension
                 );
             }
             if(isset($config['navbar']['service'])){
-
+                if($config['navbar']['service'] == 'mopa_bootstrap.example.navbar'){
+                    $this->loadExamples($container);
+                }
                 $container->setAlias(
                     'mopa_bootstrap.navbar.service',
                     $config['navbar']['service']
