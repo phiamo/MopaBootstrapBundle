@@ -2,14 +2,12 @@
 namespace Mopa\Bundle\BootstrapBundle\Navbar\Renderer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\AbstractType;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\OptionNotFoundException;
 
-class NavbarRenderer{
-
+class NavbarRenderer
+{
     private $container;
     private $template;
     private $formFactory;
@@ -25,7 +23,7 @@ class NavbarRenderer{
      * Renders the navbar with the specified renderer.
      *
      * @param \Knp\Menu\ItemInterface $item
-     * @param array $options
+     * @param array                   $options
      * @return string
      */
     public function renderNavbar($name, array $options = array())
@@ -37,15 +35,13 @@ class NavbarRenderer{
         $block = 'navbar';
         try{
             $template = $navbar->getOption('template');
-        }
-        catch(OptionNotFoundException $e) {
+        } catch(OptionNotFoundException $e) {
             $template = $options['template'];
         }
         if (!$template instanceof \Twig_Template) {
             try{
                 $template = $this->container->get('twig')->loadTemplate($template);
-            }
-            catch(\ErrorException $e) {
+            } catch(\ErrorException $e) {
                 throw new \Exception("Could not load template: " . $template, 99, $e);
             }
         }
@@ -57,7 +53,8 @@ class NavbarRenderer{
 
         return $html;
     }
-    protected function createFormViews(NavbarInterface $navbar) {
+    protected function createFormViews(NavbarInterface $navbar)
+    {
         foreach ($navbar->getFormClasses() as $key => $formTypeString) {
             $formType = null;
             if (is_string($formTypeString) && strlen($formTypeString) > 0) {
@@ -67,17 +64,19 @@ class NavbarRenderer{
                 $navbar->setFormType($key, $formType);
                 $form = $this->container->get('form.factory')->create($formType);
                 $navbar->setFormView($key, $form->createView());
-            }
-            else {
+            } else {
                 throw new \Exception("Form Type Created ". $formTypeString . " is not a NavbarFormInterface");
             }
         }
+
         return $navbar;
     }
-    protected function getNavbar($name) {
+    protected function getNavbar($name)
+    {
         if (!in_array($name, array_keys($this->navbars))) {
             throw new \Exception(sprintf('The given Navbar alias "%s" was not found', $name));
         }
+
         return $this->container->get($this->navbars[$name]);
     }
     private function getNavbarDefaultOptions()

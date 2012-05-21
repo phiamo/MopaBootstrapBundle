@@ -13,7 +13,8 @@ class LegendFormTypeExtension extends AbstractTypeExtension
     private $show_legend;
     private $show_child_legend;
 
-    public function __construct(array $options) {
+    public function __construct(array $options)
+    {
         $this->render_fieldset = $options['render_fieldset'];
         $this->show_legend = $options['show_legend'];
         $this->show_child_legend = $options['show_child_legend'];
