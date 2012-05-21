@@ -10,7 +10,8 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 {
     protected $error_type;
 
-    public function __construct(array $options) {
+    public function __construct(array $options)
+    {
         $this->error_type = $options['error_type'];
     }
     public function buildForm(FormBuilder $builder, array $options)

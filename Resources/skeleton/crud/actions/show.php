@@ -22,6 +22,7 @@
 {% endif %}
 
 {% if 'annotation' == format %}
+
         return array(
             'entity'      => $entity,
 {% if 'delete' in actions %}
@@ -30,6 +31,7 @@
 {%- endif %}
         );
 {% else %}
+
         return $this->render('{{ bundle }}:{{ entity|replace({'\\': '/'}) }}:show.html.twig', array(
             'entity'      => $entity,
 {% if 'delete' in actions %}

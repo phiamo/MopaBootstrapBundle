@@ -3,9 +3,9 @@
     {% if close|default(false) %}
             <a class="close" data-dismiss="alert" href="#">×</a>
     {% endif %}
-    
+
     {% if use_raw|default(false) %}
-        {{ message|trans|raw }}    
+        {{ message|trans|raw }}
     {% else %}
         {{ message|trans }}
     {% endif %}

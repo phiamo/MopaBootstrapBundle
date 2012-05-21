@@ -13,11 +13,13 @@
         $form   = $this->createForm(new {{ entity_class }}Type(), $entity);
 
 {% if 'annotation' == format %}
+
         return array(
             'entity' => $entity,
             'form'   => $form->createView()
         );
 {% else %}
+
         return $this->render('{{ bundle }}:{{ entity|replace({'\\': '/'}) }}:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
