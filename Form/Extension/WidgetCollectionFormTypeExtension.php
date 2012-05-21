@@ -18,7 +18,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormView $view, FormInterface $form)
     {
-		$view->set('widget_add_btn', @$form->getAttribute('allow_add') ? $form->getAttribute('widget_add_btn') : null);
+        $view->set('widget_add_btn', @$form->getAttribute('allow_add') ? $form->getAttribute('widget_add_btn') : null);
 
         //todo make array, and add
         // add check function
