@@ -41,7 +41,7 @@
     <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
 
     {# <title>{% block title %}{% endblock %}</title> #}
-    <title>{{ meta['title'] }}</title>
+    <title>{% block title%}{{ meta['title'] }}{% endblock %}</title>
 
     {# TODO: to be removed as HTML5 has no such tag
     <meta name="title" content="{{ meta_title|default('') }}"> #}
