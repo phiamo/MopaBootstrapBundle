@@ -33,17 +33,17 @@ class MopaBootstrapExtension extends Extension
         $yamlloader->load("form_extensions.yml");
         
 
-        if(isset($config['form'])){
-        	foreach($config['form'] as $key => $value){
-        		$container->setParameter(
-        				'mopa_bootstrap.form.'.$key,
-        				$value
-        		);
-        	}
+        if (isset($config['form'])) {
+            foreach ($config['form'] as $key => $value) {
+                $container->setParameter(
+                        'mopa_bootstrap.form.'.$key,
+                        $value
+                );
+            }
         }
-        if(isset($config['navbar'])){
+        if (isset($config['navbar'])) {
             $yamlloader->load("navbar_extension.yml");
-            if(isset($config['navbar']['template'])){
+            if (isset($config['navbar']['template'])) {
                 $container->setParameter(
                     'mopa_bootstrap.navbar.template',
                     $config['navbar']['template']
@@ -52,7 +52,7 @@ class MopaBootstrapExtension extends Extension
         }
 
         // set container parameters for Initializr base template
-        if(isset($config['initializr'])){
+        if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals
             $yamlloader->load('config_mapper_extension.yml');
  

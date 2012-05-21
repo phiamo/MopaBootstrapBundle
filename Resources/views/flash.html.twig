@@ -1,14 +1,14 @@
 {% macro flash(type, message, close, use_raw) %}
     <div class="alert alert-{{ type }}" data-alert="alert">
-	{% if close|default(false) %}
+    {% if close|default(false) %}
             <a class="close" data-dismiss="alert" href="#">×</a>
-	{% endif %}
-	
-	{% if use_raw|default(false) %}
-	    {{ message|trans|raw }}    
-	{% else %}
-	    {{ message|trans }}
-	{% endif %}
+    {% endif %}
+    
+    {% if use_raw|default(false) %}
+        {{ message|trans|raw }}    
+    {% else %}
+        {{ message|trans }}
+    {% endif %}
     </div>
 {% endmacro %}
 

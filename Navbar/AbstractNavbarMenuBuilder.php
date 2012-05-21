@@ -30,13 +30,13 @@ abstract class AbstractNavbarMenuBuilder
      * @param string $title Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createNavbarMenuItem($push_right = true){
+    protected function createNavbarMenuItem($push_right = true) {
 
         $rootItem = $this->factory->createItem('root');
         $rootItem
             ->setChildrenAttributes(array('class' => 'nav'))
         ;
-        if($push_right){
+        if ($push_right) {
             $this->pushRight($rootItem);
         }
         return $rootItem;
@@ -47,11 +47,11 @@ abstract class AbstractNavbarMenuBuilder
      * @param string $title Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = null){
+    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = null) {
         $rootItem
             ->setAttribute('class', 'nav')
         ;
-        if($push_right){
+        if ($push_right) {
             $this->pushRight($rootItem);
         }
         $dropdown = $rootItem->addChild($title, array('uri'=>'#'))
@@ -67,7 +67,7 @@ abstract class AbstractNavbarMenuBuilder
         }
         return $dropdown;
     }
-    protected function pushRight(ItemInterface $item){
+    protected function pushRight(ItemInterface $item) {
         $item->setAttribute('class', 'nav pull-right');
         return $item;
     }
@@ -79,7 +79,7 @@ abstract class AbstractNavbarMenuBuilder
      *
      * @return ItemInterface
      */
-    protected function addDivider(ItemInterface $dropdown, $vertical = false){
+    protected function addDivider(ItemInterface $dropdown, $vertical = false) {
         $class = $vertical ? 'divider-vertical' : 'divider';
 
         return $dropdown->addChild('divider_'.rand())

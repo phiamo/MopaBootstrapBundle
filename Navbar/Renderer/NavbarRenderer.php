@@ -38,14 +38,14 @@ class NavbarRenderer{
         try{
             $template = $navbar->getOption('template');
         }
-        catch(OptionNotFoundException $e){
+        catch(OptionNotFoundException $e) {
             $template = $options['template'];
         }
         if (!$template instanceof \Twig_Template) {
             try{
                 $template = $this->container->get('twig')->loadTemplate($template);
             }
-            catch(\ErrorException $e){
+            catch(\ErrorException $e) {
                 throw new \Exception("Could not load template: " . $template, 99, $e);
             }
         }
@@ -57,25 +57,25 @@ class NavbarRenderer{
 
         return $html;
     }
-    protected function createFormViews(NavbarInterface $navbar){
-        foreach($navbar->getFormClasses() as $key => $formTypeString){
+    protected function createFormViews(NavbarInterface $navbar) {
+        foreach ($navbar->getFormClasses() as $key => $formTypeString) {
             $formType = null;
-            if(is_string($formTypeString) && strlen($formTypeString) > 0){
+            if (is_string($formTypeString) && strlen($formTypeString) > 0) {
                 $formType = new $formTypeString();
             }
-            if($formType && $formType instanceof NavbarFormInterface){
+            if ($formType && $formType instanceof NavbarFormInterface) {
                 $navbar->setFormType($key, $formType);
                 $form = $this->container->get('form.factory')->create($formType);
                 $navbar->setFormView($key, $form->createView());
             }
-            else{
+            else {
                 throw new \Exception("Form Type Created ". $formTypeString . " is not a NavbarFormInterface");
             }
         }
         return $navbar;
     }
-    protected function getNavbar($name){
-        if(!in_array($name, array_keys($this->navbars))){
+    protected function getNavbar($name) {
+        if (!in_array($name, array_keys($this->navbars))) {
             throw new \Exception(sprintf('The given Navbar alias "%s" was not found', $name));
         }
         return $this->container->get($this->navbars[$name]);

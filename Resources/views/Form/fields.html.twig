@@ -8,18 +8,18 @@
     {% set type = type|default('text') %}
     {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
     <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
-    	{% if not widget_addon.append %}
-    	{{ block('widget_addon') }}
-    	{% endif %}
+        {% if not widget_addon.append %}
+        {{ block('widget_addon') }}
+        {% endif %}
     {% endif %}
     {% if not widget_remove_btn|default(false) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
-    	{% if widget_addon.append %}
-    	{{ block('widget_addon') }}
-    	{% endif %}
+        {% if widget_addon.append %}
+        {{ block('widget_addon') }}
+        {% endif %}
     </div>
     {% endif %}
 {% endspaceless %}
@@ -145,9 +145,9 @@
 {% block form_label %}
 {% spaceless %}
     {% if label_render %}
-	    {% if single_control %}
-	        {% set label_attr = label_attr|merge({'for': id}) %}
-	    {% endif %}
+        {% if single_control %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
         {% if required %}
             {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
         {% endif %}
@@ -177,13 +177,13 @@
     {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.get('types') %}
-        	{% if 'collection' in form.get('types') %}
-        	<div class="collection-item">
-        	{% endif %}
+            {% if 'collection' in form.get('types') %}
+            <div class="collection-item">
+            {% endif %}
             {{ form_row(child) }}
-        	{% if 'collection' in form.get('types') %}
-        	</div>
-        	{% endif %}
+            {% if 'collection' in form.get('types') %}
+            </div>
+            {% endif %}
         {% endif %}
     {% endfor %}
 {% endspaceless %}
@@ -301,13 +301,13 @@
 {% spaceless %}
 {% if widget_control_group|default(false) or not form.hasParent() %}
     {% if prototype is defined %}
-    	{% set data_prototype %}
-    	{% spaceless %}
-    	<div class="collection-item">
-    		{{ form_row(prototype) }}
-    	</div>
-    	{% endspaceless %}
-    	{% endset %}
+        {% set data_prototype %}
+        {% spaceless %}
+        <div class="collection-item">
+            {{ form_row(prototype) }}
+        </div>
+        {% endspaceless %}
+        {% endset %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype|e}) %}
     {% endif %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
@@ -317,8 +317,8 @@
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {% if form.children|length > 0 and form.hasParent() and show_child_legend %}
         {{ block('form_legend') }}
-	{% else %}
-    	{{ form_label(form, label|default(null)) }}
+    {% else %}
+        {{ form_label(form, label|default(null)) }}
     {% endif %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}

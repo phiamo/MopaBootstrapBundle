@@ -130,12 +130,12 @@
 
 {% block body %}
     {% block navbar %}
-	{{ parent() }}
+    {{ parent() }}
     {% endblock navbar %}
 
-	{% block container %}
-	{{ parent() }}
-	{% endblock container %}
+    {% block container %}
+    {{ parent() }}
+    {% endblock container %}
 
 {% block foot_scripts %}
     {# Load jQuery from Google CDN
@@ -168,20 +168,20 @@
 
     {# removed jQuery from assetic load as it is loaded from Google CDN above #}
     {% javascripts
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
-    	'@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
 
-    	'@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
         '@MopaBootstrapBundle/Resources/public/js/initializr_addons.js'
