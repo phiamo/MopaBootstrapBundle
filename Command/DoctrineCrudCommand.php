@@ -17,6 +17,7 @@ class DoctrineCrudCommand extends BaseGenerator
     {
         $generator = new DoctrineCrudGenerator($this->getContainer()->get('filesystem'), __DIR__.'/../Resources/skeleton/crud');
         $this->setGenerator($generator);
+
         return parent::getGenerator();
     }
 }

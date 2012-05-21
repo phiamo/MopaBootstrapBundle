@@ -16,8 +16,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $builder->setAttribute('widget_controls', $options['widget_controls']);
         if (!is_array($options['widget_addon'])) {
             throw new CreationException("The 'widget_addon' option must be an array");
-        }
-        else {
+        } else {
             $defaults = $this->getDefaultOptions($options);
             $options['widget_addon'] = array_merge( $defaults['widget_addon'], $options['widget_addon']);
         }
