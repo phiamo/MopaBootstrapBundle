@@ -80,7 +80,7 @@
 {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
                 '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
                 '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
             })|raw }}
