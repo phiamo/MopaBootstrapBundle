@@ -26,9 +26,9 @@
         "mopa/composer-bridge": "dev-master"
     },
     "suggest":  {
-        "twitter/bootstrap": "dev-master",
+        "twitter/bootstrap": "2.0.*",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "1.1.*",
         "craue/formflow-bundle": "dev-master"
     },
     "repositories": [
@@ -53,7 +53,7 @@
         "post-install-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],
-        "post-update-cmd": [ 
+        "post-update-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     },
