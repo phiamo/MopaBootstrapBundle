@@ -35,10 +35,19 @@ class MopaBootstrapExtension extends Extension
 
         if (isset($config['form'])) {
             foreach ($config['form'] as $key => $value) {
-                $container->setParameter(
+                if(is_array($value)) {
+                    foreach ($config['form'][$key] as $subkey => $subvalue) {
+                        $container->setParameter(
+                                'mopa_bootstrap.form.'.$key.'.'.$subkey,
+                                $subvalue
+                        );
+                    }
+                } else {
+                    $container->setParameter(
                         'mopa_bootstrap.form.'.$key,
                         $value
-                );
+                    );
+                }
             }
         }
         if (isset($config['navbar'])) {

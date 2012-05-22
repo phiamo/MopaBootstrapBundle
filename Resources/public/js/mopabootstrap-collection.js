@@ -100,6 +100,7 @@
             $btn = $btn.closest('.btn');
         }
         $btn.collection('add');
+        e.preventDefault();
       });
       $('body').on('click.collection.data-api', '[data-collection-remove-btn]', function ( e ) {
         var $btn = $(e.target);
@@ -107,6 +108,7 @@
             $btn = $btn.closest('.btn');
         }
         $btn.collection('remove');
+        e.preventDefault();
       });
   });
 

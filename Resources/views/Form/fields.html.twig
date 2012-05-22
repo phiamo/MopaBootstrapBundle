@@ -12,7 +12,7 @@
         {{ block('widget_addon') }}
         {% endif %}
     {% endif %}
-    {% if not widget_remove_btn|default(false) %}
+    {% if not widget_remove_btn|default(null) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
@@ -227,7 +227,9 @@
 {% block form_widget_add_btn %}
 {% spaceless %}
     {% if widget_add_btn %}
-    <input type="button" class="btn" data-collection-add-btn="{{ form.get('id')}}_control_group" value="{{ widget_add_btn }}">
+    {% set button_type = 'add' %}
+    {% set button_values = widget_add_btn %}
+    {{ block('collection_button') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_add_btn %}
@@ -235,10 +237,24 @@
 {% block form_widget_remove_btn %}
 {% spaceless %}
     {% if widget_remove_btn %}
-    <input type="button" class="btn" data-collection-remove-btn="{{ form.parent.get('id')}}_control_group" value="{{ widget_remove_btn }}">
+    {% set button_type = 'remove' %}
+    {% set button_values = widget_remove_btn %}
+    {{ block('collection_button') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_remove_btn %}
+
+{% block collection_button %}
+
+<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="{{ form.get('id') }}_control_group">
+{% if button_values.icon is defined %}
+<i class="icon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></i>
+{% endif %}
+{{ button_values.label }}
+</a>
+
+{% endblock collection_button %}
+
 
 {% block widget_addon %}
 {% spaceless %}

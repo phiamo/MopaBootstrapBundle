@@ -232,30 +232,11 @@ will result in
 ```
 
 
-Field Collections
------------------
+Collections
+-----------
 
-Since collections often tend to make probs, we added some code to ease the use:
+Look into the more detailed doc:
 
- * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
- * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleCollectionsFormType.php
- * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/Examples/collections.html.twig
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md
 
-And for Subforms:
 
- * https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Form/Type/ExampleDateFormType.php
-
-Make especially sure that your subforms have these options set:
-
-```
-    'widget_control_group' => false,
-    'widget_controls' => false,
-```
-Otherwise you will have unexpected repeating forms ...
-
-Make sure you included the mopabootstrap-collections.js to have the javascript code loaded and available
-
-Some things are currently missing :
-
- * examples on howto extend the functionality with check functions for adding and removing
- * in depth example on howto use Custom FormTypes easily
