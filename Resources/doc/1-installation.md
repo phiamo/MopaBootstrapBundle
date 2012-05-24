@@ -8,7 +8,6 @@ Prerequisites
 
 Less is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
-If you do not have less installed, currently you have several option, but please do NOT ask for help.
 
 [Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
@@ -16,7 +15,13 @@ If you do not have less installed, currently you have several option, but please
 
 Sass is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
-If you do not have sass installed, currently you have several option, but please do NOT ask for help.
+
+[Sass Documentation](http://sass-lang.com/)
+
+[Compass Documentation](http://compass-style.org/)
+
+
+If you do not have less / Sass / Compass installed, currently you have several option, but please do NOT ask for help.
 
 Installation
 ------------

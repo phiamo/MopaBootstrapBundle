@@ -66,7 +66,7 @@ If you are using less just include the mopabootstrap.less as described in layout
 If you are using Sass just include the mopabootstrap.scss instead of the mopabootstrap.less
 
 ``` jinja
-{% stylesheets filter='cssrewrite,?yui_css'
+{% stylesheets filter='?yui_css'
    '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
    '@YourNiceBundle/Resources/public/sass/*'
 %}

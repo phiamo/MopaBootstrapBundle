@@ -24,13 +24,13 @@ class ScriptHandler
             'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-                                BootstrapInstallationCommand::$mopaBootstrapBundleName,
-                                BootstrapInstallationCommand::$twitterBootstrapName,
-                                $options
+            BootstrapInstallationCommand::$mopaBootstrapBundleName,
+            BootstrapInstallationCommand::$twitterBootstrapName,
+            $options
         );
 
         $IO->write("Checking Symlink", FALSE);
-        if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)){
+        if (false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $IO->write("Creating Symlink: " . $symlinkName, FALSE);
             BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
         }
@@ -53,7 +53,7 @@ class ScriptHandler
         );
 
         $IO->write("Checking Symlink", FALSE);
-        if(false === BootstrapSassInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)){
+        if (false === BootstrapSassInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $IO->write("Creating Symlink: " . $symlinkName, FALSE);
             BootstrapSassInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
         }
