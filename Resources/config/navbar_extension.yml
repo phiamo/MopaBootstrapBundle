@@ -2,12 +2,26 @@ parameters:
     mopa_bootstrap.navbar.generic: Mopa\Bundle\BootstrapBundle\Navbar\GenericNavbar
 
 services:
-    mopa_bootstrap.navbar_renderer:
+    mopa_bootstrap.topnavbar_renderer:
         class: Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer
-        arguments: [ @service_container, %mopa_bootstrap.navbar.template%, [] ]
+        arguments: [ @service_container, %mopa_bootstrap.topnavbar.template%, [] ]
         tags:
             # The alias is what is used to retrieve the menu
-            - { name: knp_menu.renderer, alias: navbar }
+            - { name: knp_menu.renderer, alias: topnavbar }
+
+    mopa_bootstrap.mainnavbar_renderer:
+        class: Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer
+        arguments: [ @service_container, %mopa_bootstrap.mainnavbar.template%, [] ]
+        tags:
+            # The alias is what is used to retrieve the menu
+            - { name: knp_menu.renderer, alias: mainnavbar }
+
+    mopa_bootstrap.subnavbar_renderer:
+        class: Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer
+        arguments: [ @service_container, %mopa_bootstrap.subnavbar.template%, [] ]
+        tags:
+            # The alias is what is used to retrieve the menu
+            - { name: knp_menu.renderer, alias: subnavbar }
 
     mopa_bootstrap.navbar.twig.extension:
         class: Mopa\Bundle\BootstrapBundle\Navbar\Twig\NavbarExtension

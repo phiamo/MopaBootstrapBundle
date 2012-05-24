@@ -27,9 +27,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
+
         $this->addFormConfig($rootNode);
-        $this->addNavbarConfig($rootNode);
-        $this->addSubnavbarConfig($rootNode);
+
+        $this->addTopNavbarConfig($rootNode);
+        $this->addMainNavbarConfig($rootNode);
+        $this->addSubNavbarConfig($rootNode);
+
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
@@ -102,21 +106,37 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    protected function addNavbarConfig(ArrayNodeDefinition $rootNode)
+    protected function addTopNavbarConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
             ->children()
-                ->arrayNode('navbar')
+                ->arrayNode('topnavbar')
                     ->children()
                         ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Navbar:navbar.html.twig')
+                            ->defaultValue('MopaBootstrapBundle:Navbar:topnavbar.html.twig')
                             ->cannotBeEmpty()
                         ->end()
                     ->end()
                 ->end()
             ->end();
     }
-    protected function addSubnavbarConfig(ArrayNodeDefinition $rootNode){
+
+    protected function addMainNavbarConfig(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('mainnavbar')
+                    ->children()
+                        ->scalarNode('template')
+                            ->defaultValue('MopaBootstrapBundle:Navbar:mainnavbar.html.twig')
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+
+    protected function addSubNavbarConfig(ArrayNodeDefinition $rootNode){
         $rootNode
             ->children()
                 ->arrayNode('subnavbar')
