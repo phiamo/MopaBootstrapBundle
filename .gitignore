@@ -1,3 +1,4 @@
 vendor/
 Resources/bootstrap
+Resources/bootstrap-sass
 *.*~

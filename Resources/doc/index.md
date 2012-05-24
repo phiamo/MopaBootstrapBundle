@@ -17,7 +17,8 @@ Additional doc:
 
 - [Including bootstrap](including-bootstrap.md)
 - [Css vs less](css-vs-less.md)
-- [Assetic cionfiguration](assetic-configuration.md)
+- [Using Sass as preprocessor](sass-configuration.md)
+- [Assetic configuration](assetic-configuration.md)
 - [Advanced Navbar Example](navbar-configuration-advanced.md)
 - [CRUD Generation](98-crud-generation.md)
 - [Support for other Bundles](99-support-for-other-bundles.md)

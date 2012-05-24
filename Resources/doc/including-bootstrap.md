@@ -91,6 +91,21 @@ To activate auto symlinking and checking after composer update/install add also 
 }
 ```
 
+For Sass support, you can also use the specific command:
+
+```json
+{
+    "scripts": {
+        "post-install-cmd": [
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+        ],
+        "post-update-cmd": [
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+        ]
+    }
+}
+```
+
 ## Managing twitters/bootstrap location manually
 
 To manage the location of twitters/bootstrap manually just add in your composer.json:
