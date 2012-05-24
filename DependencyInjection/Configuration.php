@@ -29,11 +29,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
 
         $this->addFormConfig($rootNode);
-
-        $this->addTopNavbarConfig($rootNode);
-        $this->addMainNavbarConfig($rootNode);
-        $this->addSubNavbarConfig($rootNode);
-
+        $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
@@ -106,43 +102,14 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    protected function addTopNavbarConfig(ArrayNodeDefinition $rootNode)
+    protected function addNavbarConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
             ->children()
-                ->arrayNode('topnavbar')
+                ->arrayNode('navbar')
                     ->children()
                         ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Navbar:topnavbar.html.twig')
-                            ->cannotBeEmpty()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end();
-    }
-
-    protected function addMainNavbarConfig(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->children()
-                ->arrayNode('mainnavbar')
-                    ->children()
-                        ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Navbar:mainnavbar.html.twig')
-                            ->cannotBeEmpty()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end();
-    }
-
-    protected function addSubNavbarConfig(ArrayNodeDefinition $rootNode){
-        $rootNode
-            ->children()
-                ->arrayNode('subnavbar')
-                    ->children()
-                        ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Navbar:subnavbar.html.twig')
+                            ->defaultValue('MopaBootstrapBundle:Navbar:navbar.html.twig')
                             ->cannotBeEmpty()
                         ->end()
                     ->end()

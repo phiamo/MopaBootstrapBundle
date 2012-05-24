@@ -51,28 +51,14 @@ class MopaBootstrapExtension extends Extension
             }
         }
 
-        if (isset($config['topnavbar']) ||
-            isset($config['mainnavbar']) ||
-            isset($config['subnavbar'])) {
+        if (isset($config['topnavbar'])) {
             $yamlloader->load("navbar_extension.yml");
         
-            if (isset($config['topnavbar']['template'])) {
+            if (isset($config['navbar']['template'])) {
                 $container->setParameter(
-                    'mopa_bootstrap.topnavbar.template',
-                    $config['topnavbar']['template']
+                    'mopa_bootstrap.navbar.template',
+                    $config['navbar']['template']
                 );
-            if(isset($config['mainnavbar']['template'])){
-                $container->setParameter(
-                    'mopa_bootstrap.mainnavbar.template',
-                    $config['mainnavbar']['template']
-                );
-
-            if(isset($config['subnavbar']['template'])){
-                $container->setParameter(
-                    'mopa_bootstrap.subnavbar.template',
-                    $config['subnavbar']['template']
-                );
-
             }
         }
 

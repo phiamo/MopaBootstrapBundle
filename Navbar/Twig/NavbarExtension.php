@@ -19,49 +19,21 @@ class NavbarExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'mopa_bootstrap_topnavbar' => new \Twig_Function_Method($this, 'renderTopNavbar', array('is_safe' => array('html'))),
-            'mopa_bootstrap_mainnavbar' => new \Twig_Function_Method($this, 'renderMainNavbar', array('is_safe' => array('html'))),
-            'mopa_bootstrap_subnavbar' => new \Twig_Function_Method($this, 'renderSubNavbar', array('is_safe' => array('html'))),
+            'mopa_bootstrap_navbar' => new \Twig_Function_Method($this, 'render', array('is_safe' => array('html'))),
         );
     }
 
     /**
-     * Renders the whole TopNavbar with the specified renderer.
+     * Renders the whole Navbar with the specified renderer.
      *
-     * @param \Knp\Menu\ItemInterface|string|array $menu
-     * @param array                                $options
-     * @param string                               $renderer
+     * @param  \Knp\Menu\ItemInterface|string|array $menu
+     * @param  array                                $options
+     * @param  string                               $renderer
      * @return string
      */
-    public function renderTopNavbar($name, array $options = array(), $renderer = null)
+    public function render($name, array $options = array(), $renderer = null)
     {
-        return $this->renderer->renderTopNavbar($name, $options, $renderer);
-    }
-
-    /**
-     * Renders the whole MainNavbar with the specified renderer.
-     *
-     * @param \Knp\Menu\ItemInterface|string|array $menu
-     * @param array                                $options
-     * @param string                               $renderer
-     * @return string
-     */
-    public function renderMainNavbar($name, array $options = array(), $renderer = null)
-    {
-        return $this->renderer->renderMainNavbar($name, $options, $renderer);
-    }
-
-    /**
-     * Renders the whole SubNavbar with the specified renderer.
-     *
-     * @param \Knp\Menu\ItemInterface|string|array $menu
-     * @param array                                $options
-     * @param string                               $renderer
-     * @return string
-     */
-    public function renderSubNavbar($name, array $options = array(), $renderer = null)
-    {
-        return $this->renderer->renderSubNavbar($name, $options, $renderer);
+        return $this->renderer->renderNavbar($name, $options, $renderer);
     }
 
     /**
