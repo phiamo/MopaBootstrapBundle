@@ -45,7 +45,7 @@
     {% endblock navbar %}
 
     {% block container %}
-    <div class="container-fluid">
+    <div class="{% block container_class %}container-fluid{% endblock container_class %}">
         {% block header %}
         {% endblock header %}
 

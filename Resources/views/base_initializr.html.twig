@@ -94,12 +94,7 @@
 
     {# Override this block to add your own files! #}
     {% block head_style %}
-        {% stylesheets
-            '@MopaBootstrapBundle/Resources/public/less/initializr_style.less'
-            output='css/screen_compiled.css'
-        %}
-            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-        {% endstylesheets %}
+        {{ parent() }}
 
         {# Find places where your CSS is broken, docs how to use:
            http://meyerweb.com/eric/tools/css/diagnostics/' #}

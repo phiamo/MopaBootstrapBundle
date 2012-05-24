@@ -22,6 +22,6 @@ class NavbarPass implements CompilerPassInterface
                 $navbars[$attributes['alias']] = $id;
             }
         }
-        $definition->replaceArgument(2, $navbars);
+        $definition->replaceArgument(1, $navbars);
     }
 }

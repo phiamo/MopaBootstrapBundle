@@ -9,14 +9,12 @@ use Mopa\Bundle\BootstrapBundle\Navbar\OptionNotFoundException;
 class NavbarRenderer
 {
     private $container;
-    private $template;
     private $formFactory;
     private $navbars;
 
-    public function __construct(ContainerInterface $container, $template, $navbars)
+    public function __construct(ContainerInterface $container, array $navbars)
     {
         $this->container = $container;
-        $this->template = $template;
         $this->navbars = $navbars;
     }
     /**
@@ -82,7 +80,7 @@ class NavbarRenderer
     private function getNavbarDefaultOptions()
     {
         return array(
-            'template' => $this->template
+            'template' => $this->container->getParameter("mopa_bootstrap.navbar.template")
         );
     }
 }
