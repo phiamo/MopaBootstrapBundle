@@ -6,7 +6,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilder;
 
-
 class LegendFormTypeExtension extends AbstractTypeExtension
 {
     private $render_fieldset;
