@@ -19,6 +19,10 @@ class GenericNavbar implements NavbarInterface
         $this->formClasses = $formClasses;
         $this->options = $options;
     }
+    public function hasMenu($key)
+    {
+        return array_key_exists($key, $this->menus);
+    }
     public function getMenu($key)
     {
         if (array_key_exists($key, $this->menus)) {
@@ -44,13 +48,14 @@ class GenericNavbar implements NavbarInterface
     {
         $this->formTypes[$key] = $formView;
     }
-    public function getOption($key, $default = null)
+    public function hasOption($key)
+    {
+        return array_key_exists($key, $this->options);
+    }
+    public function getOption($key)
     {
         if (array_key_exists($key, $this->options)) {
             return $this->options[$key];
-        }
-        if($default || false === $default){
-            return $default;
         }
         throw new OptionNotFoundException("Option " . $key . " not found!");
     }
