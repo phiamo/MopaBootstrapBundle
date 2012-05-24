@@ -20,8 +20,8 @@ class NavbarRenderer
     /**
      * Renders the navbar with the specified renderer.
      *
-     * @param \Knp\Menu\ItemInterface $item
-     * @param array                   $options
+     * @param  \Knp\Menu\ItemInterface $item
+     * @param  array                   $options
      * @return string
      */
     public function renderNavbar($name, array $options = array())
@@ -31,15 +31,15 @@ class NavbarRenderer
         $navbar = $this->getNavbar($name);
         $navbar = $this->createFormViews($navbar);
         $block = 'navbar';
-        try{
+        try {
             $template = $navbar->getOption('template');
-        } catch(OptionNotFoundException $e) {
+        } catch (OptionNotFoundException $e) {
             $template = $options['template'];
         }
         if (!$template instanceof \Twig_Template) {
-            try{
+            try {
                 $template = $this->container->get('twig')->loadTemplate($template);
-            } catch(\ErrorException $e) {
+            } catch (\ErrorException $e) {
                 throw new \Exception("Could not load template: " . $template, 99, $e);
             }
         }

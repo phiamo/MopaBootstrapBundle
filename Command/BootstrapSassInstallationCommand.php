@@ -10,36 +10,37 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
+
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
  */
-class BootstrapInstallationCommand extends ContainerAwareCommand
+class BootstrapSassInstallationCommand extends ContainerAwareCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    public static $twitterBootstrapName = "twitter/bootstrap";
+    public static $twitterBootstrapName = "thomas-mcdonald/bootstrap-sass";
 
     protected function configure()
     {
         $this
-            ->setName('mopa:bootstrap:install')
-            ->setDescription("Check and if possible install symlink to bootstrap")
-            ->addArgument('pathToTwitterBootstrap', InputArgument::OPTIONAL, 'Where is twitters/bootstrap2 located?')
+            ->setName('mopa:bootstrap-sass:install')
+            ->setDescription("Check and if possible install symlink to bootstrap-sass")
+            ->addArgument('pathToTwitterBootstrapSass', InputArgument::OPTIONAL, 'Where is thomas-mcdonald/bootstrap-sass located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
-            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
+            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrapSass, and pathToMopaBootstrapBundle')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the twitters/bootstrap2 library.
+The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the thomas-mcdonald/bootstrap-sass library.
 
-By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twitters/bootstrap2 in your vendors.
+By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and thomas-mcdonald/bootstrap-sass in your vendors.
 
 If you want to control the paths yourself specify the paths manually:
 
-php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitterBootstrap> <pathToMopaBootstrapBundle>
+php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitterBootstrapSass> <pathToMopaBootstrapBundle>
 
 Defaults if installed by composer would be :
 
-pathToTwitterBootstrap:    ../../../../../../vendor/twitter/bootstrap
-pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+pathToTwitterBootstrapSass: ../../../../../../vendor/thomas-mcdonald/bootstrap-sass
+pathToMopaBootstrapBundle:  vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
 
 EOT
             );
@@ -54,7 +55,7 @@ EOT
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
-                    'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
+                    'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap-sass",
                     'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
                 );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
@@ -80,7 +81,7 @@ EOT
 
     protected function getBootstrapPathsfromUser()
     {
-            $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrap');
+            $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrapSass');
             $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
             if (empty($symlinkName)) {
                 throw new \Exception("pathToMopaBootstrapBundle not specified");
@@ -88,7 +89,7 @@ EOT
                 throw new \Exception("pathToMopaBootstrapBundle: " . dirname($symlinkName) . " does not exist");
             }
             if (empty($symlinkTarget)) {
-                throw new \Exception("pathToTwitterBootstrap not specified");
+                throw new \Exception("pathToTwitterBootstrapSass not specified");
             } else {
                 if (substr($symlinkTarget, 0, 1) == "/") {
                     $this->output->writeln("<comment>Try avoiding absolute paths, for portability!</comment>");
@@ -103,7 +104,7 @@ EOT
                     $symlinkTarget = self::get_absolute_path($resolve);
                 }
                 if (!is_dir($symlinkTarget)) {
-                    throw new \Exception("pathToTwitterBootstrap would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));
+                    throw new \Exception("pathToTwitterBootstrapSass would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));
                 }
             }
             $dialog = $this->getHelperSet()->get('dialog');

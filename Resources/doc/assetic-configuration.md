@@ -29,6 +29,25 @@ assetic:
 
 Do not forget to add the jars to your app.
 
+If you encounter the following Error:
+
+```
+An exception has been thrown during the compilation of a template ("You must add MopaBootstrapBundle to the assetic.bundle config to use the {% stylesheets %} tag in MopaBootstrapBundle::base.html.twig.") in "/YourProject/vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/views/base.html.twig".
+```
+
+It's because the Bundle is not added to the bundles: [ ] config option in the assetic config.
+
+``` yaml
+assetic:
+    debug:          %kernel.debug%
+        use_controller: false
+        bundles:        [ ] # <-
+        filters:
+            ....
+```
+
+You need to either remove that config var (to use assetic for all Bundles) or add the MopaBootstrapBundle
+
 If your are using cssembed, you might notice problems when embedding bootrap via less:
 
 [RuntimeException]                                                                                                                                   

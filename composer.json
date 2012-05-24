@@ -26,10 +26,11 @@
         "mopa/composer-bridge": "dev-master"
     },
     "suggest":  {
-        "twitter/bootstrap": "dev-master",
+        "twitter/bootstrap": "2.0.*",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "craue/formflow-bundle": "dev-master"
+        "knplabs/knp-menu-bundle": "1.1.*",
+        "craue/formflow-bundle": "dev-master",
+        "thomas-mcdonald/bootstrap-sass": "dev-master"
     },
     "repositories": [
         {
@@ -47,13 +48,29 @@
                     "type": "zip"
                  }
             }
+        },
+        {
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"thomas-mcdonald/bootstrap-sass",
+                "source": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass.git",
+                    "type":"git",
+                    "reference":"master"
+                },
+                "dist": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass/zipball/master",
+                    "type":"zip"
+                }
+            }
         }
     ],
     "scripts": {
         "post-install-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],
-        "post-update-cmd": [ 
+        "post-update-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     },
