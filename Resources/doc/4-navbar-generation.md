@@ -3,7 +3,7 @@ Generating a Navbars
 
 for the example navbars add the following to your config.yml:
 
-```yaml
+``` yaml
 imports:
     - { resource: @MopaBootstrapBundle/Resources/config/examples/example_menu.yml }
     - { resource: @MopaBootstrapBundle/Resources/config/examples/example_navbar.yml }
@@ -23,7 +23,7 @@ So remember to install these Bundles if you want to use the Navbar features!
 
 To load the navbar extensions (template helper, CompilerPass, etc.) just add the following in your config.yml
 
-```yaml
+``` yaml
 mopa_bootstrap:
     navbar: ~
 ```
@@ -32,7 +32,7 @@ mopa_bootstrap:
 
 A Navbar can be generated easyly be defining a Navbar Service:
 
-```yaml
+``` yaml
 services:
     mopa_bootstrap.example.navbar:
         class: %mopa_bootstrap.navbar.generic%
@@ -58,7 +58,7 @@ Resources/config/examples/example_menu.yml
 
 If you do not extend the provided layout.html.twig its as easy as
 
-```jinja
+``` jinja
 {% block navbar %}
    {{ mopa_bootstrap_navbar('yourNavbarAlias') }}
 {% endblock navbar %}
@@ -68,7 +68,7 @@ to get your navbar displayed.
 
 And if you extend the Base Layout but dont wanna have the Navbar, just override the block:
 
-```jinja
+``` jinja
 {% block navbar %}{% endblock navbar %}
 ```
 
@@ -76,15 +76,22 @@ And if you extend the Base Layout but dont wanna have the Navbar, just override 
 
 The template used can be changed app wide by setting:
 
-```yaml
+``` yaml
 mopa_bootstrap:
     navbar:
         template: MopaBootstrapBundle:Navbar:navbar.html.twig # this is the default template
 ```
 
+The template can also be changed per navbar:
+
+``` yaml
+    # third argument: a named array of options
+    - { template:YourBundle:Navbar:navbar.html.twig }
+```
+
 To display a specific navbar with another template use:
 
-```jinja
+``` jinja
 {% block navbar %}
    {{ mopa_bootstrap_navbar('yourNavbarAlias', {'template': 'AcmeDemoBundle:Backend:navbar.twig.html'}) }}
 {% endblock navbar %}

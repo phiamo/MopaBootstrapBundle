@@ -1,7 +1,7 @@
 MopaBootstrapBundle
 ===================
 
-<h2 id="Warning">NEW Warning</h2>
+<h2>Warning</h2>
 
 > The branching strategy has been adapted to be more flexible:
 > * The old branch for bootstrap 1.x (v1.x) still exists.
@@ -12,14 +12,25 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
-**NEW:**  
-To make your base HTML5 even better and let you use good practices we added  
-to this bundle features from [HTML5 BoilerPlate Project](http://html5boilerplate.com/).  
-Integration was done using setup pregenerated with support of [Initializr](http://www.initializr.com/).  
+<h3>New</h3>
+
+<h4>Dynamic SubnavBars</h4>
+
+To kick start your Navigation, the Navbar component got some face lift.
+It got even easier to integrate also the dynamic sub navbar you might have seen in the twitter bootstrap docs.
+
+To learn how to use this features read [Initializr docs (50-Initializr.md)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md).
+
+Also have a look into the [Sandbox](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/navbar)
+
+<h4>initializr</h4>
+
+To make your base HTML5 even better and let you use good practices we added
+to this bundle features from [HTML5 BoilerPlate Project](http://html5boilerplate.com/).
+Integration was done using setup pregenerated with support of [Initializr](http://www.initializr.com/).
 Actually we support __HTML5__ __BoilerPlate__ _v3.0.3_ with __Modernizr__ _v2.5.3_ and __Respond__.
 
-To learn how to use this features read [Initializr docs (50-Initializr.md)](Resources/docs/initializr.md).  
-This implementation is maintained by [Pawel Madej (nysander)](http://github.com/nysander)
+To learn how to use this features read [Initializr docs (50-Initializr.md)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md).
 
 Live Show
 ---------
