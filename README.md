@@ -61,13 +61,20 @@ All the installation instructions are located in the [documentation](https://git
 
 Translation
 ------------
-If you use KnpPaginatorBundle with MopaBootstrapBundle, you can translate labels to your language.  
+If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.  
 To do this add new file  
 
 ```Resources/translations/pagination.[YOUR LOCALE CODE].yml```  
 
 As example you have there Polish translation.
 
+Contribute
+----------
+If you want to contribute your code to MopaBootstrapBundle please be sure that your PR's
+are valid to Symfony2.1 Coding Standards. You can automatically fix your code for that
+with [PHP-CS-Fixer](http://cs.sensiolabs.org) tool.
+
+You can see who already contributed to this project on [Contributors](https://github.com/phiamo/MopaBootstrapBundle/contributors) page
 
 License
 -------
