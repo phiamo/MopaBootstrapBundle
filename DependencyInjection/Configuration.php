@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
+
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);

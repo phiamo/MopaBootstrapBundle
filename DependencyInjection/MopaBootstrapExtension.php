@@ -49,8 +49,10 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
-        if (isset($config['navbar'])) {
+
+        if (isset($config['topnavbar'])) {
             $yamlloader->load("navbar_extension.yml");
+        
             if (isset($config['navbar']['template'])) {
                 $container->setParameter(
                     'mopa_bootstrap.navbar.template',

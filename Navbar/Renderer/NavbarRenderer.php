@@ -46,13 +46,15 @@ class NavbarRenderer
             }
         }
 
-        // we do not call renderBlock here to avoid too many nested level calls (XDebug limits the level to 100 by default)
+        // we do not call renderBlock here to avoid too many nested level calls
+        // (XDebug limits the level to 100 by default)
         ob_start();
         $template->displayBlock($block, array('navbar' => $navbar, 'options' => $options));
         $html = ob_get_clean();
 
         return $html;
     }
+ 
     protected function createFormViews(NavbarInterface $navbar)
     {
         foreach ($navbar->getFormClasses() as $key => $formTypeString) {
@@ -82,7 +84,8 @@ class NavbarRenderer
     private function getNavbarDefaultOptions()
     {
         return array(
-            'template' => $this->template
+            'template' => $this->template,
+            'type' => 'mainnav' # other option is "subnav"
         );
     }
 }

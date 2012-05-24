@@ -23,5 +23,21 @@ class NavbarPass implements CompilerPassInterface
             }
         }
         $definition->replaceArgument(2, $navbars);
+
+        if (!$container->hasDefinition('mopa_bootstrap.subnavbar_renderer')) {
+            return;
+        }
+        $definition2 = $container->getDefinition('mopa_bootstrap.subnavbar_renderer');
+
+        $subnavbars = array();
+        foreach ($container->findTaggedServiceIds('mopa_bootstrap.subnavbar') as $id => $tags) {
+            foreach ($tags as $attributes) {
+                if (empty($attributes['alias'])) {
+                    throw new \InvalidArgumentException(sprintf('The alias is not defined in the "mopa_bootstrap.subnavbar" tag for the service "%s"', $id));
+                }
+                $subnavbars[$attributes['alias']] = $id;
+            }
+        }
+        $definition2->replaceArgument(2, $subnavbars);
     }
 }

@@ -1,4 +1,5 @@
 {% block navbar %}
+{% if navbar.getOption('type') = 'mainnav' %}
 <div class="navbar {% if navbar.getOption('fixedTop') %}navbar-fixed-top{% endif %}">
     <div class="navbar-inner">
         <div class="container{% if navbar.getOption('isFluid') %}-fluid{% endif %}">
@@ -7,8 +8,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
+
+        {% if navbar.getOption('title') %}
             <a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ navbar.getOption('title') }}</a>
+        {% endif %}
+
             <div class="nav-collapse">
+
+{% elseif navbar.getOption('type') = 'subnav' %}
+<div class="container{% if subnavbar.getOption('isFluid') %}-fluid{% endif %}">
+    <div class="subnav {% if subnavbar.getOption('fixedTop') %}navbar-fixed-top{% endif %}">
+{% endif %}
+
                 {{ navbar.getMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : 'no left menu defined' }}
                 {% if navbar.hasFormView('searchform') %}
                     {%- set form_view = navbar.getFormView('searchform') -%}
@@ -23,16 +34,19 @@
                     </form>
                 {% endif %}
                 {{ navbar.getMenu('rightmenu') ? knp_menu_render(navbar.getMenu('rightmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
+
+        {% if navbar.getOption('type') = 'mainnav' %}
             </div>
+        {% endif %}
 
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock navbar %}
 
 {% block form_widget %}
 {{ block('field_rows') }}
-{% endblock %}
+{% endblock form_widget %}
 
 {% block field_row %}
 {{ form_widget(form) }}

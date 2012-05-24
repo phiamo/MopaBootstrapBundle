@@ -7,6 +7,7 @@ use Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer;
 class NavbarExtension extends \Twig_Extension
 {
     protected $renderer;
+
     /**
      * @param \Mopa\Bootstrap\Menu\Renderer\NavbarRenderer $renderer
      */

@@ -1,0 +1,14 @@
+{# Currently subnavbar block does not support collapsing #}
+{% block subnavbar %}
+<div class="container{% if subnavbar.getOption('isFluid') %}-fluid{% endif %}">
+    <div class="subnav {% if subnavbar.getOption('fixedTop') %}navbar-fixed-top{% endif %}">
+        {{ subnavbar.getMenu('leftmenu') ?
+            knp_menu_render(subnavbar.getMenu('leftmenu'), {
+                'currentClass': 'active',
+                'ancestorClass': 'active',
+                'allow_safe_labels': true}) :
+            'no left menu defined' }}
+    </div>
+</div>
+{% endblock subnavbar %}
+
