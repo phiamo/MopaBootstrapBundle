@@ -13,7 +13,7 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
  */
-class BootstrapInstallationCommand extends ContainerAwareCommand
+class BootstrapSymlinkLessCommand extends ContainerAwareCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
     public static $twitterBootstrapName = "twitter/bootstrap";
@@ -21,7 +21,7 @@ class BootstrapInstallationCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('mopa:bootstrap:install')
+            ->setName('mopa:bootstrap:symlink:less')
             ->setDescription("Check and if possible install symlink to bootstrap")
             ->addArgument('pathToTwitterBootstrap', InputArgument::OPTIONAL, 'Where is twitters/bootstrap2 located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')

@@ -14,7 +14,7 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
  */
-class BootstrapSassInstallationCommand extends ContainerAwareCommand
+class BootstrapSymlinkSassCommand extends ContainerAwareCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
     public static $twitterBootstrapName = "thomas-mcdonald/bootstrap-sass";
@@ -22,7 +22,7 @@ class BootstrapSassInstallationCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('mopa:bootstrap-sass:install')
+            ->setName('mopa:bootstrap:symlink:sass')
             ->setDescription("Check and if possible install symlink to bootstrap-sass")
             ->addArgument('pathToTwitterBootstrapSass', InputArgument::OPTIONAL, 'Where is thomas-mcdonald/bootstrap-sass located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')

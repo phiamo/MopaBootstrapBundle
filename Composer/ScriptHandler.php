@@ -8,8 +8,8 @@ namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
-use Mopa\Bundle\BootstrapBundle\Command\BootstrapInstallationCommand;
-use Mopa\Bundle\BootstrapBundle\Command\BootstrapSassInstallationCommand;
+use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand;
+use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
 
 class ScriptHandler
 {
@@ -24,15 +24,15 @@ class ScriptHandler
             'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapInstallationCommand::$mopaBootstrapBundleName,
-            BootstrapInstallationCommand::$twitterBootstrapName,
+            BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkLessCommand::$twitterBootstrapName,
             $options
         );
 
         $IO->write("Checking Symlink", FALSE);
-        if (false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
+        if (false === BootstrapSymlinkLessCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $IO->write("Creating Symlink: " . $symlinkName, FALSE);
-            BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
+            BootstrapSymlinkLessCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
     }
@@ -47,15 +47,15 @@ class ScriptHandler
             'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapSassInstallationCommand::$mopaBootstrapBundleName,
-            BootstrapSassInstallationCommand::$twitterBootstrapName,
+            BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkSassCommand::$twitterBootstrapName,
             $options
         );
 
         $IO->write("Checking Symlink", FALSE);
-        if (false === BootstrapSassInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
+        if (false === BootstrapSymlinkSassCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $IO->write("Creating Symlink: " . $symlinkName, FALSE);
-            BootstrapSassInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
+            BootstrapSymlinkSassCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
     }
