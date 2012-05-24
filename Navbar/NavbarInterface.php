@@ -10,7 +10,6 @@ interface NavbarInterface
     public function getMenu($key);
     public function getOption($key);
 
-
     public function getFormType($key);
     public function setFormType($key, AbstractType $formType);
 
