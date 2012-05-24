@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ navbar.getOption('title') }}</a>
+            {% if navbar.getOption('title', false) %}<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ navbar.getOption('title') }}</a>{% endif %}
             <div class="nav-collapse">
                 {{ navbar.getMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : 'no left menu defined' }}
                 {% if navbar.hasFormView('searchform') %}

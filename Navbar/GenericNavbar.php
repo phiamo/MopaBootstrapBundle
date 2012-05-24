@@ -44,10 +44,13 @@ class GenericNavbar implements NavbarInterface
     {
         $this->formTypes[$key] = $formView;
     }
-    public function getOption($key)
+    public function getOption($key, $default = null)
     {
         if (array_key_exists($key, $this->options)) {
             return $this->options[$key];
+        }
+        if($default || false === $default){
+            return $default;
         }
         throw new OptionNotFoundException("Option " . $key . " not found!");
     }
