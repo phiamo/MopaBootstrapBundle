@@ -79,16 +79,6 @@ class GenericNavbar implements NavbarInterface
     {
         $this->formViews[$key] = $formView;
     }
-    public function getButtonValue($key)
-    {
-        if (array_key_exists($key, $this->formTypes)) {
-            if (($this->formTypes[$key]) instanceof NavbarFormInterface) {
-                return $this->formTypes[$key]->getButtonValue();
-            } else {
-                throw new \Exception("FormType " . get_class($this->formType[$key]) . " must implement NavbarFormInterface");
-            }
-        }
-    }
     public function getFormRoute($key)
     {
         if (array_key_exists($key, $this->formTypes)) {

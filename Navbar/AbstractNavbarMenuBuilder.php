@@ -29,11 +29,29 @@ abstract class AbstractNavbarMenuBuilder
      * @param string  $title      Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createNavbarMenuItem($push_right = true)
+    protected function createNavbarMenuItem($name = 'root', $push_right = true)
     {
-        $rootItem = $this->factory->createItem('root');
+        $rootItem = $this->factory->createItem($name);
         $rootItem
-            ->setChildrenAttributes(array('class' => 'nav'))
+            ->setChildrenAttribute('class', 'nav')
+        ;
+        if ($push_right) {
+            $this->pushRight($rootItem);
+        }
+
+        return $rootItem;
+    }
+    /**
+     * get a preconfigured menu item for subnavbar where to easily add childs
+     *
+     * @param string  $title      Title of the item
+     * @param boolean $push_right Make if float right default: true
+     */
+    protected function createSubnavbarMenuItem($name = 'root', $push_right = true)
+    {
+        $rootItem = $this->factory->createItem($name);
+        $rootItem
+            ->setChildrenAttribute('class', 'nav nav-pills');
         ;
         if ($push_right) {
             $this->pushRight($rootItem);
