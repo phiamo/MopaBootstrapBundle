@@ -11,6 +11,13 @@ If you want to have a easier life, have a look into:
 
 [Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
+### Less (recommended)
+
+Sass is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
+If you want to have a easier life, have a look into:
+
+[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
+
 Templates
 ---------
 
@@ -51,6 +58,17 @@ If you are using less just include the mopabootstrap.less as described in layout
 {% stylesheets filter='less,cssrewrite,?yui_css'
    '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
    '@YourNiceBundle/Resources/public/less/*'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+{% endstylesheets %}
+```
+
+If you are using Sass just include the mopabootstrap.scss instead of the mopabootstrap.less
+
+``` jinja
+{% stylesheets filter='cssrewrite,?yui_css'
+   '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
+   '@YourNiceBundle/Resources/public/sass/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}
