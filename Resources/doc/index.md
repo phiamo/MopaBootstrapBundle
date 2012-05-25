@@ -20,10 +20,7 @@ Additional doc:
 - [Using Sass as preprocessor](sass-configuration.md)
 - [Assetic configuration](assetic-configuration.md)
 - [Advanced Navbar Example](navbar-configuration-advanced.md)
-- [CRUD Generation](98-crud-generation.md)
 - [Support for other Bundles](99-support-for-other-bundles.md)
-
-
 
 ### Further documentation:
 
@@ -36,15 +33,14 @@ There is a bunch of documentation for this bundle, have a look:
     * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
 *  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
-*  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
-
+*  [symfony-bootstrap](https://github.com/phiamo/symfony-bootstrap) is also available
 
 ### Example application(s)
 
 The following bundles/applications use the MopaBootstrapBundle and can be used as a
 guideline:
 
-- The MopaBootstrapSandboxBundle provides several examples for the MopaBootstrapBundle:
+- The MopaBootstrapSandboxBundle provides all examples for the MopaBootstrapBundle:
   https://github.com/phiamo/MopaBootstrapSandboxBundle
 
 - There is also a fork of the Symfony2 Standard Edition that is configured to

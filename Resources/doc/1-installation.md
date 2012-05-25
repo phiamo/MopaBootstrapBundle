@@ -99,7 +99,7 @@ Installation
                        }
                    }
                ]
-           }
+           }symfony-bootstrap
         ```
 
     1.4.1 BootstrapBundle, twitters bootstrap and automatic symlinking

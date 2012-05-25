@@ -7,6 +7,7 @@ MopaBootstrapBundle
 > * The old branch for bootstrap 1.x (v1.x) still exists.
 > * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
 > * The master branch is following Symfony master with bootstrap 2.x
+> * The master-crud branch is following Symfony master with bootstrap 2.x but still has the CRUD Generator, which depends on SensioGeneratorBundle
 
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
