@@ -52,7 +52,7 @@
     {% for child in form %}
             <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
                 {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-                {{ child.get('label')|trans({}, translation_domain) }}
+                {{ child.getVar('label')|trans({}, translation_domain) }}
             </label>
     {% endfor %}
     {{ block('form_message') }}
@@ -62,11 +62,11 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-{% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
+{% if form.hasParent() and 'choice' not in form.getParent().getVar('types') %}
   <label class="checkbox">
 {% endif %}
       <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans|raw }}
-{% if form.hasParent() and 'choice' not in form.getParent().get('types') %}
+{% if form.hasParent() and 'choice' not in form.getParent().getVar('types') %}
 {% set help_inline = false %}
 </label>
 {% endif %}
@@ -145,7 +145,7 @@
 {% block form_label %}
 {% spaceless %}
     {% if label_render %}
-        {% if single_control %}
+        {% if not compound %}
             {% set label_attr = label_attr|merge({'for': id}) %}
         {% endif %}
         {% if required %}
@@ -176,12 +176,12 @@
         </div>
     {% endif %}
     {% for child in form %}
-        {% if 'hidden' not in child.get('types') %}
-            {% if 'collection' in form.get('types') %}
+        {% if 'hidden' not in child.getVar('types') %}
+            {% if 'collection' in form.getVar('types') %}
             <div class="collection-item">
             {% endif %}
             {{ form_row(child) }}
-            {% if 'collection' in form.get('types') %}
+            {% if 'collection' in form.getVar('types') %}
             </div>
             {% endif %}
         {% endif %}
@@ -197,7 +197,7 @@
     {% if widget_remove_btn is defined %}
         {{ block('form_widget_remove_btn') }}
     {% endif -%}
-    {% if form.children|length == 0 %}
+    {% if not form.hasChildren() %}
         {{ block('form_message') }}
     {% endif %}
     {{ block('widget_control_group_end') }}
@@ -217,7 +217,7 @@
 
 {% block form_help %}
 {% spaceless %}
-{% if 'checkbox' not in form.get('types') %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
+{% if 'checkbox' not in form.getVar('types') %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
     {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
 {% endif %}
 {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
@@ -246,7 +246,7 @@
 
 {% block collection_button %}
 
-<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="{{ form.get('id') }}_control_group">
+<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="{{ form.getVar('id') }}_control_group">
 {% if button_values.icon is defined %}
 <i class="icon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></i>
 {% endif %}
@@ -306,7 +306,7 @@
     {% set form = form.parent %}
     {{ block('error_type') }}
 {% elseif form.hasParent() == 0 %}
-    {{ form.get('error_type') | default('inline') }}
+    {{ form.getVar('error_type') | default('inline') }}
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}
@@ -331,7 +331,7 @@
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {% if form.children|length > 0 and form.hasParent() and show_child_legend %}
+    {% if form.hasChildren() and form.hasParent() and show_child_legend %}
         {{ block('form_legend') }}
     {% else %}
         {{ form_label(form, label|default(null)) }}
