@@ -13,26 +13,20 @@
 
 {% macro session_flash(type, close, use_raw, class) %}
     {% set types = ['info', 'error', 'warning', 'success'] %}
-    {% if close is not defined %}
-        {% set close = false %}
-    {% endif %}
-    {% if use_raw is not defined %}
-        {% set use_raw = false %}
-    {% endif %}
     {% if app.session.flashbag.peekAll|length > 0 %}
         <div class="row">
             <div class="{{ class|default('span12') }}">
                 {% if type|default(false) %}
                     {% if app.session.flashbag.has(type) %}
                         {% for message in app.session.flashbag.get(type) %}
-                            {{ _self.flash(type, message, close, use_raw) }}
+                            {{ _self.flash(type, message, close|default(false, use_raw|default(false))) }}
                         {% endfor %}
                     {% endif %}
                 {% else %}
                     {% for type in types %}
                         {% if app.session.flashbag.has(type) %}
                             {% for message in app.session.flashbag.get(type) %}
-                                {{ _self.flash(type, message, close, use_raw) }}
+                                {{ _self.flash(type, message, close|default(false, use_raw|default(false))) }}
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
