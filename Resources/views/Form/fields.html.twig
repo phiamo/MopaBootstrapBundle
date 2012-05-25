@@ -52,7 +52,7 @@
     {% for child in form %}
             <label class="{{ widget_type ~ (multiple ? ' checkbox' : ' radio') }}">
                 {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-                {{ child.getVar('label')|trans({}, translation_domain) }}
+                {{ child.vars.label|trans({}, translation_domain) }}
             </label>
     {% endfor %}
     {{ block('form_message') }}
@@ -62,11 +62,11 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-{% if form.hasParent() and 'choice' not in form.getParent().getVar('types') %}
+{% if form.hasParent() and 'choice' not in form.parent.vars.types %}
   <label class="checkbox">
 {% endif %}
       <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans|raw }}
-{% if form.hasParent() and 'choice' not in form.getParent().getVar('types') %}
+{% if form.hasParent() and 'choice' not in form.parent.vars.types %}
 {% set help_inline = false %}
 </label>
 {% endif %}
@@ -176,12 +176,12 @@
         </div>
     {% endif %}
     {% for child in form %}
-        {% if 'hidden' not in child.getVar('types') %}
-            {% if 'collection' in form.getVar('types') %}
+        {% if 'hidden' not in child.vars.types %}
+            {% if 'collection' in form.vars.types %}
             <div class="collection-item">
             {% endif %}
             {{ form_row(child) }}
-            {% if 'collection' in form.getVar('types') %}
+            {% if 'collection' in form.vars.types %}
             </div>
             {% endif %}
         {% endif %}
@@ -217,7 +217,7 @@
 
 {% block form_help %}
 {% spaceless %}
-{% if 'checkbox' not in form.getVar('types') %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
+{% if 'checkbox' not in form.vars.types %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
     {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
 {% endif %}
 {% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
@@ -305,7 +305,7 @@
     {% set form = form.parent %}
     {{ block('error_type') }}
 {% elseif form.hasParent() == 0 %}
-    {{ form.getVar('error_type') | default('inline') }}
+    {{ form.vars.error_type | default('inline') }}
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}
