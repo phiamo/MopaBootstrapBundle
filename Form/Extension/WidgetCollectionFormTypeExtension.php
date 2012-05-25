@@ -17,6 +17,13 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->setAttribute('widget_add_btn', $options['widget_add_btn']);
+
+        $builder->setAttribute('widget_remove_btn', $options['widget_remove_btn']);
+    }
+
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
+    {
         if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
             throw new FormException('The "widget_add_btn" option must be an "array".');
         } elseif ($options['widget_add_btn'] != null) {
@@ -33,8 +40,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 $options['widget_add_btn']['icon'] = $this->options['widget_add_btn']['icon'];
             }
         }
-        $builder->setAttribute('widget_add_btn', $options['widget_add_btn']);
-
+        $view->setVar('widget_add_btn', $options['widget_add_btn']);
         if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
             throw new FormException('The "widget_remove_btn" option must be an "array".');
         } elseif ($options['widget_remove_btn'] != null) {
@@ -51,14 +57,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
             }
         }
-        $builder->setAttribute('widget_remove_btn', $options['widget_remove_btn']);
-    }
-
-    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
-    {
-        $view->setVar('widget_add_btn', @$form->getAttribute('allow_add') ? $form->getAttribute('widget_add_btn') : null);
-
-        $view->setVar('widget_remove_btn', $form->getAttribute('widget_remove_btn'));
+        $view->setVar('widget_remove_btn', $options['widget_remove_btn']);
     }
 
     public function getDefaultOptions()
