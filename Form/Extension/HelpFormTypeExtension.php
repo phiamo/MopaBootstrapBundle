@@ -18,9 +18,9 @@ class HelpFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->set('help_inline', $form->getAttribute('help_inline'));
-        $view->set('help_block', $form->getAttribute('help_block'));
-        $view->set('help_label', $form->getAttribute('help_label'));
+        $view->setVar('help_inline', $form->getAttribute('help_inline'));
+        $view->setVar('help_block', $form->getAttribute('help_block'));
+        $view->setVar('help_label', $form->getAttribute('help_label'));
     }
 
     public function getDefaultOptions()

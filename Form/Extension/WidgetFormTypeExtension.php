@@ -30,14 +30,14 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->set('widget_control_group', $form->getAttribute('widget_control_group'));
-        $view->set('widget_controls', $form->getAttribute('widget_controls'));
-        $view->set('widget_addon', $form->getAttribute('widget_addon'));
-        $view->set('widget_prefix', $form->getAttribute('widget_prefix'));
-        $view->set('widget_suffix', $form->getAttribute('widget_suffix'));
-        $view->set('widget_type',   $form->getAttribute('widget_type'));
-        $view->set('widget_control_group_attr',   $form->getAttribute('widget_control_group_attr'));
-        $view->set('widget_controls_attr',   $form->getAttribute('widget_controls_attr'));
+        $view->setVar('widget_control_group', $form->getAttribute('widget_control_group'));
+        $view->setVar('widget_controls', $form->getAttribute('widget_controls'));
+        $view->setVar('widget_addon', $form->getAttribute('widget_addon'));
+        $view->setVar('widget_prefix', $form->getAttribute('widget_prefix'));
+        $view->setVar('widget_suffix', $form->getAttribute('widget_suffix'));
+        $view->setVar('widget_type',   $form->getAttribute('widget_type'));
+        $view->setVar('widget_control_group_attr',   $form->getAttribute('widget_control_group_attr'));
+        $view->setVar('widget_controls_attr',   $form->getAttribute('widget_controls_attr'));
     }
 
     public function getDefaultOptions()
