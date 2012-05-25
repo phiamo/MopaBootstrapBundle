@@ -3,8 +3,8 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormViewInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Exception\FormException;
 
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
@@ -15,7 +15,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     {
         $this->options = $options;
     }
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
             throw new FormException('The "widget_add_btn" option must be an "array".');
@@ -54,7 +54,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $builder->setAttribute('widget_remove_btn', $options['widget_remove_btn']);
     }
 
-    public function buildView(FormView $view, FormInterface $form)
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
         $view->set('widget_add_btn', @$form->getAttribute('allow_add') ? $form->getAttribute('widget_add_btn') : null);
 
