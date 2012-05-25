@@ -18,18 +18,15 @@ class LegendFormTypeExtension extends AbstractTypeExtension
         $this->show_legend = $options['show_legend'];
         $this->show_child_legend = $options['show_child_legend'];
     }
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->setAttribute('render_fieldset', $options['render_fieldset']);
-        $builder->setAttribute('show_legend', $options['show_legend']);
-        $builder->setAttribute('show_child_legend', $options['show_child_legend']);
-    }
 
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->setVar('render_fieldset', $form->getAttribute('render_fieldset'));
-        $view->setVar('show_legend', $form->getAttribute('show_legend'));
-        $view->setVar('show_child_legend', $form->getAttribute('show_child_legend'));
+        $view->addVars(array(
+            'render_fieldset' =>    $options['render_fieldset'],
+            'show_legend' =>        $options['show_legend'],
+            'show_child_legend' =>  $options['show_child_legend'],
+            'label_render' =>       $options['label_render'],
+        ));
     }
     public function getDefaultOptions()
     {
@@ -37,6 +34,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
             'render_fieldset' => $this->render_fieldset,
             'show_legend' => $this->show_legend,
             'show_child_legend' => $this->show_child_legend,
+            'label_render' => true,
         );
     }
     public function getExtendedType()

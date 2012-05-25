@@ -4,11 +4,6 @@ services:
            tags:
                 - { name: form.type_extension, alias: form }
 
-    mopa.form.label_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\LabelFormTypeExtension
-           tags:
-                - { name: form.type_extension, alias: form }
-
     mopa.form.legend_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
            arguments:
