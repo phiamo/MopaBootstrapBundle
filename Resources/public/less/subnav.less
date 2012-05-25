@@ -6,6 +6,7 @@
  */
 
 /* Subnav */
+
 .subnav {
   width: 100%;
   height: 36px;
@@ -105,4 +106,27 @@ h3 + table,
 h4 + table,
 h2 + .row {
   margin-top: 15px;
+}
+
+/* LARGE DESKTOP SCREENS */
+@media (min-width: 1210px) {
+
+  /* Update subnav container */
+  .subnav-fixed {
+    .nav {
+      width: 1168px; /* 2px less to account for left/right borders being removed when in fixed mode */
+    }
+  }
+}
+
+
+/**
+ * To support subnavbars we add a section padding top, 
+ * so if you use inpage anchors wrap them in sections to have correct scrolling padding-top
+ */
+ 
+@section-padding-top: 0px;
+
+section{
+    padding-top: @section-padding-top;
 }
