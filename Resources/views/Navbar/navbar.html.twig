@@ -16,7 +16,7 @@
                     {%- set form_attrs = form_view.get('attr') -%}
                     {% form_theme form_view _self %}
                     <form class="navbar-search pull-{{ form_attrs.pull|default('left') }}" method="{{ form_attrs.method|default('post') }}" action="{{ navbar.getFormRoute('searchform') }}">
-                    {{ form_row(form_view) }}
+                    {{ form_widget(form_view) }}
                     </form>
                 {% endif %}
                 {{ navbar.hasMenu('rightmenu') ? knp_menu_render(navbar.getMenu('rightmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
