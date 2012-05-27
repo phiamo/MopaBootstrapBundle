@@ -20,7 +20,7 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 To kick start your Navigation, the Navbar component got some face lift.
 It got even easier to integrate also the dynamic sub navbar you might have seen in the twitter bootstrap docs.
 
-To learn how to use this features read [Initializr docs (50-Initializr.md)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md).
+To learn how to use this features read [Navbar docs (4-navbar-generation)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md).
 
 Also have a look into the [Sandbox](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/navbar)
 
