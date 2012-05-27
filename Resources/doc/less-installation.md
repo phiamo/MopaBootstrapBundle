@@ -94,6 +94,18 @@ assetic:
 
 ```
 
+Strange less compilation
+------------------------
+
+If you encounter strange compilation of colors like: NaNbbaaNaN00NaN00NaN00NaN00NaN 
+or any NaN in your compiled css files, this is most probably an lessc problem.
+
+Try the above way, but checkout revision fcc50ac8e81f950867402d2e2bb6328ed9cf532a:
+
+``` bash
+cd /opt/lessc
+git checkout fcc50ac8e81f950867402d2e2bb6328ed9cf532a
+```
 
 MAC and MAMP Problems
 ---------------------
