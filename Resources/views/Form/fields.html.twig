@@ -76,7 +76,7 @@
 {% block date_widget %}
 {% spaceless %}
 {% if widget == 'single_text' %}
-    {{ block('form_widget_single_control') }}
+    {{ block('form_widget_simple') }}
 {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
@@ -92,7 +92,7 @@
 {% block time_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
-        {{ block('form_widget_single_control') }}
+        {{ block('form_widget_simple') }}
     {% else %}
         {% set attr = attr|merge({'class': attr.class|default('')}) %}
         <div {{ block('widget_container_attributes')  }}>
@@ -106,7 +106,7 @@
 {% block datetime_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
-        {{ block('form_widget_single_control') }}
+        {{ block('form_widget_simple') }}
     {% else %}
             {% set attr = attr|merge({'class': attr.class|default('')}) %}
             <div {{ block('widget_container_attributes') }}>
@@ -123,14 +123,14 @@
 {% block percent_widget %}
 {% spaceless %}
     {% set widget_addon = widget_addon|merge({'text': '%', 'append': true}) %}
-    {{ block('form_widget_single_control') }}
+    {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock percent_widget %}
 
 {% block money_widget %}
 {% spaceless %}
     {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
-    {{ block('form_widget_single_control') }}
+    {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock money_widget %}
 
