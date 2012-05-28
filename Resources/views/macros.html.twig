@@ -5,3 +5,10 @@
 {% macro label(text, type, use_raw) %}
 <span class="label {{ type|default(false) ? 'label-'~type: '' }}">{{ use_raw|default(false) ? text|trans|raw : text|trans }}</span>
 {% endmacro %}
+
+
+{% macro progressBar(class, width) %}
+<div class="progress {{ class|default('') }}">
+    <div class="bar" style="width: {{ width|default(0) }}%;"></div>
+</div>
+{% endmacro %}
