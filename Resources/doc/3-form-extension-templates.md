@@ -15,13 +15,12 @@ Have a look into the examples in the sandbox:
 ### Using bootstrap for Theming
 
 
-Forms can either be activated for you whole project (app/config.yml):
+Forms are activated by default for you whole project if you do not want to have this behaviour you can disable it by setting(app/config.yml):
 
 ``` yaml
-twig:
+mopa_bootstrap:
     form:
-        resources:
-            - 'MopaBootstrapBundle:Form:fields.html.twig'
+        templating: false # default is true
 ```
 
 Or include the fields.html.twig in your template for a certain form:
