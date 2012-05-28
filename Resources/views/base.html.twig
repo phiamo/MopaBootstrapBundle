@@ -57,7 +57,13 @@
             {% endblock page_header %}
 
             {% block flashes %}
+            {% if app.session.flashbag.peekAll|length > 0 %}
+            <div class="row-fluid">
+                <div class="span12">
                 {{ session_flash() }}
+                </div>
+            </div>
+            {% endif %}
             {% endblock flashes %}
 
             {% block content_row %}
@@ -102,6 +108,7 @@
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
         '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
     %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}

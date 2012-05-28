@@ -175,14 +175,13 @@
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
-
         '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
         '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
-        '@MopaBootstrapBundle/Resources/public/js/initializr_addons.js'
         output='js/foot_compiled.js'
     %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 	{% endblock foot_script %}
 {% endblock body %}
