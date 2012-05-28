@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
+namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

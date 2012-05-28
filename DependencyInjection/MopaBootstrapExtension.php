@@ -62,7 +62,7 @@ class MopaBootstrapExtension extends Extension
         // set container parameters for Initializr base template
         if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals
-            $yamlloader->load('config_mapper_extension.yml');
+            $yamlloader->load('twig_extensions.yml');
 
             $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
             $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
@@ -70,7 +70,7 @@ class MopaBootstrapExtension extends Extension
 
             // TODO: think about setting this default as kernel debug,
             // what about PROD env which does not need diagnostic mode and test
-            $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode',$config['initializr']['diagnostic_mode']);
+            $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode', $config['initializr']['diagnostic_mode']);
         }
     }
 
