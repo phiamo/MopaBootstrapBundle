@@ -106,6 +106,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('navbar')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('template')
                             ->defaultValue('MopaBootstrapBundle:Navbar:navbar.html.twig')
