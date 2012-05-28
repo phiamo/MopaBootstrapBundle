@@ -1,0 +1,7 @@
+{% macro badge(text, type, use_raw) %}
+<span class="badge {{ type|default(false) ? 'badge-'~type: '' }}">{{ use_raw|default(false) ? text|trans|raw : text|trans }}</span>
+{% endmacro %}
+
+{% macro label(text, type, use_raw) %}
+<span class="label {{ type|default(false) ? 'label-'~type: '' }}">{{ use_raw|default(false) ? text|trans|raw : text|trans }}</span>
+{% endmacro %}
