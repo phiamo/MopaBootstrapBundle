@@ -1,19 +1,61 @@
 MopaBootstrapBundle
 ===================
 
-<h2>Warning</h2>
-
-> The branching strategy has been adapted to be more flexible:
-> * The old branch for bootstrap 1.x (v1.x) still exists.
-> * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
-> * The master branch is following Symfony master with bootstrap 2.x
-> * The master-crud branch is following Symfony master with bootstrap 2.x but still has the CRUD Generator, which depends on SensioGeneratorBundle
-
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
-<h3>New</h3>
+Documentation
+-------------
+
+The bulk of the documentation is stored in the `Resources/doc/index.md`
+file in this bundle:
+
+* [Read the Documentation for master](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
+* [Read the Documentation for v2.0.x](https://github.com/phiamo/MopaBootstrapBundle/blob/v2.0.x/README.md)
+
+In any case, if something is not working as expected after a update:
+
+* [READ the CHANGELOG!](https://github.com/phiamo/MopaBootstrapBundle/blob/master/CHANGELOG.md)
+
+Recent BackwardsCompatibility breaking changes:
+
+* 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
+
+Live Show
+---------
+
+To see the bundle and its capabilities online just have a look on
+
+[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
+
+Additional Resources:
+
+*  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
+*  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
+
+Installation
+------------
+
+Installation instructions are located in the 
+
+* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
+* [2.0.x documentation](https://github.com/phiamo/MopaBootstrapBundle/tree/v2.0.x#installation).
+
+Included Features
+-----------------
+
+* Twig Extensions and templates for use with symfony2 Form component
+  * control your form either via the form builder or the template engine
+  * control nearly every bootstrap2 form feature
+  * javascript and twig blocks for dynamic collections
+* A generic Navbar class to generate your Navbar outside the template
+  * helpers for dropdowns, seperators, etc.
+* twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
+* twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
+
+Recently added Features
+-----------------------
 
 <h4>Dynamic SubnavBars</h4>
 
@@ -33,45 +75,16 @@ Actually we support __HTML5__ __BoilerPlate__ _v3.0.3_ with __Modernizr__ _v2.5.
 
 To learn how to use this features read [Initializr docs (50-Initializr.md)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md).
 
-Live Show
----------
+Warning
+-------
 
-To see the bundle and its capabilities online just have a look on
+> The branching strategy has been adapted to be more flexible:
+> * The old branch for bootstrap 1.x (v1.x) still exists.
+> * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
+> * The master branch is following Symfony master with bootstrap 2.x
+> * The master-crud branch is following Symfony master with bootstrap 2.x but still has the CRUD Generator, which depends on SensioGeneratorBundle
 
-[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
-
-Additional Resources:
-
-*  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
-*  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
-
-Included
---------
-
-* Twig Extensions and templates for use with symfony2 Form component
-  * control your form either via the form builder or the template engine
-  * control nearly every bootstrap2 form feature
-  * javascript and twig blocks for dynamic collections
-* A generic Navbar class to generate your Navbar outside the template
-  * helpers for dropdowns, seperators, etc.
-* twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
-* twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
-
-Documentation
--------------
-
-The bulk of the documentation is stored in the `Resources/doc/index.md`
-file in this bundle:
-
-* [Read the Documentation for master](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
-* [Read the Documentation for v2.0.x](https://github.com/phiamo/MopaBootstrapBundle/blob/v2.0.x/README.md)
-
-Installation
-------------
-
-All the installation instructions are located in the [documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
-
-Translation
+Translations
 ------------
 If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.  
 To do this add new file  
