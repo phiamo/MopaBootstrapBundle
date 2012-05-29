@@ -18,6 +18,18 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             $defaults = $this->getDefaultOptions($options);
             $options['widget_addon'] = array_merge( $defaults['widget_addon'], $options['widget_addon']);
         }
+        if (in_array('percent', $view->getVar('types'))) {
+            if ($options['widget_addon']['text'] === null && $options['widget_addon']['icon'] === null) {
+                $options['widget_addon']['text'] = '%';
+            }
+            if ($options['widget_addon']['type'] === null) {
+                $options['widget_addon']['type'] = 'append';
+            }
+        }
+        if (($options['widget_addon']['text'] !== null || $options['widget_addon']['icon'] !== null) && $options['widget_addon']['type'] === null) {
+            throw new \Exception('You must provide a "type" for widget_addon');
+        }
+
         $view->addVars(array(
             'widget_control_group' =>       $options['widget_control_group'],
             'widget_controls' =>            $options['widget_controls'],
@@ -29,14 +41,13 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_controls_attr' =>       $options['widget_controls_attr'],
         ));
     }
-
     public function getDefaultOptions()
     {
         return array(
             'widget_control_group' => true,
             'widget_controls' => true,
             'widget_addon' => array(
-                'append' => false,
+                'type' => null, //false: dont add anything, null: using presets, anything; prepend; append
                 'icon' => null,
                 'text' => null,
             ),

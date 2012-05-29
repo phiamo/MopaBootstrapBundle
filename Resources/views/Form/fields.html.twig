@@ -6,9 +6,9 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
-    <div class="input-{{ widget_addon.append ? 'append':'prepend' }}">
-        {% if not widget_addon.append %}
+    {% if type != 'hidden' and widget_addon.type|default(null) is not null %}
+    <div class="input-{{ widget_addon.type }}">
+        {% if widget_addon.type == 'prepend' %}
         {{ block('widget_addon') }}
         {% endif %}
     {% endif %}
@@ -16,8 +16,8 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if type != 'hidden' and widget_addon.text|default(false) or widget_addon.icon|default(false) %}
-        {% if widget_addon.append %}
+    {% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
+        {% if widget_addon.type == 'append' %}
         {{ block('widget_addon') }}
         {% endif %}
     </div>
@@ -122,7 +122,6 @@
 
 {% block percent_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': '%', 'append': true}) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock percent_widget %}
