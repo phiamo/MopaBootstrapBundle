@@ -34,7 +34,7 @@
     {% if app.session.flashbag.peekAll|length > 0 %}
         {% for type, messages in app.session.flashbag.all %}
             {% for message in messages %}
-                {{ _self.flash(type, message, close|default(false, use_raw|default(false))) }}
+                {{ _self.flash(type, message, close|default(false), use_raw|default(false)) }}
             {% endfor %}
         {% endfor %}
     {% endif %}
