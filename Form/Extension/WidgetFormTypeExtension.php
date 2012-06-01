@@ -26,6 +26,11 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 $options['widget_addon']['type'] = 'append';
             }
         }
+        if (in_array('money', $view->getVar('types'))) {
+            if ($options['widget_addon']['type'] === null) {
+                $options['widget_addon']['type'] = 'prepend';
+            }
+        }
         if (($options['widget_addon']['text'] !== null || $options['widget_addon']['icon'] !== null) && $options['widget_addon']['type'] === null) {
             throw new \Exception('You must provide a "type" for widget_addon');
         }
