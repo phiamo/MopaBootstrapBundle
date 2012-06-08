@@ -21,12 +21,9 @@ services:
         class: '%mopa_bootstrap.navbar.generic%'
         scope: request
         arguments:
-            - "Sternenbund"
-            - true
-            - "welcome"
-            - '@sternenbund.navbar_main_menu'
-            - null
-            - '@sternenbund.navbar_right_menu'
+            - {leftmenu: @sternenbund.navbar_main_menu=, rightmenu: @sternenbund.navbar_right_menu=  }
+            - {}
+            - {title: 'Sternenbund', titleRoute: 'welcome', fixedTop: true, isFluid: false}
         tags:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 

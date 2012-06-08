@@ -9,7 +9,7 @@
             </a>
     		<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ navbar.getOption('title') }}</a>
             <div class="nav-collapse">
-                {{ navbar.getMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active'}) : 'no left menu defined' }}
+                {{ navbar.getMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active'}) : '<span class="no-leftmenu">no left menu defined</span>' }}
                 {% if navbar.hasFormView('searchform') %}
                     {% form_theme navbar.getFormView('searchform') _self %}
                         <form  class="navbar-search pull-left" method="post" action="{{ navbar.getFormRoute('searchform') }}">
