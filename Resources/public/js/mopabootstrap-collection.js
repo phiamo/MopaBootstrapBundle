@@ -35,17 +35,16 @@
     Collection.prototype = {
         constructor: Collection,
         add: function () {
-            var index, row;
             this.options.index = this.options.index + 1;
-            index = this.options.index;
+            var index = this.options.index;
             if ($.isFunction(this.options.addcheckfunc) && !this.options.addcheckfunc()) {
                 if ($.isFunction(this.options.addfailedfunc)) {
                     this.options.addfailedfunc();
                 }
                 return;
             }
-            row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            $('div' + this.options.collection_id + '> .controls').append($('<div />').html(row).text());
+            var row = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
+            $('div' + this.options.collection_id + '> .controls').append($('<div />').html(row));
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
