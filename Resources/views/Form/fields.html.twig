@@ -153,7 +153,7 @@
         {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
-        {% if required %}*{% endif %}
+        {{ block('label_asterisk') }}
         {% if widget_add_btn %}
             {{ block('form_widget_add_btn') }}
         {% endif %}
@@ -253,6 +253,11 @@
 
 {% endblock collection_button %}
 
+{% block label_asterisk %}
+{% if render_required_asterisk %}
+    {% if required %}*{% endif %}
+{% endif %}
+{% endblock label_asterisk %}
 
 {% block widget_addon %}
 {% spaceless %}

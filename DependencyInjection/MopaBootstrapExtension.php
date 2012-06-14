@@ -73,12 +73,4 @@ class MopaBootstrapExtension extends Extension
             $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode', $config['initializr']['diagnostic_mode']);
         }
     }
-
-    protected function loadExamples(ContainerBuilder $container)
-    {
-        //$xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
-        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/examples'));
-        $yamlloader->load("example_menu.yml");
-        $yamlloader->load("example_navbar.yml");
-    }
 }

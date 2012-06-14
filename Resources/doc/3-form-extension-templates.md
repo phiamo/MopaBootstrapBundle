@@ -15,12 +15,30 @@ Have a look into the examples in the sandbox:
 ### Using bootstrap for Theming
 
 
-Forms are activated by default for you whole project if you do not want to have this behaviour you can disable it by setting(app/config.yml):
+Forms are activated by default for you whole project if you do not want to have this behaviour you can disable it by setting the templating config option to false in app/config.yml.
+There are a bunch of other config variabled to control the templating behaviour globally.
+You can change them globally, on a per form basis and per field.
 
 ``` yaml
 mopa_bootstrap:
     form:
         templating: false # default is true
+        render_fieldset: true # default is true
+        show_legend: true # default is true
+        show_child_legend: false # default is false
+        render_required_asterisk: true # default is true
+        error_type: 'block' # default is null
+        collection:
+            widget_remove_btn:
+                attr:
+                    class: btn
+                icon: null
+                icon_color: null
+            widget_add_btn:
+                attr:
+                    class: btn
+                icon: null
+                icon_color: null
 ```
 
 Or include the fields.html.twig in your template for a certain form:
