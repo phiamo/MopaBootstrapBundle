@@ -196,9 +196,7 @@
     {% if widget_remove_btn is defined %}
         {{ block('form_widget_remove_btn') }}
     {% endif -%}
-    {% if not form.hasChildren() %}
-        {{ block('form_message') }}
-    {% endif %}
+    {{ block('form_message') }}
     {{ block('widget_control_group_end') }}
 {% endspaceless %}
 {% endblock form_row %}
