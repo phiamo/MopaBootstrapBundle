@@ -45,7 +45,6 @@
 {% endspaceless %}
 {% endblock collection_widget %}
 
-
 {% block choice_widget_expanded %}
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
@@ -176,11 +175,11 @@
     {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.vars.types %}
-            {% if 'collection' in form.vars.types %}
+            {% if 'collection' in form.vars.types and not ommit_collection_item %}
             <div class="collection-item">
             {% endif %}
             {{ form_row(child) }}
-            {% if 'collection' in form.vars.types %}
+            {% if 'collection' in form.vars.types and not ommit_collection_item %}
             </div>
             {% endif %}
         {% endif %}
