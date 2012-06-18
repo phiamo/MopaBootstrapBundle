@@ -51,6 +51,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             }
         }
         $view->addVars(array(
+            'ommit_collection_item' => $options['ommit_collection_item'],
             'widget_add_btn' =>     $options['widget_add_btn'],
             'widget_remove_btn' =>  $options['widget_remove_btn'],
         ));
@@ -59,6 +60,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     public function getDefaultOptions()
     {
         return array(
+            'ommit_collection_item' => false,
             'widget_add_btn' => null,
             'widget_remove_btn' => null,
         );
