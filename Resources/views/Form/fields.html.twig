@@ -241,7 +241,7 @@
 {% endblock form_widget_remove_btn %}
 
 {% block collection_button %}
-<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="{{ form.getVar('id') }}_control_group">
+<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="#{{ form.getVar('id') }}_control_group">
 {% if button_values.icon is defined %}
 <i class="icon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></i>
 {% endif %}
@@ -325,8 +325,10 @@
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {% if form.hasChildren() and form.hasParent() and show_child_legend %}
-        {{ block('form_legend') }}
+    {% if (form.hasChildren() and form.hasParent()) and 'collection' not in form.vars.types  %}
+        {% if show_child_legend%}
+            {{ block('form_legend') }}
+        {% endif %}
     {% else %}
         {{ form_label(form, label|default(null)) }}
     {% endif %}
