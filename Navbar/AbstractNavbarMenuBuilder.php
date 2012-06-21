@@ -84,6 +84,9 @@ abstract class AbstractNavbarMenuBuilder
             $icon = array_merge(array('tag'=>'i'), $icon);
             $dropdown->setLabel($title. ' <'.$icon['tag'].' class="'.$icon['icon'].'"></'.$icon['tag'].'>')
                      ->setExtra('safe_label', true);
+        } else {
+            $dropdown->setLabel($title.' <b class="caret"></b>')
+                     ->setExtra('safe_label', true);
         }
 
         return $dropdown;
