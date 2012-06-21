@@ -79,7 +79,6 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
     public function createMainMenu(Request $request)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setCurrentUri($request->getRequestUri());
         $menu->setChildrenAttribute('class', 'nav');
 
         $menu->addChild('Shipdev', array('route' => 'shipdev'));
@@ -94,7 +93,6 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
     public function createRightSideDropdownMenu(Request $request)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setCurrentUri($request->getRequestUri());
         $menu->setChildrenAttribute('class', 'nav pull-right');
 
         if ($this->isLoggedIn) {
