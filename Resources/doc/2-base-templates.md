@@ -11,7 +11,7 @@ If you want to have a easier life, have a look into:
 
 [Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
-### Less (recommended)
+### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
 If you want to have a easier life, have a look into:
