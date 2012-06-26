@@ -28,9 +28,7 @@ class FormPass implements CompilerPassInterface
     {
         if ($container->getParameter('mopa_bootstrap.form.templating')) {
             $resources = $container->getParameter('twig.form.resources');
-    
-            $resources[] = 'MopaBootstrapBundle:Form:fields.html.twig';
-    
+
             $container->setParameter('twig.form.resources', $resources);
         }
     }
