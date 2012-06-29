@@ -48,6 +48,27 @@ services:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 ```
 
+Or in xml (strict="false" to get rid of ScopeWideningInjectionException)
+``` xml
+        <service id="mopa_bootstrap.example.navbar" class="%mopa_bootstrap.navbar.generic%">
+            <argument type="collection">
+                <argument type="service" key="leftmenu" id="mopa_bootstrap.examplemenu" strict="false" />
+                <argument type="service" key="rightmenu" id="mopa_bootstrap.exampledropdown"  strict="false" />
+            </argument>
+            <argument type="collection">
+                <argument key="searchform">Mopa\Bundle\BootstrapSandboxBundle\Form\Type\ExampleSearchFormType</argument>
+            </argument>
+            <argument type="collection">
+                <argument key="title">SuiteBundle</argument>
+                <argument key="titleRoute">mopa_bootstrap_welcome</argument>
+                <argument key="fixedTop">true</argument>
+                <argument key="isFluid">false</argument>
+                <argument key="template">MopaBootstrapBundle:Navbar:navbar.html.twig</argument>
+            </argument>
+            <tag name="mopa_bootstrap.navbar" alias="frontendNavbar" />
+        </service>
+```
+
 Make sure your FormTypes implement Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface.
 If you write a own Navbar class be sure it implements Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface.
 
