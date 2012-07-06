@@ -163,7 +163,7 @@ Installation
                    "twitter/bootstrap": "master",
                    "knplabs/knp-paginator-bundle": "dev-master",
                    "knplabs/knp-menu-bundle": "dev-master",
-                   "craue/formflow-bundle": "dev-master"
+                   "craue/formflow-bundle": "dev-master",
                    "thomas-mcdonald/bootstrap-sass": "dev-master"
                },
                "repositories": [
