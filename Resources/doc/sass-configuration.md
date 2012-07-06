@@ -66,7 +66,7 @@ You can also use Compass to parse **.sass** and **.scss** Files:
 assetic:
     filters:
         cssrewrite: ~
-            compass:
+        compass:
             sass: /usr/local/bin/compass
             apply_to: "\.(scss|sass)$" 
         yui_css:
