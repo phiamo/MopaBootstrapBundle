@@ -37,7 +37,7 @@ Additional Resources:
 Installation
 ------------
 
-Installation instructions are located in the 
+Installation instructions are located in the
 
 * [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
 * [2.0.x documentation](https://github.com/phiamo/MopaBootstrapBundle/tree/v2.0.x#installation).
@@ -53,6 +53,8 @@ Included Features
   * helpers for dropdowns, seperators, etc.
 * twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
 * twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
+* twig template for KnpMenu (https://github.com/KnpLabs/KnpMenu)
+  * icon support on menu links
 
 Recently added Features
 -----------------------
@@ -86,10 +88,10 @@ Warning
 
 Translations
 ------------
-If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.  
-To do this add new file  
+If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.
+To do this add new file
 
-```Resources/translations/pagination.[YOUR LOCALE CODE].yml```  
+```Resources/translations/pagination.[YOUR LOCALE CODE].yml```
 
 As example you have there Polish translation.
 
