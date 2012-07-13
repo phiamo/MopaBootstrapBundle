@@ -36,3 +36,62 @@ mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 ```
 
+For KnpMenu use the following parameter to make use of the menu template:
+
+```yaml
+# File: app/configs/parameters.yml
+
+parameters:
+    knp_menu.renderer.twig.template: MopaBootstrapBundle:Menu:menu.html.twig
+```
+
+By using this template, you can make use of the `icon` and `icon_white` extra attributes.
+The example shows the usage within a `Navbar`, however it works with any `knp_menu_render` in a Twig template.
+
+```php
+<?php
+# File: src/Acme/Bundle/AcmeDemoBundle/Menu/NavbarMenuBuilder.php
+
+namespace Acme\Bundle\AcmeDemoBundle\Menu;
+
+use Mopa\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
+
+class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
+{
+    public function createMainMenu(Request $request)
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setCurrentUri($request->getRequestUri());
+        $menu->setChildrenAttribute('class', 'nav');
+
+        $dropdown = $this->createDropdownMenuItem($menu, 'Account');
+        $dropdown->addChild('Register', array(
+            'route' => 'register'
+        ));
+
+        $this->addDivider($dropdown);
+        $dropdown->addChild('Login', array(
+            'route' => 'login_form',
+            'extras' => array(
+                'icon' => 'signin',
+            ),
+        ));
+        $dropdown->addChild('Login via Facebook', array(
+            'route' => 'login_facebook',
+            'extras' => array(
+                'icon' => 'facebook',
+                'icon_white' => true,
+            ),
+        ));
+        $dropdown->addChild('Login via Google+', array(
+            'route' => 'login_google',
+            'extras' => array(
+                'icon' => 'google-plus',
+            ),
+        ));
+
+        return $menu;
+    }
+}
+```
+
