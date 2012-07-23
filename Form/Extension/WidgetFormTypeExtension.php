@@ -44,6 +44,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_type' =>                $options['widget_type'],
             'widget_control_group_attr' =>  $options['widget_control_group_attr'],
             'widget_controls_attr' =>       $options['widget_controls_attr'],
+			'widget_show_label' =>          $options['widget_show_label']
         ));
     }
     public function getDefaultOptions()
@@ -61,6 +62,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_type' => '',
             'widget_control_group_attr' => array(),
             'widget_controls_attr' => array(),
+			'widget_show_label' => null
         );
     }
     public function getAllowedOptionValues()

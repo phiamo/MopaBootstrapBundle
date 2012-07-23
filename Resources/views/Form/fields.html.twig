@@ -328,7 +328,7 @@
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {% if (form.hasChildren() and form.hasParent()) and 'collection' not in form.vars.types  %}
+    {% if (widget_show_label != true and form.hasChildren() and form.hasParent()) and 'collection' not in form.vars.types  %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
         {% endif %}
