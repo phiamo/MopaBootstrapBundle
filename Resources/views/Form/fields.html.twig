@@ -244,7 +244,7 @@
 {% endblock form_widget_remove_btn %}
 
 {% block collection_button %}
-<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="#{{ form.getVar('id') }}_control_group">
+<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="#{{ form.get('id') }}_control_group">
 {% if button_values.icon is defined %}
 <i class="icon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></i>
 {% endif %}
