@@ -135,6 +135,9 @@
 
 {% block form_legend %}
 {% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
     <legend>{{ label|trans({}, translation_domain) }}</legend>
 {% endspaceless %}
 {% endblock form_legend %}
