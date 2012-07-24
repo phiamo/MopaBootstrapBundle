@@ -54,7 +54,6 @@
                 {{ child.vars.label|trans({}, translation_domain) }}
             </label>
     {% endfor %}
-    {{ block('form_message') }}
     </div>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
@@ -114,13 +113,13 @@
                 {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}}) }}
                 {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}}) }}
             </div>
-            {{ block('form_help') }}
     {% endif %}
 {% endspaceless %}
 {% endblock datetime_widget %}
 
 {% block percent_widget %}
 {% spaceless %}
+    {% set widget_addon = widget_addon|merge({'text': widget_addon.text|default('%')}) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock percent_widget %}
@@ -263,7 +262,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
@@ -328,7 +327,9 @@
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-    {% if (form.hasChildren() and form.hasParent()) and 'collection' not in form.vars.types  %}
+    {# a form item containing the field in types is a near subform or a field directly #}
+    {% if (form.hasChildren() and form.hasParent())  
+    	and not 'field' in form.vars.types %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
         {% endif %}

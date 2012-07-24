@@ -19,9 +19,6 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             $options['widget_addon'] = array_merge( $defaults['widget_addon'], $options['widget_addon']);
         }
         if (in_array('percent', $view->vars['types'])) {
-            if ($options['widget_addon']['text'] === null && $options['widget_addon']['icon'] === null) {
-                $options['widget_addon']['text'] = '%';
-            }
             if ($options['widget_addon']['type'] === null) {
                 $options['widget_addon']['type'] = 'append';
             }
