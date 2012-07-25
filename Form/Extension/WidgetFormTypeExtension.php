@@ -16,12 +16,12 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         if (!is_array($options['widget_addon'])) {
             throw new CreationException("The 'widget_addon' option must be an array");
         }
-        if (in_array('percent', $view->vars['types'])) {
+        if (in_array('percent', $view->vars['block_prefixes'])) {
             if ($options['widget_addon']['type'] === null) {
                 $options['widget_addon']['type'] = 'append';
             }
         }
-        if (in_array('money', $view->vars['types'])) {
+        if (in_array('money', $view->vars['block_prefixes'])) {
             if ($options['widget_addon']['type'] === null) {
                 $options['widget_addon']['type'] = 'prepend';
             }
