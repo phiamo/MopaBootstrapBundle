@@ -5,6 +5,7 @@
 {% block html_tag %}
 <html>
 {% endblock html_tag %}
+
 {% block head %}
 <head>
     <meta charset="UTF-8" />
@@ -29,6 +30,8 @@
 
     <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    {% block head_bottom %}
+    {% endblock head_bottom %}
 </head>
 {% endblock head %}
 

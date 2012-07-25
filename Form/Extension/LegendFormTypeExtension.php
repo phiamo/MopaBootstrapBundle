@@ -1,6 +1,7 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -29,15 +30,15 @@ class LegendFormTypeExtension extends AbstractTypeExtension
         $view->vars['label_render'] = $options['label_render'];
         $view->vars['render_required_asterisk'] = $options['render_required_asterisk'];
     }
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+    	$resolver->setDefaults(array(
             'render_fieldset' => $this->render_fieldset,
             'show_legend' => $this->show_legend,
             'show_child_legend' => $this->show_child_legend,
             'label_render' => true,
             'render_required_asterisk' => $this->render_required_asterisk,
-        );
+        ));
     }
     public function getExtendedType()
     {

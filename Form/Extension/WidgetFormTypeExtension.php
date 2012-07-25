@@ -1,6 +1,7 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -14,14 +15,8 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     {
         if (!is_array($options['widget_addon'])) {
             throw new CreationException("The 'widget_addon' option must be an array");
-        } else {
-            $defaults = $this->getDefaultOptions($options);
-            $options['widget_addon'] = array_merge( $defaults['widget_addon'], $options['widget_addon']);
         }
         if (in_array('percent', $view->vars['types'])) {
-            if ($options['widget_addon']['text'] === null && $options['widget_addon']['icon'] === null) {
-                $options['widget_addon']['text'] = '%';
-            }
             if ($options['widget_addon']['type'] === null) {
                 $options['widget_addon']['type'] = 'append';
             }
@@ -31,7 +26,8 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 $options['widget_addon']['type'] = 'prepend';
             }
         }
-        if (($options['widget_addon']['text'] !== null || $options['widget_addon']['icon'] !== null) && $options['widget_addon']['type'] === null) {
+        if (((isset($options['widget_addon']['text']) && $options['widget_addon']['text'] !== null) 
+        		|| (isset($options['widget_addon']['icon']) && $options['widget_addon']['icon'] !== null)) && $options['widget_addon']['type'] === null) {
             throw new \Exception('You must provide a "type" for widget_addon');
         }
 
@@ -45,31 +41,31 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_controls_attr'] = $options['widget_controls_attr'];
 
     }
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'widget_control_group' => true,
-            'widget_controls' => true,
-            'widget_addon' => array(
-                'type' => null, //false: dont add anything, null: using presets, anything; prepend; append
-                'icon' => null,
-                'text' => null,
-            ),
-            'widget_prefix' => null,
-            'widget_suffix' => null,
-            'widget_type' => '',
-            'widget_control_group_attr' => array(),
-            'widget_controls_attr' => array(),
+    	$resolver->setDefaults(
+        	array(
+	            'widget_control_group' => true,
+	            'widget_controls' => true,
+	            'widget_addon' => array(
+	                'type' => null, //false: dont add anything, null: using presets, anything; prepend; append
+	                'icon' => null,
+	                'text' => null,
+	            ),
+	            'widget_prefix' => null,
+	            'widget_suffix' => null,
+	            'widget_type' => '',
+	            'widget_control_group_attr' => array(),
+	            'widget_controls_attr' => array(),
+        	)
         );
-    }
-    public function getAllowedOptionValues()
-    {
-        return array(
-            'widget_type' => array(
-                'inline',
-                '',
-            )
-        );
+    	$resolver->setAllowedValues(array(
+	            'widget_type' => array(
+	                'inline',
+	                '',
+	            )
+	        )
+    	);
     }
     public function getExtendedType()
     {
