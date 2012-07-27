@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the MopaBootstrapBundle.
  *
- * (c) Olivier Chauvel <olivier@generation-multiple.com>
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * Add a new twig.form.resources
  *
- * @author Olivier Chauvel <olivier@generation-multiple.com>
+ * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */
 class FormPass implements CompilerPassInterface
 {
@@ -26,15 +26,17 @@ class FormPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if ($container->getParameter('mopa_bootstrap.form.templating')) {
+        if (($template = $container->getParameter('mopa_bootstrap.form.templating')) !== false) {
             $resources = $container->getParameter('twig.form.resources');
-    
-            //Ensures Mopa comes in before other resources
-            $coreResource = array_shift($resources);
-            array_unshift($resources, 'MopaBootstrapBundle:Form:fields.html.twig');
-            array_unshift($resources, $coreResource);
-    
-            $container->setParameter('twig.form.resources', $resources);
+            # Ensure it wasnt already aded via config
+            if (!in_array($template, $resources)) {
+                //Ensures Mopa comes in before other resources
+                $coreResource = array_shift($resources);
+                array_unshift($resources, $template);
+                array_unshift($resources, $coreResource);
+
+                $container->setParameter('twig.form.resources', $resources);
+            }
         }
     }
 }
