@@ -257,8 +257,10 @@
 {% endblock collection_button %}
 
 {% block label_asterisk %}
-{% if render_required_asterisk %}
-    {% if required %}*{% endif %}
+{% if required %}
+    {% if render_required_asterisk %}*{% endif %}
+{% else %}
+    {% if render_optional_text %}<span class="optional">(optional)</span>{% endif %}
 {% endif %}
 {% endblock label_asterisk %}
 
@@ -332,7 +334,7 @@
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
-    {% if (form.hasChildren() and form.hasParent())  
+    {% if (form.hasChildren() and form.hasParent())
         and not 'field' in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
