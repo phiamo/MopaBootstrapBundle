@@ -1,7 +1,7 @@
 Assetic Configuration
 =====================
 
-If you are not using [http://github.com/phiamo/symfony-bootstrap](symfony-bootstrap) you must configure assetic to use less
+If you are not using [symfony-bootstrap](http://github.com/phiamo/symfony-bootstrap) you must configure assetic to use less
 
 Yui CSS and CSS Embed are very nice and recommended.
 To make full use of bootstraps capabilites they are not needed, neither is less but its up to you
