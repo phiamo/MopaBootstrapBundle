@@ -3,6 +3,8 @@
 /*
  * This file is part of the MopaBootstrapBundle.
  *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -41,8 +43,8 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('form')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->booleanNode('templating')
-                            ->defaultValue(true)
+                        ->scalarNode('templating')
+                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
                             ->end()
                         ->booleanNode('render_fieldset')
                             ->defaultValue(true)
