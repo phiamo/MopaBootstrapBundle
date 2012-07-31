@@ -4,7 +4,7 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormViewInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Exception\FormException;
 
@@ -17,7 +17,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $this->options = $options;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
         if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
             throw new FormException('The "widget_add_btn" option must be an "array".');
@@ -51,19 +51,25 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
             }
         }
-        $view->vars['ommit_collection_item'] = $options['ommit_collection_item'];
-        $view->vars['widget_add_btn'] = $options['widget_add_btn'];
-        $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
+
+        $vars = array();
+
+        $vars['ommit_collection_item'] = $options['ommit_collection_item'];
+        $vars['widget_add_btn']        = $options['widget_add_btn'];
+        $vars['widget_remove_btn']     = $options['widget_remove_btn'];
+
+        $view->addVars($vars);
     }
-    
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
     	$resolver->setDefaults(array(
             'ommit_collection_item' => false,
-            'widget_add_btn' => null,
-            'widget_remove_btn' => null,
+            'widget_add_btn'        => null,
+            'widget_remove_btn'     => null,
         ));
     }
+
     public function getExtendedType()
     {
         return 'form';
