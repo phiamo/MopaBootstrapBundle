@@ -11,9 +11,13 @@ class HelpFormTypeExtension extends AbstractTypeExtension
 {
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->vars['help_inline'] = $options['help_inline'];
-        $view->vars['help_block']  = $options['help_block'];
-        $view->vars['help_label']  = $options['help_label'];
+        $vars = array();
+
+        $vars['help_inline'] = $options['help_inline'];
+        $vars['help_block']  = $options['help_block'];
+        $vars['help_label']  = $options['help_label'];
+
+        $view->addVars($vars);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

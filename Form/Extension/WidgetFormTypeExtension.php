@@ -31,15 +31,18 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             throw new \Exception('You must provide a "type" for widget_addon');
         }
 
-        $view->vars['widget_control_group'] = $options['widget_control_group'];
-        $view->vars['widget_controls'] = $options['widget_controls'];
-        $view->vars['widget_addon'] = $options['widget_addon'];
-        $view->vars['widget_prefix'] = $options['widget_prefix'];
-        $view->vars['widget_suffix'] = $options['widget_suffix'];
-        $view->vars['widget_type'] = $options['widget_type'];
-        $view->vars['widget_control_group_attr'] = $options['widget_control_group_attr'];
-        $view->vars['widget_controls_attr'] = $options['widget_controls_attr'];
+        $vars = array();
 
+        $vars['widget_control_group']      = $options['widget_control_group'];
+        $vars['widget_controls']           = $options['widget_controls'];
+        $vars['widget_addon']              = $options['widget_addon'];
+        $vars['widget_prefix']             = $options['widget_prefix'];
+        $vars['widget_suffix']             = $options['widget_suffix'];
+        $vars['widget_type']               = $options['widget_type'];
+        $vars['widget_control_group_attr'] = $options['widget_control_group_attr'];
+        $vars['widget_controls_attr']      = $options['widget_controls_attr'];
+
+        $view->addVars($vars);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

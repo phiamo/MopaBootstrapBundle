@@ -26,12 +26,17 @@ class LegendFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->vars['render_fieldset']          = $options['render_fieldset'];
-        $view->vars['show_legend']              = $options['show_legend'];
-        $view->vars['show_child_legend']        = $options['show_child_legend'];
-        $view->vars['label_render']             = $options['label_render'];
-        $view->vars['render_required_asterisk'] = $options['render_required_asterisk'];
-        $view->vars['render_optional_text']     = $options['render_optional_text'];
+        $vars = array();
+
+        $vars['render_fieldset']          = $options['render_fieldset'];
+        $vars['show_legend']              = $options['show_legend'];
+        $vars['show_child_legend']        = $options['show_child_legend'];
+        $vars['label_render']             = $options['label_render'];
+        $vars['render_required_asterisk'] = $options['render_required_asterisk'];
+        $vars['render_optional_text']     = $options['render_optional_text'];
+
+        $view->addVars($vars);
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

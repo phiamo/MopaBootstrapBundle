@@ -18,8 +18,12 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormViewInterface $view, FormInterface $form, array $options)
     {
-        $view->vars['error_type']  = $options['error_type'];
-        $view->vars['error_delay'] = $options['error_delay'];
+        $vars = array();
+
+        $vars['error_type']  = $options['error_type'];
+        $vars['error_delay'] = $options['error_delay'];
+
+        $view->addVars($vars);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
