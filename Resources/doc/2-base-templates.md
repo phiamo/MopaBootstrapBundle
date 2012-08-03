@@ -77,7 +77,7 @@ If you are using Sass just include the mopabootstrap.scss instead of the mopaboo
 If you would like to use the css try this:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
 make
 ```
 if it doesnt work, why not use the less way?
