@@ -4,7 +4,6 @@ namespace Mopa\Bundle\BootstrapBundle\Navbar;
 use Knp\Menu\ItemInterface;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Base class for Navbar Menubuilder's which has some useful methods for bootstrap generation
@@ -27,31 +26,33 @@ abstract class AbstractNavbarMenuBuilder
     /**
      * get a preconfigured menu item for navbar where to easily add childs
      *
-     * @param string $title Title of the item
+     * @param string  $title      Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createNavbarMenuItem($push_right = true){
-        
+    protected function createNavbarMenuItem($push_right = true)
+    {
         $rootItem = $this->factory->createItem('root');
         $rootItem
             ->setChildrenAttributes(array('class' => 'nav'))
         ;
-        if($push_right){
+        if ($push_right) {
             $this->pushRight($rootItem);
         }
+
         return $rootItem;
     }
     /**
      * get a preconfigured Dropdown menu where to easily add childs
      *
-     * @param string $title Title of the item
+     * @param string  $title      Title of the item
      * @param boolean $push_right Make if float right default: true
      */
-    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true){
+    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true)
+    {
         $rootItem
             ->setAttribute('class', 'nav')
         ;
-        if($push_right){
+        if ($push_right) {
             $this->pushRight($rootItem);
         }
         $dropdown = $rootItem->addChild($title, array('uri'=>'#'))
@@ -60,21 +61,25 @@ abstract class AbstractNavbarMenuBuilder
             ->setAttribute('class', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu')
         ;
+
         return $dropdown;
     }
-    protected function pushRight(ItemInterface $item){
+    protected function pushRight(ItemInterface $item)
+    {
         $item->setAttribute('class', 'nav pull-right');
+
         return $item;
     }
     /**
      * add a divider to the dropdown Menu
      *
      * @param ItemInterface $dropdown The dropdown Menu
-     * @param bool $vertical Whether to add a vertical or horizontal divider.
+     * @param bool          $vertical Whether to add a vertical or horizontal divider.
      *
      * @return ItemInterface
      */
-    protected function addDivider(ItemInterface $dropdown, $vertical = false){
+    protected function addDivider(ItemInterface $dropdown, $vertical = false)
+    {
         $class = $vertical ? 'divider-vertical' : 'divider';
 
         return $dropdown->addChild('divider_'.rand())
