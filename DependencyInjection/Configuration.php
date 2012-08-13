@@ -22,9 +22,11 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
+
         return $treeBuilder;
     }
-    protected function addFormConfig(ArrayNodeDefinition $rootNode){
+    protected function addFormConfig(ArrayNodeDefinition $rootNode)
+    {
         $rootNode
             ->children()
                 ->arrayNode('form')
@@ -47,7 +49,8 @@ class Configuration implements ConfigurationInterface
             ->end()
             ;
     }
-    protected function addNavbarConfig(ArrayNodeDefinition $rootNode){
+    protected function addNavbarConfig(ArrayNodeDefinition $rootNode)
+    {
         $rootNode
             ->children()
                 ->arrayNode('navbar')

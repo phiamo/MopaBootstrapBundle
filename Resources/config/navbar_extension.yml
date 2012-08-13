@@ -8,7 +8,7 @@ services:
         tags:
             # The alias is what is used to retrieve the menu
             - { name: knp_menu.renderer, alias: navbar }
-            
+
     mopa_bootstrap.navbar.twig.extension:
         class: Mopa\Bundle\BootstrapBundle\Navbar\Twig\NavbarExtension
         arguments: [ @mopa_bootstrap.navbar_renderer ]

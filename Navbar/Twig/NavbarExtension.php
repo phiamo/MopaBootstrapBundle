@@ -25,9 +25,9 @@ class NavbarExtension extends \Twig_Extension
     /**
      * Renders the whole Navbar with the specified renderer.
      *
-     * @param \Knp\Menu\ItemInterface|string|array $menu
-     * @param array $options
-     * @param string $renderer
+     * @param  \Knp\Menu\ItemInterface|string|array $menu
+     * @param  array                                $options
+     * @param  string                               $renderer
      * @return string
      */
     public function render($name, array $options = array(), $renderer = null)

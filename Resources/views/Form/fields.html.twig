@@ -234,11 +234,11 @@
 	{{ block('field_label_attr_aware_label') }}
    	{% if widget_controls %}
         <div class="collection controls">
-    {% endif %}    
+    {% endif %}
     {{ form_widget(form) }}
    	{% if widget_controls %}
         </div>
-    {% endif %}    
+    {% endif %}
     {% if widget_control_group %}
     </div>
     {% endif %}
@@ -258,7 +258,7 @@
     {% set coll_item = "BlUB" %}
     {{ block('form_widget', coll_item) }}
 {% endspaceless %}
-{% endblock collection_widget %}	
+{% endblock collection_widget %}
 
 {# more form widgets #}
 
