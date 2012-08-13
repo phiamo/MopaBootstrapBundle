@@ -25,4 +25,3 @@ foreach ($deps as $dep) {
 
     system(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($installDir), escapeshellarg($rev)));
 }
-

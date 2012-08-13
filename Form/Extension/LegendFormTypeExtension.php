@@ -5,7 +5,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormBuilderInterface;
 
 class LegendFormTypeExtension extends AbstractTypeExtension
 {
@@ -35,7 +34,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-    	$resolver->setDefaults(array(
+        $resolver->setDefaults(array(
             'render_fieldset' => $this->render_fieldset,
             'show_legend' => $this->show_legend,
             'show_child_legend' => $this->show_child_legend,

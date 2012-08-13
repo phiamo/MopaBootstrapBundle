@@ -171,7 +171,6 @@ EOF
 
                 return false;
             } else {
-
                 return true;
             }
         }
