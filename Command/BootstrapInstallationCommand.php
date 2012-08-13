@@ -10,7 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
-
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
  */
@@ -51,10 +50,9 @@ EOT
     {
         $this->input = $input;
         $this->output = $output;
-        if($input->getOption('manual')){
+        if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsfromUser();
-        }
-        elseif(false !== $composer = ComposerAdapter::getComposer($input, $output)){
+        } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
                     'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
@@ -65,14 +63,14 @@ EOT
                                 self::$twitterBootstrapName,
                                 $options
             );
-        }
-        else{
+        } else {
             $this->output->writeln("<error>Could not find composer and manual option not secified!</error>");
+
             return;
         }
 
         $this->output->write("Checking Symlink");
-        if(false === self::checkSymlink($symlinkTarget, $symlinkName, true)){
+        if (false === self::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $this->output->writeln(" ... <comment>not existing</comment>");
             $this->output->writeln("Creating Symlink: " . $symlinkName);
             $this->output->write("for Target: " . $symlinkTarget);
@@ -85,29 +83,27 @@ EOT
     {
             $symlinkTarget = $this->input->getArgument('pathToTwitterBootstrap');
             $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
-            if(empty($symlinkName)){
+            if (empty($symlinkName)) {
                 throw new \Exception("pathToMopaBootstrapBundle not specified");
-            }
-            elseif(!is_dir(dirname($symlinkName))){
+            } elseif (!is_dir(dirname($symlinkName))) {
                 throw new \Exception("pathToMopaBootstrapBundle: " . dirname($symlinkName) . " does not exist");
             }
-            if(empty($symlinkTarget)){
+            if (empty($symlinkTarget)) {
                 throw new \Exception("pathToTwitterBootstrap not specified");
-            }else{
-                if(substr($symlinkTarget, 0, 1) == "/"){
+            } else {
+                if (substr($symlinkTarget, 0, 1) == "/") {
                     $this->output->writeln("<comment>Try avoiding absolute paths, for portability!</comment>");
-                    if(!is_dir($symlinkTarget)){
+                    if (!is_dir($symlinkTarget)) {
                         throw new \Exception("Target path " . $symlinkTarget . "is not a directory!");
                     }
-                }
-                else{
+                } else {
                     $resolve =
                         $symlinkName . DIRECTORY_SEPARATOR .
                         ".." . DIRECTORY_SEPARATOR .
                         $symlinkTarget;
                     $symlinkTarget = self::get_absolute_path($resolve);
                 }
-                if(!is_dir($symlinkTarget)){
+                if (!is_dir($symlinkTarget)) {
                     throw new \Exception("pathToTwitterBootstrap would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));
                 }
             }
@@ -125,6 +121,7 @@ EOF
             if (!$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
                 exit;
             }
+
             return array($symlinkTarget, $symlinkName);
     }
 
@@ -141,40 +138,41 @@ EOF
                 $absolutes[] = $part;
             }
         }
+
         return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
     public static function checkSymlink($symlinkTarget, $symlinkName, $forceSymlink = false)
     {
-        if(!$forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)){
+        if (!$forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)) {
             $type = filetype($symlinkName);
-            if($type != "link"){
+            if ($type != "link") {
                 throw new \Exception($symlinkName . " exists and is no link!");
             }
-        }
-        elseif(is_link($symlinkName)){
+        } elseif (is_link($symlinkName)) {
             $linkTarget = readlink($symlinkName);
-            if($linkTarget != $symlinkTarget){
-                if(!$forceSymlink){
+            if ($linkTarget != $symlinkTarget) {
+                if (!$forceSymlink) {
                     throw new \Exception("Symlink " . $symlinkName .
                         " Points  to " . $linkTarget .
                         " instead of " . $symlinkTarget);
                 }
                 unlink($symlinkName);
+
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
         }
+
         return false;
     }
 
     public static function createSymlink($symlinkTarget, $symlinkName)
     {
-        if(false === @symlink($symlinkTarget, $symlinkName)){
+        if (false === @symlink($symlinkTarget, $symlinkName)) {
             throw new \Exception("An error occured while creating symlink" . $symlinkName);
         }
-        if(false === $target = readlink($symlinkName)){
+        if (false === $target = readlink($symlinkName)) {
             throw new \Exception("Symlink $symlinkName points to target $target");
         }
     }

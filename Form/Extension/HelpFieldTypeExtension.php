@@ -34,5 +34,5 @@ class HelpFieldTypeExtension extends AbstractTypeExtension
     public function getExtendedType()
     {
         return 'field';
-    }    
+    }
 }

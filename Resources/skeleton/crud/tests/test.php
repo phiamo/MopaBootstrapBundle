@@ -10,8 +10,7 @@ class {{ entity_class }}ControllerTest extends WebTestCase
 
 {%- if 'new' in actions %}
     {%- include 'tests/others/full_scenario.php' -%}
-{%- else %}
-    {%- include 'tests/others/short_scenario.php' -%}
+{%- else { %}%- include 'tests/others/short_scenario.php' -%}
 {%- endif %}
 
     */

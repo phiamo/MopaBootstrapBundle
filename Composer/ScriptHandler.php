@@ -29,7 +29,7 @@ class ScriptHandler
         );
 
         $IO->write("Checking Symlink", FALSE);
-        if(false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)){
+        if (false === BootstrapInstallationCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
             $IO->write("Creating Symlink: " . $symlinkName, FALSE);
             BootstrapInstallationCommand::createSymlink($symlinkTarget, $symlinkName);
         }

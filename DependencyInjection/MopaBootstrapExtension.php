@@ -25,42 +25,42 @@ class MopaBootstrapExtension extends Extension
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $yamlloader->load("form_extensions.yml");
 
-        if(isset($config['form'])){
-            if(isset($config['form']['render_fieldset'])){
+        if (isset($config['form'])) {
+            if (isset($config['form']['render_fieldset'])) {
                 $container->setParameter(
                     'mopa_bootstrap.form.render_fieldset',
                     $config['form']['render_fieldset']
                 );
             }
-            if(isset($config['form']['show_legend'])){
+            if (isset($config['form']['show_legend'])) {
                 $container->setParameter(
                     'mopa_bootstrap.form.show_legend',
                     $config['form']['show_legend']
                 );
             }
-            if(isset($config['form']['show_child_legend'])){
+            if (isset($config['form']['show_child_legend'])) {
                 $container->setParameter(
                     'mopa_bootstrap.form.show_child_legend',
                     $config['form']['show_child_legend']
                 );
             }
-            if(isset($config['form']['error_type'])){
+            if (isset($config['form']['error_type'])) {
                 $container->setParameter(
                     'mopa_bootstrap.form.error_type',
                     $config['form']['error_type']
                 );
             }
         }
-        if(isset($config['navbar'])){
+        if (isset($config['navbar'])) {
             $xmlloader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
             $yamlloader->load("navbar_extension.yml");
-            if(isset($config['navbar']['template'])){
+            if (isset($config['navbar']['template'])) {
                 $container->setParameter(
                     'mopa_bootstrap.navbar.template',
                     $config['navbar']['template']
                 );
             }
-            if(isset($config['navbar']['service'])){
+            if (isset($config['navbar']['service'])) {
                 $container->setAlias(
                     'mopa_bootstrap.navbar.service',
                     $config['navbar']['service']
