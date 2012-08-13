@@ -10,7 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
-
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
  */
@@ -172,7 +171,6 @@ EOF
 
                 return false;
             } else {
-
                 return true;
             }
         }

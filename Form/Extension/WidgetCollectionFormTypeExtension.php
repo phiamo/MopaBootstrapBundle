@@ -5,7 +5,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Exception\FormException;
 
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
@@ -55,10 +54,10 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_add_btn'] = $options['widget_add_btn'];
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
     }
-    
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-    	$resolver->setDefaults(array(
+        $resolver->setDefaults(array(
             'ommit_collection_item' => false,
             'widget_add_btn' => null,
             'widget_remove_btn' => null,

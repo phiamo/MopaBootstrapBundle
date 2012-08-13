@@ -2,6 +2,6 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Navbar;
 
-class OptionNotFoundException extends \RuntimeException{
-
+class OptionNotFoundException extends \RuntimeException
+{
 }
