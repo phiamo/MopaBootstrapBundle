@@ -5,7 +5,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormBuilderInterface;
 
 class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 {
@@ -22,7 +21,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-    	$resolver->setDefaults(array(
+        $resolver->setDefaults(array(
             'error_type' => $this->error_type,
             'error_delay'=> false
        ));
