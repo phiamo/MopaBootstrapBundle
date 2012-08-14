@@ -32,7 +32,7 @@ To see the bundle and its capabilities online just have a look on
 Additional Resources:
 
 *  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
-*  [symfony-bootstrap-sandbox](https://github.com/phiamo/symfony-bootstrap-sandbox) is also available
+*  [symfony-bootstrap](https://github.com/phiamo/symfony-bootstrap) is also available
 
 Installation
 ------------
