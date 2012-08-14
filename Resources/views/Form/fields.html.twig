@@ -73,6 +73,7 @@
 {% endblock checkbox_widget %}
 
 {% block date_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
 {% if widget == 'single_text' %}
     {{ block('form_widget_simple') }}
@@ -89,6 +90,7 @@
 {% endblock date_widget %}
 
 {% block time_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
     {% if widget == 'single_text' %}
         {{ block('form_widget_simple') }}
@@ -103,6 +105,7 @@
 {% endblock time_widget %}
 
 {% block datetime_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
     {% if widget == 'single_text' %}
         {{ block('form_widget_simple') }}
