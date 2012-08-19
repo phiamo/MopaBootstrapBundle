@@ -7,7 +7,7 @@ services:
     mopa.form.legend_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
            arguments:
-                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend% }
+                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text% }
            tags:
                 - { name: form.type_extension, alias: form }
 
