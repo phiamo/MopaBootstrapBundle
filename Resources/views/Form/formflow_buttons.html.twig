@@ -1,14 +1,14 @@
 {% set renderBackButton = flow.getCurrentStep() in 2 .. flow.getMaxSteps() %}
 {# Since bootstrap relies on jQuery or Ender, we can use a Js to make Enter intercept the next button
 append class="bootstrap_formflow" to your form: #}
-<div class="actions">
+<div class="form_actions">
     <button type="submit" id="reset" class="btn" name="{{ flow.getFormTransitionKey() }}" value="reset" formnovalidate="formnovalidate">
         {{- 'button.reset' | trans({}, 'CraueFormFlowBundle') -}}
     </button>
     <button type="submit" id="back" name="{{ flow.getFormTransitionKey() }}" value="back" formnovalidate="formnovalidate" class="btn{% if not renderBackButton %} disabled{% endif %}"{% if not renderBackButton %} disabled="disabled"{% endif %}>
         {{- 'button.back' | trans({}, 'CraueFormFlowBundle') -}}
     </button>
-    <button type="submit" id="next" class="btn primary">
+    <button type="submit" id="next" class="btn btn-primary">
         {%- if flow.getCurrentStep() < flow.getMaxSteps() -%}
             {{- 'button.next' | trans({}, 'CraueFormFlowBundle') -}}
         {%- else -%}
@@ -22,7 +22,7 @@ $(function() {
     $(function() {
         $("form{{ formident|default('') }} input").keypress(function (e) {
             if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-                $('button[type=submit].primary').click();
+                $('button[type=submit].btn-primary').click();
                 return false;
             } else {
                 return true;
