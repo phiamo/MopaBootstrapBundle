@@ -1,0 +1,17 @@
+.form_flow_actions {
+    .btn {
+        float: right;
+        margin-left: 3px;
+    }
+
+    &::before, &::after {
+        content:"";
+        display:table;
+    }
+
+    &::after {
+        clear: both;
+    }
+
+    zoom: 1;
+}
