@@ -1,5 +1,5 @@
 {% set renderBackButton = flow.getCurrentStep() in (flow.getFirstStep() + 1) .. flow.getLastStep() %}
-<div class="form_actions form_flow_actions">
+<div class="form-actions form-flow-actions">
     {#
         Default button (the one trigged by pressing the enter/return key) must be defined first.
         Thus, all buttons are defined in reverse order and will be reversed again via CSS.
