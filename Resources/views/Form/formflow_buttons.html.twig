@@ -9,7 +9,7 @@ append class="bootstrap_formflow" to your form: #}
         {{- 'button.back' | trans({}, 'CraueFormFlowBundle') -}}
     </button>
     <button type="submit" id="next" class="btn btn-primary">
-        {%- if flow.getCurrentStep() < flow.getMaxSteps() -%}
+        {%- if flow.getCurrentStep() < flow.getLastStep() -%}
             {{- 'button.next' | trans({}, 'CraueFormFlowBundle') -}}
         {%- else -%}
             {{- 'button.finish' | trans({}, 'CraueFormFlowBundle') -}}
