@@ -9,9 +9,9 @@
  * OR
  * Add it to the stylesheets of assetic or
  *
- * Be careful when using less this way, might be most straight forward, but assetic doesnt check the included files 
+ * Be careful when using less this way, might be most straight forward, but assetic doesnt check the included files
  * for changes, and will only regenerate the css if it detects changes in this file!
- * 
+ *
  * For development it might be easier to include all you sass files in the layout directly
  * But then assetic will compile each sass file in a own compiler session so you cant mix in the sass style into bootstrap, which might not be OK
  */
@@ -25,6 +25,9 @@
 
 // Collection support for MopaBootstrapBundle
 @import "collections.scss";
+
+// FormFlow support for MopaBootstrapBundle
+@import "form_flow.scss";
 
 // include the responsive after all of your stuff!
 // @import "../../bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss";
