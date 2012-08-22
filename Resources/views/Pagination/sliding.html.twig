@@ -1,35 +1,43 @@
-{# bootstrap compatible Sliding pagination control implementation #}
 {% if pageCount > 1 %}
-<div class="pagination">
-  <ul>
-    <li class="first {{ (first is defined and current == first) ? 'disabled' : ''}}">
-        <a href="{{ path(route, query|merge({'page': first})) }}">&#60;&#60;</a>
-    </li>
+    <div class="pagination">
+        {% set item = 'KnpPaginatorBundle:Pagination:sliding_item.html.twig' %}
 
-    <li class="prev {{ (previous is not defined) ? 'disabled': ''}}">
-        <a href="{{ previous is defined ? path(route, query|merge({'page': previous})) :'#' }}">&#8592; {% trans from "pagination" %}Previous{% endtrans %}</a>
-    </li>
+        <ul>
+            {% include item with {name: 'first',
+                    text: '«',
+                    page: first is defined ? first : null,
+                    clickable: first is defined and current != first
+                }
+            %}
 
-    {% for page in pagesInRange %}
-        <li class="{{ (page == current) ? 'active':''}}">
-            <a href="{{ path(route, query|merge({'page': page})) }}">{{ page }}</a>
-        </li>
-    {% endfor %}
+            {% include item with {name: 'prev',
+                    text: '‹ ' ~ 'Previous' | trans({}, 'pagination'),
+                    page: previous is defined ? previous : null,
+                    clickable: previous is defined
+                }
+            %}
 
-    <li class="{{ (next is not defined) ? 'disabled': ''}}">
-        <a href="{{ (next is defined) ? path(route, query|merge({'page': next})) :'#' }}">{% trans from "pagination" %}Next{% endtrans %} &#8594;</a>
-    </li>
+            {% for page in pagesInRange %}
+                {% include item %}
+            {% endfor %}
 
-    <li class="last {{ (last is defined and current == last) ? 'disabled' : ''}}">
-        <a href="{{ (last is defined and current == last) ? '#' : path(route, query|merge({'page': last})) }}">&#62;&#62;</a>
-    </li>
-  </ul>
-</div>
+            {%
+                include item with {
+                    name: 'next',
+                    text: 'Next' | trans({}, 'pagination') ~ ' ›',
+                    page: next is defined ? next : null,
+                    clickable: next is defined
+                }
+            %}
+
+            {%
+                include item with {
+                    name: 'last',
+                    text: '»',
+                    page: last is defined ? last : null,
+                    clickable: last is defined and current != last
+                }
+            %}
+        </ul>
+    </div>
 {% endif %}
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.pagination li.disabled a').click(function (e) {
-        e.preventDefault()
-    });
-});
-</script>
