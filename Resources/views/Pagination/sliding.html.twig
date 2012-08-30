@@ -27,9 +27,9 @@
 </div>
 {% endif %}
 <script type="text/javascript">
-$(document).ready(function(){
+if (typeof jQuery == 'defined') {  
     $('.pagination li.disabled a').click(function (e) {
         e.preventDefault()
     });
-});
+}
 </script>
