@@ -260,7 +260,7 @@
 {% if required %}
     {% if render_required_asterisk %}*{% endif %}
 {% else %}
-    {% if render_optional_text %}<span class="optional">(optional)</span>{% endif %}
+    {% if render_optional_text %}<span class="optional">{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
 {% endif %}
 {% endblock label_asterisk %}
 
