@@ -145,28 +145,26 @@
 
 {% block form_label %}
 {% spaceless %}
-    {% if label_render %}
-        {% if label is empty %}
-            {% set label = name|humanize %}
-        {% endif %}
-        {% if not compound %}
-            {% set label_attr = label_attr|merge({'for': id}) %}
-        {% endif %}
-        {% if required %}
-            {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
-        {% endif %}
-        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
-        <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-        {{ label|trans({}, translation_domain) }}
-        {{ block('label_asterisk') }}
-        {% if widget_add_btn %}
-            {{ block('form_widget_add_btn') }}
-        {% endif %}
-        {% if help_label %}
-            <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
-        {% endif %}
-        </label>
+    {% if label is empty %}
+        {% set label = name|humanize %}
     {% endif %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
+    <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    {{ label|trans({}, translation_domain) }}
+    {{ block('label_asterisk') }}
+    {% if widget_add_btn %}
+        {{ block('form_widget_add_btn') }}
+    {% endif %}
+    {% if help_label %}
+        <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
+    {% endif %}
+    </label>
 {% endspaceless %}
 {% endblock form_label %}
 
@@ -351,7 +349,9 @@
             {{ block('form_legend') }}
         {% endif %}
     {% else %}
-        {{ form_label(form, label|default(null)) }}
+        {% if label_render %}
+            {{ form_label(form, label|default(null)) }}
+        {% endif %}
     {% endif %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
