@@ -140,6 +140,9 @@
         {% set label = name|humanize %}
     {% endif %}
     <legend>{{ label|trans({}, translation_domain) }}</legend>
+    {% if widget_add_btn %}
+        {{ block('form_widget_add_btn') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_legend %}
 
