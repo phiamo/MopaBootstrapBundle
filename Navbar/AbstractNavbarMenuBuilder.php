@@ -62,10 +62,13 @@ abstract class AbstractNavbarMenuBuilder
     /**
      * get a preconfigured Dropdown menu where to easily add childs
      *
+     * @param string  $rootItem      Parent item of the element
      * @param string  $title      Title of the item
      * @param boolean $push_right Make if float right default: true
+     * @param array $icon Icon definition options
+     * @param array $knp_item_options array of options for knp item element      
      */
-    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = array())
+    protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = array(), $knp_item_options=array())
     {
         $rootItem
             ->setAttribute('class', 'nav')
@@ -73,7 +76,7 @@ abstract class AbstractNavbarMenuBuilder
         if ($push_right) {
             $this->pushRight($rootItem);
         }
-        $dropdown = $rootItem->addChild($title, array('uri'=>'#'))
+        $dropdown = $rootItem->addChild($title, array_merge($knp_item_options, array('uri'=>'#')))
             ->setLinkattribute('class', 'dropdown-toggle')
             ->setLinkattribute('data-toggle', 'dropdown')
             ->setAttribute('class', 'dropdown')
@@ -112,3 +115,4 @@ abstract class AbstractNavbarMenuBuilder
         ;
     }
 }
+
