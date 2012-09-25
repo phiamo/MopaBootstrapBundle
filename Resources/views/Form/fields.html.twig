@@ -182,11 +182,11 @@
     {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
-            {% if 'collection' in form.vars.block_prefixes and not ommit_collection_item %}
+            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
             <div class="collection-item">
             {% endif %}
             {{ form_row(child) }}
-            {% if 'collection' in form.vars.block_prefixes and not ommit_collection_item %}
+            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
             </div>
             {% endif %}
         {% endif %}
