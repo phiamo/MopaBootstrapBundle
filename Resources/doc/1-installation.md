@@ -170,12 +170,12 @@ Installation
                    {
                        "type": "package",
                        "package": {
-                           "version": "master", /* whatever version you want */
+                           "version": "master", 
                            "name": "twitter/bootstrap",
                            "source": {
                                "url": "https://github.com/twitter/bootstrap.git",
                                "type": "git",
-                               "reference": "master"
+                               "reference": "master" /* whatever version you want */
                            },
                            "dist": {
                                "url": "https://github.com/twitter/bootstrap/zipball/master",
