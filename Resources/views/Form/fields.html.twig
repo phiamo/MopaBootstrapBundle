@@ -350,6 +350,8 @@
         and 'field' not in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
+        {% elseif label_render %}
+            {{ form_label(form, label|default(null)) }}
         {% endif %}
     {% else %}
         {% if label_render %}
