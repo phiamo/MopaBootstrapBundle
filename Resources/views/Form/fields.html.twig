@@ -259,7 +259,7 @@
 
 {% block label_asterisk %}
 {% if required %}
-    {% if render_required_asterisk %}*{% endif %}
+    {% if render_required_asterisk %}<span class="required-asterisk">*</span>{% endif %}
 {% else %}
     {% if render_optional_text %}<span class="optional">{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
 {% endif %}
