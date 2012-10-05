@@ -154,10 +154,7 @@
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
     {% endif %}
-    {% if required %}
-        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
-    {% endif %}
-    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label' ~ (required ? ' required' : ' optional') }) %}
     <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {{ label|trans({}, translation_domain) }}
     {{ block('label_asterisk') }}
@@ -259,9 +256,9 @@
 
 {% block label_asterisk %}
 {% if required %}
-    {% if render_required_asterisk %}<span class="required-asterisk">*</span>{% endif %}
+    {% if render_required_asterisk %}<span class="asterisk">*</span>{% endif %}
 {% else %}
-    {% if render_optional_text %}<span class="optional">{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
+    {% if render_optional_text %}<span class="asterisk">{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
 {% endif %}
 {% endblock label_asterisk %}
 
