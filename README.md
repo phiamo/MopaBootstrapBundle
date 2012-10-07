@@ -91,7 +91,9 @@ Translations
 If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.
 To do this add new file
 
-```Resources/translations/pagination.[YOUR LOCALE CODE].yml```
+```sh
+Resources/translations/pagination.[YOUR LOCALE CODE].yml
+```
 
 As example you have there Polish translation.
 
