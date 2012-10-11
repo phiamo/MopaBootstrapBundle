@@ -1,9 +1,10 @@
 {% macro badge(text, type, use_raw) %}
-<span class="badge {{ type|default(false) ? 'badge-'~type: '' }}">{{ use_raw|default(false) ? text|trans|raw : text|trans }}</span>
+<span class="badge {{ type|default(false) ? 'badge-'~type: '' }}">{{ use_raw|default(false) ? text|raw : text }}</span>
 {% endmacro %}
 
-{% macro label(text, type, use_raw) %}
-<span class="label {{ type|default(false) ? 'label-'~type: '' }}">{{ use_raw|default(false) ? text|trans|raw : text|trans }}</span>
+{% macro label(text, type, use_raw, block) %}
+{% set tag = block|default(false) ? 'div' : 'span' %}
+<{{ tag }} class="label {{ type|default(false) ? 'label-'~type: '' }}">{{ use_raw|default(false) ? text|raw : text }}</{{ tag }}>
 {% endmacro %}
 
 

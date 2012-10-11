@@ -63,9 +63,9 @@
 {% if form.hasParent() and 'choice' not in form.parent.vars.block_prefixes %}
     <label class="checkbox{% if inline is defined and inline %} inline{% endif %}">
 {% endif %}
-        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans|raw }}
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans({}, translation_domain)|raw }}
 {% if form.hasParent() and 'choice' not in form.parent.vars.block_prefixes %}
-        {{ label }}
+        {{ label|trans({}, translation_domain) }}
         {% set help_inline = false %}
     </label>
 {% endif %}
@@ -140,33 +140,31 @@
         {% set label = name|humanize %}
     {% endif %}
     <legend>{{ label|trans({}, translation_domain) }}</legend>
+    {% if widget_add_btn %}
+        {{ block('form_widget_add_btn') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_legend %}
 
 {% block form_label %}
 {% spaceless %}
-    {% if label_render %}
-        {% if label is empty %}
-            {% set label = name|humanize %}
-        {% endif %}
-        {% if not compound %}
-            {% set label_attr = label_attr|merge({'for': id}) %}
-        {% endif %}
-        {% if required %}
-            {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' required'}) %}
-        {% endif %}
-        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label'}) %}
-        <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-        {{ label|trans({}, translation_domain) }}
-        {{ block('label_asterisk') }}
-        {% if widget_add_btn %}
-            {{ block('form_widget_add_btn') }}
-        {% endif %}
-        {% if help_label %}
-            <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
-        {% endif %}
-        </label>
+    {% if label is empty %}
+        {% set label = name|humanize %}
     {% endif %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' control-label' ~ (required ? ' required' : ' optional') }) %}
+    <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    {{ label|trans({}, translation_domain) }}
+    {{ block('label_asterisk') }}
+    {% if widget_add_btn %}
+        {{ block('form_widget_add_btn') }}
+    {% endif %}
+    {% if help_label %}
+        <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
+    {% endif %}
+    </label>
 {% endspaceless %}
 {% endblock form_label %}
 
@@ -181,11 +179,11 @@
     {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
-            {% if 'collection' in form.vars.block_prefixes and not ommit_collection_item %}
+            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
             <div class="collection-item">
             {% endif %}
             {{ form_row(child) }}
-            {% if 'collection' in form.vars.block_prefixes and not ommit_collection_item %}
+            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
             </div>
             {% endif %}
         {% endif %}
@@ -220,9 +218,9 @@
 {% block form_help %}
 {% spaceless %}
 {% if 'checkbox' not in form.vars.block_prefixes %}{# checkbox widget/choice widget problem see https://github.com/phiamo/MopaBootstrapBundle/commit/67406a16b38e5b622fffdd5b9c8a8707ca73f493#commitcomment-1295951 # #}
-    {% if help_inline %}<p class="help-inline">{{ help_inline|trans|raw }}</p>{%endif %}
+    {% if help_inline %}<p class="help-inline">{{ help_inline|trans({}, translation_domain)|raw }}</p>{%endif %}
 {% endif %}
-{% if help_block %}<p class="help-block">{{ help_block|trans|raw }}</p>{%endif %}
+{% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
 {% endspaceless %}
 {% endblock form_help %}
 
@@ -258,9 +256,9 @@
 
 {% block label_asterisk %}
 {% if required %}
-    {% if render_required_asterisk %}*{% endif %}
+    {% if render_required_asterisk %}<span>*</span>{% endif %}
 {% else %}
-    {% if render_optional_text %}<span class="optional">(optional)</span>{% endif %}
+    {% if render_optional_text %}<span>{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
 {% endif %}
 {% endblock label_asterisk %}
 
@@ -286,7 +284,14 @@
     {# prevent deep nesting wrong context copy error #}
     {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
-        {{ flash('error', error.messageTemplate|trans(error.messageParameters, 'validators')) }}
+        {{
+            flash(
+                'error',
+                error.messagePluralization is null
+                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+            )
+        }}
     {% endfor %}
 {% endif %}
 {% endspaceless %}
@@ -297,7 +302,11 @@
     {% if errors|length > 0 %}
     <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
-                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }} <br>
+                {{
+                    error.messagePluralization is null
+                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+                }} <br>
             {% endfor %}
     </span>
     {% endif %}
@@ -335,12 +344,16 @@
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form.hasChildren() and form.hasParent())
-        and not 'field' in form.vars.block_prefixes %}
+        and 'field' not in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
+        {% elseif label_render %}
+            {{ form_label(form, label|default(null)) }}
         {% endif %}
     {% else %}
-        {{ form_label(form, label|default(null)) }}
+        {% if label_render %}
+            {{ form_label(form, label|default(null)) }}
+        {% endif %}
     {% endif %}
     {% if widget_controls|default(false) or not form.hasParent() %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}

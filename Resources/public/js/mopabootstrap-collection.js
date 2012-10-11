@@ -54,7 +54,7 @@
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
-                    this.$element.parent('.collection-item').remove();
+                    this.$element.closest('.collection-item').remove();
                 }
         }
 
@@ -74,7 +74,7 @@
               options.collection_id = collection_id;
           }
           else{
-              options.collection_id = '#'+this.id;
+        	  options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
           }
           if (!data){
               $this.data('collection', (data = new Collection(this, options)));
