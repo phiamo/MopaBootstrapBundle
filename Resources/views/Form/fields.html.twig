@@ -251,7 +251,7 @@
 {% if button_values.icon is defined %}
 <i class="icon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></i>
 {% endif %}
-{{ button_values.label }}
+{{ button_values.label|trans({}, translation_domain) }}
 </a>
 
 {% endblock collection_button %}
