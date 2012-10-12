@@ -117,8 +117,10 @@ EOF
                 $this->getHelperSet()->get('formatter')->formatBlock($text, $style = 'bg=blue;fg=white', true),
                 '',
             ));
-            if (!$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
-                exit;
+            if ($this->input->isInteractive()) {
+                if (!$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
+                    exit;
+                }
             }
 
             return array($symlinkTarget, $symlinkName);
