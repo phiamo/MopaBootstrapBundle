@@ -85,7 +85,7 @@ To enable it globally use:
 ``` yaml
 mopa_bootstrap:
     form:
-        show_legend: false # default is true
+        show_child_legend: true # default is false
 ```
 
 If you just want to have it in a special form do it like that: 
