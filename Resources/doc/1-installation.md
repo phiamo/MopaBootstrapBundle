@@ -128,7 +128,7 @@ Installation
            ```
 
         With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
-        been created into vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap.
+        been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
 
     1.4.2
 
