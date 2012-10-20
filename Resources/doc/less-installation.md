@@ -4,7 +4,7 @@ MopaBootstrapBundle Less installation
 To effectively use all features of bootstrap you want to use less together with bootstrap.
 Have a look into the following docs what it is and then install it on your system.
 
- * [Twitters Less Doc](http://twitter.github.com/bootstrap/less.html)
+ * [Twitters Less Doc](http://twitter.github.com/bootstrap/extend.html)
  * [Lesscss](http://lesscss.org/)
 
 
