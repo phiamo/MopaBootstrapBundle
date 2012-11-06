@@ -54,7 +54,7 @@ class ScriptHandler
 
         $IO->write("Checking Symlink", FALSE);
         if (false === BootstrapSymlinkSassCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
-            $IO->write("Creating Symlink: " . $symlinkName, FALSE);
+            $IO->write(" ... Creating Symlink: " . $symlinkName, FALSE);
             BootstrapSymlinkSassCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
