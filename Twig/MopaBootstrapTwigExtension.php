@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Add new twig functions related to forms
  *
+ * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  * @author Charles Sanquer <charles.sanquer@gmail.com>
  */
 class MopaBootstrapTwigExtension extends \Twig_Extension
