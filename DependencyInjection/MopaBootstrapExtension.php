@@ -33,7 +33,8 @@ class MopaBootstrapExtension extends Extension
 
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $yamlloader->load("form_extensions.yml");
-
+        $yamlloader->load('twig_extensions.yml');
+        
         if (isset($config['form'])) {
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
@@ -64,7 +65,7 @@ class MopaBootstrapExtension extends Extension
         // set container parameters for Initializr base template
         if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals
-            $yamlloader->load('twig_extensions.yml');
+            $yamlloader->load('initializr_extensions.yml');
 
             $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
             $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
