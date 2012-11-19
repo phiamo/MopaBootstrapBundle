@@ -4,8 +4,8 @@
 # file that was distributed with this source code.
 
 services:
-   twig.extension.mopa.form:
-       class: 'Mopa\Bundle\BootstrapBundle\Twig\MopaBootstrapTwigExtension'
+   twig.extension.mopa.initializr:
+       class: 'Mopa\Bundle\BootstrapBundle\Twig\MopaBootstrapInitializrTwigExtension'
        arguments: [ '@service_container' ]
        tags:
           - { name: twig.extension }

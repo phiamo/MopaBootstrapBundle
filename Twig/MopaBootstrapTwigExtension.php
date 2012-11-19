@@ -12,57 +12,25 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Reads initializr configuration file and generates corresponding Twig Globals
+ * Add new twig functions related to forms
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
+ * @author Charles Sanquer <charles.sanquer@gmail.com>
  */
 class MopaBootstrapTwigExtension extends \Twig_Extension
 {
-    protected $container;
-
-    protected $environment;
-
     /**
+     * Returns a list of functions to add to the existing list.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @return array An array of functions
      */
-    public function __construct(ContainerInterface $container)
+    public function getFunctions()
     {
-        $this->container = $container;
-    }
-
-    /**
-     *
-     * @param \Twig_Environment $environment
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * Returns array of Twig Global Variables
-     *
-     * @return array Twig Globals
-     */
-    public function getGlobals()
-    {
-        $meta = $this->container->getParameter('mopa_bootstrap.initializr.meta');
-        $dns_prefetch = $this->container->getParameter('mopa_bootstrap.initializr.dns_prefetch');
-        $google = $this->container->getParameter('mopa_bootstrap.initializr.google');
-
-        // TODO: think about setting this default as kernel debug,
-        // what about PROD env which does not need diagnostic mode and test
-        $diagnostic_mode = $this->container->getParameter('mopa_bootstrap.initializr.diagnostic_mode');
-
         return array(
-            'dns_prefetch'      => $dns_prefetch,
-            'meta'              => $meta,
-            'google'            => $google,
-            'diagnostic_mode'   => $diagnostic_mode
+            'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
         );
     }
-
+    
     /**
      * Returns the name of the extension.
      *
@@ -70,6 +38,6 @@ class MopaBootstrapTwigExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'initializr';
+        return 'bootstrap_form';
     }
 }
