@@ -46,9 +46,8 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
-            var rowContent = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            var row = $("<div />");
-            row.html(rowContent);
+            var rowContent = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);            
+            var row = $(rowContent);     
             $('div' + this.options.collection_id + '> .controls').append(row);
             $(this.options.collection_id).trigger('add.mopa-collection-item', [row]);
         },
