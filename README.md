@@ -64,6 +64,7 @@ If you do not want to use less ignore this, otherwise have a look into:
 
 <h2 id="Installation">Installation</h2>
 
+<h3>Symfony 2.0.x (without Composer)</h3>
 1.1 Add this bundle to your project as via deps:
 
 ```
@@ -90,23 +91,20 @@ $loader->registerNamespaces(array(
 ));
 ```
 
+<h3>Symfony 2.1.x (with Composer)</h3>
 1.3 Installation with composer:
 
-to install this with composer have a look into:
+Add these lines, in the appropriate context, to your projects composer.json
 
-https://github.com/KnpLabs/symfony-with-composer
+Inside Require:
+```json
+    "mopa/bootstrap-bundle":          "2.1.*",
+    "twitter/bootstrap":              "dev-master"
+```
 
-and add this to your composer.json:
+Create Repositories array if it doesn't exist:
 
 ```json
-{
-    "require": {
-        "mopa/bootstrap-bundle":          "dev-v2.x_sf2.0",
-        "twitter/bootstrap":              "dev-master",
-        "knplabs/knp-paginator-bundle":   "v2.0",
-        "knplabs/knp-menu-bundle":        "dev-master",
-        "craue/formflow-bundle":          "1.0.0"
-    },
     "repositories": [
        {
            "type": "package",
@@ -125,16 +123,87 @@ and add this to your composer.json:
            }
        }
     ],
+```
+
+And finnaly add this to the scripts section:
+
+post-install-cmd:
+
+```json
+    "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+```
+
+post-update-cmd:
+```json
+    "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+```
+
+
+Example of composer.json in a clean symfony install with MopaBootstrapBundle:
+```json
+{
+    "name": "symfony/framework-standard-edition",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.1.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.0.*",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+        "jms/security-extra-bundle": "1.2.*",
+        "jms/di-extra-bundle": "1.1.*",
+        "mopa/bootstrap-bundle": "2.1.*",
+        "twitter/bootstrap": "dev-master"
+    },
     "scripts": {
-       "post-install-cmd": [
-           "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-       ],
-       "post-update-cmd": [
-           "Mopa\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-       ]
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bunbdle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+        ]
+    },
+    "repositories": [
+        {
+          "type": "package",
+        	"package": {
+        		"version": "dev-master",
+                "name": "twitter/bootstrap",
+                "source": {
+                	"url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "dist": {
+                	"url": "https://github.com/twitter/bootstrap/archive/master.zip",
+                	"type": "zip"
+            	}
+        	}
+        }
+    ],
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
     }
 }
-
 ```
 
 
