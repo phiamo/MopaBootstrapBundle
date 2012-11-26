@@ -361,6 +361,10 @@
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
         <div {% for attrname,attrvalue in widget_controls_attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
     {% endif %}
+{% else %}
+    {% if label_render %}
+        {{ form_label(form, label|default(null)) }}
+    {% endif %}
 {% endif %}
 {% endspaceless %}
 {% endblock widget_control_group_start %}
