@@ -66,7 +66,7 @@
 {% if form.hasParent() and 'choice' not in form.parent.vars.block_prefixes %}
     <label class="checkbox{% if inline is defined and inline %} inline{% endif %}">
 {% endif %}
-        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ help_inline|trans({}, translation_domain)|raw }}
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/> {{ help_inline|trans({}, translation_domain)|raw }}
 {% if form.hasParent() and 'choice' not in form.parent.vars.block_prefixes %}
         {{ label|trans({}, translation_domain) }}
         {% set help_inline = false %}
