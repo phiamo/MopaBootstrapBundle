@@ -47,9 +47,12 @@
 
 {% block choice_widget_expanded %}
 {% spaceless %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ' ~ (multiple ? 'checkbox' : 'radio'))}) %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type ? widget_type : ''))}) %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (inline is defined and inline ? 'inline' : ''))|trim}) %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        <label class="{{ (multiple ? 'checkbox' : 'radio') ~ (widget_type ? ' ' ~ widget_type : '') ~ (inline is defined and inline ? ' inline' : '') }}">
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
             {{ child.vars.label|trans({}, translation_domain) }}
         </label>
