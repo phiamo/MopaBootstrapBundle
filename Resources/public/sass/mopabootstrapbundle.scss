@@ -18,7 +18,7 @@
 
 
 // Main bootstrap.sass entry point
-@import "../../bootstrap-sass/vendor/assets/stylesheets/_bootstrap.scss";
+@import "../../bootstrap-sass/lib/bootstrap.scss";
 
 // The Paginator less for MopaBootstrapBundle
 @import "paginator.scss";
@@ -30,4 +30,4 @@
 @import "form_flow.scss";
 
 // include the responsive after all of your stuff!
-// @import "../../bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss";
+// @import "../../bootstrap-sass/lib/responsive.scss";
