@@ -16,21 +16,21 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 class BootstrapSymlinkSassCommand extends ContainerAwareCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    public static $twitterBootstrapName = "thomas-mcdonald/bootstrap-sass";
+    public static $twitterBootstrapName = "jlong/sass-twitter-bootstrap";
 
     protected function configure()
     {
         $this
             ->setName('mopa:bootstrap:symlink:sass')
             ->setDescription("Check and if possible install symlink to bootstrap-sass")
-            ->addArgument('pathToTwitterBootstrapSass', InputArgument::OPTIONAL, 'Where is thomas-mcdonald/bootstrap-sass located?')
+            ->addArgument('pathToTwitterBootstrapSass', InputArgument::OPTIONAL, 'Where is jlong/sass-twitter-bootstrap located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrapSass, and pathToMopaBootstrapBundle')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the thomas-mcdonald/bootstrap-sass library.
+The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the jlong/sass-twitter-bootstrap library.
 
-By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and thomas-mcdonald/bootstrap-sass in your vendors.
+By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and jlong/sass-twitter-bootstrap in your vendors.
 
 If you want to control the paths yourself specify the paths manually:
 
@@ -38,7 +38,7 @@ php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitte
 
 Defaults if installed by composer would be :
 
-pathToTwitterBootstrapSass: ../../../../../../vendor/thomas-mcdonald/bootstrap-sass
+pathToTwitterBootstrapSass: ../../../../../../vendor/jlong/sass-twitter-bootstrap
 pathToMopaBootstrapBundle:  vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
 
 EOT

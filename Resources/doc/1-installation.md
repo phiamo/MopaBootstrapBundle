@@ -154,7 +154,7 @@ Installation
     
     1.6 Sass Installation
 
-        If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one packe to composer.json:
+        If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one package to composer.json:
 
         ```json
            {
@@ -164,7 +164,7 @@ Installation
                    "knplabs/knp-paginator-bundle": "dev-master",
                    "knplabs/knp-menu-bundle": "dev-master",
                    "craue/formflow-bundle": "dev-master",
-                   "thomas-mcdonald/bootstrap-sass": "dev-master"
+                   "jlong/sass-twitter-bootstrap": "dev-master"
                },
                "repositories": [
                    {
@@ -187,14 +187,14 @@ Installation
                        "type":"package",
                        "package": {
                            "version":"dev-master",
-                           "name":"thomas-mcdonald/bootstrap-sass",
+                           "name":"jlong/sass-twitter-bootstrap",
                            "source": {
-                               "url":"https://github.com/thomas-mcdonald/bootstrap-sass.git",
+                               "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
                                "type":"git",
                                "reference":"master"
                            },
                            "dist": {
-                               "url":"https://github.com/thomas-mcdonald/bootstrap-sass/zipball/master",
+                               "url":"https://github.com/jlong/sass-twitter-bootstrap/archive/master",
                                "type":"zip"
                            }
                        }
