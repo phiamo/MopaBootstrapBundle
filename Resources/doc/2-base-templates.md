@@ -14,7 +14,7 @@ If you want to have a easier life, have a look into:
 ### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
-If you want to have a easier life, have a look into:
+If you want to have an easier life, have a look into:
 
 [Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
 
