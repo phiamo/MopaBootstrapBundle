@@ -31,6 +31,8 @@
 {% endmacro %}
 
 {% macro session_flash(close, use_raw, class, domain) %}
+    {% import _self as flash_messages %}
+
     {% if app.session.flashbag.peekAll|length > 0 %}
         {% for type, messages in app.session.flashbag.all %}
             {% for message in messages %}
@@ -38,7 +40,7 @@
                     {% set type = 'success' %}
                     {% set domain = 'FOSUserBundle' %}
                 {% endif %}
-                {{ _self.flash(type, message, close, use_raw, class, domain) }}
+                {{ flash_messages.flash(type, message, close, use_raw, class, domain) }}
             {% endfor %}
         {% endfor %}
     {% endif %}
