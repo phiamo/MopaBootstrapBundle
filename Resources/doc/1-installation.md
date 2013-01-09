@@ -29,182 +29,128 @@ Installation
 1. Add this bundle to your project in composer.json:
 
     1.2. Plain BootstrapBundle
-        symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
-
-        ```json
-           {
-               "require": {
-                   "mopa/bootstrap-bundle": "dev-master",
-               }
-           }
-        ```
+    Symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
+    
+    ```json
+    {
+        "require": {
+            "mopa/bootstrap-bundle": "dev-master",
+        }
+    }
+    ```
     1.2. BootstrapBundle and twitters bootstrap
 
-        To have composer managing twitters bootstrap too, you can either run it with
-        --install-suggests or add the following to your composer.json:
+    To have composer managing twitters bootstrap too, you can either run it with
+    --install-suggests or add the following to your composer.json:
 
-        ```json
-           {
-               "require": {
-                   "mopa/bootstrap-bundle": "dev-master",
-                   "twitter/bootstrap": "master"
-               },
-               "repositories": [
-                   {
-                       "type": "package",
-                       "package": {
-                           "version": "master", /* whatever version you want */
-                           "name": "twitter/bootstrap",
-                           "source": {
-                               "url": "https://github.com/twitter/bootstrap.git",
-                               "type": "git",
-                               "reference": "master"
-                           },
-                           "dist": {
-                               "url": "https://github.com/twitter/bootstrap/zipball/master",
-                               "type": "zip"
-                           }
-                       }
-                   }
-               ]
-           }
-        ```
+    ```json
+    {
+        "require": {
+            "mopa/bootstrap-bundle": "dev-master",
+            "twitter/bootstrap": "dev-master"
+        }
+    }
+    ```
 
     1.3. BootstrapBundle, twitters bootstrap and further suggests
 
-        ```json
-           {
-               "require": {
-                   "mopa/bootstrap-bundle": "dev-master",
-                   "twitter/bootstrap": "master",
-                   "knplabs/knp-paginator-bundle": "dev-master",
-                   "knplabs/knp-menu-bundle": "dev-master",
-                   "craue/formflow-bundle": "dev-master"
-               },
-               "repositories": [
-                   {
-                       "type": "package",
-                       "package": {
-                           "version": "master", /* whatever version you want */
-                           "name": "twitter/bootstrap",
-                           "source": {
-                               "url": "https://github.com/twitter/bootstrap.git",
-                               "type": "git",
-                               "reference": "master"
-                           },
-                           "dist": {
-                               "url": "https://github.com/twitter/bootstrap/zipball/master",
-                               "type": "zip"
-                           }
-                       }
-                   }
-               ]
-           }symfony-bootstrap
-        ```
+    ```json
+    {
+        "require": {
+            "mopa/bootstrap-bundle": "dev-master",
+            "twitter/bootstrap": "dev-master",
+            "knplabs/knp-paginator-bundle": "dev-master",
+            "knplabs/knp-menu-bundle": "dev-master",
+            "craue/formflow-bundle": "dev-master"
+       }
+    }
+    ```
 
     1.4.1 BootstrapBundle, twitters bootstrap and automatic symlinking
 
-        If you decided to let composer install twitters bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
-        So add this to your existing scripts section in your composer json:
-        (recommended!)
+    If you decided to let composer install twitters bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
+    So add this to your existing scripts section in your composer json:
+    (recommended!)
 
-           ```json
-           {
-               "scripts": {
-                   "post-install-cmd": [
-                       "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-                   ],
-                   "post-update-cmd": [
-                       "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-                   ]
-               }
-           }
-           ```
+    ```json
+    {
+        "scripts": {
+            "post-install-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            ],
+            "post-update-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            ]
+        }
+    }
+    ```
 
-        There is also a console command to check and / or install this symlink:
+    There is also a console command to check and / or install this symlink:
 
-           ```bash
-           php app/console mopa:bootstrap:install
-           ```
+    ```bash
+    php app/console mopa:bootstrap:install
+    ```
 
-        With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
-        been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
+    With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
+    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
 
     1.4.2
 
-        For Sass Usage there is also a symlink command which can be added:
+    For Sass Usage there is also a symlink command which can be added:
 
-           ```json
-                   {
-                       "scripts": {
-                           "post-install-cmd": [
-                               "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-                           ],
-                           "post-update-cmd": [
-                               "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-                           ]
-                       }
-                   }
-                   ```
+    ```json
+    {
+        "scripts": {
+            "post-install-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+            ],
+            "post-update-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+            ]
+        }
+    }
+    ```
 
     1.5. Include bootstrap manually or in another way:
 
-        For including bootstrap there are different solutions, why using this one?
-        have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
+    For including bootstrap there are different solutions, why using this one?
+    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
     
     1.6 Sass Installation
 
-        If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one package to composer.json:
+    If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one package to composer.json:
 
-        ```json
-           {
-               "require": {
-                   "mopa/bootstrap-bundle": "dev-master",
-                   "twitter/bootstrap": "master",
-                   "knplabs/knp-paginator-bundle": "dev-master",
-                   "knplabs/knp-menu-bundle": "dev-master",
-                   "craue/formflow-bundle": "dev-master",
-                   "jlong/sass-twitter-bootstrap": "dev-master"
-               },
-               "repositories": [
-                   {
-                       "type": "package",
-                       "package": {
-                           "version": "master", 
-                           "name": "twitter/bootstrap",
-                           "source": {
-                               "url": "https://github.com/twitter/bootstrap.git",
-                               "type": "git",
-                               "reference": "master" /* whatever version you want */
-                           },
-                           "dist": {
-                               "url": "https://github.com/twitter/bootstrap/zipball/master",
-                               "type": "zip"
-                           }
-                       }
-                   },
-                   {
-                       "type":"package",
-                       "package": {
-                           "version":"dev-master",
-                           "name":"jlong/sass-twitter-bootstrap",
-                           "source": {
-                               "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
-                               "type":"git",
-                               "reference":"master"
-                           },
-                           "dist": {
-                               "url":"https://github.com/jlong/sass-twitter-bootstrap/archive/master",
-                               "type":"zip"
-                           }
+    ```json
+       {
+           "require": {
+               "mopa/bootstrap-bundle": "dev-master",
+               "twitter/bootstrap": "dev-master",
+               "knplabs/knp-paginator-bundle": "dev-master",
+               "knplabs/knp-menu-bundle": "dev-master",
+               "craue/formflow-bundle": "dev-master",
+               "jlong/sass-twitter-bootstrap": "dev-master"
+           },
+           "repositories": [
+               {
+                   "type":"package",
+                   "package": {
+                       "version":"dev-master",
+                       "name":"jlong/sass-twitter-bootstrap",
+                       "source": {
+                           "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
+                           "type":"git",
+                           "reference":"master"
+                       },
+                       "dist": {
+                           "url":"https://github.com/jlong/sass-twitter-bootstrap/archive/master",
+                           "type":"zip"
                        }
                    }
-               ]
-           }
-        ```
-
-        You can also use the post-install cmd provided to setup the symlink for bootstrap-sass
-
+               }
+           ]
+       }
+    ```
+    You can also use the post-install cmd provided to setup the symlink for bootstrap-sass
 
 2. Add this bundle to your app/AppKernel.php:
 
