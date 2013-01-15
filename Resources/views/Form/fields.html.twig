@@ -82,13 +82,13 @@
 {% if widget == 'single_text' %}
     {{ block('form_widget_simple') }}
 {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
-            {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-            })|raw }}
-        {{ block('help') }}
+    {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
+        {{ date_pattern|replace({
+            '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+            '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+            '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+        })|raw }}
+    {{ block('help') }}
 {% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
