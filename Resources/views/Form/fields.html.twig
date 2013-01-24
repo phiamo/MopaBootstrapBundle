@@ -90,6 +90,10 @@
             {% if widget_addon.type == 'append' %}
                 {{ block('widget_addon') }}
             {% endif %}
+            <script>
+                // TODO: intelligent load
+                $('[data-form=datepicker]').datepicker();
+            </script>
         </div>
     {% else %}
         {{ block('form_widget_simple') }}
@@ -400,3 +404,13 @@
 {% endif %}
 {% endspaceless %}
 {% endblock widget_control_group_end %}
+
+{% block javascripts %}
+    {{ dump(datepicker) }}
+    {% if datepicker is defined %}
+        <script>
+            $('[data-form=datepicker]').datepicker();
+            console.log($('[data-form=datepicker]'));
+        </script>
+    {% endif %}
+{% endblock javascripts %}
