@@ -160,7 +160,7 @@ Installation
     {
         return array(
             // ...
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Mopa\BootstrapBundle\MopaBootstrapBundle(),
             // ...
         );
     }
@@ -174,7 +174,7 @@ Installation
     {
         return array(
             // ...
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Mopa\BootstrapBundle\MopaBootstrapBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
