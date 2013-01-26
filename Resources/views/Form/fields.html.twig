@@ -91,8 +91,11 @@
                 {{ block('widget_addon') }}
             {% endif %}
             <script>
-                // TODO: intelligent load
-                $('[data-form=datepicker]').datepicker();
+                if (typeof jQuery != 'undefined') {
+                    $('#{{ id }}').datepicker();
+                } else {
+                    var datepicker = true;
+                }
             </script>
         </div>
     {% else %}
