@@ -409,7 +409,6 @@
 {% endblock widget_control_group_end %}
 
 {% block javascripts %}
-    {{ dump(datepicker) }}
     {% if datepicker is defined %}
         <script>
             $('[data-form=datepicker]').datepicker();
