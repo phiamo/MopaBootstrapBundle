@@ -22,7 +22,7 @@
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
         "symfony/symfony": ">=2.1,<2.3-dev",
-        "mopa/composer-bridge": "dev-master"
+        "mopa/composer-bridge": "v1.0.0"
     },
     "suggest":  {
         "twitter/bootstrap": "2.0.*",
