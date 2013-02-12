@@ -41,7 +41,7 @@ Installation
     1.2. BootstrapBundle and twitters bootstrap
 
     To have composer managing twitters bootstrap too, you can either run it with
-    --install-suggests or add the following to your composer.json:
+    --dev or add the following to your composer.json:
 
     ```json
     {
