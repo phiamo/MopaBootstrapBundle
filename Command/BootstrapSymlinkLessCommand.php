@@ -28,13 +28,13 @@ class BootstrapSymlinkLessCommand extends ContainerAwareCommand
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrap, and pathToMopaBootstrapBundle')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the twitters/bootstrap2 library.
+The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking the twitters/bootstrap2 library.
 
 By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twitters/bootstrap2 in your vendors.
 
 If you want to control the paths yourself specify the paths manually:
 
-php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitterBootstrap> <pathToMopaBootstrapBundle>
+php app/console mopa:bootstrap:symlink:less <comment>--manual</comment> <pathToTwitterBootstrap> <pathToMopaBootstrapBundle>
 
 Defaults if installed by composer would be :
 

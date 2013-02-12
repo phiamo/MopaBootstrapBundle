@@ -41,7 +41,7 @@ Installation
     1.2. BootstrapBundle and twitters bootstrap
 
     To have composer managing twitters bootstrap too, you can either run it with
-    --dev or add the following to your composer.json:
+    --install-suggests or add the following to your composer.json:
 
     ```json
     {
@@ -72,6 +72,8 @@ Installation
     So add this to your existing scripts section in your composer json:
     (recommended!)
 
+    For using Less:
+
     ```json
     {
         "scripts": {
@@ -85,10 +87,33 @@ Installation
     }
     ```
 
+    For using Sass:
+
+    ```json
+    {
+        "scripts": {
+            "post-install-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+            ],
+            "post-update-cmd": [
+                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+            ]
+        }
+    }
+    ```
+
     There is also a console command to check and / or install this symlink:
 
+    for less:
+
     ```bash
-    php app/console mopa:bootstrap:install
+    php app/console mopa:bootstrap:symlink:less
+    ```
+
+    for sass:
+
+    ```bash
+    php app/console mopa:bootstrap:symlink:sass
     ```
 
     With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink

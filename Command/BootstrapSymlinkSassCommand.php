@@ -28,13 +28,13 @@ class BootstrapSymlinkSassCommand extends ContainerAwareCommand
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrapSass, and pathToMopaBootstrapBundle')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:install</info> command helps you checking and symlinking the jlong/sass-twitter-bootstrap library.
+The <info>mopa:bootstrap:symlink:sass</info> command helps you checking and symlinking the jlong/sass-twitter-bootstrap library.
 
 By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and jlong/sass-twitter-bootstrap in your vendors.
 
 If you want to control the paths yourself specify the paths manually:
 
-php app/console mopa:bootstrap:install <comment>--manual</comment> <pathToTwitterBootstrapSass> <pathToMopaBootstrapBundle>
+php app/console mopa:bootstrap:symlink:sass <comment>--manual</comment> <pathToTwitterBootstrapSass> <pathToMopaBootstrapBundle>
 
 Defaults if installed by composer would be :
 
