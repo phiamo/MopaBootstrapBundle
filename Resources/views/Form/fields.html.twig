@@ -90,12 +90,12 @@
             {% if widget_addon.type == 'append' %}
                 {{ block('widget_addon') }}
             {% endif %}
-            <script>
-                if (typeof jQuery != 'undefined') {
-                    $('#{{ id }}').datepicker();
-                } else {
-                    var datepicker = true;
-                }
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $({{ id }}).datepicker();
+                });
+
+
             </script>
         </div>
     {% else %}
@@ -408,11 +408,3 @@
 {% endspaceless %}
 {% endblock widget_control_group_end %}
 
-{% block javascripts %}
-    {% if datepicker is defined %}
-        <script>
-            $('[data-form=datepicker]').datepicker();
-            console.log($('[data-form=datepicker]'));
-        </script>
-    {% endif %}
-{% endblock javascripts %}
