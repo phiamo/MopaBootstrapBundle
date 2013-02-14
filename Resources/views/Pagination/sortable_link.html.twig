@@ -3,4 +3,4 @@
     {% set link = link ~ " " ~ attr ~ '="' ~ value~ '"' %}
 {% endfor %}
 
-<a {{ link }}>{{ title }}</a>
+<a {{ link|raw }}>{{ title }}</a>
