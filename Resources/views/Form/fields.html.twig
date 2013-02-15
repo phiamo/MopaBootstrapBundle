@@ -27,13 +27,13 @@
 
 {% block form_widget_compound %}
 {% spaceless %}
-    {% if form.parent is empty %}
+    {% if form.parent is null %}
         {% if render_fieldset %}<fieldset>{% endif %}
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
     {{ block('form_rows_visible') }}
     {{ form_rest(form) }}
-    {% if form.parent is empty %}
+    {% if form.parent is null %}
         {% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
 {% endspaceless %}
@@ -63,11 +63,11 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-{% if form.parent is not empty and 'choice' not in form.parent.vars.block_prefixes and label_render %}
+{% if form.parent is not null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
     <label class="checkbox{% if inline is defined and inline %} inline{% endif %}">
 {% endif %}
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/> {{ help_inline|trans({}, translation_domain)|raw }}
-{% if form.parent is not empty and 'choice' not in form.parent.vars.block_prefixes and label_render %}
+{% if form.parent is not null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
         {{ label|trans({}, translation_domain) }}
     {% endif %}
     {% set help_inline = false %}
@@ -325,10 +325,10 @@
 {% spaceless %}
 {% if error_type %}
     {{ error_type }}
-{% elseif form.parent is not empty %}
+{% elseif form.parent is not null %}
     {% set form = form.parent %}
     {{ block('error_type') }}
-{% elseif form.parent is empty %}
+{% elseif form.parent is null %}
     {{ form.vars.error_type | default('inline') }}
 {% endif %}
 {% endspaceless %}
@@ -338,7 +338,7 @@
 
 {% block widget_control_group_start %}
 {% spaceless %}
-{% if widget_control_group|default(false) or form.parent is empty %}
+{% if widget_control_group|default(false) or form.parent is null %}
     {% if prototype is defined %}        
         {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}        
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype}) %}
@@ -352,7 +352,7 @@
     {% endif %}
     <div {% for attrname,attrvalue in widget_control_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
-    {% if (form.count > 0 and form.parent is not empty)
+    {% if (form.count > 0 and form.parent is not null)
         and 'field' not in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
@@ -364,7 +364,7 @@
             {{ form_label(form, label|default(null)) }}
         {% endif %}
     {% endif %}
-    {% if widget_controls|default(false) or form.parent is empty %}
+    {% if widget_controls|default(false) or form.parent is null %}
         {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
         <div {% for attrname,attrvalue in widget_controls_attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
     {% endif %}
@@ -378,8 +378,8 @@
 
 {% block widget_control_group_end %}
 {% spaceless %}
-{% if widget_control_group|default(false) or form.parent is empty %}
-    {% if widget_controls|default(false) or form.parent is empty %}
+{% if widget_control_group|default(false) or form.parent is null %}
+    {% if widget_controls|default(false) or form.parent is null %}
         </div>
     {% endif %}
     </div>
