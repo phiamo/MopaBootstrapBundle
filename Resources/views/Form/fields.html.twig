@@ -80,7 +80,27 @@
 {% block date_widget %}
 {% spaceless %}
 {% if widget == 'single_text' %}
-    {{ block('form_widget_simple') }}
+    {% if datepicker is defined %}
+        <div class="input-{{ widget_addon.type }} date" {{ block('widget_container_attributes') }} data-date="{{ value }}" data-date-format="{{ format|lower }}" data-form="datepicker">
+            {% if widget_addon.type == 'prepend' %}
+                {{ block('widget_addon') }}
+            {% endif %}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable grd-white'}) %}
+            <input type="text" {{ block('widget_attributes') }} value="{{ value }}"  data-form="datepicker" data-date-format="{{ format|lower }}"/>
+            {% if widget_addon.type == 'append' %}
+                {{ block('widget_addon') }}
+            {% endif %}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $({{ id }}).datepicker();
+                });
+
+
+            </script>
+        </div>
+    {% else %}
+        {{ block('form_widget_simple') }}
+    {% endif %}
 {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
@@ -273,7 +293,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
@@ -340,8 +360,8 @@
 {% block widget_control_group_start %}
 {% spaceless %}
 {% if widget_control_group|default(false) or not form.hasParent() %}
-    {% if prototype is defined %}        
-        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}        
+    {% if prototype is defined %}
+        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype}) %}
     {% endif %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
@@ -387,3 +407,4 @@
 {% endif %}
 {% endspaceless %}
 {% endblock widget_control_group_end %}
+

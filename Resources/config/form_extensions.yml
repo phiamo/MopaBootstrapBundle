@@ -29,3 +29,7 @@ services:
                 - { widget_add_btn: %mopa_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %mopa_bootstrap.form.collection.widget_remove_btn% }
            tags:
                 - { name: form.type_extension, alias: form }
+    mopa.form.date_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension
+           tags:
+                - { name: form.type_extension, alias: date }
