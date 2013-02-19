@@ -15,7 +15,7 @@ Have a look into the examples in the sandbox:
 ### Using bootstrap for Theming
 
 
-Forms are activated by default for you whole project if you do not want to have this behaviour you can disable it by setting the templating config option to false in app/config.yml.
+Forms are activated by default for your whole project if you do not want to have this behaviour you can disable it by setting the templating config option to false in app/config.yml.
 There are a bunch of other config variabled to control the templating behaviour globally.
 You can change them globally, on a per form basis and per field.
 
@@ -51,7 +51,7 @@ Or include the fields.html.twig in your template for a certain form:
 Form Legends
 ------------
 
-Every Form component representing a Form not a Field (e.g. subforms, widgets of type date beeing expanded, etc)
+Every Form component representing a Form, not a Field, (e.g. subforms, widgets of type date beeing expanded, etc)
 has now a attribute called show_legend which controls wether the "form legend" is shown or not.
       
 This can be controlled globally by adapting your config.yml:
@@ -76,8 +76,8 @@ Child Form Legends
 ------------------
 
 In symfony2 you can easily glue different forms together and build a nice tree. 
-Normally there is for every sub form (including special widgets like date expanded, radio button expanded, etc)
-a label with the name of the Subform rendered.
+Normally there is a label for every sub form (including special widgets like date expanded, radio button expanded, etc) 
+with the name of the Subform rendered.
 This might make sense or not. I decided to disable this by default, but enabling it is easy:
 
 To enable it globally use:
@@ -117,7 +117,7 @@ Since symfony 2.1 the label_attr is included in the base, to add special attr to
 Form Field Help
 ---------------
 
-Every Form Field component representing a Field not a Form (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
+Every Form Field component representing a Field, not a Form, (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
 has several new attributes:
      
   - help_inline: beeing shown right of the element if there is space
