@@ -293,7 +293,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text : icon(widget_addon.icon))|raw  }}</span>
+<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
