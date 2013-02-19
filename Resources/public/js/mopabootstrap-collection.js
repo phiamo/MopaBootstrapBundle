@@ -55,7 +55,7 @@
                 if (this.$element.parents('.collection-item').length !== 0){
                     var row = this.$element.closest('.collection-item');
                     row.remove();
-                    $(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
+                    //$(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
                 }
         }
 
