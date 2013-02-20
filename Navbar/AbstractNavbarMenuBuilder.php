@@ -2,7 +2,6 @@
 namespace Mopa\Bundle\BootstrapBundle\Navbar;
 
 use Knp\Menu\ItemInterface;
-
 use Knp\Menu\FactoryInterface;
 
 /**
@@ -83,13 +82,47 @@ abstract class AbstractNavbarMenuBuilder
             ->setChildrenAttribute('class', 'dropdown-menu')
         ;
         // TODO: make XSS safe $icon contents escaping
-        if (isset($icon['icon'])) {
-            $icon = array_merge(array('tag'=>'i'), $icon);
-            $dropdown->setLabel($title. ' <'.$icon['tag'].' class="'.$icon['icon'].'"></'.$icon['tag'].'>')
-                     ->setExtra('safe_label', true);
+        switch(true){
+            case isset($icon['icon']):
+                $this->addIcon($dropdown, $icon);
+                break;
+            case isset($icon['caret']) && $icon['caret'] === true:
+                $this->addCaret($dropdown, $icon);
         }
 
         return $dropdown;
+    }
+    protected function addIcon($item, $icon)
+    {
+            $icon = array_merge(array('tag'=>'i'), $icon);
+            $addclass = "";
+            if (isset($icon['inverted']) && $icon['inverted'] === true) {
+                $addclass = " icon-white";
+            }
+            $myicon = ' <'.$icon['tag'].' class="icon-'.$icon['icon'].$addclass.'"></'.$icon['tag'].'>';
+            if (!isset($icon['append']) || $icon['append'] === true ) {
+                $label = $item->getLabel(). " " .$myicon;
+            }
+            else{
+                $label = $myicon." ".$item->getLabel();
+            }
+            $item->setLabel($label)
+                     ->setExtra('safe_label', true);
+            return $item;
+    }
+    protected function addCaret($item, $icon)
+    {
+            $icon = array_merge(array('tag'=>'b'), $icon);
+            $myicon = ' <'.$icon['tag'].' class="caret"></'.$icon['tag'].'>';
+            if (!isset($icon['append']) || $icon['append'] === false ) {
+                $label = $item->getLabel(). $myicon;
+            }
+            else{
+                $label = $myicon.$item->getLabel();
+            }
+            $item->setLabel($label)
+                     ->setExtra('safe_label', true);
+            return $item;
     }
     protected function pushRight(ItemInterface $item)
     {
