@@ -399,8 +399,8 @@
 
 {% block widget_control_group_end %}
 {% spaceless %}
-{% if widget_control_group|default(false) or not form.parent != null %}
-    {% if widget_controls|default(false) or not form.parent != null %}
+{% if widget_control_group|default(false) or form.parent == null %}
+    {% if widget_controls|default(false) or form.parent == null %}
         </div>
     {% endif %}
     </div>
