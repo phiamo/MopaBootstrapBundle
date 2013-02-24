@@ -2,3 +2,4 @@ vendor/
 Resources/bootstrap
 Resources/bootstrap-sass
 *.*~
+.DS_Store
