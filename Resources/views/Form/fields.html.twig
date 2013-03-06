@@ -190,6 +190,18 @@
         {% if help_label %}
             <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
         {% endif %}
+        {% if help_label_tooltip_title %}
+            <p class="help-inline">
+                <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $({{ id }}).tooltip({
+                            'placement': '{{ help_label_tooltip_placement }}'
+                        });
+                    });
+                </script>
+            </p>
+        {% endif %}
         </label>
     {% endif %}
 {% endspaceless %}
