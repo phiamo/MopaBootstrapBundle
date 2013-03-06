@@ -1,6 +1,8 @@
 services:
     mopa.form.help_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
+           arguments:
+                - { tooltip_icon: %mopa_bootstrap.form.tooltip.icon%, tooltip_placement: %mopa_bootstrap.form.tooltip.placement% }
            tags:
                 - { name: form.type_extension, alias: form }
 
