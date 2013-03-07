@@ -188,24 +188,34 @@
             {{ block('form_widget_add_btn') }}
         {% endif %}
         {% if help_label %}
-            <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
+            {{ block('help_label') }}
         {% endif %}
         {% if help_label_tooltip_title %}
-            <p class="help-inline">
-                <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $({{ id }}).tooltip({
-                            'placement': '{{ help_label_tooltip_placement }}'
-                        });
-                    });
-                </script>
-            </p>
+            {{ block('help_label_tooltip_title') }}
         {% endif %}
         </label>
     {% endif %}
 {% endspaceless %}
 {% endblock form_label %}
+
+{% block help_label %}
+    <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
+{% endblock help_label %}
+
+{% block help_label_tooltip_title %}
+    <p class="help-inline">
+        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $({{ id }}).tooltip({
+                    'placement': '{{ help_label_tooltip_placement }}'
+                });
+            });
+        </script>
+    </p>
+{% endblock help_label_tooltip_title %}
+
+
 
 {# Rows #}
 
