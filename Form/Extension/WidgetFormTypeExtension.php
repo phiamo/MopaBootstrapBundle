@@ -38,6 +38,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_type'] = $options['widget_type'];
         $view->vars['widget_control_group_attr'] = $options['widget_control_group_attr'];
         $view->vars['widget_controls_attr'] = $options['widget_controls_attr'];
+        $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label']; 
 
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -56,12 +57,18 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_type' => '',
                 'widget_control_group_attr' => array(),
                 'widget_controls_attr' => array(),
+                'widget_checkbox_label' => 'both', 
             )
         );
         $resolver->setAllowedValues(array(
                 'widget_type' => array(
                     'inline',
                     '',
+                ), 
+                'widget_checkbox_label' => array(
+                    'label', 
+                    'widget', 
+                    'both', 
                 )
             )
         );
