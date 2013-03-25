@@ -9,7 +9,13 @@ use Symfony\Component\Form\Exception\CreationException;
 
 class WidgetFormTypeExtension extends AbstractTypeExtension
 {
+    protected $options;
 
+    public function __construct(array $options)
+    {
+        $this->options = $options;
+    }
+    
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (!is_array($options['widget_addon'])) {
@@ -57,7 +63,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_type' => '',
                 'widget_control_group_attr' => array(),
                 'widget_controls_attr' => array(),
-                'widget_checkbox_label' => 'both', 
+                'widget_checkbox_label' => $this->options['checkbox_label'], 
             )
         );
         $resolver->setAllowedValues(array(
