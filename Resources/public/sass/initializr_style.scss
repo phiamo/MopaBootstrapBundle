@@ -1,5 +1,5 @@
 /* Main bootstrap.scss entry point */
-@import "../../bootstrap-sass/vendor/assets/stylesheets/_bootstrap.scss";
+@import "../../bootstrap-sass/lib/bootstrap.scss";
 
 /* Bootstrap subnav definition */
 @import "initializr_addons.scss";
@@ -11,7 +11,7 @@
 @import "collections.scss";
 
 /* include the responsive after all of your stuff! */
-@import "../../bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss";
+@import "../../bootstrap-sass/lib/responsive.scss";
 
 
 /* ===== Primary Styles ========================================================
