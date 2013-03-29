@@ -1,6 +1,10 @@
 Support for other Bundles
 =========================
 
+
+CraueFormFlowBundle
+-------------------
+
 For FormFlow you can just use MopaBootstrap's templates instead of the ones given by the Bundles:
 
 ``` jinja
@@ -17,6 +21,10 @@ e.g.
          {'formident': '.myformclass'}
          or
          {'formident': '#myform'}
+
+
+KnpPaginatorBundle
+------------------
 
 For KnpPaginatorBundle use the following to override template:
 
@@ -35,6 +43,10 @@ And to use the Paginator templates copy them to
 mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 ```
+
+
+KnpMenuBundle
+-------------
 
 For KnpMenu use the following parameter to make use of the menu template:
 
