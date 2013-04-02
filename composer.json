@@ -21,7 +21,7 @@
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/symfony": ">=2.1,<2.3-dev",
+        "symfony/symfony": ">=2.1,<2.4-dev",
         "mopa/composer-bridge": "1.*"
     },
     "suggest":  {
