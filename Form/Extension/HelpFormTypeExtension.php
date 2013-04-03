@@ -33,7 +33,10 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             $options['help_label_tooltip']['placement'] = $this->options['tooltip_placement'];
         }
 
-        $view->vars['help_label_tooltip_title'] = $options['help_label_tooltip']['title'];
+        if (!isset($view->vars['help_label_tooltip_title'])) {
+            $view->vars['help_label_tooltip_title'] = $options['help_label_tooltip']['title'];
+        }
+
         $view->vars['help_label_tooltip_icon'] = $options['help_label_tooltip']['icon'];
         $view->vars['help_label_tooltip_placement'] = $options['help_label_tooltip']['placement'];
 
