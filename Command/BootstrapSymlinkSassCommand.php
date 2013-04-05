@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
@@ -27,6 +28,7 @@ class BootstrapSymlinkSassCommand extends ContainerAwareCommand
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathToTwitterBootstrapSass, and pathToMopaBootstrapBundle')
+            ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.')
             ->setHelp(<<<EOT
 The <info>mopa:bootstrap:symlink:sass</info> command helps you checking and symlinking the jlong/sass-twitter-bootstrap library.
 
@@ -68,13 +70,29 @@ EOT
             return;
         }
 
-        $this->output->write("Checking Symlink");
-        if (false === self::checkSymlink($symlinkTarget, $symlinkName, true)) {
-            $this->output->writeln(" ... <comment>not existing</comment>");
-            $this->output->writeln("Creating Symlink: " . $symlinkName);
-            $this->output->write("for Target: " . $symlinkTarget);
-            self::createSymlink($symlinkTarget, $symlinkName);
+        if ($input->getOption('no-symlink')) {
+            $this->output->write("Checking destination");
+
+            if (true === self::checkSymlink($symlinkTarget, $symlinkName)) {
+                $this->output->writeln(" ... <comment>symlink already existing</comment>");
+            } else {
+                $this->output->writeln(" ... <comment>not existing</comment>");
+                $this->output->writeln("Mirroring from: " . $symlinkName);
+                $this->output->write("for Target: " . $symlinkTarget);
+
+                $filesystem = new Filesystem();
+                $filesystem->mirror($symlinkTarget, $symlinkName, null, array('copy_on_windows' => true, 'delete' => true, 'override' => true));
+            }
+        } else {
+            $this->output->write("Checking Symlink");
+            if (false === self::checkSymlink($symlinkTarget, $symlinkName, true)) {
+                $this->output->writeln(" ... <comment>not existing</comment>");
+                $this->output->writeln("Creating Symlink: " . $symlinkName);
+                $this->output->write("for Target: " . $symlinkTarget);
+                self::createSymlink($symlinkTarget, $symlinkName);
+            }
         }
+
         $this->output->writeln(" ... <info>OK</info>");
     }
 
@@ -156,7 +174,7 @@ EOF
      */
     public static function checkSymlink($symlinkTarget, $symlinkName, $forceSymlink = false)
     {
-        if (!$forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)) {
+        if ($forceSymlink and file_exists($symlinkName) && !is_link($symlinkName)) {
             $type = filetype($symlinkName);
             if ($type != "link") {
                 throw new \Exception($symlinkName . " exists and is no link!");
@@ -164,7 +182,7 @@ EOF
         } elseif (is_link($symlinkName)) {
             $linkTarget = readlink($symlinkName);
             if ($linkTarget != $symlinkTarget) {
-                if (!$forceSymlink) {
+                if ($forceSymlink) {
                     throw new \Exception("Symlink " . $symlinkName .
                         " Points  to " . $linkTarget .
                         " instead of " . $symlinkTarget);
