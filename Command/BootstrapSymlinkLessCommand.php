@@ -17,7 +17,7 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
         $this
             ->setName('mopa:bootstrap:symlink:less')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking the twitters/bootstrap library.
+The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking/mirroring the twitters/bootstrap library.
 
 By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twitters/bootstrap in your vendors.
 
@@ -27,8 +27,8 @@ php app/console mopa:bootstrap:symlink:less <comment>--manual</comment> <pathToT
 
 Defaults if installed by composer would be :
 
-pathToTwitterBootstrap:    ../../../../../../vendor/twitter/bootstrap
-pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+pathToTwitterBootstrap:    ../../../../../../../vendor/twitter/bootstrap
+pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
 
 EOT
             );
