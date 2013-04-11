@@ -13,6 +13,8 @@ class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
 
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('mopa:bootstrap:symlink:sass')
             ->setHelp(<<<EOT

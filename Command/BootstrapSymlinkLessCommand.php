@@ -12,6 +12,8 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 
     protected function configure()
     {
+        parent::configure();
+
         $this
             ->setName('mopa:bootstrap:symlink:less')
             ->setHelp(<<<EOT
