@@ -56,7 +56,7 @@ class NavbarRenderer
         foreach ($navbar->getFormClasses() as $key => $formTypeString) {
             $formType = null;
             if (is_string($formTypeString) && strlen($formTypeString) > 0) {
-                $formType = new $formTypeString();
+                $formType = new $formTypeString($this->container);
             }
             if ($formType && $formType instanceof NavbarFormInterface) {
                 $navbar->setFormType($key, $formType);
