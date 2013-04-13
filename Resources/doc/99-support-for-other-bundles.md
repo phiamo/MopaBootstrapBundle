@@ -8,7 +8,7 @@ CraueFormFlowBundle
 For FormFlow you can just use MopaBootstrap's templates instead of the ones given by the Bundles:
 
 ``` jinja
-{% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' with {'formident': '#myform}%}
+{% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' with {'formident': '#myform'}%}
 ```
 
 where formident is used by jquery to bind the submit form handler to the "next" or "finish" button, instead of the first defined like in html it is
