@@ -194,6 +194,9 @@
         {% if help_label_tooltip_title %}
             {{ block('help_label_tooltip_title') }}
         {% endif %}
+        {% if help_label_popover_title %}
+            {{ block('help_label_popover_title') }}
+        {% endif %}
         </label>
     {% endif %}
 {% endspaceless %}
@@ -217,6 +220,20 @@
     </p>
 {% endblock help_label_tooltip_title %}
 
+{% block help_label_popover_title %}
+    <p class="help-inline">
+        <a href="#" id="{{ id }}" title="{{ help_label_popover_title|trans({}, translation_domain) }}" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $({{ id }}).popover({
+                    'placement': '{{ help_label_popover_placement }}',
+                    'html': true,
+                    'trigger': 'hover'
+                });
+            });
+        </script>
+    </p>
+{% endblock help_label_popover_title %}
 
 
 {# Rows #}

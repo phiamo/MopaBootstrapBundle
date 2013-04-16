@@ -40,6 +40,24 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_label_tooltip_icon'] = $options['help_label_tooltip']['icon'];
         $view->vars['help_label_tooltip_placement'] = $options['help_label_tooltip']['placement'];
 
+        if (!isset($options['help_label_popover']['icon']) && !is_null($this->options['popover_icon'])) {
+            $options['help_label_popover']['icon'] = $this->options['popover_icon'];
+        }
+
+        if (!isset($options['help_label_popover']['placement']) && !is_null($this->options['popover_placement'])) {
+            $options['help_label_popover']['placement'] = $this->options['popover_placement'];
+        }
+
+        if (!isset($view->vars['help_label_popover_title'])) {
+            $view->vars['help_label_popover_title'] = $options['help_label_popover']['title'];
+        }
+
+        if (!isset($view->vars['help_label_popover_content'])) {
+            $view->vars['help_label_popover_content'] = $options['help_label_popover']['content'];
+        }
+
+        $view->vars['help_label_popover_icon'] = $options['help_label_popover']['icon'];
+        $view->vars['help_label_popover_placement'] = $options['help_label_popover']['placement'];
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -50,6 +68,12 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             'help_label' => null,
             'help_label_tooltip' => array(
                 'title' => null,
+                'icon' => 'icon-info-sign',
+                'placement' => 'top'
+            ),
+            'help_label_popover' => array(
+                'title' => null,
+                'content' => null,
                 'icon' => 'icon-info-sign',
                 'placement' => 'top'
             )
