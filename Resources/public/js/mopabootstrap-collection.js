@@ -46,7 +46,7 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
-            var rowContent = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);            
+            var rowContent = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
             var row = $(rowContent);     
             $('div' + this.options.collection_id + '> .controls').append(row);
             $(this.options.collection_id).trigger('add.mopa-collection-item', [row]);
@@ -55,7 +55,7 @@
                 if (this.$element.parents('.collection-item').length !== 0){
                     var row = this.$element.closest('.collection-item');
                     row.remove();
-                    $(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
+                    $(this.options.collection_id).triggerHandler('remove.mopa-collection-item', [row]);
                 }
         }
 
