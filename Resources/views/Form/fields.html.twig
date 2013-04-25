@@ -223,11 +223,6 @@
 
 {% block form_rows_visible %}
 {% spaceless %}
-    {% if form_errors(form) %}
-        <div class="symfony-form-errors">
-            {{ form_errors(form) }}
-        </div>
-    {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
