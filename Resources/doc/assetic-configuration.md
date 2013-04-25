@@ -62,3 +62,9 @@ cp /your/path/to/bootstrap/img/glyphicons-halflings.png to /path/to/your/bundle/
 ```
 
 so cssembed finds the file in the corresponding position
+
+CSSEmbed with it's default configuration won't convert a sprite to base64 data URI if the filesize is superior to 32768 bytes. This is due to browser (IE8) limitations.
+You can learn more about this here : https://en.wikipedia.org/wiki/Data_URI_scheme
+
+CSSEmbed can be executed with options set to modifiy this behaviour, learn more here :
+https://github.com/nzakas/cssembed/blob/master/src/net/nczonline/web/cssembed/CSSEmbed.java#L235
