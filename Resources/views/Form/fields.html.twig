@@ -335,15 +335,21 @@
 
 {# Errors #}
 
+{% block _form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul>
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock _form_errors %}
+
 {% block form_errors %}
 {% spaceless %}
-{% if error_delay %}
-    {% for child in form %}
-        {% if loop.index == 1 %}
-            {% if child.set('errors', errors) %}{% endif %}
-        {% endif %}
-    {% endfor %}
-{% else %}
+{% if errors_on_forms and form.parent == null %}
     {# prevent deep nesting wrong context copy error #}
     {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
@@ -356,12 +362,13 @@
             )
         }}
     {% endfor %}
-{% endif %}
-{% endspaceless %}
-{% endblock form_errors %}
-
-{% block field_errors %}
-{% spaceless %}
+{% elseif error_delay %}
+    {% for child in form %}
+        {% if loop.index == 1 %}
+            {% if child.set('errors', errors) %}{% endif %}
+        {% endif %}
+    {% endfor %}
+{% else %}
     {% if errors|length > 0 %}
     <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
@@ -373,8 +380,10 @@
             {% endfor %}
     </span>
     {% endif %}
+{% endif %}
 {% endspaceless %}
-{% endblock field_errors %}
+{% endblock form_errors %}
+
 
 {# used to determine which type of error #}
 
