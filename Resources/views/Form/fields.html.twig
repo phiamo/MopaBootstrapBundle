@@ -188,14 +188,14 @@
         {% if widget_add_btn %}
             {{ block('form_widget_add_btn') }}
         {% endif %}
-        {% if help_label %}
-            {{ block('help_label') }}
-        {% endif %}
         {% if help_label_tooltip_title %}
-            {{ block('help_label_tooltip_title') }}
+            {{ block('help_label_tooltip') }}
         {% endif %}
         {% if help_label_popover_title %}
-            {{ block('help_label_popover_title') }}
+            {{ block('help_label_popover') }}
+        {% endif %}
+        {% if help_label %}
+            {{ block('help_label') }}
         {% endif %}
         </label>
     {% endif %}
@@ -207,25 +207,25 @@
     <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
 {% endblock help_label %}
 
-{% block help_label_tooltip_title %}
+{% block help_label_tooltip %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
         <script type="text/javascript">
             $(document).ready(function () {
-                $({{ id }}).tooltip({
+                $({{ id ~ '_tooltip' }}).tooltip({
                     'placement': '{{ help_label_tooltip_placement }}'
                 });
             });
         </script>
     </p>
-{% endblock help_label_tooltip_title %}
+{% endblock help_label_tooltip %}
 
-{% block help_label_popover_title %}
+{% block help_label_popover %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}" title="{{ help_label_popover_title|trans({}, translation_domain) }}" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <a href="#" id="{{ id }}_popover" title="{{ help_label_popover_title|trans({}, translation_domain) }}" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}"><i class="{{ help_label_popover_icon }}"></i></a>
         <script type="text/javascript">
             $(document).ready(function () {
-                $({{ id }}).popover({
+                $({{ id ~ '_popover' }}).popover({
                     'placement': '{{ help_label_popover_placement }}',
                     'html': true,
                     'trigger': 'hover'
@@ -233,7 +233,7 @@
             });
         </script>
     </p>
-{% endblock help_label_popover_title %}
+{% endblock help_label_popover %}
 
 
 {# Rows #}
