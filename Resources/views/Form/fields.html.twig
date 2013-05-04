@@ -209,10 +209,10 @@
 
 {% block help_label_tooltip_title %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <a href="#" id="{{ id }}_help_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
         <script type="text/javascript">
             $(document).ready(function () {
-                $({{ id }}).tooltip({
+                $({{ id }}_help_tooltip).tooltip({
                     'placement': '{{ help_label_tooltip_placement }}'
                 });
             });
@@ -222,10 +222,10 @@
 
 {% block help_label_popover_title %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}" title="{{ help_label_popover_title|trans({}, translation_domain) }}" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <a href="#" id="{{ id }}_help_popover" title="{{ help_label_popover_title|trans({}, translation_domain) }}" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
         <script type="text/javascript">
             $(document).ready(function () {
-                $({{ id }}).popover({
+                $({{ id }}__help_popover).popover({
                     'placement': '{{ help_label_popover_placement }}',
                     'html': true,
                     'trigger': 'hover'
