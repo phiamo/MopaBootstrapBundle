@@ -216,5 +216,6 @@ Installation
             show_legend: false # default is true
             show_child_legend: false # default is true
             error_type: block # or inline which is default
+            checkbox_label: 'widget' # default is both (label|widget|both)
     ```
 
