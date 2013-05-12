@@ -209,7 +209,7 @@
 
 {% block help_label_tooltip_title %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" tabindex="-1"><i class="icon-info-sign"></i></a>
         <script type="text/javascript">
             $(document).ready(function () {
                 $({{ id }}).tooltip({
