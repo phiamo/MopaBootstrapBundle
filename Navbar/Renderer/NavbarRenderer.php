@@ -21,17 +21,17 @@ class NavbarRenderer
     /**
      * Renders the navbar with the specified renderer.
      *
-     * @param  ItemInterface|string $name
+     * @param  ItemInterface|string $navbar
      * @param  array                $options
      * 
      * @return string
      */
-    public function renderNavbar($name, array $options = array())
+    public function renderNavbar($navbar, array $options = array())
     {
         $options = array_merge($this->getNavbarDefaultOptions(), $options);
         
-        if (!$name instanceof ItemInterface) {
-             $navbar = $this->getNavbar($name);           
+        if (!$navbar instanceof ItemInterface) {
+             $navbar = $this->getNavbar($navbar);           
         }
 
         $navbar = $this->createFormViews($navbar);
