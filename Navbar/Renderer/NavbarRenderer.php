@@ -5,6 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\OptionNotFoundException;
+use Knp\Menu\ItemInterface;
 
 class NavbarRenderer
 {
@@ -20,15 +21,19 @@ class NavbarRenderer
     /**
      * Renders the navbar with the specified renderer.
      *
-     * @param  \Knp\Menu\ItemInterface $item
-     * @param  array                   $options
+     * @param  ItemInterface|string $navbar
+     * @param  array                $options
+     * 
      * @return string
      */
-    public function renderNavbar($name, array $options = array())
+    public function renderNavbar($navbar, array $options = array())
     {
         $options = array_merge($this->getNavbarDefaultOptions(), $options);
+        
+        if (!$navbar instanceof ItemInterface) {
+             $navbar = $this->getNavbar($navbar);           
+        }
 
-        $navbar = $this->getNavbar($name);
         $navbar = $this->createFormViews($navbar);
         $block = 'navbar';
         try {
