@@ -72,7 +72,9 @@
         {{ label|trans({}, translation_domain) }}
     {% endif %}
     {% set help_inline = false %}
+    {% if label_render %}
     </label>
+    {% endif %}
 {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
