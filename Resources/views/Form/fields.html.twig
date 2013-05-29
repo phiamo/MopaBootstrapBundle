@@ -211,26 +211,26 @@
 
 {% block help_label_tooltip %}
     <p class="help-inline">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" tabindex="-1"><i class="icon-info-sign"></i></a>
-=======
-        <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
->>>>>>> Adjust help_label options for tooltip and popover
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $({{ id ~ '_tooltip' }}).tooltip({
-                    'placement': '{{ help_label_tooltip_placement }}'
-                });
-            });
-        </script>
-=======
-        <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" data-toggle="tooltip" data-placement="{{ help_label_tooltip_placement }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
->>>>>>> Moved inline JS to base.html.twig and use twitters data-api 
-=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" tabindex="-1" data-toggle="tooltip" data-placement="{{ help_label_tooltip_placement }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
->>>>>>> added tabindex exlusion rule from @peterrehn (proposed in #451) for help label tooltip and help label popover
+
     </p>
 {% endblock help_label_tooltip %}
 
