@@ -99,7 +99,7 @@
     To speed up page loads save a copy of jQuery in your project and override this block to include the correct path
     Otherwise the regeneration is done on every load in dev more with use_controller: true
      #}
-     
+
     {% javascripts
         'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
@@ -119,8 +119,33 @@
         '@MopaBootstrapBundle/Resources/public/js/eyecon-bootstrap-datepicker.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{% endblock foot_script %}
+    {% endjavascripts %}
+    {% endblock foot_script %}
+    {% block foot_script_additional %}
+    {#
+    @link http://twitter.github.io/bootstrap/javascript.html#tooltips
+    To use popover and tooltip you'll need to initialize them
+    If you need only tooltips you can remove the popover initialization
+    and also remove the bootstrap-popover.js include.
+    #}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            // popover demo
+            $("a[data-toggle=tooltip]")
+                .tooltip()
+                .click(function(e) {
+                    e.preventDefault();
+                });
+
+            // tooltip initialization
+            $("a[data-toggle=popover]")
+                .popover()
+                .click(function(e) {
+                    e.preventDefault();
+                });
+        });
+    </script>
+    {% endblock foot_script_additional %}
 {% endblock body %}
 </body>
 </html>
