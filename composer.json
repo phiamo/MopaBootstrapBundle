@@ -25,7 +25,7 @@
         "mopa/composer-bridge": "1.*"
     },
     "suggest":  {
-        "twitter/bootstrap": "2.0.*",
+        "twitter/bootstrap": "2.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "2.0.*",
         "craue/formflow-bundle": "dev-master",
