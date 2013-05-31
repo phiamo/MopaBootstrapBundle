@@ -104,11 +104,14 @@
         {{ block('form_widget_simple') }}
     {% endif %}
 {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
+        {% set attrYear = attr|merge({'class': attr.class|default('inline') ~ ' input-small'}) %}
+        {% set attrMonth = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
+        {% set attrDay = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
+        
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                '{{ year }}':  form_widget(form.year, {'attr': attrYear}),
+                '{{ month }}': form_widget(form.month, {'attr': attrMonth}),
+                '{{ day }}':   form_widget(form.day, {'attr': attrDay}),
             })|raw }}
         {{ block('help') }}
 {% endif %}
