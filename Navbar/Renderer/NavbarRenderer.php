@@ -1,6 +1,7 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Navbar\Renderer;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface;
 use Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface;
@@ -56,7 +57,10 @@ class NavbarRenderer
         foreach ($navbar->getFormClasses() as $key => $formTypeString) {
             $formType = null;
             if (is_string($formTypeString) && strlen($formTypeString) > 0) {
-                $formType = new $formTypeString($this->container);
+                $formType = new $formTypeString();
+                if ($formType instanceof ContainerAwareInterface) {
+                    $formType->setContainer($this->container);
+                }
             }
             if ($formType && $formType instanceof NavbarFormInterface) {
                 $navbar->setFormType($key, $formType);
