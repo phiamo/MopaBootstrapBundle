@@ -28,15 +28,23 @@
         this.$element = $(element);
         this.options = $.extend({}, $.fn.collection.defaults, options);
 
-        var embeddedForms = 'div' + this.options.collection_id + ' .collection-item';
-        this.options.index = $(embeddedForms).length - 1;
+        // This must work with "collections" inside "collections", and should
+        // select his childs, and no the "collection" inside childs.
+        var embeddedForms = 'div' + this.options.collection_id + ' > .controls > .collection-item';
+
+        // Indexes must be different for every Collection
+        if(typeof this.options.index === 'undefined') {
+            this.options.index = {};
+        }
+
+        this.options.index[this.options.collection_id] = $(embeddedForms).length - 1;
     };
 
     Collection.prototype = {
         constructor: Collection,
         add: function () {
-            this.options.index = this.options.index + 1;
-            var index = this.options.index;
+            this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
+            var index = this.options.index[this.options.collection_id];
             if ($.isFunction(this.options.addcheckfunc) && !this.options.addcheckfunc()) {
                 if ($.isFunction(this.options.addfailedfunc)) {
                     this.options.addfailedfunc();
@@ -46,16 +54,25 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
-            var rowContent = $(this.options.collection_id).attr('data-prototype').replace(/__name__/g, index);
-            var row = $(rowContent);     
+            var $el = $(this.options.collection_id);
+            var prototype_name = $el.attr('data-prototype-name');
+
+            // Just in case it doesnt get it
+            if(typeof prototype_name === 'undefined'){
+                prototype_name = '__name__';
+            }
+            var replace_pattern = new RegExp(prototype_name, 'g');
+
+            var rowContent = $el.attr('data-prototype').replace(replace_pattern, index);
+            var row = $(rowContent);
             $('div' + this.options.collection_id + '> .controls').append(row);
-            $(this.options.collection_id).triggerHandler('add.mopa-collection-item', [row]);
+            $(this.options.collection_id).trigger('add.mopa-collection-item', [row]);
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
                     var row = this.$element.closest('.collection-item');
                     row.remove();X
-                    $(this.options.collection_id).triggerHandler('remove.mopa-collection-item', [row]);
+                    $(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
                 }
         }
 
