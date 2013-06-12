@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </a>
             {% if navbar.hasOption('title') %}<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ options.title|default(navbar.getOption('title')) }}</a>{% endif %}
-            <div class="nav-collapse">
+            <div class="nav-collapse collapse">
                 {{ navbar.hasMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
                 {% if navbar.hasFormView('searchform') %}
                     {%- set form_view = navbar.getFormView('searchform') -%}
