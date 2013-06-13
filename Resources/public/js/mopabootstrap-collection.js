@@ -71,7 +71,7 @@
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
                     var row = this.$element.closest('.collection-item');
-                    row.remove();X
+                    row.remove();
                     $(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
                 }
         }
