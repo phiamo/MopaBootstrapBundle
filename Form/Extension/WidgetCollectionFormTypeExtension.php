@@ -50,6 +50,9 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             if (!isset($options['widget_remove_btn']['icon']) && $this->options['widget_remove_btn']['icon'] != null) {
                 $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
             }
+            if (!isset($options['widget_remove_btn']['icon_color']) && isset($this->options['widget_remove_btn']['icon_color'])) {
+                $options['widget_remove_btn']['icon_color'] = $this->options['widget_remove_btn']['icon_color'];
+            }
         }
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
         $view->vars['widget_add_btn'] = $options['widget_add_btn'];
