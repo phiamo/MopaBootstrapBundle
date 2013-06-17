@@ -34,6 +34,9 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             if (!isset($options['widget_add_btn']['icon']) && $this->options['widget_add_btn']['icon'] != null) {
                 $options['widget_add_btn']['icon'] = $this->options['widget_add_btn']['icon'];
             }
+            if (!isset($options['widget_add_btn']['icon_color']) && isset($this->options['widget_add_btn']['icon_color'])) {
+                $options['widget_add_btn']['icon_color'] = $this->options['widget_add_btn']['icon_color'];
+            }
         }
         if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
                 throw new UnexpectedTypeException($options['widget_remove_btn'], "array");
@@ -49,6 +52,9 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             }
             if (!isset($options['widget_remove_btn']['icon']) && $this->options['widget_remove_btn']['icon'] != null) {
                 $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
+            }
+            if (!isset($options['widget_remove_btn']['icon_color']) && isset($this->options['widget_remove_btn']['icon_color'])) {
+                $options['widget_remove_btn']['icon_color'] = $this->options['widget_remove_btn']['icon_color'];
             }
         }
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
