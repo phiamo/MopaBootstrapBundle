@@ -30,7 +30,7 @@ services:
     mopa.form.widget_collection_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension
            arguments:
-                - { widget_add_btn: %mopa_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %mopa_bootstrap.form.collection.widget_remove_btn% }
+                - { render_collection_item: %mopa_bootstrap.form.render_collection_item%, widget_add_btn: %mopa_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %mopa_bootstrap.form.collection.widget_remove_btn% }
            tags:
                 - { name: form.type_extension, alias: form }
     mopa.form.date_extension:
