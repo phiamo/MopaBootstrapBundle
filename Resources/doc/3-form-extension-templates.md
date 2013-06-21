@@ -24,6 +24,7 @@ mopa_bootstrap:
     form:
         templating: false # default is true
         render_fieldset: true # default is true
+        render_collection_item: true # default is true
         show_legend: true # default is true
         show_child_legend: false # default is false
         render_required_asterisk: true # default is true

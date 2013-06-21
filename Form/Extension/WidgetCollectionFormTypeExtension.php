@@ -65,7 +65,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'omit_collection_item' => false,
+            'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
             'widget_add_btn' => null,
             'widget_remove_btn' => null,
         ));
