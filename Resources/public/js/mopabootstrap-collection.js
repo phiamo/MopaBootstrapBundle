@@ -66,13 +66,13 @@
             var rowContent = $el.attr('data-prototype').replace(replace_pattern, index);
             var row = $(rowContent);
             $('div' + this.options.collection_id + '> .controls').append(row);
-            $(this.options.collection_id).trigger('add.mopa-collection-item', [row]);
+            $(this.options.collection_id).triggerHandler('add.mopa-collection-item', [row]);
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
                     var row = this.$element.closest('.collection-item');
                     row.remove();
-                    $(this.options.collection_id).trigger('remove.mopa-collection-item', [row]);
+                    $(this.options.collection_id).triggerHandler('remove.mopa-collection-item', [row]);
                 }
         }
 
