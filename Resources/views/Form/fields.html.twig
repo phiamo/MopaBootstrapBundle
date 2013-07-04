@@ -1,6 +1,12 @@
 {% extends 'form_div_layout.html.twig' %}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
 
+{# Buttons #}
+{% block button_attributes %}
+    {% set attr = attr|merge({class: 'btn ' ~ attr.class | default("")}) %}
+    {{ parent() }}
+{% endblock button_attributes %}
+
 {# Widgets #}
 
 {% block form_widget_simple %}
