@@ -116,7 +116,7 @@
         {% set attrYear = attr|merge({'class': attr.class|default('inline') ~ ' input-small'}) %}
         {% set attrMonth = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
         {% set attrDay = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
-        
+
             {{ date_pattern|replace({
                 '{{ year }}':  form_widget(form.year, {'attr': attrYear}),
                 '{{ month }}': form_widget(form.month, {'attr': attrMonth}),
@@ -223,26 +223,7 @@
 
 {% block help_label_tooltip %}
     <p class="help-inline">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" tabindex="-1" data-toggle="tooltip" data-placement="{{ help_label_tooltip_placement }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
-
     </p>
 {% endblock help_label_tooltip %}
 
@@ -260,7 +241,7 @@
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
-            <div class="collection-item">
+            <div class="collection-item" {% if child.vars.id is not empty %}id="{{ child.vars.id }}" {% endif %}>
             {% endif %}
             {{ form_row(child) }}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
@@ -423,7 +404,7 @@
 {% spaceless %}
 {% if widget_control_group|default(false) or form.parent == null %}
     {% if prototype is defined %}
-        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
+        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item" id="' ~ prototype.vars.id ~ '">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name}) %}
     {% endif %}
