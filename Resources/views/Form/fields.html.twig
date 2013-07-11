@@ -241,7 +241,7 @@
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
-            <div class="collection-item" {% if child.vars.id is not empty %}id="{{ child.vars.id }}" {% endif %}>
+            <div class="collection-item {{ widget_items_attr.class|default()|join(' ') }}" id="{{ child.vars.id }}_control_group">
             {% endif %}
             {{ form_row(child) }}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
@@ -404,7 +404,7 @@
 {% spaceless %}
 {% if widget_control_group|default(false) or form.parent == null %}
     {% if prototype is defined %}
-        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item" id="' ~ prototype.vars.id ~ '">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
+        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name}) %}
     {% endif %}
