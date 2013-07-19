@@ -1,4 +1,9 @@
 services:
+    mopa.form.icon_button_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension
+           tags:
+               - { name: form.type_extension, alias: button }
+
     mopa.form.help_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
            arguments:
