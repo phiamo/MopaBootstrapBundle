@@ -29,7 +29,7 @@
         this.options = $.extend({}, $.fn.collection.defaults, options);
 
         // This must work with "collections" inside "collections", and should
-        // select his childs, and no the "collection" inside childs.
+        // select its children, and not the "collection" inside children.
         var $collection = $('div' + this.options.collection_id);
         var itemSelector = $collection.attr('data-widget-controls') === 'true'
             ? 'div' + this.options.collection_id + ' > .controls > .collection-item'
