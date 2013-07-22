@@ -406,7 +406,7 @@
     {% if prototype is defined %}
         {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name}) %}
+        {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name, 'data-widget-controls': widget_controls|default(false) ? 'true' : 'false'}) %}
     {% endif %}
     {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
     {% if errors|length > 0 %}
