@@ -256,7 +256,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
     {{ block('widget_control_group_start') }}
-    {{ widget_prefix|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|raw }}
+    {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
     {% if widget_remove_btn is defined %}
         {{ block('form_widget_remove_btn') }}
     {% endif -%}
