@@ -58,8 +58,8 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
-            var $el = $(this.options.collection_id);
-            var prototype_name = $el.attr('data-prototype-name');
+            var $collection = $(this.options.collection_id);
+            var prototype_name = $collection.attr('data-prototype-name');
 
             // Just in case it doesnt get it
             if(typeof prototype_name === 'undefined'){
@@ -67,10 +67,16 @@
             }
             var replace_pattern = new RegExp(prototype_name, 'g');
 
-            var rowContent = $el.attr('data-prototype').replace(replace_pattern, index);
+            var rowContent = $collection.attr('data-prototype').replace(replace_pattern, index);
             var row = $(rowContent);
-            $('div' + this.options.collection_id + '> .controls').append(row);
-            $(this.options.collection_id).triggerHandler('add.mopa-collection-item', [row]);
+
+            if ($collection.attr('data-widget-controls') === 'true') {
+                $collection.children('.controls').append(row);
+            } else {
+                $collection.append(row);
+            }
+
+            $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
         remove: function () {
                 if (this.$element.parents('.collection-item').length !== 0){
