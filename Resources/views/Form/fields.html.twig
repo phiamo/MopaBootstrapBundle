@@ -7,6 +7,16 @@
     {{ parent() }}
 {% endblock button_attributes %}
 
+{% block button_widget %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+    {% if icon is not empty %} <i class="icon-{{ icon }}"></i> {% endif %} {{ label|trans({}, translation_domain) }}</button>
+{% endspaceless %}
+{% endblock button_widget %}
+
 {# Widgets #}
 
 {% block form_widget_simple %}
