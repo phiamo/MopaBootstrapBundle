@@ -16,8 +16,6 @@
  * But then assetic will compile each sass file in a own compiler session so you cant mix in the sass style into bootstrap, which might not be OK
  */
 
-// Bootstrap overrides, such as the asset-url(..) function.
-@import "bootstrap_and_overrides";
 
 // Main bootstrap.sass entry point
 @import "../../bootstrap-sass/lib/bootstrap.scss";
