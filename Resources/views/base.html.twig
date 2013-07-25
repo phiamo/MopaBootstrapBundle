@@ -49,11 +49,11 @@
     {% endblock navbar %}
 
     {% block container %}
-    <div class="{% block container_class %}container-fluid{% endblock container_class %}">
+    {% block container_div_start %}<div class="{% block container_class %}container-fluid{% endblock container_class %}">{% endblock container_div_start %}
         {% block header %}
         {% endblock header %}
 
-        <div class="content">
+        {% block content_div_start %}<div class="content">{% endblock content_div_start %}
             {% block page_header %}
             <div class="page-header">
                   <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock headline %}</h1>
@@ -63,7 +63,7 @@
             {% block flashes %}
             {% if app.session.flashbag.peekAll|length > 0 %}
             <div class="row-fluid">
-                <div class="span12">
+                <div id="flash" class="span12">
                 {{ session_flash() }}
                 </div>
             </div>
@@ -86,20 +86,20 @@
                 {% endblock content %}
             </div>
             {% endblock content_row %}
-        </div>
+        {% block content_div_end %}</div>{% endblock content_div_end %}
         <footer>
             {% block footer %}
             <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011-2013</p>
             {% endblock footer %}
         </footer>
-    </div> <!-- /container -->
+    {% block container_div_end %}</div><!-- /container -->{% endblock container_div_end %}
     {% endblock container %}
     {% block foot_script %}
     {# To only use a subset or add more js overwrite and copy paste this block
     To speed up page loads save a copy of jQuery in your project and override this block to include the correct path
     Otherwise the regeneration is done on every load in dev more with use_controller: true
      #}
-     
+
     {% javascripts
         'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
@@ -119,8 +119,33 @@
         '@MopaBootstrapBundle/Resources/public/js/eyecon-bootstrap-datepicker.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{% endblock foot_script %}
+    {% endjavascripts %}
+    {% endblock foot_script %}
+    {% block foot_script_additional %}
+    {#
+    @link http://twitter.github.io/bootstrap/javascript.html#tooltips
+    To use popover and tooltip you'll need to initialize them
+    If you need only tooltips you can remove the popover initialization
+    and also remove the bootstrap-popover.js include.
+    #}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            // popover demo
+            $("a[data-toggle=tooltip]")
+                .tooltip()
+                .click(function(e) {
+                    e.preventDefault();
+                });
+
+            // tooltip initialization
+            $("a[data-toggle=popover]")
+                .popover()
+                .click(function(e) {
+                    e.preventDefault();
+                });
+        });
+    </script>
+    {% endblock foot_script_additional %}
 {% endblock body %}
 </body>
 </html>
