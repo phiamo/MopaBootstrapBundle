@@ -250,6 +250,32 @@ will result in
     ...
 ```
 
+Buttons
+-------
+
+It's possible to add icon tags to buttons which are generated via the form component.
+This works for the field types 'button' as well as 'submit' and 'reset'.
+In order to do this, use the properties icon and icon_color:
+
+``` php
+$builder
+    ->add(
+        'save',
+        'submit',
+        [
+            'icon'       => 'save',
+            'icon_color' => '#FF00FF'
+        ]
+    );
+```
+
+results in:
+
+``` html
+<button class="btn" ... type="submit">
+    <i class="icon-save" style="color: #FF00FF;"></i> Save
+</button>
+```
 
 Collections
 -----------
