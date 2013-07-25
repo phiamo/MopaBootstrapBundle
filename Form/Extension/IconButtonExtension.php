@@ -25,7 +25,8 @@ class IconButtonExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'icon' => null
+                'icon'       => null,
+                'icon_color' => null
             )
         );
     }
@@ -36,5 +37,6 @@ class IconButtonExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['icon'] = $options['icon'];
+        $view->vars['icon_color'] = $options['icon_color'];
     }
 }

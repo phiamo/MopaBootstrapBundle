@@ -13,7 +13,7 @@
         {% set label = name|humanize %}
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-    {% if icon is not empty %} <i class="icon-{{ icon }}"></i> {% endif %} {{ label|trans({}, translation_domain) }}</button>
+    {% if icon is not empty %} <i class="icon-{{ icon }}"{% if icon_color is not empty %} style="color: {{ icon_color }};" {% endif %} ></i> {% endif %} {{ label|trans({}, translation_domain) }}</button>
 {% endspaceless %}
 {% endblock button_widget %}
 
