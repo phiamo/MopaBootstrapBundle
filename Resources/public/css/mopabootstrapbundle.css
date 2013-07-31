@@ -13,7 +13,7 @@
  */
 
 // Main bootstrap.less entry point
-@import "../../bootstrap/bootstrap.css";
+@import "../../twbs/bootstrap.css";
 
 // The Example css for this bundle
 @import "../path/to/your/example.css"; 
