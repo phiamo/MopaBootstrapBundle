@@ -8,7 +8,7 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
 class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    public static $twitterBootstrapName = "twitter/bootstrap";
+    public static $twitterBootstrapName = "twbs/bootstrap";
     
     protected function getTwitterBootstrapName(){
         return self::$twitterBootstrapName;
@@ -31,7 +31,7 @@ php app/console mopa:bootstrap:symlink:less <comment>--manual</comment> <pathToT
 
 Defaults if installed by composer would be :
 
-pathToTwitterBootstrap:    ../../../../../../../vendor/twitter/bootstrap
+pathToTwitterBootstrap:    ../../../../../../../vendor/twbs/bootstrap
 pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
 
 EOT
