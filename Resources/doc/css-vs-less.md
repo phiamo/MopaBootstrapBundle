@@ -37,7 +37,7 @@ hear is a sniplet that is known to be working and was tested
 First you have to go from your project directory:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/twbs
 make
 ```
 
@@ -74,7 +74,7 @@ make sure the files have been generated (make):
 
 ```jinja
 {% stylesheets filter='?yui_css'
-    '@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
+    '@MopaBootstrapBundle/Resources/twbs/docs/assets/css/bootstrap.css'
     '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />

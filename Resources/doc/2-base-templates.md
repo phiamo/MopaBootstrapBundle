@@ -49,7 +49,7 @@ app/Resources/MopaBootstrapBundle/views/layout.html.twig
 You are free to overwrite any defined blocks.
 Have a look into the sandbox too:
 
- * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/layout
+ * http://bootstrap.mohrenweiserpartner.de/mopa/twbs/layout
  * https://github.com/phiamo/symfony-bootstrap-sandbox/blob/master/app/Resources/MopaBootstrapBundle/views/layout.html.twig
 
 If you are using less just include the mopabootstrap.less as described in layout.html.twig
@@ -85,7 +85,7 @@ if it doesnt work, why not use the less way?
 ``` jinja
 {% block head_style %}
 {% stylesheets filter='cssrewrite,?yui_css'
-   '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
+   '@MopaBootstrapBundle/Resources/twbs/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
