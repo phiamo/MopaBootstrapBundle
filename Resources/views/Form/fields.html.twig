@@ -399,9 +399,6 @@
 {% spaceless %}
 {% if error_type %}
     {{ error_type }}
-{% elseif form.parent != null %}
-    {% set form = form.parent %}
-    {{ block('error_type') }}
 {% elseif form.parent == null %}
     {{ form.vars.error_type | default('inline') }}
 {% endif %}

@@ -31,9 +31,9 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.')
         ;
     }
-    
+
     abstract protected function getTwitterBootstrapName();
-    
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
@@ -170,7 +170,7 @@ EOF
         } elseif (is_link($symlinkName)) {
             $linkTarget = readlink($symlinkName);
             if ($linkTarget != $symlinkTarget) {
-                if ($forceSymlink) {
+                if (!$forceSymlink) {
                     throw new \Exception("Symlink " . $symlinkName .
                         " Points  to " . $linkTarget .
                         " instead of " . $symlinkTarget);
