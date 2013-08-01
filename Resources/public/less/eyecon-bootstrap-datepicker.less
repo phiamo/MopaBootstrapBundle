@@ -10,12 +10,16 @@
 @import "../../bootstrap/less/variables.less";
 @import "../../bootstrap/less/mixins.less";
 
+/* @TODO: deprecated variables, put somewhere else or substitute */
+@grayLighter:           #eee;
+@grayLight:             #999;
+
 .datepicker {
 	top: 0;
 	left: 0;
 	padding: 4px;
 	margin-top: 1px;
-	.border-radius(4px);
+	border-radius: 4px;
 	&:before {
 		content: '';
 		display: inline-block;
@@ -32,7 +36,7 @@
 		display: inline-block;
 		border-left:   6px solid transparent;
 		border-right:  6px solid transparent;
-		border-bottom: 6px solid @white;
+		border-bottom: 6px solid #fff;
 		position: absolute;
 		top: -6px;
 		left: 7px;
@@ -49,7 +53,7 @@
 		text-align: center;
 		width: 20px;
 		height: 20px;
-		.border-radius(4px);
+		border-radius: 4px;
 	}
 	td {
 		&.day:hover {
@@ -62,7 +66,7 @@
 		}
 		&.active,
 		&.active:hover {
-			.buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+			.btn-pseudo-states(@btn-default-color, @btn-default-bg, @btn-default-border);
 			color: #fff;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 		}
@@ -74,12 +78,12 @@
 			float: left;
 			margin: 2px;
 			cursor: pointer;
-			.border-radius(4px);
+			border-radius: 4px;
 			&:hover {
 				background: @grayLighter;
 			}
 			&.active {
-				.buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+				.btn-pseudo-states(@btn-default-color, @btn-default-bg, @btn-default-border);
 				color: #fff;
 				text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 			}
@@ -95,7 +99,7 @@
 		}
 		&.next,
 		&.prev {
-			font-size: @baseFontSize * 1.5;
+			font-size: @font-size-base * 1.5;
 		}
 	}
 	

@@ -13,11 +13,11 @@
         {%- endif -%}
     </button>
 
-    <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" class="btn{% if not renderBackButton %} disabled{% endif %}" formnovalidate="formnovalidate"{% if not renderBackButton %} disabled="disabled"{% endif %}>
+    <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" class="btn btn-primary{% if not renderBackButton %} disabled{% endif %}" formnovalidate="formnovalidate"{% if not renderBackButton %} disabled="disabled"{% endif %}>
         {{- 'button.back' | trans({}, 'CraueFormFlowBundle') -}}
     </button>
 
-    <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="reset" class="btn" formnovalidate="formnovalidate">
+    <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="reset" class="btn btn-primary" formnovalidate="formnovalidate">
         {{- 'button.reset' | trans({}, 'CraueFormFlowBundle') -}}
     </button>
 </div>
