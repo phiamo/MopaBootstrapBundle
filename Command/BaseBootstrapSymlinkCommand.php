@@ -57,7 +57,8 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             return;
         }
 
-        if ($input->getOption('no-symlink')) {
+        // Automatically detect if on Win XP where symlink will allways fail
+        if ($input->getOption('no-symlink') or PHP_OS=="WINNT")  {
             $this->output->write("Checking destination");
 
             if (true === self::checkSymlink($symlinkTarget, $symlinkName)) {
