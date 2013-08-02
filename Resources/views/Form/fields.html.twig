@@ -114,9 +114,13 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $({{ id }}).datepicker();
+                    $({{ id }}).datepicker().on(
+                            "changeDate",
+                            function(event){
+                                $({{ id }}).datepicker('hide');
+                            }
+                    )
                 });
-
-
             </script>
         </div>
     {% else %}
