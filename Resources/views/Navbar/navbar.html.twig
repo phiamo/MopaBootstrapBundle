@@ -7,7 +7,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            {% if navbar.hasOption('title') %}<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ options.title|default(navbar.getOption('title')) }}</a>{% endif %}
+            
+            {% set titleRouteParams = [] %}                
+            {% if navbar.hasOption('titleRouteParams') %}               
+                {% for params in navbar.getOption('titleRouteParams') %}
+                    {% for param, value in params %}
+                              {% set titleRouteParams = titleRouteParams | merge ({ (param) : value}) %}  
+                    {% endfor %}            
+                {% endfor %}
+            {% endif %}    
+    
+            {% if navbar.hasOption('title') %}<a class="brand" href="{{ path(navbar.getOption('titleRoute'), titleRouteParams) }}">{{ options.title|default(navbar.getOption('title')) }}</a>{% endif %}
             <div class="nav-collapse collapse">
                 {{ navbar.hasMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
                 {% if navbar.hasFormView('searchform') %}
