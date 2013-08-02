@@ -47,7 +47,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twitter/bootstrap": "dev-master"
+            "twbs/bootstrap": "dev-master"
         }
     }
     ```
@@ -58,7 +58,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twitter/bootstrap": "dev-master",
+            "twbs/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
             "craue/formflow-bundle": "dev-master"
@@ -149,7 +149,7 @@ Installation
        {
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
-               "twitter/bootstrap": "dev-master",
+               "twbs/bootstrap": "dev-master",
                "knplabs/knp-paginator-bundle": "dev-master",
                "knplabs/knp-menu-bundle": "dev-master",
                "craue/formflow-bundle": "dev-master",
