@@ -32,7 +32,7 @@ abstract class AbstractNavbarMenuBuilder
     {
         $rootItem = $this->factory->createItem($name);
         $rootItem
-            ->setChildrenAttribute('class', 'nav')
+            ->setChildrenAttribute('class', 'nav navbar-nav')
         ;
         if ($push_right) {
             $this->pushRight($rootItem);
@@ -70,7 +70,7 @@ abstract class AbstractNavbarMenuBuilder
     protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = array(), $knp_item_options=array())
     {
         $rootItem
-            ->setAttribute('class', 'nav')
+            ->setAttribute('class', 'nav navbar-nav')
         ;
         if ($push_right) {
             $this->pushRight($rootItem);
@@ -126,7 +126,7 @@ abstract class AbstractNavbarMenuBuilder
     }
     protected function pushRight(ItemInterface $item)
     {
-        $item->setAttribute('class', 'nav pull-right');
+        $item->setAttribute('class', 'nav navbar-nav pull-right');
 
         return $item;
     }

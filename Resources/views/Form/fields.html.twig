@@ -31,6 +31,7 @@
     {% if not widget_remove_btn|default(null) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
         {% if widget_addon.type == 'append' %}
@@ -91,9 +92,7 @@
         {{ label|trans({}, translation_domain) }}
     {% endif %}
     {% set help_inline = false %}
-    {% if label_render %}
     </label>
-    {% endif %}
 {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
@@ -127,14 +126,11 @@
         {{ block('form_widget_simple') }}
     {% endif %}
 {% else %}
-        {% set attrYear = attr|merge({'class': attr.class|default('inline') ~ ' input-small'}) %}
-        {% set attrMonth = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
-        {% set attrDay = attr|merge({'class': attr.class|default('inline') ~ ' input-mini'}) %}
-
+        {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': attrYear}),
-                '{{ month }}': form_widget(form.month, {'attr': attrMonth}),
-                '{{ day }}':   form_widget(form.day, {'attr': attrDay}),
+                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
             })|raw }}
         {{ block('help') }}
 {% endif %}
@@ -146,7 +142,7 @@
     {% if widget == 'single_text' %}
         {{ block('form_widget_simple') }}
     {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
+        {% set attr = attr|merge({'class': attr.class|default('')}) %}
         <div {{ block('widget_container_attributes')  }}>
             {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
         </div>
@@ -216,14 +212,11 @@
         {% if widget_add_btn %}
             {{ block('form_widget_add_btn') }}
         {% endif %}
-        {% if help_label_tooltip_title %}
-            {{ block('help_label_tooltip') }}
-        {% endif %}
-        {% if help_label_popover_title %}
-            {{ block('help_label_popover') }}
-        {% endif %}
         {% if help_label %}
             {{ block('help_label') }}
+        {% endif %}
+        {% if help_label_tooltip_title %}
+            {{ block('help_label_tooltip_title') }}
         {% endif %}
         </label>
     {% endif %}
@@ -235,23 +228,30 @@
     <p class="help-block">{{ help_label|trans({}, translation_domain) }}</p>
 {% endblock help_label %}
 
-{% block help_label_tooltip %}
+{% block help_label_tooltip_title %}
     <p class="help-inline">
-        <a href="#" id="{{ id }}_tooltip" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}" tabindex="-1" data-toggle="tooltip" data-placement="{{ help_label_tooltip_placement }}"><i class="{{ help_label_tooltip_icon }}"></i></a>
+        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><i class="icon-info-sign"></i></a>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $({{ id }}).tooltip({
+                    'placement': '{{ help_label_tooltip_placement }}'
+                });
+            });
+        </script>
     </p>
-{% endblock help_label_tooltip %}
+{% endblock help_label_tooltip_title %}
 
-{% block help_label_popover %}
-    <p class="help-inline">
-        <a href="#" id="{{ id }}_popover" title="{{ help_label_popover_title|trans({}, translation_domain) }}" tabindex="-1" data-toggle="popover" data-content="{{ help_label_popover_content|trans({}, translation_domain) }}" data-placement="{{ help_label_popover_placement }}" data-trigger="hover" data-html="true"><i class="{{ help_label_popover_icon }}"></i></a>
-    </p>
-{% endblock help_label_popover %}
 
 
 {# Rows #}
 
 {% block form_rows_visible %}
 {% spaceless %}
+    {% if form_errors(form) %}
+        <div class="symfony-form-errors">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
     {% for child in form %}
         {% if 'hidden' not in child.vars.block_prefixes %}
             {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
@@ -347,21 +347,15 @@
 
 {# Errors #}
 
-{% block _form_errors %}
-{% spaceless %}
-    {% if errors|length > 0 %}
-    <ul>
-        {% for error in errors %}
-            <li>{{ error.message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-{% endspaceless %}
-{% endblock _form_errors %}
-
 {% block form_errors %}
 {% spaceless %}
-{% if errors_on_forms and form.parent == null %}
+{% if error_delay %}
+    {% for child in form %}
+        {% if loop.index == 1 %}
+            {% if child.set('errors', errors) %}{% endif %}
+        {% endif %}
+    {% endfor %}
+{% else %}
     {# prevent deep nesting wrong context copy error #}
     {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
     {% for error in errors %}
@@ -374,13 +368,12 @@
             )
         }}
     {% endfor %}
-{% elseif error_delay %}
-    {% for child in form %}
-        {% if loop.index == 1 %}
-            {% if child.set('errors', errors) %}{% endif %}
-        {% endif %}
-    {% endfor %}
-{% else %}
+{% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+{% block field_errors %}
+{% spaceless %}
     {% if errors|length > 0 %}
     <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
@@ -392,10 +385,8 @@
             {% endfor %}
     </span>
     {% endif %}
-{% endif %}
 {% endspaceless %}
-{% endblock form_errors %}
-
+{% endblock field_errors %}
 
 {# used to determine which type of error #}
 
@@ -419,7 +410,7 @@
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name, 'data-widget-controls': widget_controls|default(false) ? 'true' : 'false'})|merge(attr) %}
     {% endif %}
-    {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' control-group'}) %}
+    {% set widget_control_group_attr = widget_control_group_attr|merge({'id': id ~ '_control_group', 'class': widget_control_group_attr.class|default('') ~ ' form-group'}) %}
     {% if errors|length > 0 %}
         {% set widget_control_group_attr = widget_control_group_attr|merge({'class': widget_control_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
