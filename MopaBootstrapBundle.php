@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Mopa\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormPass;
 use Mopa\Bundle\BootstrapBundle\DependencyInjection\Compiler\NavbarPass;
+use Mopa\Bundle\BootstrapBundle\DependencyInjection\Compiler\VersionPass;
 
 class MopaBootstrapBundle extends Bundle
 {
@@ -15,5 +16,6 @@ class MopaBootstrapBundle extends Bundle
 
         $container->addCompilerPass(new FormPass());
         $container->addCompilerPass(new NavbarPass());
+        $container->addCompilerPass(new VersionPass());
     }
 }

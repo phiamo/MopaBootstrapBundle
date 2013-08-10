@@ -23,7 +23,7 @@ services:
         arguments:
             - { leftmenu: @sternenbund.navbar_main_menu=, rightmenu: @sternenbund.navbar_right_menu= }
             - {}
-            - { title: "Sternenbund", titleRoute: "mopa_bootstrap_welcome", fixedTop: true, isFluid: false }
+            - { title: "Sternenbund", titleRoute: "mopa_bootstrap_welcome", fixedTop: true }
         tags:
             - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
 

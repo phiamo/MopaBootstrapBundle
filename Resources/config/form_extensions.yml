@@ -32,6 +32,13 @@ services:
            tags:
                 - { name: form.type_extension, alias: form }
 
+    mopa.form.horizontal_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension
+           arguments:
+                - { horizontal_label_class: %mopa_bootstrap.form.horizontal_label_class%, horizontal_input_wrapper_class: %mopa_bootstrap.form.horizontal_input_wrapper_class% }
+           tags:
+                - { name: form.type_extension, alias: form }
+
     mopa.form.widget_collection_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension
            arguments:
