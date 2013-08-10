@@ -74,17 +74,22 @@
 
 {% block choice_widget_expanded %}
 {% spaceless %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ' ~ (multiple ? 'checkbox' : 'radio'))}) %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type ? widget_type : ''))}) %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (inline is defined and inline ? 'inline' : ''))|trim}) %}
-    <div {{ block('widget_container_attributes') }}>
+    {% if expanded %}
+        {% set attr = attr|merge({'class': multiple ? 'checkbox' : 'radio'}) %}
+        <div {{ block('widget_container_attributes') }}>
+    {% endif %}
     {% for child in form %}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
             {{ child.vars.label|trans({}, translation_domain) }}
         </label>
     {% endfor %}
-    </div>
+    {% if expanded %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
@@ -422,7 +427,7 @@
     {% if prototype is defined %}
         {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name, 'data-widget-controls': widget_controls|default(false) ? 'true' : 'false'})|merge(attr) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}    
     {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ ' form-group '}) %}
     {% if errors|length > 0 %}
@@ -445,17 +450,16 @@
             {{ form_label(form, label|default(null)) }}
         {% endif %}
     {% endif %}
-    {% if widget_controls|default(false) or form.parent == null %}
-        {% set widget_controls_attr = widget_controls_attr|merge({'class': widget_controls_attr.class|default('') ~ ' controls'}) %}
-        <div {% for attrname,attrvalue in widget_controls_attr %}{{attrname}}="{{attrvalue}}" {% endfor %}>
-    {% endif %}
 {% else %}
-    {% if horizontal and not label_render %}
-        <label class="{{ horizontal_label_class }} control-label"></label>
-    {% elseif label_render %}
+    {% if label_render %}
         {{ form_label(form, label|default(null)) }}
     {% endif %}
 {% endif %}
+
+{% if horizontal and not label_render %}
+    <label class="{{ horizontal_label_class }} control-label"></label>
+{% endif %}
+
 {% if horizontal %}
     <div class="{{ horizontal_input_wrapper_class }}">
 {% endif %}
@@ -468,9 +472,6 @@
     </div>
 {% endif %}
 {% if widget_form_group|default(false) or form.parent == null %}
-    {% if widget_controls|default(false) or form.parent == null %}
-        </div>
-    {% endif %}
     </div>
 {% endif %}
 {% endspaceless %}
