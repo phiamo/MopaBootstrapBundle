@@ -43,6 +43,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('version')
                     ->defaultValue(null)
+                    ->cannotBeEmpty()
             ->end();
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
@@ -53,7 +54,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('templating')
-                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
+                            ->defaultValue("MopaBootstrapBundle:Form:fields_bs_%d.html.twig")
                             ->end()
                         ->scalarNode('horizontal_label_class')
                             ->defaultValue("col-3")
