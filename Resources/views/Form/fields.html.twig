@@ -148,7 +148,7 @@
     {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
         <div {{ block('widget_container_attributes')  }}>
-            {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
+            {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}{% if with_minutes %}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
         </div>
         {{ block('help') }}
     {% endif %}
