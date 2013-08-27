@@ -77,6 +77,31 @@
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
+{% block choice_widget_collapsed %}
+    {% spaceless %}
+        {% if widget_addon.type == 'prepend' %}
+            {{ block('widget_addon') }}
+        {% endif %}
+        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            {% if empty_value is not none %}
+                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            {% endif %}
+            {% if preferred_choices|length > 0 %}
+                {% set options = preferred_choices %}
+                {{ block('choice_widget_options') }}
+                {% if choices|length > 0 and separator is not none %}
+                    <option disabled="disabled">{{ separator }}</option>
+                {% endif %}
+            {% endif %}
+            {% set options = choices %}
+            {{ block('choice_widget_options') }}
+        </select>
+        {% if widget_addon.type == 'append' %}
+            {{ block('widget_addon') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
 {% block checkbox_widget %}
 {% spaceless %}
 {% if label is not sameas(false) and label is empty %}
