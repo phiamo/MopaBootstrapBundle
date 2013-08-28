@@ -42,3 +42,20 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension
            tags:
                 - { name: form.type_extension, alias: date }
+
+    mopa.form.tabbed_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension
+           arguments:
+                - "@form.factory"
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.tab_type:
+           class: Mopa\Bundle\BootstrapBundle\Form\Type\TabType
+           tags:
+                - { name: form.type, alias: tab }
+
+    mopa.form.tabs_type:
+           class: Mopa\Bundle\BootstrapBundle\Form\Type\TabsType
+           tags:
+                - { name: form.type, alias: tabs }
