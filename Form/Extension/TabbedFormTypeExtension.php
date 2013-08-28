@@ -61,6 +61,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
                 ),
             ));
 
+            $view->vars['tabs'] = $tabs;
             $view->vars['hasTabs'] = count($tabs) > 0;
             $view->vars['tabsView'] = $tabsForm->createView();
         }
