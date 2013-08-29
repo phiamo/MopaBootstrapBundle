@@ -48,11 +48,8 @@
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
 
-    {% if form.vars.tabbed and not form.vars.tabsView.rendered %}
-        {{ form_tabs(form) }}
-    {% endif %}
-
     {% if form.vars.tabbed %}
+        {{ form_tabs(form) }}
         <div class="tab-content">
     {% endif %}
     {{ block('form_rows_visible') }}
