@@ -55,8 +55,3 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Type\TabType
            tags:
                 - { name: form.type, alias: tab }
-
-    #mopa.form.tabs_type:
-    #       class: Mopa\Bundle\BootstrapBundle\Form\Type\TabsType
-    #       tags:
-    #            - { name: form.type, alias: tabs }
