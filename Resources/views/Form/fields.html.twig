@@ -75,11 +75,18 @@
 {% endblock %}
 
 {% block tabs_widget %}
+{% spaceless %}
 <ul class="{{ form.vars.attr.class }}">
     {% for tab in form.vars.tabs %}
-        <li{% if loop.first %} class="active"{% endif %}><a data-toggle="tab" href="#{{ tab.id }}">{{ tab.label }}</a></li>
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a data-toggle="tab" href="#{{ tab.id }}">
+                {% if tab.icon %}<i class="icon-{{ tab.icon }}"></i>{% endif %}
+                {{ tab.label }}
+            </a>
+        </li>
     {% endfor %}
 </ul>
+{% endspaceless %}
 {% endblock %}
 
 {% block form_tab %}

@@ -33,48 +33,47 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'tabbed' => false,
             'tabs_class' => $this->options['class'],
         ));
     }
 
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['tabbed'] = false;
+    }
+
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
+        if(!$view->vars['tabbed']) {
+            return;
+        }
+
         $found_first = false;
         $tabs = array();
 
-        if ($options['tabbed']) {
-            foreach($view->children as $child) {
-                if(in_array('tab', $child->vars['block_prefixes'])) {
-                    if (!$found_first) {
-                        $child->vars['tab_active'] = $found_first = true;
-                    }
-
-                    $tabs[] = array(
-                        'id' => $child->vars['id'],
-                        'label' => $child->vars['label'],
-                    );
+        foreach($view->children as $child) {
+            if(in_array('tab', $child->vars['block_prefixes'])) {
+                if (!$found_first) {
+                    $child->vars['tab_active'] = $found_first = true;
                 }
+
+                $tabs[] = array(
+                    'id' => $child->vars['id'],
+                    'label' => $child->vars['label'],
+                    'icon' => $child->vars['icon'],
+                );
             }
-
-            $tabsForm = $this->formFactory->create(new TabsType(), null, array(
-                'tabs' => $tabs,
-                'attr' => array(
-                    'class' => $options['tabs_class'],
-                ),
-            ));
-
-            $view->vars['tabs'] = $tabs;
-            $view->vars['hasTabs'] = count($tabs) > 0;
-            $view->vars['tabsView'] = $tabsForm->createView();
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['tabbed'] = $options['tabbed'];
+        $tabsForm = $this->formFactory->create(new TabsType(), null, array(
+            'tabs' => $tabs,
+            'attr' => array(
+                'class' => $options['tabs_class'],
+            ),
+        ));
+
+        $view->vars['tabs'] = $tabs;
+        $view->vars['tabbed'] = true;
+        $view->vars['tabsView'] = $tabsForm->createView();
     }
 }
