@@ -6,14 +6,17 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormFactoryInterface;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
 
 class TabbedFormTypeExtension extends AbstractTypeExtension
 {
     private $formFactory;
+    private $options;
 
-    public function __construct(FormFactoryInterface $formFactory)
+    public function __construct(FormFactoryInterface $formFactory, array $options)
     {
         $this->formFactory = $formFactory;
+        $this->options = $options;
     }
 
     /**
@@ -31,7 +34,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(array(
             'tabbed' => false,
-            'tabs_class' => 'nav nav-tabs',
+            'tabs_class' => $this->options['class'],
         ));
     }
 
@@ -54,7 +57,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
                 }
             }
 
-            $tabsForm = $this->formFactory->create('tabs', null, array(
+            $tabsForm = $this->formFactory->create(new TabsType(), null, array(
                 'tabs' => $tabs,
                 'attr' => array(
                     'class' => $options['tabs_class'],

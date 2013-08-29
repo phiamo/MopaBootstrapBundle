@@ -47,6 +47,7 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension
            arguments:
                 - "@form.factory"
+                - { class: %mopa_bootstrap.form.tabs.class% }
            tags:
                 - { name: form.type_extension, alias: form }
 
@@ -55,7 +56,7 @@ services:
            tags:
                 - { name: form.type, alias: tab }
 
-    mopa.form.tabs_type:
-           class: Mopa\Bundle\BootstrapBundle\Form\Type\TabsType
-           tags:
-                - { name: form.type, alias: tabs }
+    #mopa.form.tabs_type:
+    #       class: Mopa\Bundle\BootstrapBundle\Form\Type\TabsType
+    #       tags:
+    #            - { name: form.type, alias: tabs }
