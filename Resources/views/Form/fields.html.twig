@@ -49,15 +49,15 @@
     {% endif %}
 
     {% if form.vars.tabbed and not form.vars.tabsView.rendered %}
-        {{ block('form_tab_layout') }}
-    {% else %}
-        {% if form.vars.tabbed %}
-            <div class="tab-content">
-            {{ block('form_rows_visible') }}
-            </div>
-        {% else %}
-            {{ block('form_rows_visible') }}
-        {% endif %}
+        {{ form_tabs(form) }}
+    {% endif %}
+
+    {% if form.vars.tabbed %}
+        <div class="tab-content">
+    {% endif %}
+    {{ block('form_rows_visible') }}
+    {% if form.vars.tabbed %}
+        </div>
     {% endif %}
 
     {{ form_rest(form) }}
@@ -80,19 +80,6 @@
         <li{% if loop.first %} class="active"{% endif %}><a data-toggle="tab" href="#{{ tab.id }}">{{ tab.label }}</a></li>
     {% endfor %}
 </ul>
-{% endblock %}
-
-{% block form_tab_layout %}
-<div class="row-fluid">
-    <div class="span4">
-        {{ form_tabs(form) }}
-    </div>
-    <div class="span8">
-        <div class="tab-content">
-        {{ block('form_rows_visible') }}
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block form_tab %}
