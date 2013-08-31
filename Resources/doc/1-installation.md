@@ -61,6 +61,7 @@ Installation
             "twitter/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
+            "knplabs/knp-menu": "2.0.*@dev"
             "craue/formflow-bundle": "dev-master"
        }
     }
@@ -116,7 +117,7 @@ Installation
     php app/console mopa:bootstrap:symlink:sass
     ```
 
-    With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
+    With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
 
     1.4.2

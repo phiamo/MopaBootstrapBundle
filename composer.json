@@ -28,6 +28,7 @@
         "twitter/bootstrap": "2.0.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "1.1.*",
+        "knplabs/knp-menu": "2.0.*@dev",
         "craue/formflow-bundle": "dev-master",
         "jlong/sass-twitter-bootstrap": "dev-master"
     },
