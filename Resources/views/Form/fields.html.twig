@@ -6,9 +6,10 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if type != 'hidden' and widget_addon.type|default(null) is not null %}
-    <div class="input-{{ widget_addon.type }}">
-        {% if widget_addon.type == 'prepend' %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+    <div class="{% if widget_addon_append|default(null) is not null %}input-append{% endif %} {% if widget_addon_prepend|default(null) is not null %}input-prepend{% endif %}">
+        {% if widget_addon_prepend|default(null) is not null %}
+        {% set widget_addon = widget_addon_prepend %}
         {{ block('widget_addon') }}
         {% endif %}
     {% endif %}
@@ -16,8 +17,9 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
-        {% if widget_addon.type == 'append' %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+        {% if widget_addon_append|default(null) is not null %}
+        {% set widget_addon = widget_addon_append %}
         {{ block('widget_addon') }}
         {% endif %}
     </div>
@@ -147,14 +149,14 @@
 
 {% block percent_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': widget_addon.text|default('%')}) %}
+    {% set widget_addon_append = widget_addon_append|merge({'text': widget_addon_append.text|default('%')}) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock percent_widget %}
 
 {% block money_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
+    {% set widget_addon_prepend = widget_addon_prepend|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock money_widget %}
