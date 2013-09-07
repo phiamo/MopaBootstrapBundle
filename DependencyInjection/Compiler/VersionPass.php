@@ -49,7 +49,12 @@ class VersionPass implements CompilerPassInterface
                 }
             }
             $version = file_get_contents($cachePath);
-            $container->setParameter('mopa_bootstrap.version', floatVal($version));
+            $version = floatVal($version);
+            if ($version > 3.0){
+                $version = 3;
+            }
+                
+            $container->setParameter('mopa_bootstrap.version', $version);
         }
     }
 }

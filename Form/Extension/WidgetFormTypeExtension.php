@@ -62,6 +62,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_items_attr' => array(),
                 'widget_form_group_attr' => array(),
                 'widget_checkbox_label' => $this->options['checkbox_label'],
+                'mopa_bootstrap_version' => $this->options['bootstrap_version']
             )
         );
         $resolver->setAllowedValues(array(

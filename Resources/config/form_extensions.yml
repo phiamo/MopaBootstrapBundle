@@ -28,7 +28,7 @@ services:
     mopa.form.widget_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
            arguments:
-                - { checkbox_label: %mopa_bootstrap.form.checkbox_label% }
+                - { checkbox_label: %mopa_bootstrap.form.checkbox_label%, bootstrap_version: mopa_bootstrap.version }
            tags:
                 - { name: form.type_extension, alias: form }
 
