@@ -19,11 +19,6 @@
 
 {# Widgets #}
 
-{% block choice_widget_collapsed %}
-{% set attr = attr|merge({'class': 'form-control'}) %}
-{{ parent() }}
-{% endblock choice_widget_collapsed %}
-
 {% block textarea_widget %}
 {% set attr = attr|merge({'class': 'form-control'}) %}
 {{ parent() }}
