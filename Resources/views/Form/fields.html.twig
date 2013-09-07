@@ -58,13 +58,50 @@
         {% if render_fieldset %}<fieldset>{% endif %}
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
+
+    {% if form.vars.tabbed %}
+        {{ form_tabs(form) }}
+        <div class="tab-content">
+    {% endif %}
     {{ block('form_rows_visible') }}
+    {% if form.vars.tabbed %}
+        </div>
+    {% endif %}
+
     {{ form_rest(form) }}
+
     {% if form.parent == null %}
         {% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_compound %}
+
+{% block form_tabs %}
+{% if form.vars.tabsView is defined %}
+{{ form_widget(form.vars.tabsView) }}
+{% endif %}
+{% endblock %}
+
+{% block tabs_widget %}
+{% spaceless %}
+<ul class="{{ form.vars.attr.class }}">
+    {% for tab in form.vars.tabs %}
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a data-toggle="tab" href="#{{ tab.id }}">
+                {% if tab.icon %}<i class="icon-{{ tab.icon }}"></i>{% endif %}
+                {{ tab.label }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endspaceless %}
+{% endblock %}
+
+{% block form_tab %}
+<div class="tab-pane{{ form.vars.tab_active ? ' active' : '' }}" id="{{ id }}">
+    {{ block('form_widget') }}
+</div>
+{% endblock %}
 
 {% block collection_widget %}
 {% spaceless %}
@@ -315,14 +352,18 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
-    {{ block('widget_form_group_start') }}
-    {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-    {% if widget_remove_btn is defined %}
-        {{ block('form_widget_remove_btn') }}
-    {% endif -%}
-    {{ block('form_message') }}
-    {{ block('widget_form_group_end') }}
+    {% if 'tab' in form.vars.block_prefixes %}
+        {{ block('form_tab') }}
+    {% else %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
+        {{ block('widget_control_group_start') }}
+        {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+        {% if widget_remove_btn is defined %}
+            {{ block('form_widget_remove_btn') }}
+        {% endif -%}
+        {{ block('form_message') }}
+        {{ block('widget_control_group_end') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
 
