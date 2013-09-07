@@ -5,27 +5,49 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
+The Bootstrap 3 support is currently experimentally working, and we are tring to fix issues asap.
+Please also try to use it and make PR's!
+
+To use bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
+and let the Bundle detect version etc, automatically. 
+An upgrade to bootstrap 3 should also be as easy as changing your composer.json to use bootstrap 3
+
+{
+    "require": {
+        "twbs/bootstrap": "v3.0.0"
+    }
+}
+
+If you want to use bootstrap 2:
+
+{
+    "require": {
+        "twbs/bootstrap": "v2.3.2"
+    }
+}
+
+
+Branches
+--------
+To understand which versions are currently required have a look into `BRANCHES.md`
+ 
 Documentation
 -------------
 
-The bulk of the documentation is stored in the `Resources/doc/index.md`
-file in this bundle:
-
-* [Read the Documentation for master](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
-* [Read the Documentation for v2.0.x](https://github.com/phiamo/MopaBootstrapBundle/blob/v2.0.x/README.md)
-
+The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle
 In any case, if something is not working as expected after a update:
 
 * [READ the CHANGELOG!](https://github.com/phiamo/MopaBootstrapBundle/blob/master/CHANGELOG.md)
 
 Recent BackwardsCompatibility breaking changes:
 
+* a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
 Live Show
 ---------
 
-To see the bundle and its capabilities online just have a look on
+To see the bundle, its capabilities and some more doc just have a look on
 
 [MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
 
@@ -39,25 +61,45 @@ Installation
 
 Installation instructions are located in the
 
-* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
-* [2.0.x documentation](https://github.com/phiamo/MopaBootstrapBundle/tree/v2.0.x#installation).
+* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
 
 Included Features
 -----------------
 
+* Bootstrap Version detection via Composer Brigde 
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
   * javascript and twig blocks for dynamic collections
 * A generic Navbar class to generate your Navbar outside the template
   * helpers for dropdowns, seperators, etc.
+* A generic Tab class to Manage bootstrap tabbing
 * twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
 * twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
-* twig template for KnpMenu (https://github.com/KnpLabs/KnpMenu)
+* twig template for KnpMenuBundle (https://github.com/KnpLabs/KnpMenuBundle)
   * icon support on menu links
 
 Recently added Features
 -----------------------
+<h4>Tabs</h4>
+We need to add more info here
+
+<h4>Bootstrap 3</h4>
+
+We now officially suport bootstrap3 in our master branch, 
+The default is to determine Version by composer, this means, MopaBootstrapBundle tries to determine
+which version you have installed, and configures itself to use it. This is done in a compiler pass and stored in local cache.
+If for any reason this does not wor for you, you might want to set the 
+
+We have several files seperated for bs2 and bs3 to be abled to support both e.g. forms:
+ * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_2.html.twig
+ * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_3.html.twig
+or JS:
+ * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-datepicker.js
+ * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-3-datepicker.js
+
+The bs3 feature set is not yet complete, but we hope that it gets soon, with your help!
+E.g Form have some known issues, JS Collections, etc
 
 <h4>Dynamic SubnavBars</h4>
 

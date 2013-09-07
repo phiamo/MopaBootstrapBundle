@@ -209,11 +209,12 @@ Installation
     }
     ```
 
-3. You need to set the bootstrap version until we get composer working (mandatory!)
+3. You should not need to set the bootstrap Version, under normal circumstances, this should be autodetected via composer.
+   But just in case you want to e.g. override the version detection use this:
 
     ``` yaml
     mopa_bootstrap:
-        version: 3 # bootstrap major version currently only 2 or 3 are supported!
+        version: 3 # bootstrap major version currently only 2 or 3 are supported! 
     ```
     
 4. If you like further tweak your config.yml (not mandatory)
