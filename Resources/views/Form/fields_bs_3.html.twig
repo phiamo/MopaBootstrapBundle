@@ -143,9 +143,9 @@
 {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
+                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' col-lg-4'}}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' col-lg-4'}}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' col-lg-4'}}),
             })|raw }}
         {{ block('help') }}
 {% endif %}
@@ -461,6 +461,9 @@
         {{ form_label(form, label|default(null)) }}
     {% endif %}
 {% endif %}
+{% if inline and not horizontal %}
+    <div class="form-group">
+{% endif %}
 {% if horizontal and not label_render %}
     <label class="{{ horizontal_label_class }} control-label"></label>
 {% endif %}
@@ -476,6 +479,9 @@
     </div>
 {% endif %}
 {% if widget_form_group|default(false) or form.parent == null %}
+    </div>
+{% endif %}
+{% if inline and not horizontal %}
     </div>
 {% endif %}
 {% endspaceless %}
