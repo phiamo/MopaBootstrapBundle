@@ -58,13 +58,50 @@
         {% if render_fieldset %}<fieldset>{% endif %}
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
+
+    {% if form.vars.tabbed %}
+        {{ form_tabs(form) }}
+        <div class="tab-content">
+    {% endif %}
     {{ block('form_rows_visible') }}
+    {% if form.vars.tabbed %}
+        </div>
+    {% endif %}
+
     {{ form_rest(form) }}
+
     {% if form.parent == null %}
         {% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_compound %}
+
+{% block form_tabs %}
+{% if form.vars.tabsView is defined %}
+{{ form_widget(form.vars.tabsView) }}
+{% endif %}
+{% endblock %}
+
+{% block tabs_widget %}
+{% spaceless %}
+<ul class="{{ form.vars.attr.class }}">
+    {% for tab in form.vars.tabs %}
+        <li{% if loop.first %} class="active"{% endif %}>
+            <a data-toggle="tab" href="#{{ tab.id }}">
+                {% if tab.icon %}<i class="icon-{{ tab.icon }}"></i>{% endif %}
+                {{ tab.label }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endspaceless %}
+{% endblock %}
+
+{% block form_tab %}
+<div class="tab-pane{{ form.vars.tab_active ? ' active' : '' }}" id="{{ id }}">
+    {{ block('form_widget') }}
+</div>
+{% endblock %}
 
 {% block collection_widget %}
 {% spaceless %}
@@ -93,6 +130,31 @@
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
+{% block choice_widget_collapsed %}
+    {% spaceless %}
+        {% if widget_addon.type == 'prepend' %}
+            {{ block('widget_addon') }}
+        {% endif %}
+        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            {% if empty_value is not none %}
+                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            {% endif %}
+            {% if preferred_choices|length > 0 %}
+                {% set options = preferred_choices %}
+                {{ block('choice_widget_options') }}
+                {% if choices|length > 0 and separator is not none %}
+                    <option disabled="disabled">{{ separator }}</option>
+                {% endif %}
+            {% endif %}
+            {% set options = choices %}
+            {{ block('choice_widget_options') }}
+        </select>
+        {% if widget_addon.type == 'append' %}
+            {{ block('widget_addon') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
 {% block checkbox_widget %}
 {% spaceless %}
 {% if label is not sameas(false) and label is empty %}
@@ -105,6 +167,9 @@
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     {% if label_render and widget_checkbox_label in ['both', 'widget'] %}
         {{ label|trans({}, translation_domain) }}
+        {% if widget_checkbox_label == 'widget' %}
+            {{ block('label_asterisk') }}
+        {% endif %}
     {% endif %}
     {% set help_inline = false %}
     </label>
@@ -159,7 +224,7 @@
     {% else %}
         {% set attr = attr|merge({'class': attr.class|default('')}) %}
         <div {{ block('widget_container_attributes')  }}>
-            {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
+            {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}{% if with_minutes %}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
         </div>
         {{ block('help') }}
     {% endif %}
@@ -287,14 +352,18 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
-    {{ block('widget_form_group_start') }}
-    {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-    {% if widget_remove_btn is defined %}
-        {{ block('form_widget_remove_btn') }}
-    {% endif -%}
-    {{ block('form_message') }}
-    {{ block('widget_form_group_end') }}
+    {% if 'tab' in form.vars.block_prefixes %}
+        {{ block('form_tab') }}
+    {% else %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' error' : '') }) %}
+        {{ block('widget_control_group_start') }}
+        {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+        {% if widget_remove_btn is defined %}
+            {{ block('form_widget_remove_btn') }}
+        {% endif -%}
+        {{ block('form_message') }}
+        {{ block('widget_control_group_end') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
 
@@ -360,7 +429,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw  }}</span>
+<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw('html')  }} {{ (widget_addon.html|default(false) ? widget_addon.html|raw('html') : '')  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
