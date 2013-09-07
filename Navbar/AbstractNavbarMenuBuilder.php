@@ -32,7 +32,7 @@ abstract class AbstractNavbarMenuBuilder
     {
         $rootItem = $this->factory->createItem($name);
         $rootItem
-            ->setChildrenAttribute('class', 'nav')
+            ->setChildrenAttribute('class', 'nav navbar-nav')
         ;
         if ($push_right) {
             $this->pushRight($rootItem);
@@ -70,7 +70,7 @@ abstract class AbstractNavbarMenuBuilder
     protected function createDropdownMenuItem(ItemInterface $rootItem, $title, $push_right = true, $icon = array(), $knp_item_options=array())
     {
         $rootItem
-            ->setAttribute('class', 'nav')
+            ->setAttribute('class', 'nav navbar-nav')
         ;
         if ($push_right) {
             $this->pushRight($rootItem);
@@ -83,7 +83,7 @@ abstract class AbstractNavbarMenuBuilder
         ;
         // TODO: make XSS safe $icon contents escaping
         switch(true){
-            case isset($icon['icon']):
+            case isset($icon['icon'])||isset($icon['glyphicon']):
                 $this->addIcon($dropdown, $icon);
                 break;
             case isset($icon['caret']) && $icon['caret'] === true:
@@ -94,12 +94,14 @@ abstract class AbstractNavbarMenuBuilder
     }
     protected function addIcon($item, $icon)
     {
-            $icon = array_merge(array('tag'=>'i'), $icon);
+
+            $icon = array_merge(array('tag'=>(isset($icon['glyphicon']))?'span':'i'), $icon);
             $addclass = "";
             if (isset($icon['inverted']) && $icon['inverted'] === true) {
                 $addclass = " icon-white";
             }
-            $myicon = ' <'.$icon['tag'].' class="icon-'.$icon['icon'].$addclass.'"></'.$icon['tag'].'>';
+            $classicon=(isset($icon['glyphicon']))?' class="'.$icon['glyphicon']:' class="icon-'.$icon['icon'];
+            $myicon = ' <'.$icon['tag'].$classicon.$addclass.'"></'.$icon['tag'].'>';
             if (!isset($icon['append']) || $icon['append'] === true ) {
                 $label = $item->getLabel(). " " .$myicon;
             }
@@ -110,6 +112,7 @@ abstract class AbstractNavbarMenuBuilder
                      ->setExtra('safe_label', true);
             return $item;
     }
+
     protected function addCaret($item, $icon)
     {
             $icon = array_merge(array('tag'=>'b'), $icon);
@@ -126,7 +129,7 @@ abstract class AbstractNavbarMenuBuilder
     }
     protected function pushRight(ItemInterface $item)
     {
-        $item->setAttribute('class', 'nav pull-right');
+        $item->setAttribute('class', 'nav navbar-nav pull-right');
 
         return $item;
     }

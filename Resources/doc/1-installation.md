@@ -208,7 +208,14 @@ Installation
     }
     ```
 
-3. If you like configure your config.yml (not mandatory)
+3. You need to set the bootstrap version until we get composer working (mandatory!)
+
+    ``` yaml
+    mopa_bootstrap:
+        version: 3 # bootstrap major version currently only 2 or 3 are supported!
+    ```
+    
+4. If you like further tweak your config.yml (not mandatory)
 
     ``` yaml
     mopa_bootstrap:
@@ -216,6 +223,5 @@ Installation
             show_legend: false # default is true
             show_child_legend: false # default is true
             error_type: block # or inline which is default
-            checkbox_label: 'widget' # default is both (label|widget|both)
     ```
 

@@ -36,15 +36,13 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             throw new \Exception('You must provide a "type" for widget_addon');
         }
 
-        $view->vars['widget_control_group'] = $options['widget_control_group'];
-        $view->vars['widget_controls'] = $options['widget_controls'];
+        $view->vars['widget_form_group'] = $options['widget_form_group'];
         $view->vars['widget_addon'] = $options['widget_addon'];
         $view->vars['widget_prefix'] = $options['widget_prefix'];
         $view->vars['widget_suffix'] = $options['widget_suffix'];
         $view->vars['widget_type'] = $options['widget_type'];
         $view->vars['widget_items_attr'] = $options['widget_items_attr'];
-        $view->vars['widget_control_group_attr'] = $options['widget_control_group_attr'];
-        $view->vars['widget_controls_attr'] = $options['widget_controls_attr'];
+        $view->vars['widget_form_group_attr'] = $options['widget_form_group_attr'];
         $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label'];
 
     }
@@ -52,8 +50,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'widget_control_group' => true,
-                'widget_controls' => true,
+                'widget_form_group' => true,
                 'widget_addon' => array(
                     'type' => null, //false: dont add anything, null: using presets, anything; prepend; append
                     'icon' => null,
@@ -63,8 +60,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_suffix' => null,
                 'widget_type' => '',
                 'widget_items_attr' => array(),
-                'widget_control_group_attr' => array(),
-                'widget_controls_attr' => array(),
+                'widget_form_group_attr' => array(),
                 'widget_checkbox_label' => $this->options['checkbox_label'],
             )
         );

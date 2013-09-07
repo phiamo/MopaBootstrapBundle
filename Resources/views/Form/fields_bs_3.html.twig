@@ -1,4 +1,4 @@
-{% extends 'MopaBootstrapBundle:Form:fields_bs'~mopa_bootstrap_version~'.html.twig' %}
+{% extends 'form_div_layout.html.twig' %}
 {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
 
 {# Buttons #}
@@ -20,7 +20,7 @@
 {# Widgets #}
 
 {% block choice_widget_collapsed %}
-{% set attr = attr|merge({'class': 'form-control'}) %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
 {{ parent() }}
 {% endblock choice_widget_collapsed %}
 
@@ -33,7 +33,7 @@
 {% spaceless %}
     {% set type = type|default('text') %}
     {% if type != 'hidden' and widget_addon.type|default(null) is not null %}
-    <div class="input-{{ widget_addon.type }}">
+    <div class="input-group">
         {% if widget_addon.type == 'prepend' %}
         {{ block('widget_addon') }}
         {% endif %}
@@ -93,31 +93,6 @@
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
-{% block choice_widget_collapsed %}
-    {% spaceless %}
-        {% if widget_addon.type == 'prepend' %}
-            {{ block('widget_addon') }}
-        {% endif %}
-        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-            {% if empty_value is not none %}
-                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
-            {% endif %}
-            {% if preferred_choices|length > 0 %}
-                {% set options = preferred_choices %}
-                {{ block('choice_widget_options') }}
-                {% if choices|length > 0 and separator is not none %}
-                    <option disabled="disabled">{{ separator }}</option>
-                {% endif %}
-            {% endif %}
-            {% set options = choices %}
-            {{ block('choice_widget_options') }}
-        </select>
-        {% if widget_addon.type == 'append' %}
-            {{ block('widget_addon') }}
-        {% endif %}
-    {% endspaceless %}
-{% endblock choice_widget_collapsed %}
-
 {% block checkbox_widget %}
 {% spaceless %}
 {% if label is not sameas(false) and label is empty %}
@@ -130,9 +105,6 @@
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     {% if label_render and widget_checkbox_label in ['both', 'widget'] %}
         {{ label|trans({}, translation_domain) }}
-        {% if widget_checkbox_label == 'widget' %}
-            {{ block('label_asterisk') }}
-        {% endif %}
     {% endif %}
     {% set help_inline = false %}
     </label>
@@ -144,7 +116,7 @@
 {% spaceless %}
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
-        <div class="input-{{ widget_addon.type }} date" {{ block('widget_container_attributes') }} data-date="{{ value }}" data-date-format="{{ format|lower }}" data-form="datepicker">
+        <div class="input-group date" {{ block('widget_container_attributes') }} data-date="{{ value }}" data-date-format="{{ format|lower }}" data-form="datepicker">
             {% if widget_addon.type == 'prepend' %}
                 {{ block('widget_addon') }}
             {% endif %}
@@ -171,9 +143,9 @@
 {% else %}
         {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' input-small'}}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' input-mini'}}),
+                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
+                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
+                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ' col-4'}}),
             })|raw }}
         {{ block('help') }}
 {% endif %}
@@ -185,9 +157,15 @@
     {% if widget == 'single_text' %}
         {{ block('form_widget_simple') }}
     {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('')}) %}
-        <div {{ block('widget_container_attributes')  }}>
-            {{ form_widget(form.hour, { 'attr': {  'size': '1', 'class': 'input-mini' } }) }}{% if with_minutes %}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
+        {% set attr = attr|merge({'class': attr.class|default('row')}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {% spaceless %}
+            {{ form_widget(form.hour, { 'attr': {  'size': '1'} }) }} :
+            {{ form_widget(form.minute, { 'attr': { 'size': '1' } }) }}
+            {% if with_seconds %}
+                :{{ form_widget(form.second, { 'attr': { 'size': '1' } }) }}
+            {% endif %}
+            {% endspaceless %}
         </div>
         {{ block('help') }}
     {% endif %}
@@ -388,7 +366,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw('html')  }} {{ (widget_addon.html|default(false) ? widget_addon.html|raw('html') : '')  }}</span>
+<span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
@@ -483,11 +461,9 @@
         {{ form_label(form, label|default(null)) }}
     {% endif %}
 {% endif %}
-
 {% if horizontal and not label_render %}
     <label class="{{ horizontal_label_class }} control-label"></label>
 {% endif %}
-
 {% if horizontal %}
     <div class="{{ horizontal_input_wrapper_class }}">
 {% endif %}
@@ -504,3 +480,10 @@
 {% endif %}
 {% endspaceless %}
 {% endblock widget_form_group_end %}
+
+
+{% block form_widget %}
+{% spaceless %}
+{{ parent() }}
+{% endspaceless %}
+{% endblock form_widget %}

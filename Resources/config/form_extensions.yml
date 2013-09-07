@@ -7,14 +7,14 @@ services:
     mopa.form.help_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
            arguments:
-                - { tooltip_icon: %mopa_bootstrap.form.tooltip.icon%, tooltip_placement: %mopa_bootstrap.form.tooltip.placement%, popover_icon: %mopa_bootstrap.form.popover.icon%, popover_placement: %mopa_bootstrap.form.popover.placement%}
+                - { tooltip_icon: %mopa_bootstrap.form.tooltip.icon%, tooltip_placement: %mopa_bootstrap.form.tooltip.placement% }
            tags:
                 - { name: form.type_extension, alias: form }
 
     mopa.form.legend_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
            arguments:
-                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text%, errors_on_forms: %mopa_bootstrap.form.errors_on_forms% }
+                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text% }
            tags:
                 - { name: form.type_extension, alias: form }
 
@@ -29,6 +29,13 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
            arguments:
                 - { checkbox_label: %mopa_bootstrap.form.checkbox_label% }
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.horizontal_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension
+           arguments:
+                - { horizontal_label_class: %mopa_bootstrap.form.horizontal_label_class%, horizontal_input_wrapper_class: %mopa_bootstrap.form.horizontal_input_wrapper_class% }
            tags:
                 - { name: form.type_extension, alias: form }
 
