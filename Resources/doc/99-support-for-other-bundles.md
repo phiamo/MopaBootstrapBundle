@@ -23,6 +23,16 @@ e.g.
          {'formident': '#myform'}
 
 
+For CraueFormFlowBundle version 2.* you can use:
+
+``` jinja
+{% include 'MopaBootstrapBundle:Form:buttons_formflow_2.html.twig'%}
+```
+and
+
+``` jinja
+{% include 'MopaBootstrapBundle:Form:stepField_formflow_2.html.twig'%}
+```
 KnpPaginatorBundle
 ------------------
 
