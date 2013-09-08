@@ -37,7 +37,7 @@ class VersionPass implements CompilerPassInterface
                 if (false !== $composer = ComposerAdapter::getComposer()) {
                     $util = new ComposerPathFinder($composer);
                     $package = $util->findPackage("twbs/bootstrap");
-                    $version = split("-", $package->getVersion());
+                    $version = preg_split("/-/", $package->getVersion());
                     $targetPackagePath = $composer->getInstallationManager()->getInstallPath($package);
                     $twbscomposer = $targetPackagePath ."/composer.json";
                      
