@@ -47,7 +47,7 @@ class NavbarRenderer
 
         // we do not call renderBlock here to avoid too many nested level calls (XDebug limits the level to 100 by default)
         ob_start();
-        $template->displayBlock($block, array('navbar' => $navbar, 'options' => $options));
+        $template->displayBlock($block,  array_merge($template->getEnvironment()->getGlobals() ,array('navbar' => $navbar, 'options' => $options)));
         $html = ob_get_clean();
 
         return $html;
