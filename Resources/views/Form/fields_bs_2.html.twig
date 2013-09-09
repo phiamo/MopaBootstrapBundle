@@ -20,7 +20,7 @@
 {# Widgets #}
 
 {% block textarea_widget %}
-{% set attr = attr|merge({'class': 'form-control'}) %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
 {{ parent() }}
 {% endblock textarea_widget %}
 
