@@ -110,25 +110,25 @@
 {% endblock collection_widget %}
 
 {% block choice_widget_expanded %}
-    {% spaceless %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type ? widget_type : ''))}) %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (inline is defined and inline ? 'inline' : ''))|trim}) %}
-        {% if expanded %}
-            <div {{ block('widget_container_attributes') }}>
-        {% endif %}
-        {% for child in form %}
-            <div class="{{ multiple ? 'checkbox' : 'radio' }}">
-                <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+{% spaceless %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type ? widget_type : ''))}) %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (inline is defined and inline ? 'inline' : ''))|trim}) %}
+    {% if expanded %}
+        <div {{ block('widget_container_attributes') }}>
+    {% endif %}
+    {% for child in form %}
+        <div class="{{ multiple ? 'checkbox' : 'radio' }}">
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                 {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
                 {{ child.vars.label|trans({}, translation_domain) }}
-                </label>
-            </div>
-        {% endfor %}
-        {% if expanded %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
+            </label>
+        </div>
+    {% endfor %}
+    {% if expanded %}
+        </div>
+    {% endif %}
+{% endspaceless %}
 {% endblock choice_widget_expanded %}
 
 {% block checkbox_widget %}
@@ -477,7 +477,7 @@
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}    
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ ' form-group '}) %}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ row_wrapper_class}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
