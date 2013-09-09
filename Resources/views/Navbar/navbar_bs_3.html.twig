@@ -1,5 +1,5 @@
 {% block navbar %}
-<div class="navbar{{ (navbar.hasOption('inverse') and  navbar.getOption('inverse')) ? ' navbar-inverse' : '' }}{{ (navbar.hasOption('fixedTop') and  navbar.getOption('fixedTop')) ? ' navbar-fixed-top' : '' }}{{ (navbar.hasOption('staticTop') and  navbar.getOption('staticTop')) ? ' navbar-static-top' : '' }}">
+<div class="navbar{{ (navbar.hasOption('inverse') and navbar.getOption('inverse')) ? ' navbar-inverse' : ' navbar-default' }}{{ (navbar.hasOption('fixedTop') and navbar.getOption('fixedTop')) ? ' navbar-fixed-top' : '' }}{{ (navbar.hasOption('staticTop') and navbar.getOption('staticTop')) ? ' navbar-static-top' : '' }}">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" >
