@@ -26,7 +26,6 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        var_dump($this->options);
         $resolver->setDefaults(
             array(
                 'inline' => false, // for BC compat setting this to true
