@@ -1,43 +1,41 @@
 {% if pageCount > 1 %}
-    <div class="pagination">
-        {% set item = 'MopaBootstrapBundle:Pagination:sliding_item.html.twig' %}
+    {% set item = 'MopaBootstrapBundle:Pagination:sliding_item.html.twig' %}
 
-        <ul>
-            {% include item with {name: 'first',
-                    text: '«',
-                    page: first is defined ? first : null,
-                    clickable: first is defined and current != first
-                }
-            %}
+    <ul class="pagination">
+        {% include item with {name: 'first',
+                text: '«',
+                page: first is defined ? first : null,
+                clickable: first is defined and current != first
+            }
+        %}
 
-            {% include item with {name: 'prev',
-                    text: '‹ ' ~ 'Previous' | trans({}, 'pagination'),
-                    page: previous is defined ? previous : null,
-                    clickable: previous is defined
-                }
-            %}
+        {% include item with {name: 'prev',
+                text: '‹ ' ~ 'Previous' | trans({}, 'pagination'),
+                page: previous is defined ? previous : null,
+                clickable: previous is defined
+            }
+        %}
 
-            {% for page in pagesInRange %}
-                {% include item %}
-            {% endfor %}
+        {% for page in pagesInRange %}
+            {% include item %}
+        {% endfor %}
 
-            {%
-                include item with {
-                    name: 'next',
-                    text: 'Next' | trans({}, 'pagination') ~ ' ›',
-                    page: next is defined ? next : null,
-                    clickable: next is defined
-                }
-            %}
+        {%
+            include item with {
+                name: 'next',
+                text: 'Next' | trans({}, 'pagination') ~ ' ›',
+                page: next is defined ? next : null,
+                clickable: next is defined
+            }
+        %}
 
-            {%
-                include item with {
-                    name: 'last',
-                    text: '»',
-                    page: last is defined ? last : null,
-                    clickable: last is defined and current != last
-                }
-            %}
-        </ul>
-    </div>
+        {%
+            include item with {
+                name: 'last',
+                text: '»',
+                page: last is defined ? last : null,
+                clickable: last is defined and current != last
+            }
+        %}
+    </ul>
 {% endif %}
