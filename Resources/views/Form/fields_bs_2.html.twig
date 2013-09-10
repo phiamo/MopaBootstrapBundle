@@ -485,7 +485,7 @@
 
 {# widget helper blocks #}
 
-{% block widget_form_group_start %}
+{% block widget_control_group_start %}
 {% spaceless %}
 {% if widget_form_group|default(false) or form.parent == null %}
     {% if prototype is defined %}
@@ -528,7 +528,7 @@
     <div class="{{ horizontal_input_wrapper_class }}">
 {% endif %}
 {% endspaceless %}
-{% endblock widget_form_group_start %}
+{% endblock widget_control_group_start %}
 
 {% block widget_form_group_end %}
 {% spaceless %}
