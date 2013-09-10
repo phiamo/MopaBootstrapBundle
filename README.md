@@ -12,12 +12,15 @@ To use bootstrap 3 in your project add it via [composer](https://github.com/phia
 and let the Bundle detect version etc, automatically. 
 An upgrade to bootstrap 3 should also be as easy as changing your composer.json to use bootstrap 3
 
+``` json
 {
     "require": {
         "twbs/bootstrap": "v3.0.0"
     }
 }
+```
 
+```json
 If you want to use bootstrap 2:
 
 {
@@ -25,7 +28,18 @@ If you want to use bootstrap 2:
         "twbs/bootstrap": "v2.3.2"
     }
 }
+```
 
+If you encounter any problems, 
+ e.g. @MopaBootstrapBundle/Resources/bootstrap/js/[bootstrap-]tooltip.js missing
+or anything similar related to boostrap 2/3 changes, try setting the version manually:
+
+``` yaml
+mopa_boostrap:
+    # this tells the bundle which boostrap version you are using, to choose the correct files:
+    # e.g. using Resources/views/Form/fields_bs_2.html.twig or Resources/public/js/eyecon-bootstrap-3-datepicker.js
+    version: 2 # or 3 
+```
 
 Branches
 --------
