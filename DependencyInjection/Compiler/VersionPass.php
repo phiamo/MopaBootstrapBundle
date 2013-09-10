@@ -18,23 +18,14 @@ class VersionPass implements CompilerPassInterface
     {
         if (!$container->hasParameter('mopa_bootstrap.version') || is_null($container->hasParameter('mopa_bootstrap.version'))) {
 
-
             $cachePath = $container->getParameter('kernel.cache_dir').'/mopa_bootstrap_version.cache';
 
             // the second argument indicates whether or not you want to use debug mode
             $versionCache = new ConfigCache($cachePath, $container->getParameter("kernel.debug"));
 
             if (!$versionCache->isFresh()) {
-                // make sure this also works for we requests !
-                $oldWorkingDir = getcwd();
-                $split = explode(DIRECTORY_SEPARATOR, $oldWorkingDir);
-                if ( $split[count($split)-1] == "web") {
-                    array_pop($split);
-                    chdir(implode(DIRECTORY_SEPARATOR, $split));
-                }
-                putenv("COMPOSER_HOME=".getcwd());
-                
-                if (false !== $composer = ComposerAdapter::getComposer()) {
+                $symfonyComposerJson = $container->getParameter('kernel.cache_dir').DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."composer.json";
+                if (false !== $composer = ComposerAdapter::getComposer(null, null, null, null, $symfonyComposerJson)) {
                     $util = new ComposerPathFinder($composer);
                     $package = $util->findPackage("twbs/bootstrap");
                     $version = preg_split("/-/", $package->getVersion());
