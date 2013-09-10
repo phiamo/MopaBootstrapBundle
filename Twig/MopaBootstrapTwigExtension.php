@@ -41,18 +41,6 @@ class MopaBootstrapTwigExtension extends \Twig_Extension
         $this->environment = $environment;
     }
     /**
-     * Returns array of Twig Global Variables
-     *
-     * @return array Twig Globals
-     */
-    public function getGlobals()
-    {
-        $version = $this->container->getParameter('mopa_bootstrap.version');
-        return array(
-            'mopa_bootstrap_version'      => $version,
-        );
-    }
-    /**
      * Returns a list of functions to add to the existing list.
      *
      * @return array An array of functions
