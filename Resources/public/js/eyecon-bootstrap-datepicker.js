@@ -470,6 +470,5 @@
         '</table>'+
         '</div>'+
         '</div>';
-    $.fn.datepicker.DPGlobal = DPGlobal;
 
 }( window.jQuery );
