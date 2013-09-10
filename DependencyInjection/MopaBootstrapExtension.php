@@ -32,10 +32,7 @@ class MopaBootstrapExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        if(!isset($config['version'])){
-            #throw new \RuntimeException("You need to specify mopa_bootstrap.version!");
-        }
-        else{
+        if(isset($config['version'])){
             $container->setParameter('mopa_bootstrap.version', $config['version']);
         }
         $yamlloader->load('twig_extensions.yml');

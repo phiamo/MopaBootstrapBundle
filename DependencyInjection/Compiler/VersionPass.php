@@ -21,7 +21,7 @@ class VersionPass implements CompilerPassInterface
             $cachePath = $container->getParameter('kernel.cache_dir').'/mopa_bootstrap_version.cache';
 
             // the second argument indicates whether or not you want to use debug mode
-            $versionCache = new ConfigCache($cachePath, $container->getParameter("kernel.debug"));
+            $versionCache = new ConfigCache($cachePath, false);
 
             if (!$versionCache->isFresh()) {
                 $symfonyComposerJson = $container->getParameter('kernel.cache_dir').DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."composer.json";
@@ -31,10 +31,12 @@ class VersionPass implements CompilerPassInterface
                     $version = preg_split("/-/", $package->getVersion());
                     $targetPackagePath = $composer->getInstallationManager()->getInstallPath($package);
                     $twbscomposer = $targetPackagePath ."/composer.json";
-                     
                     $resources = array(new FileResource($twbscomposer));
-
-                    $versionCache->write($version[0], $resources);   
+                    $version = $version[0];
+                    if (strpos($version, ".") !== false) { # only get the first
+                        $version = substr($version, 0, 1);
+                    }
+                    $versionCache->write($version, $resources);   
                 } else {
                     throw new \RuntimeException("Could not find composer and mopa_bootstrap.version not set in config!!");
                 }

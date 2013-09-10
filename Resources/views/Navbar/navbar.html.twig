@@ -1,1 +1,26 @@
-{% extends 'MopaBootstrapBundle:Navbar:navbar_bs_'~mopa_bootstrap_version|default(3)~'.html.twig' %}
+{% block navbar %}
+<div class="navbar{{ (navbar.hasOption('inverse') and  navbar.getOption('inverse')) ? ' navbar-inverse' : '' }}{{ (navbar.hasOption('fixedTop') and  navbar.getOption('fixedTop')) ? ' navbar-fixed-top' : '' }}{{ (navbar.hasOption('staticTop') and  navbar.getOption('staticTop')) ? ' navbar-static-top' : '' }}">
+    <div class="navbar-inner">
+        <div class="container{{ (navbar.hasOption('isFluid') and navbar.getOption('isFluid')) ? '-fluid' : '' }}">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            {% if navbar.hasOption('title') %}<a class="brand" href="{{ path(navbar.getOption('titleRoute')) }}">{{ options.title|default(navbar.getOption('title')) }}</a>{% endif %}
+            <div class="nav-collapse">
+                {{ navbar.hasMenu('leftmenu') ? knp_menu_render(navbar.getMenu('leftmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
+                {% if navbar.hasFormView('searchform') %}
+                    {%- set form_view = navbar.getFormView('searchform') -%}
+                    {%- set form_type = navbar.getFormType('searchform') -%}
+                    {%- set form_attrs = form_view.vars.attr -%}
+                    <form class="navbar-search pull-{{ form_attrs.pull|default('left') }}" method="{{ form_attrs.method|default('post') }}" action="{{ path(navbar.getFormRoute('searchform')) }}">
+                    {{ form(form_view) }}
+                    </form>
+                {% endif %}
+                {{ navbar.hasMenu('rightmenu') ? knp_menu_render(navbar.getMenu('rightmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

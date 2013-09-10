@@ -14,7 +14,7 @@ services:
     mopa.form.legend_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
            arguments:
-                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text% }
+                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text%, errors_on_forms: %mopa_bootstrap.form.errors_on_forms%}
            tags:
                 - { name: form.type_extension, alias: form }
 
@@ -29,13 +29,6 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
            arguments:
                 - { checkbox_label: %mopa_bootstrap.form.checkbox_label%, bootstrap_version: mopa_bootstrap.version }
-           tags:
-                - { name: form.type_extension, alias: form }
-
-    mopa.form.horizontal_extension:
-           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension
-           arguments:
-                - { horizontal_label_class: %mopa_bootstrap.form.horizontal_label_class%, horizontal_input_wrapper_class: %mopa_bootstrap.form.horizontal_input_wrapper_class%, row_wrapper_class: %mopa_bootstrap.form.row_wrapper_class% }
            tags:
                 - { name: form.type_extension, alias: form }
 

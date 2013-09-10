@@ -29,22 +29,11 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
-        $this->addVersionConfig($rootNode);
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
-    }
-
-    protected function addVersionConfig(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->children()
-                ->scalarNode('version')
-                    ->defaultValue(null)
-                    ->cannotBeEmpty()
-            ->end();
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
@@ -54,7 +43,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('templating')
-                            ->defaultValue("MopaBootstrapBundle:Form:fields_bs_%d.html.twig")
+                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
                             ->end()
                         ->scalarNode('horizontal_label_class')
                             ->defaultValue("col-lg-3")
@@ -82,6 +71,9 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->booleanNode('render_optional_text')
                             ->defaultValue(true)
+                            ->end()
+                        ->booleanNode('errors_on_forms')
+                            ->defaultValue(false)
                             ->end()
                         ->booleanNode('render_required_asterisk')
                             ->defaultValue(false)
@@ -175,7 +167,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Navbar:navbar_bs_%d.html.twig')
+                            ->defaultValue('MopaBootstrapBundle:Navbar:navbar.html.twig')
                             ->cannotBeEmpty()
                         ->end()
                     ->end()
