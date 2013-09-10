@@ -115,14 +115,15 @@
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type ? widget_type : ''))}) %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (inline is defined and inline ? 'inline' : ''))|trim}) %}
     {% if expanded %}
-        {% set attr = attr|merge({'class': multiple ? 'checkbox' : 'radio'}) %}
         <div {{ block('widget_container_attributes') }}>
     {% endif %}
     {% for child in form %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-            {{ child.vars.label|trans({}, translation_domain) }}
-        </label>
+        <div class="{{ multiple ? 'checkbox' : 'radio' }}">
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
+                {{ child.vars.label|trans({}, translation_domain) }}
+            </label>
+        </div>
     {% endfor %}
     {% if expanded %}
         </div>
@@ -153,11 +154,11 @@
 {% spaceless %}
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
-        <div class="input-group date" {{ block('widget_container_attributes') }} data-date="{{ value }}" data-date-format="{{ format|lower }}" data-form="datepicker">
+        <div class="input-group date">
             {% if widget_addon.type == 'prepend' %}
                 {{ block('widget_addon') }}
             {% endif %}
-            {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable grd-white'}) %}
+            {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable grd-white form-control'}) %}
             <input type="text" {{ block('widget_attributes') }} value="{{ value }}"  data-form="datepicker" data-date-format="{{ format|lower }}"/>
             {% if widget_addon.type == 'append' %}
                 {{ block('widget_addon') }}
@@ -476,7 +477,7 @@
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}    
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ ' form-group '}) %}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ row_wrapper_class}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
