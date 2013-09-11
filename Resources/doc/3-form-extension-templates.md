@@ -151,6 +151,26 @@ Widget Addons
 
 To get the addons working, i had to increase max nesting level of xdebug to 200.
 
+### Widget addons Append / Prepend
+
+You can integrate Twitter Bootstrap's form addons, you have the choice between `icon` or `text` options:
+
+```php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+        ->add('price', null, array(
+            "widget_addon_append" => array(
+                "icon"     => "home",
+            ),
+            "widget_addon_prepend" => array(
+                "text"     => "My text",
+            )
+        ))
+    ;
+    //...
+```
+
 ### Form Field Prefix / Suffix
 
 There are also suffix and prefix attributes for the widgets:
