@@ -58,7 +58,7 @@
         {% if render_fieldset %}<fieldset>{% endif %}
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
     {% endif %}
-    
+
     {% if form.vars.tabbed %}
         {{ form_tabs(form) }}
         <div class="tab-content">
@@ -67,9 +67,9 @@
     {% if form.vars.tabbed %}
         </div>
     {% endif %}
-    
+
     {{ form_rest(form) }}
-    
+
     {% if form.parent == null %}
         {% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
@@ -166,12 +166,23 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $({{ id }}).datepicker();
-                    $({{ id }}).datepicker().on(
-                            "changeDate",
-                            function(event){
-                                $({{ id }}).datepicker('hide');
-                            }
-                    )
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $({{ id }}).datepicker();
+                            $({{ id }}).on(
+                                    "blur changeDate",
+                                    function(event){
+                                        $({{ id }}).datepicker('hide');
+                                    }
+                            )
+                            $({{ id }}).keydown(function(e) {
+                                if(e.which == 27) {
+                                    $({{ id }}).datepicker('hide');
+                                    return false;
+                                }
+                            });
+                        });
+            </script>
                 });
             </script>
         </div>
@@ -476,7 +487,7 @@
         {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
-    {% endif %}    
+    {% endif %}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ row_wrapper_class}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' error'}) %}
