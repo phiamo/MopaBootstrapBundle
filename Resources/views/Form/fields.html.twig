@@ -477,7 +477,7 @@
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}    
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ row_wrapper_class}) %}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ ' ' ~ row_wrapper_class}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' error'}) %}
     {% endif %}
