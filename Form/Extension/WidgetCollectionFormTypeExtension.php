@@ -38,7 +38,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             }
         }
         if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
-            throw new FormException('The "widget_remove_btn" option must be an "array".');
+            throw new InvalidConfigurationException('The "widget_remove_btn" option must be an "array".');
         } elseif ($options['widget_remove_btn'] != null) {
             if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
                 throw new InvalidConfigurationException('The "widget_remove_btn" option must be an "array".');
