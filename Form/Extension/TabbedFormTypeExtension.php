@@ -48,22 +48,35 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
             return;
         }
 
-        $found_first = false;
+        $activeTab = null;
+        $tabIndex = 0;
+        $foundInvalid = false;
         $tabs = array();
 
         foreach($view->children as $child) {
             if(in_array('tab', $child->vars['block_prefixes'])) {
-                if (!$found_first) {
-                    $child->vars['tab_active'] = $found_first = true;
+
+                $child->vars['tab_index'] = $tabIndex;
+                $valid = $child->vars['valid'];
+
+                if (($activeTab === null || !$valid) && !$foundInvalid) {
+                    $activeTab = $child;
+                    $foundInvalid = !$valid;
                 }
 
-                $tabs[] = array(
+                $tabs[$tabIndex] = array(
                     'id' => $child->vars['id'],
                     'label' => $child->vars['label'],
                     'icon' => $child->vars['icon'],
+                    'active' => false,
                 );
+
+                $tabIndex++;
             }
         }
+
+        $activeTab->vars['tab_active'] = true;
+        $tabs[$activeTab->vars['tab_index']]['active'] = true;
 
         $tabsForm = $this->formFactory->create(new TabsType(), null, array(
             'tabs' => $tabs,

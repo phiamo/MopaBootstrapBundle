@@ -13,14 +13,16 @@ class TabType extends AbstractType
     {
         $resolver->setDefaults(array(
             'icon' => null,
+            'error_icon' => 'remove-sign',
         ));
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['icon'] = $options['icon'];
+        $view->vars['valid'] = $valid = !$form->isSubmitted() || $form->isValid();
+        $view->vars['icon'] = $valid ? $options['icon'] : $options['error_icon'];
         $view->vars['tab_active'] = false;
-        
+
         $view->parent->vars['tabbed'] = true;
     }
 
