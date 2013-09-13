@@ -61,13 +61,13 @@ Installation
             "twbs/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
-            "knplabs/knp-menu": "2.0.*@dev"
+            "knplabs/knp-menu": "2.0.*@dev",
             "craue/formflow-bundle": "dev-master"
        }
     }
     ```
 
-    1.4.1 BootstrapBundle, twitters bootstrap and automatic symlinking
+    1.4 BootstrapBundle, twitters bootstrap and automatic symlinking
 
     If you decided to let composer install twitters bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
     So add this to your existing scripts section in your composer json:
@@ -120,22 +120,6 @@ Installation
     With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
 
-    1.4.2
-
-    For Sass Usage there is also a symlink command which can be added:
-
-    ```json
-    {
-        "scripts": {
-            "post-install-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-            ],
-            "post-update-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-            ]
-        }
-    }
-    ```
 
     1.5. Include bootstrap manually or in another way:
 
@@ -176,7 +160,7 @@ Installation
            ]
        }
     ```
-    You can also use the post-install cmd provided to setup the symlink for bootstrap-sass
+    You can also use the post-install cmd provided to setup the symlink for bootstrap-sass (cf. section 1.4)
 
 2. Add this bundle to your app/AppKernel.php:
 
