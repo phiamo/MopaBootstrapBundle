@@ -1,17 +1,6 @@
 Generating a Navbars
 ====================
 
-for the example navbars add the following to your config.yml:
-
-``` yaml
-imports:
-    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_menu.yml }
-    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_navbar.yml }
-```
-A detailed Navbar configuration example can also be found in
-
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar-configuration-advanced.md
-
 # Navbar extension
 
 Generating a bootstrap navbar should be straight forward.
@@ -117,4 +106,17 @@ To display a specific navbar with another template use:
 {% endblock navbar %}
 ```
 
-Feel free to commit any PR's.
+# Further Examples
+
+A detailed Navbar configuration example can also be found in
+
+https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar-configuration-advanced.md
+
+If you have MopaBootstrapSandboxBundle installed, for the example navbars add the following to your config_dev.yml:
+
+
+``` yaml
+imports:
+    - { resource: @MopaBootstrapSandboxBundle/Resources/config/examples/example_menu.yml }
+    - { resource: @MopaBootstrapSandboxBundle/Resources/config/examples/example_navbar.yml }
+```
