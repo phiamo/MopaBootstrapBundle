@@ -63,7 +63,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue("col-lg-9")
                             ->end()
                         ->scalarNode('row_wrapper_class')
-                            ->defaultValue('form-group row')
+                            ->defaultValue('form-group')
                             ->end()
                         ->booleanNode('render_fieldset')
                             ->defaultValue(true)
