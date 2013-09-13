@@ -44,7 +44,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
                     'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . static::$targetSuffix,
-                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
+                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                 );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                 self::$mopaBootstrapBundleName,
@@ -67,9 +67,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
                 $this->output->writeln(" ... <comment>not existing</comment>");
                 $this->output->writeln("Mirroring from: " . $symlinkName);
                 $this->output->write("for Target: " . $symlinkTarget);
-
-                $filesystem = new Filesystem();
-                $filesystem->mirror($symlinkTarget, $symlinkName, null, array('copy_on_windows' => true, 'delete' => true, 'override' => true));
+                self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
             $this->output->write("Checking Symlink");
@@ -202,5 +200,25 @@ EOF
         if (false === $target = readlink($symlinkName)) {
             throw new \Exception("Symlink $symlinkName points to target $target");
         }
+    }
+
+    /**
+     * Create the mirror
+     *
+     * @param string $symlinkTarget The Target
+     * @param string $symlinkName   The Name
+     *
+     * @throws \Exception
+     */
+    public static function createMirror($symlinkTarget, $symlinkName)
+    {
+        $filesystem = new Filesystem();
+        $filesystem->mkdir($symlinkName);
+        $filesystem->mirror(
+            realpath($symlinkName . DIRECTORY_SEPARATOR . $symlinkTarget),
+            $symlinkName,
+            null,
+            array('copy_on_windows' => true, 'delete' => true, 'override' => true)
+        );
     }
 }
