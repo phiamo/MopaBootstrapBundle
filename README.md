@@ -34,7 +34,7 @@ If you want to use bootstrap 2:
 
 {
     "require": {
-        "mopa/bootstrap-bundle": "2.3.x-dev",
+        "mopa/bootstrap-bundle": "2.3.*@dev",
         "twbs/bootstrap": "v2.3.2"
     }
 }
