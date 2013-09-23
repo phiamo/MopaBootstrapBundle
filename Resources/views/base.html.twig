@@ -63,7 +63,7 @@
             {% block flashes %}
             {% if app.session.flashbag.peekAll|length > 0 %}
             <div class="row">
-                <div class="col-sm-12">
+                <div class="span12">
                 {{ session_flash() }}
                 </div>
             </div>
@@ -73,12 +73,12 @@
             {% block content_row %}
             <div class="row">
                 {% block content %}
-                <div class="col-sm-9">
+                <div class="span9">
                     {% block content_content %}
                     <strong>Hier könnte Ihre Werbung stehen ... </strong>
                     {% endblock content_content %}
                 </div>
-                <div class="col-sm-3">
+                <div class="span3">
                     {% block content_sidebar %}
                     <h2>Sidebar</h2>
                     {% endblock content_sidebar %}
