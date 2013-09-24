@@ -449,7 +449,7 @@
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <span class="help-{{ block('error_type') }}">
+    <span class="help-block">
             {% for error in errors %}
                 {{
                     error.messagePluralization is null
@@ -486,7 +486,7 @@
     {% endif %}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('') ~ ' ' ~ row_wrapper_class}) %}
     {% if errors|length > 0 %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' error'}) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
 	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
 		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' ' ~ attr.class}) %}
