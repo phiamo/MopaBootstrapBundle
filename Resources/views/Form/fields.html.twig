@@ -278,7 +278,7 @@
         {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ label_attr_class ~ (required ? ' required' : ' optional') }) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
-        {{ block('label_asterisk') }}
+        {{- block('label_asterisk') }}
         {% if widget_add_btn %}
             {{ block('form_widget_add_btn') }}
         {% endif %}
@@ -405,9 +405,9 @@
 
 {% block label_asterisk %}
 {% if required %}
-    {% if render_required_asterisk %}<span>*</span>{% endif %}
+    {%- if render_required_asterisk %} <span class="asterisk">*</span>{% endif %}
 {% else %}
-    {% if render_optional_text %}<span>{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
+    {%- if render_optional_text %} <span>{{ "(optional)"|trans({}, translation_domain) }}</span>{% endif %}
 {% endif %}
 {% endblock label_asterisk %}
 
