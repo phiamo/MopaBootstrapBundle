@@ -32,10 +32,11 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if type != 'hidden' and widget_addon.type|default(null) is not null %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
     <div class="input-group">
-        {% if widget_addon.type == 'prepend' %}
-        {{ block('widget_addon') }}
+        {% if widget_addon_prepend|default(null) is not null %}
+            {% set widget_addon = widget_addon_prepend %}
+            {{ block('widget_addon') }}
         {% endif %}
     {% endif %}
     {% if not widget_remove_btn|default(null) %}
@@ -43,8 +44,9 @@
     {% endif %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
-        {% if widget_addon.type == 'append' %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+        {% if widget_addon_append|default(null) is not null %}
+        {% set widget_addon = widget_addon_append %}
         {{ block('widget_addon') }}
         {% endif %}
     </div>
@@ -235,14 +237,14 @@
 
 {% block percent_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': widget_addon.text|default('%')}) %}
+    {% set widget_addon_append = widget_addon_append|merge({'text': widget_addon_append.text|default('%')}) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock percent_widget %}
 
 {% block money_widget %}
 {% spaceless %}
-    {% set widget_addon = widget_addon|merge({'text': money_pattern|replace({ '{{ widget }}': ''})}) %}
+    {% set widget_addon_prepend = widget_addon_prepend == null and money_pattern != '{{ widget }}' ? {'text': money_pattern|replace({ '{{ widget }}': ''})} : widget_addon_prepend|default(null) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock money_widget %}
@@ -415,7 +417,8 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw  }}</span>
+{% set widget_addon_icon = widget_addon.icon is defined ? widget_addon.icon : null  %}
+    <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon_icon))|raw }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 

@@ -55,7 +55,7 @@ Form Legends
 
 Every Form component representing a Form, not a Field, (e.g. subforms, widgets of type date beeing expanded, etc)
 has now a attribute called show_legend which controls wether the "form legend" is shown or not.
-      
+
 This can be controlled globally by adapting your config.yml:
 
 ``` yaml
@@ -63,7 +63,7 @@ mopa_bootstrap:
     form:
         show_legend: false # default is true
 ```
-      
+
 Now you can tell a specific form to have the legend beeing shown by using:
 
 ``` php
@@ -72,13 +72,13 @@ public function buildForm(FormBuilder $builder, array $options)
     $builder->setAttribute('show_legend', true);
     // ...
 ```
-    
-    
+
+
 Child Form Legends
 ------------------
 
-In symfony2 you can easily glue different forms together and build a nice tree. 
-Normally there is a label for every sub form (including special widgets like date expanded, radio button expanded, etc) 
+In symfony2 you can easily glue different forms together and build a nice tree.
+Normally there is a label for every sub form (including special widgets like date expanded, radio button expanded, etc)
 with the name of the Subform rendered.
 This might make sense or not. I decided to disable this by default, but enabling it is easy:
 
@@ -90,7 +90,7 @@ mopa_bootstrap:
         show_legend: false # default is true
 ```
 
-If you just want to have it in a special form do it like that: 
+If you just want to have it in a special form do it like that:
 
 ``` php
 // e.g. a form only consisting of subforms
@@ -99,7 +99,7 @@ public function buildForm(FormBuilder $builder, array $options)
     $builder->setAttribute('show_legend', false); // no legend for main form
     $child = $builder->create('user', new SomeSubFormType(), array('show_child_legend' => true)); // but legend for this subform
     $builder->add($child);
-    // ... 
+    // ...
 ```
 
 Field Labels
@@ -109,7 +109,7 @@ You have the option to remove a specific field label by setting label_render to 
 
 ``` php
        $builder
-            ->add('somefield', null, array( 
+            ->add('somefield', null, array(
                 'label_render' => false
             ))
 ```
@@ -121,7 +121,7 @@ Form Field Help
 
 Every Form Field component representing a Field, not a Form, (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
 has several new attributes:
-     
+
   - help_inline: beeing shown right of the element if there is space
   - help_block:  beeing shown under the element
   - help_label:  beeing shown under the label of the element
@@ -145,12 +145,30 @@ public function buildForm(FormBuilder $builder, array $options)
         ))
     ;
     //...
-``` 
+```
 
 Widget Addons
 -------------
+You can integrate Twitter Bootstrap's form addons, you have the choice between `icon` or `text` options:
 
-To get the addons working, i had to increase max nesting level of xdebug to 200.
+```php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+        ->add('price', null, array(
+            "widget_addon_append" => array(
+                "icon"     => "home",
+            ),
+            "widget_addon_prepend" => array(
+                "text"     => "My text",
+            )
+        ))
+    ;
+    //...
+```
+
+Note: To get the addons working, i had to increase max nesting level of xdebug to 200.
+
 
 ### Form Field Prefix / Suffix
 
@@ -169,7 +187,7 @@ public function buildForm(FormBuilder $builder, array $options)
         ))
     ;
     //...
-``` 
+```
 
 
 Form Errors
@@ -181,7 +199,7 @@ Generally you may want to define your errors to be displayed inline OR block (se
 mopa_bootstrap:
     form:
         error_type: block # or inline which is default
-        
+
 ```
 
 Or on a special Form:
@@ -194,7 +212,7 @@ public function buildForm(FormBuilder $builder, array $options)
             ->setAttribute('error_type', "inline")
     ;
     //...
-``` 
+```
 
 Or on a special field:
 
@@ -206,7 +224,7 @@ public function buildForm(FormBuilder $builder, array $options)
            ->add('country', null, array('error_type'=>'block'))
     ;
     //...
-``` 
+```
 
 In some special cases you may also want to not have a form error but an field error
 so you can use error delay, which will delay the error to the first next field rendered in a child form:
@@ -228,12 +246,12 @@ Widget Attrs
 ------------
 
 // Thanks to JohanLopes and PR #105:
-There are a bunch of other form extenstions, so you can explicitly set the classes of the control tags, 
+There are a bunch of other form extenstions, so you can explicitly set the classes of the control tags,
 by default there is only the control-group and the error (if the widget has error) classes rendered into it :
 
 ``` php
        $builder
-            ->add('somefield', null, array( 
+            ->add('somefield', null, array(
                 'widget_control_group_attr' => array('class'=>'mycontrolgroupclass'),
                 'widget_controls_attr' => array('class'=>'mycontrolsclass'),
                 'label_attr' => array('class'=>'mylabelclass') // this is new in sf2.1 form component
@@ -241,12 +259,12 @@ by default there is only the control-group and the error (if the widget has erro
 ```
 
 will result in
- 
+
 ``` html
 <div id="myWidgetName_control_group" class="mycontrolgroupclass control-group">
     <label class="mylabelclass required control-label">My Label</label>
     <div class="mycontrolsclass controls">
-    
+
     ...
 ```
 
