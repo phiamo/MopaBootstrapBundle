@@ -2,23 +2,24 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Navbar\Twig;
 
-use Mopa\Bundle\BootstrapBundle\Navbar\Renderer\NavbarRenderer;
+use Knp\Menu\Twig\Helper;
 
 class NavbarExtension extends \Twig_Extension
 {
-    protected $renderer;
+    protected $helper;
+
     /**
-     * @param \Mopa\Bootstrap\Menu\Renderer\NavbarRenderer $renderer
+     * @param \Knp\Menu\Twig\Helper $helper
      */
-    public function __construct(NavbarRenderer $renderer)
+    public function __construct(Helper $helper)
     {
-        $this->renderer = $renderer;
+        $this->helper = $helper;
     }
 
     public function getFunctions()
     {
         return array(
-            'mopa_bootstrap_navbar' => new \Twig_Function_Method($this, 'render', array('is_safe' => array('html'))),
+            'mopa_bootstrap_navbar' => new \Twig_Function_Method($this, 'renderNavbar', array('is_safe' => array('html'))),
         );
     }
 
@@ -30,9 +31,16 @@ class NavbarExtension extends \Twig_Extension
      * @param  string                               $renderer
      * @return string
      */
-    public function render($name, array $options = array(), $renderer = null)
+    public function renderNavbar($menu, array $options = array(), $renderer = null)
     {
-        return $this->renderer->renderNavbar($name, $options, $renderer);
+        $options = array_merge(array(
+            'template' => 'MopaBootstrapBundle:Menu:menu.html.twig',
+            'currentClass' => 'active',
+            'ancestorClass' => 'active',
+            'allow_safe_labels' => true,
+        ), $options);
+
+        return $this->helper->render($menu, $options, $renderer);
     }
 
     /**
