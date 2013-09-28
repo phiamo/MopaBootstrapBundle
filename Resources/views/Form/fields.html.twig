@@ -166,12 +166,6 @@
             <script type="text/javascript">
                 $(document).ready(function () {
                     $({{ id }}).datepicker();
-                    $({{ id }}).on(
-                            "blur changeDate",
-                            function(event){
-                                $({{ id }}).datepicker('hide');
-                            }
-                    );
                     $({{ id }}).keydown(function(e) {
                         if(e.which == 27) {
                             $({{ id }}).datepicker('hide');
