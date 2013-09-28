@@ -100,7 +100,7 @@ abstract class AbstractNavbarMenuBuilder
             if (isset($icon['inverted']) && $icon['inverted'] === true) {
                 $addclass = " icon-white";
             }
-            $classicon=(isset($icon['glyphicon']))?' class="'.$icon['glyphicon']:' class="icon-'.$icon['icon'];
+            $classicon=(isset($icon['glyphicon']))?' class="glyphicon glyphicon-'.$icon['glyphicon']:' class="icon-'.$icon['icon'];
             $myicon = ' <'.$icon['tag'].$classicon.$addclass.'"></'.$icon['tag'].'>';
             if (!isset($icon['append']) || $icon['append'] === true ) {
                 $label = $item->getLabel(). " " .$myicon;
