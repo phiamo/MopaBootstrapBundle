@@ -1,6 +1,6 @@
 services:
-    mopa_bootstrap.navbar.twig.extension:
-        class: Mopa\Bundle\BootstrapBundle\Navbar\Twig\NavbarExtension
+    mopa_bootstrap.navbar.twig.menu.extension:
+        class: Mopa\Bundle\BootstrapBundle\Navbar\Twig\MenuExtension
         arguments: [ "@knp_menu.helper" ]
         tags:
             -  { name: twig.extension }

@@ -27,6 +27,11 @@
 
     {% block head_script %}
     {# Overwrite this block to add your own js here, to get them generated into final files #}
+    {% javascripts
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     {% endblock head_script %}
 
     <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
@@ -45,7 +50,7 @@
 
 {% block body %}
     {% block navbar %}
-    {{ mopa_bootstrap_navbar('frontendNavbar') }}
+    {{ mopa_bootstrap_menu('frontendNavbar') }}
     {% endblock navbar %}
 
     {% block container %}
@@ -101,7 +106,6 @@
      #}
      
     {% javascripts
-        'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/tooltip.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/affix.js'
         '@MopaBootstrapBundle/Resources/bootstrap/js/alert.js'
@@ -119,7 +123,7 @@
         '@MopaBootstrapBundle/Resources/public/js/eyecon-bootstrap-datepicker.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+    {% endjavascripts %}
 {% endblock foot_script %}
 {% endblock body %}
 </body>

@@ -18,12 +18,13 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        /*
         if (null !== $options['widget_addon_prepend'] && !is_array($options['widget_addon_prepend'])) {
             throw new InvalidConfigurationException("The 'widget_addon_prepend' option must be an array");
         }
         if (null !== $options['widget_addon_append'] && !is_array($options['widget_addon_append'])) {
             throw new InvalidConfigurationException("The 'widget_addon_append' option must be an array");
-        }
+        }*/
         if (in_array('percent', $view->vars['block_prefixes'])) {
             if ($options['widget_addon_append'] === null) {
                 $options['widget_addon_append'] = array();
@@ -57,9 +58,10 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_suffix' => null,
                 'widget_type' => '',
                 'widget_items_attr' => array(),
-                'widget_form_group_attr' => array(),
+                'widget_form_group_attr' => array(
+			"class"=>"form-group"
+		),
                 'widget_checkbox_label' => $this->options['checkbox_label'],
-                'mopa_bootstrap_version' => $this->options['bootstrap_version']
             )
         );
         $resolver->setAllowedValues(array(

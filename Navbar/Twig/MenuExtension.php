@@ -4,7 +4,7 @@ namespace Mopa\Bundle\BootstrapBundle\Navbar\Twig;
 
 use Knp\Menu\Twig\Helper;
 
-class NavbarExtension extends \Twig_Extension
+class MenuExtension extends \Twig_Extension
 {
     protected $helper;
 
@@ -19,7 +19,7 @@ class NavbarExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'mopa_bootstrap_navbar' => new \Twig_Function_Method($this, 'renderNavbar', array('is_safe' => array('html'))),
+            'mopa_bootstrap_menu' => new \Twig_Function_Method($this, 'renderMenu', array('is_safe' => array('html'))),
         );
     }
 
@@ -31,7 +31,7 @@ class NavbarExtension extends \Twig_Extension
      * @param  string                               $renderer
      * @return string
      */
-    public function renderNavbar($menu, array $options = array(), $renderer = null)
+    public function renderMenu($menu, array $options = array(), $renderer = null)
     {
         $options = array_merge(array(
             'template' => 'MopaBootstrapBundle:Menu:menu.html.twig',
