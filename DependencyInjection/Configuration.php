@@ -169,7 +169,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('navbar')
-                    ->canBeDisabled()
+                    ->canBeEnabled()
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('template')
