@@ -12,7 +12,8 @@ before continuing.](https://github.com/KnpLabs/KnpMenuBundle)
 
 ## Navbars have changed!
 
-If you are upgrading from
+If you are upgrading from using Navbars previously, [check out our further
+documentation about upgrading.](navbar-upgrade.md)
 
 ## Activate the extension
 
