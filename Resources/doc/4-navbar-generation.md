@@ -20,6 +20,17 @@ mopa_bootstrap:
     navbar: ~
 ```
 
+## Disable the extension
+
+To completely disable the navbar extensions (i.e. you don't want to use it at all) just add the
+following in your config.yml
+
+``` yaml
+mopa_bootstrap:
+    navbar:
+        enabled: false
+```
+
 ## Special Menu Options
 
 We register a new menu extension so you have options available to you:

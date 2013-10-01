@@ -52,7 +52,7 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
-        if (isset($config['navbar'])) {
+        if (isset($config['navbar']) && $config['navbar']['enabled']) {
             $yamlloader->load("navbar_extension.yml");
             foreach ($config['navbar'] as $key => $value) {
                 $container->setParameter(
