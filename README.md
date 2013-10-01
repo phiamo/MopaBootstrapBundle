@@ -9,8 +9,14 @@ The Bootstrap 3 support is currently experimentally working, and we are tring to
 Please also try to use it and make PR's!
 
 To use bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
-and let the Bundle detect version etc, automatically. 
-An upgrade to bootstrap 3 should also be as easy as changing your composer.json to use bootstrap 3
+
+NOTICE:
+-------
+
+BS3 (master branch of this bundle) is not yet stable
+BS2 (v2.3.x) is quite stable
+
+BC breaking changes will probably not be ported to 2.3. 
 
 
 Branches
@@ -51,6 +57,7 @@ In any case, if something is not working as expected after a update:
 
 Recent BackwardsCompatibility breaking changes:
 
+* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) 
 * a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
