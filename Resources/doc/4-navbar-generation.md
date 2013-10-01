@@ -5,30 +5,24 @@ Generating a Navbars
 
 We make use of KnpMenu and KnpMenuBundle in order to help in the generation of
 Bootstrap navbars. We also provide a pass-through function for `knp_menu_render`,
-`mopa_bootstrap_navbar` which sets some default options for the menus.
+`mopa_bootstrap_menu` which sets some default options for the menus.
 
 To learn how to create menus with KnpMenuBundle, [please check their documentation
 before continuing.](https://github.com/KnpLabs/KnpMenuBundle)
 
+## Navbars have changed!
+
+If you are upgrading from
+
 ## Activate the extension
 
-To load the navbar extensions (template helper, CompilerPass, etc.) just add the
-following in your config.yml
+To load the navbar extensions (Twig Extension, and KnpMenu Extension) just add the
+following in your config.yml. **You need to activate this extension in order
+to use the Twig function and KnpMenu Navbar extension.**
 
 ``` yaml
 mopa_bootstrap:
     navbar: ~
-```
-
-## Disable the extension
-
-To completely disable the navbar extensions (i.e. you don't want to use it at all) just add the
-following in your config.yml
-
-``` yaml
-mopa_bootstrap:
-    navbar:
-        enabled: false
 ```
 
 ## Special Menu Options
@@ -98,8 +92,8 @@ Here is a sample Navbar:
     {% endblock %}
 
     {% block menu %}
-        {{ mopa_bootstrap_navbar('AcmeBundle:Builder:mainMenu') }}
-        {{ mopa_bootstrap_navbar('menuAlias') }}
+        {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+        {{ mopa_bootstrap_menu('menuAlias') }}
     {% endblock %}
 {% endembed %}
 ```
@@ -115,7 +109,7 @@ template and then embedding it:
 {% extends '@MopaBootstrap/Navbar/navbar.html.twig' %}
 
 {% block menu %}
-    {{ mopa_bootstrap_navbar('AcmeBundle:Builder:mainMenu') }}
+    {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
 {% endblock %}
 
 {% block brand %}
@@ -129,7 +123,7 @@ Now embed that in your template instead:
 {% embed '@Acme/Navbar/navbar.html.twig' with { fixedTop: true } %}
     {% block menu %}
         {{ parent() }}
-        {{ mopa_bootstrap_navbar('AcmeBundle:Builder:rightMenu') }}
+        {{ mopa_bootstrap_menu('AcmeBundle:Builder:rightMenu') }}
     {% endblock %}
 {% endembed %}
 ```
