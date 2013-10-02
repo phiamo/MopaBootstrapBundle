@@ -49,6 +49,14 @@ Or include the fields.html.twig in your template for a certain form:
 {% form_theme myform 'MopaBootstrapBundle:Form:fields.html.twig' %}
 ```
 
+If you want the default bootstrap forms instead of horizontal add this to your config.yml
+
+``` yaml
+mopa_bootstrap:
+    form:
+        horizontal_label_class: ~
+        horizontal_input_wrapper_class: ~
+```
 
 Form Legends
 ------------
