@@ -1,5 +1,4 @@
 {% extends 'form_div_layout.html.twig' %}
-{% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
 
 {# Buttons #}
 {% block button_attributes %}
@@ -463,7 +462,18 @@
     {% endfor %}
 {% else %}
     {% if errors|length > 0 %}
-    <span class="help-{{ block('error_type') }}">
+        {% if form.parent == null %}
+            {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
+            {% for error in errors %}
+                {{
+                    flash('danger', error.messagePluralization is null
+                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+                    )
+                }}
+            {% endfor %}
+        {% else %}
+            <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
                 {{
                     error.messagePluralization is null
@@ -471,7 +481,8 @@
                         : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
                 }} <br>
             {% endfor %}
-    </span>
+            </span>
+        {% endif %}
     {% endif %}
 {% endif %}
 {% endspaceless %}
@@ -485,6 +496,8 @@
     {{ error_type }}
 {% elseif form.parent == null %}
     {{ form.vars.error_type | default('inline') }}
+{% else %}
+    block
 {% endif %}
 {% endspaceless %}
 {% endblock error_type %}
