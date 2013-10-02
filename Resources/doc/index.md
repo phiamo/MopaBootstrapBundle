@@ -15,6 +15,7 @@ MopaBootstrapBundle provides several features to assist you quickly building app
 
 Additional doc:
 
+- [Configuration Reference](configuration-reference.md)
 - [Including bootstrap](including-bootstrap.md)
 - [Css vs less](css-vs-less.md)
 - [Using Sass as preprocessor](sass-configuration.md)
