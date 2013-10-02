@@ -25,6 +25,7 @@
     {% endif %}
     {{ parent() }}
     {% if not inline and horizontal %}
+        {{ block('form_message') }}
     </div>
     {% endif %}
 {% endblock choice_widget_collapsed %}
