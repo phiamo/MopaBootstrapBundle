@@ -31,9 +31,9 @@ class MopaBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $yamlloader->load('twig_extensions.yml');
-        $yamlloader->load("form_extensions.yml");
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('twig.xml');
+        $loader->load('form.xml');
 
         if (isset($config['form'])) {
             foreach ($config['form'] as $key => $value) {
@@ -53,7 +53,7 @@ class MopaBootstrapExtension extends Extension
             }
         }
         if (isset($config['navbar']) && $config['navbar']['enabled']) {
-            $yamlloader->load("navbar_extension.yml");
+            $loader->load('navbar.xml');
             foreach ($config['navbar'] as $key => $value) {
                 $container->setParameter(
                     'mopa_bootstrap.navbar.'.$key,
@@ -65,7 +65,7 @@ class MopaBootstrapExtension extends Extension
         // set container parameters for Initializr base template
         if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals
-            $yamlloader->load('initializr_extensions.yml');
+            $loader->load('initializr.xml');
 
             $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
             $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
