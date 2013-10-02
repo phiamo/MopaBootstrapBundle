@@ -462,26 +462,8 @@
         {% endif %}
     {% endfor %}
 {% else %}
-    {# prevent deep nesting wrong context copy error #}
-    {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
-    {% for error in errors %}
-        {{
-            flash(
-                'danger',
-                error.messagePluralization is null
-                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
-                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-            )
-        }}
-    {% endfor %}
-{% endif %}
-{% endspaceless %}
-{% endblock form_errors %}
-
-{% block field_errors %}
-{% spaceless %}
     {% if errors|length > 0 %}
-    <span class="help-block">
+    <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
                 {{
                     error.messagePluralization is null
@@ -491,8 +473,9 @@
             {% endfor %}
     </span>
     {% endif %}
+{% endif %}
 {% endspaceless %}
-{% endblock field_errors %}
+{% endblock form_errors %}
 
 {# used to determine which type of error #}
 
