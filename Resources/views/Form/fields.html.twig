@@ -279,6 +279,23 @@
 {% endspaceless %}
 {% endblock money_widget %}
 
+{% block file_widget %}
+{% spaceless %}
+{% set type = type|default('file') %}
+<div class="input-group">
+{% if widget_addon.type == 'prepend' %}
+{{ block('widget_addon') }}
+{% endif %}
+<input type="{{ type }}" {{ block('widget_attributes') }}/>
+{% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
+{% if widget_addon.type == 'append' %}
+{{ block('widget_addon') }}
+{% endif %}
+</div>
+{% endif %}
+{% endspaceless %}
+{% endblock file_widget %}
+
 {# Labels #}
 
 {% block form_legend %}
