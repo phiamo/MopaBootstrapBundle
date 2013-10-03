@@ -3,7 +3,7 @@
 
     <ul class="{{ pagination_class|default('pagination') }}">
         {% include item with {name: 'first',
-                text: first_text('«') | trans({}, 'pagination'),
+                text: first_text|default('«') | trans({}, 'pagination'),
                 page: first is defined ? first : null,
                 clickable: first is defined and current != first
             }
@@ -32,7 +32,7 @@
         {%
             include item with {
                 name: 'last',
-                text: last_text('»') | trans({}, 'pagination'),
+                text: last_text|default('»') | trans({}, 'pagination'),
                 page: last is defined ? last : null,
                 clickable: last is defined and current != last
             }
