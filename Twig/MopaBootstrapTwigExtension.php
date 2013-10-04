@@ -19,6 +19,27 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class MopaBootstrapTwigExtension extends \Twig_Extension
 {
+    protected $container;
+
+    protected $environment;
+
+    /**
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     *
+     * @param \Twig_Environment $environment
+     */
+    public function initRuntime(\Twig_Environment $environment)
+    {
+        $this->environment = $environment;
+    }
     /**
      * Returns a list of functions to add to the existing list.
      *
@@ -28,9 +49,10 @@ class MopaBootstrapTwigExtension extends \Twig_Extension
     {
         return array(
             'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'form_tabs' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
         );
     }
-    
+
     /**
      * Returns the name of the extension.
      *

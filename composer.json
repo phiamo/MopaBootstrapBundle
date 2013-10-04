@@ -21,18 +21,46 @@
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
+<<<<<<< HEAD
         "symfony/symfony": ">=2.1,<2.3-dev",
         "mopa/composer-bridge": "1.*"
+=======
+        "symfony/symfony": "~2.3-dev",
+        "mopa/composer-bridge": "1.3.*"
+>>>>>>> master
     },
     "suggest":  {
         "twbs/bootstrap": "2.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "2.0.*",
+<<<<<<< HEAD
+=======
+        "mopa/bootstrap-sandbox-bundle": "~2.3",
+>>>>>>> master
         "craue/formflow-bundle": "dev-master",
         "jlong/sass-twitter-bootstrap": "dev-master"
     },
     "repositories": [
         {
+<<<<<<< HEAD
+=======
+            "type": "package",
+            "package": {
+                "version": "dev-master",
+                "name": "twbs/bootstrap",
+                "source": {
+                    "url": "https://github.com/twbs/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "dist": {
+                    "url": "https://github.com/twbs/bootstrap/zipball/master",
+                    "type": "zip"
+                 }
+            }
+        },
+        {
+>>>>>>> master
             "type":"package",
             "package": {
                 "version":"dev-master",
@@ -59,7 +87,11 @@
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
             "dev-master": "2.2.x-dev"
+=======
+            "dev-master": "3.x-dev"
+>>>>>>> master
         }
     }
 }

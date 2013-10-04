@@ -24,7 +24,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_inline'] = $options['help_inline'];
         $view->vars['help_block'] = $options['help_block'];
         $view->vars['help_label'] = $options['help_label'];
-
+        
         if (!isset($options['help_label_tooltip']['icon']) && !is_null($this->options['tooltip_icon'])) {
             $options['help_label_tooltip']['icon'] = $this->options['tooltip_icon'];
         }
@@ -40,11 +40,11 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_label_tooltip_icon'] = $options['help_label_tooltip']['icon'];
         $view->vars['help_label_tooltip_placement'] = $options['help_label_tooltip']['placement'];
 
-        if (!isset($options['help_label_popover']['icon']) && !is_null($this->options['popover_icon'])) {
+        if (!isset($options['help_label_popover']['icon']) && array_key_exists('popover_icon', $this->options) && !is_null($this->options['popover_icon'])) {
             $options['help_label_popover']['icon'] = $this->options['popover_icon'];
         }
 
-        if (!isset($options['help_label_popover']['placement']) && !is_null($this->options['popover_placement'])) {
+        if (!isset($options['help_label_popover']['placement']) && array_key_exists('popover_placement', $this->options) && !is_null($this->options['popover_placement'])) {
             $options['help_label_popover']['placement'] = $this->options['popover_placement'];
         }
 
@@ -56,8 +56,6 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             $view->vars['help_label_popover_content'] = $options['help_label_popover']['content'];
         }
 
-        $view->vars['help_label_popover_icon'] = $options['help_label_popover']['icon'];
-        $view->vars['help_label_popover_placement'] = $options['help_label_popover']['placement'];
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
