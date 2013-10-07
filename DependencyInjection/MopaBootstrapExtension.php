@@ -52,7 +52,8 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
-        if (isset($config['navbar']) && $config['navbar']['enabled']) {
+        
+        if ($this->isConfigEnabled($container, $config['navbar'])) {
             $loader->load('navbar.xml');
             foreach ($config['navbar'] as $key => $value) {
                 $container->setParameter(
