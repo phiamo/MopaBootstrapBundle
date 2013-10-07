@@ -34,7 +34,6 @@ class MopaBootstrapExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('twig.xml');
         $loader->load('form.xml');
-        $loader->load('navbar.xml');
 
         if (isset($config['form'])) {
             foreach ($config['form'] as $key => $value) {
@@ -54,7 +53,8 @@ class MopaBootstrapExtension extends Extension
             }
         }
         
-        if (isset($config['navbar']) && $config['navbar']['enabled']) {
+        if ($this->isConfigEnabled($container, $config['navbar'])) {
+            $loader->load('navbar.xml');
             foreach ($config['navbar'] as $key => $value) {
                 $container->setParameter(
                     'mopa_bootstrap.navbar.'.$key,
