@@ -9,7 +9,7 @@ To make fast start there is only 2 step process to use it.
 
 ```yaml
 # app/config/config.yml
-mopa_bootstrap
+mopa_bootstrap:
     initializr: ~
 ```
 
