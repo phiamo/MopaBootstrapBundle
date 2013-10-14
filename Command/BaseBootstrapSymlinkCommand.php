@@ -215,7 +215,7 @@ EOF
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
         $filesystem->mirror(
-            realpath($symlinkName . DIRECTORY_SEPARATOR . $symlinkTarget),
+            realpath($symlinkTarget . DIRECTORY_SEPARATOR ),
             $symlinkName,
             null,
             array('copy_on_windows' => true, 'delete' => true, 'override' => true)

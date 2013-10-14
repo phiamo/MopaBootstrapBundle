@@ -1,63 +1,39 @@
 /*!
- * Bootstrap v2.2.1 (Replaced default icons with font awesome)
+ * MopaBootstrapBundle
  *
- * Copyright 2012 Twitter, Inc
+ * Copyright 2011 Mohrenweiser & Partner
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Import this file in your less files as first to be abled to access less vars from your file
+ * OR
+ * Add it to the stylesheets of assetic or 
+ * Add it as described on http://www.lesscss.org with the less.js (maybe pathes must be adapted in that case)
+ *
+ * Be careful when using less this way, might be most straight forward, but assetic doesnt check the included files 
+ * for changes, and will only regenerate the css if it detects changes in this file!
+ * 
+ * For development it might be easier to include all you less files in the layout directly
+ * But then assetic will compile each less file in a own compiler session so you cant mix in the less style into bootstrap, which might not be OK
  */
 
-// CSS Reset
-@import "../../bootstrap/less/reset.less";
 
-// Core variables and mixins
-@import "../../bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "../../bootstrap/less/mixins.less";
+// Main bootstrap.less entry point
+@import "../../bootstrap/less/bootstrap.less";
 
-// Grid system and page structure
-@import "../../bootstrap/less/scaffolding.less";
-@import "../../bootstrap/less/grid.less";
-@import "../../bootstrap/less/layouts.less";
-
-// Base CSS
-@import "../../bootstrap/less/type.less";
-@import "../../bootstrap/less/code.less";
-@import "../../bootstrap/less/forms.less";
-@import "../../bootstrap/less/tables.less";
-
-// Components: common
+// Font Awesome
 @import "font-awesome/font-awesome.less";
-@import "../../bootstrap/less/dropdowns.less";
-@import "../../bootstrap/less/wells.less";
-@import "../../bootstrap/less/component-animations.less";
-@import "../../bootstrap/less/close.less";
 
-// Components: Buttons & Alerts
-@import "../../bootstrap/less/buttons.less";
-@import "../../bootstrap/less/button-groups.less";
-@import "../../bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+// The Paginator less for MopaBootstrapBundle
+@import "paginator.less";
 
-// Components: Nav
-@import "../../bootstrap/less/navs.less";
-@import "../../bootstrap/less/navbar.less";
-@import "../../bootstrap/less/breadcrumbs.less";
-@import "../../bootstrap/less/pagination.less";
-@import "../../bootstrap/less/pager.less";
+// The Subnav less for MopaBootstrapBundle
+@import "subnav.less";
 
-// Components: Popovers
-@import "../../bootstrap/less/modals.less";
-@import "../../bootstrap/less/tooltip.less";
-@import "../../bootstrap/less/popovers.less";
+// Collection support for MopaBootstrapBundle
+@import "collections.less";
 
-// Components: Misc
-@import "../../bootstrap/less/thumbnails.less";
-@import "../../bootstrap/less/media.less";
-@import "../../bootstrap/less/labels-badges.less";
-@import "../../bootstrap/less/progress-bars.less";
-@import "../../bootstrap/less/accordion.less";
-@import "../../bootstrap/less/carousel.less";
-@import "../../bootstrap/less/hero-unit.less";
+// Collection support for MopaBootstrapBundle
+@import "google-maps.less";
 
-// Utility classes
-@import "../../bootstrap/less/utilities.less"; // Has to be last to override when necessary
+// if you have any variables.less file INCLUDE IT AFTER EVERYTHING cause responsive.less also overrides it with the one from bootstrap!!!!!
