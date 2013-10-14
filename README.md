@@ -5,7 +5,7 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
-The Bootstrap 3 support is currently experimentally working, and we are tring to fix issues asap.
+The Bootstrap 3 support is now mainly working. Check out the [Beta-1](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta1)
 Please also try to use it and make PR's!
 
 To use bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
@@ -13,7 +13,7 @@ To use bootstrap 3 in your project add it via [composer](https://github.com/phia
 NOTICE:
 -------
 
-BS3 (master branch of this bundle) is not yet stable
+BS3 (master branch of this bundle) is nearly stable
 BS2 (v2.3.x) is quite stable
 
 BC breaking changes will probably not be ported to 2.3. 
