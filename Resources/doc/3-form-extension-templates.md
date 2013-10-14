@@ -130,7 +130,6 @@ Form Field Help
 Every Form Field component representing a Field, not a Form, (e.g. inputs, textarea, radiobuttons beeing not expanded etc)
 has several new attributes:
 
-  - help_inline: beeing shown right of the element if there is space
   - help_block:  beeing shown under the element
   - help_label:  beeing shown under the label of the element
 
@@ -141,8 +140,6 @@ Now you can easily add a help text at different locations:
 public function buildForm(FormBuilder $builder, array $options)
 {
     $builder
-        ->add('title', null, array(
-            "help_inline"=>"Please specify some understandable title"))
         ->add('shortDescription', 'textarea', array(
             "attr" => array("rows"=>3, 'class'=>'xxlarge'),
             "help_block"=>"This is the short descriptions shown somewhere"
