@@ -1,5 +1,5 @@
 /* ============================================================
- * bootstrap-collection.js v1.0.0
+ * mopabootstrap-collection.js v3.0.0
  * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/extended
  * ============================================================
  * Copyright 2012 Mohrenweiser & Partner
