@@ -38,7 +38,7 @@
     {% if not inline and horizontal %}
     <div class="{{ horizontal_input_wrapper_class }}">
     {% endif %}
-{{ parent() }}
+    {{ parent() }}
     {% if not inline and horizontal %}
     </div>
     {% endif %}
@@ -307,9 +307,6 @@
         {% set label = name|humanize %}
     {% endif %}
     <legend>{{ label|trans({}, translation_domain) }}</legend>
-    {% if widget_add_btn %}
-        {{ block('form_widget_add_btn') }}
-    {% endif %}
 {% endspaceless %}
 {% endblock form_legend %}
 
@@ -331,7 +328,7 @@
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {{- block('label_asterisk') }}
-        {% if widget_add_btn %}
+        {% if 'collection' in form.vars.block_prefixes and widget_add_btn|default(null) %}
             {{ block('form_widget_add_btn') }}
         {% endif %}
         {% if help_label %}
@@ -390,7 +387,7 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' has-error' : '') }) %}
         {{ block('widget_form_group_start') }}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-        {% if widget_remove_btn is defined %}
+        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
         {{ block('widget_form_group_end') }}
@@ -420,17 +417,17 @@
 
 {% block form_widget_add_btn %}
 {% spaceless %}
-    {% if widget_add_btn %}
-    {% set button_type = 'add' %}
-    {% set button_values = widget_add_btn %}
-    {{ block('collection_button') }}
+    {% if widget_add_btn|default(null) %}
+        {% set button_type = 'add' %}
+        {% set button_values = widget_add_btn %}
+        {{ block('collection_button') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_add_btn %}
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn %}
+    {% if widget_remove_btn|default(null) %}
     {% set button_type = 'remove' %}
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
@@ -440,8 +437,8 @@
 
 {% block collection_button %}
 <a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="#{{ form.vars['id'] }}_control_group">
-{% if button_values.icon is defined %}
-<span class="glyphicon glyphicon-{{ button_values.icon }} {% if button_values.icon_color is defined %}icon-{{ button_values.icon_color }}{% endif %}"></span>
+{% if button_values.icon != "" %}
+<span class="glyphicon glyphicon-{{ button_values.icon }} {% if button_values.icon_color is not null %}icon-{{ button_values.icon_color }}{% endif %}"></span>
 {% endif %}
 {{ button_values.label|trans({}, translation_domain) }}
 </a>
@@ -535,7 +532,7 @@
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
 	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
-		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' ' ~ attr.class}) %}
+		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('row') ~ ' ' ~ attr.class}) %}
 	{% endif %}
     <div {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
