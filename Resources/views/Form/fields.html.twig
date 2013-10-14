@@ -21,6 +21,9 @@
 {% block choice_widget_collapsed %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {% if not inline and horizontal %}
+    {% if not label_render %}
+    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+    {% endif %}
     <div class="{{ horizontal_input_wrapper_class }}">
     {% endif %}
     {{ parent() }}
@@ -126,12 +129,15 @@
 
 {% block collection_widget %}
 {% spaceless %}
+    <div class="collection-items col-lg-9">
     {{ block('form_widget') }}
+    </div>
 {% endspaceless %}
 {% endblock collection_widget %}
 
 {% block choice_widget_expanded %}
 {% spaceless %}
+
     {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
     {% if expanded %}
@@ -143,7 +149,7 @@
         <div class="{{ multiple ? 'checkbox' : 'radio' }}">
         {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-                {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
+                {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('')}}) }}
                 {{ child.vars.label|trans({}, translation_domain) }}
             </label>
         {% if widget_type != 'inline' %}
@@ -369,14 +375,8 @@
         </div>
     {% endif %}
     {% for child in form %}
-        {% if 'hidden' not in child.vars.block_prefixes %}
-            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
-            <div class="collection-item {{ widget_items_attr.class|default()|join(' ') }}" id="{{ child.vars.id }}_control_group">
-            {% endif %}
+        {% if 'hidden' not in child.vars.block_prefixes %} {# why do we not add the hiddens of childs? #}
             {{ form_row(child) }}
-            {% if 'collection' in form.vars.block_prefixes and not omit_collection_item %}
-            </div>
-            {% endif %}
         {% endif %}
     {% endfor %}
 {% endspaceless %}
@@ -520,14 +520,17 @@
 {# widget helper blocks #}
 
 {% block widget_form_group_start %}
-{% spaceless %}
 {% if widget_form_group|default(false) or form.parent == null %}
+    {% if 'collection'in form.parent.vars.block_prefixes %} {# i am a collection child #}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
+    {% endif %}
     {% if prototype is defined %}
         {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototy   pe-name': data_prototype_name})|merge(attr) %}
     {% endif %}
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class|default('')}) %}
+    {# collection item adds class to form-group #}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
@@ -553,10 +556,6 @@
         {{ form_label(form, label|default(null)) }}
     {% endif %}
 {% endif %}
-{% if horizontal and not label_render %}
-    <label class="{{ horizontal_label_class }} control-label"></label>
-{% endif %}
-{% endspaceless %}
 {% endblock widget_form_group_start %}
 
 {% block widget_form_group_end %}
@@ -567,9 +566,9 @@
 {% endspaceless %}
 {% endblock widget_form_group_end %}
 
-
 {% block form_widget %}
-{% spaceless %}
+{% if horizontal and not label_render %}
+    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+{% endif %}
 {{ parent() }}
-{% endspaceless %}
 {% endblock form_widget %}

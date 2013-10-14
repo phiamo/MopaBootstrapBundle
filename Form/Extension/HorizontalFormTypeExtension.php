@@ -20,6 +20,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
         $view->vars['inline'] = $options['inline'];
         $view->vars['horizontal'] = $options['horizontal'];
         $view->vars['horizontal_label_class'] = $options['horizontal_label_class'];
+        $view->vars['horizontal_label_offset_class'] = $options['horizontal_label_offset_class'];
         $view->vars['horizontal_input_wrapper_class'] = $options['horizontal_input_wrapper_class'];
 
     }
@@ -30,6 +31,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
                 'inline' => false, // for BC compat setting this to true
                 'horizontal' => true, // for BC compat setting this to true
                 'horizontal_label_class' => $this->options['horizontal_label_class'],
+                'horizontal_label_offset_class' => $this->options['horizontal_label_offset_class'],
                 'horizontal_input_wrapper_class' => $this->options['horizontal_input_wrapper_class'],
             )
         );

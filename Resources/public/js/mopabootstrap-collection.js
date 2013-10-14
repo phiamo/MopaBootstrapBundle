@@ -32,7 +32,7 @@
         // select its children, and not the "collection" inside children.
         var $collection = $('div' + this.options.collection_id);
         var itemSelector = $collection.attr('data-widget-controls') === 'true'
-            ? 'div' + this.options.collection_id + ' > .controls > .collection-item'
+            ? 'div' + this.options.collection_id + ' > .collection-items > .collection-item'
             : 'div' + this.options.collection_id + ' > .collection-item'
         ;
 
@@ -70,10 +70,13 @@
             var rowContent = $collection.attr('data-prototype').replace(replace_pattern, index);
             var row = $(rowContent);
 
-            if ($collection.attr('data-widget-controls') === 'true') {
-                $collection.children('.controls').append(row);
+            if ($collection.attr('data-widget-items')) {
+                console.log("dahere");
+                $collection.children('.collection-items').append(row);
             } else {
-                $collection.append(row);
+                console.log("here");
+                console.log($collection);
+                $collection.find('.collection-items').append(row);
             }
 
             $collection.triggerHandler('add.mopa-collection-item', [row]);
@@ -101,8 +104,8 @@
           if(collection_id){
               options.collection_id = collection_id;
           }
-          else if($this.closest(".control-group").attr('id')){
-        	  options.collection_id = '#'+$this.closest(".control-group").attr('id');
+          else if($this.closest(".form-group").attr('id')){
+        	  options.collection_id = '#'+$this.closest(".form-group").attr('id');
           }
           else{
         	  options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
