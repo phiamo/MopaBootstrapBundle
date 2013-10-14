@@ -333,8 +333,11 @@
         {% if help_label %}
             {{ block('help_label') }}
         {% endif %}
-        {% if help_label_tooltip_title %}
-            {{ block('help_label_tooltip_title') }}
+        {% if help_label_tooltip.title %}
+            {{ block('help_label_tooltip') }}
+        {% endif %}
+        {% if help_label_popover.title %}
+            {{ block('help_label_popover') }}
         {% endif %}
         </label>
     {% endif %}
@@ -346,18 +349,31 @@
     <span class="help-block">{{ help_label|trans({}, translation_domain) }}</span>
 {% endblock help_label %}
 
-{% block help_label_tooltip_title %}
+{% block help_label_tooltip %}
     <span class="help-block">
-        <a href="#" id="{{ id }}" title="{{ help_label_tooltip_title|trans({}, translation_domain) }}"><span class="glyphicon glyphicon-info-sign"></span></a>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $({{ id }}).tooltip({
-                    'placement': '{{ help_label_tooltip_placement }}'
-                });
-            });
-        </script>
+        <a href="#" data-toggle="tooltip" data-placement="{{ help_label_tooltip.placement}}" data-title="{{ help_label_tooltip.title|trans({}, translation_domain) }}">
+            {% if help_label_tooltip.icon is not sameas(false) %}
+            <span class="glyphicon glyphicon-{{help_label_tooltip.icon}}"></span>
+            {% endif %}            
+            {% if help_label_tooltip.text is not sameas(null) %}
+            {{ help_label_tooltip.text }}
+            {% endif %}
+        </a>
     </span>
-{% endblock help_label_tooltip_title %}
+{% endblock help_label_tooltip %}
+
+{% block help_label_popover %}
+    <span class="help-block">
+        <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" >
+            {% if help_label_popover.icon is not sameas(false) %}
+            <span class="glyphicon glyphicon-{{help_label_popover.icon}}"></span>
+            {% endif %}            
+            {% if help_label_popover.text is not sameas(null) %}
+            {{ help_label_popover.text }}
+            {% endif %}
+        </a>
+    </span>
+{% endblock help_label_popover %}
 
 
 
@@ -530,7 +546,7 @@
 	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
 		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('row') ~ ' ' ~ attr.class}) %}
 	{% endif %}
-    <div {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    <div{% if help_widget_popover %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
         and 'field' not in form.vars.block_prefixes %}
@@ -550,6 +566,14 @@
     {% endif %}
 {% endif %}
 {% endblock widget_form_group_start %}
+
+{% block help_widget_popover %}
+ {% spaceless %}
+ {% for attrname,attrvalue in help_widget_popover %}
+ data-{{attrname}}="{{attrvalue}}"
+ {% endfor %}
+ {% endspaceless %}
+{% endblock help_widget_popover %}
 
 {% block widget_form_group_end %}
 {% spaceless %}

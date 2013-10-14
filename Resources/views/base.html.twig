@@ -124,6 +124,14 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
 {% endblock foot_script %}
 {% endblock body %}
 </body>
