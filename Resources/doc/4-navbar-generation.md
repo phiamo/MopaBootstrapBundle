@@ -32,7 +32,7 @@ We register a new menu extension so you have options available to you:
 
 - navbar
 - subnavbar
-- subnavbar-stacked
+- subnavbar_stacked
 - dropdown_header
 - dropdown
 - caret
