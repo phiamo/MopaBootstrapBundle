@@ -17,7 +17,7 @@ class NavbarExtension implements ExtensionInterface
             $item->setChildrenAttribute('class', 'nav nav-pills');
         }
 
-        if($options['subnavbar-stacked']) {
+        if($options['subnavbar_stacked']) {
             $item->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
         }
 
@@ -65,7 +65,7 @@ class NavbarExtension implements ExtensionInterface
         return array_merge(array(
             'navbar' => false,
             'subnavbar' => false,
-            'subnavbar-stacked' => false,
+            'subnavbar_stacked' => false,
             'dropdown_header' => false,
             'dropdown' => false,
             'caret' => false,
