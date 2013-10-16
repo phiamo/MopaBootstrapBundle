@@ -8,7 +8,7 @@
 {% if item.extras.icon|default(false) %}
     {{ icon(item.extras.icon, item.extras.icon_white|default(false)) }}
 {% endif %}
-{{ block('label') }}
+    <span>{{ block('label') }}</span>
 {% if item.extras.caret|default(false) %}
     <b class="caret"></b>
 {% endif %}
