@@ -29,22 +29,11 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
-        $this->addVersionConfig($rootNode);
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
-    }
-
-    protected function addVersionConfig(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->children()
-                ->scalarNode('version')
-                    ->defaultValue(null)
-                    ->cannotBeEmpty()
-            ->end();
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
@@ -79,6 +68,9 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->booleanNode('render_optional_text')
                             ->defaultValue(true)
+                            ->end()
+                        ->booleanNode('errors_on_forms')
+                            ->defaultValue(false)
                             ->end()
                         ->booleanNode('render_required_asterisk')
                             ->defaultValue(false)

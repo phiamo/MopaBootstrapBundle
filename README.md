@@ -5,18 +5,16 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
-The Bootstrap 3 support is currently experimentally working, and we are tring to fix issues asap.
-Please also try to use it and make PR's!
-
-To use bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
+To use bootstrap 2 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
 
 NOTICE:
 -------
 
-BS3 (master branch of this bundle) is not yet stable
-BS2 (v2.3.x) is quite stable
+Bootstrap 3 (master branch of this bundle) is quite stable
+Bootstrap 2 (v2.3.x) is quite stable
 
 BC breaking changes will probably not be ported to 2.3. 
+
 
 
 Branches
@@ -40,11 +38,25 @@ If you want to use bootstrap 2:
 
 {
     "require": {
-        "mopa/bootstrap-bundle": "2.3.x-dev",
+        "mopa/bootstrap-bundle": "dev-v2.3.x",
         "twbs/bootstrap": "v2.3.2"
     }
 }
 ```
+
+For bootstrap 2 use the v2.4.x branch:
+
+```json
+If you want to use bootstrap 2:
+
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-v2.2.x",
+        "twbs/bootstrap": "v2.3.2"
+    }
+}
+```
+
 To understand which versions are currently required have a look into `BRANCHES.md`
  
 Documentation

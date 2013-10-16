@@ -30,12 +30,10 @@ class MopaBootstrapExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('twig.xml');
-        $loader->load('form.xml');
-
         if (isset($config['form'])) {
+            $loader->load("form.xml");
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
                     foreach ($config['form'][$key] as $subkey => $subvalue) {

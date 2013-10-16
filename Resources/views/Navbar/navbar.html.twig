@@ -1,22 +1,23 @@
-<div role="navigation" class="navbar{{ inverse|default(false) ? ' navbar-inverse' : ' navbar-default' }}{{ fixedTop|default(false) ? ' navbar-fixed-top' : '' }}{{ staticTop|default(false) ? ' navbar-static-top' : '' }}">
-    <div class="container">
-        {% block header %}
-        <div class="navbar-header">
-            {% block toggle %}
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" >
-            <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {% endblock %}
-            {% block brand %}{% endblock %}
+<div class="navbar{{ inverse|default(false) ? ' navbar-inverse' : '' }}{{ fixedTop|default(false) ? ' navbar-fixed-top' : '' }}{{ staticTop|default(false) ? ' navbar-static-top' : '' }}">
+    <div class="navbar-inner">
+        <div class="container{{ isFluid|default(false) ? '-fluid' : '' }}">
+            {% block header %}
+                {% block toggle %}
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                {% endblock %}
+                {% block brand %}{% endblock %}
+            {% endblock header %}
+            <div class="">
+                {% block menu_container %}
+                <div class="navbar-collapse navbar-responsive-collapse">
+                    {% block menu %}{% endblock %}
+                </div>
+                {% endblock %}
+            </div>
         </div>
-        {% endblock %}
-        {% block menu_container %}
-        <div class="collapse navbar-collapse navbar-responsive-collapse">
-            {% block menu %}{% endblock %}
-        </div>
-        {% endblock %}
     </div>
 </div>

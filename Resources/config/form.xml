@@ -58,16 +58,7 @@
 
             <tag name="form.type_extension" alias="form" />
         </service>
-
-        <service id="mopa_bootstrap.form.type_extension.horizontal" class="%mopa_bootstrap.form.type_extension.horizontal.class%">
-            <argument type="collection">
-                <argument key="horizontal_label_class">%mopa_bootstrap.form.horizontal_label_class%</argument>
-                <argument key="horizontal_input_wrapper_class">%mopa_bootstrap.form.horizontal_input_wrapper_class%</argument>
-            </argument>
-
-            <tag name="form.type_extension" alias="form" />
-        </service>
-
+        
         <service id="mopa_bootstrap.form.type_extension.widget_collection" class="%mopa_bootstrap.form.type_extension.widget_collection.class%">
             <argument type="collection">
                 <argument key="render_collection_item">%mopa_bootstrap.form.render_collection_item%</argument>

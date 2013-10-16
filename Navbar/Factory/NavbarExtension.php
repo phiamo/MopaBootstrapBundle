@@ -5,7 +5,7 @@ namespace Mopa\Bundle\BootstrapBundle\Navbar\Factory;
 use Knp\Menu\Factory\ExtensionInterface;
 use Knp\Menu\ItemInterface;
 
-class NavbarExtension
+class NavbarExtension implements ExtensionInterface
 {
     public function buildItem(ItemInterface $item, array $options)
     {

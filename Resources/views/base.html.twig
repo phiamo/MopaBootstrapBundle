@@ -13,7 +13,7 @@
     {# Override this block to add your own files! #}
     {% stylesheets
         '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-        '@MopaBootstrapBundle/Resources/public/less/eyecon-datepicker.less'
+        '@MopaBootstrapBundle/Resources/public/less/eyecon-bootstrap-datepicker.less'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -50,7 +50,7 @@
 
 {% block body %}
     {% block navbar %}
-    {{ mopa_bootstrap_menu('frontendNavbar') }}
+    <!-- SEE NAVBAR EXAMPLES -->
     {% endblock navbar %}
 
     {% block container %}
@@ -68,7 +68,7 @@
             {% block flashes %}
             {% if app.session.flashbag.peekAll|length > 0 %}
             <div class="row">
-                <div class="col-sm-12">
+                <div class="span12">
                 {{ session_flash() }}
                 </div>
             </div>
@@ -78,12 +78,12 @@
             {% block content_row %}
             <div class="row">
                 {% block content %}
-                <div class="col-sm-9">
+                <div class="span9">
                     {% block content_content %}
                     <strong>Hier könnte Ihre Werbung stehen ... </strong>
                     {% endblock content_content %}
                 </div>
-                <div class="col-sm-3">
+                <div class="span3">
                     {% block content_sidebar %}
                     <h2>Sidebar</h2>
                     {% endblock content_sidebar %}
@@ -106,18 +106,19 @@
      #}
      
     {% javascripts
-        '@MopaBootstrapBundle/Resources/bootstrap/js/tooltip.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/affix.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/alert.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/button.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/carousel.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/collapse.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/dropdown.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/modal.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/popover.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/scrollspy.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/tab.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/transition.js'
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-affix.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
         '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
         '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
         '@MopaBootstrapBundle/Resources/public/js/eyecon-bootstrap-datepicker.js'
