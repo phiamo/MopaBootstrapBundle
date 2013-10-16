@@ -1,0 +1,57 @@
+services:
+    mopa.form.icon_button_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension
+           tags:
+               - { name: form.type_extension, alias: button }
+
+    mopa.form.help_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
+           arguments:
+                - { tooltip_icon: %mopa_bootstrap.form.tooltip.icon%, tooltip_placement: %mopa_bootstrap.form.tooltip.placement% }
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.legend_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
+           arguments:
+                - { render_fieldset: %mopa_bootstrap.form.render_fieldset%, show_legend: %mopa_bootstrap.form.show_legend%, show_child_legend: %mopa_bootstrap.form.show_child_legend%, render_required_asterisk: %mopa_bootstrap.form.render_required_asterisk%, render_optional_text: %mopa_bootstrap.form.render_optional_text%, errors_on_forms: %mopa_bootstrap.form.errors_on_forms%}
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.error_type_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension
+           arguments:
+                - { error_type: %mopa_bootstrap.form.error_type% }
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.widget_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
+           arguments:
+                - { checkbox_label: %mopa_bootstrap.form.checkbox_label%, bootstrap_version: mopa_bootstrap.version }
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.widget_collection_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension
+           arguments:
+                - { render_collection_item: %mopa_bootstrap.form.render_collection_item%, widget_add_btn: %mopa_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %mopa_bootstrap.form.collection.widget_remove_btn% }
+           tags:
+                - { name: form.type_extension, alias: form }
+    mopa.form.date_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension
+           tags:
+                - { name: form.type_extension, alias: date }
+
+    mopa.form.tabbed_extension:
+           class: Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension
+           arguments:
+                - "@form.factory"
+                - { class: %mopa_bootstrap.form.tabs.class% }
+           tags:
+                - { name: form.type_extension, alias: form }
+
+    mopa.form.tab_type:
+           class: Mopa\Bundle\BootstrapBundle\Form\Type\TabType
+           tags:
+                - { name: form.type, alias: tab }
