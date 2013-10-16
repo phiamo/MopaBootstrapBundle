@@ -58,6 +58,7 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
+            console.log(this.options.collection_id);
             var $collection = $(this.options.collection_id);
             var prototype_name = $collection.attr('data-prototype-name');
 
@@ -69,16 +70,9 @@
 
             var rowContent = $collection.attr('data-prototype').replace(replace_pattern, index);
             var row = $(rowContent);
-
-            if ($collection.attr('data-widget-items')) {
-                console.log("dahere");
-                $collection.children('.collection-items').append(row);
-            } else {
-                console.log("here");
-                console.log($collection);
-                $collection.find('.collection-items').append(row);
-            }
-
+            console.log(row);
+            console.log($collection.children('.collection-items').append(row));
+            
             $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
         remove: function () {

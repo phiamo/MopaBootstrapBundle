@@ -448,7 +448,7 @@
 {% endblock form_widget_remove_btn %}
 
 {% block collection_button %}
-<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn="#{{ form.vars['id'] }}_control_group">
+<a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn=".{{ form.vars['id'] }}_control_group">
 {% if button_values.icon != "" %}
 <span class="glyphicon glyphicon-{{ button_values.icon }} {% if button_values.icon_color is not null %}icon-{{ button_values.icon_color }}{% endif %}"></span>
 {% endif %}
@@ -534,12 +534,12 @@
         {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
     {% endif %}
     {% if prototype is defined %}
-        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '" id="' ~ prototype.vars.id ~ '_control_group">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
+        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item ' ~ widget_items_attr.class|default()|join(' ') ~ '">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototy   pe-name': data_prototype_name})|merge(attr) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}
     {# collection item adds class to form-group #}
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'id': id ~ '_control_group', 'class': widget_form_group_attr.class}) %}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' ' ~ id ~ '_control_group'}) %}
     {% if errors|length > 0 %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
