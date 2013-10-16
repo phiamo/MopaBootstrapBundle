@@ -14,14 +14,17 @@ use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
 class ScriptHandler
 {
 
+    protected static function getTargetSuffix($end = ""){
+        return DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public". DIRECTORY_SEPARATOR . "bootstrap" . $end;
+    }
     public static function postInstallSymlinkTwitterBootstrap(Event $event)
     {
         $IO = $event->getIO();
         $composer = $event->getComposer();
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
-            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
+            'targetSuffix' => self::getTargetSuffix(),
+            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
@@ -43,7 +46,7 @@ class ScriptHandler
         $composer = $event->getComposer();
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
-            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap",
+            'targetSuffix' =>  self::getTargetSuffix(),
             'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
@@ -66,8 +69,8 @@ class ScriptHandler
         $composer = $event->getComposer();
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
-            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap-sass",
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR
+            'targetSuffix' =>  self::getTargetSuffix('-sass'),
+            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
@@ -89,7 +92,7 @@ class ScriptHandler
         $composer = $event->getComposer();
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
-            'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "bootstrap-sass",
+            'targetSuffix' =>  self::getTargetSuffix('-sass'),
             'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(

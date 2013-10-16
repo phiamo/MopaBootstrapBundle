@@ -16,33 +16,15 @@ To have composer managing twitter/bootstrap too, you can either run it with
 ```json
 {
     "require": {
-        "mopa/bootstrap-bundle": "dev-master",
-        "twitter/bootstrap": "master"
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "twitter/bootstrap",
-                "source": {
-                    "url": "https://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "dist": {
-                    "url": "https://github.com/twitter/bootstrap/zipball/master",
-                    "type": "zip"
-                 }
-            }
-        }
-    ]
+        "mopa/bootstrap-bundle": "v3.0.0-beta2",
+        "twitter/bootstrap": "v3.0.0"
+    }
 }
 ```
 
        
 <h2 id="Warning">Warning</h2>
-> Composer doesn't install suggests from mopa/boostrap-bundle!
+> Composer doesn't install suggests from mopa/bootstrap-bundle!
 > If you need e.g knplabs menues or paginator, craue/formflow, 
 > please add them to YOUR composer.json too!
 
@@ -55,24 +37,6 @@ To have composer managing twitter/bootstrap too, you can either run it with
            "knplabs/knp-menu-bundle": "dev-master",
            "craue/formflow-bundle": "dev-master"
        },
-       "repositories": [
-           {
-               "type": "package",
-               "package": {
-                   "version": "master", /* whatever version you want */
-                   "name": "twitter/bootstrap",
-                   "source": {
-                       "url": "https://github.com/twitter/bootstrap.git",
-                       "type": "git",
-                       "reference": "master"
-                   },
-                   "dist": {
-                       "url": "https://github.com/twitter/bootstrap/zipball/master",
-                       "type": "zip"
-                   }
-               }
-           }
-       ]
    }
 ```
 
@@ -105,54 +69,13 @@ For Sass support, you can also use the specific command:
     }
 }
 ```
-
-## Managing twitters/bootstrap location manually
-
-To manage the location of twitters/bootstrap manually just add in your composer.json:
-
-    ```json
-    {
-        "require": {
-            "mopa/bootstrap-bundle": "dev-master",
-        }
-    }
-    ```
  
-
-**Warning:**
-
-> The path to bootstrap might change depending on how you decide to include it into your project.
-> So please be careful when including it in twig, less etc. to have the correct path in mind! 
->
-> You have been warned, if your are knowing what you do, don't complain!
-
-### (OLD STYLE) Including as Submodule
-
-You can include twitters bootstrap as a submodule directly by changing into the MopaBootstrapBundle folder and executing:
-
-``` bash
-cd vendor/bundles/Mopa/BootstrapBundle
-git submodule init
-git submodule update
-```
-
-
-### (OLD STYLE) Including Bootstrap as own vendor dependency in deps:
-
-To have bootstrap installed by the vendors script of symfony use the following in your deps file:
-
-```
-[TwitterBootstrap2]
-    git=git://github.com/twitter/bootstrap.git
-    target=/twitter/bootstrap/v2/
-    version=v2.0.0
-```
 
 ### (NOT RECOMMENDED) Including Bootstrap manually
 
 To use bootstrap without less just download the zipped distribution
 
- http://twitter.github.com/bootstrap/assets/bootstrap.zip
+ http://getbootstrap.com/
  
  and unpack it e.g.
  

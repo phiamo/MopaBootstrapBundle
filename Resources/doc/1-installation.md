@@ -28,8 +28,7 @@ Installation
 
 1. Add this bundle to your project in composer.json:
 
-    1.2. Plain BootstrapBundle
-    Symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
+    1.1. Plain BootstrapBundle
     
     ```json
     {
@@ -118,7 +117,7 @@ Installation
     ```
 
     With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
-    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
+    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap.
 
 
     1.5. Include bootstrap manually or in another way:

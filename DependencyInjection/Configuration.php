@@ -29,7 +29,6 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
-        $this->addVersionConfig($rootNode);
         $this->addFormConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
@@ -37,14 +36,20 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    protected function addVersionConfig(ArrayNodeDefinition $rootNode)
+    protected function addPathConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
             ->children()
-                ->scalarNode('version')
-                    ->defaultValue(null)
-                    ->cannotBeEmpty()
-            ->end();
+                ->arrayNode('bootstrap')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('install_path')
+                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {

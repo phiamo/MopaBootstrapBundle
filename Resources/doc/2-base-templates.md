@@ -6,14 +6,14 @@ Prerequisites
 
 ### Less (recommended)
 
-Less is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
+Less is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have a easier life, have a look into:
 
 [Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
 ### Sass (recommended)
 
-Sass is not required, but is extremely helpful when using bootstrap2 variables, or mixins,
+Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
 [Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
@@ -52,42 +52,54 @@ Have a look into the sandbox too:
  * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/layout
  * https://github.com/phiamo/symfony-bootstrap-sandbox/blob/master/app/Resources/MopaBootstrapBundle/views/layout.html.twig
 
-If you are using less just include the mopabootstrap.less as described in layout.html.twig
+If you are using less just include the your.less:
 
 ``` jinja
 {% stylesheets filter='less,cssrewrite,?yui_css'
-   '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-   '@YourNiceBundle/Resources/public/less/*'
+   '@YourNiceBundle/Resources/public/less/your.less'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}
 ```
 
-If you are using Sass just include the mopabootstrap.scss instead of the mopabootstrap.less
+If you are using Sass just include your.scss instead
 
 ``` jinja
 {% stylesheets filter='?yui_css'
-   '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
-   '@YourNiceBundle/Resources/public/sass/*'
+   '@YourNiceBundle/Resources/public/sass/your.less*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}
+```
+
+Depending on where you your bundle exacly resides (e.g. Your\Smthbundle or Your\Bundle\SmthBundle)
+you need to adapt the path ( ../ ):
+
+``` css
+// Getting the whole mopabootstrapbundle.less 
+@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
+
+// same for scss files
+@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.scss";
+
 ```
 
 If you would like to use the css try this:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
+cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap
 make
 ```
-if it doesnt work, why not use the less way?
 
 ``` jinja
 {% block head_style %}
 {% stylesheets filter='cssrewrite,?yui_css'
-   '@MopaBootstrapBundle/Resources/bootstrap/bootstrap.css'
+   '@MopaBootstrapBundle/Resources/public/bootstrap/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
    media="screen" />
 {% endstylesheets %}
+```
+
+if it doesnt work, why not use the less way?

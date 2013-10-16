@@ -55,7 +55,23 @@ If your are using cssembed, you might notice problems when embedding bootrap via
 
 this is due to cssembed and bootstrap not working so nicely with relative paths.
 
-The most easies ways is to copy the glyphicons-halflings.png to your public img folder
+Try using the fully qualified path in the source instead.
+
+Bootstrap provides a variable which allows to configure this.
+
+Less:
+
+```
+@icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
+```
+
+Sass:
+
+```
+$icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
+```
+
+Another way is to copy the glyphicons-halflings.png to your public img folder
 
 ``` bash
 cp /your/path/to/bootstrap/img/glyphicons-halflings.png to /path/to/your/bundle/Resources/public/img/

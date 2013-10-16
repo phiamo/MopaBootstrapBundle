@@ -1,7 +1,7 @@
 # Project #
 ###########
-Resources/bootstrap
-Resources/bootstrap-sass
+Resources/public/bootstrap
+Resources/public/bootstrap-sass
 
 # Composer #
 ############

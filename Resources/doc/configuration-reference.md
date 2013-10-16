@@ -5,7 +5,8 @@ Default configuration for extension with alias: "mopa_bootstrap"
 
 ```yaml
 mopa_bootstrap:
-    version:                            ~
+    bootstrap:
+        install_path:                   Resources/public/bootstrap
     form:
         templating:                     MopaBootstrapBundle:Form:fields.html.twig
         horizontal_label_class:         col-lg-3

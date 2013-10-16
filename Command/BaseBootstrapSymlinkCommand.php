@@ -17,7 +17,7 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
 {
     public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    public static $targetSuffix = 'bootstrap';
+    public static $targetSuffix = '';
     public static $pathName = 'TwitterBootstrap';
 
     protected function configure()
@@ -41,11 +41,12 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsfromUser();
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
+            $target_path = $this->getContainer()->getParameter("mopa_bootstrap.bootstrap.install_path");
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
-                    'targetSuffix' => DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . static::$targetSuffix,
+                    'targetSuffix' => DIRECTORY_SEPARATOR . $target_path . static::$targetSuffix,
                     'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
-                );
+            );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                 self::$mopaBootstrapBundleName,
                 $this->getTwitterBootstrapName(),

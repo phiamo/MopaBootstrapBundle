@@ -66,7 +66,7 @@ another error i had was
 
 ```
   [RuntimeException]                                                                                                                                                                         
-  Syntax Error on line 396 in /var/www/virtual/mohrenweiserpartner.de/bootstrap/checkout/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
+  Syntax Error on line 396 in path/to/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
   395 .reset-filter() {                                                                                                                                                            
   396   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);                                                                                              
   397 }                            

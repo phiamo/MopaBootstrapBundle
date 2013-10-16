@@ -33,9 +33,20 @@ class MopaBootstrapExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('twig.xml');
-        $loader->load('form.xml');
-
+        $loader->load('bootstrap.xml');
+        if(isset($config['bootstrap'])){
+            if(isset($config['bootstrap']['install_path'])){                
+                $container->setParameter(
+                        'mopa_bootstrap.bootstrap.install_path',
+                        $config['bootstrap']['install_path']
+                );
+            }
+            else{
+                throw new \RuntimeException("Please specify install_path if specifiying bootstrap key");
+            }
+        }
         if (isset($config['form'])) {
+            $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
                     foreach ($config['form'][$key] as $subkey => $subvalue) {
@@ -67,7 +78,7 @@ class MopaBootstrapExtension extends Extension
         if (isset($config['initializr'])) {
             // load Twig extension mapping config variables to Twig Globals
             $loader->load('initializr.xml');
-
+            
             $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
             $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
             $container->setParameter('mopa_bootstrap.initializr.dns_prefetch',$config['initializr']['dns_prefetch']);

@@ -13,6 +13,7 @@ There are several ways of including it
 
 - either you let assetic manage the compilation of your less files 
 - you use the less js
+
 ### Which is faster to kickstart?
 
 Depends on what you want to achieve, and what your knowledge is:
@@ -37,7 +38,7 @@ hear is a sniplet that is known to be working and was tested
 First you have to go from your project directory:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/bootstrap
+cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/public/bootstrap
 make
 ```
 
@@ -74,7 +75,7 @@ make sure the files have been generated (make):
 
 ```jinja
 {% stylesheets filter='?yui_css'
-    '@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
+    '@MopaBootstrapBundle/Resources/public/bootstrap/docs/assets/css/bootstrap.css'
     '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
