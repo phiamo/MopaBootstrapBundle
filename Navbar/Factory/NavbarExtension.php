@@ -17,7 +17,7 @@ class NavbarExtension implements ExtensionInterface
             $item->setChildrenAttribute('class', 'nav nav-pills');
         }
 
-        if($options['subnavbar_stacked']) {
+        if ($options['subnavbar_stacked']) {
             $item->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
         }
 
