@@ -35,7 +35,7 @@ class MopaBootstrapExtension extends Extension
         $loader->load('twig.xml');
         $loader->load('bootstrap.xml');
         if(isset($config['bootstrap'])){
-            if(isset($config['bootstrap']['install_path'])){                
+            if(isset($config['bootstrap']['install_path'])){
                 $container->setParameter(
                         'mopa_bootstrap.bootstrap.install_path',
                         $config['bootstrap']['install_path']
@@ -49,12 +49,7 @@ class MopaBootstrapExtension extends Extension
             $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
-                    foreach ($config['form'][$key] as $subkey => $subvalue) {
-                        $container->setParameter(
-                                'mopa_bootstrap.form.'.$key.'.'.$subkey,
-                                $subvalue
-                        );
-                    }
+                    $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $config['form'][$key]);
                 } else {
                     $container->setParameter(
                         'mopa_bootstrap.form.'.$key,
@@ -63,29 +58,35 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
-        
+
+        /**
+         * Navbar
+         */
         if ($this->isConfigEnabled($container, $config['navbar'])) {
             $loader->load('navbar.xml');
-            foreach ($config['navbar'] as $key => $value) {
-                $container->setParameter(
-                    'mopa_bootstrap.navbar.'.$key,
-                    $value
-                );
-            }
+            $this->remapParameters($container, 'mopa_bootstrap.navbar', $config['navbar']);
         }
 
-        // set container parameters for Initializr base template
-        if (isset($config['initializr'])) {
-            // load Twig extension mapping config variables to Twig Globals
-            $loader->load('initializr.xml');
-            
-            $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
-            $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
-            $container->setParameter('mopa_bootstrap.initializr.dns_prefetch',$config['initializr']['dns_prefetch']);
+        /**
+         * Icons
+         */
+        if (isset($config['icons'])) {
+            $this->remapParameters($container, 'mopa_bootstrap.icons', $config['icons']);
+        }
 
-            // TODO: think about setting this default as kernel debug,
-            // what about PROD env which does not need diagnostic mode and test
-            $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode', $config['initializr']['diagnostic_mode']);
+        /**
+         * Initializr
+         */
+        if (isset($config['initializr'])) {
+            $loader->load('initializr.xml');
+            $this->remapParameters($container, 'mopa_bootstrap.initializr', $config['initializr']);
+        }
+    }
+
+    private function remapParameters(ContainerBuilder $container, $prefix, $config)
+    {
+        foreach ($config as $key => $value) {
+            $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
         }
     }
 }

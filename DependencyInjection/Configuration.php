@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
+        $this->addIconsConfig($rootNode);
         $this->addNavbarConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
@@ -217,6 +218,32 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                  ->end()
                             ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+
+    protected function addIconsConfig(ArrayNodeDefinition $rootNode)
+    {
+        $iconSets = array('glyphicons', 'fontawesome');
+
+        $rootNode
+            ->children()
+                ->arrayNode('icons')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('icon_set')
+                            ->info('Icon set to use')
+                            ->defaultValue('glyphicons')
+                            ->validate()
+                                ->ifNotInArray($iconSets)
+                                ->thenInvalid('Must choose one of '.json_encode($iconSets))
+                            ->end()
+                        ->end()
+                        ->scalarNode('shortcut')
+                            ->info('Alias for mopa_bootstrap_icon()')
+                            ->defaultValue('icon')
                         ->end()
                     ->end()
                 ->end()
