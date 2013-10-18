@@ -7,13 +7,15 @@ use Knp\Menu\Twig\Helper;
 class MenuExtension extends \Twig_Extension
 {
     protected $helper;
+    protected $menuTemplate;
 
     /**
      * @param \Knp\Menu\Twig\Helper $helper
      */
-    public function __construct(Helper $helper)
+    public function __construct(Helper $helper, $menuTemplate)
     {
         $this->helper = $helper;
+        $this->menuTemplate = $menuTemplate;
     }
 
     public function getFunctions()
@@ -34,7 +36,7 @@ class MenuExtension extends \Twig_Extension
     public function renderMenu($menu, array $options = array(), $renderer = null)
     {
         $options = array_merge(array(
-            'template' => 'MopaBootstrapBundle:Menu:menu.html.twig',
+            'template' => $this->menuTemplate,
             'currentClass' => 'active',
             'ancestorClass' => 'active',
             'allow_safe_labels' => true,
