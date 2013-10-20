@@ -26,12 +26,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block head_script %}
-    {# Overwrite this block to add your own js here, to get them generated into final files #}
+    {# Overwrite this block to add your own js here, to get them generated into final files
     {% javascripts
         'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+     #}
     {% endblock head_script %}
 
     <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
@@ -92,19 +93,27 @@
             </div>
             {% endblock content_row %}
         {% block content_div_end %}</div>{% endblock content_div_end %}
+        {% block footer_tag_start %}
         <footer>
+        {% endblock footer_tag_start %}
             {% block footer %}
             <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011-2013</p>
             {% endblock footer %}
+        {% block footer_tag_end %}
         </footer>
+        {% endblock footer_tag_end %}
     {% block container_div_end %}</div><!-- /container -->{% endblock container_div_end %}
     {% endblock container %}
+    
+    {% block body_end_before_js %}
+    {% endblock body_end_before_js %}
+    
     {% block foot_script %}
     {# To only use a subset or add more js overwrite and copy paste this block
     To speed up page loads save a copy of jQuery in your project and override this block to include the correct path
     Otherwise the regeneration is done on every load in dev more with use_controller: true
      #}
-     
+    {% block foot_script_assetic %}
     {% javascripts
         '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
         '@MopaBootstrapBundle/Resources/public/bootstrap/js/affix.js'
@@ -124,15 +133,18 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-            $(document).ready(function () {
-                $('[data-toggle="popover"]').popover();
-            });
-        </script>
+    {% endblock foot_script_assetic %}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
 {% endblock foot_script %}
 {% endblock body %}
+
+{% block body_end %}
+{% endblock body_end %}
 </body>
 </html>
