@@ -40,6 +40,8 @@ mopa_bootstrap:
                 icon_color:             ~
     navbar:
         enabled:                        false
+        # Menu template to use when rendering
+        template:                       MopaBootstrapBundle:Menu:menu.html.twig
     initializr:
         meta:
             title:                      MopaBootstrapBundle

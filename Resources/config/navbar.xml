@@ -12,6 +12,7 @@
     <services>
         <service id="mopa_bootstrap.twig.extension.menu.class" class="%mopa_bootstrap.twig.extension.menu.class%">
             <argument type="service" id="knp_menu.helper" />
+            <argument>%mopa_bootstrap.navbar.template%</argument>
             <tag name="twig.extension" />
         </service>
 
