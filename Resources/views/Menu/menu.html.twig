@@ -3,15 +3,14 @@
 {% block linkElement %}
 {% spaceless %}
 {% import 'knp_menu.html.twig' as macros %}
-{% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
 <a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
 {% if item.extras.icon|default(false) %}
-    {{ icon(item.extras.icon, item.extras.icon_white|default(false)) }}
-{% endif %}
-    <span>{{ block('label') }}</span>
-{% if item.extras.caret|default(false) %}
+    {{ mopa_bootstrap_icon(item.extras.icon, item.extras.icon_white|default(false)) }}{{ ' ' }}
+{%- endif %}
+{{ block('label') }}
+{%- if item.extras.caret|default(false) %}
     <b class="caret"></b>
-{% endif %}
+{% endif -%}
 </a>
 {% endspaceless %}
 {% endblock %}
