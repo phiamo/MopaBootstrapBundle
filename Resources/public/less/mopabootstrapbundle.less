@@ -7,12 +7,12 @@
  *
  * Import this file in your less files as first to be abled to access less vars from your file
  * OR
- * Add it to the stylesheets of assetic or 
+ * Add it to the stylesheets of assetic or
  * Add it as described on http://www.lesscss.org with the less.js (maybe pathes must be adapted in that case)
  *
- * Be careful when using less this way, might be most straight forward, but assetic doesnt check the included files 
+ * Be careful when using less this way, might be most straight forward, but assetic doesnt check the included files
  * for changes, and will only regenerate the css if it detects changes in this file!
- * 
+ *
  * For development it might be easier to include all you less files in the layout directly
  * But then assetic will compile each less file in a own compiler session so you cant mix in the less style into bootstrap, which might not be OK
  */
@@ -20,6 +20,9 @@
 
 // Main bootstrap.less entry point
 @import "../bootstrap/less/bootstrap.less";
+
+// variables
+@icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
 
 // The Paginator less for MopaBootstrapBundle
 @import "paginator.less";
