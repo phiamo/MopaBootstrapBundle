@@ -16,6 +16,10 @@
  * But then assetic will compile each sass file in a own compiler session so you cant mix in the sass style into bootstrap, which might not be OK
  */
 
+// variables
+$iconSpritePath:        "/bundles/mopabootstrap/bootstrap/img/glyphicons-halflings.png";
+$iconWhiteSpritePath:   "/bundles/mopabootstrap/bootstrap/img/glyphicons-halflings-white.png";
+
 // Bootstrap overrides, such as the asset-url(..) function.
 @import "bootstrap_and_overrides";
 
