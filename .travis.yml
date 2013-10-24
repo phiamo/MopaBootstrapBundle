@@ -1,12 +1,12 @@
 language: php
 php:
   - 5.3
-  # - 5.4
+  - 5.4
+  - 5.5
 
 env:
-  - SYMFONY_VERSION=v2.0.17
-  - SYMFONY_VERSION=v2.1.0
+  - SYMFONY_VERSION=v2.3.0
   - SYMFONY_VERSION=origin/master
 
-before_script: php Tests/tests/vendors.php
+before_script: composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION}
 script: phpunit
