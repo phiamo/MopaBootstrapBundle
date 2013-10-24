@@ -3,6 +3,7 @@
 namespace Mopa\Bundle\BootstrapBundle\Navbar\Twig;
 
 use Knp\Menu\Twig\Helper;
+use Mopa\Bundle\BootstrapBundle\Navbar\Converter\NavbarConverter;
 
 class MenuExtension extends \Twig_Extension
 {
@@ -26,7 +27,7 @@ class MenuExtension extends \Twig_Extension
     }
 
     /**
-     * Renders the whole Navbar with the specified renderer.
+     * Renders the Menu with the specified renderer.
      *
      * @param  \Knp\Menu\ItemInterface|string|array $menu
      * @param  array                                $options
@@ -41,6 +42,13 @@ class MenuExtension extends \Twig_Extension
             'ancestorClass' => 'active',
             'allow_safe_labels' => true,
         ), $options);
+
+        $menu = $this->helper->get($menu, [], $options);
+
+        if (isset($options['autonavbar'])) {
+            $converter = new NavbarConverter($options['autonavbar']);
+            $converter->convert($menu, $options);
+        }
 
         return $this->helper->render($menu, $options, $renderer);
     }
