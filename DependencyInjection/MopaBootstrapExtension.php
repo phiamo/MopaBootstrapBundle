@@ -63,7 +63,7 @@ class MopaBootstrapExtension extends Extension
         }
         // TODO: remove this
         if ($this->isConfigEnabled($container, $config['navbar'])) {
-            trigger_error(sprintf('mopa_boostrap.navvar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
+            trigger_error(sprintf('mopa_boostrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
             $loader->load('menu.xml');
             $this->remapParameters($container, 'mopa_bootstrap.menu', $config['navbar']);
         }

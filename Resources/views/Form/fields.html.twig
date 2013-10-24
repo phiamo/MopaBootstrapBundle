@@ -36,7 +36,9 @@
 {% block textarea_widget %}
 {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {% if not inline and horizontal %}
+    {% if not label_render %}
     {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+    {% endif %}
     <div class="{{ horizontal_input_wrapper_class }}">
     {% endif %}
     {{ parent() }}
