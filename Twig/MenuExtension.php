@@ -56,6 +56,19 @@ class MenuExtension extends \Twig_Extension
             'allow_safe_labels' => true,
         ), $options);
 
+        if (!$menu instanceof ItemInterface) {
+            $path = array();
+            if (is_array($menu)) {
+                if (empty($menu)) {
+                    throw new \InvalidArgumentException('The array cannot be empty');
+                }
+                $path = $menu;
+                $menu = array_shift($path);
+            }
+
+            $menu = $this->helper->get($menu, $path);
+        }
+
         $menu = $this->helper->get($menu, array(), $options);
 
         if (isset($options['automenu'])) {
