@@ -41,12 +41,13 @@
             this.options.index = {};
         }
 
-        this.options.index[this.options.collection_id] = $(itemSelector).length - 1;
+        this.options.index[this.options.collection_id] = this.options.initial_size;
     };
 
     Collection.prototype = {
         constructor: Collection,
         add: function () {
+            // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
             var index = this.options.index[this.options.collection_id];
             if ($.isFunction(this.options.addcheckfunc) && !this.options.addcheckfunc()) {
@@ -58,7 +59,6 @@
             this.addPrototype(index);
         },
         addPrototype: function(index) {
-            console.log(this.options.collection_id);
             var $collection = $(this.options.collection_id);
             var prototype_name = $collection.attr('data-prototype-name');
 
@@ -70,8 +70,8 @@
 
             var rowContent = $collection.attr('data-prototype').replace(replace_pattern, index);
             var row = $(rowContent);
-            console.log(row);
-            console.log($collection.children('.collection-items').append(row));
+            
+            $collection.children('.collection-items').append(row);
             
             $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
@@ -105,6 +105,7 @@
         	  options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
           }
           if (!data){
+              options.initial_size = $this.find('.collection-items').children().length;
               $this.data('collection', (data = new Collection(this, options)));
           }
           if (option == 'add') {
@@ -118,6 +119,7 @@
 
   $.fn.collection.defaults = {
     collection_id: null,
+    initial_size: 0,
     addcheckfunc: false,
     addfailedfunc: false
   };

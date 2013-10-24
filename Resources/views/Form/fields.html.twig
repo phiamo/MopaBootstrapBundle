@@ -537,12 +537,13 @@
 {% block widget_form_group_start %}
 {% if widget_form_group|default(false) or form.parent == null %}
     {% if 'collection'in form.parent.vars.block_prefixes %} {# i am a collection child #}
+        {% if not omit_collection_item %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
+        {% endif %}
     {% endif %}
     {% if prototype is defined %}
-        {% set data_prototype = 'collection' in form.vars.block_prefixes and not omit_collection_item ? '<div class="collection-item thisone' ~ widget_items_attr.class|default()|join(' ') ~ '">' ~ form_row(prototype) ~ '</div>' : form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': data_prototype, 'data-prototype-name': data_prototype_name})|merge(attr) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': form_row(prototype), 'data-prototype-name': data_prototype_name})|merge(attr) %}
     {% endif %}
     {# collection item adds class to form-group #}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' ' ~ id ~ '_form_group'}) %}
