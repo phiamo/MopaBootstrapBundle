@@ -16,39 +16,26 @@
     ],
     "autoload": {
         "psr-0": {
-            "Mopa\\Bundle\\BootstrapBundle": ""
+            "Mopa\\Bundle\\BootstrapBundle\\": ""
         }
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/symfony": "~2.3-dev",
-        "mopa/composer-bridge": "1.3.*"
+        "symfony/framework-bundle": "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/console": "~2.1",
+        "mopa/composer-bridge": "~1.3"
     },
     "suggest":  {
-        "twbs/bootstrap": "2.*",
-        "knplabs/knp-paginator-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "2.0.*",
+        "twbs/bootstrap": ">2.0,<4.0-dev",
+        "knplabs/knp-paginator-bundle": "~2.3",
+        "knplabs/knp-menu-bundle": "~2.0@dev",
         "mopa/bootstrap-sandbox-bundle": "~2.3",
-        "craue/formflow-bundle": "dev-master",
+        "craue/formflow-bundle": "~2.0",
         "jlong/sass-twitter-bootstrap": "dev-master"
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "version": "dev-master",
-                "name": "twbs/bootstrap",
-                "source": {
-                    "url": "https://github.com/twbs/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "dist": {
-                    "url": "https://github.com/twbs/bootstrap/zipball/master",
-                    "type": "zip"
-                 }
-            }
-        },
         {
             "type":"package",
             "package": {
