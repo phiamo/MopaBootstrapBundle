@@ -192,12 +192,12 @@ Installation
     }
     ```
 
-3. You should not need to set the bootstrap Version, under normal circumstances, this should be autodetected via composer.
-   But just in case you want to e.g. override the version detection use this:
+3. To activate certain feature sets you need to add to your config:
 
     ``` yaml
     mopa_bootstrap:
-        version: 3 # bootstrap major version currently only 2 or 3 are supported! 
+        form: ~  # Adds twig form theme  support
+        menu: ~  # enables twig helpers for menu
     ```
     
 4. If you like further tweak your config.yml (not mandatory)
@@ -208,5 +208,7 @@ Installation
             show_legend: false # default is true
             show_child_legend: false # default is true
             error_type: block # or inline which is default
+        menu:
+            template: MyBundles:Menu:template.html.twig
     ```
 
