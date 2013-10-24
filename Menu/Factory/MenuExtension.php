@@ -96,7 +96,7 @@ class MenuExtension implements ExtensionInterface
             'list-group' => false,
             'list-group-item' => false,
             'caret' => false,
-            'push_right' => false,
+            'pull-right' => false,
             'icon' => false,
             'divider' => false,
         ), $options);
