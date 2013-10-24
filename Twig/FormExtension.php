@@ -15,7 +15,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  * @author Charles Sanquer <charles.sanquer@gmail.com>
  */
-class MopaBootstrapTwigExtension extends \Twig_Extension
+class FormExtension extends \Twig_Extension
 {
     /**
      * Returns a list of functions to add to the existing list.

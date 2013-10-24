@@ -1,31 +1,50 @@
 <?php
 
-namespace Mopa\Bundle\BootstrapBundle\Navbar\Factory;
+namespace Mopa\Bundle\BootstrapBundle\Menu\Factory;
 
 use Knp\Menu\Factory\ExtensionInterface;
 use Knp\Menu\ItemInterface;
 
-class NavbarExtension implements ExtensionInterface
+/**
+ * Extension for integrating Bootstrap Menus into KnpMenu
+ */
+class MenuExtension implements ExtensionInterface
 {
+    /**
+     * Build an item based on options
+     * @param ItemInterface $item
+     * @param array         $options
+     */
     public function buildItem(ItemInterface $item, array $options)
     {
         if ($options['navbar']) {
             $item->setChildrenAttribute('class', 'nav navbar-nav');
         }
 
-        if ($options['subnavbar']) {
+        if ($options['pills']) {
             $item->setChildrenAttribute('class', 'nav nav-pills');
         }
 
-        if ($options['subnavbar_stacked']) {
-            $item->setChildrenAttribute('class', 'nav nav-pills nav-stacked');
+        if ($options['stacked']) {
+            $class = $item->getChildrenAttribute('class');
+            $item->setChildrenAttribute('class', $class . ' nav-stacked');
         }
 
-        if ($options['dropdown_header']) {
+        if ($options['dropdown-header']) {
             $item
-                ->setAttribute('role', 'presentation')
-                ->setAttribute('class', 'dropdown-header')
-                ->setUri(null);
+            ->setAttribute('role', 'presentation')
+            ->setAttribute('class', 'dropdown-header')
+            ->setUri(null);
+        }
+        if ($options['list-group']) {
+            //echo "BLUBBB";
+            $item->setChildrenAttribute('class', 'list-group');
+            $item->setAttribute('class', 'list-group-item');
+        }
+
+        //var_dump($item->getLabel(), $item->getChildrenAttributes());
+        if ($options['list-group-item']) {
+            $item->setAttribute('class', 'list-group-item');
         }
 
         if ($options['dropdown']) {
@@ -60,14 +79,22 @@ class NavbarExtension implements ExtensionInterface
         }
     }
 
+    /**
+     * Build options for extension
+     * @param array $options
+     *
+     * @return array $options
+     */
     public function buildOptions(array $options)
     {
         return array_merge(array(
             'navbar' => false,
-            'subnavbar' => false,
-            'subnavbar_stacked' => false,
-            'dropdown_header' => false,
+            'pills' => false,
+            'stacked' => false,
+            'dropdown-header' => false,
             'dropdown' => false,
+            'list-group' => false,
+            'list-group-item' => false,
             'caret' => false,
             'push_right' => false,
             'icon' => false,

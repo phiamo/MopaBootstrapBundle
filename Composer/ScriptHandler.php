@@ -14,7 +14,8 @@ use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
 class ScriptHandler
 {
 
-    protected static function getTargetSuffix($end = ""){
+    protected static function getTargetSuffix($end = "")
+    {
         return DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public". DIRECTORY_SEPARATOR . "bootstrap" . $end;
     }
     public static function postInstallSymlinkTwitterBootstrap(Event $event)

@@ -28,8 +28,8 @@ class FormPass implements CompilerPassInterface
     {
         if (($template = $container->getParameter('mopa_bootstrap.form.templating')) !== false) {
             $resources = $container->getParameter('twig.form.resources');
-            # Ensure it wasnt already aded via config
-            if (!in_array($template, $resources)) {                
+            // Ensure it wasnt already aded via config
+            if (!in_array($template, $resources)) {
                 // If form_div_layout.html.twig is found, insert Mopa right after
                 if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {
                     array_splice($resources, ++$key, 0, $template);

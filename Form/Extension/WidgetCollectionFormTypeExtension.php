@@ -7,18 +7,32 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 
+/**
+ * Extension for collections
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 {
     protected $options;
 
+    /**
+     * Construct extension
+     *
+     * @param array $options
+     */
     public function __construct(array $options)
     {
         $this->options = $options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if(in_array('collection', $view->vars['block_prefixes'])) {
+        if (in_array('collection', $view->vars['block_prefixes'])) {
             if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
                 throw new InvalidArgumentException('The "widget_add_btn" option must be an "array".');
             } elseif ((isset($options['allow_add']) && true === $options['allow_add']) || $options['widget_add_btn']) {
@@ -39,7 +53,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 }
             }
         }
-        if($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
+        if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
 
             if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
                 throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
@@ -66,6 +80,9 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -74,6 +91,10 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             'widget_remove_btn' => $this->options['widget_remove_btn'],
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'form';

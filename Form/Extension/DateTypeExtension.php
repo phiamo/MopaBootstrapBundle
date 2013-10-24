@@ -6,6 +6,12 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+/**
+ * Extension for Date handling
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class DateTypeExtension extends AbstractTypeExtension
 {
     /**
@@ -25,6 +31,9 @@ class DateTypeExtension extends AbstractTypeExtension
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setOptional(array(
@@ -32,6 +41,9 @@ class DateTypeExtension extends AbstractTypeExtension
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'date';

@@ -1,10 +1,18 @@
 <?php
 
-namespace Mopa\Bundle\BootstrapBundle\Navbar\Twig;
+namespace Mopa\Bundle\BootstrapBundle\Twig;
 
+use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
 use Knp\Menu\Twig\Helper;
-use Mopa\Bundle\BootstrapBundle\Navbar\Converter\NavbarConverter;
 
+/**
+ * Extension for rendering a bootstrap menu
+ *
+ * This function provides some more features than knp_menu_render but does more or less the same
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class MenuExtension extends \Twig_Extension
 {
     protected $helper;
@@ -12,6 +20,7 @@ class MenuExtension extends \Twig_Extension
 
     /**
      * @param \Knp\Menu\Twig\Helper $helper
+     * @param string                $menuTemplate
      */
     public function __construct(Helper $helper, $menuTemplate)
     {
@@ -19,6 +28,9 @@ class MenuExtension extends \Twig_Extension
         $this->menuTemplate = $menuTemplate;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFunctions()
     {
         return array(
@@ -29,9 +41,10 @@ class MenuExtension extends \Twig_Extension
     /**
      * Renders the Menu with the specified renderer.
      *
-     * @param  \Knp\Menu\ItemInterface|string|array $menu
-     * @param  array                                $options
-     * @param  string                               $renderer
+     * @param \Knp\Menu\ItemInterface|string|array $menu
+     * @param array                                $options
+     * @param string                               $renderer
+     *
      * @return string
      */
     public function renderMenu($menu, array $options = array(), $renderer = null)
@@ -43,10 +56,10 @@ class MenuExtension extends \Twig_Extension
             'allow_safe_labels' => true,
         ), $options);
 
-        $menu = $this->helper->get($menu, [], $options);
+        $menu = $this->helper->get($menu, array(), $options);
 
-        if (isset($options['autonavbar'])) {
-            $converter = new NavbarConverter($options['autonavbar']);
+        if (isset($options['automenu'])) {
+            $converter = new MenuConverter();
             $converter->convert($menu, $options);
         }
 
@@ -54,10 +67,10 @@ class MenuExtension extends \Twig_Extension
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
-        return 'mopa_bootstrap_navbar';
+        return 'mopa_bootstrap_menu';
     }
 }

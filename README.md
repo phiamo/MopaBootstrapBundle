@@ -12,6 +12,23 @@ To use bootstrap 3 in your project add it via [composer](https://github.com/phia
 NOTICE:
 -------
 
+Recent BC breaks:
+
+Navbar extensions have been replaced for menu extensions update your config:
+
+```
+mopa_bootstrap:
+    navbar: ~
+```
+
+Gets
+
+```
+mopa_bootstrap:
+    menu: ~
+```
+
+
 BS3 (master branch of this bundle) is nearly stable see [Beta-2](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta2)
 BS2 (v2.3.x) is quite stable
 

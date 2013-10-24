@@ -7,7 +7,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
  *
  * @author Craig Blanchette (isometriks) <craig.blanchette@gmail.com>
  */
-class MopaBootstrapIconExtension extends \Twig_Extension
+class IconExtension extends \Twig_Extension
 {
     /**
      * @var \Twig_Environment
@@ -17,6 +17,9 @@ class MopaBootstrapIconExtension extends \Twig_Extension
     protected $shortcut;
     protected $iconTemplate;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct($iconSet, $shortcut = null)
     {
         $this->iconSet = $iconSet;
@@ -31,6 +34,9 @@ class MopaBootstrapIconExtension extends \Twig_Extension
         $this->environment = $environment;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFunctions()
     {
         $functions = array(
@@ -44,6 +50,14 @@ class MopaBootstrapIconExtension extends \Twig_Extension
         return $functions;
     }
 
+    /**
+     * Render the icon
+     *
+     * @param string  $icon
+     * @param boolean $inverted
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function renderIcon($icon, $inverted = false)
     {
         $template = $this->getIconTemplate();
@@ -67,6 +81,9 @@ class MopaBootstrapIconExtension extends \Twig_Extension
         return $this->iconTemplate;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'mopa_bootstrap_icon';

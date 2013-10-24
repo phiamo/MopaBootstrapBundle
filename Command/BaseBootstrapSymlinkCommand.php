@@ -13,6 +13,8 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle
+ *
+ * @author phiamo <phiamo@googlemail.com>
  */
 abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
 {
@@ -20,6 +22,9 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     public static $targetSuffix = '';
     public static $pathName = 'TwitterBootstrap';
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -28,12 +33,19 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo' . static::$pathName . ', and pathToMopaBootstrapBundle')
-            ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.')
-        ;
+            ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.');
     }
 
+    /**
+     * Get Package involved
+     *
+     * @return string Name of twbs package
+     */
     abstract protected function getTwitterBootstrapName();
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
@@ -41,10 +53,10 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsfromUser();
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
-            $target_path = $this->getContainer()->getParameter("mopa_bootstrap.bootstrap.install_path");
+            $targetPath = $this->getContainer()->getParameter("mopa_bootstrap.bootstrap.install_path");
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
-                    'targetSuffix' => DIRECTORY_SEPARATOR . $target_path . static::$targetSuffix,
+                    'targetSuffix' => DIRECTORY_SEPARATOR . $targetPath . static::$targetSuffix,
                     'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
             );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
@@ -59,7 +71,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         }
 
         // Automatically detect if on Win XP where symlink will allways fail
-        if ($input->getOption('no-symlink') or PHP_OS=="WINNT")  {
+        if ($input->getOption('no-symlink') or PHP_OS=="WINNT") {
             $this->output->write("Checking destination");
 
             if (true === self::checkSymlink($symlinkTarget, $symlinkName)) {

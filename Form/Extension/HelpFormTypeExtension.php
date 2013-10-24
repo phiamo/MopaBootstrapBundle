@@ -7,6 +7,12 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+/**
+ * Extension for Help Forms handling
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class HelpFormTypeExtension extends AbstractTypeExtension
 {
     /**
@@ -14,11 +20,17 @@ class HelpFormTypeExtension extends AbstractTypeExtension
      */
     protected $options = array();
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(array $options)
     {
         $this->options = $options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['help_block'] = $options['help_block'];
@@ -83,6 +95,9 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_widget_popover'] = $options['help_widget_popover'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -94,6 +109,9 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'form';

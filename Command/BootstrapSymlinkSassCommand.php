@@ -11,10 +11,11 @@ class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
     public static $targetSuffix = '-sass';
     public static $pathName = 'TwitterBootstrapSass';
 
-    protected function getTwitterBootstrapName(){
+    protected function getTwitterBootstrapName()
+    {
         return self::$twitterBootstrapName;
     }
-    
+
     protected function configure()
     {
         parent::configure();

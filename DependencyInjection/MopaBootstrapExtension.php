@@ -32,16 +32,19 @@ class MopaBootstrapExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        // load twig extensions
         $loader->load('twig.xml');
+
         $loader->load('bootstrap.xml');
-        if(isset($config['bootstrap'])){
-            if(isset($config['bootstrap']['install_path'])){
+
+        if (isset($config['bootstrap'])) {
+            if (isset($config['bootstrap']['install_path'])) {
                 $container->setParameter(
-                        'mopa_bootstrap.bootstrap.install_path',
-                        $config['bootstrap']['install_path']
+                    'mopa_bootstrap.bootstrap.install_path',
+                    $config['bootstrap']['install_path']
                 );
-            }
-            else{
+            } else {
                 throw new \RuntimeException("Please specify install_path if specifiying bootstrap key");
             }
         }
@@ -60,13 +63,11 @@ class MopaBootstrapExtension extends Extension
         }
 
         /**
-         * Navbar
+         * Menu
          */
-        if ($this->isConfigEnabled($container, $config['navbar'])) {
-            $loader->load('navbar.xml');
-            $this->remapParameters($container, 'mopa_bootstrap.navbar', $config['navbar']);
+        if ($this->isConfigEnabled($container, $config['menu'])) {
+            $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
         }
-
         /**
          * Icons
          */
@@ -83,7 +84,14 @@ class MopaBootstrapExtension extends Extension
         }
     }
 
-    private function remapParameters(ContainerBuilder $container, $prefix, $config)
+    /**
+     * Remap parameters
+     *
+     * @param ContainerBuilder $container
+     * @param string           $prefix
+     * @param array            $config
+     */
+    private function remapParameters(ContainerBuilder $container, $prefix, array $config)
     {
         foreach ($config as $key => $value) {
             $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);

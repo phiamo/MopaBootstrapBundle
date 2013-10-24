@@ -8,11 +8,20 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormFactoryInterface;
 use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
 
+/**
+ * Adding Tabs to FormTypes
+ */
 class TabbedFormTypeExtension extends AbstractTypeExtension
 {
     private $formFactory;
     private $options;
 
+    /**
+     * Construct extension
+     *
+     * @param FormFactoryInterface $formFactory
+     * @param array                $options
+     */
     public function __construct(FormFactoryInterface $formFactory, array $options)
     {
         $this->formFactory = $formFactory;
@@ -37,14 +46,20 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['tabbed'] = false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if(!$view->vars['tabbed']) {
+        if (!$view->vars['tabbed']) {
             return;
         }
 
@@ -53,8 +68,8 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $foundInvalid = false;
         $tabs = array();
 
-        foreach($view->children as $child) {
-            if(in_array('tab', $child->vars['block_prefixes'])) {
+        foreach ($view->children as $child) {
+            if (in_array('tab', $child->vars['block_prefixes'])) {
 
                 $child->vars['tab_index'] = $tabIndex;
                 $valid = $child->vars['valid'];

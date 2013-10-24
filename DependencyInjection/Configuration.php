@@ -31,7 +31,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('mopa_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
-        $this->addNavbarConfig($rootNode);
+        $this->addMenuConfig($rootNode);
         $this->addInitializrConfig($rootNode);
 
         return $treeBuilder;
@@ -49,8 +49,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+            ->end();
     }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
@@ -250,11 +249,11 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    protected function addNavbarConfig(ArrayNodeDefinition $rootNode)
+    protected function addMenuConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
             ->children()
-                ->arrayNode('navbar')
+                ->arrayNode('menu')
                     ->canBeEnabled()
                     ->addDefaultsIfNotSet()
                     ->children()

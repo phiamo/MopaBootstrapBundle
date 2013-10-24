@@ -6,8 +6,13 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
+/**
+ * Extension for Button Icons handling
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class IconButtonExtension extends AbstractTypeExtension
 {
     /**

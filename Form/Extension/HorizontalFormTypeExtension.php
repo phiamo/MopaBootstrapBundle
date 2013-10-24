@@ -6,15 +6,27 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+/**
+ * Extension for Horizontal Forms handling
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class HorizontalFormTypeExtension extends AbstractTypeExtension
 {
     protected $options;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(array $options)
     {
         $this->options = $options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['inline'] = $options['inline'];
@@ -24,6 +36,10 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
         $view->vars['horizontal_input_wrapper_class'] = $options['horizontal_input_wrapper_class'];
 
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -36,6 +52,10 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
             )
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'form';

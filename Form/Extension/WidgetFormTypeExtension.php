@@ -5,26 +5,30 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Exception\InvalidConfigurationException;
 
+/**
+ * Extension for Form Widget Bootstrap handling
+ *
+ * @author phiamo <phiamo@googlemail.com>
+ *
+ */
 class WidgetFormTypeExtension extends AbstractTypeExtension
 {
     protected $options;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(array $options)
     {
         $this->options = $options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        /*
-        if (null !== $options['widget_addon_prepend'] && !is_array($options['widget_addon_prepend'])) {
-            throw new InvalidConfigurationException("The 'widget_addon_prepend' option must be an array");
-        }
-        if (null !== $options['widget_addon_append'] && !is_array($options['widget_addon_append'])) {
-            throw new InvalidConfigurationException("The 'widget_addon_append' option must be an array");
-        }*/
         if (in_array('percent', $view->vars['block_prefixes'])) {
             if ($options['widget_addon_append'] === null) {
                 $options['widget_addon_append'] = array();
@@ -47,6 +51,10 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label'];
 
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -77,6 +85,10 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             )
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'form';
