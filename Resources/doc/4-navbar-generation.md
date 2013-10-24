@@ -1,10 +1,10 @@
 Generating a Navbars
 ====================
 
-# Navbar Extension
+# Navbar and Menus Extension
 
 We make use of KnpMenu and KnpMenuBundle in order to help in the generation of
-Bootstrap navbars. We also provide a pass-through function for `knp_menu_render`,
+Bootstrap Menus and navbars. We also provide a pass-through function for `knp_menu_render`,
 `mopa_bootstrap_menu` which sets some default options for the menus.
 
 To learn how to create menus with KnpMenuBundle, [please check their documentation
@@ -23,20 +23,32 @@ to use the Twig function and KnpMenu Navbar extension.**
 
 ``` yaml
 mopa_bootstrap:
-    navbar: ~
+    menu: ~
 ```
+
+## Auto bootstrap menu
+
+By adding "automenu" : "navbar" or "automenu": "pill" you can use mopa_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
+
+```
+{{ mopa_bootstrap_menu('mymenu', {'automenu': 'navbar'}) }}
+```
+
+See below for Special Menu Options, the automenu just sets these based on the root item you provide, and CHANGES the attributes of the children accordingly in a magic way.
+
+If you need control yourself, just ommit automenu setting and do whatever you need
 
 ## Special Menu Options
 
 We register a new menu extension so you have options available to you:
 
 - navbar
-- subnavbar
-- subnavbar_stacked
-- dropdown_header
+- pills
+- stacked
+- dropdown-header
 - dropdown
 - caret
-- push_right
+- pull-right
 - icon
 
 Example Usage:
@@ -49,7 +61,7 @@ class Builder
         // Menu will be a navbar menu anchored to right
         $menu = $factory->createItem('root', array(
             'navbar' => true,
-            'push_right' => true,
+            'pull-right' => true,
         ));
 
         // Add a regular child with an icon, icon- is prepended automatically
@@ -65,7 +77,7 @@ class Builder
         ));
 
         // Create a dropdown header
-        $dropdown->addChild('Some Header', array('dropdown_header' => true));
+        $dropdown->addChild('Some Header', array('dropdown-header' => true));
         $dropdown->addChild('Example 1', array('route' => 'some_route'));
 
         return $menu;

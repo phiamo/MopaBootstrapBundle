@@ -7,8 +7,6 @@
     <parameters>
         <parameter key="mopa_bootstrap.twig.extension.form.class">Mopa\Bundle\BootstrapBundle\Twig\FormExtension</parameter>
         <parameter key="mopa_bootstrap.twig.extension.icon.class">Mopa\Bundle\BootstrapBundle\Twig\IconExtension</parameter>
-        <parameter key="mopa_bootstrap.twig.extension.menu.class">Mopa\Bundle\BootstrapBundle\Twig\MenuExtension</parameter>
-        <parameter key="mopa_bootstrap.menu.extension.class">Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuExtension</parameter>
     </parameters>
 
     <services>
@@ -20,16 +18,6 @@
             <argument>%mopa_bootstrap.icons.icon_set%</argument>
             <argument>%mopa_bootstrap.icons.shortcut%</argument>
             <tag name="twig.extension" />
-        </service>
-
-        <service id="mopa_bootstrap.twig.extension.menu" class="%mopa_bootstrap.twig.extension.menu.class%">
-            <argument type="service" id="knp_menu.helper" />
-            <argument>%mopa_bootstrap.menu.template%</argument>
-            <tag name="twig.extension" />
-        </service>
-
-        <service id="mopa_bootstrap.menu.extension" class="%mopa_bootstrap.menu.extension.class%">
-            <tag name="knp_menu.factory_extension" priority="-100" />
         </service>
     </services>
 </container>

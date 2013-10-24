@@ -69,7 +69,7 @@ class MenuExtension implements ExtensionInterface
                 ->setAttribute('class', 'divider');
         }
 
-        if ($options['push_right']) {
+        if ($options['pull-right']) {
             $class = $item->getChildrenAttribute('class', '');
             $item->setChildrenAttribute('class', $class . ' pull-right');
         }
