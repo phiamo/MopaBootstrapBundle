@@ -468,7 +468,7 @@
 {% block widget_addon %}
 {% spaceless %}
 {% set widget_addon_icon = widget_addon.icon is defined ? widget_addon.icon : null  %}
-    <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : mopa_bootstrap_icon(widget_addon_icon)) }}</span>
+    <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain)|raw : mopa_bootstrap_icon(widget_addon_icon)) }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
