@@ -23,7 +23,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
      */
     public function __construct(array $options)
     {
-        $this->$errorType = $options['error_type'];
+        $this->errorType = $options['error_type'];
     }
 
     /**
@@ -41,7 +41,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'error_type' => $this->$errorType,
+            'error_type' => $this->errorType,
             'error_delay'=> false
        ));
     }
