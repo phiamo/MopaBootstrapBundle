@@ -36,10 +36,12 @@
 {% block textarea_widget %}
 {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {% if not inline and horizontal %}
+    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
     <div class="{{ horizontal_input_wrapper_class }}">
     {% endif %}
     {{ parent() }}
     {% if not inline and horizontal %}
+            {{ block('form_message') }}
     </div>
     {% endif %}
 {% endblock textarea_widget %}
@@ -87,7 +89,9 @@
         {{ form_tabs(form) }}
         <div class="tab-content">
     {% endif %}
+
     {{ block('form_rows_visible') }}
+
     {% if form.vars.tabbed %}
         </div>
     {% endif %}
@@ -137,7 +141,6 @@
 
 {% block choice_widget_expanded %}
 {% spaceless %}
-
     {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
     {% if expanded %}
@@ -156,6 +159,7 @@
         </div>
         {% endif %}
     {% endfor %}
+    {{ block('form_message') }}
     {% if expanded %}
         </div>
     {% endif %}
@@ -184,6 +188,7 @@
 {% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     </div>
+    {{ block('form_message') }}
 </div>
 {% endif %}
 {% endspaceless %}
@@ -219,14 +224,15 @@
     {% else %}
         {{ block('form_widget_simple') }}
     {% endif %}
+    {{ block('form_message') }}
 {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
-            {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
-                '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
-                '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
-            })|raw }}
-        {{ block('help') }}
+    {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
+        {{ date_pattern|replace({
+            '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
+            '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
+            '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
+        })|raw }}
+    {{ block('form_message') }}
 {% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
@@ -244,7 +250,7 @@
             :{{ form_widget(form.second, { 'attr': { 'size': '1' } }) }}
         {% endif %}
         {% endspaceless %}
-        {{ block('help') }}
+        {{ block('form_message') }}
     {% endif %}
 {% endspaceless %}
 {% endblock time_widget %}
@@ -260,6 +266,7 @@
                 {{ form_errors(form.time) }}
                 {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}) }}
                 {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-2')}) }}
+                {{ block('form_message') }}
             </div>
     {% endif %}
 {% endspaceless %}
@@ -387,7 +394,7 @@
         </div>
     {% endif %}
     {% for child in form %}
-        {% if 'hidden' not in child.vars.block_prefixes %} {# why do we not add the hiddens of childs? #}
+        {% if 'hidden' not in child.vars.block_prefixes %} {# smbdy: why do we not add the hiddens of childs? 131024 phiamo: i think form rest should do this !? it was afaik removed because it cause side effekts #}
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
@@ -399,7 +406,6 @@
     {% if 'tab' in form.vars.block_prefixes %}
         {{ block('form_tab') }}
     {% else %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ (errors|length > 0 ? ' has-error' : '') }) %}
         {{ block('widget_form_group_start') }}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
         {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) %}
