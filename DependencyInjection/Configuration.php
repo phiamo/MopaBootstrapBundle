@@ -225,7 +225,7 @@ class Configuration implements ConfigurationInterface
 
     protected function addIconsConfig(ArrayNodeDefinition $rootNode)
     {
-        $iconSets = array('glyphicons', 'fontawesome');
+        $iconSets = array('glyphicons', 'fontawesome', 'fontawesome4');
 
         $rootNode
             ->children()
