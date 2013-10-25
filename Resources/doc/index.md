@@ -17,6 +17,7 @@ Additional doc:
 
 - [Configuration Reference](configuration-reference.md)
 - [Including bootstrap](including-bootstrap.md)
+- [Changing Icon Framework](6-icons.md)
 - [Css vs less](css-vs-less.md)
 - [Using Sass as preprocessor](sass-configuration.md)
 - [Assetic configuration](assetic-configuration.md)
