@@ -105,7 +105,7 @@
         	  options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
           }
           if (!data){
-              options.initial_size = $this.find('.collection-items').children().length;
+              options.initial_size = $this.parent().next('.collection-items').children().length;
               $this.data('collection', (data = new Collection(this, options)));
           }
           if (option == 'add') {
