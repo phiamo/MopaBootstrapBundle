@@ -54,7 +54,7 @@ mopa_bootstrap:
                 icon_color:           ~
     icons:
 
-        # Icon set to use
+        # Icon set to use: ['glyphicons','fontawesome','fontawesome4']
         icon_set:             glyphicons
 
         # Alias for mopa_bootstrap_icon()

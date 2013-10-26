@@ -233,7 +233,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('icon_set')
-                            ->info('Icon set to use')
+                            ->info('Icon set to use: '.json_encode($iconSets))
                             ->defaultValue('glyphicons')
                             ->validate()
                                 ->ifNotInArray($iconSets)
@@ -248,7 +248,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
     }
-    
+
     protected function addMenuConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
