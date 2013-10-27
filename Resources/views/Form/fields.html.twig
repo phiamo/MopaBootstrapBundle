@@ -137,9 +137,11 @@
 {% spaceless %}
     {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
     <div class="collection-items col-lg-9">
-    {% for name in prototype_names %}
-        {{ prototype_markup|replace({'__name__': name})|raw }}
-    {% endfor %}
+    {% if form.vars.value|length == 0%}
+        {% for name in prototype_names %}
+            {{ prototype_markup|replace({'__name__': name})|raw }}
+        {% endfor %}
+    {% endif %}
     {{ block('form_widget') }}
     </div>
 {% endspaceless %}
