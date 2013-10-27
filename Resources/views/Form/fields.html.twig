@@ -542,8 +542,12 @@
         {% endif %}
     {% endif %}
     {% if prototype is defined %}
+        {% set prototype_markup = form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': form_row(prototype), 'data-prototype-name': data_prototype_name})|merge(attr) %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({'data-prototype': prototype_markup, 'data-prototype-name': data_prototype_name})|merge(attr) %}
+        {% for name in prototype_names %}
+            {{ prototype_markup|replace({data_prototype_name: name})|raw }}
+        {% endfor %}
     {% endif %}
     {# collection item adds class to form-group #}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' ' ~ id ~ '_form_group'}) %}

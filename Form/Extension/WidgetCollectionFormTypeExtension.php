@@ -78,6 +78,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
         $view->vars['widget_add_btn'] = $options['widget_add_btn'];
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
+        $view->vars['prototype_names'] = $options['prototype_names'];
     }
 
     /**
@@ -89,6 +90,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
             'widget_add_btn' => $this->options['widget_add_btn'],
             'widget_remove_btn' => $this->options['widget_remove_btn'],
+            'prototype_names' => array()
         ));
     }
 
