@@ -61,14 +61,22 @@
         addPrototype: function(index) {
             var $collection = $(this.options.collection_id);
             var prototype_name = $collection.attr('data-prototype-name');
+            var prototype_label = $collection.attr('data-prototype-label');
 
             // Just in case it doesnt get it
             if(typeof prototype_name === 'undefined'){
                 prototype_name = '__name__';
             }
-            var replace_pattern = new RegExp(prototype_name, 'g');
 
-            var rowContent = $collection.attr('data-prototype').replace(replace_pattern, index);
+            if(typeof prototype_label === 'undefined'){
+                prototype_name = '__name__label__';
+            }
+            var name_replace_pattern = new RegExp(prototype_name, 'g');
+            var label_replace_pattern = new RegExp(prototype_label, 'g');
+
+            var rowContent = $collection.attr('data-prototype')
+                .replace(label_replace_pattern, index)
+                .replace(name_replace_pattern, index);
             var row = $(rowContent);
             
             $collection.children('.collection-items').append(row);
