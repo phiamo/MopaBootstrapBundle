@@ -136,7 +136,7 @@
 {% block collection_widget %}
 {% spaceless %}
     {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-    <div class="collection-items col-lg-9">
+    <div class="collection-items">
     {% if form.vars.value|length == 0%}
         {% for name in prototype_names %}
             {{ prototype_markup|replace({'__name__': name})|raw }}
@@ -419,7 +419,7 @@
         {% endif %}
         {{ block('widget_form_group_start') }}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) %}
+        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
         {{ block('widget_form_group_end') }}
@@ -456,10 +456,18 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
+    {% if widget_remove_btn.wrapper_div is not sameas(false) %}
+        <div class="form-group">
+            <div class="{{ widget_remove_btn.wrapper_div.class }} col-offset-lg-3">
+    {% endif %}
     {% if widget_remove_btn|default(null) %}
     {% set button_type = 'remove' %}
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
+    {% endif %}
+    {% if widget_remove_btn.wrapper_div is not sameas(false) %}
+            </div>
+        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_remove_btn %}
