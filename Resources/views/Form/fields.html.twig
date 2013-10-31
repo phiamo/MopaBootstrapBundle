@@ -578,7 +578,8 @@
     <div{% if help_widget_popover.title is not sameas(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
-        and 'field' not in form.vars.block_prefixes %}
+        and 'field' not in form.vars.block_prefixes 
+        and 'date' not in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}
         {% elseif label_render %}
