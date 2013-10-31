@@ -419,7 +419,7 @@
         {% endif %}
         {{ block('widget_form_group_start') }}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.vars.allow_delete|default(false) %}
+        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
         {{ block('widget_form_group_end') }}
