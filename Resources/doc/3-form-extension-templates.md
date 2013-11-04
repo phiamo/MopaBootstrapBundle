@@ -35,12 +35,12 @@ mopa_bootstrap:
                 attr:
                     class: btn
                 icon: null
-                icon_color: null
+                icon_inverted: false
             widget_add_btn:
                 attr:
                     class: btn
                 icon: null
-                icon_color: null
+                icon_inverted: false
 ```
 
 Or include the fields.html.twig in your template for a certain form:
@@ -278,7 +278,7 @@ Buttons
 
 It's possible to add icon tags to buttons which are generated via the form component.
 This works for the field types 'button' as well as 'submit' and 'reset'.
-In order to do this, use the properties icon and icon_color:
+In order to do this, use the properties icon and icon_inverted:
 
 ``` php
 $builder
@@ -287,7 +287,7 @@ $builder
         'submit',
         [
             'icon'       => 'save',
-            'icon_color' => '#FF00FF'
+            'icon_inverted' => true,
         ]
     );
 ```
