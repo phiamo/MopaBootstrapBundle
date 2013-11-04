@@ -12,7 +12,10 @@
         {% set label = name|humanize %}
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-    {% if icon is not empty %} <span class="glyphicon glyphicon-{{ icon }}"{% if icon_color is not empty %} style="color: {{ icon_color }};" {% endif %} ></span> {% endif %} {{ label|trans({}, translation_domain) }}</button>
+    {% if icon is not empty %}
+            {{ mopa_bootstrap_icon(icon, icon_inverted|default(false)) }}
+    {% endif %}
+    {{ label|trans({}, translation_domain) }}</button>
 {% endspaceless %}
 {% endblock button_widget %}
 
@@ -118,7 +121,7 @@
     {% for tab in form.vars.tabs %}
         <li{% if tab.active %} class="active"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
-                {% if tab.icon %}<span class="glyphicon glyphicon-{{ tab.icon }}"></span>{% endif %}
+                {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
                 {{ tab.label }}
             </a>
         </li>
@@ -368,7 +371,7 @@
     <span class="help-block">
         <a href="#" data-toggle="tooltip" data-placement="{{ help_label_tooltip.placement}}" data-title="{{ help_label_tooltip.title|trans({}, translation_domain) }}">
             {% if help_label_tooltip.icon is not sameas(false) %}
-            <span class="glyphicon glyphicon-{{help_label_tooltip.icon}}"></span>
+                {{ mopa_bootstrap_icon(help_label_tooltip.icon) }}
             {% endif %}
             {% if help_label_tooltip.text is not sameas(null) %}
             {{ help_label_tooltip.text }}
@@ -381,7 +384,7 @@
     <span class="help-block">
         <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" >
             {% if help_label_popover.icon is not sameas(false) %}
-            <span class="glyphicon glyphicon-{{help_label_popover.icon}}"></span>
+                {{ mopa_bootstrap_icon(help_label_popover.icon) }}
             {% endif %}
             {% if help_label_popover.text is not sameas(null) %}
             {{ help_label_popover.text }}
@@ -474,8 +477,8 @@
 
 {% block collection_button %}
 <a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn=".{{ form.vars['id'] }}_form_group">
-{% if button_values.icon != "" %}
-<span class="glyphicon glyphicon-{{ button_values.icon }} {% if button_values.icon_color is not null %}icon-{{ button_values.icon_color }}{% endif %}"></span>
+{% if button_values.icon is not null %}
+    {{ mopa_bootstrap_icon(button_values.icon, button_values.icon_inverted|default(false)) }}
 {% endif %}
 {{ button_values.label|trans({}, translation_domain) }}
 </a>
@@ -578,7 +581,7 @@
     <div{% if help_widget_popover.title is not sameas(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
-        and 'field' not in form.vars.block_prefixes 
+        and 'field' not in form.vars.block_prefixes
         and 'date' not in form.vars.block_prefixes %}
         {% if show_child_legend%}
             {{ block('form_legend') }}

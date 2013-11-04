@@ -48,8 +48,8 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 if (!isset($options['widget_add_btn']['icon'])) {
                     $options['widget_add_btn']['icon'] = $this->options['widget_add_btn']['icon'];
                 }
-                if (!isset($options['widget_add_btn']['icon_color'])) {
-                    $options['widget_add_btn']['icon_color'] = $this->options['widget_add_btn']['icon_color'];
+                if (!isset($options['widget_add_btn']['icon_inverted'])) {
+                    $options['widget_add_btn']['icon_inverted'] = $this->options['widget_add_btn']['icon_inverted'];
                 }
             }
         }
@@ -70,8 +70,8 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 if (!isset($options['widget_remove_btn']['icon'])) {
                     $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
                 }
-                if (!isset($options['widget_remove_btn']['icon_color'])) {
-                    $options['widget_remove_btn']['icon_color'] = $this->options['widget_remove_btn']['icon_color'];
+                if (!isset($options['widget_remove_btn']['icon_inverted'])) {
+                    $options['widget_remove_btn']['icon_inverted'] = $this->options['widget_remove_btn']['icon_inverted'];
                 }
             }
         }
