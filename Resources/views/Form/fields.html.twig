@@ -422,7 +422,7 @@
         {% endif %}
         {{ block('widget_form_group_start') }}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-        {% if 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
+        {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
         {{ block('widget_form_group_end') }}
@@ -556,7 +556,7 @@
 
 {% block widget_form_group_start %}
 {% if widget_form_group|default(false) or form.parent == null %}
-    {% if 'collection'in form.parent.vars.block_prefixes %} {# i am a collection child #}
+    {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes %} {# i am a collection child #}
         {% if not omit_collection_item %}
         {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
         {% endif %}
