@@ -238,11 +238,13 @@
     {{ block('form_message') }}
 {% else %}
     {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
+    	<div class="row">
         {{ date_pattern|replace({
             '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
             '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
             '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
         })|raw }}
+        </div>
     {{ block('form_message') }}
 {% endif %}
 {% endspaceless %}
