@@ -139,7 +139,12 @@
 {% block collection_widget %}
 {% spaceless %}
     {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-    <div class="collection-items">
+    {% if not inline and horizontal %}
+        {% if not label_render %}
+            {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+        {% endif %}
+    {% endif %}
+    <div class="collection-items {{ horizontal_input_wrapper_class }} row">
     {% if form.vars.value|length == 0%}
         {% for name in prototype_names %}
             {{ prototype_markup|replace({'__name__': name})|raw }}
