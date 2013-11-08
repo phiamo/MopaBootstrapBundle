@@ -23,40 +23,23 @@
 
 {% block choice_widget_collapsed %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
-    {% if not inline and horizontal %}
-        {% if not label_render %}
-        {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
-        {% endif %}
-        <div class="{{ horizontal_input_wrapper_class }}">
-    {% endif %}
     {{ parent() }}
     {% if not inline and horizontal %}
             {{ block('form_message') }}
-        </div>
     {% endif %}
 {% endblock choice_widget_collapsed %}
 
 {% block textarea_widget %}
 {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
-    {% if not inline and horizontal %}
-    {% if not label_render %}
-    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
-    {% endif %}
-    <div class="{{ horizontal_input_wrapper_class }}">
-    {% endif %}
     {{ parent() }}
     {% if not inline and horizontal %}
             {{ block('form_message') }}
-    </div>
     {% endif %}
 {% endblock textarea_widget %}
 
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if type != 'hidden' and not inline and horizontal %}
-    <div class="{{ horizontal_input_wrapper_class }}">
-    {% endif %}
     {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
     <div class="input-group">
         {% if widget_addon_prepend|default(null) is not null %}
@@ -78,7 +61,6 @@
     {% endif %}
     {% if type != 'hidden' and not inline and horizontal %}
         {{ block('form_message') }}
-    </div>
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -183,7 +165,6 @@
     {% set label = name|humanize %}
 {% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
-<div class="{{ horizontal_input_wrapper_class}}">
     <div class="checkbox">
 {% endif %}
 
@@ -200,7 +181,6 @@
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     </div>
     {{ block('form_message') }}
-</div>
 {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
@@ -302,7 +282,6 @@
 {% block file_widget %}
 {% spaceless %}
 {% set type = type|default('file') %}
-<div class="{{ horizontal_input_wrapper_class }}">
     {% if widget_addon_prepend|default(null) is not null %}
         {% set widget_addon = widget_addon_prepend %}
         {{ block('widget_addon') }}
@@ -314,7 +293,6 @@
         {{ block('widget_addon') }}
     {% endif %}
 {% endif %}
-</div>
 {% endspaceless %}
 {% endblock file_widget %}
 
@@ -423,7 +401,9 @@
             {% set prototype_markup = form_row(prototype) %}
         {% endif %}
         {{ block('widget_form_group_start') }}
+        <div class="{{ horizontal_input_wrapper_class }}">
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+        </div>
         {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
@@ -619,7 +599,7 @@
 {% endblock widget_form_group_end %}
 
 {% block form_widget %}
-{% if horizontal and not label_render %}
+{% if not inline and horizontal and not label_render %}
     {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
 {% endif %}
 {{ parent() }}
