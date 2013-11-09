@@ -13,6 +13,8 @@
         <parameter key="mopa_bootstrap.form.type_extension.horizontal.class">Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.widget_collection.class">Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.date.class">Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension</parameter>
+        <parameter key="mopa_bootstrap.form.type_extension.datetime.class">Mopa\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension</parameter>
+        <parameter key="mopa_bootstrap.form.type_extension.time.class">Mopa\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.tabbed.class">Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type.tab.class">Mopa\Bundle\BootstrapBundle\Form\Type\TabType</parameter>
     </parameters>
@@ -82,6 +84,14 @@
 
         <service id="mopa_bootstrap.form.type_extension.date" class="%mopa_bootstrap.form.type_extension.date.class%">
             <tag name="form.type_extension" alias="date" />
+        </service>
+
+        <service id="mopa_bootstrap.form.type_extension.datetime" class="%mopa_bootstrap.form.type_extension.datetime.class%">
+            <tag name="form.type_extension" alias="datetime" />
+        </service>
+
+        <service id="mopa_bootstrap.form.type_extension.time" class="%mopa_bootstrap.form.type_extension.time.class%">
+            <tag name="form.type_extension" alias="time" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.tabbed" class="%mopa_bootstrap.form.type_extension.tabbed.class%">

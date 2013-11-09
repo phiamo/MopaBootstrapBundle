@@ -7,20 +7,20 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
 /**
- * Extension for Date handling
+ * Extension for Datetime handling
  *
  * @author phiamo <phiamo@googlemail.com>
  *
  */
-class DateTypeExtension extends AbstractTypeExtension
+class DatetimeTypeExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if ('single_text' === $options['widget'] && isset($options['datepicker'])) {
-            $view->vars['datepicker'] = $options['datepicker'];
+        if ('single_text' === $options['widget'] && isset($options['datetimepicker'])) {
+            $view->vars['datetimepicker'] = $options['datetimepicker'];
         }
 
     }
@@ -31,7 +31,7 @@ class DateTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setOptional(array(
-            'datepicker'
+            'datetimepicker'
         ));
     }
 
@@ -40,6 +40,6 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'date';
+        return 'datetime';
     }
 }
