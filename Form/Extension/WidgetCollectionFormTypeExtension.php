@@ -39,18 +39,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 if (isset($options['widget_add_btn']['attr']) && !is_array($options['widget_add_btn']['attr'])) {
                     throw new InvalidArgumentException('The "widget_add_btn.attr" option must be an "array".');
                 }
-                if (!isset($options['widget_add_btn']['attr'])) {
-                    $options['widget_add_btn']['attr'] = $this->options['widget_add_btn']['attr'];
-                }
-                if (!isset($options['widget_add_btn']['label'])) {
-                    $options['widget_add_btn']['label'] = $this->options['widget_add_btn']['label'];
-                }
-                if (!isset($options['widget_add_btn']['icon'])) {
-                    $options['widget_add_btn']['icon'] = $this->options['widget_add_btn']['icon'];
-                }
-                if (!isset($options['widget_add_btn']['icon_color'])) {
-                    $options['widget_add_btn']['icon_color'] = $this->options['widget_add_btn']['icon_color'];
-                }
+                $options['widget_add_btn'] = array_replace_recursive($this->options['widget_add_btn'], $options['widget_add_btn']);
             }
         }
         if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
@@ -61,18 +50,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
                     throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
                 }
-                if (!isset($options['widget_remove_btn']['attr'])) {
-                    $options['widget_remove_btn']['attr'] = $this->options['widget_remove_btn']['attr'];
-                }
-                if (!isset($options['widget_remove_btn']['label'])) {
-                    $options['widget_remove_btn']['label'] = $this->options['widget_remove_btn']['label'];
-                }
-                if (!isset($options['widget_remove_btn']['icon'])) {
-                    $options['widget_remove_btn']['icon'] = $this->options['widget_remove_btn']['icon'];
-                }
-                if (!isset($options['widget_remove_btn']['icon_color'])) {
-                    $options['widget_remove_btn']['icon_color'] = $this->options['widget_remove_btn']['icon_color'];
-                }
+                $options['widget_remove_btn'] = array_replace_recursive($this->options['widget_remove_btn'], $options['widget_remove_btn']);
             }
         }
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
