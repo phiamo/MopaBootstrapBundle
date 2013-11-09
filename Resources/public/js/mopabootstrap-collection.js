@@ -31,14 +31,13 @@
         // This must work with "collections" inside "collections", and should
         // select its children, and not the "collection" inside children.
         var $collection = $('div' + this.options.collection_id);
-        var itemSelector = $collection.attr('data-widget-controls') === 'true'
-            ? 'div' + this.options.collection_id + ' > .collection-items > .collection-item'
-            : 'div' + this.options.collection_id + ' > .collection-item'
-        ;
 
         // Indexes must be different for every Collection
         if(typeof this.options.index === 'undefined') {
             this.options.index = {};
+        }
+        if(!this.options.initial_size) {
+            this.options.initial_size = $collection.find(this.selector).children().length;
         }
 
         this.options.index[this.options.collection_id] = this.options.initial_size;
@@ -46,6 +45,7 @@
 
     Collection.prototype = {
         constructor: Collection,
+        selector: '.collection-items:not(.collection-items .collection-items)',
         add: function () {
             // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
@@ -79,7 +79,7 @@
                 .replace(name_replace_pattern, index);
             var row = $(rowContent);
             
-            $collection.children('.collection-items').append(row);
+            $collection.find(this.selector).append(row);
             
             $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
@@ -107,13 +107,12 @@
               options.collection_id = collection_id;
           }
           else if($this.closest(".form-group").attr('id')){
-        	  options.collection_id = '#'+$this.closest(".form-group").attr('id');
+              options.collection_id = '#'+$this.closest(".form-group").attr('id');
           }
           else{
-        	  options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
+              options.collection_id = this.id.length === 0 ? '' : '#' + this.id;
           }
           if (!data){
-              options.initial_size = $this.parent().next('.collection-items').children().length;
               $this.data('collection', (data = new Collection(this, options)));
           }
           if (option == 'add') {
