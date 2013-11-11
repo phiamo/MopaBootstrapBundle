@@ -104,7 +104,7 @@
         <li{% if tab.active %} class="active"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
                 {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
-                {{ tab.label }}
+                {{ tab.label|trans({}, tab.translation_domain) }}
             </a>
         </li>
     {% endfor %}
