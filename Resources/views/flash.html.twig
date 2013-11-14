@@ -34,12 +34,19 @@
     {% import _self as flash_messages %}
 
     {% if app.session.flashbag.peekAll|length > 0 %}
-        {% for type, messages in app.session.flashbag.all %}
+        {% set types   = ['danger', 'success', 'info', 'warning', 'fos_user_success'] %}
+        {% set flashes = {} %}
+
+        {% for type in types %}
+            {% set flashes = flashes | merge({ (type) : app.session.flashbag.get(type) }) %}
+        {% endfor %}
+
+        {% for type, messages in flashes %}
+            {% if type == 'fos_user_success' %}
+                {% set type = 'success' %}
+                {% set domain = 'FOSUserBundle' %}
+            {% endif %}
             {% for message in messages %}
-                {% if type == 'fos_user_success' %}
-                    {% set type = 'success' %}
-                    {% set domain = 'FOSUserBundle' %}
-                {% endif %}
                 {{ flash_messages.flash(type, message, close, use_raw, class, domain) }}
             {% endfor %}
         {% endfor %}

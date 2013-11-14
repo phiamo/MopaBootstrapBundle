@@ -45,16 +45,16 @@ mopa_bootstrap:
                     class:                btn btn-default
                 label:                remove_item
                 icon:                 ~
-                icon_color:           ~
+                icon_inverted:        ~
             widget_add_btn:
                 attr:
                     class:                btn btn-default
                 label:                add_item
                 icon:                 ~
-                icon_color:           ~
+                icon_inverted:        ~
     icons:
 
-        # Icon set to use
+        # Icon set to use: ['glyphicons','fontawesome','fontawesome4']
         icon_set:             glyphicons
 
         # Alias for mopa_bootstrap_icon()

@@ -183,14 +183,22 @@ class Configuration implements ConfigurationInterface
                                                 ->end()
                                             ->end()
                                         ->end()
+                                        ->arrayNode('wrapper_div')
+                                            ->addDefaultsIfNotSet()
+                                            ->children()
+                                                ->scalarNode('class')
+                                                    ->defaultValue("col-lg-3")
+                                                ->end()
+                                            ->end()
+                                        ->end()
                                         ->scalarNode('label')
                                             ->defaultValue("remove_item")
                                         ->end()
                                         ->scalarNode('icon')
                                             ->defaultValue(null)
                                         ->end()
-                                        ->scalarNode('icon_color')
-                                            ->defaultValue(null)
+                                        ->scalarNode('icon_inverted')
+                                            ->defaultValue(false)
                                         ->end()
                                     ->end()
                                  ->end()
@@ -211,8 +219,8 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('icon')
                                             ->defaultValue(null)
                                         ->end()
-                                        ->scalarNode('icon_color')
-                                            ->defaultValue(null)
+                                        ->scalarNode('icon_inverted')
+                                            ->defaultValue(false)
                                         ->end()
                                     ->end()
                                  ->end()
@@ -225,7 +233,7 @@ class Configuration implements ConfigurationInterface
 
     protected function addIconsConfig(ArrayNodeDefinition $rootNode)
     {
-        $iconSets = array('glyphicons', 'fontawesome');
+        $iconSets = array('glyphicons', 'fontawesome', 'fontawesome4');
 
         $rootNode
             ->children()
@@ -233,7 +241,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('icon_set')
-                            ->info('Icon set to use')
+                            ->info('Icon set to use: '.json_encode($iconSets))
                             ->defaultValue('glyphicons')
                             ->validate()
                                 ->ifNotInArray($iconSets)
@@ -248,7 +256,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end();
     }
-    
+
     protected function addMenuConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode

@@ -10,7 +10,7 @@
         %}
 
         {% include item with {name: 'prev',
-                text: prev_text|default('‹ Previous') | trans({}, 'pagination'),
+                text: '‹ ' ~ prev_text|default('Previous') | trans({}, 'pagination'),
                 page: previous is defined ? previous : null,
                 clickable: previous is defined
             }
@@ -23,7 +23,7 @@
         {%
             include item with {
                 name: 'next',
-                text: next_text|default('Next ›') | trans({}, 'pagination'),
+                text: next_text|default('Next') | trans({}, 'pagination') ~ ' ›',
                 page: next is defined ? next : null,
                 clickable: next is defined
             }
