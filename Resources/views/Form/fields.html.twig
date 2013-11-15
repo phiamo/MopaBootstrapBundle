@@ -138,7 +138,6 @@
     {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
     {% if expanded %}
         {% set attr = attr|merge({'class': attr.class|default(horizontal_input_wrapper_class)}) %}
-        <div {{ block('widget_container_attributes') }}>
     {% endif %}
     {% for child in form %}
         {% if widget_type != 'inline' %}
@@ -154,7 +153,6 @@
     {% endfor %}
     {{ block('form_message') }}
     {% if expanded %}
-        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
@@ -401,6 +399,9 @@
             {% set prototype_markup = form_row(prototype) %}
         {% endif %}
         {{ block('widget_form_group_start') }}
+		{% if not inline and horizontal and not label_render %}
+		    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+		{% endif %}
         <div class="{{ horizontal_input_wrapper_class }}">
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
         </div>
@@ -569,6 +570,7 @@
             {{ block('form_legend') }}
         {% elseif label_render %}
             {{ form_label(form, label|default(null)) }}
+        {% else %}
         {% endif %}
     {% else %}
         {% if label_render %}
@@ -598,9 +600,3 @@
 {% endspaceless %}
 {% endblock widget_form_group_end %}
 
-{% block form_widget %}
-{% if not inline and horizontal and not label_render %}
-    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
-{% endif %}
-{{ parent() }}
-{% endblock form_widget %}
