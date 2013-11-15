@@ -402,9 +402,13 @@
 		{% if not inline and horizontal and not label_render %}
 		    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
 		{% endif %}
+		{% if not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
         <div class="{{ horizontal_input_wrapper_class }}">
+		{% endif %}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+		{% if not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
         </div>
+		{% endif %}
         {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
