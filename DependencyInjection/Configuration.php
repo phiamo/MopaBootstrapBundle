@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
                             ->end()
                         ->scalarNode('horizontal_label_class')
-                            ->defaultValue("col-lg-3 control-label")
+                            ->defaultValue("col-lg-3")
                             ->end()
                         ->scalarNode('horizontal_label_offset_class')
                             ->defaultValue("col-lg-offset-3")
