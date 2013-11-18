@@ -33,7 +33,6 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
         $view->vars['horizontal_label_class'] = $options['horizontal_label_class'];
         $view->vars['horizontal_label_offset_class'] = $options['horizontal_label_offset_class'];
         $view->vars['horizontal_input_wrapper_class'] = $options['horizontal_input_wrapper_class'];
-
     }
 
     /**
@@ -43,7 +42,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'horizontal' => true,
+                'horizontal' => $this->options['horizontal'],
                 'horizontal_label_class' => $this->options['horizontal_label_class'],
                 'horizontal_label_offset_class' => $this->options['horizontal_label_offset_class'],
                 'horizontal_input_wrapper_class' => $this->options['horizontal_input_wrapper_class'],
