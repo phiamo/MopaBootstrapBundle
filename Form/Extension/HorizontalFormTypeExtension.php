@@ -30,6 +30,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['horizontal'] = $options['horizontal'];
+        $view->vars['inline'] = !$options['horizontal'];
         $view->vars['horizontal_label_class'] = $options['horizontal_label_class'];
         $view->vars['horizontal_label_offset_class'] = $options['horizontal_label_offset_class'];
         $view->vars['horizontal_input_wrapper_class'] = $options['horizontal_input_wrapper_class'];
