@@ -24,7 +24,7 @@
 {% block choice_widget_collapsed %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {{ parent() }}
-    {% if not inline and horizontal %}
+    {% if horizontal %}
             {{ block('form_message') }}
     {% endif %}
 {% endblock choice_widget_collapsed %}
@@ -32,7 +32,7 @@
 {% block textarea_widget %}
 {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {{ parent() }}
-    {% if not inline and horizontal %}
+    {% if horizontal %}
             {{ block('form_message') }}
     {% endif %}
 {% endblock textarea_widget %}
@@ -59,7 +59,7 @@
         {% endif %}
     </div>
     {% endif %}
-    {% if type != 'hidden' and not inline and horizontal %}
+    {% if type != 'hidden' and horizontal %}
         {{ block('form_message') }}
     {% endif %}
 {% endspaceless %}
@@ -167,7 +167,7 @@
 {% endif %}
 
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
-    <label {% if inline is defined and inline %}class="checkbox-inline"{% endif %}>
+    <label {% if not horizontal %}class="checkbox-inline"{% endif %}>
 {% endif %}
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
@@ -315,9 +315,9 @@
         {% if not compound %}
             {% set label_attr = label_attr|merge({'for': id}) %}
         {% endif %}
-        {% set label_attr_class = ' control-label ' %}
+        {% set label_attr_class = '' %}
         {% if horizontal %}
-            {% set label_attr_class = label_attr_class ~ horizontal_label_class %}
+            {% set label_attr_class = 'control-label ' ~ label_attr_class ~ horizontal_label_class %}
         {% endif %}
         {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ label_attr_class ~ (required ? ' required' : ' optional') }) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
@@ -399,16 +399,20 @@
             {% set prototype_markup = form_row(prototype) %}
         {% endif %}
         {{ block('widget_form_group_start') }}
-		{% if not inline and horizontal and not label_render %}
-		    {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
-		{% endif %}
-		{% if not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
+
+        {% if horizontal and not label_render %}
+            {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
+        {% endif %}
+
+        {% if horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
         <div class="{{ horizontal_input_wrapper_class }}">
 		{% endif %}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
-		{% if not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
+
+        {% if horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
         </div>
-		{% endif %}
+        {% endif %}
+
         {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}

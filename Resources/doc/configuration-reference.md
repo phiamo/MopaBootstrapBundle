@@ -7,6 +7,7 @@ Default configuration for extension with alias: "mopa_bootstrap"
 mopa_bootstrap:
     form:
         templating:           MopaBootstrapBundle:Form:fields.html.twig
+        horizontal:           true
         horizontal_label_class:  col-lg-3 control-label
         horizontal_label_offset_class:  col-lg-offset-3
         horizontal_input_wrapper_class:  col-lg-9
