@@ -399,17 +399,19 @@
             {% set prototype_markup = form_row(prototype) %}
         {% endif %}
         {{ block('widget_form_group_start') }}
+        
+		{% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
 
         {% if horizontal and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
         {% endif %}
 
-        {% if horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
+		{% if show_horizontal_wrapper %}
         <div class="{{ horizontal_input_wrapper_class }}">
 		{% endif %}
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
 
-        {% if horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
+		{% if show_horizontal_wrapper %}
         </div>
         {% endif %}
 
