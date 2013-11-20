@@ -14,19 +14,8 @@ NOTICE:
 
 Recent BC breaks:
 
-Navbar extensions have been replaced for menu extensions update your config:
-
-```
-mopa_bootstrap:
-    navbar: ~
-```
-
-Gets
-
-```
-mopa_bootstrap:
-    menu: ~
-```
+ * dc4fd12: [BC Break] Removed inline completely 
+ * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
 
 
 BS3 (master branch of this bundle) is nearly stable see [Beta-3](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta3)
