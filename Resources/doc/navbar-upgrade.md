@@ -76,7 +76,7 @@ class Builder extends ContainerAware
         // Use push_right if you want your menu on the right
         $menu = $factory->createItem('root', array(
             'navbar' => true,
-            'push_right' => true,
+            'pull-right' => true,
         ));
 
         // Regular menu item, no change
@@ -98,7 +98,7 @@ class Builder extends ContainerAware
 
 Now, rendering your menu requires the use of the Twig `embed` tag. You can
 add as many menues as you would like here. If you used a leftmenu and a rightmenu
-from the previous method, you should use the `push_right` option to create your
+from the previous method, you should use the `pull-right` option to create your
 "rightmenu."
 
 ```jinja
