@@ -60,7 +60,7 @@ mopa_bootstrap:
 
         # Alias for mopa_bootstrap_icon()
         shortcut:             icon
-    navbar:
+    menu:
         enabled:              false
 
         # Menu template to use when rendering
