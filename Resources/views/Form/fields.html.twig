@@ -280,6 +280,7 @@
 {% block file_widget %}
 {% spaceless %}
 {% set type = type|default('file') %}
+{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {% if widget_addon_prepend|default(null) is not null %}
         {% set widget_addon = widget_addon_prepend %}
         {{ block('widget_addon') }}
