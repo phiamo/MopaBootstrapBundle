@@ -291,7 +291,7 @@
         {{ block('widget_addon') }}
     {% endif %}
 {% endif %}
-    {% if not inline and horizontal %}
+    {% if horizontal %}
         {{ block('form_message') }}
     {% endif %}
 {% endspaceless %}
