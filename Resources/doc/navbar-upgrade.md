@@ -46,7 +46,7 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 And you would have rendered your Navbar by doing this:
 
 ```jinja
-{{ mopa_bootstrap_navbar('frontendNavbar') }}
+{{ mopa_bootstrap_menu('frontendNavbar') }}
 ```
 
 
