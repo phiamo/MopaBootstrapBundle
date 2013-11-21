@@ -45,7 +45,7 @@
 
     Collection.prototype = {
         constructor: Collection,
-        selector: '.collection-items:not(.collection-items .collection-items)',
+        selector: '.collection-items',
         add: function () {
             // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
@@ -79,13 +79,13 @@
                 .replace(name_replace_pattern, index);
             var row = $(rowContent);
             
-            $collection.find(this.selector).append(row);
+            $collection.find(this.selector).eq(0).append(row);
             
             $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
         remove: function () {
-                if (this.$element.parents('.collection-item').length !== 0){
-                    var row = this.$element.parents('.collection-item');
+                if (this.$element.closest('.collection-item').length !== 0){
+                    var row = this.$element.closest('.collection-item');
                     row.remove();
                     $(this.options.collection_id).triggerHandler('remove.mopa-collection-item', [row]);
                 }
