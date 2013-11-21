@@ -56,6 +56,13 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             $view->vars['help_label_popover_content'] = $options['help_label_popover']['content'];
         }
 
+        if (!isset($view->vars['help_label_popover_placement'])) {
+            $view->vars['help_label_popover_placement'] = $options['help_label_popover']['placement'];
+        }
+
+        if (!isset($view->vars['help_label_popover_icon'])) {
+            $view->vars['help_label_popover_icon'] = $options['help_label_popover']['icon'];
+        }
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
