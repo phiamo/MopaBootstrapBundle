@@ -45,7 +45,7 @@
 
     Collection.prototype = {
         constructor: Collection,
-        selector: '.collection-items:not(.collection-items .collection-items)',
+        selector: '.collection-items:first',
         add: function () {
             // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
@@ -60,8 +60,8 @@
         },
         addPrototype: function(index) {
             var $collection = $(this.options.collection_id);
-            var prototype_name = $collection.attr('data-prototype-name');
-            var prototype_label = $collection.attr('data-prototype-label');
+            var prototype_name = $collection.data('prototype-name');
+            var prototype_label = $collection.data('prototype-label');
 
             // Just in case it doesnt get it
             if(typeof prototype_name === 'undefined'){
@@ -84,8 +84,8 @@
             $collection.triggerHandler('add.mopa-collection-item', [row]);
         },
         remove: function () {
-                if (this.$element.parents('.collection-item').length !== 0){
-                    var row = this.$element.parents('.collection-item');
+                if (this.$element.closest('.collection-item').length !== 0){
+                    var row = this.$element.closest('.collection-item');
                     row.remove();
                     $(this.options.collection_id).triggerHandler('remove.mopa-collection-item', [row]);
                 }
