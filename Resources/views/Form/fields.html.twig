@@ -411,6 +411,7 @@
 {% else %}
     {% if errors|length > 0 %}
     <span class="help-{{ block('error_type') }}">
+        <span class="text-error">
             {% for error in errors %}
                 {{
                     error.messagePluralization is null
@@ -418,6 +419,7 @@
                         : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
                 }} <br>
             {% endfor %}
+        </span>
     </span>
     {% endif %}
 {% endif %}
