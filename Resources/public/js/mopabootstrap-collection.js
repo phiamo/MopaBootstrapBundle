@@ -81,7 +81,7 @@
             
             $collection.find(this.selector).append(row);
             
-            $collection.triggerHandler('add.mopa-collection-item', [row]);
+            $(window).triggerHandler('add.mopa-collection-item', [$collection, row])
         },
         remove: function () {
                 if (this.$element.closest('.collection-item').length !== 0){
