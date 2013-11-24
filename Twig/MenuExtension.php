@@ -4,6 +4,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
 use Knp\Menu\Twig\Helper;
+use Knp\Menu\ItemInterface;
 
 /**
  * Extension for rendering a bootstrap menu
