@@ -25,7 +25,7 @@
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     {{ parent() }}
     {% if horizontal %}
-            {{ block('form_message') }}
+        {{ block('form_message') }}
     {% endif %}
 {% endblock choice_widget_collapsed %}
 
@@ -195,7 +195,6 @@
     {% else %}
         {{ block('form_widget_simple') }}
     {% endif %}
-    {{ block('form_message') }}
 {% else %}
     {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
     	<div class="row">
@@ -222,7 +221,6 @@
     {% else %}
         {{ block('form_widget_simple') }}
     {% endif %}
-    {{ block('form_message') }}
 {% else %}
     {% set attr = attr|merge({'class': attr.class|default('')}) %}
     {% spaceless %}
@@ -249,7 +247,6 @@
         {% else %}
             {{ block('form_widget_simple') }}
         {% endif %}
-        {{ block('form_message') }}
     {% else %}
             {% set attr = attr|merge({'class': attr.class|default('')}) %}
             <div {{ block('widget_container_attributes') }}>
