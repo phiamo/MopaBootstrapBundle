@@ -37,26 +37,11 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    protected function addPathConfig(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->children()
-                ->arrayNode('bootstrap')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('install_path')
-                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
-                        ->end()
-                    ->end()
-                ->end()
-            ->end();
-    }
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
         $rootNode
             ->children()
                 ->arrayNode('form')
-                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('templating')
                             ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")

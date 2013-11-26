@@ -26,7 +26,7 @@ class FormPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (($template = $container->getParameter('mopa_bootstrap.form.templating')) !== false) {
+        if ($container->hasParameter('mopa_bootstrap.form.templating') && ($template = $container->getParameter('mopa_bootstrap.form.templating')) !== false) {
             $resources = $container->getParameter('twig.form.resources');
             // Ensure it wasnt already aded via config
             if (!in_array($template, $resources)) {
