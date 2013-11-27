@@ -134,8 +134,9 @@
 	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
 		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('row') ~ ' ' ~ attr.class}) %}
 	{% endif %}
-    {# collection item adds class to form-group #}
+    {# collection item adds class {form_id}_form-group  too #}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' collection-items ' ~ id ~ '_form_group'}) %}
+    
     <div {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# Add initial prototype form #}
     {% if form.vars.value|length == 0 and prototype is defined %}
@@ -565,7 +566,8 @@
 {% if widget_form_group|default(false) or form.parent == null %}
     {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes %} {# i am a collection child #}
         {% if not omit_collection_item %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
+            {# collection item wrapper doesnt need form-group it gets added to childs anyways #}
+        	{% set widget_form_group_attr = widget_form_group_attr|merge({class: 'collection-item'}) %}
         {% endif %}
     {% endif %}
     {% if errors|length > 0 %}
