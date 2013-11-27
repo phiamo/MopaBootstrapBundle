@@ -37,7 +37,7 @@
             this.options.index = {};
         }
         if(!this.options.initial_size) {
-            this.options.initial_size = $collection.find(this.selector).children().length;
+            this.options.initial_size = $collection.children().length;
         }
 
         this.options.index[this.options.collection_id] = this.options.initial_size;
@@ -45,7 +45,6 @@
 
     Collection.prototype = {
         constructor: Collection,
-        selector: '.collection-items:first',
         add: function () {
             // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
@@ -78,8 +77,8 @@
                 .replace(label_replace_pattern, index)
                 .replace(name_replace_pattern, index);
             var row = $(rowContent);
-            
-            $collection.find(this.selector).append(row);
+            console.log($collection);
+            $collection.append(row);
             
             $(window).triggerHandler('add.mopa-collection-item', [$collection, row])
         },
@@ -106,8 +105,8 @@
           if(collection_id){
               options.collection_id = collection_id;
           }
-          else if($this.closest(".form-group").attr('id')){
-              options.collection_id = '#'+$this.closest(".form-group").attr('id');
+          else if($this.closest(".collection-items").attr('id')){
+              options.collection_id = '#'+$this.closest(".collection-items").attr('id');
           }
           else{
               options.collection_id = this.id.length === 0 ? '' : '#' + this.id;

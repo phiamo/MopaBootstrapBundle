@@ -120,9 +120,25 @@
 
 {% block collection_widget %}
 {% spaceless %}
-    {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-    <div class="collection-items">
-    {% if form.vars.value|length == 0%}
+    {% if prototype is defined %}
+        {% set prototype_markup = form_row(prototype) %}
+        {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
+        {% set data_prototype_label = form.vars.form.vars.prototype.vars.label|default('__name__label__') %}
+        {% set widget_form_group_attr = widget_form_group_attr|merge({
+            'data-prototype': prototype_markup,
+            'data-prototype-name': data_prototype_name,
+            'data-prototype-label': data_prototype_label
+        })|merge(attr) %}
+    {% endif %}
+    {# Add row by default use attr.class to change#}
+	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
+		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('row') ~ ' ' ~ attr.class}) %}
+	{% endif %}
+    {# collection item adds class to form-group #}
+    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' collection-items ' ~ id ~ '_form_group'}) %}
+    <div {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    {# Add initial prototype form #}
+    {% if form.vars.value|length == 0 and prototype is defined %}
         {% for name in prototype_names %}
             {{ prototype_markup|replace({'__name__': name})|raw }}
         {% endfor %}
@@ -396,9 +412,6 @@
     {% if 'tab' in form.vars.block_prefixes %}
         {{ block('form_tab') }}
     {% else %}
-        {% if prototype is defined %}
-            {% set prototype_markup = form_row(prototype) %}
-        {% endif %}
         {{ block('widget_form_group_start') }}
         
 		{% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
@@ -406,7 +419,7 @@
         {% if horizontal and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
         {% endif %}
-
+	    
 		{% if show_horizontal_wrapper %}
         <div class="{{ horizontal_input_wrapper_class }}">
 		{% endif %}
@@ -555,23 +568,10 @@
         {% set widget_form_group_attr = widget_form_group_attr|merge({class: widget_form_group_attr.class ~ ' collection-item'}) %}
         {% endif %}
     {% endif %}
-    {% if prototype is defined %}
-        {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
-        {% set data_prototype_label = form.vars.form.vars.prototype.vars.label|default('__name__label__') %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({
-            'data-prototype': prototype_markup,
-            'data-prototype-name': data_prototype_name,
-            'data-prototype-label': data_prototype_label
-        })|merge(attr) %}
-    {% endif %}
-    {# collection item adds class to form-group #}
-    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class ~ ' ' ~ id ~ '_form_group'}) %}
     {% if errors|length > 0 %}
-        {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
+	    {# Add Error Class to Widget Wrapper#}
+	    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
-	{% if 'collection' in form.vars.block_prefixes and attr.class is defined %}
-		{% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('row') ~ ' ' ~ attr.class}) %}
-	{% endif %}
     <div{% if help_widget_popover.title is not sameas(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
