@@ -36,13 +36,12 @@ class MenuExtension implements ExtensionInterface
             ->setAttribute('class', 'dropdown-header')
             ->setUri(null);
         }
+        
         if ($options['list-group']) {
-            //echo "BLUBBB";
             $item->setChildrenAttribute('class', 'list-group');
             $item->setAttribute('class', 'list-group-item');
         }
-
-        //var_dump($item->getLabel(), $item->getChildrenAttributes());
+        
         if ($options['list-group-item']) {
             $item->setAttribute('class', 'list-group-item');
         }
