@@ -29,7 +29,7 @@ Installation
 1. Add this bundle to your project in composer.json:
 
     1.1. Plain BootstrapBundle
-    
+
     ```json
     {
         "require": {
@@ -46,7 +46,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twbs/bootstrap": "dev-master"
+            "twitter/bootstrap": "dev-master"
         }
     }
     ```
@@ -57,7 +57,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twbs/bootstrap": "dev-master",
+            "twitter/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
             "knplabs/knp-menu": "2.0.*@dev",
@@ -116,15 +116,15 @@ Installation
     php app/console mopa:bootstrap:symlink:sass
     ```
 
-    With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
+    With these steps taken, bootstrap should be install into vendor/twitter/bootstrap/ and a symlink
     been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap.
 
 
     1.5. Include bootstrap manually or in another way:
 
     For including bootstrap there are different solutions, why using this one?
-    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
-    
+    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)
+
     1.6 Sass Installation
 
     If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one package to composer.json:
@@ -133,7 +133,7 @@ Installation
        {
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
-               "twbs/bootstrap": "dev-master",
+               "twitter/bootstrap": "dev-master",
                "knplabs/knp-paginator-bundle": "dev-master",
                "knplabs/knp-menu-bundle": "dev-master",
                "craue/formflow-bundle": "dev-master",
@@ -199,7 +199,7 @@ Installation
         form: ~  # Adds twig form theme  support
         menu: ~  # enables twig helpers for menu
     ```
-    
+
 4. If you like further tweak your config.yml (not mandatory)
 
     ``` yaml

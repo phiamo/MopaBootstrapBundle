@@ -14,14 +14,14 @@ NOTICE:
 
 Recent BC breaks:
 
- * dc4fd12: [BC Break] Removed inline completely 
+ * dc4fd12: [BC Break] Removed inline completely
  * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
 
 
 BS3 (master branch of this bundle) is nearly stable see [Beta-3](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta3)
 BS2 (v2.3.x) is quite stable
 
-BC breaking changes will probably not be ported to 2.3. 
+BC breaking changes will probably not be ported to 2.3.
 
 
 Branches
@@ -33,7 +33,7 @@ To use this bundle with boostrap 3 use the master branch:
 {
     "require": {
         "mopa/bootstrap-bundle": "v3.0.0-beta2",
-        "twbs/bootstrap": "v3.0.0"
+        "twitter/bootstrap": "v3.0.0"
     }
 }
 ```
@@ -46,12 +46,12 @@ If you want to use bootstrap 2:
 {
     "require": {
         "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2"
+        "twitter/bootstrap": "v2.3.2"
     }
 }
 ```
 To understand which versions are currently required have a look into `BRANCHES.md`
- 
+
 Documentation
 -------------
 
@@ -62,7 +62,7 @@ In any case, if something is not working as expected after a update:
 
 Recent BackwardsCompatibility breaking changes:
 
-* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) 
+* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md)
 * a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
@@ -88,7 +88,7 @@ Installation instructions are located in the
 Included Features
 -----------------
 
-* Bootstrap Version detection via Composer Brigde 
+* Bootstrap Version detection via Composer Brigde
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
@@ -108,10 +108,10 @@ We need to add more info here
 
 <h4>Bootstrap 3</h4>
 
-We now officially suport bootstrap3 in our master branch, 
+We now officially suport bootstrap3 in our master branch,
 The default is to determine Version by composer, this means, MopaBootstrapBundle tries to determine
 which version you have installed, and configures itself to use it. This is done in a compiler pass and stored in local cache.
-If for any reason this does not wor for you, you might want to set the 
+If for any reason this does not wor for you, you might want to set the
 
 We have several files seperated for bs2 and bs3 to be abled to support both e.g. forms:
  * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_2.html.twig
