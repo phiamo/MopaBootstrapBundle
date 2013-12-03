@@ -39,6 +39,7 @@
                 <argument key="render_fieldset">%mopa_bootstrap.form.render_fieldset%</argument>
                 <argument key="show_legend">%mopa_bootstrap.form.show_legend%</argument>
                 <argument key="show_child_legend">%mopa_bootstrap.form.show_child_legend%</argument>
+                <argument key="legend_tag">%mopa_bootstrap.form.legend_tag%</argument>
                 <argument key="render_required_asterisk">%mopa_bootstrap.form.render_required_asterisk%</argument>
                 <argument key="render_optional_text">%mopa_bootstrap.form.render_optional_text%</argument>
             </argument>

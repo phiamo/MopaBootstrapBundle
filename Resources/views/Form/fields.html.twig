@@ -319,7 +319,7 @@
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-    <legend>{{ label|trans({}, translation_domain) }}</legend>
+    <{{ legend_tag }}>{{ label|trans({}, translation_domain) }}</{{ legend_tag }}>
 {% endspaceless %}
 {% endblock form_legend %}
 
