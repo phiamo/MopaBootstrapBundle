@@ -39,7 +39,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     /**
      * Get Package involved
      *
-     * @return string Name of twbs package
+     * @return string Name of twitter package
      */
     abstract protected function getTwitterBootstrapName();
 
