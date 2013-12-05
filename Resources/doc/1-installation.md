@@ -164,7 +164,7 @@ Installation
 2. Add this bundle to your app/AppKernel.php:
 
     ``` php
-    // application/ApplicationKernel.php
+    // app/AppKernel.php
     public function registerBundles()
     {
         return array(
@@ -178,7 +178,7 @@ Installation
     2.1. If you decided to add knp-menu-bundle, knp-paginator-bundle, or craue-formflow-bundle add them too:
 
     ``` php
-    // application/ApplicationKernel.php
+    // app/AppKernel.php
     public function registerBundles()
     {
         return array(
