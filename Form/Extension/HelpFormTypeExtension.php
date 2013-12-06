@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -11,7 +21,6 @@ use Symfony\Component\Form\FormView;
  * Extension for Help Forms handling
  *
  * @author phiamo <phiamo@googlemail.com>
- *
  */
 class HelpFormTypeExtension extends AbstractTypeExtension
 {
@@ -35,9 +44,12 @@ class HelpFormTypeExtension extends AbstractTypeExtension
     {
         $view->vars['help_block'] = $options['help_block'];
         $view->vars['help_label'] = $options['help_label'];
-        if ($options['help_label_tooltip'] != null && !is_array($options['help_label_tooltip'])) {
+
+        if (null !== $options['help_label_tooltip'] && !is_array($options['help_label_tooltip'])) {
             throw new InvalidArgumentException('The "help_label_tooltip" option must be an "array".');
-        } elseif ($options['help_label_tooltip']) {
+        }
+
+        if ($options['help_label_tooltip']) {
             if (!isset($options['help_label_tooltip']['title'])) {
                 $options['help_label_tooltip']['title'] = $this->options['help_label_tooltip']['title'];
             }
@@ -52,9 +64,12 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             }
 
         }
-        if ($options['help_label_popover'] != null && !is_array($options['help_label_popover'])) {
+
+        if (null !== $options['help_label_popover'] && !is_array($options['help_label_popover'])) {
             throw new InvalidArgumentException('The "help_label_popover" option must be an "array".');
-        } elseif ($options['help_label_popover']) {
+        }
+
+        if ($options['help_label_popover']) {
             if (!isset($options['help_label_popover']['title'])) {
                 $options['help_label_popover']['title'] = $this->options['help_label_popover']['title'];
             }
@@ -71,9 +86,12 @@ class HelpFormTypeExtension extends AbstractTypeExtension
                 $options['help_label_popover']['placement'] = $this->options['help_label_popover']['placement'];
             }
         }
-        if ($options['help_widget_popover'] != null && !is_array($options['help_widget_popover'])) {
+
+        if (null !== $options['help_widget_popover'] && !is_array($options['help_widget_popover'])) {
             throw new InvalidArgumentException('The "help_widget_popover" option must be an "array".');
-        } elseif ($options['help_widget_popover']) {
+        }
+
+        if ($options['help_widget_popover']) {
             if (!isset($options['help_widget_popover']['title'])) {
                 $options['help_widget_popover']['title'] = $this->options['help_widget_popover']['title'];
             }
@@ -90,6 +108,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
                 $options['help_widget_popover']['placement'] = $this->options['help_widget_popover']['placement'];
             }
         }
+
         $view->vars['help_label_tooltip'] = $options['help_label_tooltip'];
         $view->vars['help_label_popover'] = $options['help_label_popover'];
         $view->vars['help_widget_popover'] = $options['help_widget_popover'];

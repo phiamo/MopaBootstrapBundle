@@ -1,27 +1,44 @@
 <?php
+
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Menu\Converter;
 
 use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuExtension;
 use Knp\Menu\ItemInterface;
 
 /**
- * Converts some menu to fit css classes for the Navbar to be displayed nicely
+ * Converts a Menu to fit CSS classes for the Navbar to be displayed nicely.
  *
- * Currently the menu is not changed, displaying a multi level menu with e.g. list group might lead to unexpected results
+ * Currently the menu is not changed, displaying a multi
+ * level menu with e.g. list group might lead to unexpected results.
  *
- * Either we implement a flattening option or warn, or ignore this as its done now
+ * Either we implement a flattening option or warn,
+ * or ignore this as its done now.
  *
  * @author phiamo <phiamo@googlemail.com>
- *
  */
 class MenuConverter
 {
+    /**
+     * @var MenuExtension
+     */
     protected $decorator;
 
+    /**
+     * @var array
+     */
     protected $possibleNavs = array("navbar", "pills", "list-group");
 
     /**
-     * Build extension
+     * Constructor.
      */
     public function __construct()
     {
@@ -29,67 +46,72 @@ class MenuConverter
     }
 
     /**
-     * Convert an Menu to be a bootstrap menu
+     * Convert an Menu to be a Bootstrap menu.
      *
-     * The options array expect a key "automenu" set to a string of possibleNavs
+     * The options array expect a key "automenu"
+     * set to a string of possibleNavs.
      *
-     * Additional options may be specified an code tightened
+     * Additional options may be specified and code tightened.
      *
-     * @param \Knp\Menu\ItemInterface $item
-     * @param array                   $options
+     * @param ItemInterface $item
+     * @param array         $options
      */
     public function convert(ItemInterface $item, array $options)
     {
         $autoRootOptions = $this->getRootOptions($options);
-
         $rootOptions = $this->decorator->buildOptions($autoRootOptions);
 
         $this->decorator->buildItem($item, $rootOptions);
-
         $this->convertCildren($item, $options);
     }
 
     /**
-     * Convert Menu children to be a bootstrap menu
+     * Alias of convertChildren().
      *
-     * The options array expect a key "automenu" set to a string of possibleNavs
-     *
-     * Additional options may be specified an code tightened
-     *
-     * @param \Knp\Menu\ItemInterface $item
-     * @param array                   $options
-     *
-     * @return null
+     * @deprecated This method is deprecated in flavor of convertChildren() and will be removed in 3.2
      */
-
     public function convertCildren(ItemInterface $item, array $options)
     {
-        foreach ($item->getChildren() as $sitem) {
+        $this->convertChildren($item, $options);
+    }
 
-            $autoChildOptions = $this->getChildOptions($sitem, $options);
-
+    /**
+     * Convert Menu children to be a Bootstrap menu.
+     *
+     * The options array expect a key "automenu"
+     * set to a string of possibleNavs
+     *
+     * Additional options may be specified and code tightened.
+     *
+     * @param ItemInterface $item
+     * @param array         $options
+     */
+    public function convertChildren(ItemInterface $item, array $options)
+    {
+        foreach ($item->getChildren() as $child) {
+            $autoChildOptions = $this->getChildOptions($child, $options);
             $childOptions = $this->decorator->buildOptions($autoChildOptions);
 
-            $this->decorator->buildItem($sitem, $childOptions);
-
+            $this->decorator->buildItem($child, $childOptions);
             if (isset($option['autochilds']) && $option['autochilds']) {
-                $this->convertCildren($sitem, $options);
+                $this->convertCildren($child, $options);
             }
         }
     }
 
     /**
-     * Sets options for the Root element given to convert
+     * Gets the options for the Root element.
      *
      * @param array $options
      *
+     * @return array
+     *
      * @throws \RuntimeException
-     * @return array             $options
      */
     protected function getRootOptions(array $options)
     {
         if (!in_array($options["automenu"], $this->possibleNavs)) {
-            throw new \RuntimeException("Value 'automenu' is '".$options["automenu"]."' not one of ".implode("', '", $this->possibleNavs));
+            throw new \RuntimeException("Value 'automenu' is '" . $options["automenu"] . "' not one of " . implode("', '", $this->possibleNavs));
         }
 
         return array_merge($options, array(
@@ -98,31 +120,29 @@ class MenuConverter
     }
 
     /**
-     * Setting guessed good values for different menu / nav types
+     * Gets guessed values for different menu/nav types.
      *
      * @param ItemInterface $item
      * @param array         $options
      *
-     * @return array $options
+     * @return array
      */
     protected function getChildOptions(ItemInterface $item, array $options)
     {
         $childOptions = array();
-
-        if (in_array($options["automenu"], array("navbar")) && $item->hasChildren()) {
+        if (in_array($options['automenu'], array('navbar')) && $item->hasChildren()) {
             $childOptions = array(
-                "dropdown" => !isset($options["dropdown"]) || $options["dropdown"],
-                "caret" => !isset($options["caret"]) || $options["caret"],
+                'dropdown' => !isset($options['dropdown']) || $options['dropdown'],
+                'caret' => !isset($options['caret']) || $options['caret'],
             );
         }
 
-        if (in_array($options["automenu"], array("list-group"))) {
+        if (in_array($options['automenu'], array('list-group'))) {
             $childOptions = array(
-                "list-group-item" => true,
+                'list-group-item' => true,
             );
         }
 
         return array_merge($options, $childOptions);
     }
-
 }

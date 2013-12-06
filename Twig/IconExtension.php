@@ -1,9 +1,20 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
- * Mopa Bootstrap Icon Extension
+ * MopaBootstrap Icon Extension.
  *
  * @author Craig Blanchette (isometriks) <craig.blanchette@gmail.com>
  */
@@ -13,12 +24,27 @@ class IconExtension extends \Twig_Extension
      * @var \Twig_Environment
      */
     protected $environment;
+
+    /**
+     * @var string
+     */
     protected $iconSet;
+
+    /**
+     * @var string
+     */
     protected $shortcut;
+
+    /**
+     * @var string
+     */
     protected $iconTemplate;
 
     /**
-     * {@inheritdoc}
+     * Constructor.
+     *
+     * @param string $iconSet
+     * @param string $shortcut
      */
     public function __construct($iconSet, $shortcut = null)
     {
@@ -27,7 +53,7 @@ class IconExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment $environment
+     * {@inheritdoc}
      */
     public function initRuntime(\Twig_Environment $environment)
     {
@@ -51,12 +77,12 @@ class IconExtension extends \Twig_Extension
     }
 
     /**
-     * Render the icon
+     * Renders the icon.
      *
      * @param string  $icon
      * @param boolean $inverted
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function renderIcon($icon, $inverted = false)
     {
@@ -70,7 +96,15 @@ class IconExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Twig_TemplateInterface $template
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'mopa_bootstrap_icon';
+    }
+
+    /**
+     * @return \Twig_TemplateInterface
      */
     protected function getIconTemplate()
     {
@@ -79,13 +113,5 @@ class IconExtension extends \Twig_Extension
         }
 
         return $this->iconTemplate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'mopa_bootstrap_icon';
     }
 }

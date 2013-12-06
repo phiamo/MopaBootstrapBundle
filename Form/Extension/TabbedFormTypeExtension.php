@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -9,15 +19,22 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
 
 /**
- * Adding Tabs to FormTypes
+ * Extension for Adding Tabs to Form type.
  */
 class TabbedFormTypeExtension extends AbstractTypeExtension
 {
+    /**
+     * @var FormFactoryInterface
+     */
     private $formFactory;
+
+    /**
+     * @var array
+     */
     private $options;
 
     /**
-     * Construct extension
+     * Constructor.
      *
      * @param FormFactoryInterface $formFactory
      * @param array                $options
@@ -70,11 +87,10 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
 
         foreach ($view->children as $child) {
             if (in_array('tab', $child->vars['block_prefixes'])) {
-
                 $child->vars['tab_index'] = $tabIndex;
                 $valid = $child->vars['valid'];
 
-                if (($activeTab === null || !$valid) && !$foundInvalid) {
+                if ((null === $activeTab || !$valid) && !$foundInvalid) {
                     $activeTab = $child;
                     $foundInvalid = !$valid;
                 }

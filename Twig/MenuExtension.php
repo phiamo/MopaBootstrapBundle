@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
@@ -7,21 +16,28 @@ use Knp\Menu\Twig\Helper;
 use Knp\Menu\ItemInterface;
 
 /**
- * Extension for rendering a bootstrap menu
+ * Twig Extension for rendering a Bootstrap menu.
  *
- * This function provides some more features than knp_menu_render but does more or less the same
+ * This function provides some more features
+ * than knp_menu_render, but does more or less the same.
  *
  * @author phiamo <phiamo@googlemail.com>
- *
  */
-class MenuExtension extends \Twig_Extension
+class MenuExtension extends \Twig_Extensions
 {
+    /**
+     * @var Helper
+     */
     protected $helper;
+
+    /**
+     * @var string
+     */
     protected $menuTemplate;
 
     /**
-     * @param \Knp\Menu\Twig\Helper $helper
-     * @param string                $menuTemplate
+     * @param Helper $helper
+     * @param string $menuTemplate
      */
     public function __construct(Helper $helper, $menuTemplate)
     {

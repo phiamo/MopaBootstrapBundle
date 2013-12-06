@@ -1,9 +1,18 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Command;
 
 /**
- * Command to check and create bootstrap symlink into MopaBootstrapBundle
+ * Command to create Bootstrap symlink to MopaBootstrapBundle.
  */
 class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 {
