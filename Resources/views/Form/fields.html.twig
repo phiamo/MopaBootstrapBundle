@@ -136,7 +136,7 @@
 	{% endif %}
     {# collection item adds class {form_id}_form-group  too #}
     {% set widget_form_group_attr = widget_form_group_attr|merge({'id': 'collection' ~ id ~ '_form_group', 'class': widget_form_group_attr.class ~ ' collection-items ' ~ id ~ '_form_group'}) %}
-    
+
     <div {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# Add initial prototype form #}
     {% if form.vars.value|length == 0 and prototype is defined %}
@@ -414,13 +414,13 @@
         {{ block('form_tab') }}
     {% else %}
         {{ block('widget_form_group_start') }}
-        
+
 		{% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
 
         {% if horizontal and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
         {% endif %}
-	    
+
 		{% if show_horizontal_wrapper %}
         <div class="{{ horizontal_input_wrapper_class }}">
 		{% endif %}
@@ -612,4 +612,3 @@
 {% endif %}
 {% endspaceless %}
 {% endblock widget_form_group_end %}
-

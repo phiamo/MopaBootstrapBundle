@@ -1,17 +1,27 @@
 <?php
 
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Menu\Factory;
 
 use Knp\Menu\Factory\ExtensionInterface;
 use Knp\Menu\ItemInterface;
 
 /**
- * Extension for integrating Bootstrap Menus into KnpMenu
+ * Extension for integrating Bootstrap Menus into KnpMenu.
  */
 class MenuExtension implements ExtensionInterface
 {
     /**
-     * Build an item based on options
+     * Builds a menu item based.
+     *
      * @param ItemInterface $item
      * @param array         $options
      */
@@ -36,12 +46,12 @@ class MenuExtension implements ExtensionInterface
             ->setAttribute('class', 'dropdown-header')
             ->setUri(null);
         }
-        
+
         if ($options['list-group']) {
             $item->setChildrenAttribute('class', 'list-group');
             $item->setAttribute('class', 'list-group-item');
         }
-        
+
         if ($options['list-group-item']) {
             $item->setAttribute('class', 'list-group-item');
         }
@@ -79,7 +89,8 @@ class MenuExtension implements ExtensionInterface
     }
 
     /**
-     * Build options for extension
+     * Builds the options for extension.
+     *
      * @param array $options
      *
      * @return array $options

@@ -3,6 +3,8 @@
 /*
  * This file is part of the MopaBootstrapBundle.
  *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -10,7 +12,9 @@
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 /**
- * Add new twig functions related to forms
+ * Twig extension for form.
+ *
+ * Adds form_help and form_tabs functions.
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  * @author Charles Sanquer <charles.sanquer@gmail.com>

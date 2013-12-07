@@ -3,6 +3,8 @@
 /*
  * This file is part of the MopaBootstrapBundle.
  *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -12,18 +14,27 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Reads initializr configuration file and generates corresponding Twig Globals
+ * Reads Initializr configuration file and generates
+ * corresponding Twig Globals.
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  */
 class InitializrTwigExtension extends \Twig_Extension
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
 
+    /**
+     * @var \Twig_Environment
+     */
     protected $environment;
 
     /**
-     * {@inheritdoc}
+     * Constructor.
+     *
+     * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)
     {
@@ -31,7 +42,7 @@ class InitializrTwigExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment $environment
+     * {@inheritdoc}
      */
     public function initRuntime(\Twig_Environment $environment)
     {
@@ -46,9 +57,6 @@ class InitializrTwigExtension extends \Twig_Extension
         $meta = $this->container->getParameter('mopa_bootstrap.initializr.meta');
         $dnsPrefetch = $this->container->getParameter('mopa_bootstrap.initializr.dns_prefetch');
         $google = $this->container->getParameter('mopa_bootstrap.initializr.google');
-
-        // TODO: think about setting this default as kernel debug,
-        // what about PROD env which does not need diagnostic mode and test
         $diagnosticMode = $this->container->getParameter('mopa_bootstrap.initializr.diagnostic_mode');
 
         return array(

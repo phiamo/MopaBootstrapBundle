@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the MopaBootstrapBundle.
+ *
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -8,17 +18,19 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 
 /**
- * Extension for collections
+ * Extension for Form collections.
  *
  * @author phiamo <phiamo@googlemail.com>
- *
  */
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 {
+    /**
+     * @var array
+     */
     protected $options;
 
     /**
-     * Construct extension
+     * Constructor.
      *
      * @param array $options
      */
@@ -35,24 +47,29 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         if (in_array('collection', $view->vars['block_prefixes'])) {
             if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
                 throw new InvalidArgumentException('The "widget_add_btn" option must be an "array".');
-            } elseif ((isset($options['allow_add']) && true === $options['allow_add']) || $options['widget_add_btn']) {
+            }
+
+            if ((isset($options['allow_add']) && true === $options['allow_add']) || $options['widget_add_btn']) {
                 if (isset($options['widget_add_btn']['attr']) && !is_array($options['widget_add_btn']['attr'])) {
                     throw new InvalidArgumentException('The "widget_add_btn.attr" option must be an "array".');
                 }
                 $options['widget_add_btn'] = array_replace_recursive($this->options['widget_add_btn'], $options['widget_add_btn']);
             }
         }
-        if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
 
+        if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
             if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
                 throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
-            } elseif ((isset($options['allow_delete']) && true === $options['allow_delete']) || $options['widget_remove_btn']) {
+            }
+
+            if ((isset($options['allow_delete']) && true === $options['allow_delete']) || $options['widget_remove_btn']) {
                 if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
                     throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
                 }
                 $options['widget_remove_btn'] = array_replace_recursive($this->options['widget_remove_btn'], $options['widget_remove_btn']);
             }
         }
+
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
         $view->vars['widget_add_btn'] = $options['widget_add_btn'];
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];

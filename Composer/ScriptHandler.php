@@ -1,9 +1,14 @@
 <?php
-/**
- * Script for composer, to symlink bootstrap lib into Bundle
+
+/*
+ * This file is part of the MopaBootstrapBundle.
  *
- * Maybe nice to convert this to a command and then reuse command in here.
+ * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
 namespace Mopa\Bundle\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
@@ -11,13 +16,13 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand;
 use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
 
+/**
+ * Script for Composer, create symlink to bootstrap lib into the BootstrapBundle.
+ *
+ * XXX Maybe nice to convert this to a command and then reuse command in here?
+ */
 class ScriptHandler
 {
-
-    protected static function getTargetSuffix($end = "")
-    {
-        return DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public". DIRECTORY_SEPARATOR . "bootstrap" . $end;
-    }
     public static function postInstallSymlinkTwitterBootstrap(Event $event)
     {
         $IO = $event->getIO();
@@ -108,5 +113,10 @@ class ScriptHandler
             BootstrapSymlinkSassCommand::createMirror($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
+    }
+
+    protected static function getTargetSuffix($end = "")
+    {
+        return DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public". DIRECTORY_SEPARATOR . "bootstrap" . $end;
     }
 }

@@ -16,11 +16,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class MopaBootstrapExtension extends Extension
 {
     /**
@@ -32,22 +27,20 @@ class MopaBootstrapExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-
-        // load twig extensions
+        $loader->load('bootstrap.xml');
         $loader->load('twig.xml');
 
-        $loader->load('bootstrap.xml');
-
         if (isset($config['bootstrap'])) {
-            if (isset($config['bootstrap']['install_path'])) {
-                $container->setParameter(
-                    'mopa_bootstrap.bootstrap.install_path',
-                    $config['bootstrap']['install_path']
-                );
-            } else {
-                throw new \RuntimeException("Please specify install_path if specifiying bootstrap key");
+            if (!isset($config['bootstrap']['install_path'])) {
+                throw new \RuntimeException('Please specify the "bootstrap.install_path" or disable "mopa_bootstrap" in your application config.');
             }
+
+            $container->setParameter('mopa_bootstrap.bootstrap.install_path', $config['bootstrap']['install_path']);
         }
+
+        /**
+         * Form
+         */
         if (isset($config['form'])) {
             $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
@@ -61,17 +54,19 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
+
         /**
          * Menu
          */
         if ($this->isConfigEnabled($container, $config['menu']) || $this->isConfigEnabled($container, $config['navbar'])) {
             // TODO: remove this BC layer
             if ($this->isConfigEnabled($container, $config['navbar'])) {
-                trigger_error(sprintf('mopa_boostrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
+                trigger_error(sprintf('mopa_bootstrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
             }
             $loader->load('menu.xml');
             $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
         }
+
         /**
          * Icons
          */
@@ -89,7 +84,7 @@ class MopaBootstrapExtension extends Extension
     }
 
     /**
-     * Remap parameters
+     * Remap parameters.
      *
      * @param ContainerBuilder $container
      * @param string           $prefix
