@@ -23,7 +23,7 @@ use Knp\Menu\ItemInterface;
  *
  * @author phiamo <phiamo@googlemail.com>
  */
-class MenuExtension extends \Twig_Extensions
+class MenuExtension extends \Twig_Extension
 {
     /**
      * @var Helper
