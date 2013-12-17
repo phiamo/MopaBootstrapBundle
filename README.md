@@ -27,7 +27,7 @@ BC breaking changes will probably not be ported to 2.3.
 Branches
 --------
 
-To use this bundle with boostrap 3 use the master branch:
+To use this bundle with bootstrap 3 use the master branch:
 
 ``` json
 {
