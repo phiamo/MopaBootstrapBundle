@@ -51,6 +51,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             $options['widget_addon_prepend'] = array();
         }
 
+        $view->vars['widget_form_control_class'] = $options['widget_form_control_class'];
         $view->vars['widget_form_group'] = $options['widget_form_group'];
         $view->vars['widget_addon_prepend'] = $options['widget_addon_prepend'];
         $view->vars['widget_addon_append'] = $options['widget_addon_append'];
@@ -68,6 +69,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'widget_form_control_class' => 'form-control',
             'widget_form_group' => true,
             'widget_addon_prepend' => null,
             'widget_addon_append' => null,
