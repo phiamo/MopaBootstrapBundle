@@ -155,33 +155,6 @@
         }(document, 'script'));
     </script>
     {% endif %}
-
-    {# To only use a subset or add more js overwrite and copy paste this block
-       To speed up page loads save a copy of jQuery in your project and override
-       this block to include the correct path. Otherwise the regeneration is
-       done on every load in dev more with use_controller: true #}
-
-    {# removed jQuery from assetic load as it is loaded from Google CDN above #}
-    {% javascripts
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/affix.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/alert.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/button.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/carousel.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/collapse.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/dropdown.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/modal.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/popover.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/scrollspy.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/tab.js'
-        '@MopaBootstrapBundle/Resources/public/bootstrap/js/transition.js'
-        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
-        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
-        '@MopaBootstrapBundle/Resources/public/js/html5bp_plugins.js'
-        '@MopaBootstrapBundle/Resources/public/js/html5bp_script.js'
-        output='js/foot_compiled.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-	{% endblock foot_script %}
+    {{ parent() }}
+    {% endblock foot_script %}
 {% endblock body %}
