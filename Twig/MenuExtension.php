@@ -36,6 +36,11 @@ class MenuExtension extends \Twig_Extension
     protected $menuTemplate;
 
     /**
+     * @var MenuConverter
+     */
+    protected $menuConverter;
+
+    /**
      * @param Helper $helper
      * @param string $menuTemplate
      */
@@ -89,11 +94,22 @@ class MenuExtension extends \Twig_Extension
         $menu = $this->helper->get($menu, array(), $options);
 
         if (isset($options['automenu'])) {
-            $converter = new MenuConverter();
-            $converter->convert($menu, $options);
+            $this->getMenuConverter()->convert($menu, $options);
         }
 
         return $this->helper->render($menu, $options, $renderer);
+    }
+
+    /**
+     * @return MenuConverter
+     */
+    protected function getMenuConverter()
+    {
+        if ($this->menuConverter === null) {
+            $this->menuConverter = new MenuConverter();
+        }
+
+        return $this->menuConverter;
     }
 
     /**
