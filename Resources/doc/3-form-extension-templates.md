@@ -252,13 +252,13 @@ Widget Attrs
 
 // Thanks to JohanLopes and PR #105:
 There are a bunch of other form extenstions, so you can explicitly set the classes of the control tags,
-by default there is only the control-group and the error (if the widget has error) classes rendered into it :
+by default there is only the form_group and the error (if the widget has error) classes rendered into it :
 
 ``` php
        $builder
             ->add('somefield', null, array(
-                'widget_control_group_attr' => array('class'=>'mycontrolgroupclass'),
-                'widget_controls_attr' => array('class'=>'mycontrolsclass'),
+                'widget_form_group_attr' => array('class'=>'mycontrolgroupclass'),
+                'horizontal_input_wrapper' => false,
                 'label_attr' => array('class'=>'mylabelclass') // this is new in sf2.1 form component
             ))
 ```
@@ -266,8 +266,8 @@ by default there is only the control-group and the error (if the widget has erro
 will result in
 
 ``` html
-<div id="myWidgetName_control_group" class="mycontrolgroupclass control-group">
-    <label class="mylabelclass required control-label">My Label</label>
+<div id="myWidgetName_form_group" class="mycontrolgroupclass form-group">
+    <label class="mylabelclass required form-label">My Label</label>
     <div class="mycontrolsclass controls">
 
     ...
