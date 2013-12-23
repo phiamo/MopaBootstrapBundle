@@ -64,9 +64,10 @@ class MenuExtension extends \Twig_Extension
      * Renders the Menu with the specified renderer.
      *
      * @param \Knp\Menu\ItemInterface|string|array $menu
-     * @param array                                $options
-     * @param string                               $renderer
+     * @param array $options
+     * @param string $renderer
      *
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function renderMenu($menu, array $options = array(), $renderer = null)
