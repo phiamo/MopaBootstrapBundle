@@ -205,7 +205,7 @@
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
         <div data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
-            <input {% if form_control is not sameas(false) %}class="{{ widget_form_control_class }}" {% endif %}type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}>
+            <input {% if widget_form_control_class is not sameas(false) %}class="{{ widget_form_control_class }}" {% endif %}type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
