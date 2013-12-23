@@ -99,22 +99,12 @@
         {# Find places where your CSS is broken, docs how to use:
            http://meyerweb.com/eric/tools/css/diagnostics/' #}
         {% if diagnostic_mode %}
-        {% stylesheets
-            '@MopaBootstrapBundle/Resources/public/css/diagnostic.css'
-            output='css/screen_diagnostic.css'
-        %}
-            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-        {% endstylesheets %}
+            <link href="{{ asset('bundles/mopabootstrap/css/diagnostic.css') }}" type="text/css" rel="stylesheet" media="screen" />
         {% endif %}
     {% endblock head_style %}
 
     {% block head_scripts %}
-        {% javascripts
-            '@MopaBootstrapBundle/Resources/public/js/modernizr-2.5.3-respond-1.1.0.min.js'
-            output='js/head_compiled.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.5.3-respond-1.1.0.min.js') }}"></script>
     {% endblock head_scripts %}
 </head>
 {% endblock head %}
