@@ -30,10 +30,25 @@
 {% endblock choice_widget_collapsed %}
 
 {% block textarea_widget %}
-{% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
+    {% set type = type|default('text') %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+    <div class="input-group">
+        {% if widget_addon_prepend|default(null) is not null %}
+            {% set widget_addon = widget_addon_prepend %}
+            {{ block('widget_addon') }}
+        {% endif %}
+    {% endif %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
     {{ parent() }}
     {% if horizontal %}
             {{ block('form_message') }}
+    {% endif %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+        {% if widget_addon_append|default(null) is not null %}
+        {% set widget_addon = widget_addon_append %}
+        {{ block('widget_addon') }}
+        {% endif %}
+    </div>
     {% endif %}
 {% endblock textarea_widget %}
 
