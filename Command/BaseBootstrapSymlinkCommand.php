@@ -52,7 +52,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             $linkTarget = readlink($symlinkName);
             if ($linkTarget != $symlinkTarget) {
                 if (!$forceSymlink) {
-                    throw new \Exception(sprintf('Symlink "%s" Points to "%s" instead of "%s"', $symlinkName, $linkTarget, $symlinkTarget));
+                    throw new \Exception(sprintf('Symlink "%s" points to "%s" instead of "%s"', $symlinkName, $linkTarget, $symlinkTarget));
                 }
                 unlink($symlinkName);
 
@@ -161,15 +161,15 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             } else {
                 $this->output->writeln(" ... <comment>not existing</comment>");
                 $this->output->writeln("Mirroring from: " . $symlinkName);
-                $this->output->write("for Target: " . $symlinkTarget);
+                $this->output->write("for target: " . $symlinkTarget);
                 self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
-            $this->output->write("Checking Symlink");
+            $this->output->write("Checking symlink");
             if (false === self::checkSymlink($symlinkTarget, $symlinkName, true)) {
                 $this->output->writeln(" ... <comment>not existing</comment>");
-                $this->output->writeln("Creating Symlink: " . $symlinkName);
-                $this->output->write("for Target: " . $symlinkTarget);
+                $this->output->writeln("Creating symlink: " . $symlinkName);
+                $this->output->write("for target: " . $symlinkTarget);
                 self::createSymlink($symlinkTarget, $symlinkName);
             }
         }
