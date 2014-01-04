@@ -32,7 +32,7 @@ To use this bundle with bootstrap 3 use the master branch:
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-beta2",
+        "mopa/bootstrap-bundle": "v3.0.0-beta3",
         "twbs/bootstrap": "v3.0.0"
     }
 }
