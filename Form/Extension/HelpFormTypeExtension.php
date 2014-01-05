@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 
 /**
  * Extension for Help Forms handling
