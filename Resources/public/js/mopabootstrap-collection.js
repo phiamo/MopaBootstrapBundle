@@ -66,7 +66,7 @@
             }
 
             if (typeof prototype_label === 'undefined') {
-                prototype_name = '__name__label__';
+                prototype_label = '__name__label__';
             }
 
             var name_replace_pattern = new RegExp(prototype_name, 'g');
