@@ -168,9 +168,7 @@
 				this.picker.find('.prev i, .next i')
 					.toggleClass('icon-arrow-left icon-arrow-right');
 			}
-			;
-
-		}
+        }
 		$(document).on('mousedown', function (e) {
 			// Clicked outside the datetimepicker, hide it
 			if ($(e.target).closest('.datetimepicker').length === 0) {
