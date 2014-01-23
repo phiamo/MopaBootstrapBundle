@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="mopa_bootstrap.form.type_extension.offsetButton.class">Mopa\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.button.class">Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.help.class">Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.legend.class">Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension</parameter>
@@ -20,6 +21,10 @@
     </parameters>
 
     <services>
+        <service id="mopa_bootstrap.form.type_extension.offsetButton" class="%mopa_bootstrap.form.type_extension.offsetButton.class%">
+            <tag name="form.type_extension" alias="button" />
+        </service>
+
         <service id="mopa_bootstrap.form.type_extension.button" class="%mopa_bootstrap.form.type_extension.button.class%">
             <tag name="form.type_extension" alias="button" />
         </service>
