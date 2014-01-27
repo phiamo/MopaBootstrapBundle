@@ -88,7 +88,7 @@ Installation instructions are located in the
 Included Features
 -----------------
 
-* Bootstrap Version detection via Composer Brigde 
+* Bootstrap Version detection via Composer Bridge 
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
