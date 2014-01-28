@@ -300,11 +300,10 @@ results in:
 </button>
 ```
 
-Collections
------------
+More
+----
 
-Look into the more detailed doc:
-
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md
-
+- [Collections](collections.md)
+- [Components](components.md)
+- [Tabs](tabs.md)
 
