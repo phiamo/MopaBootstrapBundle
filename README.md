@@ -5,24 +5,7 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
-The Bootstrap 3 support is now mainly working. Check out the [Beta-3](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta3)
-
-To use MopaBootstrapBundle and twitters Bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
-
-NOTICE:
--------
-
-Recent BC breaks:
-
- * dc4fd12: [BC Break] Removed inline completely 
- * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
-
-
-BS3 (master branch of this bundle) is nearly stable see [Beta-3](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta3)
-BS2 (v2.3.x) is quite stable
-
-BC breaking changes will probably not be ported to 2.3. 
-
+To use MopaBootstrapBundle and Twitter Bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
 
 Branches
 --------
@@ -32,28 +15,36 @@ To use this bundle with bootstrap 3 use the master branch:
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-beta3",
+        "mopa/bootstrap-bundle": "~3.0.0",
         "twbs/bootstrap": "v3.0.0"
     }
 }
 ```
 
-For bootstrap 2 use the v2.3.x branch:
+For bootstrap 2 use the v2.3 branch:
 
 ```json
 If you want to use bootstrap 2:
 
 {
     "require": {
-        "mopa/bootstrap-bundle": "2.3.x-dev",
+        "mopa/bootstrap-bundle": "~2.3.0",
         "twbs/bootstrap": "v2.3.2"
     }
 }
 ```
 To understand which versions are currently required have a look into `BRANCHES.md`
- 
+
 Documentation
 -------------
+
+- [Installation](Resources/doc/installation.md)
+- [Base Templates](Resources/doc/base-templates.md)
+- [Form Extension Templates](Resources/doc/form-extension-templates.md)
+  - [Form Collections](Resources/doc/form/collections.md)
+  - [Form Tabs](Resources/doc/form/tabs.md)
+  - [Form Components](Resources/doc/form/components.md)
+- [Navbar Generation](Resources/doc/navbar.md)
 
 The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle
 In any case, if something is not working as expected after a update:
@@ -62,7 +53,7 @@ In any case, if something is not working as expected after a update:
 
 Recent BackwardsCompatibility breaking changes:
 
-* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) 
+* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md)
 * a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
@@ -88,7 +79,7 @@ Installation instructions are located in the
 Included Features
 -----------------
 
-* Bootstrap Version detection via Composer Brigde 
+* Bootstrap Version detection via Composer Brigde
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
@@ -108,10 +99,10 @@ We need to add more info here
 
 <h4>Bootstrap 3</h4>
 
-We now officially suport bootstrap3 in our master branch, 
+We now officially suport bootstrap3 in our master branch,
 The default is to determine Version by composer, this means, MopaBootstrapBundle tries to determine
 which version you have installed, and configures itself to use it. This is done in a compiler pass and stored in local cache.
-If for any reason this does not wor for you, you might want to set the 
+If for any reason this does not wor for you, you might want to set the
 
 We have several files seperated for bs2 and bs3 to be abled to support both e.g. forms:
  * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_2.html.twig
