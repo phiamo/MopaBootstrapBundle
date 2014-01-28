@@ -19,6 +19,23 @@
 {% endspaceless %}
 {% endblock button_widget %}
 
+{% block button_row %}
+    {% spaceless %}
+        {% if button_offset is not empty %}
+            {% set attr = attr|merge({'for': id, 'class': button_offset }) %}
+            <div class="form-group">
+                <div {% for attrname, attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+                {{ form_widget(form) }}
+                </div>
+            </div>
+        {% else %}
+            <div>
+                {{ form_widget(form) }}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock button_row %}
+
 {# Widgets #}
 
 {% block choice_widget_collapsed %}
