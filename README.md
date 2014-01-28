@@ -24,8 +24,6 @@ To use this bundle with bootstrap 3 use the master branch:
 For bootstrap 2 use the v2.3 branch:
 
 ```json
-If you want to use bootstrap 2:
-
 {
     "require": {
         "mopa/bootstrap-bundle": "~2.3.0",
@@ -33,6 +31,7 @@ If you want to use bootstrap 2:
     }
 }
 ```
+
 To understand which versions are currently required have a look into `BRANCHES.md`
 
 Documentation
@@ -40,22 +39,15 @@ Documentation
 
 - [Installation](Resources/doc/installation.md)
 - [Base Templates](Resources/doc/base-templates.md)
-- [Form Extension Templates](Resources/doc/form-extension-templates.md)
+- [Form Extensions / Configuration](Resources/doc/form-extensions/index.md)
   - [Form Collections](Resources/doc/form/collections.md)
   - [Form Tabs](Resources/doc/form/tabs.md)
   - [Form Components](Resources/doc/form/components.md)
 - [Navbar Generation](Resources/doc/navbar.md)
-
-The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle
-In any case, if something is not working as expected after a update:
-
-* [READ the CHANGELOG!](https://github.com/phiamo/MopaBootstrapBundle/blob/master/CHANGELOG.md)
-
-Recent BackwardsCompatibility breaking changes:
-
-* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md)
-* a4b78d5: Added Version Detection for BS2 or BS3
-* 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
+- [Initializr Setup](Resources/doc/initializr/index.md)
+  - [Initializr Variables](Resources/doc/initializr/variables.md)
+- [Configuration Reference](Resources/doc/configuration-reference.md)
+- [Icons](Resources/doc/icons.md)
 
 Live Show
 ---------
@@ -69,12 +61,6 @@ Additional Resources:
 *  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
 *  [symfony-bootstrap](https://github.com/phiamo/symfony-bootstrap) is also available
 
-Installation
-------------
-
-Installation instructions are located in the
-
-* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
 
 Included Features
 -----------------
@@ -84,62 +70,14 @@ Included Features
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
   * javascript and twig blocks for dynamic collections
-* A generic Navbar class to generate your Navbar outside the template
+* KnpMenu Menu extension for Navbars
   * helpers for dropdowns, seperators, etc.
 * A generic Tab class to Manage bootstrap tabbing
-* twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
-* twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
-* twig template for KnpMenuBundle (https://github.com/KnpLabs/KnpMenuBundle)
-  * icon support on menu links
+* Twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
+* Twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
+* Twig template for KnpMenuBundle (https://github.com/KnpLabs/KnpMenuBundle)
+  * Icon support on menu links
 
-Recently added Features
------------------------
-<h4>Tabs</h4>
-We need to add more info here
-
-<h4>Bootstrap 3</h4>
-
-We now officially suport bootstrap3 in our master branch,
-The default is to determine Version by composer, this means, MopaBootstrapBundle tries to determine
-which version you have installed, and configures itself to use it. This is done in a compiler pass and stored in local cache.
-If for any reason this does not wor for you, you might want to set the
-
-We have several files seperated for bs2 and bs3 to be abled to support both e.g. forms:
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_2.html.twig
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_3.html.twig
-or JS:
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-datepicker.js
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-3-datepicker.js
-
-The bs3 feature set is not yet complete, but we hope that it gets soon, with your help!
-E.g Form have some known issues, JS Collections, etc
-
-<h4>Dynamic SubnavBars</h4>
-
-To kick start your Navigation, the Navbar component got some face lift.
-It got even easier to integrate also the dynamic sub navbar you might have seen in the twitter bootstrap docs.
-
-To learn how to use this features read [Navbar docs (4-navbar-generation)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md).
-
-Also have a look into the [Sandbox](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/navbar)
-
-<h4>initializr</h4>
-
-To make your base HTML5 even better and let you use good practices we added
-to this bundle features from [HTML5 BoilerPlate Project](http://html5boilerplate.com/).
-Integration was done using setup pregenerated with support of [Initializr](http://www.initializr.com/).
-Actually we support __HTML5__ __BoilerPlate__ _v3.0.3_ with __Modernizr__ _v2.5.3_ and __Respond__.
-
-To learn how to use this features read [Initializr docs (50-Initializr.md)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md).
-
-Warning
--------
-
-> The branching strategy has been adapted to be more flexible:
-> * The old branch for bootstrap 1.x (v1.x) still exists.
-> * The v2.0.x (previously v2.x_sf2.0) branch is following Symfony 2.0.x with bootstrap 2.x
-> * The master branch is following Symfony master with bootstrap 2.x
-> * The master-crud branch is following Symfony master with bootstrap 2.x but still has the CRUD Generator, which depends on SensioGeneratorBundle
 
 Translations
 ------------
