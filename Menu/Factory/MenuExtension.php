@@ -79,8 +79,9 @@ class MenuExtension implements ExtensionInterface
         }
 
         if ($options['pull-right']) {
+            $className = $options['navbar'] ? 'navbar-right' : 'pull-right';
             $class = $item->getChildrenAttribute('class', '');
-            $item->setChildrenAttribute('class', $class . ' pull-right');
+            $item->setChildrenAttribute('class', $class . ' ' . $className);
         }
 
         if ($options['icon']) {
