@@ -83,7 +83,11 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
-    {{ parent() }}
+    {% if static_text is sameas(true) %}
+        <p class="form-control-static">{{ value }}</p>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
     {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
         {% if widget_addon_append|default(null) is not null %}
         {% set widget_addon = widget_addon_append %}
