@@ -23,7 +23,7 @@ $icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
 @import "bootstrap_and_overrides";
 
 // Main bootstrap.sass entry point
-@import "../bootstrap-sass/lib/bootstrap.scss";
+@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 
 // The Paginator less for MopaBootstrapBundle
 @import "paginator.scss";
