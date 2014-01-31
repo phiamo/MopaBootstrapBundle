@@ -50,6 +50,7 @@ class StaticTextExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['static_text'] = $options['static_text'];
+        if($options['static_text'] == true) $view->vars['disabled'] = true;
 
     }
 }
