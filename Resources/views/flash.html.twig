@@ -34,7 +34,7 @@
     {% import _self as flash_messages %}
 
     {% if app.session.flashbag.peekAll|length > 0 %}
-        {% set types   = ['danger', 'success', 'info', 'warning', 'fos_user_success'] %}
+        {% set types   = ['error', 'danger', 'success', 'info', 'warning', 'fos_user_success'] %}
         {% set flashes = {} %}
 
         {% for type in types %}
