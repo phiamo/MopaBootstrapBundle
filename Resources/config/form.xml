@@ -19,6 +19,7 @@
         <parameter key="mopa_bootstrap.form.type_extension.time.class">Mopa\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.tabbed.class">Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type.tab.class">Mopa\Bundle\BootstrapBundle\Form\Type\TabType</parameter>
+        <parameter key="mopa_bootstrap.form.type.form_actions.class">Mopa\Bundle\BootstrapBundle\Form\Type\FormActionsType</parameter>
     </parameters>
 
     <services>
@@ -117,6 +118,10 @@
 
         <service id="mopa_bootstrap.form.type.tab" class="%mopa_bootstrap.form.type.tab.class%">
             <tag name="form.type" alias="tab" />
+        </service>
+
+        <service id="mopa_bootstrap.form.type.form_actions" class="%mopa_bootstrap.form.type.form_actions.class%">
+            <tag name="form.type" alias="form_actions" />
         </service>
     </services>
 </container>
