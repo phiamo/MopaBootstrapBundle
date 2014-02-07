@@ -62,3 +62,24 @@ mopa_bootstrap:
         shortcut: ~
 ```
 
+### Icons are not displayed
+
+If you experience missing icons, try to add the `cssrewrite` filter to assetic in config.yml:
+
+```yaml
+assetic:
+    filters:
+        cssrewrite: ~
+```
+
+And add this filter to your assetic call:
+```twig
+{% stylesheets filter="cssrewrite,less"
+    'bundles/mopabootstrap/less/mopabootstrapbundle.less'
+%}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+{% endstylesheets %}
+```
+
+Please note that you must not use the `@MopaBootstrap/Resources/public/less/mopabootstrapbundle.less` annotation or the css rewrite will fail.
+
