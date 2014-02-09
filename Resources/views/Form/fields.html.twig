@@ -618,6 +618,9 @@
 	    {# Add Error Class to Widget Wrapper#}
 	    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
+    {% if help_widget_popover.selector is sameas(null) %}
+        {% set help_widget_popover = help_widget_popover|merge({'selector': '#' ~ id }) %}
+    {% endif %}
     <div{% if help_widget_popover.title is not sameas(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)

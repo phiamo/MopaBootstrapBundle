@@ -28,6 +28,7 @@ mopa_bootstrap:
                 trigger:              hover
                 toggle:               popover
                 placement:            right
+                selector:             ~
         help_label:
             tooltip:
                 title:                ~

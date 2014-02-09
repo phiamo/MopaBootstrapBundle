@@ -108,6 +108,9 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             if (!isset($options['help_widget_popover']['placement'])) {
                 $options['help_widget_popover']['placement'] = $this->options['help_widget_popover']['placement'];
             }
+            if (!isset($options['help_widget_popover']['selector'])) {
+                $options['help_widget_popover']['selector'] = $this->options['help_widget_popover']['selector'];
+            }
         }
 
         $view->vars['help_label_tooltip'] = $options['help_label_tooltip'];
