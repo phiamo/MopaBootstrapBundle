@@ -1,5 +1,5 @@
 /* Main bootstrap.scss entry point */
-@import "../bootstrap-sass/lib/bootstrap.scss";
+@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 
 /* Bootstrap subnav definition */
 @import "initializr_addons.scss";
@@ -9,10 +9,6 @@
 
 /* Collection support for MopaBootstrapBundle */
 @import "collections.scss";
-
-/* include the responsive after all of your stuff! */
-@import "../bootstrap-sass/lib/responsive.scss";
-
 
 /* ===== Primary Styles ========================================================
    Author:
