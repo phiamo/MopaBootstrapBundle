@@ -450,7 +450,9 @@
     {% if widget_remove_btn|default(null) %}
     {% set button_type = 'remove' %}
     {% set button_values = widget_remove_btn %}
-    {{ block('collection_button') }}
+    <div class="{{ horizontal_remove_btn_wrapper_class }}">
+        {{ block('collection_button') }}
+    </div>
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_remove_btn %}

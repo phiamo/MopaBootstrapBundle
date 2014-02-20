@@ -10,6 +10,7 @@ mopa_bootstrap:
         horizontal_label_class:  col-lg-3 control-label
         horizontal_label_offset_class:  col-lg-offset-3
         horizontal_input_wrapper_class:  col-lg-9
+        horizontal_remove_btn_wrapper_class: col-lg-3
         render_fieldset:      true
         render_collection_item:  true
         show_legend:          true

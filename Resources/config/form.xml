@@ -65,6 +65,7 @@
                 <argument key="horizontal_label_class">%mopa_bootstrap.form.horizontal_label_class%</argument>
                 <argument key="horizontal_label_offset_class">%mopa_bootstrap.form.horizontal_label_offset_class%</argument>
                 <argument key="horizontal_input_wrapper_class">%mopa_bootstrap.form.horizontal_input_wrapper_class%</argument>
+                <argument key="horizontal_remove_btn_wrapper_class">%mopa_bootstrap.form.horizontal_remove_btn_wrapper_class%</argument>
             </argument>
 
             <tag name="form.type_extension" alias="form" />

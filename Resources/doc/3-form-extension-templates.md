@@ -56,6 +56,7 @@ mopa_bootstrap:
     form:
         horizontal_label_class: ~
         horizontal_input_wrapper_class: ~
+        horizontal_remove_btn_wrapper_class: ~
 ```
 
 Form Legends
