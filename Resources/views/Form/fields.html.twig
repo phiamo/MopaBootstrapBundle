@@ -511,16 +511,20 @@
 {% block form_widget_remove_btn %}
 {% spaceless %}
     {% if widget_remove_btn.wrapper_div is not sameas(false) %}
-        <div class="form-group">
-            <div class="{{ widget_remove_btn.wrapper_div.class }} col-lg-offset-3">
+        <div class="{{ widget_remove_btn.wrapper_div.class }}">
+    {% endif %}
+    {% if widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+        <div class="{{ widget_remove_btn.horizontal_wrapper_div.class }}">
     {% endif %}
     {% if widget_remove_btn|default(null) %}
     {% set button_type = 'remove' %}
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
+    {% if widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+        </div>
+    {% endif %}
     {% if widget_remove_btn.wrapper_div is not sameas(false) %}
-            </div>
         </div>
     {% endif %}
 {% endspaceless %}
