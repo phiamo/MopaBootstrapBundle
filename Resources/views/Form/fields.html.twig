@@ -673,7 +673,7 @@
 {% block help_widget_popover %}
  {% spaceless %}
  {% for attrname,attrvalue in help_widget_popover %}
- data-{{attrname}}="{{attrvalue}}"
+ data-{{attrname}}="{{attrvalue|trans({}, domain|default('messages'))}}"
  {% endfor %}
  {% endspaceless %}
 {% endblock help_widget_popover %}
