@@ -33,26 +33,8 @@
         "knplabs/knp-menu-bundle": "~2.0@dev",
         "mopa/bootstrap-sandbox-bundle": "~2.3",
         "craue/formflow-bundle": "~2.0",
-        "jlong/sass-twitter-bootstrap": "dev-master"
+	"twbs/bootstrap-sass": "v3.1.1"
     },
-    "repositories": [
-        {
-            "type":"package",
-            "package": {
-                "version":"dev-master",
-                "name":"jlong/sass-twitter-bootstrap",
-                "source": {
-                    "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
-                    "type":"git",
-                    "reference":"master"
-                },
-                "dist": {
-                    "url":"https://github.com/jlong/sass-twitter-bootstrap/zipball/master",
-                    "type":"zip"
-                }
-            }
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
