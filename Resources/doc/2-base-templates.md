@@ -21,13 +21,13 @@ If you want to have an easier life, have a look into:
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_css.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
+
+There is also a [base_less.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout whis less.
+
+There is also a [base_sass.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_sass.html.twig) its layout whis sass.
 
 There is also a [base_lessjs.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
-
-There is also a [base_css.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_css.html.twig) for usage without less.
-Have a look into https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
-
 
 Usage
 -----
@@ -102,4 +102,4 @@ make
 {% endstylesheets %}
 ```
 
-if it doesnt work, why not use the less way?
+if it doesnt work, why not use the less or sass way?
