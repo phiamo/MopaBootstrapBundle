@@ -81,6 +81,22 @@ class MopaBootstrapExtension extends Extension
             $loader->load('initializr.xml');
             $this->remapParameters($container, 'mopa_bootstrap.initializr', $config['initializr']);
         }
+
+        /**
+         * Flash
+         */
+        if (isset($config['flash'])) {
+            $mapping = array();
+
+            foreach ($config['flash']['mapping'] as $alertType => $flashTypes) {
+                foreach ($flashTypes as $type) {
+                    $mapping[$type] = $alertType;
+                }
+            }
+
+            $container->getDefinition('mopa_bootstrap.twig.extension.bootstrap_flash')
+                ->replaceArgument(0, $mapping);
+        }
     }
 
     /**

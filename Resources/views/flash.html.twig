@@ -1,5 +1,5 @@
 {% macro flash(type, message, close, use_raw, class, domain) %}
-    <div class="alert{{ type ? ' alert-'~type : '' }}{% if type == 'error' %} alert-danger{% endif %} fade in {{ class|default('') }} {% if close|default(false) %}alert-dismissable{% endif %}">
+    <div class="alert{{ type ? ' alert-'~type : '' }} fade in {{ class|default('') }} {% if close|default(false) %}alert-dismissable{% endif %}">
     {% if close|default(false) %}
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     {% endif %}
@@ -12,7 +12,7 @@
 {% endmacro %}
 
 {% macro advanced_flash(type, heading, message, close_tag, use_raw, class, domain) %}
-    <div class="alert{{ type ? ' alert-'~type : '' }}{% if type == 'error' %} alert-danger{% endif %} fade in {{ class|default('') }} {% if close_tag|default(false) %}alert-dismissable{% endif %}">
+    <div class="alert{{ type ? ' alert-'~type : '' }} fade in {{ class|default('') }} {% if close_tag|default(false) %}alert-dismissable{% endif %}">
     {% if close_tag|default(false) %}
         {% if close_tag == true %}
             {% set close_tag = 'a' %}
@@ -34,20 +34,19 @@
     {% import _self as flash_messages %}
 
     {% if app.session.flashbag.peekAll|length > 0 %}
-        {% set types   = ['error', 'danger', 'success', 'info', 'warning', 'fos_user_success'] %}
+        {% set mapping = mopa_bootstrap_flash_mapping()|merge({'fos_user_success':'success'}) %}
         {% set flashes = {} %}
 
-        {% for type in types %}
+        {% for type in mapping|keys %}
             {% set flashes = flashes | merge({ (type) : app.session.flashbag.get(type) }) %}
         {% endfor %}
 
         {% for type, messages in flashes %}
             {% if type == 'fos_user_success' %}
-                {% set type = 'success' %}
                 {% set domain = 'FOSUserBundle' %}
             {% endif %}
             {% for message in messages %}
-                {{ flash_messages.flash(type, message, close, use_raw, class, domain) }}
+                {{ flash_messages.flash(mapping[type], message, close, use_raw, class, domain) }}
             {% endfor %}
         {% endfor %}
     {% endif %}
