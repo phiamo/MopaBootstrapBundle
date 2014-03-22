@@ -62,16 +62,4 @@ class FlashExtension extends \Twig_Extension
     {
         return 'mopa_bootstrap_flash';
     }
-
-    /**
-     * @return \Twig_TemplateInterface
-     */
-    protected function getIconTemplate()
-    {
-        if ($this->iconTemplate === null) {
-            $this->iconTemplate = $this->environment->loadTemplate('@MopaBootstrap/icons.html.twig');
-        }
-
-        return $this->iconTemplate;
-    }
 }
