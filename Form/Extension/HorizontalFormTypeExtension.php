@@ -69,6 +69,10 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
     public function setChildrenHorizontal(FormView $view)
     {
         foreach ($view->children as $child) {
+            if (!in_array('form', $child->vars['block_prefixes'])) {
+                continue;
+            }
+
             if ($child->vars['horizontal'] === null) {
                 $child->vars['horizontal'] = $view->vars['horizontal'];
             }
