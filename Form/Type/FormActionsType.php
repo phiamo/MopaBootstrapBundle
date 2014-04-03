@@ -23,33 +23,9 @@ class FormActionsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $buttons = array();
         foreach ($options['buttons'] as $name => $config) {
-            $buttons[] = $this->createButton($builder, $name, $config)->getForm();
+            $this->createButton($builder, $name, $config);
         }
-
-        $builder->setAttribute('buttons', $buttons);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param FormView $view
-     * @param FormInterface $form
-     * @param array $options
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        if (! $form->getConfig()->hasAttribute('buttons')) {
-            return;
-        }
-
-        $view->vars['buttons'] = array_map(
-            function ($button) use ($view) {
-                return $button->createView($view);
-            },
-            $form->getConfig()->getAttribute('buttons')
-        );
     }
 
     /**
@@ -63,16 +39,8 @@ class FormActionsType extends AbstractType
      */
     protected function createButton($builder, $name, $config)
     {
-        $options = (isset($config['options']))? $config['options'] : array();
-        $button = $builder->create($name, $config['type'], $options);
-
-        if (! $button instanceof ButtonBuilder) {
-            throw new \InvalidArgumentException(
-                "The FormActionsType only accepts buttons, got type '{$config['type']}' for field '$name'"
-            );
-        }
-
-        return $button;
+        $options = (isset($config['options'])) ? $config['options'] : array();
+        $button = $builder->add($name, $config['type'], $options);
     }
 
     /**
@@ -81,10 +49,19 @@ class FormActionsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-                'buttons'        => array(),
-                'options'        => array(),
-                'mapped'         => false,
-            ));
+            'buttons' => array(),
+            'options' => array(),
+            'mapped' => false,
+            'button_offset' => null,
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['button_offset'] = $options['button_offset'];
     }
 
     /**

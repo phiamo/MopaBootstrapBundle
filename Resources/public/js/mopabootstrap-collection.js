@@ -96,9 +96,10 @@
                     throw new Error('row not contained in collection');
                 }
 
-                $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex]);
-                row.remove();
-                $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
+                if (false !== $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex])) {
+                    row.remove();
+                    $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
+                }
             }
         },
         /**

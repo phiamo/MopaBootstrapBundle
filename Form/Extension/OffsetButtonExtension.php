@@ -23,7 +23,6 @@ use Symfony\Component\Form\FormView;
  */
 class OffsetButtonExtension extends AbstractTypeExtension
 {
-
     /**
      * {@inheritdoc}
      */
@@ -37,11 +36,9 @@ class OffsetButtonExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(
-            array(
-                'button_offset' => null,
-            )
-        );
+        $resolver->setDefaults(array(
+            'button_offset' => null,
+        ));
     }
 
     /**
@@ -50,6 +47,5 @@ class OffsetButtonExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['button_offset'] = $options['button_offset'];
-
     }
 }
