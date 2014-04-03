@@ -19,9 +19,11 @@
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
        If you fetch data from other domains, add them too #}
     {% block dns_prefetch %}
-        {% for domain in dns_prefetch %}
-        <link rel="dns-prefetch" href="{{ domain }}" />
-        {% endfor %}
+        {% if dns_prefetch is defined %}
+            {% for domain in dns_prefetch %}
+            <link rel="dns-prefetch" href="{{ domain }}" />
+            {% endfor %}
+        {% endif %}
     {% endblock dns_prefetch %}
 
     {# IE10 does not support plugins, such as Flash, in Metro Mode.
@@ -34,56 +36,69 @@
     {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
        https://github.com/h5bp/html5-boilerplate/issues/824 #}
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="{{ meta['description'] }}" />
-    <meta name="keywords" content="{{ meta['keywords'] }}" />
-    <meta name="author" content="{{ meta['author_name'] }}" />
-    {# example: href="/humans.txt" #}
-    <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
 
-    {# <title>{% block title %}{% endblock %}</title> #}
-    <title>{% block title%}{{ meta['title'] }}{% endblock %}</title>
+    {% set meta_robots = '' %}
+    {% set metatitle = '' %}
+    {% if meta is defined %}
+        {% if meta.description is defined %}
+            <meta name="description" content="{{ meta['description'] }}" />
+        {% endif %}
+        {% if meta.keywords is defined %}
+            <meta name="keywords" content="{{ meta['keywords'] }}" />
+        {% endif %}
+        {% if meta.author_name is defined %}
+            <meta name="author" content="{{ meta['author_name'] }}" />
+        {% endif %}
+        {% if meta.author_url is defined and meta.author_name is defined %}
+            {# example: href="/humans.txt" #}
+            <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
+        {% endif %}
+        {% if meta.title is defined %}
+            {% set metatitle = meta.title %}
+        {% endif %}
 
-    {# TODO: to be removed as HTML5 has no such tag
-    <meta name="title" content="{{ meta_title|default('') }}"> #}
+        {# TODO: to be removed as HTML5 has no such tag
+        <meta name="title" content="{{ meta_title|default('') }}"> #}
 
-    {# TODO: read more about canonical urls and then decide whether enable this part or remove
-       http://html5boilerplate.com/docs/html-head/#canonical-url
-    <link rel="canonical" href=""> #}
+        {# TODO: read more about canonical urls and then decide whether enable this part or remove
+           http://html5boilerplate.com/docs/html-head/#canonical-url
+        <link rel="canonical" href=""> #}
 
-    {# TODO: Official short link, poorly supported now
-    <link rel="shortlink" href="h5bp.com"> #}
+        {# TODO: Official short link, poorly supported now
+        <link rel="shortlink" href="h5bp.com"> #}
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
 
-    {# TODO: allow BOTs see SITEMAP #}
-    {% if meta['sitemap'] is defined %}
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
+        {# TODO: allow BOTs see SITEMAP #}
+        {% if meta['sitemap'] is defined %}
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
+        {% endif %}
+
+        {# TODO: Feeds RSS & ATOM #}
+        {% if meta['feed_atom'] is defined %}
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
+        {% endif %}
+        {% if meta['feed_rss'] is defined %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
+        {% endif %}
+
+        {# TODO: allow changing this values from controller scope #}
+        {% if meta['noindex'] %}
+            {% set meta_robots = 'noindex,' %}
+        {% endif %}
+        {% if meta['nofollow'] %}
+            {% set meta_robots = meta_robots ~ 'nofollow' %}
+        {% else %}
+            {% set meta_robots = meta_robots ~ 'follow' %}
+        {% endif %}
     {% endif %}
 
-    {# TODO: Feeds RSS & ATOM #}
-    {% if meta['feed_atom'] is defined %}
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
-    {% endif %}
-    {% if meta['feed_rss'] is defined %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
-    {% endif %}
-
-    {# TODO: allow changing this values from controller scope #}
-    {% if meta['noindex'] %}
-        {% set meta_robots = 'noindex,' %}
-    {% else %}
-        {% set meta_robots = '' %}
-    {% endif %}
-    {% if meta['nofollow'] %}
-        {% set meta_robots = meta_robots ~ 'nofollow' %}
-    {% else %}
-        {% set meta_robots = meta_robots ~ 'follow' %}
-    {% endif %}
     <meta name="robots" content="{{ meta_robots }}" />
+    <title>{% block title%}{{ metatitle }}{% endblock %}</title>
 
     {% if google['wt'] is defined %}
-    <meta name="google-site-verification" content="{{ google['wt'] }}" />
+        <meta name="google-site-verification" content="{{ google['wt'] }}" />
     {% endif %}
 
     {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
