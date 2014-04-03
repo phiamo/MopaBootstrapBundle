@@ -149,9 +149,10 @@
 {% endblock %}
 
 {% block form_tab %}
-<div class="tab-pane{{ form.vars.tab_active ? ' active' : '' }}" id="{{ id }}">
-    {{ block('form_widget') }}
-</div>
+    {% set tab_attr = attr|merge({'class': 'tab-pane' ~ (form.vars.tab_active ? ' active' : '') ~ ' ' ~ attr.class|default(''), 'id': id}) %}
+    <div{% for attrname, attrvalue in tab_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ block('form_widget') }}
+    </div>
 {% endblock %}
 
 {% block collection_widget %}
