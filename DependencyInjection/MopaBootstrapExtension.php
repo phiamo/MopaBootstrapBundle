@@ -86,8 +86,9 @@ class MopaBootstrapExtension extends Extension
          * Flash
          */
         if (isset($config['flash'])) {
-            $mapping = array();
+            $container->setParameter('mopa_bootstrap.flash.closeable', $config['flash']['closeable']);
 
+            $mapping = array();
             foreach ($config['flash']['mapping'] as $alertType => $flashTypes) {
                 foreach ($flashTypes as $type) {
                     $mapping[$type] = $alertType;

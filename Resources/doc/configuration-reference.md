@@ -88,6 +88,7 @@ mopa_bootstrap:
         diagnostic_mode:      false
 
     flash:
+        closeable:            false
         mapping:
             # alertType => [flashType1, ..]
             success: [success]
