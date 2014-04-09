@@ -24,8 +24,8 @@
         <service id="mopa_bootstrap.twig.extension.bootstrap_flash" class="%mopa_bootstrap.twig.extension.flash.class%">
             <argument type="collection" />
             <tag name="twig.extension" />
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
+            <call method="setCloseable">
+                <argument>%mopa_bootstrap.flash.closeable%</argument>
             </call>
         </service>
     </services>

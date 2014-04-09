@@ -41,7 +41,7 @@
             {% set flashes = flashes | merge({ (type) : app.session.flashbag.get(type) }) %}
         {% endfor %}
 
-        {% if close is defined and close is not null %}
+        {% if close is null %}
             {% set close = flash_closeable %}
         {% endif %}
 

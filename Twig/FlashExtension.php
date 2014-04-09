@@ -11,9 +11,6 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Response;
-
 /**
  * MopaBootstrap Flash Extension.
  *
@@ -22,14 +19,9 @@ use Symfony\Component\HttpFoundation\Response;
 class FlashExtension extends \Twig_Extension
 {
     /**
-     * @var ContainerInterface
+     * @var string
      */
-    protected $container;
-
-    /**
-     * @var \Twig_Environment
-     */
-    protected $environment;
+    protected $closeable;
 
     /**
      * @var array
@@ -47,19 +39,11 @@ class FlashExtension extends \Twig_Extension
     }
 
     /**
-     * @param ContainerInterface $container
+     * @param string $closeable
      */
-    public function setContainer(ContainerInterface $container)
+    public function setCloseable($closeable)
     {
-        $this->container = $container;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
+        $this->closeable = $closeable;
     }
 
     /**
@@ -67,14 +51,8 @@ class FlashExtension extends \Twig_Extension
      */
     public function getGlobals()
     {
-        if ($this->container->hasParameter('mopa_bootstrap.flash.closeable')) {
-            $closeable = $this->container->getParameter('mopa_bootstrap.flash.closeable');
-        } else {
-            $closeable = false;
-        }
-
         return array(
-            'flash_closeable' => $closeable,
+            'flash_closeable' => $this->closeable,
         );
     }
 
