@@ -32,17 +32,11 @@ class FlashExtension extends \Twig_Extension
      * Constructor.
      *
      * @param array $mapping
-     */
-    public function __construct(array $mapping)
-    {
-        $this->mapping = $mapping;
-    }
-
-    /**
      * @param string $closeable
      */
-    public function setCloseable($closeable)
+    public function __construct(array $mapping, $closeable)
     {
+        $this->mapping = $mapping;
         $this->closeable = $closeable;
     }
 
