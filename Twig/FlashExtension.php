@@ -43,21 +43,20 @@ class FlashExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getGlobals()
-    {
-        return array(
-            'flash_closeable' => $this->closeable,
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return array(
             new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', array($this, 'getMapping'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('mopa_bootstrap_flash_closeable', array($this, 'getCloseable')),
         );
+    }
+
+    public function getCloseable($close = null)
+    {
+        if ($close === null) {
+            return $this->closeable;
+        }
+        return $close;
     }
 
     /**
