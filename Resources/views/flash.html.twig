@@ -41,12 +41,16 @@
             {% set flashes = flashes | merge({ (type) : app.session.flashbag.get(type) }) %}
         {% endfor %}
 
+        {% if close is defined and close is not null %}
+            {% set close = flash_closeable %}
+        {% endif %}
+
         {% for type, messages in flashes %}
             {% if type == 'fos_user_success' %}
                 {% set domain = 'FOSUserBundle' %}
             {% endif %}
             {% for message in messages %}
-                {{ flash_messages.flash(mapping[type], message, flash_closeable, use_raw, class, domain) }}
+                {{ flash_messages.flash(mapping[type], message, close, use_raw, class, domain) }}
             {% endfor %}
         {% endfor %}
     {% endif %}
