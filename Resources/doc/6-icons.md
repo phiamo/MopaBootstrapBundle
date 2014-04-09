@@ -24,6 +24,12 @@ Please make sure you are including the corresponding less file:
 - mopaboostrapbundle-fa.less for fontawesome
 - mopaboostrapbundle-fa4.less for fontawesome4
 
+And make sure you install the fonts after you confed the app/config.yml
+
+```
+app/console mopa:bootstrap:install:font
+```
+
 ### Usage
 
 You can use the Twig function as follows:
