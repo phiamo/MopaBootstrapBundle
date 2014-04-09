@@ -18,6 +18,12 @@ Currently you can choose from
 - fontawesome
 - fontawesome4
 
+Please make sure you are including the corresponding less file:
+
+- mopaboostrapbundle.less for glyphicons
+- mopaboostrapbundle-fa.less for fontawesome
+- mopaboostrapbundle-fa4.less for fontawesome4
+
 ### Usage
 
 You can use the Twig function as follows:
