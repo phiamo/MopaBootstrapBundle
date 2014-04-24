@@ -21,7 +21,7 @@ If you want to have an easier life, have a look into:
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_css.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
 
 There is also a [base_less.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout whis less.
 
