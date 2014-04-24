@@ -24,9 +24,10 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             if (isset($options['widget_add_btn']['attr']) && !is_array($options['widget_add_btn']['attr'])) {
                 throw new InvalidConfigurationException('The "widget_add_btn.attr" option must be an "array".');
             }
-            if (!isset($options['widget_add_btn']['attr'])) {
-                $options['widget_add_btn']['attr'] = $this->options['widget_add_btn']['attr'];
-            }
+            $options['widget_add_btn']['attr'] = isset($options['widget_add_btn']['attr'])
+                ? array_replace($this->options['widget_add_btn']['attr'], $options['widget_add_btn']['attr'])
+                : $this->options['widget_add_btn']['attr']
+            ;
             if (!isset($options['widget_add_btn']['label']) && !isset($options['widget_add_btn']['icon'])) {
                 throw new InvalidConfigurationException('Provide either "icon" or "label" to "widget_add_btn"');
             }
@@ -43,9 +44,10 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
                 throw new InvalidConfigurationException('The "widget_remove_btn" option must be an "array".');
             }
-            if (!isset($options['widget_remove_btn']['attr'])) {
-                $options['widget_remove_btn']['attr'] = $this->options['widget_remove_btn']['attr'];
-            }
+            $options['widget_remove_btn']['attr'] = isset($options['widget_remove_btn']['attr'])
+                ? array_replace($this->options['widget_remove_btn']['attr'], $options['widget_remove_btn']['attr'])
+                : $this->options['widget_remove_btn']['attr']
+            ;
             if (!isset($options['widget_remove_btn']['label']) && !isset($options['widget_remove_btn']['icon'])) {
                  throw new InvalidConfigurationException('Provide either "icon" or "label" to "widget_remove_btn"');
             }
