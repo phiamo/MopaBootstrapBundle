@@ -216,12 +216,22 @@
 {% if label is not sameas(false) and label is empty %}
     {% set label = name|humanize %}
 {% endif %}
+{% if 'data-toggle' not in form.parent.vars %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
+<div class="{{ horizontal_input_wrapper_class}}">
     <div class="checkbox">
 {% endif %}
+{% endif %}
 
+{% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
+{% if not horizontal %}
+	{% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' checkbox-inline')}) %}
+{% endif %}
+{% if checked and 'data-toggle' in form.parent.vars %}
+	{% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' active')}) %}
+{% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
-    <label {% if not horizontal %}class="checkbox-inline"{% endif %}>
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
 {% endif %}
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
@@ -230,9 +240,12 @@
     </label>
     {% endif %}
 {% endif %}
+{% if 'data-toggle' not in form.parent.vars %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     </div>
     {{ block('form_message') }}
+</div>
+{% endif %}
 {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
