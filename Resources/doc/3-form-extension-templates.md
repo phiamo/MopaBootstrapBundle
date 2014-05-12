@@ -15,7 +15,10 @@ Have a look into the examples in the sandbox:
 ### Using bootstrap for Theming
 
 
-Forms are activated by default for your whole project if you do not want to have this behaviour you can disable it by setting the templating config option to false in app/config.yml.
+Forms are activated by default for your whole project if you have at least
+`form: ~` in your bundle configuration. If you do not want to have this 
+behaviour you can disable it by setting the templating config option to 
+false in app/config.yml.
 There are a bunch of other config variabled to control the templating behaviour globally.
 You can change them globally, on a per form basis and per field.
 
