@@ -133,30 +133,11 @@ Installation
        {
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
-               "twbs/bootstrap": "dev-master",
+               "twbs/bootstrap-sass": "dev-master",
                "knplabs/knp-paginator-bundle": "dev-master",
                "knplabs/knp-menu-bundle": "dev-master",
-               "craue/formflow-bundle": "dev-master",
-               "jlong/sass-twitter-bootstrap": "dev-master"
-           },
-           "repositories": [
-               {
-                   "type":"package",
-                   "package": {
-                       "version":"dev-master",
-                       "name":"jlong/sass-twitter-bootstrap",
-                       "source": {
-                           "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
-                           "type":"git",
-                           "reference":"master"
-                       },
-                       "dist": {
-                           "url":"https://github.com/jlong/sass-twitter-bootstrap/archive/master",
-                           "type":"zip"
-                       }
-                   }
-               }
-           ]
+               "craue/formflow-bundle": "dev-master"
+           }
        }
     ```
     You can also use the post-install cmd provided to setup the symlink for bootstrap-sass (cf. section 1.4)
