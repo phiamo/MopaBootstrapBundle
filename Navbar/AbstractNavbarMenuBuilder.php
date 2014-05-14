@@ -75,7 +75,7 @@ abstract class AbstractNavbarMenuBuilder
         if ($push_right) {
             $this->pushRight($rootItem);
         }
-        $dropdown = $rootItem->addChild($title, array_merge($knp_item_options, array('uri'=>'#')))
+        $dropdown = $rootItem->addChild($title, array_merge(array('uri'=>'#'), $knp_item_options))
             ->setLinkattribute('class', 'dropdown-toggle')
             ->setLinkattribute('data-toggle', 'dropdown')
             ->setAttribute('class', 'dropdown')
