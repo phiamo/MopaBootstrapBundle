@@ -41,8 +41,6 @@ To use this bundle with bootstrap 3 use the master branch:
 For bootstrap 2 use the v2.3.x branch:
 
 ```json
-If you want to use bootstrap 2:
-
 {
     "require": {
         "mopa/bootstrap-bundle": "2.3.x-dev",
