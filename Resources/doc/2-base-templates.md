@@ -66,7 +66,7 @@ If you are using Sass just include your.scss instead
 
 ``` jinja
 {% stylesheets filter='?yui_css'
-   '@YourNiceBundle/Resources/public/sass/your.less*'
+   '@YourNiceBundle/Resources/public/sass/your.scss*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}
