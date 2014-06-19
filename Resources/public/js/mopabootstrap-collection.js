@@ -75,8 +75,10 @@
                     .replace(label_replace_pattern, index)
                     .replace(name_replace_pattern, index);
             var row = $(rowContent);
-            $collection.append(row);
-            $(window).triggerHandler('add.mopa-collection-item', [$collection, row, index])
+            if (false !== $(window).triggerHandler('before-add.mopa-collection-item', [$collection, row, index])) {
+                $collection.append(row);
+                $(window).triggerHandler('add.mopa-collection-item', [$collection, row, index])
+            }
         },
         remove: function (row) {
             var $collection = $(this.options.collection_id);
@@ -96,9 +98,10 @@
                     throw new Error('row not contained in collection');
                 }
 
-                $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex]);
-                row.remove();
-                $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
+                if (false !== $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex])) {
+                    row.remove();
+                    $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
+                }
             }
         },
         /**

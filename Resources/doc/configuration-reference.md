@@ -92,4 +92,12 @@ mopa_bootstrap:
             wt:                   ~
             analytics:            ~
         diagnostic_mode:      false
+
+    flash:
+        mapping:
+            # alertType => [flashType1, ..]
+            success: [success]
+            danger: [error, danger]
+            warning: [warning, warn]
+            info: [info, notice]
 ```

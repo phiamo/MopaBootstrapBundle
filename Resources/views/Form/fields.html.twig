@@ -21,7 +21,7 @@
 
 {% block button_row %}
     {% spaceless %}
-        {% if button_offset is not empty %}
+        {% if button_offset is defined and button_offset is not empty %}
             {% set attr = attr|merge({'for': id, 'class': button_offset }) %}
             <div class="form-group">
                 <div {% for attrname, attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
@@ -103,7 +103,7 @@
         {% endif %}
     </div>
     {% endif %}
-    {% if type != 'hidden' and horizontal %}
+    {% if type != 'hidden' %}
         {{ block('form_message') }}
     {% endif %}
 {% endspaceless %}
@@ -157,9 +157,10 @@
 {% endblock %}
 
 {% block form_tab %}
-<div class="tab-pane{{ form.vars.tab_active ? ' active' : '' }}" id="{{ id }}">
-    {{ block('form_widget') }}
-</div>
+    {% set tab_attr = attr|merge({'class': 'tab-pane' ~ (form.vars.tab_active ? ' active' : '') ~ ' ' ~ attr.class|default(''), 'id': id}) %}
+    <div{% for attrname, attrvalue in tab_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ block('form_widget') }}
+    </div>
 {% endblock %}
 
 {% block collection_widget %}
@@ -434,7 +435,7 @@
 {% endblock help_label_popover %}
 
 {% block form_actions_widget %}
-    {% for button in buttons %}
+    {% for button in form.children %}
         {{ form_widget(button) }}&nbsp; {# this needs to be here due to https://github.com/twbs/bootstrap/issues/3245 #}
     {% endfor  %}
 {% endblock %}

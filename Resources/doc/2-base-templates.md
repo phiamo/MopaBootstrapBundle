@@ -21,7 +21,7 @@ If you want to have an easier life, have a look into:
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_css.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
 
 There is also a [base_less.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout whis less.
 
@@ -66,7 +66,7 @@ If you are using Sass just include your.scss instead
 
 ``` jinja
 {% stylesheets filter='?yui_css'
-   '@YourNiceBundle/Resources/public/sass/your.less*'
+   '@YourNiceBundle/Resources/public/sass/your.scss*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
 {% endstylesheets %}

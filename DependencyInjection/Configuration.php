@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         $this->addIconsConfig($rootNode);
         $this->addMenuConfig($rootNode);
         $this->addInitializrConfig($rootNode);
+        $this->addFlashConfig($rootNode);
 
         return $treeBuilder;
     }
@@ -361,5 +362,54 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end();
+    }
+
+    protected function addFlashConfig(ArrayNodeDefinition $rootNode)
+    {
+        $fnTest = function($v) { return !is_array($v); };
+        $fnThen = function($v) { return array($v); };
+
+        $rootNode
+            ->children()
+                ->arrayNode('flash')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('mapping')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->arrayNode('success')
+                                    ->beforeNormalization()
+                                        ->ifTrue($fnTest)->then($fnThen)
+                                    ->end()
+                                    ->defaultValue(array('success'))
+                                    ->prototype('scalar')->end()
+                                ->end()
+                                ->arrayNode('danger')
+                                    ->beforeNormalization()
+                                        ->ifTrue($fnTest)->then($fnThen)
+                                    ->end()
+                                    ->defaultValue(array('error', 'danger'))
+                                    ->prototype('scalar')->end()
+                                ->end()
+                                ->arrayNode('warning')
+                                    ->beforeNormalization()
+                                        ->ifTrue($fnTest)->then($fnThen)
+                                    ->end()
+                                    ->defaultValue(array('warning', 'warn'))
+                                    ->prototype('scalar')->end()
+                                ->end()
+                                ->arrayNode('info')
+                                    ->beforeNormalization()
+                                        ->ifTrue($fnTest)->then($fnThen)
+                                    ->end()
+                                    ->defaultValue(array('info', 'notice'))
+                                    ->prototype('scalar')->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

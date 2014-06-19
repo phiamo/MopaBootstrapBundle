@@ -41,8 +41,6 @@ To use this bundle with bootstrap 3 use the master branch:
 For bootstrap 2 use the v2.3.x branch:
 
 ```json
-If you want to use bootstrap 2:
-
 {
     "require": {
         "mopa/bootstrap-bundle": "2.3.x-dev",
@@ -108,20 +106,7 @@ We need to add more info here
 
 <h4>Bootstrap 3</h4>
 
-We now officially suport bootstrap3 in our master branch, 
-The default is to determine Version by composer, this means, MopaBootstrapBundle tries to determine
-which version you have installed, and configures itself to use it. This is done in a compiler pass and stored in local cache.
-If for any reason this does not wor for you, you might want to set the 
-
-We have several files seperated for bs2 and bs3 to be abled to support both e.g. forms:
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_2.html.twig
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/Form/fields_bs_3.html.twig
-or JS:
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-datepicker.js
- * https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/public/js/eyecon-bootstrap-3-datepicker.js
-
-The bs3 feature set is not yet complete, but we hope that it gets soon, with your help!
-E.g Form have some known issues, JS Collections, etc
+We now officially suport bootstrap3 in our master branch.
 
 <h4>Dynamic SubnavBars</h4>
 
