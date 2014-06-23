@@ -41,9 +41,6 @@
 {% block choice_widget_collapsed %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
     {{ parent() }}
-    {% if horizontal %}
-        {{ block('form_message') }}
-    {% endif %}
 {% endblock choice_widget_collapsed %}
 
 {% block textarea_widget %}
@@ -57,9 +54,6 @@
     {% endif %}
     {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
     {{ parent() }}
-    {% if horizontal %}
-            {{ block('form_message') }}
-    {% endif %}
     {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
         {% if widget_addon_append|default(null) is not null %}
         {% set widget_addon = widget_addon_append %}
@@ -94,9 +88,6 @@
         {{ block('widget_addon') }}
         {% endif %}
     </div>
-    {% endif %}
-    {% if type != 'hidden' %}
-        {{ block('form_message') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -205,9 +196,6 @@
         </div>
         {% endif %}
     {% endfor %}
-    {{ block('form_message') }}
-    {% if expanded %}
-    {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
@@ -232,7 +220,6 @@
 {% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
     </div>
-    {{ block('form_message') }}
 {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
@@ -258,7 +245,6 @@
             '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}),
         })|raw }}
         </div>
-    {{ block('form_message') }}
 {% endif %}
 {% endspaceless %}
 {% endblock date_widget %}
@@ -284,7 +270,6 @@
         :{{ form_widget(form.second, { 'attr': { 'size': '1' }, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-2') }) }}
     {% endif %}
     {% endspaceless %}
-    {{ block('form_message') }}
 {% endif %}
 {% endspaceless %}
 {% endblock time_widget %}
@@ -308,7 +293,6 @@
                 {{ form_errors(form.time) }}
                 {{ form_widget(form.date, {'attr': {'class': attr.widget_class|default('')}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-3')}) }}
                 {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-lg-2')}) }}
-                {{ block('form_message') }}
             </div>
     {% endif %}
 {% endspaceless %}
@@ -343,9 +327,6 @@
         {{ block('widget_addon') }}
     {% endif %}
 {% endif %}
-    {% if horizontal %}
-        {{ block('form_message') }}
-    {% endif %}
 {% endspaceless %}
 {% endblock file_widget %}
 
@@ -459,18 +440,24 @@
     {% else %}
         {{ block('widget_form_group_start') }}
 
-		{% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
+        {% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes) %}
 
         {% if horizontal and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
         {% endif %}
 
-		{% if show_horizontal_wrapper %}
+        {% if show_horizontal_wrapper %}
         <div class="{{ horizontal_input_wrapper_class }}">
-		{% endif %}
+        {% endif %}
+
         {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
 
-		{% if show_horizontal_wrapper %}
+        {% set type = type|default('text') %}
+        {% if type != 'hidden' %}
+        {{ block('form_message') }}
+        {% endif %}
+
+        {% if show_horizontal_wrapper %}
         </div>
         {% endif %}
 
