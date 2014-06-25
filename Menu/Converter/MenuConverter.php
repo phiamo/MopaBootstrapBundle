@@ -11,7 +11,7 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Menu\Converter;
 
-use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuExtension;
+use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
 use Knp\Menu\ItemInterface;
 
 /**
@@ -28,7 +28,7 @@ use Knp\Menu\ItemInterface;
 class MenuConverter
 {
     /**
-     * @var MenuExtension
+     * @var MenuDecorator
      */
     protected $decorator;
 
@@ -42,7 +42,7 @@ class MenuConverter
      */
     public function __construct()
     {
-        $this->decorator = new MenuExtension();
+        $this->decorator = new MenuDecorator();
     }
 
     /**
@@ -62,16 +62,6 @@ class MenuConverter
         $rootOptions = $this->decorator->buildOptions($autoRootOptions);
 
         $this->decorator->buildItem($item, $rootOptions);
-        $this->convertCildren($item, $options);
-    }
-
-    /**
-     * Alias of convertChildren().
-     *
-     * @deprecated This method is deprecated in flavor of convertChildren() and will be removed in 3.2
-     */
-    public function convertCildren(ItemInterface $item, array $options)
-    {
         $this->convertChildren($item, $options);
     }
 
@@ -94,7 +84,7 @@ class MenuConverter
 
             $this->decorator->buildItem($child, $childOptions);
             if (isset($option['autochilds']) && $option['autochilds']) {
-                $this->convertCildren($child, $options);
+                $this->convertChildren($child, $options);
             }
         }
     }
