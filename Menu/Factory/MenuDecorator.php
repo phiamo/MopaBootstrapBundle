@@ -14,7 +14,7 @@ namespace Mopa\Bundle\BootstrapBundle\Menu\Factory;
 use Knp\Menu\ItemInterface;
 
 /**
- * Extension for integrating Bootstrap Menus into KnpMenu.
+ * Decorator for integrating Bootstrap Menus into KnpMenu.
  */
 class MenuDecorator
 {
