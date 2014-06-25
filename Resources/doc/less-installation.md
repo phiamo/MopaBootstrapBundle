@@ -15,7 +15,7 @@ Installing nodejs and less css manually
  - npm: (node package manager) 
  
 ``` bash
-curl https://npmjs.org/install.sh | sh
+curl -L https://npmjs.org/install.sh | sh
 ```
 
  - less css:
