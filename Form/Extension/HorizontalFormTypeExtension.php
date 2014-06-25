@@ -44,7 +44,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         // Set the root form to the default value if none given
-        if (!$view->parent && $options['compound'] && $options['horizontal'] === null) {
+        if ($options['horizontal'] === null && ((!$view->parent && $options['compound']) || ($form->getParent() === null && $options['compound']))) {
             $horizontal = $this->options['horizontal'];
         } else {
             $horizontal = $options['horizontal'];
@@ -58,10 +58,15 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
 
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
+        $isForm = false;
         if (!$view->parent && $options['compound'] && $view->vars['horizontal']) {
             $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] . ' ' : '';
             $view->vars['attr']['class'] = $class . 'form-horizontal';
 
+            $isForm = true;
+        }
+
+        if ($isForm || ($form->getParent() === null && $options['compound'])) {
             $this->setChildrenHorizontal($view);
         }
     }
