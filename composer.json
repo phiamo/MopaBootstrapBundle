@@ -33,7 +33,7 @@
         "knplabs/knp-menu-bundle": "~2.0@dev",
         "mopa/bootstrap-sandbox-bundle": "~2.3",
         "craue/formflow-bundle": "~2.0",
-        "twbs/bootstrap-sass": "v3.1.1"
+        "twbs/bootstrap-sass": "3.2.*"
     },
     "scripts": {
         "post-install-cmd": [
