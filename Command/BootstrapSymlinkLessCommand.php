@@ -42,7 +42,7 @@ php app/console mopa:bootstrap:symlink:less <comment>--manual</comment> <pathToT
 Defaults if installed by composer would be :
 
 pathToTwitterBootstrap:    ../../../../../../../vendor/twitter/bootstrap
-pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
+pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap
 
 EOT
             );

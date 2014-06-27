@@ -43,7 +43,7 @@ php app/console mopa:bootstrap:symlink:sass <comment>--manual</comment> <pathToT
 Defaults if installed by composer would be :
 
 pathToTwitterBootstrapSass: ../../../../../../../vendor/twbs/bootstrap-sass
-pathToMopaBootstrapBundle:  vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
+pathToMopaBootstrapBundle:  vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap-sass
 
 EOT
             );
