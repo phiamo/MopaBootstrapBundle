@@ -68,6 +68,14 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 }
                 $options['widget_remove_btn'] = array_replace_recursive($this->options['widget_remove_btn'], $options['widget_remove_btn']);
             }
+
+            if ($options['entry_options'] !== null) {
+                $view->vars['entry_options'] = $options['entry_options'];
+            }
+        }
+
+        if ($view->parent && isset($view->parent->vars['entry_options'])) {
+            $view->vars = array_replace_recursive($view->vars, $view->parent->vars['entry_options']);
         }
 
         $view->vars['omit_collection_item'] = $options['omit_collection_item'];
