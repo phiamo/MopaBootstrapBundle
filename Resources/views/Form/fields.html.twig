@@ -363,7 +363,7 @@
         {{ label|trans({}, translation_domain) }}
         {{- block('label_asterisk') }}
         {% if 'collection' in form.vars.block_prefixes and widget_add_btn|default(null) and form.vars.allow_add == true %}
-            {{ block('form_widget_add_btn') }}
+            &nbsp;{{ block('form_widget_add_btn') }}
         {% endif %}
         {% if help_label %}
             {{ block('help_label') }}
