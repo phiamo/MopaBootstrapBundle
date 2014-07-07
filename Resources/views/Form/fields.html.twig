@@ -558,21 +558,12 @@
         {% if form.parent == null %}
             {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
             {% for error in errors %}
-                {{
-                    flash('danger', error.messagePluralization is null
-                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
-                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-                    )
-                }}
+                {{ flash('danger', error.message) }}
             {% endfor %}
         {% else %}
             <span class="help-{{ block('error_type') }}">
             {% for error in errors %}
-                {{
-                    error.messagePluralization is null
-                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
-                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-                }} <br>
+                {{ error.message }} <br>
             {% endfor %}
             </span>
         {% endif %}
