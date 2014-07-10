@@ -29,7 +29,7 @@
 
         // This must work with "collections" inside "collections", and should
         // select its children, and not the "collection" inside children.
-        var $collection = $('div' + this.options.collection_id);
+        var $collection = $(this.options.collection_id);
 
         // Indexes must be different for every Collection
         if (typeof this.options.index === 'undefined') {
