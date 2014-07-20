@@ -84,12 +84,19 @@ class IconExtension extends \Twig_Extension
      *
      * @return Response
      */
-    public function renderIcon($icon, $inverted = false)
+    public function renderIcon($icon, $inverted = false, $size = false, $fixed_width = false, $list_icon = false, $spin = false, $rotate = false, $flip_horizontal = false, $flip_vertical = false)
     {
         $template = $this->getIconTemplate();
         $context = array(
             'icon' => $icon,
             'inverted' => $inverted,
+            'size' => $size,
+            'fixed_width' => $fixed_width,
+            'list_icon' => $list_icon,
+            'spin' => $spin,
+            'rotate' => $rotate,
+            'flip_horizontal' => $flip_horizontal,
+            'flip_vertical' => $flip_vertical,
         );
 
         return $template->renderBlock($this->iconSet, $context);
