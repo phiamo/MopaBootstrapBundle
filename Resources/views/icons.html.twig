@@ -3,11 +3,7 @@
 {% endmacro %}
 
 {% block fontawesome -%}
-<i class="icon-{{ icon }}{{ inverted ? ' inverted' : '' }}"></i>
-{%- endblock %}
-
-{% block fontawesome4 -%}
-    <i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}"></i>
+    <i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}{{ size ? ' fa-' ~ size : '' }}{{ fixed_width ? ' fa-fw' : '' }}{{ list_icon ? ' fa-li' : '' }}{{ spin ? ' fa-spin' : '' }}{{ rotate and (rotate==90 or rotate==180 or rotate==270) ? ' fa-rotate-' ~ rotate : '' }}{{ flip_horizontal ? ' fa-flip-horizontal' : '' }}{{ flip_vertical ? ' fa-flip-vertical' : '' }}"></i>
 {%- endblock %}
 
 {% block glyphicons -%}
