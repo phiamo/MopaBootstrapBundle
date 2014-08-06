@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 
 {% block html_tag %}
-<html>
+<html lang="{{ app.request.locale }}">
 {% endblock html_tag %}
 
 {% block head %}
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="{{ _charset }}" />
     {% block head_style %}
     {# Override this block to add your own files! #}
     {# To use this without less or sass use the base.html.twig template as your base
