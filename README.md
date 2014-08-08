@@ -27,13 +27,25 @@ BC breaking changes will probably not be ported to 2.3.
 Branches
 --------
 
-To use this bundle with bootstrap 3 use the master branch:
+To use this bundle with bootstrap 3 use the latest release:
 
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-beta3",
-        "twbs/bootstrap": "v3.0.0"
+        "mopa/bootstrap-bundle": "v3.0.0-beta4",
+        "twbs/bootstrap": "v3.2.0"
+    }
+}
+```
+
+If you wish to use the current master branch, then use the following:
+
+
+``` json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-master",
+        "twbs/bootstrap": "dev-master"
     }
 }
 ```
