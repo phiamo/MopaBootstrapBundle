@@ -20,6 +20,7 @@ mopa_bootstrap:
         google:
             wt: 'xxx'
             analytics: 'UA-xxxxxxx-xx'
+	    extendedanalytics: false
         diagnostic_mode: true
 ```
 

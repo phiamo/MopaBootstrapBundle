@@ -85,6 +85,7 @@ mopa_bootstrap:
         google:
             wt:                   ~
             analytics:            ~
+	    extendedanalytics:    false
         diagnostic_mode:      false
 
     flash:
