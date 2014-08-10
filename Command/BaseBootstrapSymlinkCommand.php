@@ -93,12 +93,10 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
      */
     public static function createMirror($symlinkTarget, $symlinkName)
     {
-        $symlinkTarget = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . substr($symlinkTarget, 3) . DIRECTORY_SEPARATOR );
-
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
         $filesystem->mirror(
-            $symlinkTarget,
+            realpath($symlinkName . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $symlinkTarget),
             $symlinkName,
             null,
             array('copy_on_windows' => true, 'delete' => true, 'override' => true)
