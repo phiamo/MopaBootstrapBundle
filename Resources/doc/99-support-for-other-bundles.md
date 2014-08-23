@@ -127,3 +127,6 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 }
 ```
 
+---
+
+<< [Icons](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/6-icons.md)

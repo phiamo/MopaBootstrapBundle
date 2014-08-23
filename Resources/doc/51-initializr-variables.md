@@ -1,5 +1,5 @@
-base_initializr template
-============
+Base initializr template
+========================
 
 Example config
 
@@ -98,3 +98,7 @@ Blocks
     * <span id="content">content</span>
     * <span id="footer">footer</span>
     * <span id="foot_scripts">foot_scripts</span>
+
+---
+
+<< [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) | [Icons](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/6-icons.md) >>

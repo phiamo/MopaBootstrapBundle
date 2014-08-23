@@ -95,3 +95,6 @@ And add this filter to your assetic call:
 
 Please note that you must not use the `@MopaBootstrap/Resources/public/less/mopabootstrapbundle.less` annotation or the css rewrite will fail.
 
+---
+
+<< [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) | [Support for other Bundles](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/99-support-for-other-bundles.md) >>

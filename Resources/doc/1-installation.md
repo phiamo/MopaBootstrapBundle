@@ -193,3 +193,6 @@ Installation
             template: MyBundles:Menu:template.html.twig
     ```
 
+---
+
+[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>
