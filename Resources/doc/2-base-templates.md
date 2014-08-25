@@ -103,3 +103,7 @@ make
 ```
 
 if it doesnt work, why not use the less or sass way?
+
+---
+
+<< [Installation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md) | [Form Extensions](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) >>
