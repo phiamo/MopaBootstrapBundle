@@ -99,7 +99,7 @@
                 }
 
                 if (false !== $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex])) {
-                    row.remove();
+                    row.parentNode.removeChild(row);
                     $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
                 }
             }
