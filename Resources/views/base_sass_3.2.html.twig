@@ -2,9 +2,7 @@
 
 {% block head_style %}
     {# Override this block to add your own files! #}
-    {% stylesheets
-    '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
-    %}
+    {% stylesheets '@bootstrap_sass_stylesheets' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
     {# To use this without less use the base_css.html.twig template as your base
@@ -14,12 +12,7 @@
 {% endblock head_style %}
 
 {% block foot_script_assetic %}
-    {% javascripts
-    '@MopaBootstrapBundle/Resources/public/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js'
-    '@MopaBootstrapBundle/Resources/public/bootstrap-sass/vendor/assets/javascripts/bootstrap/*.js'
-    '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
-    '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
-    %}
+    {% javascripts '@bootstrap_sass_javascripts' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock foot_script_assetic %}
