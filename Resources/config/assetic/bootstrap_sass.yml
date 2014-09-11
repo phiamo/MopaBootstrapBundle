@@ -1,13 +1,13 @@
 assetic:
     assets:
-        bootstrap_sass_stylesheets:
+        bootstrap_css:
             inputs:
                 - "@MopaBootstrapBundle/Resources/public/sass/bootstrap_and_overrides.scss"
                 - "@MopaBootstrapBundle/Resources/public/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap"
                 - "@MopaBootstrapBundle/Resources/public/sass/paginator.scss"
                 - "@MopaBootstrapBundle/Resources/public/sass/collections.scss"
                 - "@MopaBootstrapBundle/Resources/public/sass/form_flow.scss"
-        bootstrap_sass_javascripts:
+        bootstrap_js:
             inputs:
                 - "@MopaBootstrapBundle/Resources/public/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js"
                 - "@MopaBootstrapBundle/Resources/public/bootstrap-sass/vendor/assets/javascripts/bootstrap/*.js"

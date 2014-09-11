@@ -2,7 +2,7 @@
 
 {% block head_style %}
     {# Override this block to add your own files! #}
-    {% stylesheets '@bootstrap_less_stylesheets' %}
+    {% stylesheets '@bootstrap_css' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
     {# To use this without less use the base_css.html.twig template as your base
@@ -12,7 +12,7 @@
 {% endblock head_style %}
 
 {% block foot_script_assetic %}
-    {% javascripts '@bootstrap_less_javascripts' %}
+    {% javascripts '@bootstrap_js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock foot_script_assetic %}

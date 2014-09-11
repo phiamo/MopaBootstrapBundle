@@ -1,6 +1,6 @@
 assetic:
     assets:
-        bootstrap_less_stylesheets:
+        bootstrap_css:
             inputs:
                 - "@MopaBootstrapBundle/Resources/public/bootstrap/less/bootstrap.less"
                 - "@MopaBootstrapBundle/Resources/public/less/paginator.less"
@@ -9,7 +9,7 @@ assetic:
                 - "@MopaBootstrapBundle/Resources/public/less/google-maps.less"
             filters:
                 - less
-        bootstrap_less_javascripts:
+        bootstrap_js:
             inputs:
                 - "@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js"
                 - "@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js"
