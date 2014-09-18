@@ -96,7 +96,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
         $filesystem->mirror(
-            realpath($symlinkTarget . DIRECTORY_SEPARATOR ),
+            realpath($symlinkName . DIRECTORY_SEPARATOR . '..'. DIRECTORY_SEPARATOR . $symlinkTarget),
             $symlinkName,
             null,
             array('copy_on_windows' => true, 'delete' => true, 'override' => true)
