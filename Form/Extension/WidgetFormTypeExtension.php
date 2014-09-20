@@ -85,6 +85,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $resolver->setAllowedValues(array(
             'widget_type' => array(
                 'inline',
+                'inline-btn',
                 '',
             ),
             'widget_checkbox_label' => array(
