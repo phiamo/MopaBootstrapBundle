@@ -504,7 +504,7 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
         <div class="form-group">
             <div class="{{ widget_remove_btn.wrapper_div.class }} col-sm-offset-3">
     {% endif %}
@@ -513,7 +513,7 @@
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
-    {% if widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
             </div>
         </div>
     {% endif %}
@@ -525,7 +525,9 @@
 {% if button_values.icon is not null %}
     {{ mopa_bootstrap_icon(button_values.icon, button_values.icon_inverted|default(false)) }}
 {% endif %}
-{{ button_values.label|trans({}, translation_domain) }}
+{% if button_values.label is defined %}
+    {{ button_values.label|trans({}, translation_domain) }}
+{% endif %}
 </a>
 
 {% endblock collection_button %}
