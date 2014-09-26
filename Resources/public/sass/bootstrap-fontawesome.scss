@@ -13,54 +13,58 @@ $FontAwesomePath:  "/bundles/mopabootstrap/font";
 $icon-font-path:   "/bundles/mopabootstrap/bootstrap/fonts/";
 
 // Core variables and mixins
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/mixins";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-// CSS Reset
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/reset";
+// CSS Reset and dependencies
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/print";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
 
-// Grid system and page structure
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/scaffolding";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/grid";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/layouts";
-
-// Base CSS
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/type";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/code";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/forms";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/tables";
+// Core CSS
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/forms";
 
 // Components: common
 @import "font-awesome/font-awesome";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/dropdowns";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/wells";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/component-animations";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/close";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/close";
+
+// Components: List & input groups
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
 
 // Components: Buttons & Alerts
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/buttons";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/button-groups";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in _buttons.scss
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in _buttons.scss
 
 // Components: Nav
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/navs";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/navbar";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/breadcrumbs";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/pagination";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/pager";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/pager";
 
 // Components: Popovers
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/modals";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/tooltip";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/popovers";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/popovers";
 
 // Components: Misc
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/thumbnails";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/labels-badges";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/progress-bars";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/accordion";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/carousel";
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/hero-unit";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
 
 // Utility classes
-@import "../bootstrap-sass/vendor/assets/stylesheets/bootstrap/utilities"; // Has to be last to override when necessary
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/utilities"; // Has to be last to override when necessary
