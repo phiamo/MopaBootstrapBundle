@@ -366,7 +366,7 @@
         {{ label|trans({}, translation_domain) }}
         {{- block('label_asterisk') }}
         {% if 'collection' in form.vars.block_prefixes and widget_add_btn|default(null) and form.vars.allow_add == true %}
-            {{ block('form_widget_add_btn') }}
+            &nbsp;{{ block('form_widget_add_btn') }}
         {% endif %}
         {% if help_label %}
             {{ block('help_label') }}
@@ -504,17 +504,19 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
-        <div class="form-group">
-            <div class="{{ widget_remove_btn.wrapper_div.class }} col-sm-offset-3">
+    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+        <div class="{{ widget_remove_btn.wrapper_div.class }}">
+    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+        <div class="{{ widget_remove_btn.horizontal_wrapper_div.class }}">
     {% endif %}
     {% if widget_remove_btn|default(null) %}
     {% set button_type = 'remove' %}
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
-    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
-            </div>
+    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+        </div>
+    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
         </div>
     {% endif %}
 {% endspaceless %}
