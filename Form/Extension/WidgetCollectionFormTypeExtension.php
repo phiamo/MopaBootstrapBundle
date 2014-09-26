@@ -62,7 +62,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
                 throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
             }
 
-            if ((isset($options['allow_delete']) && true === $options['allow_delete']) && $options['widget_remove_btn']) {
+            if ((isset($view->parent->vars['allow_delete']) && true === $view->parent->vars['allow_delete']) && $options['widget_remove_btn']) {
                 if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
                     throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
                 }
