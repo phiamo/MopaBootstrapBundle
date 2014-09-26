@@ -177,57 +177,81 @@
 {% endspaceless %}
 {% endblock collection_widget %}
 
+
 {% block choice_widget_expanded %}
-{% spaceless %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
-    {% if expanded %}
-        {% set attr = attr|merge({'class': attr.class|default(horizontal_input_wrapper_class)}) %}
-    {% endif %}
-    {% for child in form %}
-        {% if widget_type != 'inline' %}
-        <div class="{{ multiple ? 'checkbox' : 'radio' }}">
+    {% spaceless %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
+        {% if expanded %}
+            {% set attr = attr|merge({'class': attr.class|default(horizontal_input_wrapper_class)}) %}
         {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-                {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('')}}) }}
+        {% if widget_type == 'inline-btn' %}
+            <div class="btn-group" data-toggle="buttons">
+        {% endif %}
+        {% for child in form %}
+            {% if not widget_type in ['inline', 'inline-btn'] %}
+                <div class="{{ multiple ? 'checkbox' : 'radio' }}"
+                {%- if widget_type == 'inline-btn' %} class="btn-group" data-toggle="buttons"{% endif %}>
+            {% endif %}
+            {% if widget_type == 'inline-btn' %}
+                {% set label_attr = attr|default({})|merge({'class': 'btn ' ~ attr.class|default('')}) %}
+            {% endif %}
+            {% if child.vars.checked and widget_type == 'inline-btn' %}
+                {% set label_attr_copy = label_attr|default({})|merge({'class': 'active ' ~ label_attr.class|default('')}) %}
+            {% else %}
+                {% set label_attr_copy = label_attr|default({}) %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr_copy %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('') }}) }}
+            {% if widget_type == 'inline-btn' %}
+                {{ child.vars.label|trans({}, translation_domain)|raw }}
+            {% else %}
                 {{ child.vars.label|trans({}, translation_domain) }}
+            {% endif %}
             </label>
-        {% if widget_type != 'inline' %}
-        </div>
+            {% if not widget_type in ['inline', 'inline-btn'] %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% if widget_type == 'inline-btn' %}
+            </div>
         {% endif %}
-    {% endfor %}
-{% endspaceless %}
+    {% endspaceless %}
 {% endblock choice_widget_expanded %}
-
 {% block checkbox_widget %}
-{% spaceless %}
-{% if label is not sameas(false) and label is empty %}
-    {% set label = name|humanize %}
-{% endif %}
-{% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
-    <div class="checkbox">
-{% endif %}
-
-{% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
-    <label {% if not horizontal %}class="checkbox-inline"{% endif %}>
-{% endif %}
+    {% spaceless %}
+        {% if label is not sameas(false) and label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
+            <div
+            {%- if widget_type == 'inline-btn' %} class="btn-group" data-toggle="buttons"
+            {%- else %} class="checkbox"
+            {%- endif %}>
+        {% endif %}
+        {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
+            {% if widget_type == 'inline-btn' %}
+                {% set label_attr = attr|default({}) %}
+                {% if checked %}
+                    {% set label_attr = label_attr|merge({'class': 'active ' ~ attr.class|default('')}) %}
+                {% endif %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
+            {%- if not horizontal %} class="checkbox-inline"{% endif %}>
+        {% endif %}
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
-{% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
-    {% if label_render %}
-        {% if widget_checkbox_label in ['both', 'widget'] %}
-            {{ label|trans({}, translation_domain) }}
-        {% elseif widget_checkbox_label == 'label' %}
-            &nbsp;
-        {% else %}
-        {%- endif %}
-    </label>
-    {% endif %}
-{% endif %}
-
-{% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
-    </div>
-{% endif %}
-{% endspaceless %}
+        {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
+            {% if label_render %}
+                {% if widget_checkbox_label in ['both', 'widget'] %}
+                    {{ label|trans({}, translation_domain)|raw }}
+                {% endif %}
+                </label>
+            {% endif %}
+        {% endif %}
+        {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
 {% endblock checkbox_widget %}
 
 {% block date_widget %}
