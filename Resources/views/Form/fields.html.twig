@@ -2,7 +2,7 @@
 
 {# Buttons #}
 {% block button_attributes %}
-    {% set attr = attr|merge({class: 'btn ' ~ attr.class | default("")}) %}
+    {% set attr = attr|merge({class: 'btn ' ~ attr.class | default("btn-default")}) %}
     {{ parent() }}
 {% endblock button_attributes %}
 
