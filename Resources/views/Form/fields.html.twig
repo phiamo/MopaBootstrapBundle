@@ -216,7 +216,7 @@
     {% if label_render %}
         {% if widget_checkbox_label in ['both', 'widget'] %}
             {{ label|trans({}, translation_domain) }}
-        {% if widget_checkbox_label == 'label' %}
+        {% elseif widget_checkbox_label == 'label' %}
             &nbsp;
         {% else %}
         {%- endif %}
