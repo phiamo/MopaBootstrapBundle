@@ -16,6 +16,7 @@ Recent BC breaks:
 
  * dc4fd12: [BC Break] Removed inline completely 
  * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
+ * eb9166f: Pass options in `mopa_bootstrap_render` to the menu provider (unlikely BC)
 
 
 BS3 (master branch of this bundle) is nearly stable see [Beta-4](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta4)
