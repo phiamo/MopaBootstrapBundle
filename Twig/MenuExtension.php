@@ -89,7 +89,7 @@ class MenuExtension extends \Twig_Extension
                 $menu = array_shift($path);
             }
 
-            $menu = $this->helper->get($menu, $path);
+            $menu = $this->helper->get($menu, $path, $options);
         }
 
         $menu = $this->helper->get($menu, array(), $options);
