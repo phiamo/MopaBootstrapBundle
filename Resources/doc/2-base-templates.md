@@ -72,7 +72,7 @@ If you are using Sass just include your.scss instead
 {% endstylesheets %}
 ```
 
-Depending on where you your bundle exacly resides (e.g. Your\Smthbundle or Your\Bundle\SmthBundle)
+Depending on where your bundle exacly resides (e.g. Your\Smthbundle or Your\Bundle\SmthBundle)
 you need to adapt the path ( ../ ):
 
 ``` css
