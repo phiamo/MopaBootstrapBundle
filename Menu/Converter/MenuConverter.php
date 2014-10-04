@@ -120,9 +120,9 @@ class MenuConverter
     protected function getChildOptions(ItemInterface $item, array $options)
     {
         $childOptions = array();
-        
+
         $hasChildren = $item->hasChildren() && (!isset($options['depth']) || $options['depth'] > $item->getLevel());
-        
+
         if (in_array($options['automenu'], array('navbar')) && $hasChildren) {
             $childOptions = array(
                 'dropdown' => !isset($options['dropdown']) || $options['dropdown'],

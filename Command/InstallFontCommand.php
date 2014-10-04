@@ -24,7 +24,7 @@ use Mopa\Bridge\Composer\Util\ComposerPathFinder;
  */
 class InstallFontCommand extends ContainerAwareCommand
 {
-    static $iconSetsPaths = array(
+    public static $iconSetsPaths = array(
         "glyphicons" => "bootstrap/fonts",
         "fontawesome" => "fonts/fa",
         "fontawesome4" => "fonts/fa4"
@@ -81,7 +81,7 @@ EOT
         $output->writeln("Font: ".$iconSet." Installed... <info>OK</info>");
 
     }
-    public static function installFonts(){
-
+    public static function installFonts()
+    {
     }
 }

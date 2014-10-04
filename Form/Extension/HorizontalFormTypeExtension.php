@@ -82,7 +82,7 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
                 $child->vars['horizontal'] = $view->vars['horizontal'];
             }
 
-            if (count($view->children) > 0){
+            if (count($view->children) > 0) {
                 $this->setChildrenHorizontal($child);
             }
         }
