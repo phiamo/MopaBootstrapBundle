@@ -22,16 +22,16 @@ Depends on what you want to achieve, and what your knowledge is:
 the recommended way would be to install less.
   You probably should invest the time to get a working setup, and  after that relax, and see less beeing integrated well, and providing what it should.
 
-- If you dont feel comfortable to install adittional software and maintain them, and you are not experienced in less, probabaly you could start with css version.
+- If you dont feel comfortable to install additional software and maintain them, and you are not experienced in less, probabaly you could start with css version.
 
 But be warned:
 
 Since less is THE recommended way of working with bootstrap, all css specific instructions may work well or not.
-They have a least been tested once and worked in this scenario.
+They have at least been tested once and worked in this scenario.
 
-The less way is tested dayly and works out to be a flexible fast way of working with all the (also less) dependencies.
+The less way is tested daily and works out to be a flexible fast way of working with all the (also less) dependencies.
 
-For getting less working, there are seceral documents provided, so the focus here is on the css way:
+For getting less working, there are several documents provided, so the focus here is on the css way:
 
 This is how it could be done without using less features:
 hear is a sniplet that is known to be working and was tested
