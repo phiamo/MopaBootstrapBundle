@@ -89,6 +89,7 @@ assetic:
         less:
             node: /usr/bin/node
             node_paths: [/opt/lessc/lib, /usr/lib/node_modules] 
+            apply_to: "\.less$"
     # more to be here, truncated...
 
 ```
