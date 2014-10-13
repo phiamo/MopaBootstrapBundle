@@ -69,11 +69,11 @@
                 prototype_label = '__name__label__';
             }
 
-            var name_replace_pattern = new RegExp(prototype_name, 'g');
-            var label_replace_pattern = new RegExp(prototype_label, 'g');
+            var name_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_name + ")", 'ig');
+            var label_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_label + ")", 'ig');
             var rowContent = $collection.attr('data-prototype')
-                    .replace(label_replace_pattern, index)
-                    .replace(name_replace_pattern, index);
+                    .replace(label_replace_pattern, "$1" + index)
+                    .replace(name_replace_pattern, "$1" + index);
             var row = $(rowContent);
             if (false !== $(window).triggerHandler('before-add.mopa-collection-item', [$collection, row, index])) {
                 $collection.append(row);
