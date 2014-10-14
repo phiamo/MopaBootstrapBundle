@@ -189,7 +189,7 @@
             <div class="btn-group" data-toggle="buttons">
         {% endif %}
         {% for child in form %}
-            {% if not widget_type in ['inline', 'inline-btn'] %}
+            {% if widget_type not in ['inline', 'inline-btn'] %}
                 <div class="{{ multiple ? 'checkbox' : 'radio' }}"
                 {%- if widget_type == 'inline-btn' %} class="btn-group" data-toggle="buttons"{% endif %}>
             {% endif %}
@@ -209,7 +209,7 @@
                 {{ child.vars.label|trans({}, translation_domain) }}
             {% endif %}
             </label>
-            {% if not widget_type in ['inline', 'inline-btn'] %}
+            {% if widget_type not in ['inline', 'inline-btn'] %}
                 </div>
             {% endif %}
         {% endfor %}
