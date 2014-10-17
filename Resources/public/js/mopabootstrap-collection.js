@@ -44,6 +44,9 @@
     Collection.prototype = {
         constructor: Collection,
         add: function () {
+            if (typeof this.options.max == 'number' && this.getItems().length >= this.options.max) {
+                return;
+            }
             // this leads to overriding items
             this.options.index[this.options.collection_id] = this.options.index[this.options.collection_id] + 1;
             var index = this.options.index[this.options.collection_id];
@@ -129,11 +132,9 @@
 
             return items[index];
         },
-        getItems: function (index) {
+        getItems: function () {
             var $collection = $(this.options.collection_id);
-            var items = $collection.children();
-
-            return items;
+            return $collection.children();
         }
     };
 
@@ -182,7 +183,7 @@
             if (option == 'getItems') {
                 returnval = data.getItems();
             }
-            if (coll_args.length > 2 && typeof coll_args[2] == 'function') {
+            if (coll_args.length > 1 && typeof coll_args[2] == 'function') {
                 coll_args[2].call(this, returnval);
             }
         });
@@ -192,7 +193,8 @@
         collection_id: null,
         initial_size: 0,
         addcheckfunc: false,
-        addfailedfunc: false
+        addfailedfunc: false,
+        max: false
     };
 
     $.fn.collection.Constructor = Collection;
@@ -209,8 +211,8 @@
             }
             $btn.collection('add');
             e.preventDefault();
-        });
-        $('body').on('click.collection.data-api', '[data-collection-remove-btn]', function (e) {
+        })
+        .on('click.collection.data-api', '[data-collection-remove-btn]', function (e) {
             var $btn = $(e.target);
 
             if (! $btn.hasClass('btn')) {
