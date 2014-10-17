@@ -39,7 +39,7 @@
             this.options.initial_size = $collection.children().size();
         }
 
-        this.options.index[this.options.collection_id] = this.options.initial_size;
+        this.options.index[this.options.collection_id] = this.options.initial_size - 1;
     };
     Collection.prototype = {
         constructor: Collection,
@@ -74,10 +74,11 @@
             var rowContent = $collection.attr('data-prototype')
                     .replace(label_replace_pattern, "$1" + index)
                     .replace(name_replace_pattern, "$1" + index);
-            var row = $(rowContent);
-            if (false !== $(window).triggerHandler('before-add.mopa-collection-item', [$collection, row, index])) {
-                $collection.append(row);
-                $(window).triggerHandler('add.mopa-collection-item', [$collection, row, index])
+            var $row = $(rowContent);
+
+            if (false !== $(window).triggerHandler('before-add.mopa-collection-item', [$collection, $row, index])) {
+                $collection.append($row);
+                $(window).triggerHandler('add.mopa-collection-item', [$collection, $row, index])
             }
         },
         remove: function (row) {
