@@ -100,6 +100,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
                     'label' => $child->vars['label'],
                     'icon' => $child->vars['icon'],
                     'active' => false,
+                    'disabled' => $child->vars['disabled'],
                     'translation_domain' => $child->vars['translation_domain'],
                 );
 

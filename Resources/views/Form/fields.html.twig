@@ -128,7 +128,8 @@
 {% spaceless %}
 <ul class="{{ form.vars.attr.class }}">
     {% for tab in form.vars.tabs %}
-        <li{% if tab.active %} class="active"{% endif %}>
+        {% set class = (tab.active ? 'active ' : '') ~ (tab.disabled ? 'disabled' : '') %}
+        <li{% if class|trim is not empty %} class="{{ class }}"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
                 {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
                 {{ tab.label|trans({}, tab.translation_domain) }}
