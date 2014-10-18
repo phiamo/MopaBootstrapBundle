@@ -219,6 +219,7 @@
         {% endif %}
     {% endspaceless %}
 {% endblock choice_widget_expanded %}
+
 {% block checkbox_widget %}
     {% spaceless %}
         {% if label is not sameas(false) and label is empty %}
@@ -245,6 +246,8 @@
             {% if label_render %}
                 {% if widget_checkbox_label in ['both', 'widget'] %}
                     {{ label|trans({}, translation_domain)|raw }}
+                {% else %}
+                    {{ block('form_help') }}
                 {% endif %}
                 </label>
             {% endif %}
@@ -508,7 +511,10 @@
 {% block form_message %}
 {% spaceless %}
     {{ form_errors(form) }}
+    {# certain cases require to have the help somewhere else in dom, is there any better place or way to handle this? #}
+    {% if not(widget_checkbox_label == 'label' and help_block) %}
     {{ block('form_help') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_message %}
 
