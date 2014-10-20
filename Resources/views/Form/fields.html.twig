@@ -425,7 +425,7 @@
                 {{ mopa_bootstrap_icon(help_label_tooltip.icon) }}
             {% endif %}
             {% if help_label_tooltip.text is not sameas(null) %}
-            {{ help_label_tooltip.text }}
+                {{ help_label_tooltip.text }}
             {% endif %}
         </a>
     </span>
@@ -433,12 +433,12 @@
 
 {% block help_label_popover %}
     <span class="help-block">
-        <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" >
+        <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" data-html="true">
             {% if help_label_popover.icon is not sameas(false) %}
                 {{ mopa_bootstrap_icon(help_label_popover.icon) }}
             {% endif %}
             {% if help_label_popover.text is not sameas(null) %}
-            {{ help_label_popover.text }}
+                {{ help_label_popover.text }}
             {% endif %}
         </a>
     </span>
