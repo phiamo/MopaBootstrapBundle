@@ -87,6 +87,48 @@ class HelpFormTypeExtension extends AbstractTypeExtension
                 $options['help_label_popover']['placement'] = $this->options['help_label_popover']['placement'];
             }
         }
+        
+        if (null !== $options['help_block_tooltip'] && !is_array($options['help_block_tooltip'])) {
+            throw new InvalidArgumentException('The "help_block_tooltip" option must be an "array".');
+        }
+        
+        if ($options['help_block_tooltip']) {
+            if (!isset($options['help_block_tooltip']['title'])) {
+                $options['help_block_tooltip']['title'] = $this->options['help_block_tooltip']['title'];
+            }
+            if (!isset($options['help_block_tooltip']['text'])) {
+                $options['help_block_tooltip']['text'] = $this->options['help_block_tooltip']['text'];
+            }
+            if (!isset($options['help_block_tooltip']['icon'])) {
+                $options['help_block_tooltip']['icon'] = $this->options['help_block_tooltip']['icon'];
+            }
+            if (!isset($options['help_block_tooltip']['placement'])) {
+                $options['help_block_tooltip']['placement'] = $this->options['help_block_tooltip']['placement'];
+            }
+
+        }
+
+        if (null !== $options['help_block_popover'] && !is_array($options['help_block_popover'])) {
+            throw new InvalidArgumentException('The "help_block_popover" option must be an "array".');
+        }
+
+        if ($options['help_block_popover']) {
+            if (!isset($options['help_block_popover']['title'])) {
+                $options['help_block_popover']['title'] = $this->options['help_block_popover']['title'];
+            }
+            if (!isset($options['help_block_popover']['text'])) {
+                $options['help_block_popover']['text'] = $this->options['help_block_popover']['text'];
+            }
+            if (!isset($options['help_block_popover']['content'])) {
+                $options['help_block_popover']['content'] = $this->options['help_block_popover']['content'];
+            }
+            if (!isset($options['help_block_popover']['icon'])) {
+                $options['help_block_popover']['icon'] = $this->options['help_block_popover']['icon'];
+            }
+            if (!isset($options['help_block_popover']['placement'])) {
+                $options['help_block_popover']['placement'] = $this->options['help_block_popover']['placement'];
+            }
+        }
 
         if (null !== $options['help_widget_popover'] && !is_array($options['help_widget_popover'])) {
             throw new InvalidArgumentException('The "help_widget_popover" option must be an "array".');
@@ -115,6 +157,8 @@ class HelpFormTypeExtension extends AbstractTypeExtension
 
         $view->vars['help_label_tooltip'] = $options['help_label_tooltip'];
         $view->vars['help_label_popover'] = $options['help_label_popover'];
+        $view->vars['help_block_tooltip'] = $options['help_block_tooltip'];
+        $view->vars['help_block_popover'] = $options['help_block_popover'];
         $view->vars['help_widget_popover'] = $options['help_widget_popover'];
     }
 
@@ -128,6 +172,8 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             'help_label' => null,
             'help_label_tooltip' => $this->options['help_label_tooltip'],
             'help_label_popover' => $this->options['help_label_popover'],
+            'help_block_tooltip' => $this->options['help_block_tooltip'],
+            'help_block_popover' => $this->options['help_block_popover'],
             'help_widget_popover' => $this->options['help_widget_popover']
         ));
     }

@@ -431,6 +431,11 @@
     </span>
 {% endblock help_label_tooltip %}
 
+{% block help_block_tooltip %}
+    {% set help_label_tooltip = help_block_tooltip %}
+    {{ block('help_label_tooltip') }}
+{% endblock help_block_tooltip %}
+
 {% block help_label_popover %}
     <span class="help-block">
         <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" >
@@ -443,6 +448,11 @@
         </a>
     </span>
 {% endblock help_label_popover %}
+
+{% block help_block_popover %}
+    {% set help_label_popover = help_block_popover %}
+    {{ block('help_label_popover') }}
+{% endblock help_block_popover %}
 
 {% block form_actions_widget %}
     {% for button in form.children %}
@@ -522,7 +532,13 @@
 
 {% block form_help %}
 {% spaceless %}
-{% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
+    {% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
+    {% if help_block_tooltip.title %}
+        &nbsp;{{ block('help_block_tooltip') }}
+    {% endif %}
+    {% if help_label_popover.title %}
+        &nbsp;{{ block('help_block_popover') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_help %}
 
