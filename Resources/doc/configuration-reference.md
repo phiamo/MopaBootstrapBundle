@@ -42,6 +42,7 @@ mopa_bootstrap:
                 icon:                 info-sign
                 placement:            top
         collection:
+            entry_options:            ~
             widget_remove_btn:
                 attr:
                     class:                btn btn-default
