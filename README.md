@@ -39,6 +39,17 @@ To use this bundle with bootstrap 3 use the latest release:
 }
 ```
 
+To use this bundle with bootstrap SASS with the current master branch:
+
+``` json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-master",
+        "twbs/bootstrap-sass": "3.3.*@dev"
+    }
+}
+```
+
 If you wish to use the current master branch, then use the following:
 
 
