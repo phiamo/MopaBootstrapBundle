@@ -30,7 +30,7 @@
     {% endblock head_script %}
 
     <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    {% block favicon %}<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />{% endblock %}
     {% block head_bottom %}
     {% endblock head_bottom %}
 </head>
