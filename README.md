@@ -45,7 +45,7 @@ To use this bundle with bootstrap SASS with the current master branch:
 {
     "require": {
         "mopa/bootstrap-bundle": "v3.0.0-beta4",
-        "twbs/bootstrap-sass": "3.3.*@dev"
+        "twbs/bootstrap-sass": "~3.3.0"
     }
 }
 ```
