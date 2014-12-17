@@ -56,7 +56,7 @@ class MenuExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'mopa_bootstrap_menu' => new \Twig_Function_Method($this, 'renderMenu', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('mopa_bootstrap_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
         );
     }
 
