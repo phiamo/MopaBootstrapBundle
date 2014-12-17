@@ -301,7 +301,9 @@
     {% set attr = attr|merge({'class': attr.class|default('')}) %}
     {% spaceless %}
     {{ form_widget(form.hour, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
-    {{ form_widget(form.minute, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
+    {% if with_minutes %}
+        {{ form_widget(form.minute, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
+    {% endif %}
     {% if with_seconds %}
         :{{ form_widget(form.second, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2') }) }}
     {% endif %}
