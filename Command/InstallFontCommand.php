@@ -27,7 +27,7 @@ class InstallFontCommand extends ContainerAwareCommand
     public static $iconSetsPaths = array(
         "glyphicons" => "bootstrap/fonts",
         "fontawesome" => "fonts/fa",
-        "fontawesome4" => "fonts/fa4"
+        "fontawesome4" => "fonts/fa4",
     );
     /**
      * {@inheritdoc}
@@ -52,9 +52,9 @@ EOT
 
         $iconSet = $this->getContainer()->getParameter('mopa_bootstrap.icons.icon_set');
 
-        $webPath = $this->getContainer()->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'web';
+        $webPath = $this->getContainer()->get('kernel')->getRootDir().DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web';
 
-        $iconWebPath = $webPath . DIRECTORY_SEPARATOR . "fonts";
+        $iconWebPath = $webPath.DIRECTORY_SEPARATOR."fonts";
 
         $fs = new Filesystem();
 
@@ -70,16 +70,15 @@ EOT
 
         $bsbPath = $composer->getInstallationManager()->getInstallPath($sourcePackage);
 
-        $iconSetPath = $bsbPath . DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR . self::$iconSetsPaths[$iconSet];
+        $iconSetPath = $bsbPath.DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR.self::$iconSetsPaths[$iconSet];
 
         $finder->files()->in($iconSetPath);
 
         foreach ($finder as $file) {
-            $fs->copy($file->getRealpath(), $iconWebPath . DIRECTORY_SEPARATOR . $file->getRelativePathname());
+            $fs->copy($file->getRealpath(), $iconWebPath.DIRECTORY_SEPARATOR.$file->getRelativePathname());
         }
 
         $output->writeln("Font: ".$iconSet." Installed... <info>OK</info>");
-
     }
     public static function installFonts()
     {

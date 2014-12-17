@@ -101,11 +101,11 @@ class MenuConverter
     protected function getRootOptions(array $options)
     {
         if (!in_array($options["automenu"], $this->possibleNavs)) {
-            throw new \RuntimeException("Value 'automenu' is '" . $options["automenu"] . "' not one of " . implode("', '", $this->possibleNavs));
+            throw new \RuntimeException("Value 'automenu' is '".$options["automenu"]."' not one of ".implode("', '", $this->possibleNavs));
         }
 
         return array_merge($options, array(
-            $options["automenu"] => true // navbar, pills etc => true
+            $options["automenu"] => true, // navbar, pills etc => true
         ));
     }
 

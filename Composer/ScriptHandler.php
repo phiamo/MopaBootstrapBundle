@@ -30,7 +30,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
             'targetSuffix' => self::getTargetSuffix(),
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
@@ -38,9 +38,9 @@ class ScriptHandler
             $options
         );
 
-        $IO->write("Checking Symlink", FALSE);
+        $IO->write("Checking Symlink", false);
         if (false === BootstrapSymlinkLessCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
-            $IO->write("Creating Symlink: " . $symlinkName, FALSE);
+            $IO->write("Creating Symlink: ".$symlinkName, false);
             BootstrapSymlinkLessCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
@@ -53,7 +53,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
             'targetSuffix' =>  self::getTargetSuffix(),
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
@@ -61,9 +61,9 @@ class ScriptHandler
             $options
         );
 
-        $IO->write("Checking Mirror", FALSE);
+        $IO->write("Checking Mirror", false);
         if (false === BootstrapSymlinkLessCommand::checkSymlink($symlinkTarget, $symlinkName)) {
-            $IO->write("Creating Mirror: " . $symlinkName, FALSE);
+            $IO->write("Creating Mirror: ".$symlinkName, false);
             BootstrapSymlinkLessCommand::createMirror($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
@@ -76,7 +76,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
             'targetSuffix' =>  self::getTargetSuffix('-sass'),
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
@@ -84,9 +84,9 @@ class ScriptHandler
             $options
         );
 
-        $IO->write("Checking Symlink", FALSE);
+        $IO->write("Checking Symlink", false);
         if (false === BootstrapSymlinkSassCommand::checkSymlink($symlinkTarget, $symlinkName, true)) {
-            $IO->write(" ... Creating Symlink: " . $symlinkName, FALSE);
+            $IO->write(" ... Creating Symlink: ".$symlinkName, false);
             BootstrapSymlinkSassCommand::createSymlink($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
@@ -99,7 +99,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = array(
             'targetSuffix' =>  self::getTargetSuffix('-sass'),
-            'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
@@ -107,9 +107,9 @@ class ScriptHandler
             $options
         );
 
-        $IO->write("Checking Mirror", FALSE);
+        $IO->write("Checking Mirror", false);
         if (false === BootstrapSymlinkSassCommand::checkSymlink($symlinkTarget, $symlinkName)) {
-            $IO->write(" ... Creating Mirror: " . $symlinkName, FALSE);
+            $IO->write(" ... Creating Mirror: ".$symlinkName, false);
             BootstrapSymlinkSassCommand::createMirror($symlinkTarget, $symlinkName);
         }
         $IO->write(" ... <info>OK</info>");
@@ -117,6 +117,6 @@ class ScriptHandler
 
     protected static function getTargetSuffix($end = "")
     {
-        return DIRECTORY_SEPARATOR . "Resources" . DIRECTORY_SEPARATOR . "public". DIRECTORY_SEPARATOR . "bootstrap" . $end;
+        return DIRECTORY_SEPARATOR."Resources".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."bootstrap".$end;
     }
 }

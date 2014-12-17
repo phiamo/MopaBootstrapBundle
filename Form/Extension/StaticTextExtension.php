@@ -23,7 +23,6 @@ use Symfony\Component\Form\FormView;
  */
 class StaticTextExtension extends AbstractTypeExtension
 {
-
     /**
      * {@inheritdoc}
      */

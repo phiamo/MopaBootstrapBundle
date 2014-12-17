@@ -39,7 +39,7 @@ class DatetimeTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setOptional(array(
-            'datetimepicker'
+            'datetimepicker',
         ));
     }
 

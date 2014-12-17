@@ -63,7 +63,7 @@ class InitializrTwigExtension extends \Twig_Extension
             'dns_prefetch'      => $dnsPrefetch,
             'meta'              => $meta,
             'google'            => $google,
-            'diagnostic_mode'   => $diagnosticMode
+            'diagnostic_mode'   => $diagnosticMode,
         );
     }
 

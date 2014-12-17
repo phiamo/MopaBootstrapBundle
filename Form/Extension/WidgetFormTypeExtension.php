@@ -78,7 +78,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_type' => '',
             'widget_items_attr' => array(),
             'widget_form_group_attr' => array(
-                'class' => 'form-group'
+                'class' => 'form-group',
             ),
             'widget_checkbox_label' => $this->options['checkbox_label'],
         ));
@@ -92,7 +92,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'label',
                 'widget',
                 'both',
-            )
+            ),
         ));
     }
 

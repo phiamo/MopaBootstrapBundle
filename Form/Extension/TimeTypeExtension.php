@@ -39,7 +39,7 @@ class TimeTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setOptional(array(
-            'timepicker'
+            'timepicker',
         ));
     }
 

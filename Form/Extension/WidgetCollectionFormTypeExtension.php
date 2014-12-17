@@ -85,7 +85,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
             'widget_add_btn' => $this->options['widget_add_btn'],
             'widget_remove_btn' => $this->options['widget_remove_btn'],
-            'prototype_names' => array()
+            'prototype_names' => array(),
         ));
     }
 

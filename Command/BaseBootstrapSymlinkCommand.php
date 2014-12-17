@@ -46,7 +46,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     {
         if ($forceSymlink && file_exists($symlinkName) && !is_link($symlinkName)) {
             if ("link" != filetype($symlinkName)) {
-                throw new \Exception($symlinkName . " exists and is no link!");
+                throw new \Exception($symlinkName." exists and is no link!");
             }
         } elseif (is_link($symlinkName)) {
             $linkTarget = readlink($symlinkName);
@@ -76,7 +76,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     public static function createSymlink($symlinkTarget, $symlinkName)
     {
         if (false === @symlink($symlinkTarget, $symlinkName)) {
-            throw new \Exception("An error occurred while creating symlink" . $symlinkName);
+            throw new \Exception("An error occurred while creating symlink".$symlinkName);
         }
         if (false === $target = readlink($symlinkName)) {
             throw new \Exception("Symlink $symlinkName points to target $target");
@@ -96,7 +96,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
         $filesystem->mirror(
-            realpath($symlinkName . DIRECTORY_SEPARATOR . '..'. DIRECTORY_SEPARATOR . $symlinkTarget),
+            realpath($symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget),
             $symlinkName,
             null,
             array('copy_on_windows' => true, 'delete' => true, 'override' => true)
@@ -109,11 +109,11 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setDescription("Check and if possible install symlink to " . static::$targetSuffix)
-            ->addArgument('pathTo' . static::$pathName, InputArgument::OPTIONAL, 'Where is twitters/bootstrap located?')
+            ->setDescription("Check and if possible install symlink to ".static::$targetSuffix)
+            ->addArgument('pathTo'.static::$pathName, InputArgument::OPTIONAL, 'Where is twitters/bootstrap located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
-            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo' . static::$pathName . ', and pathToMopaBootstrapBundle')
+            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo'.static::$pathName.', and pathToMopaBootstrapBundle')
             ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.');
     }
 
@@ -138,8 +138,8 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             $targetPath = $this->getContainer()->getParameter("mopa_bootstrap.bootstrap.install_path");
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
-                    'targetSuffix' => DIRECTORY_SEPARATOR . $targetPath . static::$targetSuffix,
-                    'sourcePrefix' => '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+                    'targetSuffix' => DIRECTORY_SEPARATOR.$targetPath.static::$targetSuffix,
+                    'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
             );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
                 self::$mopaBootstrapBundleName,
@@ -160,16 +160,16 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
                 $this->output->writeln(" ... <comment>symlink already exists</comment>");
             } else {
                 $this->output->writeln(" ... <comment>not existing</comment>");
-                $this->output->writeln("Mirroring from: " . $symlinkName);
-                $this->output->write("for target: " . $symlinkTarget);
+                $this->output->writeln("Mirroring from: ".$symlinkName);
+                $this->output->write("for target: ".$symlinkTarget);
                 self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
             $this->output->write("Checking symlink");
             if (false === self::checkSymlink($symlinkTarget, $symlinkName, true)) {
                 $this->output->writeln(" ... <comment>not existing</comment>");
-                $this->output->writeln("Creating symlink: " . $symlinkName);
-                $this->output->write("for target: " . $symlinkTarget);
+                $this->output->writeln("Creating symlink: ".$symlinkName);
+                $this->output->write("for target: ".$symlinkTarget);
                 self::createSymlink($symlinkTarget, $symlinkName);
             }
         }
@@ -179,7 +179,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
 
     protected function getBootstrapPathsFromUser()
     {
-        $symlinkTarget = $this->input->getArgument('pathTo' . static::$pathName);
+        $symlinkTarget = $this->input->getArgument('pathTo'.static::$pathName);
         $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
 
         if (empty($symlinkName)) {
@@ -187,25 +187,25 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         }
 
         if (!is_dir(dirname($symlinkName))) {
-            throw new \Exception("pathToMopaBootstrapBundle: " . dirname($symlinkName) . " does not exist");
+            throw new \Exception("pathToMopaBootstrapBundle: ".dirname($symlinkName)." does not exist");
         }
 
         if (empty($symlinkTarget)) {
-            throw new \Exception(static::$pathName . " not specified");
+            throw new \Exception(static::$pathName." not specified");
         }
 
         if (substr($symlinkTarget, 0, 1) == "/") {
             $this->output->writeln("<comment>Try avoiding absolute paths, for portability!</comment>");
             if (!is_dir($symlinkTarget)) {
-                throw new \Exception("Target path " . $symlinkTarget . "is not a directory!");
+                throw new \Exception("Target path ".$symlinkTarget."is not a directory!");
             }
         } else {
-            $resolve = $symlinkName . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . $symlinkTarget;
+            $resolve = $symlinkName.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR.$symlinkTarget;
             $symlinkTarget = self::getAbsolutePath($resolve);
         }
 
         if (!is_dir($symlinkTarget)) {
-            throw new \Exception(static::$pathName . " would resolve to: " . $symlinkTarget . "\n and this is not reachable from \npathToMopaBootstrapBundle: " . dirname($symlinkName));
+            throw new \Exception(static::$pathName." would resolve to: ".$symlinkTarget."\n and this is not reachable from \npathToMopaBootstrapBundle: ".dirname($symlinkName));
         }
 
         $dialog = $this->getHelperSet()->get('dialog');
