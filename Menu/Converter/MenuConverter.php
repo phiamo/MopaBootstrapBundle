@@ -83,7 +83,7 @@ class MenuConverter
             $childOptions = $this->decorator->buildOptions($autoChildOptions);
 
             $this->decorator->buildItem($child, $childOptions);
-            if (isset($option['autochilds']) && $option['autochilds']) {
+            if (isset($options['autochilds']) && $options['autochilds']) {
                 $this->convertChildren($child, $options);
             }
         }
