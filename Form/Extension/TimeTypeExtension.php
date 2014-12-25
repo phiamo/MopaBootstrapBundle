@@ -28,8 +28,11 @@ class TimeTypeExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if ('single_text' === $options['widget'] && isset($options['timepicker'])) {
-            $view->vars['timepicker'] = $options['timepicker'];
+        if ('single_text' === $options['widget']){
+            if (isset($options['timepicker']))
+                $view->vars['timepicker'] = $options['timepicker'];
+            if (isset($options['with_remove_icon']))
+                $view->vars['with_remove_icon'] = $options['with_remove_icon'];
         }
     }
 
@@ -40,6 +43,7 @@ class TimeTypeExtension extends AbstractTypeExtension
     {
         $resolver->setOptional(array(
             'timepicker',
+            'with_remove_icon'
         ));
     }
 
