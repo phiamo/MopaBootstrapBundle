@@ -61,7 +61,7 @@ Installation
             "twitter/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
-            "knplabs/knp-menu": "2.0.*@dev"
+            "knplabs/knp-menu": "2.0.*@dev",
             "craue/formflow-bundle": "~2.0"
        }
     }
