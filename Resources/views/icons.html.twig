@@ -1,3 +1,15 @@
 {% macro icon(name, inverted) %}
-<i class="icon-{{ name }}{% if inverted|default(false) %} icon-white{% endif %}"></i>
+<span class="glyphicon glyphicon-{{ name }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
 {% endmacro %}
+
+{% block fontawesome -%}
+<i class="icon-{{ icon }}{{ inverted ? ' inverted' : '' }}"></i>
+{%- endblock %}
+
+{% block fontawesome4 -%}
+    <i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}"></i>
+{%- endblock %}
+
+{% block glyphicons -%}
+<span class="glyphicon glyphicon-{{ icon }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
+{%- endblock %}

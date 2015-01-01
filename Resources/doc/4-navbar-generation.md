@@ -1,121 +1,147 @@
-Generating a Navbars
-====================
+Generating a Navbar
+===================
 
-for the example navbars add the following to your config.yml:
+# Navbar and Menus Extension
 
-``` yaml
-imports:
-    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_menu.yml }
-    - { resource: @MopaBootstrapBundle/Resources/config/examples/example_navbar.yml }
-```
-A detailed Navbar configuration example can also be found in
+We make use of KnpMenu and KnpMenuBundle in order to help in the generation of
+Bootstrap Menus and navbars. We also provide a pass-through function for `knp_menu_render`,
+`mopa_bootstrap_menu` which sets some default options for the menus.
 
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/navbar-configuration-advanced.md
+To learn how to create menus with KnpMenuBundle, [please check their documentation
+before continuing.](https://github.com/KnpLabs/KnpMenuBundle)
 
-# Navbar extension
+## Navbars have changed!
 
-Generating a bootstrap navbar should be straight forward.
-We try to solve that by just reusing the excellent knp-components, KnpMenu and KnpMenuBundle to create the menues and decorate our Navbar with these and forms and more.
-
-So remember to install these Bundles if you want to use the Navbar features!
+If you are upgrading from using Navbars previously, [check out our further
+documentation about upgrading.](navbar-upgrade.md)
 
 ## Activate the extension
 
-To load the navbar extensions (template helper, CompilerPass, etc.) just add the following in your config.yml
+To load the navbar extensions (Twig Extension, and KnpMenu Extension) just add the
+following in your config.yml. **You need to activate this extension in order
+to use the Twig function and KnpMenu Navbar extension.**
 
 ``` yaml
 mopa_bootstrap:
-    navbar: ~
+    menu: ~
 ```
 
-## Generate a own navbar
+## Auto bootstrap menu
 
-A Navbar can be generated easyly be defining a Navbar Service:
+By adding "automenu" : "navbar" or "automenu": "pill" you can use mopa_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
 
-``` yaml
-services:
-    mopa_bootstrap.example.navbar:
-        class: %mopa_bootstrap.navbar.generic%
-        arguments:
-            # first argument: a named array of menues:
-            - { leftmenu: @mopa_bootstrap.examplemenu=, rightmenu: @mopa_bootstrap.exampledropdown= }
-            # second argument: a named array of FormType Classes  
-            - { searchform: Mopa\Bundle\BootstrapSandboxBundle\Form\Type\ExampleSearchFormType }
-            # third argument: a named array of options
-            - { title: "MopaBootstrapBundle", titleRoute: "mopa_bootstrap_welcome", fixedTop: true, isFluid: false, template:MopaBootstrapBundle:Navbar:navbar.html.twig }
-        tags:
-            # The alias is used to retrieve the navbar in templates
-            - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
+```
+{{ mopa_bootstrap_menu('mymenu', {'automenu': 'navbar'}) }}
 ```
 
-Or in xml (strict="false" to get rid of ScopeWideningInjectionException)
-``` xml
-        <service id="mopa_bootstrap.example.navbar" class="%mopa_bootstrap.navbar.generic%">
-            <argument type="collection">
-                <argument type="service" key="leftmenu" id="mopa_bootstrap.examplemenu" strict="false" />
-                <argument type="service" key="rightmenu" id="mopa_bootstrap.exampledropdown"  strict="false" />
-            </argument>
-            <argument type="collection">
-                <argument key="searchform">Mopa\Bundle\BootstrapSandboxBundle\Form\Type\ExampleSearchFormType</argument>
-            </argument>
-            <argument type="collection">
-                <argument key="title">SuiteBundle</argument>
-                <argument key="titleRoute">mopa_bootstrap_welcome</argument>
-                <argument key="fixedTop">true</argument>
-                <argument key="isFluid">false</argument>
-                <argument key="template">MopaBootstrapBundle:Navbar:navbar.html.twig</argument>
-            </argument>
-            <tag name="mopa_bootstrap.navbar" alias="frontendNavbar" />
-        </service>
+See below for Special Menu Options, the automenu just sets these based on the root item you provide, and CHANGES the attributes of the children accordingly in a magic way.
+
+If you need control yourself, just ommit automenu setting and do whatever you need
+
+## Special Menu Options
+
+We register a new menu extension so you have options available to you:
+
+- navbar
+- pills
+- stacked
+- dropdown-header
+- dropdown
+- caret
+- pull-right
+- icon
+
+Example Usage:
+
+``` php
+class Builder
+{
+    public function mainMenu(FactoryInterface $factory, array $options)
+    {
+        // Menu will be a navbar menu anchored to right
+        $menu = $factory->createItem('root', array(
+            'navbar' => true,
+            'pull-right' => true,
+        ));
+
+        // Add a regular child with an icon, icon- is prepended automatically
+        $layout = $menu->addChild('Layout', array(
+            'icon' => 'home',
+            'route' => 'mopa_bootstrap_layout_example',
+        ));
+
+        // Create a dropdown with a caret
+        $dropdown = $menu->addChild('Forms', array(
+            'dropdown' => true,
+            'caret' => true,
+        ));
+
+        // Create a dropdown header
+        $dropdown->addChild('Some Header', array('dropdown-header' => true));
+        $dropdown->addChild('Example 1', array('route' => 'some_route'));
+
+        return $menu;
+    }
+}
 ```
 
-Make sure your FormTypes implement Mopa\Bundle\BootstrapBundle\Navbar\NavbarFormInterface.
-If you write a own Navbar class be sure it implements Mopa\Bundle\BootstrapBundle\Navbar\NavbarInterface.
+## Rendering a Navbar
 
-For example menu definitions have a look into:  
-Resources/config/examples/example_menu.yml
+Navbars are rendered by using the Twig `embed` tag. This is similar to include
+in that it includes the template, but it also lets your override blocks in that
+template.
 
-## Displaying the navbar
+It is not necessary to use these templates, they are just simply there to provide
+you with a shortcut to creating Navbars more quickly. You can always extend these
+templates and embed your own templates instead.
 
-If you do not extend the provided layout.html.twig its as easy as
+You can create your menu as a service or you can use the controller notation.
+
+Here is a sample Navbar:
 
 ``` jinja
-{% block navbar %}
-   {{ mopa_bootstrap_navbar('yourNavbarAlias') }}
-{% endblock navbar %}
+{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: true } %}
+    {% block brand %}
+        <a class="navbar-brand" href="#">Mopa Bootstrap</a>
+    {% endblock %}
+
+    {% block menu %}
+        {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+        {{ mopa_bootstrap_menu('menuAlias') }}
+    {% endblock %}
+{% endembed %}
 ```
 
-to get your navbar displayed.
+## Change the Navbar template
 
-And if you extend the Base Layout but dont wanna have the Navbar, just override the block:
+Maybe you have multiple Navbars that you would like to keep the brand consistent,
+or one of the menus is always the same. You can do this by extending the Navbar
+template and then embedding it:
 
 ``` jinja
-{% block navbar %}{% endblock navbar %}
+{# @Acme/Navbar/navbar.html.twig #}
+{% extends '@MopaBootstrap/Navbar/navbar.html.twig' %}
+
+{% block menu %}
+    {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+{% endblock %}
+
+{% block brand %}
+    <a class="navbar-brand" href="{{ path('dashboard') }}">Acme</a>
+{% endblock %}
 ```
 
-## Change the navbar template
-
-The template used can be changed app wide by setting:
-
-``` yaml
-mopa_bootstrap:
-    navbar:
-        template: MopaBootstrapBundle:Navbar:navbar.html.twig # this is the default template
-```
-
-The template can also be changed per navbar:
-
-``` yaml
-    # third argument: a named array of options
-    - { template:YourBundle:Navbar:navbar.html.twig }
-```
-
-To display a specific navbar with another template use:
+Now embed that in your template instead:
 
 ``` jinja
-{% block navbar %}
-   {{ mopa_bootstrap_navbar('yourNavbarAlias', {'template': 'AcmeDemoBundle:Backend:navbar.twig.html'}) }}
-{% endblock navbar %}
+{% embed '@Acme/Navbar/navbar.html.twig' with { fixedTop: true } %}
+    {% block menu %}
+        {{ parent() }}
+        {{ mopa_bootstrap_menu('AcmeBundle:Builder:rightMenu') }}
+    {% endblock %}
+{% endembed %}
 ```
 
-Feel free to commit any PR's.
+---
+
+<< [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) | [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) >>

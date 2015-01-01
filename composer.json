@@ -16,56 +16,25 @@
     ],
     "autoload": {
         "psr-0": {
-            "Mopa\\Bundle\\BootstrapBundle": ""
+            "Mopa\\Bundle\\BootstrapBundle\\": ""
         }
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/symfony": ">=2.1,<2.4-dev",
-        "mopa/composer-bridge": "1.*"
+        "symfony/framework-bundle": "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/console": "~2.3",
+        "mopa/composer-bridge": "~1.3"
     },
     "suggest":  {
-        "twitter/bootstrap": "2.0.*",
-        "knplabs/knp-paginator-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "1.1.*",
-        "knplabs/knp-menu": "2.0.*@dev",
-        "craue/formflow-bundle": "dev-master",
-        "jlong/sass-twitter-bootstrap": "dev-master"
+        "twbs/bootstrap": ">2.0,<4.0-dev",
+        "knplabs/knp-paginator-bundle": "~2.3",
+        "knplabs/knp-menu-bundle": "~2.0@dev",
+        "mopa/bootstrap-sandbox-bundle": "~2.3",
+        "craue/formflow-bundle": "~2.0",
+        "twbs/bootstrap-sass": "v3.1.1"
     },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "version": "dev-master",
-                "name": "twitter/bootstrap",
-                "source": {
-                    "url": "https://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "dist": {
-                    "url": "https://github.com/twitter/bootstrap/zipball/master",
-                    "type": "zip"
-                 }
-            }
-        },
-        {
-            "type":"package",
-            "package": {
-                "version":"dev-master",
-                "name":"jlong/sass-twitter-bootstrap",
-                "source": {
-                    "url":"https://github.com/jlong/sass-twitter-bootstrap.git",
-                    "type":"git",
-                    "reference":"master"
-                },
-                "dist": {
-                    "url":"https://github.com/jlong/sass-twitter-bootstrap/zipball/master",
-                    "type":"zip"
-                }
-            }
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
@@ -76,7 +45,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1.x-dev"
+            "dev-master": "3.x-dev"
         }
     }
 }

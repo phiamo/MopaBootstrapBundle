@@ -3,21 +3,15 @@
 <!DOCTYPE html>
 
 {% block html_tag %}
-<html>
+<html lang="{{ app.request.locale }}">
 {% endblock html_tag %}
 
 {% block head %}
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="{{ _charset }}" />
     {% block head_style %}
     {# Override this block to add your own files! #}
-    {% stylesheets
-        '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-        '@MopaBootstrapBundle/Resources/public/less/eyecon-bootstrap-datepicker.less'
-    %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
-    {# To use this without less use the base_css.html.twig template as your base
+    {# To use this without less or sass use the base.html.twig template as your base
      # Be sure you understand whats going on: have a look into
      # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
      #}
@@ -26,18 +20,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block head_script %}
-    {# Overwrite this block to add your own js here, to get them generated into final files #}
+    {# Overwrite this block to add your own js here, to get them generated into final files
+    {% javascripts
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+     #}
     {% endblock head_script %}
 
     <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    {% block favicon %}<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />{% endblock %}
     {% block head_bottom %}
     {% endblock head_bottom %}
 </head>
 {% endblock head %}
 
 {% block body_tag %}
-<body data-spy="scroll">
+<body>
 {% endblock body_tag %}
 
 {% block body_start %}
@@ -45,15 +45,15 @@
 
 {% block body %}
     {% block navbar %}
-    {{ mopa_bootstrap_navbar('frontendNavbar') }}
+    <!-- No navbar included here to reduce dependencies, see https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/views/base.html.twig for howto include it -->
     {% endblock navbar %}
 
     {% block container %}
-    <div class="{% block container_class %}container-fluid{% endblock container_class %}">
+    {% block container_div_start %}<div class="{% block container_class %}container{% endblock container_class %}">{% endblock container_div_start %}
         {% block header %}
         {% endblock header %}
 
-        <div class="content">
+        {% block content_div_start %}<div class="content">{% endblock content_div_start %}
             {% block page_header %}
             <div class="page-header">
                   <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock headline %}</h1>
@@ -62,8 +62,8 @@
 
             {% block flashes %}
             {% if app.session.flashbag.peekAll|length > 0 %}
-            <div class="row-fluid">
-                <div class="span12">
+            <div class="row">
+                <div class="col-sm-12">
                 {{ session_flash() }}
                 </div>
             </div>
@@ -71,14 +71,14 @@
             {% endblock flashes %}
 
             {% block content_row %}
-            <div class="row-fluid">
+            <div class="row">
                 {% block content %}
-                <div class="span9">
+                <div class="col-sm-9">
                     {% block content_content %}
                     <strong>Hier könnte Ihre Werbung stehen ... </strong>
                     {% endblock content_content %}
                 </div>
-                <div class="span3">
+                <div class="col-sm-3">
                     {% block content_sidebar %}
                     <h2>Sidebar</h2>
                     {% endblock content_sidebar %}
@@ -86,41 +86,44 @@
                 {% endblock content %}
             </div>
             {% endblock content_row %}
-        </div>
+
+        {% block content_div_end %}</div>{% endblock content_div_end %}
+
+        {% block footer_tag_start %}
         <footer>
-            {% block footer %}
-            <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011-2013</p>
-            {% endblock footer %}
+        {% endblock footer_tag_start %}
+
+        {% block footer %}
+        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011-2013</p>
+        {% endblock footer %}
+
+        {% block footer_tag_end %}
         </footer>
-    </div> <!-- /container -->
+        {% endblock footer_tag_end %}
+    {% block container_div_end %}</div><!-- /container -->{% endblock container_div_end %}
     {% endblock container %}
+
+    {% block body_end_before_js %}
+    {% endblock body_end_before_js %}
+
     {% block foot_script %}
     {# To only use a subset or add more js overwrite and copy paste this block
     To speed up page loads save a copy of jQuery in your project and override this block to include the correct path
     Otherwise the regeneration is done on every load in dev more with use_controller: true
      #}
-     
-    {% javascripts
-        'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-transition.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-scrollspy.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tab.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-collapse.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-carousel.js'
-        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-typeahead.js'
-        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
-        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
-        '@MopaBootstrapBundle/Resources/public/js/eyecon-bootstrap-datepicker.js'
-    %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{% endblock foot_script %}
+    {% block foot_script_assetic %}
+    {% endblock foot_script_assetic %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+    {% endblock foot_script %}
 {% endblock body %}
+
+{% block body_end %}
+{% endblock body_end %}
 </body>
 </html>

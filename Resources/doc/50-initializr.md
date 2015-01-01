@@ -9,7 +9,7 @@ To make fast start there is only 2 step process to use it.
 
 ```yaml
 # app/config/config.yml
-mopa_bootstrap
+mopa_bootstrap:
     initializr: ~
 ```
 
@@ -53,3 +53,7 @@ Below is list of things that need to be done in near future:
 
 * allow all variables to be overriden by controller
 * add rss/atom sources
+
+---
+
+<< [Generating a Navbar](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) | [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) >>

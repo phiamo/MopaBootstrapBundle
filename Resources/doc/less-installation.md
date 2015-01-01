@@ -15,7 +15,7 @@ Installing nodejs and less css manually
  - npm: (node package manager) 
  
 ``` bash
-curl https://npmjs.org/install.sh | sh
+curl -L https://npmjs.org/install.sh | sh
 ```
 
  - less css:
@@ -32,7 +32,6 @@ assetic:
         less:
             node: /usr/bin/node
             node_paths: [/usr/lib/node_modules]
-            apply_to: "\.less$"
 ```
 
  - Yui CSS and CSS Embed are very nice and recommended.
@@ -66,7 +65,7 @@ another error i had was
 
 ```
   [RuntimeException]                                                                                                                                                                         
-  Syntax Error on line 396 in /var/www/virtual/mohrenweiserpartner.de/bootstrap/checkout/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
+  Syntax Error on line 396 in path/to/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
   395 .reset-filter() {                                                                                                                                                            
   396   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);                                                                                              
   397 }                            
@@ -90,6 +89,7 @@ assetic:
         less:
             node: /usr/bin/node
             node_paths: [/opt/lessc/lib, /usr/lib/node_modules] 
+            apply_to: "\.less$"
     # more to be here, truncated...
 
 ```

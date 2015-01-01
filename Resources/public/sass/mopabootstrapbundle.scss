@@ -16,9 +16,14 @@
  * But then assetic will compile each sass file in a own compiler session so you cant mix in the sass style into bootstrap, which might not be OK
  */
 
+// variables
+$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/";
+
+// Bootstrap overrides, such as the asset-url(..) function.
+@import "bootstrap_and_overrides";
 
 // Main bootstrap.sass entry point
-@import "../../bootstrap-sass/lib/bootstrap.scss";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap/bootstrap";
 
 // The Paginator less for MopaBootstrapBundle
 @import "paginator.scss";
@@ -28,6 +33,3 @@
 
 // FormFlow support for MopaBootstrapBundle
 @import "form_flow.scss";
-
-// include the responsive after all of your stuff!
-// @import "../../bootstrap-sass/lib/responsive.scss";

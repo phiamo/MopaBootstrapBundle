@@ -5,27 +5,82 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
 
+Check out the [Beta-4](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta4)
+
+To use MopaBootstrapBundle and twitters Bootstrap 3 in your project add it via [composer](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
+
+NOTICE:
+-------
+
+Recent BC breaks:
+
+ * dc4fd12: [BC Break] Removed inline completely 
+ * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
+ * eb9166f: Pass options in `mopa_bootstrap_render` to the menu provider (unlikely BC)
+
+
+BS3 (master branch of this bundle) is nearly stable see [Beta-4](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta4)
+BS2 (v2.3.x) is quite stable
+
+BC breaking changes will probably not be ported to 2.3. 
+
+
+Branches
+--------
+
+To use this bundle with bootstrap 3 use the latest release:
+
+``` json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "v3.0.0-beta4",
+        "twbs/bootstrap": "v3.2.0"
+    }
+}
+```
+
+If you wish to use the current master branch, then use the following:
+
+
+``` json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "dev-master",
+        "twbs/bootstrap": "dev-master"
+    }
+}
+```
+
+For bootstrap 2 use the v2.3.x branch:
+
+```json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "2.3.x-dev",
+        "twbs/bootstrap": "v2.3.2"
+    }
+}
+```
+To understand which versions are currently required have a look into `BRANCHES.md`
+ 
 Documentation
 -------------
 
-The bulk of the documentation is stored in the `Resources/doc/index.md`
-file in this bundle:
-
-* [Read the Documentation for master](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
-* [Read the Documentation for v2.0.x](https://github.com/phiamo/MopaBootstrapBundle/blob/v2.0.x/README.md)
-
+The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle
 In any case, if something is not working as expected after a update:
 
 * [READ the CHANGELOG!](https://github.com/phiamo/MopaBootstrapBundle/blob/master/CHANGELOG.md)
 
 Recent BackwardsCompatibility breaking changes:
 
+* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) 
+* a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
 Live Show
 ---------
 
-To see the bundle and its capabilities online just have a look on
+To see the bundle, its capabilities and some more doc just have a look on
 
 [MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
 
@@ -39,25 +94,32 @@ Installation
 
 Installation instructions are located in the
 
-* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md).
-* [2.0.x documentation](https://github.com/phiamo/MopaBootstrapBundle/tree/v2.0.x#installation).
+* [master documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md)
 
 Included Features
 -----------------
 
+* Bootstrap Version detection via Composer Bridge 
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature
   * javascript and twig blocks for dynamic collections
 * A generic Navbar class to generate your Navbar outside the template
   * helpers for dropdowns, seperators, etc.
+* A generic Tab class to Manage bootstrap tabbing
 * twig templates for KnpPaginatorBundle (https://github.com/knplabs/KnpPaginatorBundle)
 * twig templates for CraueFormFlowBundle (https://github.com/craue/CraueFormFlowBundle)
-* twig template for KnpMenu (https://github.com/KnpLabs/KnpMenu)
+* twig template for KnpMenuBundle (https://github.com/KnpLabs/KnpMenuBundle)
   * icon support on menu links
 
 Recently added Features
 -----------------------
+<h4>Tabs</h4>
+We need to add more info here
+
+<h4>Bootstrap 3</h4>
+
+We now officially suport bootstrap3 in our master branch.
 
 <h4>Dynamic SubnavBars</h4>
 
@@ -108,6 +170,4 @@ You can see who already contributed to this project on [Contributors](https://gi
 License
 -------
 
-This bundle is under the MIT license. See the complete license in the bundle:
-
-    [LICENCE](LICENCE).
+This bundle is under the MIT license. For more information, see the complete [LICENCE](LICENCE) file in the bundle.

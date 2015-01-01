@@ -1,6 +1,0 @@
-[submodule "Resources/bootstrap"]
-        path = Resources/bootstrap
-        url = http://github.com/twitter/bootstrap.git
-[submodule "Resources/bootstrap-sass"]
-        path = Resources/bootstrap-sass
-        url = http://github.com/thomas-mcdonald/bootstrap-sass.git

@@ -28,8 +28,7 @@ Installation
 
 1. Add this bundle to your project in composer.json:
 
-    1.2. Plain BootstrapBundle
-    Symfony 2.1 uses composer (http://www.getcomposer.org) to organize dependencies:
+    1.1. Plain BootstrapBundle
     
     ```json
     {
@@ -47,7 +46,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twitter/bootstrap": "dev-master"
+            "twbs/bootstrap": "dev-master"
         }
     }
     ```
@@ -58,7 +57,7 @@ Installation
     {
         "require": {
             "mopa/bootstrap-bundle": "dev-master",
-            "twitter/bootstrap": "dev-master",
+            "twbs/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
             "knplabs/knp-menu": "2.0.*@dev",
@@ -67,7 +66,7 @@ Installation
     }
     ```
 
-    1.4.1 BootstrapBundle, twitters bootstrap and automatic symlinking
+    1.4 BootstrapBundle, twitters bootstrap and automatic symlinking
 
     If you decided to let composer install twitters bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
     So add this to your existing scripts section in your composer json:
@@ -118,24 +117,8 @@ Installation
     ```
 
     With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
-    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap.
+    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap.
 
-    1.4.2
-
-    For Sass Usage there is also a symlink command which can be added:
-
-    ```json
-    {
-        "scripts": {
-            "post-install-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-            ],
-            "post-update-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
-            ]
-        }
-    }
-    ```
 
     1.5. Include bootstrap manually or in another way:
 
@@ -150,9 +133,10 @@ Installation
        {
            "require": {
                "mopa/bootstrap-bundle": "dev-master",
-               "twitter/bootstrap": "dev-master",
+               "twbs/bootstrap-sass": "dev-master",
                "knplabs/knp-paginator-bundle": "dev-master",
                "knplabs/knp-menu-bundle": "dev-master",
+<<<<<<< HEAD
                "craue/formflow-bundle": "~2.0",
                "jlong/sass-twitter-bootstrap": "dev-master"
            },
@@ -174,14 +158,18 @@ Installation
                    }
                }
            ]
+=======
+               "craue/formflow-bundle": "dev-master"
+           }
+>>>>>>> d59b5c2ad15763ae56d39e8a111cce41960002fe
        }
     ```
-    You can also use the post-install cmd provided to setup the symlink for bootstrap-sass
+    You can also use the post-install cmd provided to setup the symlink for bootstrap-sass (cf. section 1.4)
 
 2. Add this bundle to your app/AppKernel.php:
 
     ``` php
-    // application/ApplicationKernel.php
+    // app/AppKernel.php
     public function registerBundles()
     {
         return array(
@@ -195,7 +183,7 @@ Installation
     2.1. If you decided to add knp-menu-bundle, knp-paginator-bundle, or craue-formflow-bundle add them too:
 
     ``` php
-    // application/ApplicationKernel.php
+    // app/AppKernel.php
     public function registerBundles()
     {
         return array(
@@ -209,7 +197,15 @@ Installation
     }
     ```
 
-3. If you like configure your config.yml (not mandatory)
+3. To activate certain feature sets you need to add to your config:
+
+    ``` yaml
+    mopa_bootstrap:
+        form: ~  # Adds twig form theme  support
+        menu: ~  # enables twig helpers for menu
+    ```
+    
+4. If you like further tweak your config.yml (not mandatory)
 
     ``` yaml
     mopa_bootstrap:
@@ -217,5 +213,10 @@ Installation
             show_legend: false # default is true
             show_child_legend: false # default is true
             error_type: block # or inline which is default
+        menu:
+            template: MyBundles:Menu:template.html.twig
     ```
 
+---
+
+[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>

@@ -16,11 +16,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
 class MopaBootstrapExtension extends Extension
 {
     /**
@@ -31,19 +26,26 @@ class MopaBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $yamlloader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $yamlloader->load("form_extensions.yml");
-        $yamlloader->load('twig_extensions.yml');
-        
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('bootstrap.xml');
+        $loader->load('twig.xml');
+
+        if (isset($config['bootstrap'])) {
+            if (!isset($config['bootstrap']['install_path'])) {
+                throw new \RuntimeException('Please specify the "bootstrap.install_path" or disable "mopa_bootstrap" in your application config.');
+            }
+
+            $container->setParameter('mopa_bootstrap.bootstrap.install_path', $config['bootstrap']['install_path']);
+        }
+
+        /**
+         * Form
+         */
         if (isset($config['form'])) {
+            $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
-                    foreach ($config['form'][$key] as $subkey => $subvalue) {
-                        $container->setParameter(
-                                'mopa_bootstrap.form.'.$key.'.'.$subkey,
-                                $subvalue
-                        );
-                    }
+                    $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $config['form'][$key]);
                 } else {
                     $container->setParameter(
                         'mopa_bootstrap.form.'.$key,
@@ -52,28 +54,62 @@ class MopaBootstrapExtension extends Extension
                 }
             }
         }
-        if (isset($config['navbar'])) {
-            $yamlloader->load("navbar_extension.yml");
-            foreach ($config['navbar'] as $key => $value) {
-                $container->setParameter(
-                    'mopa_bootstrap.navbar.'.$key,
-                    $value
-                );
+
+        /**
+         * Menu
+         */
+        if ($this->isConfigEnabled($container, $config['menu']) || $this->isConfigEnabled($container, $config['navbar'])) {
+            // TODO: remove this BC layer
+            if ($this->isConfigEnabled($container, $config['navbar'])) {
+                trigger_error(sprintf('mopa_bootstrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
             }
+            $loader->load('menu.xml');
+            $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
         }
 
-        // set container parameters for Initializr base template
+        /**
+         * Icons
+         */
+        if (isset($config['icons'])) {
+            $this->remapParameters($container, 'mopa_bootstrap.icons', $config['icons']);
+        }
+
+        /**
+         * Initializr
+         */
         if (isset($config['initializr'])) {
-            // load Twig extension mapping config variables to Twig Globals
-            $yamlloader->load('initializr_extensions.yml');
+            $loader->load('initializr.xml');
+            $this->remapParameters($container, 'mopa_bootstrap.initializr', $config['initializr']);
+        }
 
-            $container->setParameter('mopa_bootstrap.initializr.meta',$config['initializr']['meta']);
-            $container->setParameter('mopa_bootstrap.initializr.google',$config['initializr']['google']);
-            $container->setParameter('mopa_bootstrap.initializr.dns_prefetch',$config['initializr']['dns_prefetch']);
+        /**
+         * Flash
+         */
+        if (isset($config['flash'])) {
+            $mapping = array();
 
-            // TODO: think about setting this default as kernel debug,
-            // what about PROD env which does not need diagnostic mode and test
-            $container->setParameter('mopa_bootstrap.initializr.diagnostic_mode', $config['initializr']['diagnostic_mode']);
+            foreach ($config['flash']['mapping'] as $alertType => $flashTypes) {
+                foreach ($flashTypes as $type) {
+                    $mapping[$type] = $alertType;
+                }
+            }
+
+            $container->getDefinition('mopa_bootstrap.twig.extension.bootstrap_flash')
+                ->replaceArgument(0, $mapping);
+        }
+    }
+
+    /**
+     * Remap parameters.
+     *
+     * @param ContainerBuilder $container
+     * @param string           $prefix
+     * @param array            $config
+     */
+    private function remapParameters(ContainerBuilder $container, $prefix, array $config)
+    {
+        foreach ($config as $key => $value) {
+            $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
         }
     }
 }

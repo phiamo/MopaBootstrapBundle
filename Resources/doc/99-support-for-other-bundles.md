@@ -23,6 +23,16 @@ e.g.
          {'formident': '#myform'}
 
 
+For CraueFormFlowBundle version 2.* you can use:
+
+``` jinja
+{% include 'MopaBootstrapBundle:Form:formflow_buttons.html.twig' %}
+```
+and
+
+``` jinja
+{% include 'MopaBootstrapBundle:Form:formflow_stepList.html.twig' %}
+```
 KnpPaginatorBundle
 ------------------
 
@@ -34,6 +44,16 @@ For KnpPaginatorBundle use the following to override template:
 parameters:
     knp_paginator.template.pagination: MopaBootstrapBundle:Pagination:sliding.html.twig
 ```
+
+if you need to set e.g. a different class for the ul or want to change the default texts:
+
+``` php
+<?php
+// set an array of custom parameters
+$pagination->setCustomParameters(array(
+    'last_text' => 'very last item', # gets translated by the template
+    'pagination_class' => 'pagination-lg'
+));
 
 
 
@@ -107,3 +127,6 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 }
 ```
 
+---
+
+<< [Icons](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/6-icons.md)
