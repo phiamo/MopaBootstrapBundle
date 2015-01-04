@@ -29,6 +29,7 @@ class InstallFontCommand extends ContainerAwareCommand
         "fontawesome" => "fonts/fa",
         "fontawesome4" => "fonts/fa4",
     );
+
     /**
      * {@inheritdoc}
      */
@@ -43,6 +44,7 @@ The <info>mopa:bootstrap:install:font</info> command install the font configured
 EOT
             );
     }
+
     /**
      * {@inheritdoc}
      */
@@ -80,6 +82,7 @@ EOT
 
         $output->writeln("Font: ".$iconSet." Installed... <info>OK</info>");
     }
+
     public static function installFonts()
     {
     }

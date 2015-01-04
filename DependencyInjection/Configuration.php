@@ -334,7 +334,8 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
     /**
      * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
@@ -407,7 +408,8 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 
     protected function addFlashConfig(ArrayNodeDefinition $rootNode)
