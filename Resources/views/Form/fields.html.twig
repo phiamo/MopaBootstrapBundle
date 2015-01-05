@@ -556,9 +556,10 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
         <div class="{{ widget_remove_btn.wrapper_div.class }}">
-    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% endif %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
         <div class="{{ widget_remove_btn.horizontal_wrapper_div.class }}">
     {% endif %}
     {% if widget_remove_btn|default(null) %}
@@ -566,9 +567,10 @@
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
-    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
         </div>
-    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% endif %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
         </div>
     {% endif %}
 {% endspaceless %}
