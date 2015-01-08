@@ -23,9 +23,9 @@
 {% spaceless %}
     {% set type = type|default('text') %}
     {% if type != 'hidden' and widget_addon.type|default(null) is not null %}
-    <div class="input-{{ widget_addon.type }}">
+    <div class="input-{{- widget_addon.type -}}{% if colorpicker|default(false) %} colorpicker-component colorpicker-element {{ name }}" id="colorpicker-{{ name -}}{% endif %}">
         {% if widget_addon.type == 'prepend' %}
-        {{ block('widget_addon') }}
+            {{ block('widget_addon') }}
         {% endif %}
     {% endif %}
     {% if not widget_remove_btn|default(null) %}
@@ -34,7 +34,7 @@
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% if type != 'hidden' and  widget_addon.type|default(null) is not null %}
         {% if widget_addon.type == 'append' %}
-        {{ block('widget_addon') }}
+            {{ block('widget_addon') }}
         {% endif %}
     </div>
     {% endif %}
@@ -182,6 +182,17 @@
     {% endif %}
 {% endspaceless %}
 {% endblock time_widget %}
+
+{% block hexcolor_widget %}
+    {% spaceless %}
+        {{ block('form_widget_simple') }}
+    {% endspaceless %}
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#colorpicker-{{ name }}').colorpicker();
+        });
+        </script>
+{% endblock hexcolor_widget %}
 
 {% block datetime_widget %}
 {% spaceless %}
@@ -369,7 +380,7 @@
 {% spaceless %}
 {# prevent deep nesting wrong context copy error #}
 {% from 'MopaBootstrapBundle::icons.html.twig' import icon %}
-<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : icon(widget_addon.icon))|raw('html')  }} {{ (widget_addon.html|default(false) ? widget_addon.html|raw('html') : '')  }}</span>
+<span class="add-on">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain) : widget_addon.icon|default(false) ? icon(widget_addon.icon) : '' )|raw('html') }} {{ (widget_addon.html|default(false) ? widget_addon.html|raw('html') : '')  }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
