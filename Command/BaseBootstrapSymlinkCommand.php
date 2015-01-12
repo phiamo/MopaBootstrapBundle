@@ -57,9 +57,9 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
                 unlink($symlinkName);
 
                 return false;
-            } else {
-                return true;
             }
+
+            return true;
         }
 
         return false;
@@ -114,7 +114,8 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
             ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo'.static::$pathName.', and pathToMopaBootstrapBundle')
-            ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.');
+            ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.')
+        ;
     }
 
     /**
