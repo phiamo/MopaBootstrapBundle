@@ -30,13 +30,8 @@ Branches
 
 To use this bundle with bootstrap 3 use the latest release:
 
-``` json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-beta4",
-        "twbs/bootstrap": "v3.2.0"
-    }
-}
+```sh
+composer require mopa/bootstrap-bundle twbs/bootstrap
 ```
 
 To use this bundle with bootstrap SASS with the current master branch:
@@ -53,25 +48,16 @@ To use this bundle with bootstrap SASS with the current master branch:
 If you wish to use the current master branch, then use the following:
 
 
-``` json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "dev-master"
-    }
-}
+```sh
+composer require mopa/bootstrap-bundle:dev-master twbs/bootstrap:dev-master
 ```
 
 For bootstrap 2 use the v2.3.x branch:
 
-```json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2"
-    }
-}
+```sh
+composer require mopa/bootstrap-bundle:2.3.x-dev twbs/bootstrap:2.3.2
 ```
+
 To understand which versions are currently required have a look into `BRANCHES.md`
  
 Documentation
