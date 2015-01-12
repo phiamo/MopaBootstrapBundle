@@ -38,6 +38,7 @@ services:
                 - { render_collection_item: %mopa_bootstrap.form.render_collection_item%, widget_add_btn: %mopa_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %mopa_bootstrap.form.collection.widget_remove_btn% }
            tags:
                 - { name: form.type_extension, alias: form }
+
     mopa.form.date_extension:
            class: Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension
            tags:
@@ -55,3 +56,8 @@ services:
            class: Mopa\Bundle\BootstrapBundle\Form\Type\TabType
            tags:
                 - { name: form.type, alias: tab }
+
+    mopa.form.hexcolor_type:
+           class: Mopa\Bundle\BootstrapBundle\Form\Type\HexColorType
+           tags:
+                - { name: form.type, alias: hexcolor }
