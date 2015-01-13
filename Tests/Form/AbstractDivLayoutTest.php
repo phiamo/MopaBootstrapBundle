@@ -7,6 +7,7 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as FormExtension2;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
@@ -18,13 +19,18 @@ use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
+use Twig_Environment;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
     protected $extension;
+    protected $tabFactory;
 
     protected function setUp()
     {
+        // Setup factory for tabs
+        $this->tabFactory = \Symfony\Component\Form\Forms::createFormFactory();
+
         parent::setUp();
 
         $rendererEngine = new TwigRendererEngine(array(
@@ -52,7 +58,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
 
-        $environment = new \Twig_Environment($loader, array('strict_variables' => true));
+        $environment = new Twig_Environment($loader, array('strict_variables' => true));
         $environment->addExtension(new TranslationExtension(new StubTranslator()));
         $environment->addExtension(new IconExtension('fontawesome'));
         $environment->addExtension(new FormExtension2());
@@ -71,6 +77,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getLegendFormTypeExtension(),
                 $this->getHorizontalFormTypeExtension(),
                 $this->getErrorTypeFormTypeExtension(),
+                $this->getTabbedFormTypeExtension(),
             ),
             'text' => array(
                 $this->getStaticTextFormTypeExtension(),
@@ -148,6 +155,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         return new StaticTextExtension();
     }
 
+    protected function getTabbedFormTypeExtension()
+    {
+        return new TabbedFormTypeExtension($this->tabFactory, array(
+            'class' => 'tabs nav-tabs',
+        ));
+    }
+
     protected function assertMatchesXpath($html, $expression, $count = 1)
     {
         $dom = new \DomDocument('UTF-8');
@@ -180,6 +194,11 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected function removeBreaks($html)
     {
         return str_replace('&nbsp;', '', $html);
+    }
+
+    protected function renderForm(FormView $view, array $vars = array())
+    {
+        return (string) $this->extension->renderer->renderBlock($view, 'form', $vars);
     }
 
     protected function renderRow(FormView $view, array $vars = array())
