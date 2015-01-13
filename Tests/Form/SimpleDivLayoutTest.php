@@ -45,7 +45,7 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
         );
     }
 
-    public function testAddonPrepend()
+    public function testAddonTextPrepend()
     {
         $view = $this->factory
             ->createNamed('name', 'text', null, array(
@@ -56,24 +56,47 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
             ->createView()
         ;
 
-        $html = $this->renderRow($view);
+        $html = $this->renderWidget($view);
 
         $this->assertMatchesXpath($html,
 '
-/div[@class="form-group"]
+/div[@class="input-group"]
     [
-        ./label[@for="name"][@class="required"]
-        /following-sibling::div[@class="input-group"]
-        [
-            ./span[@class="input-group-addon"][.="[trans]foo[/trans]"]
-            /following-sibling::input[@type="text"][@id="name"][@name="name"]
-        ]
+        ./span[@class="input-group-addon"][.="[trans]foo[/trans]"]
+        /following-sibling::input[@type="text"][@id="name"][@name="name"]
     ]
 '
         );
     }
 
-    public function testAddonAppend()
+    public function testAddonIconPrepend()
+    {
+        $view = $this->factory
+            ->createNamed('name', 'text', null, array(
+                'widget_addon_prepend' => array(
+                    'icon' => 'cog',
+                ),
+            ))
+            ->createView()
+        ;
+
+        $html = $this->renderWidget($view);
+
+        $this->assertMatchesXpath($html,
+'
+/div[@class="input-group"]
+    [
+        ./span[@class="input-group-addon"]
+            [
+                ./i[@class="icon-cog"]
+            ]
+        /following-sibling::input[@type="text"][@id="name"][@name="name"]
+    ]
+'
+        );
+    }
+
+    public function testAddonTextAppend()
     {
         $view = $this->factory
             ->createNamed('name', 'text', null, array(
@@ -84,18 +107,41 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
             ->createView()
         ;
 
-        $html = $this->renderRow($view);
+        $html = $this->renderWidget($view);
 
         $this->assertMatchesXpath($html,
 '
-/div[@class="form-group"]
+/div[@class="input-group"]
     [
-        ./label[@for="name"][@class="required"]
-        /following-sibling::div[@class="input-group"]
-        [
-            ./input[@type="text"][@id="name"][@name="name"]
-            /following-sibling::span[@class="input-group-addon"][.="[trans]foo[/trans]"]
-        ]
+        ./input[@type="text"][@id="name"][@name="name"]
+        /following-sibling::span[@class="input-group-addon"][.="[trans]foo[/trans]"]
+    ]
+'
+        );
+    }
+
+    public function testAddonIconAppend()
+    {
+        $view = $this->factory
+            ->createNamed('name', 'text', null, array(
+                'widget_addon_append' => array(
+                    'icon' => 'cog',
+                ),
+            ))
+            ->createView()
+        ;
+
+        $html = $this->renderWidget($view);
+
+        $this->assertMatchesXpath($html,
+'
+/div[@class="input-group"]
+    [
+        ./input[@type="text"][@id="name"][@name="name"]
+        /following-sibling::span[@class="input-group-addon"]
+            [
+                ./i[@class="icon-cog"]
+            ]
     ]
 '
         );

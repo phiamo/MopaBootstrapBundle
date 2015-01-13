@@ -50,6 +50,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             __DIR__.'/../../Resources/views/Form',
         ));
 
+        $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
+
         $environment = new \Twig_Environment($loader, array('strict_variables' => true));
         $environment->addExtension(new TranslationExtension(new StubTranslator()));
         $environment->addExtension(new IconExtension('fontawesome'));
@@ -183,6 +185,11 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected function renderRow(FormView $view, array $vars = array())
     {
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'row', $vars);
+    }
+
+    protected function renderWidget(FormView $view, array $vars = array())
+    {
+        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
     protected function renderLabel(FormView $view, $label = null, array $vars = array())
