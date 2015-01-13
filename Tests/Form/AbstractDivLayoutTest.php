@@ -175,8 +175,21 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
     }
 
+    protected function removeBreaks($html)
+    {
+        return str_replace('&nbsp;', '', $html);
+    }
+
     protected function renderRow(FormView $view, array $vars = array())
     {
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'row', $vars);
+    }
+
+    protected function renderLabel(FormView $view, $label = null, array $vars = array())
+    {
+        if ($label !== null) {
+            $vars += array('label' => $label);
+        }
+        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'label', $vars);
     }
 }
