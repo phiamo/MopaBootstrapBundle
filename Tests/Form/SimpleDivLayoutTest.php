@@ -24,4 +24,24 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
 '
         );
     }
+
+    public function testInlineRow()
+    {
+        $view = $this->factory
+            ->createNamed('name', 'text')
+            ->createView()
+        ;
+
+        $html = $this->renderRow($view);
+
+        $this->assertMatchesXpath($html,
+'
+/div[@class="form-group"]
+    [
+        ./label[@for="name"][@class="required"]
+        /following-sibling::input[@type="text"][@id="name"][@name="name"][@required="required"]
+    ]
+'
+        );
+    }
 }
