@@ -22,8 +22,8 @@
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
         "symfony/framework-bundle": "~2.3",
-        "symfony/twig-bundle": "~2.3",
-        "symfony/form": "~2.3",
+        "symfony/twig-bundle": "~2.3|~3.0",
+        "symfony/form": "~2.3|~3.0",
         "symfony/console": "~2.3",
         "mopa/composer-bridge": "~1.3"
     },

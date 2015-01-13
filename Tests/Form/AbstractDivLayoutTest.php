@@ -32,7 +32,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'fields.html.twig',
         ));
 
-        $renderer = new TwigRenderer($rendererEngine, $this->getMock('Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface'));
+        if (interface_exists('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')) {
+            $csrfProviderInterface = 'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface';
+        } else {
+            $csrfProviderInterface = 'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface';
+        }
+
+        $renderer = new TwigRenderer($rendererEngine, $this->getMock($csrfProviderInterface));
 
         $this->extension = new FormExtension($renderer);
 
