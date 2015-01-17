@@ -9,7 +9,7 @@
 {% block button_widget %}
 {% spaceless %}
     {% if label is empty %}
-        {%- if label_format is not empty -%}
+        {%- if label_format is defined and label_format is not empty -%}
             {% set label = label_format|replace({
             '%name%': name,
             '%id%': id,
@@ -230,7 +230,7 @@
 {% block checkbox_widget %}
     {% spaceless %}
         {% if label is not sameas(false) and label is empty %}
-            {%- if label_format is not empty -%}
+            {%- if label_format is defined and label_format is not empty -%}
                 {% set label = label_format|replace({
                 '%name%': name,
                 '%id%': id,
@@ -388,7 +388,7 @@
 {% block form_legend %}
 {% spaceless %}
     {% if label is empty %}
-        {%- if label_format is not empty -%}
+        {%- if label_format is defined and label_format is not empty -%}
             {% set label = label_format|replace({
             '%name%': name,
             '%id%': id,
@@ -406,7 +406,7 @@
 {% spaceless %}
     {% if label is not sameas(false) %}
         {% if label is empty %}
-            {%- if label_format is not empty -%}
+            {%- if label_format is defined and label_format is not empty -%}
                 {% set label = label_format|replace({
                 '%name%': name,
                 '%id%': id,
