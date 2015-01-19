@@ -17,7 +17,7 @@
  */
 
 // variables
-$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/";
+$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/" !default;
 
 // Bootstrap overrides, such as the asset-url(..) function.
 @import "bootstrap_and_overrides";
