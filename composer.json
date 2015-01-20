@@ -1,25 +1,25 @@
 {
-    "name": "mopa/bootstrap-bundle",
+    "name": "opwoco/bootstrap-bundle",
     "type": "symfony-bundle",
     "description": "Easy integration of twitters bootstrap into symfony2",
     "keywords": ["form", "extra form", "bootstrap", "bootstrap form", "template"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Philipp A. Mohrenweiser",
-            "email": "phiamo@googlemail.com"
+            "name": "C. Hessel",
+            "email": "c.hessel@opwoco.com"
         },
         {
             "name": "Community contributions",
-            "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
+            "homepage": "https://github.com/opwoco/MopaBootstrapBundle/contributors"
         }
     ],
     "autoload": {
         "psr-0": {
-            "Mopa\\Bundle\\BootstrapBundle\\": ""
+            "opwoco\\Bundle\\BootstrapBundle\\": ""
         }
     },
-    "target-dir": "Mopa/Bundle/BootstrapBundle",
+    "target-dir": "opwoco/Bundle/BootstrapBundle",
     "require": {
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle": "~2.3|~3.0",
@@ -37,10 +37,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],
         "post-update-cmd": [
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     },
     "extra": {
