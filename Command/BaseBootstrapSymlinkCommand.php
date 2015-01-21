@@ -130,9 +130,11 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         $this->input = $input;
         $this->output = $output;
 
+
+
         if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsFromUser();
-        } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
+        } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) { die('test');
             $targetPath = $this->getContainer()->getParameter("opwoco_bootstrap.bootstrap.install_path");
             $cmanager = new ComposerPathFinder($composer);
             $options = array(

@@ -11,8 +11,8 @@
 namespace opwoco\Bundle\BootstrapBundle\Tests\Form;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use opwoco\Bundle\BootstrapBundle\Form\Extension as OpwocoExtensions;
-use opwoco\Bundle\BootstrapBundle\Form\Type as OpwocoTypes;
+use opwoco\Bundle\BootstrapBundle\Form\Extension as opwocoExtensions;
+use opwoco\Bundle\BootstrapBundle\Form\Type as opwocoTypes;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -72,7 +72,7 @@ class TypeTestCase extends KernelTestCase
     protected function getTypeExtensions()
     {
         return [
-            new OpwocoExtensions\WidgetCollectionFormTypeExtension(
+            new opwocoExtensions\WidgetCollectionFormTypeExtension(
                 [
                     'render_collection_item' => $this->container->getParameter(
                         'opwoco_bootstrap.form.render_collection_item'
@@ -85,19 +85,19 @@ class TypeTestCase extends KernelTestCase
                     )
                 ]
             ),
-            new OpwocoExtensions\DatetimeTypeExtension(),
-            new OpwocoExtensions\DateTypeExtension(),
-            new OpwocoExtensions\ErrorTypeFormTypeExtension(
+            new opwocoExtensions\DatetimeTypeExtension(),
+            new opwocoExtensions\DateTypeExtension(),
+            new opwocoExtensions\ErrorTypeFormTypeExtension(
                 ['error_type' => $this->container->getParameter('opwoco_bootstrap.form.error_type')]
             ),
-            new OpwocoExtensions\HelpFormTypeExtension(
+            new opwocoExtensions\HelpFormTypeExtension(
                 [
                     'help_label_tooltip' => $this->container->getParameter('opwoco_bootstrap.form.help_label.tooltip'),
                     'help_label_popover' => $this->container->getParameter('opwoco_bootstrap.form.help_label.popover'),
                     'help_widget_popover' => $this->container->getParameter('opwoco_bootstrap.form.help_widget.popover')
                 ]
             ),
-            new OpwocoExtensions\HorizontalFormTypeExtension(
+            new opwocoExtensions\HorizontalFormTypeExtension(
                 [
                     'horizontal' => $this->container->getParameter(
                         'opwoco_bootstrap.form.horizontal'
@@ -113,8 +113,8 @@ class TypeTestCase extends KernelTestCase
                     )
                 ]
             ),
-            new OpwocoExtensions\IconButtonExtension(),
-            new OpwocoExtensions\LegendFormTypeExtension(
+            new opwocoExtensions\IconButtonExtension(),
+            new opwocoExtensions\LegendFormTypeExtension(
                 [
                     'render_fieldset' => $this->container->getParameter(
                         'opwoco_bootstrap.form.render_fieldset'
@@ -136,14 +136,14 @@ class TypeTestCase extends KernelTestCase
                     )
                 ]
             ),
-            new OpwocoExtensions\OffsetButtonExtension(),
-            new OpwocoExtensions\StaticTextExtension(),
-            new OpwocoExtensions\TabbedFormTypeExtension(
+            new opwocoExtensions\OffsetButtonExtension(),
+            new opwocoExtensions\StaticTextExtension(),
+            new opwocoExtensions\TabbedFormTypeExtension(
                 $this->factory,
                 ['class' => $this->container->getParameter('opwoco_bootstrap.form.tabs.class')]
             ),
-            new OpwocoExtensions\TimeTypeExtension(),
-            new OpwocoExtensions\WidgetFormTypeExtension(
+            new opwocoExtensions\TimeTypeExtension(),
+            new opwocoExtensions\WidgetFormTypeExtension(
                 ['checkbox_label' => $this->container->getParameter('opwoco_bootstrap.form.checkbox_label')]
             )
         ];
@@ -156,9 +156,9 @@ class TypeTestCase extends KernelTestCase
     {
         return [
             new FormType(),
-            new OpwocoTypes\FormActionsType(),
-            new OpwocoTypes\TabsType(),
-            new OpwocoTypes\TabType(),
+            new opwocoTypes\FormActionsType(),
+            new opwocoTypes\TabsType(),
+            new opwocoTypes\TabType(),
         ];
     }
 

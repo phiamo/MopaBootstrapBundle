@@ -644,7 +644,7 @@
 {% else %}
     {% if errors|length > 0 %}
         {% if form.parent == null %}
-            {% from 'OpwocoBootstrapBundle::flash.html.twig' import flash %}
+            {% from 'opwocoBootstrapBundle::flash.html.twig' import flash %}
             {% for error in errors %}
                 {{ flash('danger', error.message) }}
             {% endfor %}

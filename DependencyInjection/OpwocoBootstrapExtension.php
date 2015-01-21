@@ -32,7 +32,6 @@ class opwocoBootstrapExtension extends Extension
             if (!isset($config['bootstrap']['install_path'])) {
                 throw new \RuntimeException('Please specify the "bootstrap.install_path" or disable "opwoco_bootstrap" in your application config.');
             }
-
             $container->setParameter('opwoco_bootstrap.bootstrap.install_path', $config['bootstrap']['install_path']);
         }
 
