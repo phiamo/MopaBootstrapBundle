@@ -1,28 +1,53 @@
+# simply "borrowed" from https://github.com/FriendsOfSymfony/FOSHttpCacheBundle/blob/master/.travis.yml
 language: php
+
 php:
   - 5.3
   - 5.4
   - 5.5
   - 5.6
   - hhvm
- 
+
+branches:
+  only:
+    - master
+    - /^\d+\.\d+$/
+
 matrix:
-    allow_failures:
-      - php: hhvm
-    exclude:
-      - php: 5.3
-        env: SYMFONY_VERSION=dev-master
-      - php: 5.4
-        env: SYMFONY_VERSION=dev-master
-        
-env:
-  - SYMFONY_VERSION=v2.3.0
-  - SYMFONY_VERSION=dev-master
+  include:
+    - php: 5.5
+      env: SYMFONY_VERSION='2.3.*'
+    - php: 5.5
+      env:
+        - SYMFONY_VERSION='2.4.*'
+        - FRAMEWORK_EXTRA_VERSION='~3.0'
+    - php: 5.5
+      env:
+        - SYMFONY_VERSION='2.5.*'
+        - FRAMEWORK_EXTRA_VERSION='~3.0'
+    - php: 5.5
+      env:
+        - SYMFONY_VERSION='2.6.*'
+        - FRAMEWORK_EXTRA_VERSION='~3.0'
+    - php: 5.5
+      env:
+        - SYMFONY_VERSION='2.7.*@dev'
+        - FRAMEWORK_EXTRA_VERSION='~3.0'
 
-before_script: 
-  - composer self-update
-  - composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION}
+# only needed for the hackaround for https://github.com/symfony/symfony/issues/12868
+before_install:
+  - sudo apt-get install -qq bc
 
-script: 
-  - phpunit
+before_script:
+  - sh -c 'if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi;'
+  # hackaround until https://github.com/symfony/symfony/issues/12868 is fixed
+  - bash -c 'FLAWED_DEPRECATIONS=`echo "${SYMFONY_VERSION:0:3} >= 2.7"|bc`; if [ "$FLAWED_DEPRECATIONS" = "1" ]; then echo "error_reporting = E_ALL & ~E_DEPRECATED" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; echo "PHPUnit_Framework_Error_Deprecated::\$enabled = false;" >> Tests/bootstrap.php; fi;'
+  - sh -c 'if [ "$FRAMEWORK_EXTRA_VERSION" != "" ]; then composer require --dev --no-update sensio/framework-extra-bundle=$FRAMEWORK_EXTRA_VERSION; fi;'
+  - composer install
 
+script:
+  - phpunit --coverage-clover=coverage.clover
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
