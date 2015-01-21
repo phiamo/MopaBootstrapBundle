@@ -67,7 +67,7 @@ Documentation
 
 The bulk of the documentation is stored in the `Resources/doc/index.md` file in this bundle
 
-[Read the documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/index.md)
+* [Read the documentation](Resources/doc/index.md)
 
 In any case, if something is not working as expected after a update:
 

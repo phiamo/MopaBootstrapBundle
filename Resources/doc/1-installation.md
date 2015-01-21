@@ -120,7 +120,7 @@ Installation
     1.5. Include bootstrap manually or in another way:
 
     For including bootstrap there are different solutions, why using this one?
-    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
+    have a look into [Including Bootstrap](including-bootstrap.md)	
     
     1.6 Sass Installation
 
@@ -192,4 +192,4 @@ Installation
 
 ---
 
-[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>
+[Using bootstrap in the layout](2-base-templates.md) >>

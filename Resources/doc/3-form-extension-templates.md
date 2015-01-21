@@ -313,4 +313,4 @@ Specific documantation
 
 ---
 
-<< [Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) | [Generating Navbars](4-navbar-generation.md) >>
+<< [Using bootstrap in the layout](2-base-templates.md) | [Generating Navbars](4-navbar-generation.md) >>
