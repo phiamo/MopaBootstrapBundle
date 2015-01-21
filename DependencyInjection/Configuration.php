@@ -67,7 +67,7 @@ class Configuration implements ConfigurationInterface
                                     ->defaultValue("col-xs-4")
                                 ->end()
                             ->end()
-                        -end()
+                        ->end()
                         ->booleanNode('render_fieldset')
                             ->defaultValue(true)
                         ->end()
