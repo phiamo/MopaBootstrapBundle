@@ -144,4 +144,4 @@ Now embed that in your template instead:
 
 ---
 
-<< [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) | [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) >>
+<< [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md)

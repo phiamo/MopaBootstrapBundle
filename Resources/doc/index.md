@@ -15,21 +15,28 @@ MopaBootstrapBundle provides several features to assist you quickly building app
 
 Additional doc:
 
-- [Configuration Reference](configuration-reference.md)
 - [Including bootstrap](including-bootstrap.md)
 - [Changing Icon Framework](6-icons.md)
 - [Css vs less](css-vs-less.md)
-- [Using Sass as preprocessor](sass-configuration.md)
 - [Assetic configuration](assetic-configuration.md)
 - [Upgrading to new navbars](navbar-upgrade.md)
 - [Support for other Bundles](99-support-for-other-bundles.md)
+- [Bootstrap Extras (Initializr)](50-initializr.md)
+  - [Base initializr template](51-initializr-variables.md)
 - [Testing Forms](testing-forms.md)
+
+### Configuration reference:
+
+You can use the symfony command line to get the default configuration:
+
+```bash
+php app/console config:dump-reference config:dump-reference
+```
 
 ### Further documentation:
 
 There is a bunch of documentation for this bundle, have a look:
 
-* in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/)
 * in the various examples:
     * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
     * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)

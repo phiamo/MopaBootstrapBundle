@@ -304,13 +304,13 @@ results in:
 </button>
 ```
 
-Collections
------------
+Specific documantation
+----------------------
 
-Look into the more detailed doc:
-
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md
+[Form Collections](3.1-form-collections.md)
+[Form Tabs](3.2-form-tabs.md)
+[Form Components](3.3-form-components.md)
 
 ---
 
-<< [Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) | [Form Collections](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md) >>
+<< [Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) | [Generating Navbars](4-navbar-generation.md) >>
