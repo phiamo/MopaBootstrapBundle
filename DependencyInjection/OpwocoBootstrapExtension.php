@@ -7,14 +7,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Opwoco\Bundle\BootstrapBundle\DependencyInjection;
+namespace opwoco\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class OpwocoBootstrapExtension extends Extension
+class opwocoBootstrapExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -32,7 +32,6 @@ class OpwocoBootstrapExtension extends Extension
             if (!isset($config['bootstrap']['install_path'])) {
                 throw new \RuntimeException('Please specify the "bootstrap.install_path" or disable "opwoco_bootstrap" in your application config.');
             }
-
             $container->setParameter('opwoco_bootstrap.bootstrap.install_path', $config['bootstrap']['install_path']);
         }
 
