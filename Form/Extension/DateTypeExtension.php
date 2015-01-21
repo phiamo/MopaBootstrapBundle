@@ -24,6 +24,21 @@ use Symfony\Component\Form\FormView;
 class DateTypeExtension extends AbstractTypeExtension
 {
     /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * Constructor.
+     *
+     * @param array $options
+     */
+    public function __construct(array $options)
+    {
+        $this->options = $options;
+    }
+    
+    /**
      * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
@@ -31,6 +46,8 @@ class DateTypeExtension extends AbstractTypeExtension
         if ('single_text' === $options['widget'] && isset($options['datepicker'])) {
             $view->vars['datepicker'] = $options['datepicker'];
         }
+        
+        $view->vars['date_wrapper_class'] = $options['date_wrapper_class'];
     }
 
     /**
@@ -40,6 +57,8 @@ class DateTypeExtension extends AbstractTypeExtension
     {
         $resolver->setOptional(array(
             'datepicker',
+        ))->setDefaults(array(
+            'date_wrapper_class' => $this->options['date_wrapper_class']
         ));
     }
 
