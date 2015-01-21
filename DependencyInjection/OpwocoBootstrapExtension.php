@@ -7,14 +7,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Opwoco\Bundle\BootstrapBundle\DependencyInjection;
+namespace opwoco\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class OpwocoBootstrapExtension extends Extension
+class opwocoBootstrapExtension extends Extension
 {
     /**
      * {@inheritDoc}
