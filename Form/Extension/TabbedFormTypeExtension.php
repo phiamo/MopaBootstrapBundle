@@ -14,7 +14,7 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormFactoryInterface;
-use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
+use opwoco\Bundle\BootstrapBundle\Form\Type\TabsType;
 
 /**
  * Extension for Adding Tabs to Form type.

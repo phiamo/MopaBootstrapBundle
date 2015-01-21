@@ -75,7 +75,7 @@ make sure the files have been generated (make):
 
 ```jinja
 {% stylesheets filter='?yui_css'
-    '@MopaBootstrapBundle/Resources/public/bootstrap/docs/assets/css/bootstrap.css'
+    '@opwocoBootstrapBundle/Resources/public/bootstrap/docs/assets/css/bootstrap.css'
     '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />

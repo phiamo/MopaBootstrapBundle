@@ -40,7 +40,7 @@ There is a bunch of documentation for this bundle, have a look:
 
 ### Example application(s)
 
-The following bundles/applications use the MopaBootstrapBundle and can be used as a
+The following bundles/applications use the OpwocoBootstrapBundle and can be used as a
 guideline:
 
 - The MopaBootstrapSandboxBundle provides all examples for the OpwocoBootstrapBundle:

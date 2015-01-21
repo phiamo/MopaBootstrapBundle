@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
  *

@@ -95,7 +95,7 @@ make
 ``` jinja
 {% block head_style %}
 {% stylesheets filter='cssrewrite,?yui_css'
-   '@OpwocoBootstrapBundle/Resources/public/bootstrap/bootstrap.css'
+   '@opwocoBootstrapBundle/Resources/public/bootstrap/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"

@@ -9,7 +9,7 @@
 
 namespace opwoco\Bundle\BootstrapBundle\Menu\Converter;
 
-use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
+use opwoco\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
 use Knp\Menu\ItemInterface;
 
 /**

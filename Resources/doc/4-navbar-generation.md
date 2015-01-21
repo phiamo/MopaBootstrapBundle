@@ -22,7 +22,7 @@ following in your config.yml. **You need to activate this extension in order
 to use the Twig function and KnpMenu Navbar extension.**
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     menu: ~
 ```
 
@@ -102,7 +102,7 @@ Here is a sample Navbar:
 ``` jinja
 {% embed '@opwocoBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: true } %}
     {% block brand %}
-        <a class="navbar-brand" href="#">Mopa Bootstrap</a>
+        <a class="navbar-brand" href="#">opwoco Bootstrap</a>
     {% endblock %}
 
     {% block menu %}
