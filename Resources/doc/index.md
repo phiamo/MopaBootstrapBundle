@@ -3,7 +3,7 @@ Getting Started With MopaBootstrapBundle
 
 ## Installation
 
-1. [installation](1-installation.md)
+1. [Installation](1-installation.md)
 
 ## Bundle usage
 
@@ -30,7 +30,7 @@ Additional doc:
 You can use the symfony command line to get the default configuration:
 
 ```bash
-php app/console config:dump-reference config:dump-reference
+php app/console config:dump-reference mopa_bootstrap
 ```
 
 ### Further documentation:
@@ -38,7 +38,7 @@ php app/console config:dump-reference config:dump-reference
 There is a bunch of documentation for this bundle, have a look:
 
 * in the various examples:
-    * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
+    * [Twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
     * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
     * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
