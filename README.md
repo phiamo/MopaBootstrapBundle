@@ -81,7 +81,7 @@ Live Show
 
 To see the bundle, its capabilities and some more doc just have a look on
 
-[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
+[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de)
 
 Additional Resources:
 
