@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use opwoco\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormPass;
 
-class opwocoBootstrapBundle extends Bundle
+class pwocoBootstrapBundle extends Bundle
 {
     /**
      * {@inheritdoc}
