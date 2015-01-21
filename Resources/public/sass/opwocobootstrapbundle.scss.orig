@@ -1,7 +1,7 @@
 /*!
- * MopaBootstrapBundle
+ * OpwocoBootstrapBundle
  *
- * Copyright 2011 Mohrenweiser & Partner
+ * Copyright 2015 opwoco GmbH
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,17 +17,17 @@
  */
 
 
-// Main bootstrap.sass entry point (for font awesome)
-@import "bootstrap-fontawesome.scss";
+// Main bootstrap.sass entry point
+@import "../../bootstrap-sass/lib/bootstrap.scss";
 
-// The Paginator less for MopaBootstrapBundle
+// The Paginator less for OpwocoBootstrapBundle
 @import "paginator.scss";
 
-// Collection support for MopaBootstrapBundle
+// Collection support for OpwocoBootstrapBundle
 @import "collections.scss";
 
-// FormFlow support for MopaBootstrapBundle
+// FormFlow support for OpwocoBootstrapBundle
 @import "form_flow.scss";
 
 // include the responsive after all of your stuff!
-// @import "../bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss";
+// @import "../../bootstrap-sass/lib/responsive.scss";

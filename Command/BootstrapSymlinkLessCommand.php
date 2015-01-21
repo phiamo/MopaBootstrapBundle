@@ -1,22 +1,20 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Command;
+namespace opwoco\Bundle\BootstrapBundle\Command;
 
 /**
- * Command to create Bootstrap symlink to MopaBootstrapBundle.
+ * Command to create Bootstrap symlink to OpwocoBootstrapBundle.
  */
 class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 {
-    public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
+    public static $opwocoBootstrapBundleName = "opwoco/bootstrap-bundle";
     public static $twitterBootstrapName = "twbs/bootstrap";
 
     protected function getTwitterBootstrapName()
@@ -29,20 +27,20 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
         parent::configure();
 
         $this
-            ->setName('mopa:bootstrap:symlink:less')
+            ->setName('opwoco:bootstrap:symlink:less')
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking/mirroring the twitters/bootstrap library.
+The <info>opwoco:bootstrap:symlink:less</info> command helps you checking and symlinking/mirroring the twitters/bootstrap library.
 
-By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twbs/bootstrap in your vendors.
+By default, the command uses composer to retrieve the paths of OpwocoBootstrapBundle and twbs/bootstrap in your vendors.
 
 If you want to control the paths yourself specify the paths manually:
 
-php app/console mopa:bootstrap:symlink:less <comment>--manual</comment> <pathToTwitterBootstrap> <pathToMopaBootstrapBundle>
+php app/console opwoco:bootstrap:symlink:less <comment>--manual</comment> <pathToTwitterBootstrap> <pathToOpwocoBootstrapBundle>
 
 Defaults if installed by composer would be :
 
 pathToTwitterBootstrap:    ../../../../../../../vendor/twitter/bootstrap
-pathToMopaBootstrapBundle: vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/bootstrap
+pathToOpwocoBootstrapBundle: vendor/opwoco/bootstrap-bundle/opwoco/Bundle/BootstrapBundle/Resources/bootstrap
 
 EOT
             );

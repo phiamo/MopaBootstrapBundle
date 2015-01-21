@@ -20,7 +20,7 @@
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
     {% if icon is not empty %}
-            {{ mopa_bootstrap_icon(icon, icon_inverted|default(false)) }}
+            {{ opwoco_bootstrap_icon(icon, icon_inverted|default(false)) }}
     {% endif %}
     {{ label|trans({}, translation_domain) }}</button>
 {% endspaceless %}
@@ -138,7 +138,7 @@
         {% set class = (tab.active ? 'active ' : '') ~ (tab.disabled ? 'disabled' : '') %}
         <li{% if class|trim is not empty %} class="{{ class }}"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
-                {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
+                {% if tab.icon %}{{ opwoco_bootstrap_icon(tab.icon) }}{% endif %}
                 {{ tab.label|trans({}, tab.translation_domain) }}
             </a>
         </li>
@@ -280,7 +280,7 @@
         <div data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
             <input {% if widget_form_control_class is not sameas(false) %}class="{{ widget_form_control_class }}" {% endif %}type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
-            <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
+            <span class="input-group-addon">{{ opwoco_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
         {{ block('form_widget_simple') }}
@@ -306,7 +306,7 @@
         <div data-provider="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
             <input class="form-control" type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
-            <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
+            <span class="input-group-addon">{{ opwoco_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
         {{ block('form_widget_simple') }}
@@ -334,7 +334,7 @@
             <div data-provider="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
                 {{ block('form_widget_simple') }}
                 <input type="hidden" value="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" {{ block('widget_attributes') }}>
-                <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
+                <span class="input-group-addon">{{ opwoco_bootstrap_icon(widget_addon_icon) }}</span>
             </div>
         {% else %}
             {{ block('form_widget_simple') }}
@@ -451,7 +451,7 @@
     <span class="help-block">
         <a href="#" data-toggle="tooltip" data-placement="{{ help_label_tooltip.placement}}" data-title="{{ help_label_tooltip.title|trans({}, translation_domain) }}">
             {% if help_label_tooltip.icon is not sameas(false) %}
-                {{ mopa_bootstrap_icon(help_label_tooltip.icon) }}
+                {{ opwoco_bootstrap_icon(help_label_tooltip.icon) }}
             {% endif %}
             {% if help_label_tooltip.text is not sameas(null) %}
                 {{ help_label_tooltip.text }}
@@ -469,7 +469,7 @@
     <span class="help-block">
         <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" data-html="true">
             {% if help_label_popover.icon is not sameas(false) %}
-                {{ mopa_bootstrap_icon(help_label_popover.icon) }}
+                {{ opwoco_bootstrap_icon(help_label_popover.icon) }}
             {% endif %}
             {% if help_label_popover.text is not sameas(null) %}
                 {{ help_label_popover.text }}
@@ -606,7 +606,7 @@
 {% block collection_button %}
 <a {% for attrname,attrvalue in button_values.attr %} {{attrname}}="{{attrvalue}}"{% endfor %} data-collection-{{ button_type }}-btn=".{{ form.vars['id'] }}_form_group">
 {% if button_values.icon is not null %}
-    {{ mopa_bootstrap_icon(button_values.icon, button_values.icon_inverted|default(false)) }}
+    {{ opwoco_bootstrap_icon(button_values.icon, button_values.icon_inverted|default(false)) }}
 {% endif %}
 {% if button_values.label is defined %}
     {{ button_values.label|trans({}, translation_domain) }}
@@ -627,7 +627,7 @@
 {% spaceless %}
 {% set widget_addon_icon = widget_addon.icon is defined ? widget_addon.icon : null  %}
 {% set widget_addon_icon_inverted = widget_addon.icon_inverted is defined ? widget_addon.icon_inverted : false  %}
-    <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain)|raw : mopa_bootstrap_icon(widget_addon_icon, widget_addon_icon_inverted)) }}</span>
+    <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain)|raw : opwoco_bootstrap_icon(widget_addon_icon, widget_addon_icon_inverted)) }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
 
@@ -644,7 +644,7 @@
 {% else %}
     {% if errors|length > 0 %}
         {% if form.parent == null %}
-            {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
+            {% from 'OpwocoBootstrapBundle::flash.html.twig' import flash %}
             {% for error in errors %}
                 {{ flash('danger', error.message) }}
             {% endfor %}

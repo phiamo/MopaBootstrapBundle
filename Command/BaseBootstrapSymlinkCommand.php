@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Command;
+namespace opwoco\Bundle\BootstrapBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -21,13 +19,12 @@ use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
 /**
- * Command to check and create bootstrap symlink into MopaBootstrapBundle
+ * Command to check and create bootstrap symlink into OpwocoBootstrapBundle
  *
- * @author phiamo <phiamo@googlemail.com>
  */
 abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
 {
-    public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
+    public static $opwocoBootstrapBundleName = "opwoco/bootstrap-bundle";
     public static $targetSuffix = '';
     public static $pathName = 'TwitterBootstrap';
 
@@ -111,9 +108,9 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         $this
             ->setDescription("Check and if possible install symlink to ".static::$targetSuffix)
             ->addArgument('pathTo'.static::$pathName, InputArgument::OPTIONAL, 'Where is twitters/bootstrap located?')
-            ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
+            ->addArgument('pathToOpwocoBootstrapBundle', InputArgument::OPTIONAL, 'Where is the opwoco-BootstrapBundle located?')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Force rewrite of existing symlink if possible!')
-            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo'.static::$pathName.', and pathToMopaBootstrapBundle')
+            ->addOption('manual', 'm', InputOption::VALUE_NONE, 'If set please specify pathTo'.static::$pathName.', and pathToOpwocoBootstrapBundle')
             ->addOption('no-symlink', null, InputOption::VALUE_NONE, 'Use hard copy/mirroring instead of symlink. This is required for Windows without administrator privileges.')
         ;
     }
@@ -136,14 +133,14 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsFromUser();
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
-            $targetPath = $this->getContainer()->getParameter("mopa_bootstrap.bootstrap.install_path");
+            $targetPath = $this->getContainer()->getParameter("opwoco_bootstrap.bootstrap.install_path");
             $cmanager = new ComposerPathFinder($composer);
             $options = array(
                     'targetSuffix' => DIRECTORY_SEPARATOR.$targetPath.static::$targetSuffix,
                     'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
             );
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-                self::$mopaBootstrapBundleName,
+                self::$opwocoBootstrapBundleName,
                 $this->getTwitterBootstrapName(),
                 $options
             );
@@ -181,14 +178,14 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     protected function getBootstrapPathsFromUser()
     {
         $symlinkTarget = $this->input->getArgument('pathTo'.static::$pathName);
-        $symlinkName = $this->input->getArgument('pathToMopaBootstrapBundle');
+        $symlinkName = $this->input->getArgument('pathToOpwocoBootstrapBundle');
 
         if (empty($symlinkName)) {
-            throw new \Exception("pathToMopaBootstrapBundle not specified");
+            throw new \Exception("pathToOpwocoBootstrapBundle not specified");
         }
 
         if (!is_dir(dirname($symlinkName))) {
-            throw new \Exception("pathToMopaBootstrapBundle: ".dirname($symlinkName)." does not exist");
+            throw new \Exception("pathToOpwocoBootstrapBundle: ".dirname($symlinkName)." does not exist");
         }
 
         if (empty($symlinkTarget)) {
@@ -206,7 +203,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         }
 
         if (!is_dir($symlinkTarget)) {
-            throw new \Exception(static::$pathName." would resolve to: ".$symlinkTarget."\n and this is not reachable from \npathToMopaBootstrapBundle: ".dirname($symlinkName));
+            throw new \Exception(static::$pathName." would resolve to: ".$symlinkTarget."\n and this is not reachable from \npathToOpwocoBootstrapBundle: ".dirname($symlinkName));
         }
 
         $dialog = $this->getHelperSet()->get('dialog');

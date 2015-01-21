@@ -13,20 +13,20 @@ Your old configuration might have looked like this:
 ```yaml
 services:
     sternenbund.navbar:
-        class: '%mopa_bootstrap.navbar.generic%'
+        class: '%opwoco_bootstrap.navbar.generic%'
         scope: request
         arguments:
             - { leftmenu: @sternenbund.navbar_main_menu=, rightmenu: @sternenbund.navbar_right_menu= }
             - {}
-            - { title: "Sternenbund", titleRoute: "mopa_bootstrap_welcome", fixedTop: true }
+            - { title: "Sternenbund", titleRoute: "opwoco_bootstrap_welcome", fixedTop: true }
         tags:
-            - { name: mopa_bootstrap.navbar, alias: frontendNavbar }
+            - { name: opwoco_bootstrap.navbar, alias: frontendNavbar }
 ```
 
 Your navbar class will probably look something like this:
 
 ```php
-use Mopa\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
+use opwoco\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
 
 class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 {
@@ -46,14 +46,14 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 And you would have rendered your Navbar by doing this:
 
 ```jinja
-{{ mopa_bootstrap_menu('frontendNavbar') }}
+{{ opwoco_bootstrap_menu('frontendNavbar') }}
 ```
 
 
 ## The New Way
 
 Firstly, you can completely get rid of your Navbar Generic class in your services
-config. (This is the definition with %mopa_bootstra.navbar.generic% as the class)
+config. (This is the definition with %opwoco_bootstrap.navbar.generic% as the class)
 We will directly use these when rendering the Navbar now, you no longer need this.
 
 Second, you will want to use the new method of declaring your menu, this is how
@@ -102,14 +102,14 @@ from the previous method, you should use the `pull-right` option to create your
 "rightmenu."
 
 ```jinja
-{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, inverse: true } %}
+{% embed '@opwocoBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, inverse: true } %}
     {% block brand %}
         <a class="navbar-brand" href="#">My Brand</a>
     {% endblock %}
 
     {% block menu %}
-        {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
-        {{ mopa_bootstrap_menu('sternenbund.navbar_main_menu') }}
+        {{ opwoco_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+        {{ opwoco_bootstrap_menu('sternenbund.navbar_main_menu') }}
     {% endblock %}
 {% endembed %}
 ```

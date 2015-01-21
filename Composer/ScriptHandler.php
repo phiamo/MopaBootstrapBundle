@@ -1,20 +1,18 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
+ * This file is part of the OpwocoBootstrapBundle.
  *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
- *
- * For the full copyright and license information, please view the LICENSE
+* For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Composer;
+namespace opwoco\Bundle\BootstrapBundle\Composer;
 
 use Composer\Script\Event;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
-use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand;
-use Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
+use opwoco\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand;
+use opwoco\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand;
 
 /**
  * Script for Composer, create symlink to bootstrap lib into the BootstrapBundle.
@@ -33,7 +31,7 @@ class ScriptHandler
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkLessCommand::$opwocoBootstrapBundleName,
             BootstrapSymlinkLessCommand::$twitterBootstrapName,
             $options
         );
@@ -56,7 +54,7 @@ class ScriptHandler
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkLessCommand::$opwocoBootstrapBundleName,
             BootstrapSymlinkLessCommand::$twitterBootstrapName,
             $options
         );
@@ -79,7 +77,7 @@ class ScriptHandler
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkSassCommand::$opwocoBootstrapBundleName,
             BootstrapSymlinkSassCommand::$twitterBootstrapName,
             $options
         );
@@ -102,7 +100,7 @@ class ScriptHandler
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         );
         list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
-            BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
+            BootstrapSymlinkSassCommand::$opwocoBootstrapBundleName,
             BootstrapSymlinkSassCommand::$twitterBootstrapName,
             $options
         );

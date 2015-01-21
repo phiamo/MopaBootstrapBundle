@@ -28,10 +28,10 @@ mopa_bootstrap:
 
 ## Auto bootstrap menu
 
-By adding "automenu" : "navbar" or "automenu": "pills" you can use mopa_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
+By adding "automenu" : "navbar" or "automenu": "pills" you can use opwoco_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
 
 ```
-{{ mopa_bootstrap_menu('mymenu', {'automenu': 'navbar'}) }}
+{{ opwoco_bootstrap_menu('mymenu', {'automenu': 'navbar'}) }}
 ```
 
 See below for Special Menu Options, the automenu just sets these based on the root item you provide, and CHANGES the attributes of the children accordingly in a magic way.
@@ -67,7 +67,7 @@ class Builder
         // Add a regular child with an icon, icon- is prepended automatically
         $layout = $menu->addChild('Layout', array(
             'icon' => 'home',
-            'route' => 'mopa_bootstrap_layout_example',
+            'route' => 'opwoco_bootstrap_layout_example',
         ));
 
         // Create a dropdown with a caret
@@ -100,14 +100,14 @@ You can create your menu as a service or you can use the controller notation.
 Here is a sample Navbar:
 
 ``` jinja
-{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: true } %}
+{% embed '@opwocoBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: true } %}
     {% block brand %}
         <a class="navbar-brand" href="#">Mopa Bootstrap</a>
     {% endblock %}
 
     {% block menu %}
-        {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
-        {{ mopa_bootstrap_menu('menuAlias') }}
+        {{ opwoco_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+        {{ opwoco_bootstrap_menu('menuAlias') }}
     {% endblock %}
 {% endembed %}
 ```
@@ -120,10 +120,10 @@ template and then embedding it:
 
 ``` jinja
 {# @Acme/Navbar/navbar.html.twig #}
-{% extends '@MopaBootstrap/Navbar/navbar.html.twig' %}
+{% extends '@opwocoBootstrap/Navbar/navbar.html.twig' %}
 
 {% block menu %}
-    {{ mopa_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
+    {{ opwoco_bootstrap_menu('AcmeBundle:Builder:mainMenu') }}
 {% endblock %}
 
 {% block brand %}
@@ -137,11 +137,11 @@ Now embed that in your template instead:
 {% embed '@Acme/Navbar/navbar.html.twig' with { fixedTop: true } %}
     {% block menu %}
         {{ parent() }}
-        {{ mopa_bootstrap_menu('AcmeBundle:Builder:rightMenu') }}
+        {{ opwoco_bootstrap_menu('AcmeBundle:Builder:rightMenu') }}
     {% endblock %}
 {% endembed %}
 ```
 
 ---
 
-<< [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) | [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) >>
+<< [Form Components](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) | [Bootstrap Extras (Initializr)](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/50-initializr.md) >>

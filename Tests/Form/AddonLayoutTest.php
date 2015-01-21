@@ -1,6 +1,6 @@
 <?php
 
-namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
+namespace opwoco\Bundle\BootstrapBundle\Tests\Form;
 
 class AddonLayoutTest extends AbstractDivLayoutTest
 {

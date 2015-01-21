@@ -6,7 +6,7 @@ to render them. By default, it is set to use Glyphicons, which is standard with
 Bootstrap. The default configuration is as follows:
 
 ```yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     icons:
         icon_set: glyphicons
         shortcut: icon
@@ -20,14 +20,14 @@ Currently you can choose from
 
 Please make sure you are including the corresponding less file:
 
-- mopaboostrapbundle.less for glyphicons
-- mopaboostrapbundle-fa.less for fontawesome
-- mopaboostrapbundle-fa4.less for fontawesome4
+- opwocoboostrapbundle.less for glyphicons
+- opwocoboostrapbundle-fa.less for fontawesome
+- opwocoboostrapbundle-fa4.less for fontawesome4
 
 And make sure you install the fonts after you confed the app/config.yml
 
 ```
-app/console mopa:bootstrap:install:font
+app/console opwoco:bootstrap:install:font
 ```
 
 ### Usage
@@ -42,8 +42,8 @@ Inversed Icon - {{ icon('pencil', true) }}
 Or
 
 ```jinja
-Regular Icon - {{ mopa_bootstrap_icon('pencil') }}
-Inversed Icon - {{ mopa_bootstrap_icon('pencil', true) }}
+Regular Icon - {{ opwoco_bootstrap_icon('pencil') }}
+Inversed Icon - {{ opwoco_bootstrap_icon('pencil', true) }}
 ```
 
 ### Disabling or Changing the Shortcut
@@ -55,9 +55,9 @@ you can change its name, or disable it:
 Change name:
 
 ```yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     icons:
-        shortcut: bootstrap_icon
+        shortcut: opwoco_icon
 ```
 
 And now this works:
@@ -69,7 +69,7 @@ And now this works:
 Or disable:
 
 ```yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     icons:
         shortcut: ~
 ```
@@ -87,14 +87,14 @@ assetic:
 And add this filter to your assetic call:
 ```twig
 {% stylesheets filter="cssrewrite,less"
-    'bundles/mopabootstrap/less/mopabootstrapbundle.less'
+    'bundles/opwocobootstrap/less/opwocobootstrapbundle.less'
 %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 {% endstylesheets %}
 ```
 
-Please note that you must not use the `@MopaBootstrap/Resources/public/less/mopabootstrapbundle.less` annotation or the css rewrite will fail.
+Please note that you must not use the `@opwocoBootstrap/Resources/public/less/opwocobootstrapbundle.less` annotation or the css rewrite will fail.
 
 ---
 
-<< [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) | [Support for other Bundles](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/99-support-for-other-bundles.md) >>
+<< [Base initializr template](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) | [Support for other Bundles](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/99-support-for-other-bundles.md) >>

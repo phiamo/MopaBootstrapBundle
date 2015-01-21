@@ -1,17 +1,15 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Twig;
+namespace opwoco\Bundle\BootstrapBundle\Twig;
 
-use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
+use opwoco\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
 use Knp\Menu\Twig\Helper;
 use Knp\Menu\ItemInterface;
 
@@ -56,7 +54,7 @@ class MenuExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('mopa_bootstrap_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('opwoco_bootstrap_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
         );
     }
 
@@ -118,6 +116,6 @@ class MenuExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'mopa_bootstrap_menu';
+        return 'opwoco_bootstrap_menu';
     }
 }

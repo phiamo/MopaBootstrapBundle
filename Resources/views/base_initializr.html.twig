@@ -1,4 +1,4 @@
-{% extends 'MopaBootstrapBundle::base_less.html.twig' %}
+{% extends 'opwocoBootstrapBundle::base_less.html.twig' %}
 
 {% block html_tag %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -114,12 +114,12 @@
         {# Find places where your CSS is broken, docs how to use:
            http://meyerweb.com/eric/tools/css/diagnostics/' #}
         {% if diagnostic_mode %}
-            <link href="{{ asset('bundles/mopabootstrap/css/diagnostic.css') }}" type="text/css" rel="stylesheet" media="screen" />
+            <link href="{{ asset('bundles/opwocobootstrap/css/diagnostic.css') }}" type="text/css" rel="stylesheet" media="screen" />
         {% endif %}
     {% endblock head_style %}
 
     {% block head_scripts %}
-        <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/opwocobootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
     {% endblock head_scripts %}
 </head>
 {% endblock head %}

@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
+namespace opwoco\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
@@ -21,7 +19,6 @@ use Symfony\Component\Form\Exception\InvalidArgumentException;
 /**
  * Extension for Help Forms handling
  *
- * @author phiamo <phiamo@googlemail.com>
  */
 class HelpFormTypeExtension extends AbstractTypeExtension
 {

@@ -82,6 +82,6 @@ Just use the usual twig/assetic tag for scripts
 
 ```jinja
 {% stylesheets filter='?yui_css'
-    '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
+    '@opwocoBootstrapBundle/Resources/public/sass/opwocobootstrapbundle.scss'
 %}
 ```

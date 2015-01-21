@@ -1,4 +1,4 @@
-Getting Started With MopaBootstrapBundle
+Getting Started With OpwocoBootstrapBundle
 =======================================
 
 ## Installation
@@ -7,7 +7,7 @@ Getting Started With MopaBootstrapBundle
 
 ## Bundle usage
 
-MopaBootstrapBundle provides several features to assist you quickly building applications:
+OpwocoBootstrapBundle provides several features to assist you quickly building applications:
 
 - [Base Templates](2-base-templates.md)
 - [Form Extension and Template](3-form-extension-templates.md)
@@ -29,9 +29,9 @@ Additional doc:
 
 There is a bunch of documentation for this bundle, have a look:
 
-* in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/)
+* in the [docs folder](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/)
 * in the various examples:
-    * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
+    * [twig templates](https://github.com/phiamo/BootstrapSandboxBundle/tree/master/Resources/views/Examples)
     * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
     * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
@@ -43,7 +43,7 @@ There is a bunch of documentation for this bundle, have a look:
 The following bundles/applications use the MopaBootstrapBundle and can be used as a
 guideline:
 
-- The MopaBootstrapSandboxBundle provides all examples for the MopaBootstrapBundle:
+- The MopaBootstrapSandboxBundle provides all examples for the OpwocoBootstrapBundle:
   https://github.com/phiamo/MopaBootstrapSandboxBundle
 
 - There is also a fork of the Symfony2 Standard Edition that is configured to

@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Menu\Converter;
+namespace opwoco\Bundle\BootstrapBundle\Menu\Converter;
 
 use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
 use Knp\Menu\ItemInterface;
@@ -23,7 +21,6 @@ use Knp\Menu\ItemInterface;
  * Either we implement a flattening option or warn,
  * or ignore this as its done now.
  *
- * @author phiamo <phiamo@googlemail.com>
  */
 class MenuConverter
 {

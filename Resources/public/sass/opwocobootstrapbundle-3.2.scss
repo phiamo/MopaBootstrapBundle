@@ -1,7 +1,7 @@
 /*!
- * MopaBootstrapBundle
+ * OpwocoBootstrapBundle
  *
- * Copyright 2011 Mohrenweiser & Partner
+ * Copyright 2015 opwoco GmbH
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -17,19 +17,19 @@
  */
 
 // variables
-$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/" !default;
+$icon-font-path: "/bundles/opwocobootstrap/fonts/bootstrap/";
 
 // Bootstrap overrides, such as the asset-url(..) function.
 @import "bootstrap_and_overrides";
 
 // Main bootstrap.sass entry point
-@import "../bootstrap-sass/assets/stylesheets/bootstrap/bootstrap";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap";
 
-// The Paginator less for MopaBootstrapBundle
+// The Paginator less for OpwocoBootstrapBundle
 @import "paginator.scss";
 
-// Collection support for MopaBootstrapBundle
+// Collection support for OpwocoBootstrapBundle
 @import "collections.scss";
 
-// FormFlow support for MopaBootstrapBundle
+// FormFlow support for OpwocoBootstrapBundle
 @import "form_flow.scss";

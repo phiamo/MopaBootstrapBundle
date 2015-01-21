@@ -1,4 +1,4 @@
-MopaBootstrapBundle Less installation
+OpwocoBootstrapBundle Less installation
 =====================================
 
 To effectively use all features of bootstrap you want to use less together with bootstrap.
@@ -36,7 +36,7 @@ assetic:
 
  - Yui CSS and CSS Embed are very nice and recommended.
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
-   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/assetic-configuration.md)
+   see [Assetic configuration](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/assetic-configuration.md)
 
 
 Known Problems:
@@ -65,7 +65,7 @@ another error i had was
 
 ```
   [RuntimeException]                                                                                                                                                                         
-  Syntax Error on line 396 in path/to/vendor/bundles/Mopa/BootstrapBundle/Resources/bootstrap/less/mixins.less        
+  Syntax Error on line 396 in path/to/vendor/bundles/opwoco/BootstrapBundle/Resources/bootstrap/less/mixins.less
   395 .reset-filter() {                                                                                                                                                            
   396   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);                                                                                              
   397 }                            

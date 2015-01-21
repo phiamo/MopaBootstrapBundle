@@ -5,7 +5,7 @@ Example config
 
 ```yaml
 # app/config/config.yml
-mopa_bootstrap:
+opwoco_bootstrap:
     initializr:
         meta:
             title:        "YYY"
@@ -101,4 +101,4 @@ Blocks
 
 ---
 
-<< [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) | [Icons](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/6-icons.md) >>
+<< [Bootstrap Extras (Initializr)](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/50-initializr.md) | [Icons](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/6-icons.md) >>

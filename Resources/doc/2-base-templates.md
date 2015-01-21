@@ -9,26 +9,26 @@ Prerequisites
 Less is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Less Documentation](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
 ### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
-[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
+[Sass Documentation](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
 
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
 
-There is also a [base_less.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout is less.
+There is also a [base_less.html.twig](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout is less.
 
-There is also a [base_sass.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_sass.html.twig) its layout is sass.
+There is also a [base_sass.html.twig](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/views/base_sass.html.twig) its layout is sass.
 - (If you are using Bootstrap 3.2 for SASS please use base_sass_3.2.html.twig)
 
-There is also a [base_lessjs.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
+There is also a [base_lessjs.html.twig](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
 
 Usage
 -----
@@ -36,10 +36,10 @@ Usage
 To make use of the supplied base.html.twig template just use it, or
 defining a new template:
 
-app/Resources/MopaBootstrapBundle/views/layout.html.twig
+app/Resources/opwocoBootstrapBundle/views/layout.html.twig
 
 ```jinja
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% extends 'opwocoBootstrapBundle::base.html.twig' %}
 
 {% block title %}Yourapp{% endblock %}
 
@@ -77,25 +77,25 @@ Depending on where your bundle exacly resides (e.g. Your\Smthbundle or Your\Bund
 you need to adapt the path ( ../ ):
 
 ``` css
-// Getting the whole mopabootstrapbundle.less
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
+// Getting the whole opwocobootstrapbundle.less
+@import "../../../../../../../../opwoco/bootstrap-bundle/opwoco/Bundle/BootstrapBundle/Resources/public/less/opwocobootstrapbundle.less";
 
 // same for scss files
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.scss";
+@import "../../../../../../../../opwoco/bootstrap-bundle/opwoco/Bundle/BootstrapBundle/Resources/public/less/opwocobootstrapbundle.scss";
 
 ```
 
 If you would like to use the css try this:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap
+cd vendor/opwoco/bootstrap-bundle/opwoco/Bundle/BootstrapBundle/Resources/public/bootstrap
 make
 ```
 
 ``` jinja
 {% block head_style %}
 {% stylesheets filter='cssrewrite,?yui_css'
-   '@MopaBootstrapBundle/Resources/public/bootstrap/bootstrap.css'
+   '@OpwocoBootstrapBundle/Resources/public/bootstrap/bootstrap.css'
    '@YourNiceBundle/Resources/public/css/*'
 %}
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
@@ -107,4 +107,4 @@ if it doesnt work, why not use the less or sass way?
 
 ---
 
-<< [Installation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md) | [Form Extensions](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) >>
+<< [Installation](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/1-installation.md) | [Form Extensions](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) >>

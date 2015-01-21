@@ -1,20 +1,18 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Twig;
+namespace opwoco\Bundle\BootstrapBundle\Twig;
 
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * MopaBootstrap Icon Extension.
+ * OpwocoBootstrap Icon Extension.
  *
  * @author Craig Blanchette (isometriks) <craig.blanchette@gmail.com>
  */
@@ -66,7 +64,7 @@ class IconExtension extends \Twig_Extension
     public function getFunctions()
     {
         $functions = array(
-            new \Twig_SimpleFunction('mopa_bootstrap_icon', array($this, 'renderIcon'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('opwoco_bootstrap_icon', array($this, 'renderIcon'), array('is_safe' => array('html'))),
         );
 
         if ($this->shortcut) {
@@ -100,7 +98,7 @@ class IconExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'mopa_bootstrap_icon';
+        return 'opwoco_bootstrap_icon';
     }
 
     /**
@@ -109,7 +107,7 @@ class IconExtension extends \Twig_Extension
     protected function getIconTemplate()
     {
         if ($this->iconTemplate === null) {
-            $this->iconTemplate = $this->environment->loadTemplate('@MopaBootstrap/icons.html.twig');
+            $this->iconTemplate = $this->environment->loadTemplate('@opwocoBootstrap/icons.html.twig');
         }
 
         return $this->iconTemplate;

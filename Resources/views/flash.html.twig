@@ -34,7 +34,7 @@
     {% import _self as flash_messages %}
 
     {% if app.session.flashbag.peekAll|length > 0 %}
-        {% set mapping = mopa_bootstrap_flash_mapping()|merge({'fos_user_success':'success'}) %}
+        {% set mapping = opwoco_bootstrap_flash_mapping()|merge({'fos_user_success':'success'}) %}
         {% set flashes = {} %}
 
         {% for type in mapping|keys %}

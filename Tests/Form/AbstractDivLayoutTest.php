@@ -1,16 +1,16 @@
 <?php
 
-namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
+namespace opwoco\Bundle\BootstrapBundle\Tests\Form;
 
-use Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as FormExtension2;
-use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
+use opwoco\Bundle\BootstrapBundle\Twig\FormExtension as FormExtension2;
+use opwoco\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
@@ -56,7 +56,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             __DIR__.'/../../Resources/views/Form',
         ));
 
-        $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
+        $loader->addPath(__DIR__.'/../../Resources/views', 'opwocoBootstrap');
 
         $environment = new Twig_Environment($loader, array('strict_variables' => true));
         $environment->addExtension(new TranslationExtension(new StubTranslator()));

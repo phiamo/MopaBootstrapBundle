@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Twig;
+namespace opwoco\Bundle\BootstrapBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -54,10 +52,10 @@ class InitializrTwigExtension extends \Twig_Extension
      */
     public function getGlobals()
     {
-        $meta = $this->container->getParameter('mopa_bootstrap.initializr.meta');
-        $dnsPrefetch = $this->container->getParameter('mopa_bootstrap.initializr.dns_prefetch');
-        $google = $this->container->getParameter('mopa_bootstrap.initializr.google');
-        $diagnosticMode = $this->container->getParameter('mopa_bootstrap.initializr.diagnostic_mode');
+        $meta = $this->container->getParameter('opwoco_bootstrap.initializr.meta');
+        $dnsPrefetch = $this->container->getParameter('opwoco_bootstrap.initializr.dns_prefetch');
+        $google = $this->container->getParameter('opwoco_bootstrap.initializr.google');
+        $diagnosticMode = $this->container->getParameter('opwoco_bootstrap.initializr.diagnostic_mode');
 
         return array(
             'dns_prefetch'      => $dnsPrefetch,

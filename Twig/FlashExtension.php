@@ -1,18 +1,16 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Twig;
+namespace opwoco\Bundle\BootstrapBundle\Twig;
 
 /**
- * MopaBootstrap Flash Extension.
+ * OpwocoBootstrap Flash Extension.
  *
  * @author Nikolai Zujev (jaymecd) <nikolai.zujev@gmail.com>
  */
@@ -39,7 +37,7 @@ class FlashExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', array($this, 'getMapping'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('opwoco_bootstrap_flash_mapping', array($this, 'getMapping'), array('is_safe' => array('html'))),
         );
     }
 
@@ -58,6 +56,6 @@ class FlashExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'mopa_bootstrap_flash';
+        return 'opwoco_bootstrap_flash';
     }
 }

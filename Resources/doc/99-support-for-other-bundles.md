@@ -5,7 +5,7 @@ Support for other Bundles
 CraueFormFlowBundle
 -------------------
 
-For FormFlow you can just use MopaBootstrap's templates instead of the ones given by the Bundles:
+For FormFlow you can just use OpwocoBootstrap's templates instead of the ones given by the Bundles:
 
 ``` jinja
 {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' with {'formident': '#myform'}%}
@@ -26,12 +26,12 @@ e.g.
 For CraueFormFlowBundle version 2.* you can use:
 
 ``` jinja
-{% include 'MopaBootstrapBundle:Form:formflow_buttons.html.twig' %}
+{% include 'OpwocoBootstrapBundle:Form:formflow_buttons.html.twig' %}
 ```
 and
 
 ``` jinja
-{% include 'MopaBootstrapBundle:Form:formflow_stepList.html.twig' %}
+{% include 'OpwocoBootstrapBundle:Form:formflow_stepList.html.twig' %}
 ```
 KnpPaginatorBundle
 ------------------
@@ -42,7 +42,7 @@ For KnpPaginatorBundle use the following to override template:
 # File: app/configs/parameters.yml
 
 parameters:
-    knp_paginator.template.pagination: MopaBootstrapBundle:Pagination:sliding.html.twig
+    knp_paginator.template.pagination: OpwocoBootstrapBundle:Pagination:sliding.html.twig
 ```
 
 if you need to set e.g. a different class for the ul or want to change the default texts:
@@ -61,7 +61,7 @@ And to use the Paginator templates copy them to
 
 ```bash
 mkdir -p app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
-cp vendor/bundles/Mopa/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
+cp vendor/bundles/opwoco/BootstrapBundle/Resources/views/Pagination/* app/Resources/Knp/Bundle/PaginatorBundle/views/Pagination/
 ```
 
 
@@ -74,7 +74,7 @@ For KnpMenu use the following parameter to make use of the menu template:
 # File: app/configs/parameters.yml
 
 parameters:
-    knp_menu.renderer.twig.template: MopaBootstrapBundle:Menu:menu.html.twig
+    knp_menu.renderer.twig.template: OpwocoBootstrapBundle:Menu:menu.html.twig
 ```
 
 By using this template, you can make use of the `icon` and `icon_white` extra attributes.
@@ -86,7 +86,7 @@ The example shows the usage within a `Navbar`, however it works with any `knp_me
 
 namespace Acme\Bundle\AcmeDemoBundle\Menu;
 
-use Mopa\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
+use opwoco\Bundle\BootstrapBundle\Navbar\AbstractNavbarMenuBuilder;
 
 class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 {
@@ -129,4 +129,4 @@ class NavbarMenuBuilder extends AbstractNavbarMenuBuilder
 
 ---
 
-<< [Icons](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/6-icons.md)
+<< [Icons](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/6-icons.md)

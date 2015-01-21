@@ -23,7 +23,7 @@ There are a bunch of other config variabled to control the templating behaviour 
 You can change them globally, on a per form basis and per field.
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
         templating: false # default is true
         render_fieldset: true # default is true
@@ -49,13 +49,13 @@ mopa_bootstrap:
 Or include the fields.html.twig in your template for a certain form:
 
 ``` jinja
-{% form_theme myform 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% form_theme myform 'OpwocoBootstrapBundle:Form:fields.html.twig' %}
 ```
 
 If you want the default bootstrap forms instead of horizontal add this to your config.yml
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
         horizontal_label_class: ~
         horizontal_input_wrapper_class: ~
@@ -70,7 +70,7 @@ has now a attribute called show_legend which controls wether the "form legend" i
 This can be controlled globally by adapting your config.yml:
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
         show_legend: false # default is true
 ```
@@ -96,7 +96,7 @@ This might make sense or not. I decided to disable this by default, but enabling
 To enable it globally use:
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
         show_legend: false # default is true
 ```
@@ -204,7 +204,7 @@ Form Errors
 Generally you may want to define your errors to be displayed inline OR block (see bootstrap) you may define it globally in your conf:
 
 ``` yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
         error_type: block # or inline which is default
 
@@ -308,8 +308,8 @@ Collections
 
 Look into the more detailed doc:
 
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md
+https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md
 
 ---
 
-<< [Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) | [Form Collections](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md) >>
+<< [Using bootstrap in the layout](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/2-base-templates.md) | [Form Collections](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md) >>

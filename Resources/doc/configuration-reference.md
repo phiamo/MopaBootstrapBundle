@@ -1,12 +1,12 @@
-Mopa Bootstrap Configuration Reference
+Opwoco Bootstrap Configuration Reference
 =========================================
 
-Default configuration for extension with alias: "mopa_bootstrap"
+Default configuration for extension with alias: "opwoco_bootstrap"
 
 ```yaml
-mopa_bootstrap:
+opwoco_bootstrap:
     form:
-        templating:           MopaBootstrapBundle:Form:fields.html.twig
+        templating:           OpwocoBootstrapBundle:Form:fields.html.twig
         horizontal:           true
         horizontal_label_class:  col-sm-3 control-label
         horizontal_label_offset_class:  col-sm-offset-3
@@ -65,18 +65,18 @@ mopa_bootstrap:
         # Icon set to use: ['glyphicons','fontawesome','fontawesome4']
         icon_set:             glyphicons
 
-        # Alias for mopa_bootstrap_icon()
+        # Alias for opwoco_bootstrap_icon()
         shortcut:             icon
     menu:
         enabled:              false
 
         # Menu template to use when rendering
-        template:             MopaBootstrapBundle:Menu:menu.html.twig
+        template:             OpwocoBootstrapBundle:Menu:menu.html.twig
     initializr:
         meta:
-            title:                MopaBootstrapBundle
-            description:          MopaBootstrapBundle
-            keywords:             MopaBootstrapBundle, Twitter Bootstrap, HTML5 Boilerplate
+            title:                OpwocoBootstrapBundle
+            description:          OpwocoBootstrapBundle
+            keywords:             OpwocoBootstrapBundle, Twitter Bootstrap, HTML5 Boilerplate
             author_name:          My name
             author_url:           #
             feed_atom:            ~

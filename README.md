@@ -1,4 +1,4 @@
-MopaBootstrapBundle
+OpwocoBootstrapBundle
 ===================
 
 This is a fork of the popular MopaBootstrapBundle.
@@ -24,7 +24,7 @@ composer require opwoco/bootstrap-bundle:dev-master twbs/bootstrap:dev-master
 
 Translations
 ------------
-If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with MopaBootstrapBundle, you can translate labels to your language.
+If you use [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) with OpwocoBootstrapBundle, you can translate labels to your language.
 To do this add new file
 
 ```sh

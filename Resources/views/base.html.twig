@@ -1,4 +1,4 @@
-{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+{% from 'opwocoBootstrapBundle::flash.html.twig' import session_flash %}
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
     {# Override this block to add your own files! #}
     {# To use this without less or sass use the base.html.twig template as your base
      # Be sure you understand whats going on: have a look into
-     # https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/css-vs-less.md
+     # https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/css-vs-less.md
      #}
     {% endblock head_style %}
 
@@ -29,7 +29,7 @@
      #}
     {% endblock head_script %}
 
-    <title>{% block title %}Mopa Bootstrap Bundle{% endblock title %}</title>
+    <title>{% block title %}opwoco Bootstrap Bundle{% endblock title %}</title>
     {% block favicon %}<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />{% endblock %}
     {% block head_bottom %}
     {% endblock head_bottom %}
@@ -56,7 +56,7 @@
         {% block content_div_start %}<div class="content">{% endblock content_div_start %}
             {% block page_header %}
             <div class="page-header">
-                  <h1>{% block headline %}Mopa Bootstrap Bundle{% endblock headline %}</h1>
+                  <h1>{% block headline %}opwoco Bootstrap Bundle{% endblock headline %}</h1>
             </div>
             {% endblock page_header %}
 
@@ -75,7 +75,7 @@
                 {% block content %}
                 <div class="col-sm-9">
                     {% block content_content %}
-                    <strong>Hier könnte Ihre Werbung stehen ... </strong>
+                    <strong>Hier is content... </strong>
                     {% endblock content_content %}
                 </div>
                 <div class="col-sm-3">
@@ -94,7 +94,7 @@
         {% endblock footer_tag_start %}
 
         {% block footer %}
-        <p>&copy; <a href="http://www.mohrenweiserpartner.de" target="_blank">Mohrenweiser & Partner</a> 2011-2013</p>
+        <p>&copy; <a href="http://www.opwoco.de" target="_blank">opwoco GmbH</a> 2011-2013</p>
         {% endblock footer %}
 
         {% block footer_tag_end %}

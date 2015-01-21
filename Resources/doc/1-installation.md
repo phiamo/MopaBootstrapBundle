@@ -9,7 +9,7 @@ Prerequisites
 Less is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Less Documentation](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/less-installation.md)
 
 ### Sass (recommended)
 
@@ -33,7 +33,7 @@ Installation
     ```json
     {
         "require": {
-            "mopa/bootstrap-bundle": "dev-master",
+            "opwoco/bootstrap-bundle": "dev-master",
         }
     }
     ```
@@ -45,7 +45,7 @@ Installation
     ```json
     {
         "require": {
-            "mopa/bootstrap-bundle": "dev-master",
+            "opwoco/bootstrap-bundle": "dev-master",
             "twbs/bootstrap": "dev-master"
         }
     }
@@ -56,7 +56,7 @@ Installation
     ```json
     {
         "require": {
-            "mopa/bootstrap-bundle": "dev-master",
+            "opwoco/bootstrap-bundle": "dev-master",
             "twbs/bootstrap": "dev-master",
             "knplabs/knp-paginator-bundle": "dev-master",
             "knplabs/knp-menu-bundle": "dev-master",
@@ -78,10 +78,10 @@ Installation
     {
         "scripts": {
             "post-install-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+                "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
             ],
             "post-update-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+                "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
             ]
         }
     }
@@ -93,10 +93,10 @@ Installation
     {
         "scripts": {
             "post-install-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+                "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
             ],
             "post-update-cmd": [
-                "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+                "opwoco\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
             ]
         }
     }
@@ -107,23 +107,23 @@ Installation
     for less:
 
     ```bash
-    php app/console mopa:bootstrap:symlink:less
+    php app/console opwoco:bootstrap:symlink:less
     ```
 
     for sass:
 
     ```bash
-    php app/console mopa:bootstrap:symlink:sass
+    php app/console opwoco:bootstrap:symlink:sass
     ```
 
     With these steps taken, bootstrap should be install into vendor/twbs/bootstrap/ and a symlink
-    been created into vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap.
+    been created into vendor/opwoco/bootstrap-bundle/opwoco/Bundle/BootstrapBundle/Resources/public/bootstrap.
 
 
     1.5. Include bootstrap manually or in another way:
 
     For including bootstrap there are different solutions, why using this one?
-    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
+    have a look into [Including Bootstrap](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)
     
     1.6 Sass Installation
 
@@ -132,7 +132,7 @@ Installation
     ```json
        {
            "require": {
-               "mopa/bootstrap-bundle": "dev-master",
+               "opwoco/bootstrap-bundle": "dev-master",
                "twbs/bootstrap-sass": "dev-master",
                "knplabs/knp-paginator-bundle": "dev-master",
                "knplabs/knp-menu-bundle": "dev-master",
@@ -150,7 +150,7 @@ Installation
     {
         return array(
             // ...
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new opwoco\Bundle\BootstrapBundle\OpwocoBootstrapBundle(),
             // ...
         );
     }
@@ -164,7 +164,7 @@ Installation
     {
         return array(
             // ...
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new opwoco\Bundle\BootstrapBundle\OpwocoBootstrapBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
@@ -176,7 +176,7 @@ Installation
 3. To activate certain feature sets you need to add to your config:
 
     ``` yaml
-    mopa_bootstrap:
+    opwoco_bootstrap:
         form: ~  # Adds twig form theme  support
         menu: ~  # enables twig helpers for menu
     ```
@@ -184,7 +184,7 @@ Installation
 4. If you like further tweak your config.yml (not mandatory)
 
     ``` yaml
-    mopa_bootstrap:
+    opwoco_bootstrap:
         form:
             show_legend: false # default is true
             show_child_legend: false # default is true
@@ -195,4 +195,4 @@ Installation
 
 ---
 
-[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>
+[Using bootstrap in the layout](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>

@@ -38,12 +38,12 @@ hear is a sniplet that is known to be working and was tested
 First you have to go from your project directory:
 
 ```bash
-cd vendor/mopa/bootstrap-bundle/Mopa/BootstrapBundle/Resources/public/bootstrap
+cd vendor/opwoco/bootstrap-bundle/opwoco/BootstrapBundle/Resources/public/bootstrap
 make
 ```
 
 If you get any error have a look into
-https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md
+https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/less-installation.md
 
 If there is still an error like
 
@@ -56,7 +56,7 @@ lessc 1.2.1 (LESS Compiler) [JavaScript]
 So you need to use a newer lessc version:
 lessc 1.3.0 (LESS Compiler) [JavaScript]
 
-so you need to tell your shell which version to use, if you already installed a newer lessc as suposed in https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md
+so you need to tell your shell which version to use, if you already installed a newer lessc as suposed in https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/less-installation.md
 
 Try:
 

@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\Command;
+namespace opwoco\Bundle\BootstrapBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,7 +18,7 @@ use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
 /**
- * Command to create Bootstrap symlink to MopaBootstrapBundle.
+ * Command to create Bootstrap symlink to OpwocoBootstrapBundle.
  */
 class InstallFontCommand extends ContainerAwareCommand
 {
@@ -36,10 +34,10 @@ class InstallFontCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('mopa:bootstrap:install:font')
+            ->setName('opwoco:bootstrap:install:font')
             ->setDescription("Install font to web/fonts")
             ->setHelp(<<<EOT
-The <info>mopa:bootstrap:install:font</info> command install the font configured to used into web/fonts directory
+The <info>opwoco:bootstrap:install:font</info> command install the font configured to used into web/fonts directory
 
 EOT
             );
@@ -52,7 +50,7 @@ EOT
     {
         $finder = new Finder();
 
-        $iconSet = $this->getContainer()->getParameter('mopa_bootstrap.icons.icon_set');
+        $iconSet = $this->getContainer()->getParameter('opwoco_bootstrap.icons.icon_set');
 
         $webPath = $this->getContainer()->get('kernel')->getRootDir().DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web';
 
@@ -68,7 +66,7 @@ EOT
 
         $cmanager = new ComposerPathFinder($composer);
 
-        $sourcePackage = $cmanager->findPackage('mopa/bootstrap-bundle');
+        $sourcePackage = $cmanager->findPackage('opwoco/bootstrap-bundle');
 
         $bsbPath = $composer->getInstallationManager()->getInstallPath($sourcePackage);
 

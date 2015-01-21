@@ -1,8 +1,6 @@
 /* ============================================================
- * mopabootstrap-collection.js v3.0.0
- * http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap/forms/collections
+ * opwocobootstrap-collection.js v1.0.0
  * ============================================================
- * Copyright 2012 Mohrenweiser & Partner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,16 +70,15 @@
                 prototype_label = '__name__label__';
             }
 
-            var name_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_name + ")", 'ig');
-            var label_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_label + ")", 'ig');
+            var name_replace_pattern = new RegExp(prototype_name, 'g');
+            var label_replace_pattern = new RegExp(prototype_label, 'g');
             var rowContent = $collection.attr('data-prototype')
-                    .replace(label_replace_pattern, "$1" + index)
-                    .replace(name_replace_pattern, "$1" + index);
-            var $row = $(rowContent);
-
-            if (false !== $(window).triggerHandler('before-add.mopa-collection-item', [$collection, $row, index])) {
-                $collection.append($row);
-                $(window).triggerHandler('add.mopa-collection-item', [$collection, $row, index])
+                .replace(label_replace_pattern, index)
+                .replace(name_replace_pattern, index);
+            var row = $(rowContent);
+            if (false !== $(window).triggerHandler('before-add.opwoco-collection-item', [$collection, row, index])) {
+                $collection.append(row);
+                $(window).triggerHandler('add.opwoco-collection-item', [$collection, row, index])
             }
         },
         remove: function (row) {
@@ -102,9 +99,9 @@
                     throw new Error('row not contained in collection');
                 }
 
-                if (false !== $(window).triggerHandler('before-remove.mopa-collection-item', [$collection, row, oldIndex])) {
+                if (false !== $(window).triggerHandler('before-remove.opwoco-collection-item', [$collection, row, oldIndex])) {
                     row.parentNode.removeChild(row);
-                    $(window).triggerHandler('remove.mopa-collection-item', [$collection, row, oldIndex]);
+                    $(window).triggerHandler('remove.opwoco-collection-item', [$collection, row, oldIndex]);
                 }
             }
         },

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle;
+namespace opwoco\Bundle\BootstrapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Mopa\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormPass;
+use opwoco\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormPass;
 
-class MopaBootstrapBundle extends Bundle
+class OpwocoBootstrapBundle extends Bundle
 {
     /**
      * {@inheritdoc}

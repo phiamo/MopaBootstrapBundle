@@ -9,7 +9,7 @@ To make fast start there is only 2 step process to use it.
 
 ```yaml
 # app/config/config.yml
-mopa_bootstrap:
+opwoco_bootstrap:
     initializr: ~
 ```
 
@@ -17,7 +17,7 @@ mopa_bootstrap:
 
 ```twig
 {# src/Acme/DemoBundle/Resources/views/layout.html.twig #}
-{% extends 'MopaBootstrapBundle::base_initializr.html.twig' %}
+{% extends 'OpwocoBootstrapBundle::base_initializr.html.twig' %}
 ```
 
 HOW TO SET IT UP?
@@ -27,7 +27,7 @@ Example config file:
 
 ```yaml
 # app/config/config.yml
-mopa_bootstrap:
+opwoco_bootstrap:
     initializr:
         meta:
             title:        "Some Title"
@@ -56,4 +56,4 @@ Below is list of things that need to be done in near future:
 
 ---
 
-<< [Generating a Navbar](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) | [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) >>
+<< [Generating a Navbar](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) | [Base initializr template](https://github.com/opwoco/BootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) >>

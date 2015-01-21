@@ -1,15 +1,13 @@
 <?php
 
 /*
- * This file is part of the MopaBootstrapBundle.
- *
- * (c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+ * This file is part of the OpwocoBootstrapBundle.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
+namespace opwoco\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -23,7 +21,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mopa_bootstrap');
+        $rootNode = $treeBuilder->root('opwoco_bootstrap');
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
         $this->addMenuConfig($rootNode);
@@ -40,7 +38,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('form')
                     ->children()
                         ->scalarNode('templating')
-                            ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
+                            ->defaultValue("opwocoBootstrapBundle:Form:fields.html.twig")
                             ->end()
                         ->booleanNode('horizontal')
                             ->defaultTrue()
@@ -290,7 +288,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->scalarNode('shortcut')
-                            ->info('Alias for mopa_bootstrap_icon()')
+                            ->info('Alias for opwoco_bootstrap_icon()')
                             ->defaultValue('icon')
                         ->end()
                     ->end()
@@ -307,7 +305,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Menu:menu.html.twig')
+                            ->defaultValue('OpwocoBootstrapBundle:Menu:menu.html.twig')
                             ->cannotBeEmpty()
                             ->info('Menu template to use when rendering')
                         ->end()
@@ -328,7 +326,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('template')
-                            ->defaultValue('MopaBootstrapBundle:Menu:menu.html.twig')
+                            ->defaultValue('OpwocoBootstrapBundle:Menu:menu.html.twig')
                             ->cannotBeEmpty()
                             ->info('Menu template to use when rendering')
                         ->end()
@@ -352,15 +350,15 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('title')
-                                    ->defaultValue('MopaBootstrapBundle')
+                                    ->defaultValue('OpwocoBootstrapBundle')
                                     ->cannotBeEmpty()
                                 ->end()
                                 ->scalarNode('description')
-                                    ->defaultValue('MopaBootstrapBundle')
+                                    ->defaultValue('OpwocoBootstrapBundle')
                                     ->cannotBeEmpty()
                                 ->end()
                                 ->scalarNode('keywords')
-                                    ->defaultValue('MopaBootstrapBundle, Twitter Bootstrap, HTML5 Boilerplate')
+                                    ->defaultValue('OpwocoBootstrapBundle, Twitter Bootstrap, HTML5 Boilerplate')
                                     ->cannotBeEmpty()
                                 ->end()
                                 ->scalarNode('author_name')
