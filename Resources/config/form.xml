@@ -132,7 +132,7 @@
         </service>
 
         <service id="opwoco_bootstrap.form.type_extension.fileinput" class="%opwoco_bootstrap.form.type_extension.file_input.class%">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" alias="file_input" />
         </service>
 
         <service id="opwoco_bootstrap.form.type.form_actions" class="%opwoco_bootstrap.form.type.form_actions.class%">
