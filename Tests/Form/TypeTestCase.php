@@ -94,6 +94,8 @@ class TypeTestCase extends KernelTestCase
                 [
                     'help_label_tooltip' => $this->container->getParameter('opwoco_bootstrap.form.help_label.tooltip'),
                     'help_label_popover' => $this->container->getParameter('opwoco_bootstrap.form.help_label.popover'),
+                    'help_block_tooltip' => $this->container->getParameter('mopa_bootstrap.form.help_block.tooltip'),
+                    'help_block_popover' => $this->container->getParameter('mopa_bootstrap.form.help_block.popover'),
                     'help_widget_popover' => $this->container->getParameter('opwoco_bootstrap.form.help_widget.popover')
                 ]
             ),

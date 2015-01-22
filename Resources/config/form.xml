@@ -98,6 +98,14 @@
         </service>
 
         <service id="opwoco_bootstrap.form.type_extension.date" class="%opwoco_bootstrap.form.type_extension.date.class%">
+            <argument type="collection">
+                <argument type="collection" key="date_wrapper_class">
+                    <argument key="year">%opwoco_bootstrap.form.date_wrapper_class.year%</argument>
+                    <argument key="month">%opwoco_bootstrap.form.date_wrapper_class.month%</argument>
+                    <argument key="day">%opwoco_bootstrap.form.date_wrapper_class.day%</argument>
+                </argument>
+            </argument>
+
             <tag name="form.type_extension" alias="date" />
         </service>
 

@@ -30,7 +30,9 @@ opwoco_bootstrap:
         render_collection_item: true # default is true
         show_legend: true # default is true
         show_child_legend: false # default is false
-        render_required_asterisk: true # default is true
+        render_required_asterisk: true # default is false
+        render_optional_text: false # default is true
+
         checkbox_label: 'both' # default is both (label|widget|both)
         error_type: 'block' # default is null
         collection:
