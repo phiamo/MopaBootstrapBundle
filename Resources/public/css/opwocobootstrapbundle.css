@@ -12,7 +12,7 @@
  */
 
 /* Main bootstrap.less entry point */
-@import "../bootstrap/bootstrap.css";
+@import "../bootstrap/dist/css/bootstrap.css";
 
-/* The Example css for this bundle */
-@import "../path/to/your/example.css"; 
+/* font-awesome css */
+@import "font-awesome.css";
