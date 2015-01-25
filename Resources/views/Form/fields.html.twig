@@ -73,8 +73,12 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null or widget_btn_prepend|default(null) is not null or widget_btn_append|default(null) is not null ) %}
     <div class="input-group">
+        {% if widget_btn_prepend|default(null) is not null %}
+            {% set widget_btns = widget_btn_prepend %}
+            {{ block('widget_btns') }}
+        {% endif %}
         {% if widget_addon_prepend|default(null) is not null %}
             {% set widget_addon = widget_addon_prepend %}
             {{ block('widget_addon') }}
@@ -89,10 +93,14 @@
     {% else %}
         {{ parent() }}
     {% endif %}
-    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
+    {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null or widget_btn_prepend|default(null) is not null or widget_btn_append|default(null) is not null ) %}
         {% if widget_addon_append|default(null) is not null %}
-        {% set widget_addon = widget_addon_append %}
-        {{ block('widget_addon') }}
+            {% set widget_addon = widget_addon_append %}
+            {{ block('widget_addon') }}
+        {% endif %}
+        {% if widget_btn_append|default(null) is not null %}
+            {% set widget_btns = widget_btn_append %}
+            {{ block('widget_btns') }}
         {% endif %}
     </div>
     {% endif %}
@@ -630,6 +638,20 @@
     <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain)|raw : mopa_bootstrap_icon(widget_addon_icon, widget_addon_icon_inverted)) }}</span>
 {% endspaceless %}
 {% endblock widget_addon %}
+
+{% block widget_btns %}
+{% spaceless %}
+    <span class="input-group-btn">
+    {% for widget_btn in widget_btns %}
+        <button type="{{ widget_btn.type | default('button') }}" class="{{ 'btn ' ~ widget_btn.class | default('btn-default') }}">
+        {% if widget_btn.icon is not empty %}
+                {{ mopa_bootstrap_icon(widget_btn.icon, widget_btn.icon_inverted | default(false)) }}
+        {% endif %}
+        {{ widget_btn.label | default("") | trans({}, translation_domain) }}</button>
+    {% endfor %}
+    </span>
+{% endspaceless %}
+{% endblock widget_btns %}
 
 {# Errors #}
 
