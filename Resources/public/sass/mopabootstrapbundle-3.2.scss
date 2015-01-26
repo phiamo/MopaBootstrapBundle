@@ -17,13 +17,13 @@
  */
 
 // variables
-$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/" !default;
+$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/";
 
 // Bootstrap overrides, such as the asset-url(..) function.
 @import "bootstrap_and_overrides";
 
 // Main bootstrap.sass entry point
-@import "../bootstrap-sass/assets/stylesheets/bootstrap/bootstrap";
+@import "../bootstrap-sass/assets/stylesheets/bootstrap";
 
 // The Paginator less for MopaBootstrapBundle
 @import "paginator.scss";

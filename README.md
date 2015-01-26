@@ -1,6 +1,8 @@
 MopaBootstrapBundle
 ===================
 
+[![Build Status](https://travis-ci.org/phiamo/MopaBootstrapBundle.svg?branch=master)](https://travis-ci.org/phiamo/MopaBootstrapBundle)
+
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
 (http://www.symfony.com) Project.
@@ -14,7 +16,7 @@ NOTICE:
 
 Recent BC breaks:
 
- * dc4fd12: [BC Break] Removed inline completely 
+ * dc4fd12: [BC Break] Removed inline completely
  * add75e9: Renamed config mopa_bootstrap.navbar to mopa_bootstrap.menu
  * eb9166f: Pass options in `mopa_bootstrap_render` to the menu provider (unlikely BC)
 
@@ -22,7 +24,7 @@ Recent BC breaks:
 BS3 (master branch of this bundle) is nearly stable see [Beta-4](https://github.com/phiamo/MopaBootstrapBundle/releases/tag/v3.0.0-beta4)
 BS2 (v2.3.x) is quite stable
 
-BC breaking changes will probably not be ported to 2.3. 
+BC breaking changes will probably not be ported to 2.3.
 
 
 Branches
@@ -30,11 +32,17 @@ Branches
 
 To use this bundle with bootstrap 3 use the latest release:
 
+```sh
+composer require mopa/bootstrap-bundle twbs/bootstrap
+```
+
+To use this bundle with bootstrap SASS with the current master branch:
+
 ``` json
 {
     "require": {
         "mopa/bootstrap-bundle": "v3.0.0-beta4",
-        "twbs/bootstrap": "v3.2.0"
+        "twbs/bootstrap-sass": "~3.3.0"
     }
 }
 ```
@@ -42,27 +50,18 @@ To use this bundle with bootstrap 3 use the latest release:
 If you wish to use the current master branch, then use the following:
 
 
-``` json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "dev-master"
-    }
-}
+```sh
+composer require mopa/bootstrap-bundle:dev-master twbs/bootstrap:dev-master
 ```
 
 For bootstrap 2 use the v2.3.x branch:
 
-```json
-{
-    "require": {
-        "mopa/bootstrap-bundle": "2.3.x-dev",
-        "twbs/bootstrap": "v2.3.2"
-    }
-}
+```sh
+composer require mopa/bootstrap-bundle:2.3.x-dev twbs/bootstrap:2.3.2
 ```
+
 To understand which versions are currently required have a look into `BRANCHES.md`
- 
+
 Documentation
 -------------
 
@@ -73,7 +72,7 @@ In any case, if something is not working as expected after a update:
 
 Recent BackwardsCompatibility breaking changes:
 
-* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) 
+* c892cd9: Changed the way how navbars are created, read the [doc](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md)
 * a4b78d5: Added Version Detection for BS2 or BS3
 * 5f1200f: Changed the widget_addon form parameter to use type (prepend/append) instead of append (true/false)
 
@@ -82,7 +81,7 @@ Live Show
 
 To see the bundle, its capabilities and some more doc just have a look on
 
-[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de/mopa/bootstrap)
+[MopaBootstrapBundle Live](http://bootstrap.mohrenweiserpartner.de)
 
 Additional Resources:
 
@@ -99,7 +98,7 @@ Installation instructions are located in the
 Included Features
 -----------------
 
-* Bootstrap Version detection via Composer Bridge 
+* Bootstrap Version detection via Composer Bridge
 * Twig Extensions and templates for use with symfony2 Form component
   * control your form either via the form builder or the template engine
   * control nearly every bootstrap2 form feature

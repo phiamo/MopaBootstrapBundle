@@ -28,7 +28,7 @@ mopa_bootstrap:
 
 ## Auto bootstrap menu
 
-By adding "automenu" : "navbar" or "automenu": "pill" you can use mopa_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
+By adding "automenu" : "navbar" or "automenu": "pills" you can use mopa_boostrap_menu to generate bootstrap3 markup even if your underlying menu doesnt have special menu options or class attributes etc
 
 ```
 {{ mopa_bootstrap_menu('mymenu', {'automenu': 'navbar'}) }}

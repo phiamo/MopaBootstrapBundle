@@ -62,13 +62,13 @@ Bootstrap provides a variable which allows to configure this.
 Less:
 
 ```
-@icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
+@icon-font-path: "/fonts/";
 ```
 
 Sass:
 
 ```
-$icon-font-path: "/bundles/mopabootstrap/bootstrap/fonts/";
+$icon-font-path: "/bundles/mopabootstrap/fonts/bootstrap/" !default;
 ```
 
 Another way is to copy the glyphicons-halflings.png to your public img folder

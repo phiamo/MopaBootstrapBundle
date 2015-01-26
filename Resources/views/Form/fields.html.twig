@@ -9,7 +9,14 @@
 {% block button_widget %}
 {% spaceless %}
     {% if label is empty %}
-        {% set label = name|humanize %}
+        {%- if label_format is defined and label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
     {% if icon is not empty %}
@@ -76,7 +83,7 @@
     {% if not widget_remove_btn|default(null) %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ widget_form_control_class)|trim}) %}
     {% if static_text is sameas(true) %}
         <p class="form-control-static">{{ value }}</p>
     {% else %}
@@ -223,7 +230,14 @@
 {% block checkbox_widget %}
     {% spaceless %}
         {% if label is not sameas(false) and label is empty %}
-            {% set label = name|humanize %}
+            {%- if label_format is defined and label_format is not empty -%}
+                {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
         {% endif %}
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
             <div
@@ -279,9 +293,9 @@
     {% set attr = attr|merge({'class': attr.class|default('inline')}) %}
     	<div class="row">
         {{ date_pattern|replace({
-            '{{ year }}':  form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-3')}),
-            '{{ month }}': form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-3')}),
-            '{{ day }}':   form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-3')}),
+            '{{ year }}':  '<div class="'~date_wrapper_class['year']|default('col-xs-4')~'">'~form_widget(form.year, {'attr': {'class': attr.widget_class|default('') ~ ''}})~'</div>',
+            '{{ month }}': '<div class="'~date_wrapper_class['month']|default('col-xs-4')~'">'~form_widget(form.month, {'attr': {'class': attr.widget_class|default('') ~ ''}})~'</div>',
+            '{{ day }}':   '<div class="'~date_wrapper_class['day']|default('col-xs-4')~'">'~form_widget(form.day, {'attr': {'class': attr.widget_class|default('') ~ ''}})~'</div>',
         })|raw }}
         </div>
 {% endif %}
@@ -366,7 +380,6 @@
 {% block file_widget %}
 {% spaceless %}
 {% set type = type|default('file') %}
-{% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
     {% if widget_addon_prepend|default(null) is not null %}
         {% set widget_addon = widget_addon_prepend %}
         {{ block('widget_addon') }}
@@ -386,7 +399,14 @@
 {% block form_legend %}
 {% spaceless %}
     {% if label is empty %}
-        {% set label = name|humanize %}
+        {%- if label_format is defined and label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
     {% endif %}
     <{{ legend_tag }}>{{ label|trans({}, translation_domain) }}</{{ legend_tag }}>
 {% endspaceless %}
@@ -397,7 +417,14 @@
 {% spaceless %}
     {% if label is not sameas(false) %}
         {% if label is empty %}
-            {% set label = name|humanize %}
+            {%- if label_format is defined and label_format is not empty -%}
+                {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
         {% endif %}
         {% if not compound %}
             {% set label_attr = label_attr|merge({'for': id}) %}
@@ -406,7 +433,7 @@
         {% if horizontal %}
             {% set label_attr_class = 'control-label ' ~ label_attr_class ~ horizontal_label_class %}
         {% endif %}
-        {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ " " ~ label_attr_class ~ (required ? ' required' : ' optional') }) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ " " ~ label_attr_class ~ (required ? ' required' : ' optional'))|trim }) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {{- block('label_asterisk') }}
@@ -439,7 +466,7 @@
                 {{ mopa_bootstrap_icon(help_label_tooltip.icon) }}
             {% endif %}
             {% if help_label_tooltip.text is not sameas(null) %}
-            {{ help_label_tooltip.text }}
+                {{ help_label_tooltip.text }}
             {% endif %}
         </a>
     </span>
@@ -452,12 +479,12 @@
 
 {% block help_label_popover %}
     <span class="help-block">
-        <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" >
+        <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" data-html="true">
             {% if help_label_popover.icon is not sameas(false) %}
                 {{ mopa_bootstrap_icon(help_label_popover.icon) }}
             {% endif %}
             {% if help_label_popover.text is not sameas(null) %}
-            {{ help_label_popover.text }}
+                {{ help_label_popover.text }}
             {% endif %}
         </a>
     </span>
@@ -568,9 +595,10 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
         <div class="{{ widget_remove_btn.wrapper_div.class }}">
-    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% endif %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
         <div class="{{ widget_remove_btn.horizontal_wrapper_div.class }}">
     {% endif %}
     {% if widget_remove_btn|default(null) %}
@@ -578,9 +606,10 @@
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
-    {% if widget_remove_btn.wrapper_div is not defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
         </div>
-    {% elseif widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% endif %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
         </div>
     {% endif %}
 {% endspaceless %}

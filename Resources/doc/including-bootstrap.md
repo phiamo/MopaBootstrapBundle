@@ -35,7 +35,7 @@ To have composer managing twitter/bootstrap too, you can either run it with
            "twitter/bootstrap": "master",
            "knplabs/knp-paginator-bundle": "dev-master",
            "knplabs/knp-menu-bundle": "dev-master",
-           "craue/formflow-bundle": "dev-master"
+           "craue/formflow-bundle": "~2.0"
        },
    }
 ```

@@ -23,6 +23,7 @@ Additional doc:
 - [Assetic configuration](assetic-configuration.md)
 - [Upgrading to new navbars](navbar-upgrade.md)
 - [Support for other Bundles](99-support-for-other-bundles.md)
+- [Testing Forms](testing-forms.md)
 
 ### Further documentation:
 
