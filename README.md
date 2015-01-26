@@ -1,8 +1,6 @@
 MopaBootstrapBundle
 ===================
 
-This is a fork, original is https://github.com/phiamo/MopaBootstrapBundle.
-
 [![Build Status](https://travis-ci.org/phiamo/MopaBootstrapBundle.svg?branch=master)](https://travis-ci.org/phiamo/MopaBootstrapBundle)
 
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap

@@ -1,7 +1,7 @@
 {
-    "name": "nnmer/bootstrap-bundle",
+    "name": "mopa/bootstrap-bundle",
     "type": "symfony-bundle",
-    "description": "Easy integration of twitters bootstrap into symfony2. This is a form from https://github.com/phiamo/MopaBootstrapBundle",
+    "description": "Easy integration of twitters bootstrap into symfony2",
     "keywords": ["form", "extra form", "bootstrap", "bootstrap form", "template"],
     "license": "MIT",
     "authors": [
