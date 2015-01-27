@@ -72,9 +72,10 @@
                 prototype_label = '__name__label__';
             }
 
-            var name_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_name + ")", 'ig');
-            var label_replace_pattern = new RegExp("((\"|&quot;|'|&#039;)((?!(\"|&quot;|'|&#039;|__name__)).)+?)(" + prototype_label + ")", 'ig');
+            var name_replace_pattern = new RegExp("((\"|&quot;|&amp;quot;|'|&#039;|&amp;#039;)((?!(\"|&quot;|&amp;quot;|'|&#039;|&amp;#039;|" + prototype_name + ")).)+?)(" + prototype_name + ")", 'ig');
+            var label_replace_pattern = new RegExp("((\"|&quot;|&amp;quot;|'|&#039;|&amp;#039;)((?!(\"|&quot;|&amp;quot;|'|&#039;|&amp;#039;|" + prototype_label + ")).)+?)(" + prototype_label + ")", 'ig');
             var rowContent = $collection.attr('data-prototype')
+                    .replace(/\n/g, '')
                     .replace(label_replace_pattern, "$1" + index)
                     .replace(name_replace_pattern, "$1" + index);
             var $row = $(rowContent);
