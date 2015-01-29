@@ -56,7 +56,8 @@ services:
 
     opwoco_bootstrap.form.type_extension.widget:
         class: %opwoco_bootstrap.form.type_extension.widget.class%
-        arguments: { checkbox_label: %opwoco_bootstrap.form.checkbox_label% }
+        arguments:
+            - { checkbox_label: %opwoco_bootstrap.form.checkbox_label% }
         tags:
             - { name: form.type_extension, alias: form }
 
@@ -94,7 +95,7 @@ services:
     opwoco_bootstrap.form.type_extension.tabbed:
         class: %opwoco_bootstrap.form.type_extension.tabbed.class%
         arguments:
-            - [@form.factory]
+            - @form.factory
             - { class: %opwoco_bootstrap.form.tabs.class% }
         tags:
             - { name: form.type_extension, alias: form }
