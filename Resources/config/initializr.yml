@@ -1,0 +1,12 @@
+parameters:
+
+    opwoco_bootstrap.twig.extension.initializr.class: opwoco\Bundle\BootstrapBundle\Twig\InitializrTwigExtension
+
+
+services:
+
+    opwoco_bootstrap.twig.extension.initializr:
+        class: %opwoco_bootstrap.twig.extension.initializr.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }

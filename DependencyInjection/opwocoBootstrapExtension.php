@@ -24,9 +24,9 @@ class opwocoBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('bootstrap.xml');
-        $loader->load('twig.xml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('bootstrap.yml');
+        $loader->load('twig.yml');
 
         if (isset($config['bootstrap'])) {
             if (!isset($config['bootstrap']['install_path'])) {
@@ -39,7 +39,7 @@ class opwocoBootstrapExtension extends Extension
          * Form
          */
         if (isset($config['form'])) {
-            $loader->load('form.xml');
+            $loader->load('form.yml');
             foreach ($config['form'] as $key => $value) {
                 if (is_array($value)) {
                     $this->remapParameters($container, 'opwoco_bootstrap.form.'.$key, $config['form'][$key]);
@@ -60,7 +60,7 @@ class opwocoBootstrapExtension extends Extension
             if ($this->isConfigEnabled($container, $config['navbar'])) {
                 trigger_error(sprintf('opwoco_bootstrap.navbar is deprecated. Use opwoco_bootstrap.menu.'), E_USER_DEPRECATED);
             }
-            $loader->load('menu.xml');
+            $loader->load('menu.yml');
             $this->remapParameters($container, 'opwoco_bootstrap.menu', $config['menu']);
         }
 
@@ -75,7 +75,7 @@ class opwocoBootstrapExtension extends Extension
          * Initializr
          */
         if (isset($config['initializr'])) {
-            $loader->load('initializr.xml');
+            $loader->load('initializr.yml');
             $this->remapParameters($container, 'opwoco_bootstrap.initializr', $config['initializr']);
         }
 
@@ -93,6 +93,7 @@ class opwocoBootstrapExtension extends Extension
 
             $container->getDefinition('opwoco_bootstrap.twig.extension.bootstrap_flash')
                 ->replaceArgument(0, $mapping);
+
         }
     }
 

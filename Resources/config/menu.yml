@@ -1,0 +1,20 @@
+parameters:
+
+    opwoco_bootstrap.twig.extension.menu.class: opwoco\Bundle\BootstrapBundle\Twig\MenuExtension
+    opwoco_bootstrap.menu.extension.class: opwoco\Bundle\BootstrapBundle\Menu\Factory\MenuExtension
+
+
+services:
+
+    opwoco_bootstrap.twig.extension.menu:
+        class: %opwoco_bootstrap.twig.extension.menu.class%
+        arguments:
+            - [@knp_menu.helper]
+            - %opwoco_bootstrap.menu.template%
+        tags:
+            - { name: twig.extension }
+
+    opwoco_bootstrap.menu.extension:
+        class: %opwoco_bootstrap.menu.extension.class%
+        tags:
+            - { name: knp_menu.factory_extension, priority: "-100"}

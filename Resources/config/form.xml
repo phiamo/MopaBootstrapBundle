@@ -18,7 +18,6 @@
         <parameter key="opwoco_bootstrap.form.type_extension.datetime.class">opwoco\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension</parameter>
         <parameter key="opwoco_bootstrap.form.type_extension.time.class">opwoco\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension</parameter>
         <parameter key="opwoco_bootstrap.form.type_extension.tabbed.class">opwoco\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension</parameter>
-        <parameter key="opwoco_bootstrap.form.type_extension.file_input.class">opwoco\Bundle\BootstrapBundle\Form\Extension\BootstrapFileInputTypeExtension</parameter>
         <parameter key="opwoco_bootstrap.form.type.tab.class">opwoco\Bundle\BootstrapBundle\Form\Type\TabType</parameter>
         <parameter key="opwoco_bootstrap.form.type.form_actions.class">opwoco\Bundle\BootstrapBundle\Form\Type\FormActionsType</parameter>
     </parameters>
@@ -129,10 +128,6 @@
 
         <service id="opwoco_bootstrap.form.type.tab" class="%opwoco_bootstrap.form.type.tab.class%">
             <tag name="form.type" alias="tab" />
-        </service>
-
-        <service id="opwoco_bootstrap.form.type_extension.fileinput" class="%opwoco_bootstrap.form.type_extension.file_input.class%">
-            <tag name="form.type_extension" alias="file_input" />
         </service>
 
         <service id="opwoco_bootstrap.form.type.form_actions" class="%opwoco_bootstrap.form.type.form_actions.class%">

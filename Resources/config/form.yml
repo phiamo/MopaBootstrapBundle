@@ -1,0 +1,110 @@
+parameters:
+
+    opwoco_bootstrap.form.type_extension.static_text.class: opwoco\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension
+    opwoco_bootstrap.form.type_extension.offset_button.class: opwoco\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension
+    opwoco_bootstrap.form.type_extension.button.class: opwoco\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension
+    opwoco_bootstrap.form.type_extension.help.class: opwoco\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension
+    opwoco_bootstrap.form.type_extension.legend.class: opwoco\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension
+    opwoco_bootstrap.form.type_extension.error.class: opwoco\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension
+    opwoco_bootstrap.form.type_extension.widget.class: opwoco\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension
+    opwoco_bootstrap.form.type_extension.horizontal.class: opwoco\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension
+    opwoco_bootstrap.form.type_extension.widget_collection.class: opwoco\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension
+    opwoco_bootstrap.form.type_extension.date.class: opwoco\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension
+    opwoco_bootstrap.form.type_extension.datetime.class: opwoco\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension
+    opwoco_bootstrap.form.type_extension.time.class: opwoco\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension
+    opwoco_bootstrap.form.type_extension.tabbed.class: opwoco\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension
+    opwoco_bootstrap.form.type.tab.class: opwoco\Bundle\BootstrapBundle\Form\Type\TabType
+    opwoco_bootstrap.form.type.form_actions.class: opwoco\Bundle\BootstrapBundle\Form\Type\FormActionsType
+
+services:
+
+    opwoco_bootstrap.form.type_extension.static_text:
+        class: %opwoco_bootstrap.form.type_extension.static_text.class%
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.offset_button:
+        class: %opwoco_bootstrap.form.type_extension.offset_button.class%
+        tags:
+            - { name: form.type_extension, alias: button }
+
+    opwoco_bootstrap.form.type_extension.button:
+        class: %opwoco_bootstrap.form.type_extension.button.class%
+        tags:
+            - { name: form.type_extension, alias: button }
+
+    opwoco_bootstrap.form.type_extension.help:
+        class: %opwoco_bootstrap.form.type_extension.help.class%
+        arguments:
+            - { help_block_tooltip: %opwoco_bootstrap.form.help_block.tooltip%, help_block_popover: %opwoco_bootstrap.form.help_block.popover%, help_label_tooltip: %opwoco_bootstrap.form.help_label.tooltip%, help_label_popover: %opwoco_bootstrap.form.help_label.popover%, help_widget_popover: %opwoco_bootstrap.form.help_widget.popover% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.legend:
+        class: %opwoco_bootstrap.form.type_extension.legend.class%
+        arguments:
+            - { render_fieldset: %opwoco_bootstrap.form.render_fieldset%, show_legend: %opwoco_bootstrap.form.show_legend%, show_child_legend: %opwoco_bootstrap.form.show_child_legend%, legend_tag: %opwoco_bootstrap.form.legend_tag%, render_required_asterisk: %opwoco_bootstrap.form.render_required_asterisk%, render_optional_text: %opwoco_bootstrap.form.render_optional_text% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.error:
+        class: %opwoco_bootstrap.form.type_extension.error.class%
+        arguments:
+            - { error_type: %opwoco_bootstrap.form.error_type% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.widget:
+        class: %opwoco_bootstrap.form.type_extension.widget.class%
+        arguments: { checkbox_label: %opwoco_bootstrap.form.checkbox_label% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.horizontal:
+        class: %opwoco_bootstrap.form.type_extension.horizontal.class%
+        arguments:
+            - { horizontal: %opwoco_bootstrap.form.horizontal%, horizontal_label_class: %opwoco_bootstrap.form.horizontal_label_class%, horizontal_label_offset_class: %opwoco_bootstrap.form.horizontal_label_offset_class%, horizontal_input_wrapper_class: %opwoco_bootstrap.form.horizontal_input_wrapper_class% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.widget_collection:
+        class: %opwoco_bootstrap.form.type_extension.widget_collection.class%
+        arguments:
+            - { render_collection_item: %opwoco_bootstrap.form.render_collection_item%, widget_add_btn: %opwoco_bootstrap.form.collection.widget_add_btn%, widget_remove_btn: %opwoco_bootstrap.form.collection.widget_remove_btn% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type_extension.date:
+        class: %opwoco_bootstrap.form.type_extension.date.class%
+        arguments:
+            - { year: %opwoco_bootstrap.form.date_wrapper_class.year%, month: %opwoco_bootstrap.form.date_wrapper_class.month%, day: %opwoco_bootstrap.form.date_wrapper_class.day% }
+        tags:
+            - { name: form.type_extension, alias: date }
+
+    opwoco_bootstrap.form.type_extension.datetime:
+        class: %opwoco_bootstrap.form.type_extension.datetime.class%
+        tags:
+            - { name: form.type_extension, alias: datetime }
+
+    opwoco_bootstrap.form.type_extension.time:
+        class: %opwoco_bootstrap.form.type_extension.time.class%
+        tags:
+            - { name: form.type_extension, alias: time }
+
+    opwoco_bootstrap.form.type_extension.tabbed:
+        class: %opwoco_bootstrap.form.type_extension.tabbed.class%
+        arguments:
+            - [@form.factory]
+            - { class: %opwoco_bootstrap.form.tabs.class% }
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    opwoco_bootstrap.form.type.tab:
+        class: %opwoco_bootstrap.form.type.tab.class%
+        tags:
+            - { name: form.type, alias: tab }
+
+    opwoco_bootstrap.form.type.form_actions:
+        class: %opwoco_bootstrap.form.type.form_actions.class%
+        tags:
+            - { name: form.type, alias: form_actions }

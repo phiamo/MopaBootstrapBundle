@@ -1,0 +1,28 @@
+parameters:
+
+    opwoco_bootstrap.twig.extension.form.class: opwoco\Bundle\BootstrapBundle\Twig\FormExtension
+    opwoco_bootstrap.twig.extension.icon.class: opwoco\Bundle\BootstrapBundle\Twig\IconExtension
+    opwoco_bootstrap.twig.extension.flash.class: opwoco\Bundle\BootstrapBundle\Twig\FlashExtension
+
+
+services:
+
+    opwoco_bootstrap.twig.extension.bootstrap_form:
+        class: %opwoco_bootstrap.twig.extension.form.class%
+        tags:
+            - { name: twig.extension }
+
+    opwoco_bootstrap.twig.extension.bootstrap_icon:
+        class: %opwoco_bootstrap.twig.extension.icon.class%
+        arguments:
+            - %opwoco_bootstrap.icons.icon_set%
+            - %opwoco_bootstrap.icons.shortcut%
+        tags:
+            - { name: twig.extension }
+
+    opwoco_bootstrap.twig.extension.bootstrap_flash:
+        class: %opwoco_bootstrap.twig.extension.flash.class%
+        arguments:
+            -
+        tags:
+            - { name: twig.extension }

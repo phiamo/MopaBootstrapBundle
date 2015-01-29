@@ -1,0 +1,3 @@
+parameters:
+
+    opwoco_bootstrap.bootstrap.install_path: Resources/public/bootstrap
