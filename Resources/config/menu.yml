@@ -9,7 +9,7 @@ services:
     opwoco_bootstrap.twig.extension.menu:
         class: %opwoco_bootstrap.twig.extension.menu.class%
         arguments:
-            - [@knp_menu.helper]
+            - @knp_menu.helper
             - %opwoco_bootstrap.menu.template%
         tags:
             - { name: twig.extension }

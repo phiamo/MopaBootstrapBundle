@@ -23,6 +23,6 @@ services:
     opwoco_bootstrap.twig.extension.bootstrap_flash:
         class: %opwoco_bootstrap.twig.extension.flash.class%
         arguments:
-            -
+            - { }
         tags:
             - { name: twig.extension }
