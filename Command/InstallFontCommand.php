@@ -25,7 +25,6 @@ class InstallFontCommand extends ContainerAwareCommand
     public static $iconSetsPaths = array(
         "glyphicons" => "bootstrap/fonts",
         "fontawesome" => "fonts/fa",
-        "fontawesome4" => "fonts/fa4",
     );
 
     /**
