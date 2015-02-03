@@ -24,14 +24,9 @@ class IconExtension extends \Twig_Extension
     protected $environment;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $iconSet;
-
-    /**
-     * @var string
-     */
-    protected $shortcut;
+    protected $iconSets;
 
     /**
      * @var string
@@ -44,9 +39,9 @@ class IconExtension extends \Twig_Extension
      * @param string $iconSet
      * @param string $shortcut
      */
-    public function __construct($iconSet, $shortcut = null)
+    public function __construct($iconSets, $shortcut = null)
     {
-        $this->iconSet = $iconSet;
+        $this->iconSets = $iconSets;
         $this->shortcut = $shortcut;
     }
 
@@ -82,15 +77,18 @@ class IconExtension extends \Twig_Extension
      *
      * @return Response
      */
-    public function renderIcon($icon, $inverted = false)
+    public function renderIcon($icon, $iconSet = null, $scale = null, $inverted = false)
     {
         $template = $this->getIconTemplate();
         $context = array(
             'icon' => $icon,
             'inverted' => $inverted,
+            'scale' => $scale,
         );
-
-        return $template->renderBlock($this->iconSet, $context);
+        if (!$iconSet ||!in_array($iconSet, $this->iconSets)) {
+            return $template->renderBlock($this->iconSets['glyphicon'], $context);
+        }
+        return $template->renderBlock($iconSet, $context);
     }
 
     /**

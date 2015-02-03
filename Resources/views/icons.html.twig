@@ -1,15 +1,20 @@
-{% macro icon(name, inverted) %}
-<span class="glyphicon glyphicon-{{ name }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
-{% endmacro %}
-
-{% block fontawesome -%}
-<i class="icon-{{ icon }}{{ inverted ? ' inverted' : '' }}"></i>
+{# valid values for scale are: 'lg' , '2x' , '3x' , '4x' , '5x' #}
+{% block fa -%}
+<i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}{{ scale ? ' scale-' ~  scale : '' }}"></i>
 {%- endblock %}
 
-{% block fontawesome4 -%}
-    <i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}"></i>
+{% block glyphicon -%}
+<span class="glyphicon glyphicon-{{ icon }}{{ scale ? ' scale-' ~  scale : '' }}{{ inverted ? ' color-inverse' : '' }}"></span>
 {%- endblock %}
 
-{% block glyphicons -%}
-<span class="glyphicon glyphicon-{{ icon }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
+{% block ion -%}
+    <i class="icon ion-{{ icon }}{{ scale ? ' scale-' ~  scale : '' }}{{ inverted ? ' color-inverse' : '' }}"></i>
+{%- endblock %}
+
+{% block octicon -%}
+    <span class="octicon octicon-{{ icon }}{{ scale ? ' scale-' ~  scale : '' }}{{ inverted ? ' color-inverse' : '' }}"></span>
+{%- endblock %}
+
+{% block foundation -%}
+    <span class="fi-{{ icon }}{{ scale ? ' scale-' ~  scale : '' }}{{ inverted ? ' color-inverse' : '' }}"></span>
 {%- endblock %}

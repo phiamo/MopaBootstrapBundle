@@ -15,7 +15,7 @@ services:
     opwoco_bootstrap.twig.extension.bootstrap_icon:
         class: %opwoco_bootstrap.twig.extension.icon.class%
         arguments:
-            - %opwoco_bootstrap.icons.icon_set%
+            - %opwoco_bootstrap.icons.icon_sets%
             - %opwoco_bootstrap.icons.shortcut%
         tags:
             - { name: twig.extension }

@@ -1,0 +1,21 @@
+.color-inverse {
+    color: #ffffff;
+}
+
+.scale-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+.scale-2x {
+    font-size: 2em;
+}
+.scale-3x {
+    font-size: 3em;
+}
+.scale-4x {
+    font-size: 4em;
+}
+.scale-5x {
+    font-size: 5em;
+}
