@@ -1,0 +1,39 @@
+opwoco\Bundle\BootstrapBundle\Entity\BootstrapIcon:
+    type: entity
+    table: opwoco_bootstrap_icons
+    repositoryClass: opwoco\Bundle\BootstrapBundle\Entity\BootstrapIconRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        identifier:
+            type: string
+            length: 255
+        glyphicon:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        fontawesome:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        foundation:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        ionicons:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        octicons:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+    lifecycleCallbacks: {  }

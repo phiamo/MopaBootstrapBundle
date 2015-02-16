@@ -9,6 +9,8 @@
 
 namespace opwoco\Bundle\BootstrapBundle\Twig;
 
+use Doctrine\ORM\EntityManager;
+use opwoco\Bundle\BootstrapBundle\Constant\IconSet;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -22,6 +24,11 @@ class IconExtension extends \Twig_Extension
      * @var \Twig_Environment
      */
     protected $environment;
+
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $entityManager;
 
     /**
      * @var array
@@ -39,8 +46,9 @@ class IconExtension extends \Twig_Extension
      * @param string $iconSet
      * @param string $shortcut
      */
-    public function __construct($iconSets, $shortcut = null)
+    public function __construct(EntityManager $em, $iconSets, $shortcut = null)
     {
+        $this->entityManager = $em;
         $this->iconSets = $iconSets;
         $this->shortcut = $shortcut;
     }
@@ -80,13 +88,35 @@ class IconExtension extends \Twig_Extension
     public function renderIcon($icon, $iconSet = null, $scale = null, $inverted = false)
     {
         $template = $this->getIconTemplate();
+
         $context = array(
             'icon' => $icon,
             'inverted' => $inverted,
             'scale' => $scale,
         );
-        if (!$iconSet ||!in_array($iconSet, $this->iconSets)) {
-            return $template->renderBlock($this->iconSets['glyphicon'], $context);
+        if (!$iconSet || !in_array($iconSet, $this->iconSets)) {
+            $entity = $this->entityManager->getRepository('opwocoBootstrapBundle:BootstrapIcon')->findOneBy(array('identifier' => $icon));
+            if (!$entity) {
+                return $template->renderBlock($this->iconSets[IconSet::GLYPHICON], $context);
+            }
+            else {
+                if ($entity->getGlyphicon()) {
+                    return $template->renderBlock($this->iconSets[IconSet::GLYPHICON], $context);
+                }
+                else if ($entity->getFontawesome()) {
+                    return $template->renderBlock($this->iconSets[IconSet::FONTAWESOME], $context);
+                }
+                else if ($entity->getFoundation()) {
+                    return $template->renderBlock($this->iconSets[IconSet::FOUNDATION], $context);
+                }
+                else if ($entity->getIonicons()) {
+                    return $template->renderBlock($this->iconSets[IconSet::IONICONS], $context);
+                }
+                else if ($entity->getOcticons()) {
+                    return $template->renderBlock($this->iconSets[IconSet::OCTICONS], $context);
+                }
+            }
+
         }
         return $template->renderBlock($iconSet, $context);
     }
