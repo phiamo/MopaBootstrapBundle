@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.eot');
+    src: url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.woff2') format('woff2'), url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.woff') format('woff'), url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.ttf') format('truetype'), url('/bundles/opwocobootstrap/fonts/glyphicon/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
