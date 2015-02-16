@@ -12,7 +12,6 @@
  */
 
 /* Main bootstrap.less entry point */
-@import "../bootstrap/dist/css/bootstrap.css";
+@import "../../../bundles/opwocobootstrap/bootstrap/dist/css/bootstrap.css";
 
-/* font-awesome css */
-@import "font-awesome.css";
+@import "../../../bundles/opwocobootstrap/css/icon-fonts.css";
