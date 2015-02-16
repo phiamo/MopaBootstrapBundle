@@ -1,4 +1,4 @@
-<div {% if id|default(false) %}id="{{ id }}" {% endif %}role="navigation" class="navbar{{ inverse|default(false) ? ' navbar-inverse' : ' navbar-default' }}{{ fixedTop|default(false) ? ' navbar-fixed-top' : '' }}{{ staticTop|default(false) ? ' navbar-static-top' : '' }}">
+<div {% if id|default(false) %}id="{{ id }}" {% endif %}role="navigation" class="navbar{{ inverse|default(false) ? ' navbar-inverse' : '' }}{{ fixedTop|default(false) ? ' navbar-fixed-top' : '' }}{{ staticTop|default(false) ? ' navbar-static-top' : '' }}">
     <div class="container{{ fluid|default(false) ? '-fluid' : '' }}">
         {% block header %}
         <div class="navbar-header">
