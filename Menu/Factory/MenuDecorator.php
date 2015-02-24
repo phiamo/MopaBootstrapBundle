@@ -57,7 +57,7 @@ class MenuDecorator
 
         if ($options['dropdown']) {
             $item
-                ->setUri('#')
+                ->setUri('javascript:;')
                 ->setAttribute('class', 'dropdown')
                 ->setLinkAttribute('class', 'dropdown-toggle')
                 ->setLinkAttribute('data-toggle', 'dropdown')
