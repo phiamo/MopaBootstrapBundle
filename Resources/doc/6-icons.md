@@ -20,9 +20,9 @@ Currently you can choose from
 
 Please make sure you are including the corresponding less file:
 
-- mopaboostrapbundle.less for glyphicons
-- mopaboostrapbundle-fa.less for fontawesome
-- mopaboostrapbundle-fa4.less for fontawesome4
+- mopabootstrapbundle.less for glyphicons
+- mopabootstrapbundle-fa.less for fontawesome
+- mopabootstrapbundle-fa4.less for fontawesome4
 
 And make sure you install the fonts after you confed the app/config.yml
 
