@@ -36,7 +36,7 @@ services:
     opwoco_bootstrap.form.type_extension.help:
         class: %opwoco_bootstrap.form.type_extension.help.class%
         arguments:
-            - { help_block_tooltip: %opwoco_bootstrap.form.help_block.tooltip%, help_block_popover: %opwoco_bootstrap.form.help_block.popover%, help_label_tooltip: %opwoco_bootstrap.form.help_label.tooltip%, help_label_popover: %opwoco_bootstrap.form.help_label.popover%, help_widget_popover: %opwoco_bootstrap.form.help_widget.popover% }
+            - { help_block_horizontal_wrapper_class: %opwoco_bootstrap.form.help_block.horizontal_wrapper_class%, help_block_tooltip: %opwoco_bootstrap.form.help_block.tooltip%, help_block_popover: %opwoco_bootstrap.form.help_block.popover%, help_label_tooltip: %opwoco_bootstrap.form.help_label.tooltip%, help_label_popover: %opwoco_bootstrap.form.help_label.popover%, help_widget_popover: %opwoco_bootstrap.form.help_widget.popover% }
         tags:
             - { name: form.type_extension, alias: form }
 
