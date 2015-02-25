@@ -1,4 +1,4 @@
-{% extends 'form_div_layout.html.twig' %}
+{% extends 'bootstrap_3_layout.html.twig' %}
 
 {# Buttons #}
 {% block button_attributes %}
@@ -540,6 +540,7 @@
         {% if form.parent is not null and 'collection' in form.parent.vars.block_prefixes and widget_remove_btn|default(null) and form.parent.vars.allow_delete|default(false) %}
             {{ block('form_widget_remove_btn') }}
         {% endif -%}
+        <div class="clearfix"></div>
         {{ block('widget_form_group_end') }}
     {% endif %}
 {% endspaceless %}
@@ -561,7 +562,7 @@
 
 {% block form_help %}
 {% spaceless %}
-    {% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
+    {% if help_block %}<p class="help-block {{ help_block_horizontal_wrapper_class }}">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
     {% if help_block_tooltip.title %}
         &nbsp;{{ block('help_block_tooltip') }}
     {% endif %}
