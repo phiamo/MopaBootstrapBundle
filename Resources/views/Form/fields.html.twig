@@ -280,6 +280,9 @@
         <div data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
             <input {% if widget_form_control_class is not sameas(false) %}class="{{ widget_form_control_class }}" {% endif %}type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
+            {% if widget_reset_icon is defined and widget_reset_icon == true %}
+                <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
+            {% endif %}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
@@ -306,6 +309,9 @@
         <div data-provider="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
             <input class="form-control" type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
+            {% if widget_reset_icon is defined and widget_reset_icon == true %}
+                <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
+            {% endif %}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
@@ -334,6 +340,9 @@
             <div data-provider="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
                 {{ block('form_widget_simple') }}
                 <input type="hidden" value="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" {{ block('widget_attributes') }}>
+                {% if widget_reset_icon is defined and widget_reset_icon == true %}
+                    <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
+                {% endif %}
                 <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
             </div>
         {% else %}
