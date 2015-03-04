@@ -5,7 +5,7 @@ namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Extension\LayoutFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
@@ -105,7 +105,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
                 $this->getLegendFormTypeExtension(),
-                $this->getHorizontalFormTypeExtension(),
+                $this->getLayoutFormTypeExtension(),
                 $this->getErrorTypeFormTypeExtension(),
                 $this->getEmbedFormExtension(),
                 $this->getTabbedFormTypeExtension(),
@@ -175,12 +175,12 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @return HorizontalFormTypeExtension
+     * @return LayoutFormTypeExtension
      */
-    protected function getHorizontalFormTypeExtension()
+    protected function getLayoutFormTypeExtension()
     {
-        return new HorizontalFormTypeExtension(array(
-            'horizontal' => true,
+        return new LayoutFormTypeExtension(array(
+            'layout' => 'horizontal',
             'horizontal_label_class' => 'col-sm-3',
             'horizontal_label_div_class' => null,
             'horizontal_label_offset_class' => 'col-sm-offset-3',

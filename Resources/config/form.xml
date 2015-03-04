@@ -13,7 +13,7 @@
         <parameter key="mopa_bootstrap.form.type_extension.legend.class">Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.error.class">Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.widget.class">Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension</parameter>
-        <parameter key="mopa_bootstrap.form.type_extension.horizontal.class">Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension</parameter>
+        <parameter key="mopa_bootstrap.form.type_extension.layout.class">Mopa\Bundle\BootstrapBundle\Form\Extension\LayoutFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.widget_collection.class">Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.date.class">Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.datetime.class">Mopa\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension</parameter>
@@ -89,9 +89,9 @@
             <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
-        <service id="mopa_bootstrap.form.type_extension.horizontal" class="%mopa_bootstrap.form.type_extension.horizontal.class%">
+        <service id="mopa_bootstrap.form.type_extension.horizontal" class="%mopa_bootstrap.form.type_extension.layout.class%">
             <argument type="collection">
-                <argument key="horizontal">%mopa_bootstrap.form.horizontal%</argument>
+                <argument key="layout">%mopa_bootstrap.form.layout%</argument>
                 <argument key="horizontal_label_class">%mopa_bootstrap.form.horizontal_label_class%</argument>
                 <argument key="horizontal_label_div_class">%mopa_bootstrap.form.horizontal_label_div_class%</argument>
                 <argument key="horizontal_label_offset_class">%mopa_bootstrap.form.horizontal_label_offset_class%</argument>

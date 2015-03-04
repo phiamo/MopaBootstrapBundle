@@ -36,7 +36,7 @@
                 </div>
             </div>
         {% else %}
-            <div>
+            <div class="form-group">
                 {{ form_widget(form) }}
             </div>
         {% endif %}
@@ -204,6 +204,9 @@
         {% if expanded %}
             {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ horizontal_input_wrapper_class}) %}
         {% endif %}
+        {% if layout is sameas(false) %}
+            <div>
+        {% endif %}
         {% if widget_type == 'inline-btn' %}
             {% set tagName = 'button' %}
             <div class="btn-group" data-toggle="buttons">
@@ -237,6 +240,9 @@
         {% if widget_type == 'inline-btn' %}
             </div>
         {% endif %}
+        {% if layout is sameas(false) %}
+            </div>
+        {% endif %}
     {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
@@ -267,7 +273,7 @@
                 {% endif %}
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
-            {%- if not horizontal %} class="checkbox-inline"{% endif %}>
+            {%- if layout == 'inline' %} class="checkbox-inline"{% endif %}>
         {% endif %}
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}/>
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
@@ -453,7 +459,7 @@
             {% set label_attr = label_attr|merge({'for': id}) %}
         {% endif %}
         {% set label_attr_class = '' %}
-        {% if horizontal %}
+        {% if layout == 'horizontal' %}
             {% set label_attr_class = 'control-label ' ~ label_attr_class ~ horizontal_label_class %}
         {% endif %}
         {% if horizontal_label_div_class %}
@@ -559,7 +565,7 @@
     {% else %}
         {{ block('widget_form_group_start') }}
 
-        {% if horizontal and not label_render %}
+        {% if layout == 'horizontal' and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
         {% endif %}
 
