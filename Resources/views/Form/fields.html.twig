@@ -282,6 +282,7 @@
             {# Clear the id & name attributes so that they don't override the hidden fields values #}
             {% set id = null %}
             {% set full_name = null %}
+            {% set type = 'text' %}
             {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
@@ -311,6 +312,7 @@
             {# Clear the id & name attributes so that they don't override the hidden fields values #}
             {% set id = null %}
             {% set full_name = null %}
+            {% set type = 'text' %}
             {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
@@ -342,6 +344,7 @@
                 {# Clear the id & name attributes so that they don't override the hidden fields values #}
                 {% set id = null %}
                 {% set full_name = null %}
+                {% set type = 'text' %}
                 {{ block('form_widget_simple') }}
                 <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
             </div>
