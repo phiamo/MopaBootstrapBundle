@@ -280,7 +280,7 @@
         <div data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
             {# Clear the id & name attributes so that they don't override the hidden fields values #}
-            {% set id = null %}
+            {% set id = id ~ '_mopa_picker_display' %}
             {% set full_name = null %}
             {% set type = 'text' %}
             {{ block('form_widget_simple') }}
@@ -310,7 +310,7 @@
         <div data-provider="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
             {# Clear the id & name attributes so that they don't override the hidden fields values #}
-            {% set id = null %}
+            {% set id = id ~ '_mopa_picker_display' %}
             {% set full_name = null %}
             {% set type = 'text' %}
             {{ block('form_widget_simple') }}
@@ -342,7 +342,7 @@
             <div data-provider="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
                 <input type="hidden" value="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" {{ block('widget_attributes') }}>
                 {# Clear the id & name attributes so that they don't override the hidden fields values #}
-                {% set id = null %}
+                {% set id = id ~ '_mopa_picker_display' %}
                 {% set full_name = null %}
                 {% set type = 'text' %}
                 {{ block('form_widget_simple') }}
