@@ -278,8 +278,11 @@
     {% if datepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'calendar'  %}
         <div data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
-            <input {% if widget_form_control_class is not sameas(false) %}class="{{ widget_form_control_class }}" {% endif %}type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
+            {# Clear the id & name attributes so that they don't override the hidden fields values #}
+            {% set id = null %}
+            {% set full_name = null %}
+            {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
@@ -304,8 +307,11 @@
     {% if timepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'time'  %}
         <div data-provider="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
-            <input class="form-control" type="text" {% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if 'placeholder' in attr|keys %} placeholder="{{ attr['placeholder'] }}"{% endif %}>
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
+            {# Clear the id & name attributes so that they don't override the hidden fields values #}
+            {% set id = null %}
+            {% set full_name = null %}
+            {{ block('form_widget_simple') }}
             <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
         </div>
     {% else %}
@@ -332,8 +338,11 @@
         {% if datetimepicker is defined %}
             {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'th'  %}
             <div data-provider="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
-                {{ block('form_widget_simple') }}
                 <input type="hidden" value="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" {{ block('widget_attributes') }}>
+                {# Clear the id & name attributes so that they don't override the hidden fields values #}
+                {% set id = null %}
+                {% set full_name = null %}
+                {{ block('form_widget_simple') }}
                 <span class="input-group-addon">{{ mopa_bootstrap_icon(widget_addon_icon) }}</span>
             </div>
         {% else %}
