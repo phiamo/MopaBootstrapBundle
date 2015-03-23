@@ -58,8 +58,7 @@ mopa_bootstrap:
                 label:                add_item
                 icon:                 ~
                 icon_inverted:        ~
-                wrapper_div:
-                    class:
+
     icons:
 
         # Icon set to use: ['glyphicons','fontawesome','fontawesome4']
