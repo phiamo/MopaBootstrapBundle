@@ -9,17 +9,14 @@ Prerequisites
 Less is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Using Less as preprocessor](less-installation.md)
 
 ### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Sass Documentation](http://sass-lang.com/)
-
-[Compass Documentation](http://compass-style.org/)
-
+[Using Sass as preprocessor](sass-configuration.md)
 
 If you do not have less / Sass / Compass installed, currently you have several option, but please do NOT ask for help.
 
@@ -123,7 +120,7 @@ Installation
     1.5. Include bootstrap manually or in another way:
 
     For including bootstrap there are different solutions, why using this one?
-    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
+    have a look into [Including Bootstrap](including-bootstrap.md)	
     
     1.6 Sass Installation
 
@@ -195,4 +192,4 @@ Installation
 
 ---
 
-[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>
+[Using bootstrap in the layout](2-base-templates.md) >>

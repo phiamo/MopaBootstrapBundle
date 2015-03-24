@@ -9,14 +9,14 @@ Prerequisites
 Less is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Less Documentation](less-installation.md)
 
 ### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
-[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
+[Sass Documentation](sass-configuration.md)
 
 Templates
 ---------
@@ -107,4 +107,4 @@ if it doesnt work, why not use the less or sass way?
 
 ---
 
-<< [Installation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md) | [Form Extensions](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) >>
+<< [Installation](1-installation.md) | [Form Extensions](3-form-extension-templates.md) >>
