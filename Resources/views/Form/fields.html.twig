@@ -550,9 +550,9 @@
 {% block form_message %}
 {% spaceless %}
     {{ form_errors(form) }}
-    {# certain cases require to have the help somewhere else in dom, is there any better place or way to handle this? #}
-    {% if not(widget_checkbox_label == 'label' and help_block) %}
-    {{ block('form_help') }}
+
+    {% if ('checkbox' not in block_prefixes or widget_checkbox_label != 'label') and help_block %}
+        {{ block('form_help') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_message %}
