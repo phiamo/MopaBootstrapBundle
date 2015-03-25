@@ -9,14 +9,20 @@ php:
 matrix:
     allow_failures:
       - php: hhvm
+      - env: SYMFONY_VERSION=dev-master
     exclude:
       - php: 5.3
+        env: SYMFONY_VERSION=~2.7
+      - php: 5.3
         env: SYMFONY_VERSION=dev-master
+      - php: 5.4
+        env: SYMFONY_VERSION=~2.7
       - php: 5.4
         env: SYMFONY_VERSION=dev-master
 
 env:
-  - SYMFONY_VERSION=v2.3.0
+  - SYMFONY_VERSION=~2.3.0
+  - SYMFONY_VERSION=~2.7.0
   - SYMFONY_VERSION=dev-master
 
 before_script:
