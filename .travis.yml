@@ -5,7 +5,7 @@ php:
   - 5.5
   - 5.6
   - hhvm
- 
+
 matrix:
     allow_failures:
       - php: hhvm
@@ -14,15 +14,16 @@ matrix:
         env: SYMFONY_VERSION=dev-master
       - php: 5.4
         env: SYMFONY_VERSION=dev-master
-        
+
 env:
   - SYMFONY_VERSION=v2.3.0
   - SYMFONY_VERSION=dev-master
 
-before_script: 
+before_script:
   - composer self-update
   - composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION}
+  - composer show -i
 
-script: 
+script:
   - phpunit
 
