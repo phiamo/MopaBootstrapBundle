@@ -20,6 +20,9 @@
         }
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
+    "require-dev": {
+        "symfony/phpunit-bridge": "dev-master@dev"
+    },
     "require": {
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle": "~2.3|~3.0",

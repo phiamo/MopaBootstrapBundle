@@ -63,7 +63,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @group legacy
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -81,6 +81,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             ),
             'widget_checkbox_label' => $this->options['checkbox_label'],
         ));
+
         $resolver->setAllowedValues(array(
             'widget_type' => array(
                 'inline',
