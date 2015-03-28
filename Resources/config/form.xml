@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="mopa_bootstrap.form.type_extension.embed_form.class">Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.static_text.class">Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.offset_button.class">Mopa\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension</parameter>
         <parameter key="mopa_bootstrap.form.type_extension.button.class">Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension</parameter>
@@ -23,6 +24,10 @@
     </parameters>
 
     <services>
+        <service id="mopa_bootstrap.form.type_extension.embed_form" class="%mopa_bootstrap.form.type_extension.embed_form.class%">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+
         <service id="mopa_bootstrap.form.type_extension.static_text" class="%mopa_bootstrap.form.type_extension.static_text.class%">
             <tag name="form.type_extension" alias="form" />
         </service>
