@@ -169,4 +169,4 @@ You can see who already contributed to this project on [Contributors](https://gi
 License
 -------
 
-This bundle is under the MIT license. For more information, see the complete [LICENCE](LICENCE) file in the bundle.
+This bundle is under the MIT license. For more information, see the complete [LICENSE](Resources/meta/LICENSE) file in the bundle.
