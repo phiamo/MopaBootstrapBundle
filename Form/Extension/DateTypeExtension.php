@@ -12,7 +12,6 @@
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
@@ -37,7 +36,7 @@ class DateTypeExtension extends AbstractTypeExtension
     {
         $this->options = $options;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -46,7 +45,7 @@ class DateTypeExtension extends AbstractTypeExtension
         if ('single_text' === $options['widget'] && isset($options['datepicker'])) {
             $view->vars['datepicker'] = $options['datepicker'];
         }
-        
+
         $view->vars['date_wrapper_class'] = $options['date_wrapper_class'];
     }
 

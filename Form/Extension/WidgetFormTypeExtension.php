@@ -11,10 +11,10 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Form Widget Bootstrap handling
@@ -68,20 +68,8 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget_form_control_class' => 'form-control',
-            'widget_form_group' => true,
-            'widget_addon_prepend' => null,
-            'widget_addon_append' => null,
-            'widget_prefix' => null,
-            'widget_suffix' => null,
-            'widget_type' => '',
-            'widget_items_attr' => array(),
-            'widget_form_group_attr' => array(
-                'class' => 'form-group',
-            ),
-            'widget_checkbox_label' => $this->options['checkbox_label'],
-        ));
+        $resolver->setDefaults($this->getDefaultOptions());
+
         $resolver->setAllowedValues(array(
             'widget_type' => array(
                 'inline',
@@ -94,6 +82,41 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'both',
             ),
         ));
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults($this->getDefaultOptions());
+
+        $resolver->setAllowedValues('widget_type', array(
+            'inline',
+            'inline-btn',
+            '',
+        ));
+
+        $resolver->setAllowedValues('widget_checkbox_label', array(
+            'label',
+            'widget',
+            'both',
+        ));
+    }
+
+    protected function getDefaultOptions()
+    {
+        return array(
+            'widget_form_control_class' => 'form-control',
+            'widget_form_group' => true,
+            'widget_addon_prepend' => null,
+            'widget_addon_append' => null,
+            'widget_prefix' => null,
+            'widget_suffix' => null,
+            'widget_type' => '',
+            'widget_items_attr' => array(),
+            'widget_form_group_attr' => array(
+                'class' => 'form-group',
+            ),
+            'widget_checkbox_label' => $this->options['checkbox_label'],
+        );
     }
 
     /**
