@@ -25,7 +25,11 @@
         "symfony/twig-bundle": "~2.3|~3.0",
         "symfony/form": "~2.3|~3.0",
         "symfony/console": "~2.3",
+        "twig/twig": ">=1.12",
         "mopa/composer-bridge": "~1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
     },
     "suggest":  {
         "twbs/bootstrap": ">2.0,<4.0-dev",
