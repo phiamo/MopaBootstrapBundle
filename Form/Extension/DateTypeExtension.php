@@ -11,6 +11,7 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
@@ -37,7 +38,7 @@ class DateTypeExtension extends AbstractTypeExtension
     {
         $this->options = $options;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -46,14 +47,24 @@ class DateTypeExtension extends AbstractTypeExtension
         if ('single_text' === $options['widget'] && isset($options['datepicker'])) {
             $view->vars['datepicker'] = $options['datepicker'];
         }
-        
+
         $view->vars['date_wrapper_class'] = $options['date_wrapper_class'];
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @todo Remove it when bumping requirements to SF 2.7+
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setOptional(array(
             'datepicker',
