@@ -2,6 +2,7 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
@@ -78,6 +79,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getLegendFormTypeExtension(),
                 $this->getHorizontalFormTypeExtension(),
                 $this->getErrorTypeFormTypeExtension(),
+                $this->getEmbedFormExtension(),
                 $this->getTabbedFormTypeExtension(),
             ),
             'text' => array(
@@ -148,6 +150,12 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     {
         return new ErrorTypeFormTypeExtension(array(
             'error_type' => null,
+        ));
+    }
+    protected function getEmbedFormExtension()
+    {
+        return new EmbedFormExtension(array(
+            'embed_form' => true,
         ));
     }
 
