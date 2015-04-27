@@ -16,6 +16,7 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
+use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
@@ -29,7 +30,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected function setUp()
     {
         // Setup factory for tabs
-        $this->tabFactory = \Symfony\Component\Form\Forms::createFormFactory();
+        $this->tabFactory = Forms::createFormFactory();
 
         parent::setUp();
 
