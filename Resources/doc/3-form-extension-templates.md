@@ -176,7 +176,38 @@ public function buildForm(FormBuilder $builder, array $options)
     //...
 ```
 
-Note: To get the addons working, i had to increase max nesting level of xdebug to 200.
+Widget Button Addons
+-------------
+You can integrate Twitter Bootstrap's form button addons, you can add as many buttons as you need and add `icon` and / or
+`label`. The first button in append show the default values:
+
+```php
+public function buildForm(FormBuilder $builder, array $options)
+{
+    $builder
+        ->add('price', null, array(
+            "widget_btn_append" => array(
+                array(
+                    "type"          => "button",
+                    "label"         => "",
+                    "icon"          => null,
+                    "icon_inverted" => false,
+                ),
+                array(
+                    "icon"     => "remove",
+                )
+            ),
+            "widget_btn_prepend" => array(
+                array(
+                    "text"     => "My text",
+                )
+            )
+        ))
+    ;
+    //...
+```
+
+Note: To get the addons working, I had to increase max nesting level of xdebug to 200.
 
 
 ### Form Field Prefix / Suffix
