@@ -10,15 +10,15 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Mopa\Bundle\BootstrapBundle\Form\Extension as MopaExtensions;
 use Mopa\Bundle\BootstrapBundle\Form\Type as MopaTypes;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Forms;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\Forms;
 
 /**
  * Mopa\Bundle\BootstrapBundle\Tests\Form\TypeTestCase

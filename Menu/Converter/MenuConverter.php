@@ -11,8 +11,8 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Menu\Converter;
 
-use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
 use Knp\Menu\ItemInterface;
+use Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuDecorator;
 
 /**
  * Converts a Menu to fit CSS classes for the Navbar to be displayed nicely.

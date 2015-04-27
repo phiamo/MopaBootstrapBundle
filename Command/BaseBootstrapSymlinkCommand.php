@@ -11,14 +11,14 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Command;
 
+use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
+use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
-use Mopa\Bridge\Composer\Util\ComposerPathFinder;
 
 /**
  * Command to check and create bootstrap symlink into MopaBootstrapBundle

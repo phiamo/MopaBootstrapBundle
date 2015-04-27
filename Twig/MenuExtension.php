@@ -11,9 +11,9 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
-use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
-use Knp\Menu\Twig\Helper;
 use Knp\Menu\ItemInterface;
+use Knp\Menu\Twig\Helper;
+use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
 
 /**
  * Twig Extension for rendering a Bootstrap menu.
