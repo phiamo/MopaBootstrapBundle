@@ -217,7 +217,7 @@ EOF
 ;
         $this->output->writeln(array(
             '',
-            $this->getHelperSet()->get('formatter')->formatBlock($text, $style = 'bg=blue;fg=white', true),
+            $this->getHelperSet()->get('formatter')->formatBlock($text, 'bg=blue;fg=white', true),
             '',
         ));
 
