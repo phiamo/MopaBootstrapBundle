@@ -222,7 +222,7 @@ EOF
         ));
 
         if ($this->input->isInteractive() && !$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
-            exit;
+            throw new \Exception("Aborting due to User not cofirming!");
         }
 
         return array($symlinkTarget, $symlinkName);

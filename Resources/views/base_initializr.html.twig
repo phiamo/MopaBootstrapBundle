@@ -13,7 +13,6 @@
 
 {% block head %}
 <head>
-    {# TODO: meta variable format, associative array or underscored string type #}
     <meta charset="utf-8" />
 
     {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
@@ -57,25 +56,25 @@
             {% set metatitle = meta.title %}
         {% endif %}
 
-        {# TODO: to be removed as HTML5 has no such tag
+        {# to be removed as HTML5 has no such tag
         <meta name="title" content="{{ meta_title|default('') }}"> #}
 
-        {# TODO: read more about canonical urls and then decide whether enable this part or remove
+        {# read more about canonical urls and then decide whether enable this part or remove
            http://html5boilerplate.com/docs/html-head/#canonical-url
         <link rel="canonical" href=""> #}
 
-        {# TODO: Official short link, poorly supported now
+        {# Official short link, poorly supported now
         <link rel="shortlink" href="h5bp.com"> #}
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
 
-        {# TODO: allow BOTs see SITEMAP #}
+        {# allow BOTs see SITEMAP #}
         {% if meta['sitemap'] is defined %}
         <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
         {% endif %}
 
-        {# TODO: Feeds RSS & ATOM #}
+        {# Feeds RSS & ATOM #}
         {% if meta['feed_atom'] is defined %}
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
         {% endif %}
@@ -83,7 +82,7 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
         {% endif %}
 
-        {# TODO: allow changing this values from controller scope #}
+        {# this should be allowed to be changed from controller scope #}
         {% if meta['noindex'] %}
             {% set meta_robots = 'noindex,' %}
         {% endif %}
@@ -101,9 +100,7 @@
         <meta name="google-site-verification" content="{{ google['wt'] }}" />
     {% endif %}
 
-    {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
-
-    {# TODO: Site Search Browser plugin:
+    {# Site Search Browser plugin:
        http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
     <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
 
