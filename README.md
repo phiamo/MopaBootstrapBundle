@@ -3,6 +3,7 @@ MopaBootstrapBundle
 
 [![Build Status](https://travis-ci.org/phiamo/MopaBootstrapBundle.svg?branch=master)](https://travis-ci.org/phiamo/MopaBootstrapBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0a6dbd4c-714b-47a4-b662-254cdf6ec208/mini.png)](https://insight.sensiolabs.com/projects/0a6dbd4c-714b-47a4-b662-254cdf6ec208)
+[![Coverage Status](https://coveralls.io/repos/phiamo/MopaBootstrapBundle/badge.svg)](https://coveralls.io/r/phiamo/MopaBootstrapBundle)
 
 MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 (http://twitter.github.com/bootstrap/) as easy as possible into your symfony2
