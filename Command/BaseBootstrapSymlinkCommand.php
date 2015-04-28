@@ -217,12 +217,12 @@ EOF
 ;
         $this->output->writeln(array(
             '',
-            $this->getHelperSet()->get('formatter')->formatBlock($text, $style = 'bg=blue;fg=white', true),
+            $this->getHelperSet()->get('formatter')->formatBlock($text, 'bg=blue;fg=white', true),
             '',
         ));
 
         if ($this->input->isInteractive() && !$dialog->askConfirmation($this->output, '<question>Should this link be created? (y/n)</question>', false)) {
-            exit;
+            throw new \Exception("Aborting due to User not cofirming!");
         }
 
         return array($symlinkTarget, $symlinkName);

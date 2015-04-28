@@ -11,7 +11,6 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Reads Initializr configuration file and generates
@@ -22,9 +21,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class InitializrTwigExtension extends \Twig_Extension
 {
     /**
-     * @var ContainerInterface
+     * @var array
      */
-    protected $container;
+    protected $parameters;
 
     /**
      * @var \Twig_Environment
@@ -34,11 +33,11 @@ class InitializrTwigExtension extends \Twig_Extension
     /**
      * Constructor.
      *
-     * @param ContainerInterface $container
+     * @param array $parameters
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(array $parameters = array())
     {
-        $this->container = $container;
+        $this->parameters = $parameters;
     }
 
     /**
@@ -54,16 +53,11 @@ class InitializrTwigExtension extends \Twig_Extension
      */
     public function getGlobals()
     {
-        $meta = $this->container->getParameter('mopa_bootstrap.initializr.meta');
-        $dnsPrefetch = $this->container->getParameter('mopa_bootstrap.initializr.dns_prefetch');
-        $google = $this->container->getParameter('mopa_bootstrap.initializr.google');
-        $diagnosticMode = $this->container->getParameter('mopa_bootstrap.initializr.diagnostic_mode');
-
         return array(
-            'dns_prefetch'      => $dnsPrefetch,
-            'meta'              => $meta,
-            'google'            => $google,
-            'diagnostic_mode'   => $diagnosticMode,
+            'dns_prefetch'      => $this->parameters['dns_prefetch'],
+            'meta'              => $this->parameters['meta'],
+            'google'            => $this->parameters['google'],
+            'diagnostic_mode'   => $this->parameters['diagnostic_mode'],
         );
     }
 

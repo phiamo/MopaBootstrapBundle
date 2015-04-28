@@ -35,7 +35,7 @@ class TabsType extends AbstractType
     /**
      * {@inheritdoc}
      *
-     * @todo Remove it when bumping requirements to SF 2.7+
+     * @deprecated Remove it when bumping requirements to SF 2.7+
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

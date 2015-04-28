@@ -10,7 +10,12 @@
 
     <services>
         <service id="mopa_bootstrap.twig.extension.initializr" class="%mopa_bootstrap.twig.extension.initializr.class%">
-            <argument type="service" id="service_container" />
+            <argument type="collection" >
+                <argument key="meta">%mopa_bootstrap.initializr.meta%</argument>
+                <argument key="dns_prefetch">%mopa_bootstrap.initializr.dns_prefetch%</argument>
+                <argument key="google">%mopa_bootstrap.initializr.google%</argument>
+                <argument key="diagnostic_mode">%mopa_bootstrap.initializr.diagnostic_mode%</argument>
+            </argument>
             <tag name="twig.extension" />
         </service>
     </services>

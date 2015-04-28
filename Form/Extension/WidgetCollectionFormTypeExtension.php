@@ -46,7 +46,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (in_array('collection', $view->vars['block_prefixes'])) {
-            if ($options['widget_add_btn'] != null && !is_array($options['widget_add_btn'])) {
+            if ($options['widget_add_btn'] !== null && !is_array($options['widget_add_btn'])) {
                 throw new InvalidArgumentException('The "widget_add_btn" option must be an "array".');
             }
 
@@ -59,7 +59,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         }
 
         if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
-            if ($options['widget_remove_btn'] != null && !is_array($options['widget_remove_btn'])) {
+            if ($options['widget_remove_btn'] !== null && !is_array($options['widget_remove_btn'])) {
                 throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
             }
 
@@ -81,7 +81,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      *
-     * @todo Remove it when bumping requirements to SF 2.7+
+     * @deprecated Remove it when bumping requirements to SF 2.7+
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
