@@ -46,7 +46,7 @@
                 {% set domain = 'FOSUserBundle' %}
             {% endif %}
             {% for message in messages %}
-                {{ flash_messages.flash(mapping[type], message, close, use_raw, class, domain) }}
+                {{ flash_messages.flash(mapping[type], message, mopa_bootstrap_flash_closeable(close), use_raw, class, domain) }}
             {% endfor %}
         {% endfor %}
     {% endif %}

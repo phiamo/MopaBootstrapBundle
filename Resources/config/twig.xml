@@ -23,6 +23,7 @@
 
         <service id="mopa_bootstrap.twig.extension.bootstrap_flash" class="%mopa_bootstrap.twig.extension.flash.class%">
             <argument type="collection" />
+            <argument>%mopa_bootstrap.flash.closeable%</argument>
             <tag name="twig.extension" />
         </service>
     </services>

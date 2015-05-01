@@ -19,6 +19,11 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 class FlashExtension extends \Twig_Extension
 {
     /**
+     * @var string
+     */
+    protected $closeable;
+
+    /**
      * @var array
      */
     protected $mapping = array();
@@ -27,10 +32,12 @@ class FlashExtension extends \Twig_Extension
      * Constructor.
      *
      * @param array $mapping
+     * @param string $closeable
      */
-    public function __construct(array $mapping)
+    public function __construct(array $mapping, $closeable)
     {
         $this->mapping = $mapping;
+        $this->closeable = $closeable;
     }
 
     /**
@@ -40,7 +47,16 @@ class FlashExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', array($this, 'getMapping'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('mopa_bootstrap_flash_closeable', array($this, 'getCloseable')),
         );
+    }
+
+    public function getCloseable($close = null)
+    {
+        if ($close === null) {
+            return $this->closeable;
+        }
+        return $close;
     }
 
     /**
