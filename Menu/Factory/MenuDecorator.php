@@ -58,7 +58,7 @@ class MenuDecorator
         if ($options['dropdown']) {
             $item
                 ->setUri('#')
-                ->setAttribute('class', 'dropdown')
+                ->setAttribute('class', trim('dropdown ' . $this->getAttribute('class')))
                 ->setLinkAttribute('class', 'dropdown-toggle')
                 ->setLinkAttribute('data-toggle', 'dropdown')
                 ->setChildrenAttribute('class', 'dropdown-menu')
