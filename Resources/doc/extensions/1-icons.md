@@ -97,4 +97,4 @@ Please note that you must not use the `@MopaBootstrap/Resources/public/less/mopa
 
 ---
 
-<< [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) | [Support for other Bundles](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/99-support-for-other-bundles.md) >>
+<< [Form Components](../form/4-form-components.md) | [Navbar Generation](2-navbars.md) >>

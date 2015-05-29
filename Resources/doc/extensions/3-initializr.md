@@ -5,7 +5,7 @@ HOW TO USE IT?
 --------------
 To make fast start there is only 2 step process to use it.
 
-1. add to config.yml:  
+1. add to config.yml:
 
 ```yaml
 # app/config/config.yml
@@ -13,7 +13,7 @@ mopa_bootstrap:
     initializr: ~
 ```
 
-2. extend base_initializr template by your layout template (add this line as first one)  
+2. extend base_initializr template by your layout template (add this line as first one)
 
 ```twig
 {# src/Acme/DemoBundle/Resources/views/layout.html.twig #}
@@ -45,7 +45,7 @@ mopa_bootstrap:
         diagnostic_mode: true
 ```
 
-All variables description is available in file [51-Initializr-variables.md](51-initializr-variables.md)
+All variables description is available in file [3.1-initializr-variables.md](3.1-initializr-variables.md)
 
 TODO
 ------
@@ -56,4 +56,4 @@ Below is list of things that need to be done in near future:
 
 ---
 
-<< [Generating a Navbar](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) | [Base initializr template](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/51-initializr-variables.md) >>
+<< [Generating a Navbar](2-navbars.md) | [Base initializr template](3.1-initializr-variables.md) >>

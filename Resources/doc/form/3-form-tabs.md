@@ -116,4 +116,4 @@ You can also use form theming to change the way the tabs are rendered:
 
 ---
 
-<< [Form Collections](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.1-form-collections.md) | [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) >>
+<< [Form Collections](2-form-collections.md) | [Form Components](4-form-components.md) >>
