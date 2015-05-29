@@ -25,7 +25,7 @@ use Symfony\Component\Finder\Finder;
 class InstallFontCommand extends ContainerAwareCommand
 {
     public static $iconSetsPaths = array(
-        "glyphicons" => "bootstrap/fonts",
+        "glyphicons" => "fonts/bootstrap",
         "fontawesome" => "fonts/fa",
         "fontawesome4" => "fonts/fa4",
     );
