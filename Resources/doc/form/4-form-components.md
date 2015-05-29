@@ -113,6 +113,8 @@ assetic:
            - [Name of your bundle]
 ```
 
+Or you could simply add a file like in the sandbox: https://github.com/phiamo/MopaBootstrapSandboxBundle/blob/master/Resources/public/js/mopabootstrapsandbox-datepicker.js
+
 ---
 
 << [Form Tabs](3-form-tabs.md) | [Using Icons](../extensions/1-icons.md) >>
