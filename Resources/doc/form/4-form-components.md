@@ -16,7 +16,9 @@ public function buildForm(FormBuilderInterface $builder, array $options)
         ))
         ->add('datetime', null, array(
             'widget' => 'single_text',
-            'datetimepicker' => true,
+            'datetimepicker' => array(
+                'attr' => array('data-start-view' => 'hour')
+            ),
         ))
         ->add('time', null, array(
             'widget' => 'single_text',
@@ -25,6 +27,7 @@ public function buildForm(FormBuilderInterface $builder, array $options)
     ;
 }
 ```
+As you can see for the datetimepicker example, you can pass additional options to the widget and customize it.
 
 If need to add 'reset' button to the field, add to field paremeters array:
 ```
