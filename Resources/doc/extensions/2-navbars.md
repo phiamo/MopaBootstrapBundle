@@ -10,11 +10,6 @@ Bootstrap Menus and navbars. We also provide a pass-through function for `knp_me
 To learn how to create menus with KnpMenuBundle, [please check their documentation
 before continuing.](https://github.com/KnpLabs/KnpMenuBundle)
 
-## Navbars have changed!
-
-If you are upgrading from using Navbars previously, [check out our further
-documentation about upgrading.](navbar-upgrade.md)
-
 ## Activate the extension
 
 To load the navbar extensions (Twig Extension, and KnpMenu Extension) just add the
@@ -144,4 +139,4 @@ Now embed that in your template instead:
 
 ---
 
-<< [Form Components](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.3-form-components.md) | [Bootstrap Extras (Initializr)](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/50-initializr.md) >>
+<< [Using Icons](1-icons.md) | [Bootstrap Extras (Initializr)](3-initializr.md) >>

@@ -101,4 +101,4 @@ That's it.
 
 ---
 
-<< [Form Extensions](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) | [Form Tabs](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.2-form-tabs.md) >>
+<< [Form Extensions](1-form-extension-templates.md) | [Form Tabs](3-form-tabs.md) >>

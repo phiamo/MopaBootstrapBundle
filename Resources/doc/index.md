@@ -3,27 +3,25 @@ Getting Started With MopaBootstrapBundle
 
 ## Installation
 
-1. [installation](1-installation.md)
+1. [installation](install/1-getting-started.md)
 
 ## Bundle usage
 
 MopaBootstrapBundle provides several features to assist you quickly building applications:
 
-- [Base Templates](2-base-templates.md)
-- [Form Extension and Template](3-form-extension-templates.md)
-- [Generating Navbars](4-navbar-generation.md)
+- [Base Templates](usage/1-base-templates.md)
+- [Form Extension and Template](form/1-form-extension-templates.md)
+- [Generating Navbars](extensions/2-navbars.md)
 
 Additional doc:
 
-- [Configuration Reference](configuration-reference.md)
-- [Including bootstrap](including-bootstrap.md)
-- [Changing Icon Framework](6-icons.md)
-- [Css vs less](css-vs-less.md)
-- [Using Sass as preprocessor](sass-configuration.md)
-- [Assetic configuration](assetic-configuration.md)
-- [Upgrading to new navbars](navbar-upgrade.md)
-- [Support for other Bundles](99-support-for-other-bundles.md)
-- [Testing Forms](testing-forms.md)
+- [Configuration Reference](misc/configuration-reference.md)
+- [Including bootstrap](misc/including-bootstrap.md)
+- [Changing Icon Framework](extensions/1-icons.md)
+- [Using Sass as preprocessor](install/3-sass-installation.md.md)
+- [Assetic configuration](install/4-assetic-configuration.md.md)
+- [Support for other Bundles](extensions/4-support-for-other-bundles.md)
+- [Testing Forms](misc/testing-forms.md)
 
 ### Further documentation:
 

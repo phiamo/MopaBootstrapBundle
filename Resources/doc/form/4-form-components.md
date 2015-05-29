@@ -115,4 +115,4 @@ assetic:
 
 ---
 
-<< [Form Tabs](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3.2-form-tabs.md) | [Generating a Navbar](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/4-navbar-generation.md) >>
+<< [Form Tabs](3-form-tabs.md) | [Using Icons](../extensions/1-icons.md) >>

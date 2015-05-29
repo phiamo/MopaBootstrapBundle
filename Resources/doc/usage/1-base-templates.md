@@ -9,26 +9,26 @@ Prerequisites
 Less is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/2-less-installation.md)
 
 ### Sass (recommended)
 
 Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
-[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/sass-configuration.md)
+[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/3-sass-installation.md.md)
 
 Templates
 ---------
 
-Have a look at the provided [base.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
+Have a look at the provided [base.html.twig](/Resources/views/base.html.twig) its a fully working bootstrap layout for usage without less or sass, and might explain howto use it by itself.
 
-There is also a [base_less.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_less.html.twig) its layout is less.
+There is also a [base_less.html.twig](/Resources/views/base_less.html.twig) its layout is less.
 
-There is also a [base_sass.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_sass.html.twig) its layout is sass.
+There is also a [base_sass.html.twig](/Resources/views/base_sass.html.twig) its layout is sass.
 - (If you are using Bootstrap 3.2 for SASS please use base_sass_3.2.html.twig)
 
-There is also a [base_lessjs.html.twig](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
+There is also a [base_lessjs.html.twig](/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
 
 Usage
 -----
@@ -107,4 +107,4 @@ if it doesnt work, why not use the less or sass way?
 
 ---
 
-<< [Installation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/1-installation.md) | [Form Extensions](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/3-form-extension-templates.md) >>
+<< [Installation](../install/1-getting-started.md) | [Form Extensions](../form/1-form-extension-templates.md) >>

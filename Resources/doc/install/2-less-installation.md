@@ -36,7 +36,7 @@ assetic:
 
  - Yui CSS and CSS Embed are very nice and recommended.
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
-   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/assetic-configuration.md)
+   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/4-assetic-configuration.md.md)
 
 
 Known Problems:

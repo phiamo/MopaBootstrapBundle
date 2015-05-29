@@ -4,12 +4,12 @@ Installation
 Prerequisites
 -------------
 
-### Less (recommended)
+### LESS (recommended)
 
 Less is not required, but is extremely helpful when using bootstrap variables, or mixins,
 If you want to have a easier life, have a look into:
 
-[Less Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/less-installation.md)
+[Setup LESS Install](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/2-less-installation.md)
 
 ### Sass (recommended)
 
@@ -17,9 +17,7 @@ Sass is not required, but is extremely helpful when using bootstrap variables, o
 If you want to have a easier life, have a look into:
 
 [Sass Documentation](http://sass-lang.com/)
-
 [Compass Documentation](http://compass-style.org/)
-
 
 If you do not have less / Sass / Compass installed, currently you have several option, but please do NOT ask for help.
 
@@ -29,7 +27,7 @@ Installation
 1. Add this bundle to your project in composer.json:
 
     1.1. Plain BootstrapBundle
-    
+
     ```json
     {
         "require": {
@@ -66,9 +64,9 @@ Installation
     }
     ```
 
-    1.4 BootstrapBundle, twitters bootstrap and automatic symlinking
+    1.4 BootstrapBundle, Twitter's Bootstrap and automatic symlinking
 
-    If you decided to let composer install twitters bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
+    If you decided to let composer install Twitter's bootstrap, you might want to activate auto symlinking and checking, after composer update/install.
     So add this to your existing scripts section in your composer json:
     (recommended!)
 
@@ -123,8 +121,8 @@ Installation
     1.5. Include bootstrap manually or in another way:
 
     For including bootstrap there are different solutions, why using this one?
-    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/including-bootstrap.md)	
-    
+    have a look into [Including Bootstrap](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/misc/including-bootstrap.md)
+
     1.6 Sass Installation
 
     If you want to use Sass, check out the Documentation on Sass. Basically you just need to add one package to composer.json:
@@ -180,7 +178,7 @@ Installation
         form: ~  # Adds twig form theme  support
         menu: ~  # enables twig helpers for menu
     ```
-    
+
 4. If you like further tweak your config.yml (not mandatory)
 
     ``` yaml
@@ -195,4 +193,4 @@ Installation
 
 ---
 
-[Using bootstrap in the layout](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/2-base-templates.md) >>
+[Using bootstrap in the layout](../usage/1-base-templates.md) >>
