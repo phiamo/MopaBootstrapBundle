@@ -14,6 +14,7 @@
 {% endblock head_style %}
 
 {% block foot_script_assetic %}
+    {# Please add the javascripts you need in your project
     {% javascripts
     '@MopaBootstrapBundle/Resources/public/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js'
     '@MopaBootstrapBundle/Resources/public/bootstrap-sass/assets/javascripts/bootstrap/*.js'
@@ -22,4 +23,5 @@
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    #}
 {% endblock foot_script_assetic %}
