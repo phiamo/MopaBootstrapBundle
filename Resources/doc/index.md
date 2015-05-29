@@ -3,40 +3,46 @@ Getting Started With MopaBootstrapBundle
 
 ## Installation
 
-1. [installation](install/1-getting-started.md)
+- [Getting Started](install/1-getting-started.md)
+- [LESS Installation](install/2-less-installation.md)
+- [SASS Configuration](install/3-sass-configuration.md)
+- [Assetic Configuration](install/4-assetic-configuration.md)
 
-## Bundle usage
+## Forms
 
-MopaBootstrapBundle provides several features to assist you quickly building applications:
+- [Form Extension Templates](form/1-form-extension-templates.md)
+- [Form Collections](form/2-form-collections.md)
+- [Form Tabs](form/3-form-tabs.md)
+- [Form Component](form/4-form-components.md)
+
+## Usage
 
 - [Base Templates](usage/1-base-templates.md)
-- [Form Extension and Template](form/1-form-extension-templates.md)
-- [Generating Navbars](extensions/2-navbars.md)
 
-Additional doc:
+## Extensions
+
+- [Icons](extensions/1-icons.md)
+- [Navbars](extensions/2-navbars.md)
+- [Initialzr](extensions/3-initializr.md)
+  - [Initializr Variables](extensions/3.1-initializr-variables.md)
+- [Support for other bundles](extensions/4-support-for-other-bundles.md)
+
+## Other
 
 - [Configuration Reference](misc/configuration-reference.md)
-- [Including bootstrap](misc/including-bootstrap.md)
-- [Changing Icon Framework](extensions/1-icons.md)
-- [Using Sass as preprocessor](install/3-sass-installation.md.md)
-- [Assetic configuration](install/4-assetic-configuration.md.md)
-- [Support for other Bundles](extensions/4-support-for-other-bundles.md)
+- [Including Bootstrap](misc/including-bootstrap.md)
 - [Testing Forms](misc/testing-forms.md)
+- [Windows Tips](misc/windows-tips.md)
 
-### Further documentation:
+### Further Documentation and Examples
 
-There is a bunch of documentation for this bundle, have a look:
-
-* in the [docs folder](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/)
-* in the various examples:
+* MopaBootsrapSandbox Examples
     * [twig templates](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/views/Examples)
     * [Form Types](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Form/Type)
     * [Navbar](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Resources/config/examples)
     * [MenuBuilder](https://github.com/phiamo/MopaBootstrapSandboxBundle/tree/master/Navbar/Example)
-*  [MopaBootstrapSandboxBundle](http://github.com/phiamo/MopaBootstrapSandboxBundle) - Seperate live docs from code
 *  [symfony-bootstrap](https://github.com/phiamo/symfony-bootstrap) is also available
 
-### Example application(s)
 
 The following bundles/applications use the MopaBootstrapBundle and can be used as a
 guideline:
