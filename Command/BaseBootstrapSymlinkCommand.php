@@ -93,10 +93,10 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
      */
     public static function createMirror($symlinkTarget, $symlinkName)
     {
-        if(strlen($symlinkTarget) == 0||empty($symlinkTarget)){
+        if (strlen($symlinkTarget) == 0||empty($symlinkTarget)) {
             throw new \Exception("symlinkTarget empty!" . var_export($symlinkTarget, true));
         }
-        if(strlen($symlinkName) == 0||empty($symlinkName)){
+        if (strlen($symlinkName) == 0||empty($symlinkName)) {
             throw new \Exception("symlinkName empty!" . var_export($symlinkName, true));
         }
         $filesystem = new Filesystem();

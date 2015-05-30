@@ -225,6 +225,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         if ($label !== null) {
             $vars += array('label' => $label);
         }
+
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'label', $vars);
     }
 }

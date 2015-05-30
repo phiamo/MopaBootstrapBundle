@@ -32,7 +32,7 @@ class FormActionsType extends AbstractType
     /**
      * Adds a button
      *
-     * @param  FormBuilderInterface      $builder
+     * @param FormBuilderInterface $builder
      * @param $name
      * @param $config
      * @throws \InvalidArgumentException

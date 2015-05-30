@@ -44,7 +44,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if ('single_text' === $options['widget']){
+        if ('single_text' === $options['widget']) {
             if (isset($options['datepicker'])) {
                 $view->vars['datepicker'] = $options['datepicker'];
             }

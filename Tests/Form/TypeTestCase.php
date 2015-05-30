@@ -196,4 +196,3 @@ class TypeTestCase extends KernelTestCase
         self::assertEquals($expected->format('c'), $actual->format('c'));
     }
 }
-

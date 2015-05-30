@@ -110,7 +110,7 @@
                     <argument key="day">%mopa_bootstrap.form.date_wrapper_class.day%</argument>
                 </argument>
             </argument>
-            
+
             <tag name="form.type_extension" alias="date" />
         </service>
 
