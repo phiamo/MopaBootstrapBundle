@@ -50,3 +50,6 @@ before_script:
 
 script:
   - php vendor/bin/phpunit -c phpunit.xml.dist
+
+after_success:
+  - coveralls
