@@ -1,5 +1,5 @@
-{% macro badge(text, use_raw) %}
-<span class="badge">{{ use_raw|default(false) ? text|raw : text }}</span>
+{% macro badge(text, use_raw, class) %}
+<span class="badge{{ class|default(false)?' '~class:'' }}">{{ use_raw|default(false) ? text|raw : text }}</span>
 {% endmacro %}
 
 {% macro label(text, type, use_raw, block) %}
