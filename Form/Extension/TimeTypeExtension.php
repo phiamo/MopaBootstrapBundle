@@ -14,6 +14,7 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -54,10 +55,17 @@ class TimeTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefined(array(
-            'timepicker',
-            'widget_reset_icon',
-        ));
+        if (version_compare(Kernel::VERSION, '2.6', '<')) {
+            $resolver->setOptional(array(
+                'timepicker',
+                'widget_reset_icon',
+            ));
+        } else {
+            $resolver->setDefined(array(
+                'timepicker',
+                'widget_reset_icon',
+            ));
+        }
     }
 
     /**
