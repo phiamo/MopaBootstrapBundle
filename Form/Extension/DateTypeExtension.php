@@ -71,7 +71,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
+        $resolver->setDefined(array(
             'datepicker',
             'widget_reset_icon',
         ))->setDefaults(array(

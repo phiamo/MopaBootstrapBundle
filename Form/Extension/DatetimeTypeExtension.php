@@ -54,7 +54,7 @@ class DatetimeTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
+        $resolver->setDefined(array(
             'datetimepicker',
             'widget_reset_icon',
         ));

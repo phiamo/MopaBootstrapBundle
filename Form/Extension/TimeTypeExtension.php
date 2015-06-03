@@ -54,7 +54,7 @@ class TimeTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
+        $resolver->setDefined(array(
             'timepicker',
             'widget_reset_icon',
         ));
