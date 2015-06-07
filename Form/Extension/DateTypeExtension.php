@@ -14,6 +14,7 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -71,10 +72,19 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
-            'datepicker',
-            'widget_reset_icon',
-        ))->setDefaults(array(
+        if (version_compare(Kernel::VERSION, '2.6', '<')) {
+            $resolver->setOptional(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        } else {
+            $resolver->setDefined(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        }
+
+        $resolver->setDefaults(array(
             'date_wrapper_class' => $this->options['date_wrapper_class']
         ));
     }
