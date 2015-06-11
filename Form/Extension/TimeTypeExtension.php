@@ -55,13 +55,13 @@ class TimeTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (version_compare(Kernel::VERSION, '2.6', '<')) {
-            $resolver->setOptional(array(
+        if (method_exists($resolver, 'setDefined')) {
+            $resolver->setDefined(array(
                 'timepicker',
                 'widget_reset_icon',
             ));
-        } else {
-            $resolver->setDefined(array(
+        } else { // Symfony <2.6 BC
+            $resolver->setOptional(array(
                 'timepicker',
                 'widget_reset_icon',
             ));
