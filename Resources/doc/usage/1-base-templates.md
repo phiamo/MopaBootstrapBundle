@@ -101,6 +101,7 @@ make
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
    media="screen" />
 {% endstylesheets %}
+{% endblock %}
 ```
 
 if it doesnt work, why not use the less or sass way?
