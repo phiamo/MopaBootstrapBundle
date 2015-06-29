@@ -74,7 +74,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @return array
+     * @return PreloadedExtension[]
      */
     protected function getExtensions()
     {
