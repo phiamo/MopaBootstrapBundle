@@ -181,7 +181,7 @@ class Configuration implements ConfigurationInterface
                                             ->defaultFalse()
                                         ->end()
                                     ->end()
-                                 ->end()
+                                ->end()
                                 ->arrayNode('widget_add_btn')
                                     ->addDefaultsIfNotSet()
                                     ->children()
@@ -203,7 +203,7 @@ class Configuration implements ConfigurationInterface
                                             ->defaultFalse()
                                         ->end()
                                     ->end()
-                                 ->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()
@@ -353,8 +353,8 @@ class Configuration implements ConfigurationInterface
 
     protected function addFlashConfig(ArrayNodeDefinition $rootNode)
     {
-        $fnTest = function ($v) { return !is_array($v); };
-        $fnThen = function ($v) { return array($v); };
+        $fnTest = function($v) { return !is_array($v); };
+        $fnThen = function($v) { return array($v); };
 
         $rootNode
             ->children()
