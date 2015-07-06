@@ -28,6 +28,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected $extension;
     protected $tabFactory;
 
+    /**
+     * @throws \Twig_Error_Loader
+     */
     protected function setUp()
     {
         // Setup factory for tabs
@@ -70,6 +73,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $this->extension->initRuntime($environment);
     }
 
+    /**
+     * @return PreloadedExtension[]
+     */
     protected function getExtensions()
     {
         return array(new PreloadedExtension(array(), array(
@@ -88,6 +94,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         )));
     }
 
+    /**
+     * @return HelpFormTypeExtension
+     */
     protected function getHelpFormTypeExtension()
     {
         $popoverOptions = array(
@@ -117,6 +126,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @return WidgetFormTypeExtension
+     */
     protected function getWidgetFormTypeExtension()
     {
         return new WidgetFormTypeExtension(array(
@@ -124,6 +136,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @return LegendFormTypeExtension
+     */
     protected function getLegendFormTypeExtension()
     {
         return new LegendFormTypeExtension(array(
@@ -136,6 +151,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @return HorizontalFormTypeExtension
+     */
     protected function getHorizontalFormTypeExtension()
     {
         return new HorizontalFormTypeExtension(array(
@@ -146,12 +164,19 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @return ErrorTypeFormTypeExtension
+     */
     protected function getErrorTypeFormTypeExtension()
     {
         return new ErrorTypeFormTypeExtension(array(
             'error_type' => null,
         ));
     }
+
+    /**
+     * @return EmbedFormExtension
+     */
     protected function getEmbedFormExtension()
     {
         return new EmbedFormExtension(array(
@@ -159,11 +184,17 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @return StaticTextExtension
+     */
     protected function getStaticTextFormTypeExtension()
     {
         return new StaticTextExtension();
     }
 
+    /**
+     * @return TabbedFormTypeExtension
+     */
     protected function getTabbedFormTypeExtension()
     {
         return new TabbedFormTypeExtension($this->tabFactory, array(
@@ -171,6 +202,11 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         ));
     }
 
+    /**
+     * @param string $html
+     * @param string $expression
+     * @param int    $count
+     */
     protected function assertMatchesXpath($html, $expression, $count = 1)
     {
         $dom = new \DomDocument('UTF-8');
@@ -200,26 +236,56 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
     }
 
+    /**
+     * @param string $html
+     *
+     * @return string
+     */
     protected function removeBreaks($html)
     {
         return str_replace('&nbsp;', '', $html);
     }
 
+    /**
+     * @param FormView $view
+     * @param array    $vars
+     *
+     * @return string
+     */
     protected function renderForm(FormView $view, array $vars = array())
     {
         return (string) $this->extension->renderer->renderBlock($view, 'form', $vars);
     }
 
+    /**
+     * @param FormView $view
+     * @param array    $vars
+     *
+     * @return string
+     */
     protected function renderRow(FormView $view, array $vars = array())
     {
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'row', $vars);
     }
 
+    /**
+     * @param FormView $view
+     * @param array    $vars
+     *
+     * @return string
+     */
     protected function renderWidget(FormView $view, array $vars = array())
     {
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
+    /**
+     * @param FormView $view
+     * @param string   $label
+     * @param array    $vars
+     *
+     * @return string
+     */
     protected function renderLabel(FormView $view, $label = null, array $vars = array())
     {
         if ($label !== null) {
