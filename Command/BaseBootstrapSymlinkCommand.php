@@ -102,10 +102,10 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     public static function createMirror($symlinkTarget, $symlinkName)
     {
         if (strlen($symlinkTarget) == 0 || empty($symlinkTarget)) {
-            throw new \Exception("symlinkTarget empty!" . var_export($symlinkTarget, true));
+            throw new \Exception("symlinkTarget empty!".var_export($symlinkTarget, true));
         }
         if (strlen($symlinkName) == 0 || empty($symlinkName)) {
-            throw new \Exception("symlinkName empty!" . var_export($symlinkName, true));
+            throw new \Exception("symlinkName empty!".var_export($symlinkName, true));
         }
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
@@ -176,7 +176,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
             } else {
                 $this->output->writeln(" ... <comment>not existing</comment>");
                 $this->output->writeln(sprintf("Mirroring to: %s", $symlinkName));
-                $this->output->write(sprintf("from target: %s", realpath($symlinkName . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $symlinkTarget)));
+                $this->output->write(sprintf("from target: %s", realpath($symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget)));
                 self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
