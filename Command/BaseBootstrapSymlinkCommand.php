@@ -175,8 +175,8 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
                 $this->output->writeln(" ... <comment>symlink already exists</comment>");
             } else {
                 $this->output->writeln(" ... <comment>not existing</comment>");
-                $this->output->writeln("Mirroring to: ".$symlinkName);
-                $this->output->write("from target: ".realpath($symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget));
+                $this->output->writeln(sprintf("Mirroring to: %s", $symlinkName));
+                $this->output->write(sprintf("from target: %s", realpath($symlinkName . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $symlinkTarget)));
                 self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
