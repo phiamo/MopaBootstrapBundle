@@ -16,7 +16,7 @@ If you want to have a easier life, have a look into:
 Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
-[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/3-sass-installation.md.md)
+[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/3-sass-configuration.md)
 
 Templates
 ---------
