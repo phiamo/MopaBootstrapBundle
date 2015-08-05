@@ -77,7 +77,7 @@ mopa_bootstrap:
             description:          MopaBootstrapBundle
             keywords:             MopaBootstrapBundle, Twitter Bootstrap, HTML5 Boilerplate
             author_name:          My name
-            author_url:           #
+            author_url:           http://...
             feed_atom:            ~
             feed_rss:             ~
             sitemap:              ~
