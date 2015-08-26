@@ -71,10 +71,19 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
-            'datepicker',
-            'widget_reset_icon',
-        ))->setDefaults(array(
+        if (method_exists($resolver, 'setDefined')) {
+            $resolver->setDefined(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        } else { // Symfony <2.6 BC
+            $resolver->setOptional(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        }
+
+        $resolver->setDefaults(array(
             'date_wrapper_class' => $this->options['date_wrapper_class']
         ));
     }

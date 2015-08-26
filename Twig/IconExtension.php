@@ -36,7 +36,7 @@ class IconExtension extends \Twig_Extension
     protected $shortcut;
 
     /**
-     * @var string
+     * @var \Twig_Template
      */
     protected $iconTemplate;
 
@@ -104,7 +104,7 @@ class IconExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Twig_TemplateInterface
+     * @return \Twig_Template
      */
     protected function getIconTemplate()
     {
