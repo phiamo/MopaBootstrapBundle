@@ -29,7 +29,7 @@ class StaticTextExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'text';
+        return 'form';
     }
 
     /**
