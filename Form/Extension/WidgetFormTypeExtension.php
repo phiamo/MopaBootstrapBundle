@@ -1,11 +1,11 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\Exception\CreationException;
+use Symfony\Component\Form\Exception\RuntimeException;
 
 class WidgetFormTypeExtension extends AbstractTypeExtension
 {
@@ -19,7 +19,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (!is_array($options['widget_addon'])) {
-            throw new CreationException("The 'widget_addon' option must be an array");
+            throw new RuntimeException("The 'widget_addon' option must be an array");
         }
         if (in_array('percent', $view->vars['block_prefixes'])) {
             if ($options['widget_addon']['type'] === null) {
@@ -48,7 +48,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label'];
 
     }
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
@@ -68,16 +68,21 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_checkbox_label' => $this->options['checkbox_label'],
             )
         );
-        $resolver->setAllowedValues(array(
-                'widget_type' => array(
-                    'inline',
-                    '',
-                ),
-                'widget_checkbox_label' => array(
-                    'label',
-                    'widget',
-                    'both',
-                )
+
+        $resolver->setAllowedValues(
+            'widget_type',
+            array(
+                'inline',
+                '',
+            )
+        );
+
+        $resolver->setAllowedValues(
+            'widget_checkbox_label',
+            array(
+                'label',
+                'widget',
+                'both',
             )
         );
     }

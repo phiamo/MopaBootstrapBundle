@@ -1,7 +1,7 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -35,7 +35,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
         $view->vars['render_optional_text'] = $options['render_optional_text'];
         $view->vars['errors_on_forms'] = $options['errors_on_forms'];
     }
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'render_fieldset' => $this->render_fieldset,
