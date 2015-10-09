@@ -72,6 +72,9 @@ class DatetimeTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'datetime';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+            : 'datetime' // SF <2.8 BC
+        ;
     }
 }

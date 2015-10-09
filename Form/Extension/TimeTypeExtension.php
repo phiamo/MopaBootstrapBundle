@@ -72,6 +72,9 @@ class TimeTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'time';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\TimeType'
+            : 'time' // SF <2.8 BC
+        ;
     }
 }
