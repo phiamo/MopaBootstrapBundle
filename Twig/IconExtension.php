@@ -21,11 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
 class IconExtension extends \Twig_Extension
 {
     /**
-     * @var \Twig_Environment
-     */
-    protected $environment;
-
-    /**
      * @var string
      */
     protected $iconSet;
@@ -55,22 +50,19 @@ class IconExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
+        $options = array(
+            'is_safe' => array('html'),
+            'needs_environment' => true,
+        );
+
         $functions = array(
-            new \Twig_SimpleFunction('mopa_bootstrap_icon', array($this, 'renderIcon'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('mopa_bootstrap_icon', array($this, 'renderIcon'), $options),
         );
 
         if ($this->shortcut) {
-            $functions[] = new \Twig_SimpleFunction($this->shortcut, array($this, 'renderIcon'), array('is_safe' => array('html')));
+            $functions[] = new \Twig_SimpleFunction($this->shortcut, array($this, 'renderIcon'), $options);
         }
 
         return $functions;
@@ -84,9 +76,9 @@ class IconExtension extends \Twig_Extension
      *
      * @return Response
      */
-    public function renderIcon($icon, $inverted = false)
+    public function renderIcon(\Twig_Environment $env, $icon, $inverted = false)
     {
-        $template = $this->getIconTemplate();
+        $template = $this->getIconTemplate($env);
         $context = array(
             'icon' => $icon,
             'inverted' => $inverted,
@@ -106,10 +98,10 @@ class IconExtension extends \Twig_Extension
     /**
      * @return \Twig_Template
      */
-    protected function getIconTemplate()
+    protected function getIconTemplate(\Twig_Environment $env)
     {
         if ($this->iconTemplate === null) {
-            $this->iconTemplate = $this->environment->loadTemplate('@MopaBootstrap/icons.html.twig');
+            $this->iconTemplate = $env->loadTemplate('@MopaBootstrap/icons.html.twig');
         }
 
         return $this->iconTemplate;
