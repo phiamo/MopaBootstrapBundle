@@ -19,27 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class MopaBootstrapTwigExtension extends \Twig_Extension
 {
-    protected $container;
-
-    protected $environment;
-
-    /**
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     *
-     * @param \Twig_Environment $environment
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
     /**
      * Returns a list of functions to add to the existing list.
      *

@@ -20,8 +20,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
 {
     protected $container;
 
-    protected $environment;
-
     /**
      *
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
@@ -29,15 +27,6 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-    }
-
-    /**
-     *
-     * @param \Twig_Environment $environment
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
     }
 
     /**
