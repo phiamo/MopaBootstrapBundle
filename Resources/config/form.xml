@@ -29,7 +29,7 @@
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.static_text" class="%mopa_bootstrap.form.type_extension.static_text.class%">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" alias="text" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.offset_button" class="%mopa_bootstrap.form.type_extension.offset_button.class%">
