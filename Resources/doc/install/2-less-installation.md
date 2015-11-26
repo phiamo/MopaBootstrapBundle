@@ -4,7 +4,7 @@ MopaBootstrapBundle Less installation
 To effectively use all features of bootstrap you want to use less together with bootstrap.
 Have a look into the following docs what it is and then install it on your system.
 
- * [Twitters Less Doc](http://twitter.github.com/bootstrap/extend.html)
+ * [Twitters Less Doc](http://getbootstrap.com/css/#less)
  * [Lesscss](http://lesscss.org/)
 
 
@@ -32,11 +32,12 @@ assetic:
         less:
             node: /usr/bin/node
             node_paths: [/usr/lib/node_modules]
+            apply_to: "\.less$"
 ```
 
  - Yui CSS and CSS Embed are very nice and recommended.
    to make full use of bootstraps capabilites they are not needed, neither is less but its up to you
-   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/4-assetic-configuration.md.md)
+   see [Assetic configuration](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/4-assetic-configuration.md)
 
 
 Known Problems:
