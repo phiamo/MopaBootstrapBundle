@@ -542,7 +542,7 @@
 {% spaceless %}
     {% if 'tab' in form.vars.block_prefixes %}
         {{ block('form_tab') }}
-    {% elseif embed_form is sameas(true) %}
+    {% elseif embed_form is same as(true) %}
         {% if widget_prefix is not empty %}{{ widget_prefix|trans({}, translation_domain)|raw }}{% endif %} {{ form_widget(form, _context) }} {% if widget_suffix is not empty %}{{ widget_suffix|trans({}, translation_domain)|raw }}{% endif %}
     {% else %}
         {{ block('widget_form_group_start') }}
