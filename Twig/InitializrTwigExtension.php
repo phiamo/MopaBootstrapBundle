@@ -11,7 +11,6 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
-
 /**
  * Reads Initializr configuration file and generates
  * corresponding Twig Globals.
@@ -26,11 +25,6 @@ class InitializrTwigExtension extends \Twig_Extension
     protected $parameters;
 
     /**
-     * @var \Twig_Environment
-     */
-    protected $environment;
-
-    /**
      * Constructor.
      *
      * @param array $parameters
@@ -38,14 +32,6 @@ class InitializrTwigExtension extends \Twig_Extension
     public function __construct(array $parameters = array())
     {
         $this->parameters = $parameters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
     }
 
     /**
@@ -67,7 +53,10 @@ class InitializrTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('form_help', null, array(
+                'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                'is_safe'    => array('html'),
+            )),
         );
     }
 

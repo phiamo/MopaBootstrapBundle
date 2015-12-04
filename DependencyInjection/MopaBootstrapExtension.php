@@ -53,6 +53,19 @@ class MopaBootstrapExtension extends Extension
                     );
                 }
             }
+
+            // Set tags
+            $types = array(
+                'mopa_bootstrap.form.type.tab' => 'tab',
+                'mopa_bootstrap.form.type.form_actions' => 'form_actions',
+            );
+            foreach ($types as $type => $alias) {
+                $typeDefinition = $container->getDefinition($type);
+                $typeDefinition->addTag('form.type', method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+                    ? array()
+                    : array('alias' => $alias)
+                );
+            }
         }
 
         /**

@@ -1,4 +1,4 @@
-{% extends 'form_div_layout.html.twig' %}
+{% use 'form_div_layout.html.twig' %}
 
 {# Buttons #}
 {% block button_attributes %}
@@ -88,7 +88,7 @@
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' not-removable'}) %}
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ widget_form_control_class)|trim}) %}
-    {% if static_text is sameas(true) %}
+    {% if static_text is same as(true) %}
         <p class="form-control-static">{{ value }}</p>
     {% else %}
         {{ parent() }}
@@ -237,7 +237,7 @@
 
 {% block checkbox_widget %}
     {% spaceless %}
-        {% if label is not sameas(false) and label is empty %}
+        {% if label is not same as(false) and label is empty %}
             {%- if label_format is defined and label_format is not empty -%}
                 {% set label = label_format|replace({
                 '%name%': name,
@@ -432,7 +432,7 @@
 {% block form_label %}
 {% if 'checkbox' not in block_prefixes or widget_checkbox_label in ['label', 'both'] %}
 {% spaceless %}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {% if label is empty %}
             {%- if label_format is defined and label_format is not empty -%}
                 {% set label = label_format|replace({
@@ -479,10 +479,10 @@
 {% block help_label_tooltip %}
     <span class="help-block">
         <a href="#" data-toggle="tooltip" data-placement="{{ help_label_tooltip.placement}}" data-title="{{ help_label_tooltip.title|trans({}, translation_domain) }}">
-            {% if help_label_tooltip.icon is not sameas(false) %}
+            {% if help_label_tooltip.icon is not same as(false) %}
                 {{ mopa_bootstrap_icon(help_label_tooltip.icon) }}
             {% endif %}
-            {% if help_label_tooltip.text is not sameas(null) %}
+            {% if help_label_tooltip.text is not same as(null) %}
                 {{ help_label_tooltip.text }}
             {% endif %}
         </a>
@@ -497,10 +497,10 @@
 {% block help_label_popover %}
     <span class="help-block">
         <a href="#" data-toggle="popover" data-trigger="hover" data-placement="{{ help_label_popover.placement}}" data-title="{{ help_label_popover.title|trans({}, translation_domain) }}" data-content="{{ help_label_popover.content|trans({}, translation_domain) }}" data-html="true">
-            {% if help_label_popover.icon is not sameas(false) %}
+            {% if help_label_popover.icon is not same as(false) %}
                 {{ mopa_bootstrap_icon(help_label_popover.icon) }}
             {% endif %}
-            {% if help_label_popover.text is not sameas(null) %}
+            {% if help_label_popover.text is not same as(null) %}
                 {{ help_label_popover.text|raw }}
             {% endif %}
         </a>
@@ -542,12 +542,12 @@
 {% spaceless %}
     {% if 'tab' in form.vars.block_prefixes %}
         {{ block('form_tab') }}
-    {% elseif embed_form is sameas(true) %}
-        {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+    {% elseif embed_form is same as(true) %}
+        {% if widget_prefix is not empty %}{{ widget_prefix|trans({}, translation_domain)|raw }}{% endif %} {{ form_widget(form, _context) }} {% if widget_suffix is not empty %}{{ widget_suffix|trans({}, translation_domain)|raw }}{% endif %}
     {% else %}
         {{ block('widget_form_group_start') }}
 
-        {% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes and form.parent.vars.horizontal_wrap_children is sameas(false)) %}
+        {% set show_horizontal_wrapper = horizontal and not (form.parent is not null and 'collection' in form.parent.vars.block_prefixes and form.parent.vars.horizontal_wrap_children is same as(false)) %}
 
         {% if horizontal and not label_render %}
             {% set horizontal_input_wrapper_class = horizontal_input_wrapper_class ~ ' ' ~ horizontal_label_offset_class %}
@@ -557,7 +557,7 @@
         <div class="{{ horizontal_input_wrapper_class }}">
         {% endif %}
 
-        {{ widget_prefix|trans({}, translation_domain)|raw }} {{ form_widget(form, _context) }} {{ widget_suffix|trans({}, translation_domain)|raw }}
+        {% if widget_prefix is not empty %}{{ widget_prefix|trans({}, translation_domain)|raw }}{% endif %} {{ form_widget(form, _context) }} {% if widget_suffix is not empty %}{{ widget_suffix|trans({}, translation_domain)|raw }}{% endif %}
 
         {% set type = type|default('text') %}
         {% if type != 'hidden' %}
@@ -614,10 +614,10 @@
 
 {% block form_widget_remove_btn %}
 {% spaceless %}
-    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not same as(false) %}
         <div class="{{ widget_remove_btn.wrapper_div.class }}">
     {% endif %}
-    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not same as(false) %}
         <div class="{{ widget_remove_btn.horizontal_wrapper_div.class }}">
     {% endif %}
     {% if widget_remove_btn|default(null) %}
@@ -625,10 +625,10 @@
     {% set button_values = widget_remove_btn %}
     {{ block('collection_button') }}
     {% endif %}
-    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.horizontal_wrapper_div is defined and widget_remove_btn.horizontal_wrapper_div is not same as(false) %}
         </div>
     {% endif %}
-    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not sameas(false) %}
+    {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not same as(false) %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -733,10 +733,10 @@
 	    {# Add Error Class to Widget Wrapper#}
 	    {% set widget_form_group_attr = widget_form_group_attr|merge({'class': widget_form_group_attr.class|default('') ~ ' has-error'}) %}
     {% endif %}
-    {% if help_widget_popover.selector is sameas(null) %}
+    {% if help_widget_popover.selector is same as(null) %}
         {% set help_widget_popover = help_widget_popover|merge({'selector': '#' ~ id }) %}
     {% endif %}
-    <div{% if help_widget_popover.title is not sameas(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    <div{% if help_widget_popover.title is not same as(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
         and 'field' not in form.vars.block_prefixes

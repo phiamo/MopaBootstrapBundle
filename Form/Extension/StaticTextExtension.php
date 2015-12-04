@@ -29,7 +29,10 @@ class StaticTextExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'text';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
+            : 'form' // SF <2.8 BC
+        ;
     }
 
     /**

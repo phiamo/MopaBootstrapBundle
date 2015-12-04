@@ -20,12 +20,25 @@ To use this bundle with bootstrap 3 use the latest release:
 composer require mopa/bootstrap-bundle twbs/bootstrap
 ```
 
-To use this bundle with bootstrap SASS with the current master branch:
+Or config via composer.json
+
+For LESS:
 
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-beta4",
+        "mopa/bootstrap-bundle": "v3.0.0-rc1",
+        "twbs/bootstrap": "~3.3.0"
+    }
+}
+```
+
+For SASS:
+
+``` json
+{
+    "require": {
+        "mopa/bootstrap-bundle": "v3.0.0-rc1",
         "twbs/bootstrap-sass": "~3.3.0"
     }
 }

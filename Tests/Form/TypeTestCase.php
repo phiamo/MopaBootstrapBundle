@@ -87,7 +87,15 @@ class TypeTestCase extends KernelTestCase
                 ]
             ),
             new MopaExtensions\DatetimeTypeExtension(),
-            new MopaExtensions\DateTypeExtension(),
+            new MopaExtensions\DateTypeExtension(
+                [
+                    'date_wrapper_class' => [
+                        'year' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.year'),
+                        'month' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.month'),
+                        'day' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.day')
+                    ]
+                ]
+            ),
             new MopaExtensions\ErrorTypeFormTypeExtension(
                 ['error_type' => $this->container->getParameter('mopa_bootstrap.form.error_type')]
             ),
@@ -196,4 +204,3 @@ class TypeTestCase extends KernelTestCase
         self::assertEquals($expected->format('c'), $actual->format('c'));
     }
 }
-

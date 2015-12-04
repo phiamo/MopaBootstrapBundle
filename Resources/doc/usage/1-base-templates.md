@@ -16,7 +16,7 @@ If you want to have a easier life, have a look into:
 Sass is not required, but is extremely helpful when using bootstrap3 variables, or mixins,
 If you want to have an easier life, have a look into:
 
-[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/3-sass-installation.md.md)
+[Sass Documentation](https://github.com/phiamo/MopaBootstrapBundle/blob/master/Resources/doc/install/3-sass-configuration.md)
 
 Templates
 ---------
@@ -81,7 +81,7 @@ you need to adapt the path ( ../ ):
 @import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
 
 // same for scss files
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.scss";
+@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss";
 
 ```
 
@@ -101,6 +101,7 @@ make
 <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
    media="screen" />
 {% endstylesheets %}
+{% endblock %}
 ```
 
 if it doesnt work, why not use the less or sass way?

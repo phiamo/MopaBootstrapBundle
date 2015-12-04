@@ -44,7 +44,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if ('single_text' === $options['widget']){
+        if ('single_text' === $options['widget']) {
             if (isset($options['datepicker'])) {
                 $view->vars['datepicker'] = $options['datepicker'];
             }
@@ -71,10 +71,19 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array(
-            'datepicker',
-            'widget_reset_icon',
-        ))->setDefaults(array(
+        if (method_exists($resolver, 'setDefined')) {
+            $resolver->setDefined(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        } else { // Symfony <2.6 BC
+            $resolver->setOptional(array(
+                'datepicker',
+                'widget_reset_icon',
+            ));
+        }
+
+        $resolver->setDefaults(array(
             'date_wrapper_class' => $this->options['date_wrapper_class']
         ));
     }
@@ -84,6 +93,9 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'date';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\DateType'
+            : 'date' // SF <2.8 BC
+        ;
     }
 }

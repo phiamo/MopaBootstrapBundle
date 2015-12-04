@@ -32,7 +32,7 @@ class FormActionsType extends AbstractType
     /**
      * Adds a button
      *
-     * @param  FormBuilderInterface      $builder
+     * @param FormBuilderInterface $builder
      * @param $name
      * @param $config
      * @throws \InvalidArgumentException
@@ -80,8 +80,18 @@ class FormActionsType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * SF <2.8 BC
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'form_actions';
     }
