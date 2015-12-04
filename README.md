@@ -27,7 +27,7 @@ For LESS:
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-rc1",
+        "mopa/bootstrap-bundle": "~3.0",
         "twbs/bootstrap": "~3.3.0"
     }
 }
@@ -38,7 +38,7 @@ For SASS:
 ``` json
 {
     "require": {
-        "mopa/bootstrap-bundle": "v3.0.0-rc1",
+        "mopa/bootstrap-bundle": "~3.0",
         "twbs/bootstrap-sass": "~3.3.0"
     }
 }
