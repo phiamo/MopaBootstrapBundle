@@ -224,10 +224,13 @@
             <{{ tagName }}{% for attrname, attrvalue in label_attr_copy %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
             {%- if disabled %} disabled="disabled"{% endif -%}>
             {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('') }}) }}
+            {% if choice_translation_domain is not defined %}
+                {% set choice_translation_domain = translation_domain %}
+            {% endif %}
             {% if widget_type == 'inline-btn' or widget_checkbox_label == 'widget'%}
-                {{ translation_domain is same as(false) ? child.vars.label|raw : child.vars.label|trans({}, translation_domain)|raw }}
+                {{ choice_translation_domain is same as(false) ? child.vars.label|raw : child.vars.label|trans({}, choice_translation_domain)|raw }}
             {% else %}
-                {{ translation_domain is same as(false) ? child.vars.label : child.vars.label|trans({}, translation_domain) }}
+                {{ choice_translation_domain is same as(false) ? child.vars.label : child.vars.label|trans({}, choice_translation_domain) }}
             {% endif %}
             </{{ tagName }}>
             {% if widget_type not in ['inline', 'inline-btn'] %}
@@ -273,7 +276,10 @@
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
             {% if label_render %}
                 {% if widget_checkbox_label in ['both', 'widget'] %}
-                    {{ translation_domain is same as(false) ? label|raw : label|trans({}, translation_domain)|raw }}
+                    {% if choice_translation_domain is not defined %}
+                        {% set choice_translation_domain = translation_domain %}
+                    {% endif %}
+                    {{ choice_translation_domain is same as(false) ? label|raw : label|trans({}, choice_translation_domain)|raw }}
                 {% else %}
                     {{ block('form_help') }}
                 {% endif %}
