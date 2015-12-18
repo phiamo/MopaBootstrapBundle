@@ -27,6 +27,11 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
     protected $extension;
     protected $tabFactory;
+    protected $formTypeMap = array(
+        'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
+        'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
+        'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
+    );
 
     /**
      * @throws \Twig_Error_Loader
@@ -79,7 +84,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected function getExtensions()
     {
         return array(new PreloadedExtension(array(), array(
-            'form' => array(
+            $this->getFormType('form') => array(
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
                 $this->getLegendFormTypeExtension(),
@@ -88,7 +93,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getEmbedFormExtension(),
                 $this->getTabbedFormTypeExtension(),
             ),
-            'text' => array(
+            $this->getFormType('text') => array(
                 $this->getStaticTextFormTypeExtension(),
             ),
         )));
@@ -293,5 +298,14 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
 
         return (string) $this->extension->renderer->searchAndRenderBlock($view, 'label', $vars);
+    }
+
+    protected function getFormType($name)
+    {
+         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+             return $this->formTypeMap[$name];
+         }
+
+         return $name;
     }
 }

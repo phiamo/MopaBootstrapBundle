@@ -7,7 +7,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
     public function testAsterisk()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'render_required_asterisk' => true,
             ))
             ->createView()
@@ -25,8 +25,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testRenderFieldset()
     {
-        $view = $this->factory->createNamedBuilder('name', 'form')
-            ->add('field1', 'text')
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'))
+            ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
         ;
@@ -48,8 +48,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderFieldset()
     {
-        $view = $this->factory->createNamedBuilder('name', 'form', null, array('render_fieldset' => false))
-            ->add('field1', 'text')
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('render_fieldset' => false))
+            ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
         ;
@@ -68,8 +68,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testRenderLegend()
     {
-        $view = $this->factory->createNamedBuilder('name', 'form')
-            ->add('field1', 'text')
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'))
+            ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
         ;
@@ -92,8 +92,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderLegend()
     {
-        $view = $this->factory->createNamedBuilder('name', 'form', null, array('show_legend' => false))
-            ->add('field1', 'text')
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('show_legend' => false))
+            ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
         ;
@@ -115,8 +115,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testLegendTag()
     {
-        $view = $this->factory->createNamedBuilder('name', 'form', null, array('legend_tag' => 'bar'))
-            ->add('field1', 'text')
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('legend_tag' => 'bar'))
+            ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
         ;
@@ -140,7 +140,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
     public function testLabelRender()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'label_render' => false,
             ))
             ->createView()

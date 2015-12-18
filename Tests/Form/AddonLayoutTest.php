@@ -7,7 +7,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testTextPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'widget_addon_prepend' => array(
                     'text' => 'foo',
                 ),
@@ -31,7 +31,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'widget_addon_prepend' => array(
                     'icon' => 'cog',
                 ),
@@ -58,7 +58,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testTextAppend()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'widget_addon_append' => array(
                     'text' => 'foo',
                 ),
@@ -82,7 +82,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconAppend()
     {
         $view = $this->factory
-            ->createNamed('name', 'text', null, array(
+            ->createNamed('name', $this->getFormType('text'), null, array(
                 'widget_addon_append' => array(
                     'icon' => 'cog',
                 ),
