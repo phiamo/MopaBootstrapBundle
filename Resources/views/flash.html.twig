@@ -14,7 +14,7 @@
 {% macro advanced_flash(type, heading, message, close_tag, use_raw, class, domain) %}
     <div class="alert{{ type ? ' alert-'~type : '' }} fade in {{ class|default('') }} {% if close_tag|default(false) %}alert-dismissible{% endif %}">
     {% if close_tag|default(false) %}
-        {% if close_tag == true %}
+        {% if close_tag == 'true' %}
             {% set close_tag = 'a' %}
         {% endif %}
         <{{ close_tag }} class="close" data-dismiss="alert" aria-hidden="true" {% if close_tag == 'a' %}href="#"{% elseif close_tag =='button' %}type="button"{% endif %}>&times;</{{ close_tag }}>
