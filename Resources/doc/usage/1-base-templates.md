@@ -26,7 +26,7 @@ Have a look at the provided [base.html.twig](/Resources/views/base.html.twig) it
 There is also a [base_less.html.twig](/Resources/views/base_less.html.twig) its layout is less.
 
 There is also a [base_sass.html.twig](/Resources/views/base_sass.html.twig) its layout is sass.
-- (If you are using Bootstrap 3.2 for SASS please use base_sass_3.2.html.twig)
+- (If you are using Bootstrap 3.2+ for SASS please use [base_sass_3.2.html.twig](/Resources/views/base_sass_3.2.html.twig))
 
 There is also a [base_lessjs.html.twig](/Resources/views/base_lessjs.html.twig) with clientside less.js. This is currently not recommended, because you need to setup bootstrap and the less files to use it yourself.
 
@@ -82,6 +82,9 @@ you need to adapt the path ( ../ ):
 
 // same for scss files
 @import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss";
+
+// if you are using Bootstrap 3.2+ for SASS
+@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle-3.2.scss";
 
 ```
 
