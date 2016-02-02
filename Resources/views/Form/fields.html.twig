@@ -220,9 +220,9 @@
             <label{% for attrname, attrvalue in label_attr_copy %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('') }}) }}
             {% if widget_type == 'inline-btn' or widget_checkbox_label == 'widget'%}
-                {{ child.vars.label|trans({}, translation_domain)|raw }}
+                {{ (choice_translation_domain is defined ? (choice_translation_domain is same as(false) ? child.vars.label : child.vars.label|trans({}, choice_translation_domain)) : child.vars.label|trans({}, translation_domain))|raw }}
             {% else %}
-                {{ child.vars.label|trans({}, translation_domain) }}
+                {{ choice_translation_domain is defined ? (choice_translation_domain is same as(false) ? child.vars.label : child.vars.label|trans({}, choice_translation_domain)) : child.vars.label|trans({}, translation_domain) }}
             {% endif %}
             </label>
             {% if widget_type not in ['inline', 'inline-btn'] %}
