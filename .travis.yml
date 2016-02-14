@@ -1,23 +1,52 @@
 language: php
+
+sudo: false
+
 php:
   - 5.3
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
+  - hhvm
 
 env:
-  - SYMFONY_VERSION=v2.0.17
-  - SYMFONY_VERSION=v2.1.13
-  - SYMFONY_VERSION=v2.2.11
-  - SYMFONY_VERSION=v2.3.42
-  - SYMFONY_VERSION=v2.4.10
-  - SYMFONY_VERSION=v2.5.12
-  - SYMFONY_VERSION=v2.6.13
-  - SYMFONY_VERSION=v2.7.14
-  - SYMFONY_VERSION=v2.8.7
-  - SYMFONY_VERSION=v3.0.7
-  - SYMFONY_VERSION=v3.1.0
-  - SYMFONY_VERSION=origin/master
+  - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.4.*
+  - SYMFONY_VERSION=2.5.*
+  - SYMFONY_VERSION=2.6.* SYMFONY_DEPRECATIONS_HELPER=weak
+  - SYMFONY_VERSION=2.7.*
+  - SYMFONY_VERSION=2.8.*
+  - SYMFONY_VERSION=3.0.*
+  - SYMFONY_VERSION=3.1.*
+  - SYMFONY_VERSION=dev-master
 
-before_script: php Tests/tests/vendors.php
-script: phpunit
+matrix:
+  exclude:
+    - php: 5.3
+      env: SYMFONY_VERSION=3.0.*
+    - php: 5.3
+      env: SYMFONY_VERSION=3.1.*
+    - php: 5.3
+      env: SYMFONY_VERSION=dev-master
+    - php: 5.4
+      env: SYMFONY_VERSION=3.0.*
+    - php: 5.4
+      env: SYMFONY_VERSION=3.1.*
+    - php: 5.4
+      env: SYMFONY_VERSION=dev-master
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer selfupdate
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+  - composer update --prefer-dist $COMPOSER_FLAGS
+
+script:
+  - vendor/bin/phpunit
+
+after_success:
+  - coveralls
