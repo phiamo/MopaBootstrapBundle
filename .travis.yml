@@ -11,9 +11,9 @@ php:
   - hhvm
 
 env:
-  - SYMFONY_VERSION=2.3.*
-  - SYMFONY_VERSION=2.4.*
-  - SYMFONY_VERSION=2.5.*
+  - SYMFONY_VERSION=2.3.* NO_PHPUNIT_BRIDGE=1
+  - SYMFONY_VERSION=2.4.* NO_PHPUNIT_BRIDGE=1
+  - SYMFONY_VERSION=2.5.* NO_PHPUNIT_BRIDGE=1
   - SYMFONY_VERSION=2.6.* SYMFONY_DEPRECATIONS_HELPER=weak
   - SYMFONY_VERSION=2.7.*
   - SYMFONY_VERSION=2.8.*
@@ -43,6 +43,7 @@ cache:
 before_script:
   - composer selfupdate
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+  - if [ "$NO_PHPUNIT_BRIDGE" == "" ]; then composer require symfony/phpunit-bridge; fi;
   - composer update --prefer-dist $COMPOSER_FLAGS
 
 script:
