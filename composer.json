@@ -23,7 +23,7 @@
     "require": {
         "symfony/symfony": "~2.3|~3.0",
         "mopa/composer-bridge": "1.3.*",
-        "twig/twig": "^v1.24.0"
+        "twig/twig": "~1.23"
     },
     "suggest":  {
         "twbs/bootstrap": "2.*",

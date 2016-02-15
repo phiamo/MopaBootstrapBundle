@@ -14,7 +14,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  */
-class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
+class MopaBootstrapInitializrTwigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @var array
@@ -61,7 +61,10 @@ class MopaBootstrapInitializrTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'form_help' => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('form_help', null, array(
+                'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                'is_safe' => array('html'),
+            )),
         );
     }
 
