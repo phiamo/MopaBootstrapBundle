@@ -1,10 +1,11 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class LegendFormTypeExtension extends AbstractTypeExtension
 {
@@ -35,7 +36,11 @@ class LegendFormTypeExtension extends AbstractTypeExtension
         $view->vars['render_optional_text'] = $options['render_optional_text'];
         $view->vars['errors_on_forms'] = $options['errors_on_forms'];
     }
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'render_fieldset' => $this->render_fieldset,
@@ -47,8 +52,25 @@ class LegendFormTypeExtension extends AbstractTypeExtension
             'errors_on_forms' => $this->errors_on_forms,
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to SF 2.7+
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
-        return 'form';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
+            : 'form' // SF <2.8 BC
+        ;
     }
 }

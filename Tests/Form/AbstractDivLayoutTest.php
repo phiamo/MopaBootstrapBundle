@@ -99,6 +99,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             ),
             $this->getFormType('text') => array(
             ),
+            $this->getFormType('tab') => array(
+            ),
         )));
     }
 

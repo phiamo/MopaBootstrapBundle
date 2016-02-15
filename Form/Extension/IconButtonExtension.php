@@ -1,27 +1,29 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class IconButtonExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
      */
-    public function getExtendedType()
+    public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        return 'button';
+        $view->vars['icon'] = $options['icon'];
+        $view->vars['icon_color'] = $options['icon_color'];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
@@ -33,10 +35,22 @@ class IconButtonExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to SF 2.7+
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $view->vars['icon'] = $options['icon'];
-        $view->vars['icon_color'] = $options['icon_color'];
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\ButtonType'
+            : 'button' // SF <2.8 BC
+        ;
     }
 }

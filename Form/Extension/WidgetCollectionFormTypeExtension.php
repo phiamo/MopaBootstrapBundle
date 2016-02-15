@@ -1,11 +1,12 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
 {
@@ -63,7 +64,10 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
@@ -71,8 +75,25 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             'widget_remove_btn' => null,
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to SF 2.7+
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
-        return 'form';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
+            : 'form' // SF <2.8 BC
+        ;
     }
 }
