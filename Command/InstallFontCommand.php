@@ -28,6 +28,7 @@ class InstallFontCommand extends ContainerAwareCommand
         "glyphicons" => "fonts/bootstrap",
         "fontawesome" => "fonts/fa",
         "fontawesome4" => "fonts/fa4",
+        "zmdi" => "fonts/zmdi",
     );
 
     /**

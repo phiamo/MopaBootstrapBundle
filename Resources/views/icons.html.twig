@@ -13,3 +13,7 @@
 {% block glyphicons -%}
 <span class="glyphicon glyphicon-{{ icon }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
 {%- endblock %}
+
+{% block zmdi -%}
+<span class="zmdi zmdi-{{ icon }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
+{%- endblock %}
