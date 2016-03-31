@@ -44,12 +44,6 @@
 {% endblock button_row %}
 
 {# Widgets #}
-
-{% block choice_widget_collapsed %}
-    {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
-    {{ parent() }}
-{% endblock choice_widget_collapsed %}
-
 {% block textarea_widget %}
     {% set type = type|default('text') %}
     {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null ) %}
@@ -193,6 +187,14 @@
 {% endspaceless %}
 {% endblock collection_widget %}
 
+{% block choice_widget_collapsed %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' ' ~ widget_form_control_class}) %}
+    {% if widget_type == 'inline-btn' %}
+        {{ block('choice_widget_expanded') }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock choice_widget_collapsed %}
 
 {% block choice_widget_expanded %}
     {% spaceless %}
