@@ -27,7 +27,7 @@ class MenuDecorator
     public function buildItem(ItemInterface $item, array $options)
     {
         if ($options['navbar']) {
-            $item->setChildrenAttribute('class', 'nav navbar-nav');
+            $item->setChildrenAttribute('class', 'nav navbar-nav'.($options['navbar-right']?' navbar-right':''));
         }
 
         if ($options['pills']) {
@@ -99,6 +99,7 @@ class MenuDecorator
     {
         return array_merge(array(
             'navbar' => false,
+            'navbar-right' => false,
             'pills' => false,
             'stacked' => false,
             'dropdown-header' => false,
