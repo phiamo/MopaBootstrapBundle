@@ -17,7 +17,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  */
-class InitializrTwigExtension extends \Twig_Extension
+class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @var array
