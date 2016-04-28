@@ -44,7 +44,7 @@ Known Problems:
 ---------------
 
 If you have problems with your less version 
-for istance, less 1.2.1 did not work for me with bootstrap 2.0.2
+for instance, less 1.2.1 did not work for me with bootstrap 2.0.2
 there was an error like:
 
 ```
