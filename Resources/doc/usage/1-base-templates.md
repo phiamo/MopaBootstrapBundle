@@ -78,13 +78,13 @@ you need to adapt the path ( ../ ):
 
 ``` css
 // Getting the whole mopabootstrapbundle.less
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
+@import "../../../../../../../vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/less/mopabootstrapbundle.less";
 
 // same for scss files
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss";
+@import "../../../../../../../vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss";
 
 // if you are using Bootstrap 3.2+ for SASS
-@import "../../../../../../../../mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle-3.2.scss";
+@import "../../../../../../../vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/sass/mopabootstrapbundle-3.2.scss";
 
 ```
 
