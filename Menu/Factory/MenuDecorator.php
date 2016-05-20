@@ -86,6 +86,14 @@ class MenuDecorator
         if ($options['icon']) {
             $item->setExtra('icon', $options['icon']);
         }
+
+        if ($options['badge']) {
+            $item->setExtra('badge', $options['badge']);
+        }
+
+        if ($options['badge-class']) {
+            $item->setExtra('badge-class', $options['badge-class']);
+        }
     }
 
     /**
@@ -110,6 +118,8 @@ class MenuDecorator
             'pull-right' => false,
             'icon' => false,
             'divider' => false,
+            'badge' => false,
+            'badge-class' => false,
         ), $options);
     }
 }

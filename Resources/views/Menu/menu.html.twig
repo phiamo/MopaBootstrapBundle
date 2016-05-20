@@ -1,18 +1,22 @@
 {% extends 'knp_menu.html.twig' %}
 
 {% block linkElement %}
-{% spaceless %}
-{% import 'knp_menu.html.twig' as macros %}
-<a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
-{% if item.extras.icon|default(false) %}
-    {{ mopa_bootstrap_icon(item.extras.icon, item.extras.icon_white|default(false)) }}{{ ' ' }}
-{%- endif %}
-{{ block('label') }}
-{%- if item.extras.caret|default(false) %}
-    <b class="caret"></b>
-{% endif -%}
-</a>
-{% endspaceless %}
+    {% spaceless %}
+        {% import 'knp_menu.html.twig' as macros %}
+        <a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
+            {% if item.extras.icon|default(false) %}
+                {{ mopa_bootstrap_icon(item.extras.icon, item.extras.icon_white|default(false)) }}{{ ' ' }}
+            {%- endif %}
+            {{ block('label') }}
+            {% import 'MopaBootstrapBundle::macros.html.twig' as badgemacro %}
+            {%- if item.extras.badge|default(false) %}
+                {{ badgemacro.badge(item.extras.badge, false, item.extras.badge-class|default('menu-badge')) }}
+            {% endif -%}
+            {%- if item.extras.caret|default(false) %}
+                <b class="caret"></b>
+            {% endif -%}
+        </a>
+    {% endspaceless %}
 {% endblock %}
 
 {% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans()|raw }}{% else %}{{ item.label|trans() }}{% endif %}{% endblock %}
