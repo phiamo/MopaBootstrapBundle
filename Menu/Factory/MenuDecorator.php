@@ -92,7 +92,7 @@ class MenuDecorator
         }
 
         if ($options['badge-class']) {
-            $item->setExtra('badge-class', $options['badge-class']);
+            $item->setExtra('badge_class', $options['badge-class']);
         }
     }
 
