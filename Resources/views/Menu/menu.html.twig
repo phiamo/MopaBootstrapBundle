@@ -10,7 +10,7 @@
             {{ block('label') }}
             {% import 'MopaBootstrapBundle::macros.html.twig' as badgemacro %}
             {%- if item.extras.badge|default(false) %}
-                {{ badgemacro.badge(item.extras.badge, false, item.extras.badge-class|default('menu-badge')) }}
+                {{ badgemacro.badge(item.extras.badge, false, item.extras.badge_class) }}
             {% endif -%}
             {%- if item.extras.caret|default(false) %}
                 <b class="caret"></b>
