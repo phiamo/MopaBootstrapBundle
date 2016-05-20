@@ -45,6 +45,7 @@ We register a new menu extension so you have options available to you:
 - caret
 - pull-right
 - icon
+- badge
 
 Example Usage:
 
@@ -62,6 +63,17 @@ class Builder
         // Add a regular child with an icon, icon- is prepended automatically
         $layout = $menu->addChild('Layout', array(
             'icon' => 'home',
+            'route' => 'mopa_bootstrap_layout_example',
+        ));
+
+        // Add a regular child with a badge and icon, icon- is prepended automatically
+        // If you pass false to badge it will not show
+        // This can be useful for 'badge' => $badgeData,  where $badgeData is a DB result (message or notification counts)
+        // badge-class can be used to style the badge
+        $layout = $menu->addChild('Layout', array(
+            'icon' => 'home',
+            'badge' => '7',
+            'badge-class' => 'menu-badge',
             'route' => 'mopa_bootstrap_layout_example',
         ));
 
