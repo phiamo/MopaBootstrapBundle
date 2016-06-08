@@ -1,11 +1,22 @@
 language: php
 php:
   - 5.3
-  # - 5.4
+  - 5.4
+  - 5.5
+  - 5.6
 
 env:
   - SYMFONY_VERSION=v2.0.17
-  - SYMFONY_VERSION=v2.1.0
+  - SYMFONY_VERSION=v2.1.13
+  - SYMFONY_VERSION=v2.2.11
+  - SYMFONY_VERSION=v2.3.423
+  - SYMFONY_VERSION=v2.4.10
+  - SYMFONY_VERSION=v2.5.12
+  - SYMFONY_VERSION=v2.6.13
+  - SYMFONY_VERSION=v2.7.14
+  - SYMFONY_VERSION=v2.8.7
+  - SYMFONY_VERSION=v3.0.7
+  - SYMFONY_VERSION=v3.1.0
   - SYMFONY_VERSION=origin/master
 
 before_script: php Tests/tests/vendors.php
