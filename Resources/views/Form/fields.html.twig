@@ -104,7 +104,7 @@
 
 {% block checkbox_widget %}
 {% spaceless %}
-{% if label is not sameas(false) and label is empty %}
+{% if label is not same as(false) and label is empty %}
     {% set label = name|humanize %}
 {% endif %}
 {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
@@ -241,7 +241,7 @@
 {% block form_label %}
 {% if 'checkbox' not in block_prefixes or widget_checkbox_label in ['label', 'both'] %}
 {% spaceless %}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}

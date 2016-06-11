@@ -1,11 +1,12 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class HelpFormTypeExtension extends AbstractTypeExtension
 {
@@ -24,7 +25,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_inline'] = $options['help_inline'];
         $view->vars['help_block'] = $options['help_block'];
         $view->vars['help_label'] = $options['help_label'];
-        
+
         if (!isset($options['help_label_tooltip']['icon']) && !is_null($this->options['tooltip_icon'])) {
             $options['help_label_tooltip']['icon'] = $this->options['tooltip_icon'];
         }
@@ -65,7 +66,10 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         }
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'help_inline' => null,
@@ -85,8 +89,24 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to SF 2.7+
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
-        return 'form';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
+            : 'form' // SF <2.8 BC
+        ;
     }
 }

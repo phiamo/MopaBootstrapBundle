@@ -1,11 +1,13 @@
 <?php
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Exception\CreationException;
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class WidgetFormTypeExtension extends AbstractTypeExtension
 {
@@ -48,7 +50,11 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_checkbox_label'] = $options['widget_checkbox_label'];
 
     }
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
@@ -68,7 +74,18 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                 'widget_checkbox_label' => $this->options['checkbox_label'],
             )
         );
-        $resolver->setAllowedValues(array(
+        if (version_compare(Kernel::VERSION, '2.6', '>=')) {
+            $resolver->setAllowedValues('widget_type', array(
+                'inline',
+                '',
+            ));
+            $resolver->setAllowedValues('widget_checkbox_label', array(
+                'label',
+                'widget',
+                'both',
+            ));
+        } else {
+            $resolver->setAllowedValues(array(
                 'widget_type' => array(
                     'inline',
                     '',
@@ -77,12 +94,30 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
                     'label',
                     'widget',
                     'both',
-                )
-            )
-        );
+                ),
+            ));
+        }
+
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to SF 2.7+
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
-        return 'form';
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
+            : 'form' // SF <2.8 BC
+        ;
     }
 }
