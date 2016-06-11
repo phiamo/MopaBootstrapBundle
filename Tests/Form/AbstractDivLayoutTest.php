@@ -10,6 +10,7 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
 use Mopa\Bundle\BootstrapBundle\Twig\MopaBootstrapInitializrTwigExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\MopaBootstrapTwigExtension;
 use Mopa\Bundle\BootstrapBundle\Tests\FileSystemLoader;
@@ -32,6 +33,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
         'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
         'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
+        'tab' => 'Mopa\Bundle\BootstrapBundle\Form\Type\TabType',
     );
 
     /**
@@ -88,7 +90,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function getExtensions()
     {
-        return array(new PreloadedExtension(array(), array(
+        return array(new PreloadedExtension(array(
+            'tab' => new TabType(),
+        ), array(
             $this->getFormType('form') => array(
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
@@ -96,10 +100,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getLegendFormTypeExtension(),
                 $this->getErrorTypeFormTypeExtension(),
                 $this->getIconButtonExtension(),
+                $this->getTabbedFormTypeExtension(),
             ),
             $this->getFormType('text') => array(
-            ),
-            $this->getFormType('tab') => array(
             ),
         )));
     }
