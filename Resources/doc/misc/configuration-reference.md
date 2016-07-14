@@ -9,6 +9,7 @@ mopa_bootstrap:
         templating:           MopaBootstrapBundle:Form:fields.html.twig
         horizontal:           true
         horizontal_label_class:  col-sm-3 control-label
+        horizontal_label_div_class: null
         horizontal_label_offset_class:  col-sm-offset-3
         horizontal_input_wrapper_class:  col-sm-9
         render_fieldset:      true
