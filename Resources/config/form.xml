@@ -93,6 +93,7 @@
             <argument type="collection">
                 <argument key="horizontal">%mopa_bootstrap.form.horizontal%</argument>
                 <argument key="horizontal_label_class">%mopa_bootstrap.form.horizontal_label_class%</argument>
+                <argument key="horizontal_label_div_class">%mopa_bootstrap.form.horizontal_label_div_class%</argument>
                 <argument key="horizontal_label_offset_class">%mopa_bootstrap.form.horizontal_label_offset_class%</argument>
                 <argument key="horizontal_input_wrapper_class">%mopa_bootstrap.form.horizontal_input_wrapper_class%</argument>
             </argument>

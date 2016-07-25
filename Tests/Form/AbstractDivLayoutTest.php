@@ -164,6 +164,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         return new HorizontalFormTypeExtension(array(
             'horizontal' => true,
             'horizontal_label_class' => 'col-sm-3',
+            'horizontal_label_div_class' => null,
             'horizontal_label_offset_class' => 'col-sm-offset-3',
             'horizontal_input_wrapper_class' => 'col-sm-9',
         ));

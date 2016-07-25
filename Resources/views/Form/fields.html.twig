@@ -452,6 +452,9 @@
         {% if horizontal %}
             {% set label_attr_class = 'control-label ' ~ label_attr_class ~ horizontal_label_class %}
         {% endif %}
+        {% if horizontal_label_div_class %}
+        <div class="{{ horizontal_label_div_class }}">
+        {% endif %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ " " ~ label_attr_class ~ (required ? ' required' : ' optional'))|trim }) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
@@ -469,6 +472,9 @@
             {{ block('help_label_popover') }}
         {% endif %}
         </label>
+        {% if horizontal_label_div_class %}
+        </div>
+        {% endif %}
     {% endif %}
 {% endspaceless %}
 {% endif %}
