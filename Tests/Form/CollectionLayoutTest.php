@@ -13,7 +13,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             'names' => array('name1', 'name2', 'name3'),
         ))
             ->add('names', $this->getFormType('collection'), array(
-                'type' => $this->getFormType('text'),
+                $this->getCollectionTypeKey() => $this->getFormType('text'),
             ))
             ->getForm()
             ->createView()
@@ -98,7 +98,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             'names' => array('name1', 'name2', 'name3'),
         ))
             ->add('names', $this->getFormType('collection'), array(
-                'type' => $this->getFormType('text'),
+                $this->getCollectionTypeKey() => $this->getFormType('text'),
                 'options' => array('horizontal' => false),
             ))
             ->getForm()
@@ -175,7 +175,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             'names' => array('name1', 'name2', 'name3'),
         ))
             ->add('names', $this->getFormType('collection'), array(
-                'type' => $this->getFormType('text'),
+                $this->getCollectionTypeKey() => $this->getFormType('text'),
                 'horizontal' => false,
                 'options' => array('horizontal' => true),
             ))
@@ -260,7 +260,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             'names' => array('name1', 'name2', 'name3'),
         ))
             ->add('names', $this->getFormType('collection'), array(
-                'type' => $this->getFormType('text'),
+                $this->getCollectionTypeKey() => $this->getFormType('text'),
                 'horizontal' => false,
             ))
             ->getForm()

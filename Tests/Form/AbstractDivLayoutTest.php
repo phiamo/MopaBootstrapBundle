@@ -335,4 +335,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
          return $name;
     }
+
+    protected function getCollectionTypeKey()
+    {
+         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+             return 'entry_type';
+         }
+
+         return 'type';
+    }
 }
