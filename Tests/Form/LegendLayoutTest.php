@@ -15,7 +15,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderLabel($view);
         $this->assertMatchesXpath($this->removeBreaks($html),
 '
-/label[@for="name"][@class="required"]
+/label[@for="name"][@class="control-label col-sm-3 required"]
     [
         ./span[@class="asterisk"][.="*"]
     ]

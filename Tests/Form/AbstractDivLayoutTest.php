@@ -9,8 +9,9 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
-use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as FormExtension2;
+use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
@@ -21,7 +22,6 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
-use Twig_Environment;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
@@ -31,6 +31,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
         'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
         'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
+        'collection' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
     );
 
     /**
@@ -68,10 +69,10 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
 
-        $environment = new Twig_Environment($loader, array('strict_variables' => true));
+        $environment = new \Twig_Environment($loader, array('strict_variables' => true));
         $environment->addExtension(new TranslationExtension(new StubTranslator()));
         $environment->addExtension(new IconExtension('fontawesome'));
-        $environment->addExtension(new FormExtension2());
+        $environment->addExtension(new TwigFormExtension());
         $environment->addGlobal('global', '');
         $environment->addExtension($this->extension);
 
@@ -92,6 +93,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getErrorTypeFormTypeExtension(),
                 $this->getEmbedFormExtension(),
                 $this->getTabbedFormTypeExtension(),
+                $this->getWidgetCollectionFormTypeExtension(),
             ),
             $this->getFormType('text') => array(
                 $this->getStaticTextFormTypeExtension(),
@@ -209,6 +211,30 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
+     * @return WidgetCollectionFormTypeExtension
+     */
+    protected function getWidgetCollectionFormTypeExtension()
+    {
+        return new WidgetCollectionFormTypeExtension(array(
+            'render_collection_item' => true,
+            'widget_add_btn' => array(
+                'attr' => array('class' => 'btn btn-default'),
+                'label' => 'add-item',
+                'icon' => null,
+                'icon_inverted' => false,
+            ),
+            'widget_remove_btn' => array(
+                'attr' => array('class' => 'btn btn-default'),
+                'wrapper_div' => array('class' => 'form-group'),
+                'horizontal_wrapper_div' => array('class' => 'col-sm-3 col-sm-offset-3'),
+                'label' => 'remove-item',
+                'icon' => null,
+                'icon_inverted' => false,
+            ),
+        ));
+    }
+
+    /**
      * @param string $html
      * @param string $expression
      * @param int    $count
@@ -308,5 +334,23 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
          }
 
          return $name;
+    }
+
+    protected function getCollectionTypeKey()
+    {
+         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+             return 'entry_type';
+         }
+
+         return 'type';
+    }
+
+    protected function getCollectionOptionsKey()
+    {
+         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+             return 'entry_options';
+         }
+
+         return 'options';
     }
 }

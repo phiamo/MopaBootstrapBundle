@@ -76,7 +76,6 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
         $view->vars['widget_add_btn'] = $options['widget_add_btn'];
         $view->vars['widget_remove_btn'] = $options['widget_remove_btn'];
         $view->vars['prototype_names'] = $options['prototype_names'];
-        $view->vars['horizontal_wrap_children'] = $options['horizontal_wrap_children'];
     }
 
     /**
@@ -99,15 +98,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
             'widget_add_btn' => $this->options['widget_add_btn'],
             'widget_remove_btn' => $this->options['widget_remove_btn'],
             'prototype_names' => array(),
-            'horizontal_wrap_children' => false,
         ));
-        if (version_compare(Kernel::VERSION, '2.6', '<')) {
-            $resolver->setAllowedTypes(array(
-                'horizontal_wrap_children' => 'bool',
-            ));
-        } else {
-            $resolver->setAllowedTypes('horizontal_wrap_children', 'bool');
-        }
     }
 
     /**

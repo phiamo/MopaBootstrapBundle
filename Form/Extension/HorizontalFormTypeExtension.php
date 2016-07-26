@@ -44,49 +44,30 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        // Set the root form to the default value if none given
-        if ($options['horizontal'] === null && ((!$view->parent && $options['compound']) || ($form->getParent() === null && $options['compound']))) {
-            $horizontal = $this->options['horizontal'];
-        } else {
-            $horizontal = $options['horizontal'];
+        $horizontal = $options['horizontal'];
+
+        if ($horizontal === null) {
+            if ($view->parent) {
+                $horizontal = $view->parent->vars['horizontal'];
+            } else {
+                $horizontal = $this->options['horizontal'];
+            }
         }
 
-        $view->vars['horizontal'] = $horizontal;
-        $view->vars['horizontal_label_class'] = $options['horizontal_label_class'];
-        $view->vars['horizontal_label_offset_class'] = $options['horizontal_label_offset_class'];
-        $view->vars['horizontal_input_wrapper_class'] = $options['horizontal_input_wrapper_class'];
-        $view->vars['horizontal_label_div_class'] = $options['horizontal_label_div_class'];
+        $view->vars = array_replace($view->vars, array(
+            'horizontal' => $horizontal,
+            'horizontal_label_class' => $options['horizontal_label_class'],
+            'horizontal_label_offset_class' => $options['horizontal_label_offset_class'],
+            'horizontal_input_wrapper_class' => $options['horizontal_input_wrapper_class'],
+            'horizontal_label_div_class' => $options['horizontal_label_div_class'],
+        ));
     }
 
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $isForm = false;
         if (!$view->parent && $options['compound'] && $view->vars['horizontal']) {
             $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'].' ' : '';
             $view->vars['attr']['class'] = $class.'form-horizontal';
-
-            $isForm = true;
-        }
-
-        if ($isForm || ($form->getParent() === null && $options['compound'])) {
-            $this->setChildrenHorizontal($view);
-        }
-    }
-
-    public function setChildrenHorizontal(FormView $view)
-    {
-        foreach ($view->children as $child) {
-            if (!in_array('form', $child->vars['block_prefixes'])) {
-                continue;
-            }
-
-            if ($child->vars['horizontal'] === null) {
-                $child->vars['horizontal'] = $view->vars['horizontal'];
-            }
-
-            if (count($view->children) > 0) {
-                $this->setChildrenHorizontal($child);
-            }
         }
     }
 
@@ -105,15 +86,13 @@ class HorizontalFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            array(
-                'horizontal' => null,
-                'horizontal_label_class' => $this->options['horizontal_label_class'],
-                'horizontal_label_offset_class' => $this->options['horizontal_label_offset_class'],
-                'horizontal_input_wrapper_class' => $this->options['horizontal_input_wrapper_class'],
-                'horizontal_label_div_class' => $this->options['horizontal_label_div_class'],
-            )
-        );
+        $resolver->setDefaults(array(
+            'horizontal' => null,
+            'horizontal_label_class' => $this->options['horizontal_label_class'],
+            'horizontal_label_offset_class' => $this->options['horizontal_label_offset_class'],
+            'horizontal_input_wrapper_class' => $this->options['horizontal_input_wrapper_class'],
+            'horizontal_label_div_class' => $this->options['horizontal_label_div_class'],
+        ));
     }
 
     /**

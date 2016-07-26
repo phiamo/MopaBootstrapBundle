@@ -28,7 +28,9 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testInlineRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'))
+            ->createNamed('name', $this->getFormType('text'), null, array(
+                'horizontal' => false,
+            ))
             ->createView()
         ;
 
