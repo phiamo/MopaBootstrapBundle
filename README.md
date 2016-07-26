@@ -11,6 +11,26 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 
 To use MopaBootstrapBundle and Twitter's Bootstrap 3 in your project add it via [composer](Resources/doc/install/1-getting-started.md)
 
+Updates
+-------
+
+*New in 3.1*: The way `horizontal` works has been slightly altered due to a change in Symfony forms. This may or may
+not affect some behavior of your existing forms. ALL root form elements, whether they have a parent form or not will
+start with `horizontal` === `true` (or whatever value you set in the config). For the most part this shouldn't affect many users.
+
+`horizontal` will also correctly pass itself down to collection types (and all child forms). So if your collection is horizontal,
+so will the collection items. If you want your collection items only to be inline, then you can pass these options to your collection:
+
+```php
+array(
+    'entry_options' => array('horizontal' => false), //   2.8+
+    'options' => array('horizontal' => false),       // < 2.8
+)
+```
+
+`horizontal_wrap_children` has been removed, as this can be solved using the above options.
+
+
 Branches
 --------
 
