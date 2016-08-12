@@ -37,7 +37,7 @@ If you need control yourself, just ommit automenu setting and do whatever you ne
 
 We register a new menu extension so you have options available to you:
 
-- navbar
+- navbar (top and/or bottom)(static or fixed)
 - pills
 - stacked
 - dropdown-header
@@ -102,12 +102,14 @@ It is not necessary to use these templates, they are just simply there to provid
 you with a shortcut to creating Navbars more quickly. You can always extend these
 templates and embed your own templates instead.
 
+Top and Bottom navbar's supported on same page by giving each a unique navbar_id.
+
 You can create your menu as a service or you can use the controller notation.
 
 Here is a sample Navbar:
 
 ``` jinja
-{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: true } %}
+{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, fixedBottom: false, staticBottom: false, inverse: true, id: mainTop } %}
     {% block brand %}
         <a class="navbar-brand" href="#">Mopa Bootstrap</a>
     {% endblock %}
