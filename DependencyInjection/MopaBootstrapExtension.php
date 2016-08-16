@@ -56,6 +56,7 @@ class MopaBootstrapExtension extends Extension
 
             // Get legacy bit
             $allowLegacy = $container->getParameter('mopa_bootstrap.form.allow_legacy');
+            $addLegacy = $allowLegacy || !method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
 
             // Set tags
             $types = array(
@@ -64,12 +65,9 @@ class MopaBootstrapExtension extends Extension
             );
 
             foreach ($types as $type => $alias) {
-                $legacyTag = $allowLegacy ? array('alias' => $alias) : array();
+                $legacyTag = $addLegacy ? array('alias' => $alias) : array();
                 $typeDefinition = $container->getDefinition($type);
-                $typeDefinition->addTag('form.type', method_exists('Symfony\Component\Form\AbstractType', 'setDefaultOptions')
-                    ? $legacyTag
-                    : array()
-                );
+                $typeDefinition->addTag('form.type', $legacyTag);
             }
         }
 
