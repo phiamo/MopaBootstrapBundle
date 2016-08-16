@@ -54,17 +54,20 @@ class MopaBootstrapExtension extends Extension
                 }
             }
 
+            // Get legacy bit
+            $allowLegacy = $container->getParameter('mopa_bootstrap.form.allow_legacy');
+            $addLegacy = $allowLegacy || !method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
+
             // Set tags
             $types = array(
                 'mopa_bootstrap.form.type.tab' => 'tab',
                 'mopa_bootstrap.form.type.form_actions' => 'form_actions',
             );
+
             foreach ($types as $type => $alias) {
+                $legacyTag = $addLegacy ? array('alias' => $alias) : array();
                 $typeDefinition = $container->getDefinition($type);
-                $typeDefinition->addTag('form.type', method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                    ? array()
-                    : array('alias' => $alias)
-                );
+                $typeDefinition->addTag('form.type', $legacyTag);
             }
         }
 

@@ -6,6 +6,7 @@ Default configuration for extension with alias: "mopa_bootstrap"
 ```yaml
 mopa_bootstrap:
     form:
+        allow_legacy:         false
         templating:           MopaBootstrapBundle:Form:fields.html.twig
         horizontal:           true
         horizontal_label_class:  col-sm-3 control-label
