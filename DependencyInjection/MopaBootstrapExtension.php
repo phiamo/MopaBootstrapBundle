@@ -62,13 +62,13 @@ class MopaBootstrapExtension extends Extension
                 'mopa_bootstrap.form.type.tab' => 'tab',
                 'mopa_bootstrap.form.type.form_actions' => 'form_actions',
             );
-            
+
             foreach ($types as $type => $alias) {
                 $legacyTag = $allowLegacy ? array('alias' => $alias) : array();
                 $typeDefinition = $container->getDefinition($type);
                 $typeDefinition->addTag('form.type', method_exists('Symfony\Component\Form\AbstractType', 'setDefaultOptions')
                     ? $legacyTag
-                    : array('name' => 'form.type')
+                    : array()
                 );
             }
         }
