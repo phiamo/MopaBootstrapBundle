@@ -62,7 +62,11 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
                 if (!$forceSymlink) {
                     throw new \Exception(sprintf('Symlink "%s" points to "%s" instead of "%s"', $symlinkName, $linkTarget, $symlinkTarget));
                 }
-                unlink($symlinkName);
+                if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && is_dir($linkTarget)) {
+                    rmdir($symlinkName);
+                } else {
+                    unlink($symlinkName);
+                }
 
                 return false;
             }
