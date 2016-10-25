@@ -1,4 +1,4 @@
-{% extends 'knp_menu.html.twig' %}
+{% extends 'KnpMenuBundle::menu.html.twig' %}
 
 {% block linkElement %}
     {% spaceless %}
@@ -18,5 +18,3 @@
         </a>
     {% endspaceless %}
 {% endblock %}
-
-{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans()|raw }}{% else %}{{ item.label|trans() }}{% endif %}{% endblock %}
