@@ -391,7 +391,7 @@
 
 {% block money_widget %}
 {% spaceless %}
-    {% set widget_addon_prepend = (widget_addon_prepend != false or widget_addon_prepend == null) and money_pattern != '{{ widget }}' ? {'text': money_pattern|replace({ '{{ widget }}': ''})} : widget_addon_prepend|default(null) %}
+    {% set widget_addon_prepend = (widget_addon_prepend != false or widget_addon_prepend == null) and money_pattern != '{{ widget }}' ? {'text': money_pattern|replace({ '{{ widget }}': ''})|trim} : widget_addon_prepend|default(null) %}
     {{ block('form_widget_simple') }}
 {% endspaceless %}
 {% endblock money_widget %}
