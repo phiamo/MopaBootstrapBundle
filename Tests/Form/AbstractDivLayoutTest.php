@@ -32,6 +32,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
         'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
         'collection' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+        'tab' => 'Mopa\Bundle\BootstrapBundle\Form\Type\TabType',
     );
 
     /**
