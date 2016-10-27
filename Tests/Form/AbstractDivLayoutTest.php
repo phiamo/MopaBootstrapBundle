@@ -11,6 +11,7 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
 use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
@@ -32,6 +33,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
         'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
         'collection' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
+        'tab' => 'Mopa\Bundle\BootstrapBundle\Form\Type\TabType',
     );
 
     /**
@@ -84,7 +86,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function getExtensions()
     {
-        return array(new PreloadedExtension(array(), array(
+        return array(new PreloadedExtension(array(
+            'tab' => new TabType(),
+        ), array(
             $this->getFormType('form') => array(
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),

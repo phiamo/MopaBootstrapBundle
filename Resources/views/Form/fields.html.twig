@@ -137,7 +137,7 @@
 {% spaceless %}
 <ul class="{{ form.vars.attr.class }}">
     {% for tab in form.vars.tabs %}
-        {% set class = (tab.active ? 'active ' : '') ~ (tab.disabled ? 'disabled' : '') %}
+        {% set class = ((tab.active ? 'active ' : '') ~ (tab.disabled ? 'disabled' : ''))|trim %}
         <li{% if class|trim is not empty %} class="{{ class }}"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
                 {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
@@ -150,7 +150,7 @@
 {% endblock %}
 
 {% block form_tab %}
-    {% set tab_attr = attr|merge({'class': 'tab-pane' ~ (form.vars.tab_active ? ' active' : '') ~ ' ' ~ attr.class|default(''), 'id': id}) %}
+    {% set tab_attr = attr|merge({'class': ('tab-pane' ~ (form.vars.tab_active ? ' active' : '') ~ ' ' ~ attr.class|default(''))|trim, 'id': id}) %}
     <div{% for attrname, attrvalue in tab_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ block('form_widget') }}
     </div>
