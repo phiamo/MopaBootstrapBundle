@@ -11,6 +11,7 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
 use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
@@ -86,7 +87,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected function getExtensions()
     {
         return array(new PreloadedExtension(array(
-            new \Mopa\Bundle\BootstrapBundle\Form\Type\TabType(),
+            'tab' => new TabType(),
         ), array(
             $this->getFormType('form') => array(
                 $this->getHelpFormTypeExtension(),
