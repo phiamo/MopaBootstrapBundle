@@ -85,7 +85,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function getExtensions()
     {
-        return array(new PreloadedExtension(array(), array(
+        return array(new PreloadedExtension(array(
+            new \Mopa\Bundle\BootstrapBundle\Form\Type\TabType(),
+        ), array(
             $this->getFormType('form') => array(
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
