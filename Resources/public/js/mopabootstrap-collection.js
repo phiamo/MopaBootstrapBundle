@@ -36,7 +36,7 @@
             this.options.index = {};
         }
         if (!this.options.initial_size) {
-            this.options.initial_size = $collection.children().size();
+            this.options.initial_size = $collection.children().length();
         }
 
         this.options.index[this.options.collection_id] = this.options.initial_size - 1;
@@ -121,7 +121,7 @@
             var $collection = $(this.options.collection_id);
             var items = $collection.children();
 
-            for (var i = 0; i < items.size(); i ++) {
+            for (var i = 0; i < items.length(); i ++) {
                 if (row == items[i]) {
                     return i;
                 }
