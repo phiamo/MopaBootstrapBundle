@@ -116,6 +116,9 @@ class TypeTestCase extends KernelTestCase
                     'horizontal_label_class' => $this->container->getParameter(
                         'mopa_bootstrap.form.horizontal_label_class'
                     ),
+                    'horizontal_label_div_class' => $this->container->getParameter(
+                        'mopa_bootstrap.form.horizontal_label_div_class'
+                    ),
                     'horizontal_label_offset_class' => $this->container->getParameter(
                         'mopa_bootstrap.form.horizontal_label_offset_class'
                     ),
