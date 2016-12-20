@@ -27,6 +27,16 @@ array(
     'options' => array('horizontal' => false),       // < 2.8
 )
 ```
+Note: You will still want to run git submodule update --init --recursive
+
+Better way to accomplish this could be to use git_command branch of SE or the PR available and:
+
+```sh
+[MopaBootstrapBundle]
+    git=http://github.com/cordoval/MopaBootstrapBundle.git
+    target=/bundles/Mopa/BootstrapBundle
+    git_command=submodule update --init --recursive
+```
 
 `horizontal_wrap_children` has been removed, as this can be solved using the above options.
 
