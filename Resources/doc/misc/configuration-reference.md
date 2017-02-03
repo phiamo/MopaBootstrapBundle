@@ -48,6 +48,7 @@ mopa_bootstrap:
                 attr:
                     class:                btn btn-default
                 label:                remove_item
+                translation_domain:   ~
                 icon:                 ~
                 icon_inverted:        ~
                 wrapper_div:
@@ -58,6 +59,7 @@ mopa_bootstrap:
                 attr:
                     class:                btn btn-default
                 label:                add_item
+                translation_domain:   ~
                 icon:                 ~
                 icon_inverted:        ~
 

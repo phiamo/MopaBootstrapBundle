@@ -647,7 +647,7 @@
     {{ mopa_bootstrap_icon(button_values.icon, button_values.icon_inverted|default(false)) }}
 {% endif %}
 {% if button_values.label is defined %}
-    {{ button_values.label|trans({}, translation_domain) }}
+    {{ button_values.label|trans({}, button_values.translation_domain|default(translation_domain)) }}
 {% endif %}
 </a>
 
