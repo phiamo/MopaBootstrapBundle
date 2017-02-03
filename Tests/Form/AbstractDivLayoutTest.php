@@ -57,7 +57,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             $csrfProviderInterface = 'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface';
         }
 
-        $renderer = new TwigRenderer($rendererEngine, $this->getMock($csrfProviderInterface));
+        $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
+        $renderer = new TwigRenderer($rendererEngine, $csrfProvider);
 
         $this->extension = new FormExtension($renderer);
 
