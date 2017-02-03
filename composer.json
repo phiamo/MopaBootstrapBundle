@@ -29,7 +29,9 @@
         "mopa/composer-bridge": "~1.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.6"
+        "phpunit/phpunit": "~4.6",
+        "symfony/security-bundle": "~2.3|~3.0",
+        "symfony/translation": "~2.3|~3.0"
     },
     "conflict": {
         "symfony/twig-bridge": "<2.3"
