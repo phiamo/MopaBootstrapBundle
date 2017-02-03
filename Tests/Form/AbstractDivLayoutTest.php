@@ -26,7 +26,7 @@ use Symfony\Component\Form\Test\FormIntegrationTestCase;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
-    protected $extension;
+    protected $renderer;
     protected $tabFactory;
     protected $formTypeMap = array(
         'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
@@ -46,22 +46,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         parent::setUp();
 
-        $rendererEngine = new TwigRendererEngine(array(
-            'form_div_layout.html.twig',
-            'fields.html.twig',
-        ));
-
-        if (interface_exists('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')) {
-            $csrfProviderInterface = 'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface';
-        } else {
-            $csrfProviderInterface = 'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface';
-        }
-
-        $renderer = new TwigRenderer($rendererEngine, $this->getMock($csrfProviderInterface));
-
-        $this->extension = new FormExtension($renderer);
-
-        $reflection = new \ReflectionClass($renderer);
+        $reflection = new \ReflectionClass('Symfony\Bridge\Twig\Form\TwigRenderer');
         $bridgeDirectory = dirname($reflection->getFileName()).'/../Resources/views/Form';
 
         $loader = new \Twig_Loader_Filesystem(array(
@@ -76,9 +61,36 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $environment->addExtension(new IconExtension('fontawesome'));
         $environment->addExtension(new TwigFormExtension());
         $environment->addGlobal('global', '');
-        $environment->addExtension($this->extension);
 
-        $this->extension->initRuntime($environment);
+        $rendererEngine = new TwigRendererEngine(array(
+            'form_div_layout.html.twig',
+            'fields.html.twig',
+        ), $environment);
+
+        if (interface_exists('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')) {
+            $csrfProviderInterface = 'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface';
+        } else {
+            $csrfProviderInterface = 'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface';
+        }
+
+        $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
+        $this->renderer = new TwigRenderer($rendererEngine, $csrfProvider);
+        $environment->addExtension($extension = new FormExtension($this->renderer));
+        $extension->initRuntime($environment);
+        $this->registerTwigRuntimeLoader($environment, $this->renderer);
+    }
+
+    protected function registerTwigRuntimeLoader(\Twig_Environment $environment, TwigRenderer $renderer)
+    {
+        if (!method_exists($environment, 'addRuntimeLoader')) {
+            return;
+        }
+
+        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
+        $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
+            array('Symfony\Bridge\Twig\Form\TwigRenderer', $renderer),
+        )));
+        $environment->addRuntimeLoader($loader);
     }
 
     /**
@@ -290,7 +302,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function renderForm(FormView $view, array $vars = array())
     {
-        return (string) $this->extension->renderer->renderBlock($view, 'form', $vars);
+        return (string) $this->renderer->renderBlock($view, 'form', $vars);
     }
 
     /**
@@ -301,7 +313,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function renderRow(FormView $view, array $vars = array())
     {
-        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'row', $vars);
+        return (string) $this->renderer->searchAndRenderBlock($view, 'row', $vars);
     }
 
     /**
@@ -312,7 +324,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function renderWidget(FormView $view, array $vars = array())
     {
-        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'widget', $vars);
+        return (string) $this->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
     /**
@@ -328,7 +340,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             $vars += array('label' => $label);
         }
 
-        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'label', $vars);
+        return (string) $this->renderer->searchAndRenderBlock($view, 'label', $vars);
     }
 
     protected function getFormType($name)
