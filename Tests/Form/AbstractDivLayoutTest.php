@@ -82,6 +82,10 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
     protected function registerTwigRuntimeLoader(\Twig_Environment $environment, TwigRenderer $renderer)
     {
+        if (!method_exists($environment, 'addRuntimeLoader')) {
+            return;
+        }
+
         $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
         $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
             array('Symfony\Bridge\Twig\Form\TwigRenderer', $renderer),
