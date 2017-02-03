@@ -61,7 +61,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $environment->addExtension(new IconExtension('fontawesome'));
         $environment->addExtension(new TwigFormExtension());
         $environment->addGlobal('global', '');
-        $environment->addExtension(new FormExtension());
 
         $rendererEngine = new TwigRendererEngine(array(
             'form_div_layout.html.twig',
@@ -76,6 +75,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
         $this->renderer = new TwigRenderer($rendererEngine, $csrfProvider);
+        $environment->addExtension(new FormExtension($this->renderer));
         $this->registerTwigRuntimeLoader($environment, $this->renderer);
     }
 
