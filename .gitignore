@@ -14,15 +14,11 @@ composer.phar
 /.buildpath
 /.settings
 /.project
-/.metadata
 
-/nbproject
 
 *.sublime*
 
 *~
-
-/.idea
 
 
 # Keep .gitkeep #
