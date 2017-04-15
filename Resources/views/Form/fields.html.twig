@@ -286,6 +286,7 @@
 {% endblock checkbox_widget %}
 
 {% block date_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
@@ -319,6 +320,7 @@
 {% endblock date_widget %}
 
 {% block time_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
 {% if widget == 'single_text' %}
     {% if timepicker is defined %}
@@ -354,6 +356,7 @@
 {% endblock time_widget %}
 
 {% block datetime_widget %}
+<label>{{ label }}</label>
 {% spaceless %}
     {% if widget == 'single_text' %}
         {% if datetimepicker is defined %}
