@@ -413,6 +413,7 @@
         {{ block('widget_addon') }}
     {% endif %}
 {% endif %}
+{% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
 {% endspaceless %}
 {% endblock file_widget %}
 
