@@ -3,6 +3,7 @@
 {% block head_style %}
     {# Override this block to add your own files! #}
     {% stylesheets
+        filter="less"
         '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
