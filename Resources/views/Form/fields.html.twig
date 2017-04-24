@@ -22,7 +22,7 @@
     {% if icon is not empty %}
             {{ mopa_bootstrap_icon(icon, icon_inverted|default(false)) }}
     {% endif %}
-    {{ label|trans({}, translation_domain) }}</button>
+    {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
 {% endspaceless %}
 {% endblock button_widget %}
 
@@ -225,9 +225,9 @@
             {%- if disabled %} disabled="disabled"{% endif -%}>
             {{ form_widget(child, {'horizontal_label_class': horizontal_label_class, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class, 'attr': {'class': attr.widget_class|default('') }}) }}
             {% if widget_type == 'inline-btn' or widget_checkbox_label == 'widget'%}
-                {{ child.vars.label|trans({}, translation_domain)|raw }}
+                {{ translation_domain is same as(false) ? child.vars.label|raw : child.vars.label|trans({}, translation_domain)|raw }}
             {% else %}
-                {{ child.vars.label|trans({}, translation_domain) }}
+                {{ translation_domain is same as(false) ? child.vars.label : child.vars.label|trans({}, translation_domain) }}
             {% endif %}
             </{{ tagName }}>
             {% if widget_type not in ['inline', 'inline-btn'] %}
@@ -272,7 +272,7 @@
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
             {% if label_render %}
                 {% if widget_checkbox_label in ['both', 'widget'] %}
-                    {{ label|trans({}, translation_domain)|raw }}
+                    {{ translation_domain is same as(false) ? label|raw : label|trans({}, translation_domain)|raw }}
                 {% else %}
                     {{ block('form_help') }}
                 {% endif %}
@@ -430,7 +430,7 @@
             {% set label = name|humanize %}
         {%- endif -%}
     {% endif %}
-    <{{ legend_tag }}>{{ label|trans({}, translation_domain) }}</{{ legend_tag }}>
+    <{{ legend_tag }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</{{ legend_tag }}>
 {% endspaceless %}
 {% endblock form_legend %}
 
@@ -460,7 +460,7 @@
         {% endif %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ " " ~ label_attr_class ~ (required ? ' required' : ' optional'))|trim }) %}
         <label{% for attrname,attrvalue in label_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
-        {{ label|trans({}, translation_domain) }}
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
         {{- block('label_asterisk') }}
         {% if 'collection' in form.vars.block_prefixes and widget_add_btn|default(null) and form.vars.allow_add == true %}
             &nbsp;{{ block('form_widget_add_btn') }}
