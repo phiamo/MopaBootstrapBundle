@@ -93,7 +93,7 @@
             }
 
             if (typeof row != 'undefined') {
-                if (row instanceof jQuery) {
+                if (typeof row.get === "function") {
                     row = row.get(0);
                 }
 
@@ -114,7 +114,7 @@
          * return -1 if not found
          */
         getIndex: function (row) {
-            if (row instanceof jQuery) {
+            if (typeof row.get === "function") {
                 row = row.get(0);
             }
 
