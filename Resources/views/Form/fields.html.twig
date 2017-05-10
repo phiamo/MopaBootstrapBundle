@@ -260,9 +260,10 @@
         {% endif %}
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes and label_render %}
             {% if widget_type == 'inline-btn' %}
-                {% set label_attr = attr|default({}) %}
+                {% set default_class = 'btn btn-primary' %}
+                {% set label_attr = attr|default({'class': default_class}) %}
                 {% if checked %}
-                    {% set label_attr = label_attr|merge({'class': 'active ' ~ attr.class|default('')}) %}
+                    {% set label_attr = label_attr|merge({'class': 'active ' ~ attr.class|default(default_class)}) %}
                 {% endif %}
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
