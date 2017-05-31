@@ -291,7 +291,7 @@
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'calendar'  %}
-        <div {% if datepicker.attr is defined %}{%- for attrname, attrvalue in datepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provider="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
+        <div {% if datepicker.attr is defined %}{%- for attrname, attrvalue in datepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provide="datepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd">
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
             {% if widget_reset_icon is defined and widget_reset_icon == true %}
                 <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
@@ -324,7 +324,7 @@
 {% if widget == 'single_text' %}
     {% if timepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'time'  %}
-        <div {% if timepicker.attr is defined %}{%- for attrname, attrvalue in timepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provider="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
+        <div {% if timepicker.attr is defined %}{%- for attrname, attrvalue in timepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provide="timepicker" class="input-group date" data-date="{{ value }}" data-link-field="{{ id }}" data-link-format="hh:ii">
             <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
             {% if widget_reset_icon is defined and widget_reset_icon == true %}
                 <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
@@ -359,7 +359,7 @@
     {% if widget == 'single_text' %}
         {% if datetimepicker is defined %}
             {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'th'  %}
-            <div {% if datetimepicker.attr is defined %}{%- for attrname, attrvalue in datetimepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provider="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
+            <div {% if datetimepicker.attr is defined %}{%- for attrname, attrvalue in datetimepicker.attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}{% endif %} data-provide="datetimepicker" class="input-group date" data-date="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" data-link-field="{{ id }}" data-link-format="yyyy-mm-dd hh:ii">
                 <input type="hidden" value="{% if value %}{{ value|date('Y-m-d H:i') }}{% endif %}" {{ block('widget_attributes') }}>
                 {% if widget_reset_icon is defined and widget_reset_icon == true %}
                     <span class="input-group-addon">{{ mopa_bootstrap_icon('remove') }}</span>
