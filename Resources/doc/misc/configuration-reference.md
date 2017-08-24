@@ -8,7 +8,8 @@ mopa_bootstrap:
     form:
         allow_legacy:         false
         templating:           MopaBootstrapBundle:Form:fields.html.twig
-        horizontal:           true
+        # Default form layout
+        layout:               ~ # One of false; "horizontal"
         horizontal_label_class:  col-sm-3 control-label
         horizontal_label_div_class: null
         horizontal_label_offset_class:  col-sm-offset-3

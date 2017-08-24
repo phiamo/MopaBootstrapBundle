@@ -8,7 +8,7 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     {
         $view = $this->factory
             ->createNamed('name', $this->getFormType('email'), null, array(
-                'horizontal' => true,
+                'layout' => 'horizontal',
             ))
             ->createView()
         ;

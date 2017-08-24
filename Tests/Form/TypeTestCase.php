@@ -108,10 +108,10 @@ class TypeTestCase extends KernelTestCase
                     'help_widget_popover' => $this->container->getParameter('mopa_bootstrap.form.help_widget.popover')
                 ]
             ),
-            new MopaExtensions\HorizontalFormTypeExtension(
+            new MopaExtensions\LayoutFormTypeExtension(
                 [
-                    'horizontal' => $this->container->getParameter(
-                        'mopa_bootstrap.form.horizontal'
+                    'layout' => $this->container->getParameter(
+                        'mopa_bootstrap.form.layout'
                     ),
                     'horizontal_label_class' => $this->container->getParameter(
                         'mopa_bootstrap.form.horizontal_label_class'

@@ -35,6 +35,8 @@ class Configuration implements ConfigurationInterface
 
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
+        $layouts = array(false, 'horizontal', 'inline');
+
         $rootNode
             ->children()
                 ->arrayNode('form')
@@ -45,8 +47,10 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('templating')
                             ->defaultValue("MopaBootstrapBundle:Form:fields.html.twig")
                         ->end()
-                        ->booleanNode('horizontal')
-                            ->defaultTrue()
+                        ->enumNode('layout')
+                            ->info('Default form layout')
+                            ->values($layouts)
+                            ->defaultValue('horizontal')
                         ->end()
                         ->scalarNode('horizontal_label_class')
                             ->defaultValue("col-sm-3")
@@ -218,6 +222,17 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
+                    ->end()
+                    ->beforeNormalization()
+                        ->ifTrue(function ($v) {
+                            return isset($v['horizontal']);
+                        })
+                        ->then(function ($v) {
+                            $v['layout'] = $v['horizontal'] ? 'horizontal' : false;
+                            unset($v['horizontal']);
+
+                            return $v;
+                        })
                     ->end()
                 ->end()
             ->end();
