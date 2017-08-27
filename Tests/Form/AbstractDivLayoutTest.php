@@ -16,7 +16,7 @@ use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Bridge\Twig\Form\TwigRenderer;
+use Symfony\Component\Form\FormRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
 use Symfony\Component\Form\Forms;
@@ -74,13 +74,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
 
         $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
-        $this->renderer = new TwigRenderer($rendererEngine, $csrfProvider);
+        $this->renderer = new FormRenderer($rendererEngine, $csrfProvider);
         $environment->addExtension($extension = new FormExtension($this->renderer));
         $extension->initRuntime($environment);
         $this->registerTwigRuntimeLoader($environment, $this->renderer);
     }
 
-    protected function registerTwigRuntimeLoader(\Twig_Environment $environment, TwigRenderer $renderer)
+    protected function registerTwigRuntimeLoader(\Twig_Environment $environment, $renderer)
     {
         if (!method_exists($environment, 'addRuntimeLoader')) {
             return;
