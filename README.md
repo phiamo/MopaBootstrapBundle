@@ -133,6 +133,10 @@ Resources/translations/pagination.[YOUR LOCALE CODE].yml
 
 As example you have there Polish translation.
 
+Versioning
+----------
+We aim to follow [semantic versioning](http://semver.org) with our releases.
+
 Contribute
 ----------
 If you want to contribute your code to MopaBootstrapBundle please be sure that your PR's
