@@ -11,6 +11,7 @@ env:
   - SYMFONY_VERSION=~2.7.0
   - SYMFONY_VERSION=~2.8.0
   - SYMFONY_VERSION=~3.0
+  - DEPENDENCIES=beta
 
 matrix:
   fast_finish: true
@@ -18,6 +19,9 @@ matrix:
 cache:
   directories:
     - $HOME/.composer/cache
+
+before_install:
+  - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
 
 before_script:
   - composer selfupdate

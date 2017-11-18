@@ -21,20 +21,20 @@
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
-        "symfony/framework-bundle": "~2.3|~3.0",
-        "symfony/twig-bundle": "~2.3|~3.0",
-        "symfony/form": "~2.3|~3.0",
-        "symfony/console": "~2.3|~3.0",
+        "symfony/framework-bundle": "~2.3|~3.0|^4.0",
+        "symfony/twig-bundle": "~2.3|~3.0|^4.0",
+        "symfony/form": "~2.3|~3.0|^4.0",
+        "symfony/console": "~2.3|~3.0|^4.0",
         "twig/twig": "^1.14.2|^2.0",
         "mopa/composer-bridge": "~1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.6",
-        "symfony/security-bundle": "~2.3|~3.0",
-        "symfony/translation": "~2.3|~3.0"
+        "symfony/security-bundle": "~2.3|~3.0|^4.0",
+        "symfony/translation": "~2.3|~3.0|^4.0"
     },
     "conflict": {
-        "symfony/twig-bridge": "<2.3"
+        "symfony/twig-bridge": "<2.3|^4.0"
     },
     "suggest":  {
         "twbs/bootstrap": ">2.0,<4.0-dev",
