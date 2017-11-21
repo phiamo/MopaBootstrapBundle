@@ -17,7 +17,7 @@ mopa_bootstrap:
 
 ```twig
 {# src/Acme/DemoBundle/Resources/views/layout.html.twig #}
-{% extends 'MopaBootstrapBundle::base_initializr.html.twig' %}
+{% extends '@MopaBootstrap/base_initializr.html.twig' %}
 ```
 
 HOW TO SET IT UP?

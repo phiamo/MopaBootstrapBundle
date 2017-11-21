@@ -39,7 +39,7 @@ defining a new template:
 app/Resources/MopaBootstrapBundle/views/layout.html.twig
 
 ```jinja
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% extends '@MopaBootstrap/base.html.twig' %}
 
 {% block title %}Yourapp{% endblock %}
 

@@ -49,7 +49,7 @@ mopa_bootstrap:
 Or include the fields.html.twig in your template for a certain form:
 
 ``` jinja
-{% form_theme myform 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% form_theme myform '@MopaBootstrap/Form/fields.html.twig' %}
 ```
 
 If you want the default bootstrap forms instead of horizontal add this to your config.yml

@@ -8,7 +8,7 @@
                 {{ mopa_bootstrap_icon(item.extras.icon, item.extras.icon_white|default(false)) }}{{ ' ' }}
             {%- endif %}
             {{ block('label') }}
-            {% import 'MopaBootstrapBundle::macros.html.twig' as badgemacro %}
+            {% import '@MopaBootstrap/macros.html.twig' as badgemacro %}
             {%- if item.extras.badge|default(false) %}
                 {{ badgemacro.badge(item.extras.badge, false, item.extras.badge_class) }}
             {% endif -%}
