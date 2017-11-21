@@ -7,7 +7,7 @@ Default configuration for extension with alias: "mopa_bootstrap"
 mopa_bootstrap:
     form:
         allow_legacy:         false
-        templating:           MopaBootstrapBundle:Form:fields.html.twig
+        templating:           @MopaBootstrap/Form/fields.html.twig
         # Default form layout
         layout:               ~ # One of false; "horizontal"
         horizontal_label_class:  col-sm-3 control-label
@@ -75,7 +75,7 @@ mopa_bootstrap:
         enabled:              false
 
         # Menu template to use when rendering
-        template:             MopaBootstrapBundle:Menu:menu.html.twig
+        template:             @MopaBootstrap/Menu/menu.html.twig
     initializr:
         meta:
             title:                MopaBootstrapBundle

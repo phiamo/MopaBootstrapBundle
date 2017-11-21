@@ -26,12 +26,12 @@ e.g.
 For CraueFormFlowBundle version 2.* you can use:
 
 ``` jinja
-{% include 'MopaBootstrapBundle:Form:formflow_buttons.html.twig' %}
+{% include '@MopaBootstrap/Form/formflow_buttons.html.twig' %}
 ```
 and
 
 ``` jinja
-{% include 'MopaBootstrapBundle:Form:formflow_stepList.html.twig' %}
+{% include '@MopaBootstrap/Form/formflow_stepList.html.twig' %}
 ```
 KnpPaginatorBundle
 ------------------
@@ -74,7 +74,7 @@ For KnpMenu use the following parameter to make use of the menu template:
 # File: app/configs/parameters.yml
 
 parameters:
-    knp_menu.renderer.twig.template: MopaBootstrapBundle:Menu:menu.html.twig
+    knp_menu.renderer.twig.template: @MopaBootstrap/Menumenu.html.twig
 ```
 
 By using this template, you can make use of the `icon` and `icon_white` extra attributes.

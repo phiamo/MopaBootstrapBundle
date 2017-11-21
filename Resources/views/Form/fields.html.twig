@@ -711,7 +711,7 @@
 {% else %}
     {% if errors|length > 0 %}
         {% if form.parent == null %}
-            {% from 'MopaBootstrapBundle::flash.html.twig' import flash %}
+            {% from '@MopaBootstrap/flash.html.twig' import flash %}
             {% for error in errors %}
                 {{ flash('danger', error.message) }}
             {% endfor %}
