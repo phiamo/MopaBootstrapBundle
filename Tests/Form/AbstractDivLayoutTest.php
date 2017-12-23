@@ -46,7 +46,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         parent::setUp();
 
-        $reflection = new \ReflectionClass('Symfony\Bridge\Twig\Form\TwigRenderer');
+        $reflectionClass = class_exists('Symfony\Bridge\Twig\Form\TwigRenderer') ? 'Symfony\Bridge\Twig\Form\TwigRenderer' : 'Symfony\Bridge\Twig\Form\TwigRendererEngine';
+        $reflection = new \ReflectionClass($reflectionClass);
         $bridgeDirectory = dirname($reflection->getFileName()).'/../Resources/views/Form';
 
         $loader = new \Twig_Loader_Filesystem(array(
