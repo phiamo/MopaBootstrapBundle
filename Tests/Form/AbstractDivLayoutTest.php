@@ -97,9 +97,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     private function setUpVersion3Plus()
     {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
-        $this->renderer = new FormRenderer($this->rendererEngine, $csrfProvider);
-        $this->environment->addExtension($extension = new FormExtension());
-        $extension->initRuntime($this->environment);
 
         // Add runtime loader
         $this->environment->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
@@ -107,6 +104,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 return new TwigRenderer($this->rendererEngine, $csrfProvider);
             },
         )));
+
+        $this->environment->addExtension(new FormExtension());
     }
 
     /**
