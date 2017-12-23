@@ -3,14 +3,13 @@ language: php
 sudo: false
 
 php:
-  - 5.6
   - 7.0
   - 7.1
 
 env:
-  - SYMFONY_VERSION=~2.7.0
   - SYMFONY_VERSION=~2.8.0
   - SYMFONY_VERSION=~3.0
+  - SYMFONY_VERSION=~4.0
   - DEPENDENCIES=beta
 
 matrix:
