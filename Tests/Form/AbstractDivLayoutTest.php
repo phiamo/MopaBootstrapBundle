@@ -16,6 +16,7 @@ use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Form\FormRenderer;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
@@ -23,10 +24,13 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
+use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
     protected $renderer;
+    protected $rendererEngine;
+    protected $environment;
     protected $tabFactory;
     protected $formTypeMap = array(
         'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
@@ -46,7 +50,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         parent::setUp();
 
-        $reflection = new \ReflectionClass('Symfony\Bridge\Twig\Form\TwigRenderer');
+        $reflectionClass = class_exists('Symfony\Bridge\Twig\Form\TwigRenderer') ? 'Symfony\Bridge\Twig\Form\TwigRenderer' : 'Symfony\Bridge\Twig\Form\TwigRendererEngine';
+        $reflection = new \ReflectionClass($reflectionClass);
         $bridgeDirectory = dirname($reflection->getFileName()).'/../Resources/views/Form';
 
         $loader = new \Twig_Loader_Filesystem(array(
@@ -56,41 +61,63 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
 
-        $environment = new \Twig_Environment($loader, array('strict_variables' => true));
-        $environment->addExtension(new TranslationExtension(new StubTranslator()));
-        $environment->addExtension(new IconExtension('fontawesome'));
-        $environment->addExtension(new TwigFormExtension());
-        $environment->addGlobal('global', '');
+        $this->environment = new \Twig_Environment($loader, array('strict_variables' => true));
+        $this->environment->addExtension(new TranslationExtension(new StubTranslator()));
+        $this->environment->addExtension(new IconExtension('fontawesome'));
+        $this->environment->addExtension(new TwigFormExtension());
+        $this->environment->addGlobal('global', '');
 
-        $rendererEngine = new TwigRendererEngine(array(
+        $this->rendererEngine = new TwigRendererEngine(array(
             'form_div_layout.html.twig',
             'fields.html.twig',
-        ), $environment);
+        ), $this->environment);
 
-        if (interface_exists('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')) {
-            $csrfProviderInterface = 'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface';
+        if (version_compare(SymfonyKernel::VERSION, '3.0.0', '<')) {
+            $this->setUpVersion2();
         } else {
-            $csrfProviderInterface = 'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface';
+            $this->setUpVersion3Plus();
         }
-
-        $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
-        $this->renderer = new TwigRenderer($rendererEngine, $csrfProvider);
-        $environment->addExtension($extension = new FormExtension($this->renderer));
-        $extension->initRuntime($environment);
-        $this->registerTwigRuntimeLoader($environment, $this->renderer);
     }
 
-    protected function registerTwigRuntimeLoader(\Twig_Environment $environment, TwigRenderer $renderer)
+    private function setUpVersion2()
     {
-        if (!method_exists($environment, 'addRuntimeLoader')) {
-            return;
-        }
+        $csrfProvider = $this->getMockBuilder('Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface')->getMock();
+        $this->renderer = new TwigRenderer($this->rendererEngine, $csrfProvider);
+        $this->environment->addExtension($extension = new FormExtension($this->renderer));
+        $extension->initRuntime($this->environment);
 
+        // Add runtime loader
         $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
         $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
-            array('Symfony\Bridge\Twig\Form\TwigRenderer', $renderer),
+            array('Symfony\Bridge\Twig\Form\TwigRenderer', $this->renderer),
         )));
-        $environment->addRuntimeLoader($loader);
+        $this->environment->addRuntimeLoader($loader);
+    }
+
+    private function setUpVersion3Plus()
+    {
+        $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
+        $loaders = array(
+            'Symfony\Component\Form\FormRenderer' => function() use ($csrfProvider) {
+                return new FormRenderer($this->rendererEngine, $csrfProvider);
+            },
+        );
+
+        $runtime = 'Symfony\Component\Form\FormRenderer';
+
+        if (class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
+            $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function() use ($csrfProvider) {
+                return new TwigRenderer($this->rendererEngine, $csrfProvider);
+            };
+
+            $runtime = 'Symfony\Bridge\Twig\Form\TwigRenderer';
+        }
+
+        // Add runtime loader
+        $this->environment->addRuntimeLoader(new \Twig_FactoryRuntimeLoader($loaders));
+        $this->renderer = $this->environment->getRuntime($runtime);
+
+        $this->environment->addExtension(new FormExtension());
     }
 
     /**
