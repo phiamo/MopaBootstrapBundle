@@ -97,18 +97,25 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     private function setUpVersion3Plus()
     {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
-
-        // Add runtime loader
-        $this->environment->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
-            'Symfony\Bridge\Twig\Form\TwigRenderer' => function() use ($csrfProvider) {
-                return new TwigRenderer($this->rendererEngine, $csrfProvider);
-            },
+        $loaders = array(
             'Symfony\Component\Form\FormRenderer' => function() use ($csrfProvider) {
                 return new FormRenderer($this->rendererEngine, $csrfProvider);
             },
-        )));
+        );
 
-        $this->renderer = $this->environment->getRuntime('Symfony\Bridge\Twig\Form\TwigRenderer');
+        $runtime = 'Symfony\Component\Form\FormRenderer';
+
+        if (class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
+            $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function() use ($csrfProvider) {
+                return new TwigRenderer($this->rendererEngine, $csrfProvider);
+            };
+
+            $runtime = 'Symfony\Bridge\Twig\Form\TwigRenderer';
+        }
+
+        // Add runtime loader
+        $this->environment->addRuntimeLoader(new \Twig_FactoryRuntimeLoader($loaders));
+        $this->renderer = $this->environment->getRuntime($runtime);
 
         $this->environment->addExtension(new FormExtension());
     }
