@@ -103,6 +103,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'Symfony\Bridge\Twig\Form\TwigRenderer' => function() use ($csrfProvider) {
                 return new TwigRenderer($this->rendererEngine, $csrfProvider);
             },
+            'Symfony\Component\Form\FormRenderer' => function() use ($csrfProvider) {
+                return new FormRenderer($this->rendererEngine, $csrfProvider);
+            },
         )));
 
         $this->renderer = $this->environment->getRuntime('Symfony\Bridge\Twig\Form\TwigRenderer');
