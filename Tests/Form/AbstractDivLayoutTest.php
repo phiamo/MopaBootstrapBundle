@@ -85,7 +85,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $this->renderer = new TwigRenderer($this->rendererEngine, $csrfProvider);
         $this->environment->addExtension($extension = new FormExtension($this->renderer));
         $extension->initRuntime($this->environment);
-        $this->registerTwigRuntimeLoader($this->environment, $this->renderer);
+
+        // Add runtime loader
+        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
+        $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
+            array('Symfony\Bridge\Twig\Form\TwigRenderer', $this->renderer),
+        )));
+        $this->environment->addRuntimeLoader($loader);
     }
 
     private function setUpVersion3Plus()
@@ -95,19 +101,22 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $this->environment->addExtension($extension = new FormExtension());
         $extension->initRuntime($this->environment);
         $this->registerTwigRuntimeLoader($this->environment, $this->renderer);
+
+        // Add runtime loader
+        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
+        $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
+            array('Symfony\Bridge\Twig\Form\TwigRenderer', $this->renderer),
+        )));
+        $this->environment->addRuntimeLoader(new \Twig-FactoryRuntimeLoader(array(
+            'Symfony\Component\Form\FormRenderer' => function() use ($csrfProvider) {
+                return new Symfony\Component\Form\FormRenderer($this->rendererEngine, $csrfProvider);
+            },
+        )));
     }
 
     protected function registerTwigRuntimeLoader(\Twig_Environment $environment, $renderer)
     {
-        if (!method_exists($environment, 'addRuntimeLoader')) {
-            return;
-        }
 
-        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
-        $loader->expects($this->any())->method('load')->will($this->returnValueMap(array(
-            array('Symfony\Bridge\Twig\Form\TwigRenderer', $renderer),
-        )));
-        $environment->addRuntimeLoader($loader);
     }
 
     /**
