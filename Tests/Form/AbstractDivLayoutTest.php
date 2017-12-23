@@ -76,7 +76,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $csrfProvider = $this->getMockBuilder($csrfProviderInterface)->getMock();
         $this->renderer = new FormRenderer($rendererEngine, $csrfProvider);
-        $environment->addExtension($extension = new FormExtension($this->renderer));
+        $environment->addExtension($extension = new FormExtension());
         $extension->initRuntime($environment);
         $this->registerTwigRuntimeLoader($environment, $this->renderer);
     }
