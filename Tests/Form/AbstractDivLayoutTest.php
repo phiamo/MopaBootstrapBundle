@@ -105,6 +105,8 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             },
         )));
 
+        $this->renderer = $this->environment->getRuntime('Symfony\Bridge\Twig\Form\TwigRenderer');
+
         $this->environment->addExtension(new FormExtension());
     }
 
