@@ -10,6 +10,10 @@
     <i class="fa fa-{{ icon }}{{ inverted ? ' fa-inverse' : '' }}"></i>
 {%- endblock %}
 
+{% block fontawesome5 -%}
+    <i class="{{ icon }}{{ inverted ? ' fa-inverse' : '' }}"></i>
+{%- endblock %}
+
 {% block glyphicons -%}
 <span class="glyphicon glyphicon-{{ icon }}"{% if inverted|default(false) %} style="color: white;"{% endif %}></span>
 {%- endblock %}
