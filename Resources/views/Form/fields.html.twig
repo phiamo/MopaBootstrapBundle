@@ -758,7 +758,7 @@
     {% if help_widget_popover.selector is same as(null) %}
         {% set help_widget_popover = help_widget_popover|merge({'selector': '#' ~ id }) %}
     {% endif %}
-    <div{% if help_widget_popover.title is not same as(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
+    <div id="{{ form.vars.id }}" {% if help_widget_popover.title is not same as(null) %}{{ block('help_widget_popover') }}{% endif %} {% for attrname,attrvalue in widget_form_group_attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>
     {# a form item containing the field in block_prefixes is a near subform or a field directly #}
     {% if (form|length > 0 and form.parent != null)
         and 'field' not in form.vars.block_prefixes
