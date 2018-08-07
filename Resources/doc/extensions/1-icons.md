@@ -17,6 +17,7 @@ Currently you can choose from
 - glyphicons
 - fontawesome
 - fontawesome4
+- fontawesome5
 
 Please make sure you are including the corresponding less file:
 
