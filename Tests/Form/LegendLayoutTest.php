@@ -13,7 +13,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
             ->createView()
         ;
         $html = $this->renderLabel($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /label[@for="name"][@class="control-label col-sm-3 required"]
     [
@@ -33,7 +34,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderForm($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /form
     [
@@ -56,7 +58,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderForm($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /form
     [
@@ -76,7 +79,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderForm($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /form
     [
@@ -100,7 +104,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderForm($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /form
     [
@@ -123,7 +128,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderForm($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /form
     [
@@ -146,7 +152,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
             ->createView()
         ;
         $html = $this->renderRow($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /div[@class="form-group"]
     [

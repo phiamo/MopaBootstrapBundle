@@ -15,7 +15,8 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderRow($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '/div[@class="form-group"]
     [
         ./label[@for="name"][@class="control-label col-sm-3 required"]
@@ -36,7 +37,8 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderRow($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="form-group"]
     [

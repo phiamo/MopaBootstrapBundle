@@ -98,7 +98,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
         $loaders = array(
-            'Symfony\Component\Form\FormRenderer' => function() use ($csrfProvider) {
+            'Symfony\Component\Form\FormRenderer' => function () use ($csrfProvider) {
                 return new FormRenderer($this->rendererEngine, $csrfProvider);
             },
         );
@@ -106,7 +106,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $runtime = 'Symfony\Component\Form\FormRenderer';
 
         if (class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
-            $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function() use ($csrfProvider) {
+            $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function () use ($csrfProvider) {
                 return new TwigRenderer($this->rendererEngine, $csrfProvider);
             };
 
@@ -372,28 +372,28 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
     protected function getFormType($name)
     {
-         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-             return $this->formTypeMap[$name];
-         }
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return $this->formTypeMap[$name];
+        }
 
-         return $name;
+        return $name;
     }
 
     protected function getCollectionTypeKey()
     {
-         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-             return 'entry_type';
-         }
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return 'entry_type';
+        }
 
-         return 'type';
+        return 'type';
     }
 
     protected function getCollectionOptionsKey()
     {
-         if(method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-             return 'entry_options';
-         }
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return 'entry_options';
+        }
 
-         return 'options';
+        return 'options';
     }
 }

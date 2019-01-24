@@ -17,7 +17,8 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -41,7 +42,8 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -68,7 +70,8 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -92,7 +95,8 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [

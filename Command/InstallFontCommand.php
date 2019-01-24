@@ -39,7 +39,8 @@ class InstallFontCommand extends ContainerAwareCommand
         $this
             ->setName('mopa:bootstrap:install:font')
             ->setDescription("Install font to web/fonts")
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 The <info>mopa:bootstrap:install:font</info> command install the font configured to used into web/fonts directory
 
 EOT

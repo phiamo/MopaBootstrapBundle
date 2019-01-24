@@ -20,7 +20,8 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         ;
 
         $html = $this->renderWidget($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /fieldset
     [
@@ -106,7 +107,8 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         ;
 
         $html = $this->renderWidget($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /fieldset
     [
@@ -184,7 +186,8 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         ;
 
         $html = $this->renderWidget($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /fieldset
     [
@@ -268,7 +271,8 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         ;
 
         $html = $this->renderWidget($view);
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /fieldset
     [
