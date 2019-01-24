@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Forms;
 
 /**
- * Mopa\Bundle\BootstrapBundle\Tests\Form\TypeTestCase
+ * Mopa\Bundle\BootstrapBundle\Tests\Form\TypeTestCase.
  *
  * @author Ivan Molchanov <ivan.molchanov@opensoftdev.ru>
  */
@@ -48,7 +48,7 @@ class TypeTestCase extends KernelTestCase
     protected $dispatcher;
 
     /**
-     * Set up
+     * Set up.
      */
     protected function setUp()
     {
@@ -83,7 +83,7 @@ class TypeTestCase extends KernelTestCase
                     ),
                     'widget_remove_btn' => $this->container->getParameter(
                         'mopa_bootstrap.form.collection.widget_remove_btn'
-                    )
+                    ),
                 ]
             ),
             new MopaExtensions\DatetimeTypeExtension(),
@@ -92,8 +92,8 @@ class TypeTestCase extends KernelTestCase
                     'date_wrapper_class' => [
                         'year' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.year'),
                         'month' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.month'),
-                        'day' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.day')
-                    ]
+                        'day' => $this->container->getParameter('mopa_bootstrap.form.date_wrapper_class.day'),
+                    ],
                 ]
             ),
             new MopaExtensions\ErrorTypeFormTypeExtension(
@@ -105,7 +105,7 @@ class TypeTestCase extends KernelTestCase
                     'help_label_popover' => $this->container->getParameter('mopa_bootstrap.form.help_label.popover'),
                     'help_block_tooltip' => $this->container->getParameter('mopa_bootstrap.form.help_block.tooltip'),
                     'help_block_popover' => $this->container->getParameter('mopa_bootstrap.form.help_block.popover'),
-                    'help_widget_popover' => $this->container->getParameter('mopa_bootstrap.form.help_widget.popover')
+                    'help_widget_popover' => $this->container->getParameter('mopa_bootstrap.form.help_widget.popover'),
                 ]
             ),
             new MopaExtensions\LayoutFormTypeExtension(
@@ -124,7 +124,7 @@ class TypeTestCase extends KernelTestCase
                     ),
                     'horizontal_input_wrapper_class' => $this->container->getParameter(
                         'mopa_bootstrap.form.horizontal_input_wrapper_class'
-                    )
+                    ),
                 ]
             ),
             new MopaExtensions\IconButtonExtension(),
@@ -147,7 +147,7 @@ class TypeTestCase extends KernelTestCase
                     ),
                     'render_optional_text' => $this->container->getParameter(
                         'mopa_bootstrap.form.render_optional_text'
-                    )
+                    ),
                 ]
             ),
             new MopaExtensions\OffsetButtonExtension(),
@@ -159,7 +159,7 @@ class TypeTestCase extends KernelTestCase
             new MopaExtensions\TimeTypeExtension(),
             new MopaExtensions\WidgetFormTypeExtension(
                 ['checkbox_label' => $this->container->getParameter('mopa_bootstrap.form.checkbox_label')]
-            )
+            ),
         ];
     }
 
@@ -186,7 +186,7 @@ class TypeTestCase extends KernelTestCase
                 'Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser'
             )
                 ->disableOriginalConstructor()
-                ->getMock()
+                ->getMock(),
         ];
     }
 
@@ -195,7 +195,7 @@ class TypeTestCase extends KernelTestCase
      */
     protected function getExtensions()
     {
-        return array();
+        return [];
     }
 
     /**

@@ -16,7 +16,7 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
  */
 class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
 {
-    public static $twitterBootstrapName = "twbs/bootstrap-sass";
+    public static $twitterBootstrapName = 'twbs/bootstrap-sass';
     public static $targetSuffix = '-sass';
     public static $pathName = 'TwitterBootstrapSass';
 

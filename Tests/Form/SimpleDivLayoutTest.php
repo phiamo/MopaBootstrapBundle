@@ -7,9 +7,9 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testHorizontalRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('email'), null, array(
+            ->createNamed('name', $this->getFormType('email'), null, [
                 'layout' => 'horizontal',
-            ))
+            ])
             ->createView()
         ;
 
@@ -29,9 +29,9 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testInlineRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
+            ->createNamed('name', $this->getFormType('text'), null, [
                 'horizontal' => false,
-            ))
+            ])
             ->createView()
         ;
 

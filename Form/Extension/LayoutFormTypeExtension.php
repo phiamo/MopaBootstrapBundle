@@ -56,14 +56,14 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        $view->vars = array_replace($view->vars, array(
+        $view->vars = array_replace($view->vars, [
             'layout' => $layout,
             'horizontal' => 'horizontal' === $layout, // BC
             'horizontal_label_class' => $options['horizontal_label_class'],
             'horizontal_label_offset_class' => $options['horizontal_label_offset_class'],
             'horizontal_input_wrapper_class' => $options['horizontal_input_wrapper_class'],
             'horizontal_label_div_class' => $options['horizontal_label_div_class'],
-        ));
+        ]);
     }
 
     public function finishView(FormView $view, FormInterface $form, array $options)
@@ -89,7 +89,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'layout' => function (Options $options) {
                 // BC
                 if (isset($options['horizontal']) && false === $options['horizontal']) {
@@ -103,14 +103,14 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
             'horizontal_label_offset_class' => $this->options['horizontal_label_offset_class'],
             'horizontal_input_wrapper_class' => $this->options['horizontal_input_wrapper_class'],
             'horizontal_label_div_class' => $this->options['horizontal_label_div_class'],
-        ));
+        ]);
 
-        $allowedValues = array(false, null, 'horizontal', 'inline');
+        $allowedValues = [false, null, 'horizontal', 'inline'];
 
         if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             $resolver->setAllowedValues('layout', $allowedValues);
         } else {
-            $resolver->setAllowedValues(array('layout' => $allowedValues)); // SF <2.8 BC
+            $resolver->setAllowedValues(['layout' => $allowedValues]); // SF <2.8 BC
         }
     }
 
@@ -126,7 +126,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

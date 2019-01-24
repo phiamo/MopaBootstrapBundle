@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class MopaBootstrapExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -39,7 +39,7 @@ class MopaBootstrapExtension extends Extension
             $container->setParameter('mopa_bootstrap.bootstrap.install_path', $config['bootstrap']['install_path']);
         }
 
-        /**
+        /*
          * Form
          */
         if (isset($config['form'])) {
@@ -60,19 +60,19 @@ class MopaBootstrapExtension extends Extension
             $addLegacy = $allowLegacy || !method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
 
             // Set tags
-            $types = array(
+            $types = [
                 'mopa_bootstrap.form.type.tab' => 'tab',
                 'mopa_bootstrap.form.type.form_actions' => 'form_actions',
-            );
+            ];
 
             foreach ($types as $type => $alias) {
-                $legacyTag = $addLegacy ? array('alias' => $alias) : array();
+                $legacyTag = $addLegacy ? ['alias' => $alias] : [];
                 $typeDefinition = $container->getDefinition($type);
                 $typeDefinition->addTag('form.type', $legacyTag);
             }
         }
 
-        /**
+        /*
          * Menu
          */
         if ($this->isConfigEnabled($container, $config['menu']) || $this->isConfigEnabled($container, $config['navbar'])) {
@@ -84,14 +84,14 @@ class MopaBootstrapExtension extends Extension
             $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
         }
 
-        /**
+        /*
          * Icons
          */
         if (isset($config['icons'])) {
             $this->remapParameters($container, 'mopa_bootstrap.icons', $config['icons']);
         }
 
-        /**
+        /*
          * Initializr
          */
         if (isset($config['initializr'])) {
@@ -99,11 +99,11 @@ class MopaBootstrapExtension extends Extension
             $this->remapParameters($container, 'mopa_bootstrap.initializr', $config['initializr']);
         }
 
-        /**
+        /*
          * Flash
          */
         if (isset($config['flash'])) {
-            $mapping = array();
+            $mapping = [];
 
             foreach ($config['flash']['mapping'] as $alertType => $flashTypes) {
                 foreach ($flashTypes as $type) {

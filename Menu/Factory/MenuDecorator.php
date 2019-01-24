@@ -27,7 +27,7 @@ class MenuDecorator
     public function buildItem(ItemInterface $item, array $options)
     {
         if ($options['navbar']) {
-            $item->setChildrenAttribute('class', 'nav navbar-nav'.($options['navbar-right']?' navbar-right':''));
+            $item->setChildrenAttribute('class', 'nav navbar-nav'.($options['navbar-right'] ? ' navbar-right' : ''));
         }
 
         if ($options['pills']) {
@@ -105,7 +105,7 @@ class MenuDecorator
      */
     public function buildOptions(array $options)
     {
-        return array_merge(array(
+        return array_merge([
             'navbar' => false,
             'navbar-right' => false,
             'pills' => false,
@@ -120,6 +120,6 @@ class MenuDecorator
             'divider' => false,
             'badge' => false,
             'badge-class' => false,
-        ), $options);
+        ], $options);
     }
 }

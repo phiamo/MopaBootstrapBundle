@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Extension for creating static text (form-control-static)
+ * Extension for creating static text (form-control-static).
  *
  * @author peshi <peshis@gmail.com>
  */
@@ -41,9 +41,9 @@ class StaticTextExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'static_text' => null,
-            )
+            ]
         );
     }
 
@@ -70,7 +70,7 @@ class StaticTextExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

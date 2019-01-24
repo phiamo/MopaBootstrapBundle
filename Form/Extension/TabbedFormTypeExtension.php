@@ -62,9 +62,9 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'tabs_class' => $this->options['class'],
-        ));
+        ]);
     }
 
     /**
@@ -87,7 +87,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $activeTab = null;
         $tabIndex = 0;
         $foundInvalid = false;
-        $tabs = array();
+        $tabs = [];
 
         foreach ($view->children as $child) {
             if (in_array('tab', $child->vars['block_prefixes'])) {
@@ -99,16 +99,16 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
                     $foundInvalid = !$valid;
                 }
 
-                $tabs[$tabIndex] = array(
+                $tabs[$tabIndex] = [
                     'id' => $child->vars['id'],
                     'label' => $child->vars['label'],
                     'icon' => $child->vars['icon'],
                     'active' => false,
                     'disabled' => $child->vars['disabled'],
                     'translation_domain' => $child->vars['translation_domain'],
-                );
+                ];
 
-                $tabIndex++;
+                ++$tabIndex;
             }
         }
 
@@ -119,12 +119,12 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
             ? 'Mopa\Bundle\BootstrapBundle\Form\Type\TabsType'
             : new TabsType() // SF <2.8 BC
         ;
-        $tabsForm = $this->formFactory->create($tabsType, null, array(
+        $tabsForm = $this->formFactory->create($tabsType, null, [
             'tabs' => $tabs,
-            'attr' => array(
+            'attr' => [
                 'class' => $options['tabs_class'],
-            ),
-        ));
+            ],
+        ]);
 
         $view->vars['tabs'] = $tabs;
         $view->vars['tabbed'] = true;
@@ -143,7 +143,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

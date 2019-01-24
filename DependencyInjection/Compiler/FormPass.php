@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Add a new twig.form.resources
+ * Add a new twig.form.resources.
  *
  * @author Philipp A. Mohrenweiser <phiamo@googlemail.com>
  */

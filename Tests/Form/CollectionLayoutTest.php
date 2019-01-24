@@ -5,16 +5,16 @@ namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 class CollectionLayoutTest extends AbstractDivLayoutTest
 {
     /**
-     * Should be all horizontal by default including children
+     * Should be all horizontal by default including children.
      */
     public function testDefaultCollection()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), array(
-            'names' => array('name1', 'name2', 'name3'),
-        ))
-            ->add('names', $this->getFormType('collection'), array(
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+            'names' => ['name1', 'name2', 'name3'],
+        ])
+            ->add('names', $this->getFormType('collection'), [
                 $this->getCollectionTypeKey() => $this->getFormType('text'),
-            ))
+            ])
             ->getForm()
             ->createView()
         ;
@@ -91,17 +91,17 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
     }
 
     /**
-     * Parent should be horizontal but all children in the collection should be inline
+     * Parent should be horizontal but all children in the collection should be inline.
      */
     public function testChildrenNotHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), array(
-            'names' => array('name1', 'name2', 'name3'),
-        ))
-            ->add('names', $this->getFormType('collection'), array(
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+            'names' => ['name1', 'name2', 'name3'],
+        ])
+            ->add('names', $this->getFormType('collection'), [
                 $this->getCollectionTypeKey() => $this->getFormType('text'),
-                $this->getCollectionOptionsKey() => array('horizontal' => false),
-            ))
+                $this->getCollectionOptionsKey() => ['horizontal' => false],
+            ])
             ->getForm()
             ->createView()
         ;
@@ -169,18 +169,18 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
     }
 
     /**
-     * Parent should be inline but children are horizontal
+     * Parent should be inline but children are horizontal.
      */
     public function testChildrenHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), array(
-            'names' => array('name1', 'name2', 'name3'),
-        ))
-            ->add('names', $this->getFormType('collection'), array(
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+            'names' => ['name1', 'name2', 'name3'],
+        ])
+            ->add('names', $this->getFormType('collection'), [
                 $this->getCollectionTypeKey() => $this->getFormType('text'),
-                $this->getCollectionOptionsKey() => array('layout' => 'horizontal'),
+                $this->getCollectionOptionsKey() => ['layout' => 'horizontal'],
                 'layout' => false,
-            ))
+            ])
             ->getForm()
             ->createView()
         ;
@@ -255,17 +255,17 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
     }
 
     /**
-     * Everything should be inline
+     * Everything should be inline.
      */
     public function testAllNotHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), array(
-            'names' => array('name1', 'name2', 'name3'),
-        ))
-            ->add('names', $this->getFormType('collection'), array(
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+            'names' => ['name1', 'name2', 'name3'],
+        ])
+            ->add('names', $this->getFormType('collection'), [
                 $this->getCollectionTypeKey() => $this->getFormType('text'),
                 'layout' => false,
-            ))
+            ])
             ->getForm()
             ->createView()
         ;

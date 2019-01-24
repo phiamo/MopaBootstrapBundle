@@ -55,32 +55,33 @@ class MenuExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('mopa_bootstrap_menu', array($this, 'renderMenu'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('mopa_bootstrap_menu', [$this, 'renderMenu'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
      * Renders the Menu with the specified renderer.
      *
      * @param ItemInterface|string|array $menu
-     * @param array                                $options
-     * @param string                               $renderer
+     * @param array                      $options
+     * @param string                     $renderer
      *
      * @throws \InvalidArgumentException
+     *
      * @return string
      */
-    public function renderMenu($menu, array $options = array(), $renderer = null)
+    public function renderMenu($menu, array $options = [], $renderer = null)
     {
-        $options = array_merge(array(
+        $options = array_merge([
             'template' => $this->menuTemplate,
             'currentClass' => 'active',
             'ancestorClass' => 'active',
             'allow_safe_labels' => true,
-        ), $options);
+        ], $options);
 
         if (!$menu instanceof ItemInterface) {
-            $path = array();
+            $path = [];
             if (is_array($menu)) {
                 if (empty($menu)) {
                     throw new \InvalidArgumentException('The array cannot be empty');
@@ -92,7 +93,7 @@ class MenuExtension extends \Twig_Extension
             $menu = $this->helper->get($menu, $path, $options);
         }
 
-        $menu = $this->helper->get($menu, array(), $options);
+        $menu = $this->helper->get($menu, [], $options);
 
         if (isset($options['automenu'])) {
             $this->getMenuConverter()->convert($menu, $options);

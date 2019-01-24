@@ -52,17 +52,17 @@ class IconExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        $options = array(
-            'is_safe' => array('html'),
+        $options = [
+            'is_safe' => ['html'],
             'needs_environment' => true,
-        );
+        ];
 
-        $functions = array(
-            new \Twig_SimpleFunction('mopa_bootstrap_icon', array($this, 'renderIcon'), $options),
-        );
+        $functions = [
+            new \Twig_SimpleFunction('mopa_bootstrap_icon', [$this, 'renderIcon'], $options),
+        ];
 
         if ($this->shortcut) {
-            $functions[] = new \Twig_SimpleFunction($this->shortcut, array($this, 'renderIcon'), $options);
+            $functions[] = new \Twig_SimpleFunction($this->shortcut, [$this, 'renderIcon'], $options);
         }
 
         return $functions;
@@ -71,18 +71,18 @@ class IconExtension extends \Twig_Extension
     /**
      * Renders the icon.
      *
-     * @param string  $icon
-     * @param boolean $inverted
+     * @param string $icon
+     * @param bool   $inverted
      *
      * @return Response
      */
     public function renderIcon(\Twig_Environment $env, $icon, $inverted = false)
     {
         $template = $this->getIconTemplate($env);
-        $context = array(
+        $context = [
             'icon' => $icon,
             'inverted' => $inverted,
-        );
+        ];
 
         return $template->renderBlock($this->iconSet, $context);
     }

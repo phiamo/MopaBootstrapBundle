@@ -35,7 +35,7 @@ class MenuConverter
     /**
      * @var array
      */
-    protected $possibleNavs = array("navbar", "pills", "list-group");
+    protected $possibleNavs = ['navbar', 'pills', 'list-group'];
 
     /**
      * Constructor.
@@ -100,13 +100,13 @@ class MenuConverter
      */
     protected function getRootOptions(array $options)
     {
-        if (!in_array($options["automenu"], $this->possibleNavs)) {
-            throw new \RuntimeException("Value 'automenu' is '".$options["automenu"]."' not one of ".implode("', '", $this->possibleNavs));
+        if (!in_array($options['automenu'], $this->possibleNavs)) {
+            throw new \RuntimeException("Value 'automenu' is '".$options['automenu']."' not one of ".implode("', '", $this->possibleNavs));
         }
 
-        return array_merge($options, array(
-            $options["automenu"] => true, // navbar, pills etc => true
-        ));
+        return array_merge($options, [
+            $options['automenu'] => true, // navbar, pills etc => true
+        ]);
     }
 
     /**
@@ -119,21 +119,21 @@ class MenuConverter
      */
     protected function getChildOptions(ItemInterface $item, array $options)
     {
-        $childOptions = array();
+        $childOptions = [];
 
         $hasChildren = $item->hasChildren() && (!isset($options['depth']) || $options['depth'] > $item->getLevel());
 
-        if (in_array($options['automenu'], array('navbar')) && $hasChildren) {
-            $childOptions = array(
+        if (in_array($options['automenu'], ['navbar']) && $hasChildren) {
+            $childOptions = [
                 'dropdown' => !isset($options['dropdown']) || $options['dropdown'],
                 'caret' => !isset($options['caret']) || $options['caret'],
-            );
+            ];
         }
 
-        if (in_array($options['automenu'], array('list-group'))) {
-            $childOptions = array(
+        if (in_array($options['automenu'], ['list-group'])) {
+            $childOptions = [
                 'list-group-item' => true,
-            );
+            ];
         }
 
         return array_merge($options, $childOptions);

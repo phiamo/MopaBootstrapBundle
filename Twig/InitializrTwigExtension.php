@@ -29,7 +29,7 @@ class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension
      *
      * @param array $parameters
      */
-    public function __construct(array $parameters = array())
+    public function __construct(array $parameters = [])
     {
         $this->parameters = $parameters;
     }
@@ -39,12 +39,12 @@ class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension
      */
     public function getGlobals()
     {
-        return array(
-            'dns_prefetch'      => $this->parameters['dns_prefetch'],
-            'meta'              => $this->parameters['meta'],
-            'google'            => $this->parameters['google'],
-            'diagnostic_mode'   => $this->parameters['diagnostic_mode'],
-        );
+        return [
+            'dns_prefetch' => $this->parameters['dns_prefetch'],
+            'meta' => $this->parameters['meta'],
+            'google' => $this->parameters['google'],
+            'diagnostic_mode' => $this->parameters['diagnostic_mode'],
+        ];
     }
 
     /**
@@ -52,12 +52,12 @@ class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('form_help', null, array(
+        return [
+            new \Twig_SimpleFunction('form_help', null, [
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                'is_safe'    => array('html'),
-            )),
-        );
+                'is_safe' => ['html'],
+            ]),
+        ];
     }
 
     /**

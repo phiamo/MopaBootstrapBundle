@@ -41,11 +41,12 @@ class EmbedFormExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'embed_form' => null,
-            )
+            ]
         );
     }
+
     /**
      * {@inheritdoc}
      */
@@ -66,7 +67,7 @@ class EmbedFormExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

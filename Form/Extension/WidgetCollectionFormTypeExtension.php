@@ -93,12 +93,12 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,
             'widget_add_btn' => $this->options['widget_add_btn'],
             'widget_remove_btn' => $this->options['widget_remove_btn'],
-            'prototype_names' => array(),
-        ));
+            'prototype_names' => [],
+        ]);
     }
 
     /**
@@ -113,7 +113,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

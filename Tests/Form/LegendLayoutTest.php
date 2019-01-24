@@ -7,9 +7,9 @@ class LegendLayoutTest extends AbstractDivLayoutTest
     public function testAsterisk()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
+            ->createNamed('name', $this->getFormType('text'), null, [
                 'render_required_asterisk' => true,
-            ))
+            ])
             ->createView()
         ;
         $html = $this->renderLabel($view);
@@ -50,7 +50,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderFieldset()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('render_fieldset' => false))
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['render_fieldset' => false])
             ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
@@ -96,7 +96,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderLegend()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('show_legend' => false))
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['show_legend' => false])
             ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
@@ -120,7 +120,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testLegendTag()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, array('legend_tag' => 'bar'))
+        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['legend_tag' => 'bar'])
             ->add('field1', $this->getFormType('text'))
             ->getForm()
             ->createView()
@@ -146,9 +146,9 @@ class LegendLayoutTest extends AbstractDivLayoutTest
     public function testLabelRender()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
+            ->createNamed('name', $this->getFormType('text'), null, [
                 'label_render' => false,
-            ))
+            ])
             ->createView()
         ;
         $html = $this->renderRow($view);

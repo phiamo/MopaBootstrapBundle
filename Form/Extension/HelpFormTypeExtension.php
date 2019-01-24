@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Extension for Help Forms handling
+ * Extension for Help Forms handling.
  *
  * @author phiamo <phiamo@googlemail.com>
  */
@@ -29,7 +29,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
     /**
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * {@inheritdoc}
@@ -176,7 +176,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'help_block' => null,
             'help_label' => null,
             'help_label_tooltip' => $this->options['help_label_tooltip'],
@@ -184,7 +184,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             'help_block_tooltip' => $this->options['help_block_tooltip'],
             'help_block_popover' => $this->options['help_block_popover'],
             'help_widget_popover' => $this->options['help_widget_popover'],
-        ));
+        ]);
     }
 
     /**
@@ -199,7 +199,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {
