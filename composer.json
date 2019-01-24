@@ -34,7 +34,7 @@
         "symfony/translation": "~2.3|~3.0|^4.0"
     },
     "conflict": {
-        "symfony/twig-bridge": "<2.3|^4.0"
+        "symfony/twig-bridge": "<2.3"
     },
     "suggest":  {
         "twbs/bootstrap": ">2.0,<4.0-dev",

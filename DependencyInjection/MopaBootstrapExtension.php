@@ -29,6 +29,7 @@ class MopaBootstrapExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('bootstrap.xml');
         $loader->load('twig.xml');
+        $loader->load('command.xml');
 
         if (isset($config['bootstrap'])) {
             if (!isset($config['bootstrap']['install_path'])) {
