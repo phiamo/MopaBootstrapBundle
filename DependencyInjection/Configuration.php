@@ -17,13 +17,15 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    const KEY = 'mopa_bootstrap';
+
     /**
      * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mopa_bootstrap');
+        $treeBuilder = new TreeBuilder(self::KEY);
+        $rootNode = $treeBuilder->root(self::KEY);
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
         $this->addMenuConfig($rootNode);

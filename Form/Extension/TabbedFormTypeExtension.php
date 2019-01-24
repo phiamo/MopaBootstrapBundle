@@ -13,6 +13,7 @@ namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Mopa\Bundle\BootstrapBundle\Form\Type\TabsType;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -44,17 +45,6 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
     {
         $this->formFactory = $formFactory;
         $this->options = $options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
-            : 'form' // SF <2.8 BC
-        ;
     }
 
     /**
@@ -124,7 +114,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
 
         $activeTab->vars['tab_active'] = true;
         $tabs[$activeTab->vars['tab_index']]['active'] = true;
-    
+
         $tabsType = method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? 'Mopa\Bundle\BootstrapBundle\Form\Type\TabsType'
             : new TabsType() // SF <2.8 BC
@@ -139,5 +129,26 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $view->vars['tabs'] = $tabs;
         $view->vars['tabbed'] = true;
         $view->vars['tabsView'] = $tabsForm->createView();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? FormType::class
+            : 'form' // SF <2.8 BC
+        ;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getExtendedTypes()
+    {
+        return [
+            FormType::class,
+        ];
     }
 }

@@ -12,6 +12,7 @@
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,17 +25,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class StaticTextExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
-            : 'form' // SF <2.8 BC
-        ;
-    }
-
     /**
      * {@inheritdoc}
      *
@@ -66,5 +56,26 @@ class StaticTextExtension extends AbstractTypeExtension
         if ($options['static_text'] === true) {
             $view->vars['disabled'] = true;
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? FormType::class
+            : 'form' // SF <2.8 BC
+        ;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getExtendedTypes()
+    {
+        return [
+            FormType::class,
+        ];
     }
 }
