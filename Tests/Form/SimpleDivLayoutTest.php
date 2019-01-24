@@ -7,15 +7,16 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testHorizontalRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('email'), null, array(
+            ->createNamed('name', $this->getFormType('email'), null, [
                 'layout' => 'horizontal',
-            ))
+            ])
             ->createView()
         ;
 
         $html = $this->renderRow($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '/div[@class="form-group"]
     [
         ./label[@for="name"][@class="control-label col-sm-3 required"]
@@ -28,15 +29,16 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testInlineRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
+            ->createNamed('name', $this->getFormType('text'), null, [
                 'horizontal' => false,
-            ))
+            ])
             ->createView()
         ;
 
         $html = $this->renderRow($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="form-group"]
     [

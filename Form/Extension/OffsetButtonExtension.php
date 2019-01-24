@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Extension for Offsetting a button
+ * Extension for Offsetting a button.
  *
  * @author peshi <peshis@gmail.com>
  */
@@ -40,9 +40,9 @@ class OffsetButtonExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'button_offset' => null,
-        ));
+        ]);
     }
 
     /**
@@ -65,7 +65,7 @@ class OffsetButtonExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

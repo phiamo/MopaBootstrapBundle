@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Type for Tabs handling
+ * Type for Tabs handling.
  *
  * @author phiamo <phiamo@googlemail.com>
  */
@@ -47,9 +47,9 @@ class TabsType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'tabs' => array(),
-        ));
+        $resolver->setDefaults([
+            'tabs' => [],
+        ]);
     }
 
     /**

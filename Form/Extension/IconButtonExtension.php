@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Extension for Button Icons handling
+ * Extension for Button Icons handling.
  *
  * @author phiamo <phiamo@googlemail.com>
  */
@@ -40,10 +40,10 @@ class IconButtonExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'icon' => null,
             'icon_inverted' => false,
-        ));
+        ]);
     }
 
     /**
@@ -67,7 +67,7 @@ class IconButtonExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

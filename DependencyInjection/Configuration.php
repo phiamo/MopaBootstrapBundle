@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
 
     protected function addFormConfig(ArrayNodeDefinition $rootNode)
     {
-        $layouts = array(false, 'horizontal', 'inline');
+        $layouts = [false, 'horizontal', 'inline'];
 
         $rootNode
             ->children()
@@ -47,7 +47,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultFalse()
                         ->end()
                         ->scalarNode('templating')
-                            ->defaultValue("@MopaBootstrap/Form/fields.html.twig")
+                            ->defaultValue('@MopaBootstrap/Form/fields.html.twig')
                         ->end()
                         ->enumNode('layout')
                             ->info('Default form layout')
@@ -55,28 +55,28 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue('horizontal')
                         ->end()
                         ->scalarNode('horizontal_label_class')
-                            ->defaultValue("col-sm-3")
+                            ->defaultValue('col-sm-3')
                         ->end()
                         ->scalarNode('horizontal_label_div_class')
                             ->defaultNull()
                         ->end()
                         ->scalarNode('horizontal_label_offset_class')
-                            ->defaultValue("col-sm-offset-3")
+                            ->defaultValue('col-sm-offset-3')
                         ->end()
                         ->scalarNode('horizontal_input_wrapper_class')
-                            ->defaultValue("col-sm-9")
+                            ->defaultValue('col-sm-9')
                         ->end()
                         ->arrayNode('date_wrapper_class')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('year')
-                                    ->defaultValue("col-xs-4")
+                                    ->defaultValue('col-xs-4')
                                 ->end()
                                 ->scalarNode('month')
-                                    ->defaultValue("col-xs-4")
+                                    ->defaultValue('col-xs-4')
                                 ->end()
                                 ->scalarNode('day')
-                                    ->defaultValue("col-xs-4")
+                                    ->defaultValue('col-xs-4')
                                 ->end()
                             ->end()
                         ->end()
@@ -128,10 +128,10 @@ class Configuration implements ConfigurationInterface
                                             ->defaultNull()
                                         ->end()
                                         ->scalarNode('trigger')
-                                            ->defaultValue("hover")
+                                            ->defaultValue('hover')
                                         ->end()
                                         ->scalarNode('toggle')
-                                            ->defaultValue("popover")
+                                            ->defaultValue('popover')
                                         ->end()
                                         ->scalarNode('placement')
                                             ->defaultValue('right')
@@ -163,7 +163,7 @@ class Configuration implements ConfigurationInterface
                                             ->addDefaultsIfNotSet()
                                             ->children()
                                                 ->scalarNode('class')
-                                                    ->defaultValue("btn btn-default")
+                                                    ->defaultValue('btn btn-default')
                                                 ->end()
                                             ->end()
                                         ->end()
@@ -171,7 +171,7 @@ class Configuration implements ConfigurationInterface
                                             ->addDefaultsIfNotSet()
                                             ->children()
                                                 ->scalarNode('class')
-                                                    ->defaultValue("form-group")
+                                                    ->defaultValue('form-group')
                                                 ->end()
                                             ->end()
                                         ->end()
@@ -179,12 +179,12 @@ class Configuration implements ConfigurationInterface
                                             ->addDefaultsIfNotSet()
                                             ->children()
                                                 ->scalarNode('class')
-                                                    ->defaultValue("col-sm-3 col-sm-offset-3")
+                                                    ->defaultValue('col-sm-3 col-sm-offset-3')
                                                 ->end()
                                             ->end()
                                         ->end()
                                         ->scalarNode('label')
-                                            ->defaultValue("remove_item")
+                                            ->defaultValue('remove_item')
                                         ->end()
                                         ->scalarNode('translation_domain')
                                             ->defaultNull()
@@ -204,12 +204,12 @@ class Configuration implements ConfigurationInterface
                                             ->addDefaultsIfNotSet()
                                             ->children()
                                                 ->scalarNode('class')
-                                                    ->defaultValue("btn btn-default")
+                                                    ->defaultValue('btn btn-default')
                                                 ->end()
                                             ->end()
                                         ->end()
                                         ->scalarNode('label')
-                                            ->defaultValue("add_item")
+                                            ->defaultValue('add_item')
                                         ->end()
                                         ->scalarNode('translation_domain')
                                             ->defaultNull()
@@ -242,7 +242,7 @@ class Configuration implements ConfigurationInterface
 
     protected function addIconsConfig(ArrayNodeDefinition $rootNode)
     {
-        $iconSets = array('glyphicons', 'fontawesome', 'fontawesome4', 'zmdi');
+        $iconSets = ['glyphicons', 'fontawesome', 'fontawesome4', 'zmdi'];
 
         $rootNode
             ->children()
@@ -305,6 +305,7 @@ class Configuration implements ConfigurationInterface
             ->end()
         ;
     }
+
     /**
      * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
      *
@@ -353,14 +354,14 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('dns_prefetch')
-                            ->treatNullLike(array())
-                            ->defaultValue(array('//ajax.googleapis.com'))
+                            ->treatNullLike([])
+                            ->defaultValue(['//ajax.googleapis.com'])
                             ->prototype('scalar')
                             ->end()
                         ->end()
                         ->arrayNode('google')
                             ->addDefaultsIfNotSet()
-                            ->treatNullLike(array())
+                            ->treatNullLike([])
                             ->children()
                                 ->scalarNode('wt')
                                     ->end()
@@ -382,8 +383,12 @@ class Configuration implements ConfigurationInterface
 
     protected function addFlashConfig(ArrayNodeDefinition $rootNode)
     {
-        $fnTest = function($v) { return !is_array($v); };
-        $fnThen = function($v) { return array($v); };
+        $fnTest = function ($v) {
+            return !is_array($v);
+        };
+        $fnThen = function ($v) {
+            return [$v];
+        };
 
         $rootNode
             ->children()
@@ -397,28 +402,28 @@ class Configuration implements ConfigurationInterface
                                     ->beforeNormalization()
                                         ->ifTrue($fnTest)->then($fnThen)
                                     ->end()
-                                    ->defaultValue(array('success'))
+                                    ->defaultValue(['success'])
                                     ->prototype('scalar')->end()
                                 ->end()
                                 ->arrayNode('danger')
                                     ->beforeNormalization()
                                         ->ifTrue($fnTest)->then($fnThen)
                                     ->end()
-                                    ->defaultValue(array('error', 'danger'))
+                                    ->defaultValue(['error', 'danger'])
                                     ->prototype('scalar')->end()
                                 ->end()
                                 ->arrayNode('warning')
                                     ->beforeNormalization()
                                         ->ifTrue($fnTest)->then($fnThen)
                                     ->end()
-                                    ->defaultValue(array('warning', 'warn'))
+                                    ->defaultValue(['warning', 'warn'])
                                     ->prototype('scalar')->end()
                                 ->end()
                                 ->arrayNode('info')
                                     ->beforeNormalization()
                                         ->ifTrue($fnTest)->then($fnThen)
                                     ->end()
-                                    ->defaultValue(array('info', 'notice'))
+                                    ->defaultValue(['info', 'notice'])
                                     ->prototype('scalar')->end()
                                 ->end()
                             ->end()

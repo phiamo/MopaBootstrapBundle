@@ -76,7 +76,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'render_fieldset' => $this->renderFieldset,
             'show_legend' => $this->showLegend,
             'show_child_legend' => $this->showChildLegend,
@@ -84,7 +84,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
             'label_render' => true,
             'render_required_asterisk' => $this->renderRequiredAsterisk,
             'render_optional_text' => $this->renderOptionalText,
-        ));
+        ]);
     }
 
     /**
@@ -99,7 +99,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

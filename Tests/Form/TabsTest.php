@@ -14,7 +14,8 @@ class TabsTest extends AbstractDivLayoutTest
         $view = $form->getForm()->createView();
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($this->removeBreaks($html),
+        $this->assertMatchesXpath(
+            $this->removeBreaks($html),
 '
 /fieldset
 [

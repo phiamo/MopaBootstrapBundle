@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Extension for Form Widget Bootstrap handling
+ * Extension for Form Widget Bootstrap handling.
  *
  * @author phiamo <phiamo@googlemail.com>
  */
@@ -47,11 +47,11 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (in_array('percent', $view->vars['block_prefixes']) && null === $options['widget_addon_append']) {
-            $options['widget_addon_append'] = array();
+            $options['widget_addon_append'] = [];
         }
 
         if (in_array('money', $view->vars['block_prefixes']) && null === $options['widget_addon_prepend']) {
-            $options['widget_addon_prepend'] = array();
+            $options['widget_addon_prepend'] = [];
         }
 
         $view->vars['widget_form_control_class'] = $options['widget_form_control_class'];
@@ -83,7 +83,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget_form_control_class' => 'form-control',
             'widget_form_group' => true,
             'widget_addon_prepend' => null,
@@ -93,29 +93,29 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_prefix' => null,
             'widget_suffix' => null,
             'widget_type' => '',
-            'widget_items_attr' => array(),
-            'widget_form_group_attr' => array(
+            'widget_items_attr' => [],
+            'widget_form_group_attr' => [
                 'class' => 'form-group',
-            ),
+            ],
             'widget_checkbox_label' => $this->options['checkbox_label'],
-        ));
+        ]);
 
         if (version_compare(Kernel::VERSION, '2.6', '>=')) {
-            $resolver->setAllowedValues('widget_type', array('inline', 'inline-btn', ''));
-            $resolver->setAllowedValues('widget_checkbox_label', array('label', 'widget', 'both'));
+            $resolver->setAllowedValues('widget_type', ['inline', 'inline-btn', '']);
+            $resolver->setAllowedValues('widget_checkbox_label', ['label', 'widget', 'both']);
         } else {
-            $resolver->setAllowedValues(array(
-                'widget_type' => array(
+            $resolver->setAllowedValues([
+                'widget_type' => [
                     'inline',
                     'inline-btn',
                     '',
-                ),
-                'widget_checkbox_label' => array(
+                ],
+                'widget_checkbox_label' => [
                     'label',
                     'widget',
                     'both',
-                ),
-            ));
+                ],
+            ]);
         }
     }
 
@@ -131,7 +131,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

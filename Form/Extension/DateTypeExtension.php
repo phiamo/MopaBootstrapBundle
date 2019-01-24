@@ -73,20 +73,20 @@ class DateTypeExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         if (method_exists($resolver, 'setDefined')) {
-            $resolver->setDefined(array(
+            $resolver->setDefined([
                 'datepicker',
                 'widget_reset_icon',
-            ));
+            ]);
         } else { // Symfony <2.6 BC
-            $resolver->setOptional(array(
+            $resolver->setOptional([
                 'datepicker',
                 'widget_reset_icon',
-            ));
+            ]);
         }
 
-        $resolver->setDefaults(array(
-            'date_wrapper_class' => $this->options['date_wrapper_class']
-        ));
+        $resolver->setDefaults([
+            'date_wrapper_class' => $this->options['date_wrapper_class'],
+        ]);
     }
 
     /**
@@ -101,7 +101,7 @@ class DateTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

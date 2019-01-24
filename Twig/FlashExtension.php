@@ -21,7 +21,7 @@ class FlashExtension extends \Twig_Extension
     /**
      * @var array
      */
-    protected $mapping = array();
+    protected $mapping = [];
 
     /**
      * Constructor.
@@ -38,9 +38,9 @@ class FlashExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', array($this, 'getMapping'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', [$this, 'getMapping'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**

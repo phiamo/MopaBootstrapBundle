@@ -16,8 +16,8 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
  */
 class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 {
-    public static $mopaBootstrapBundleName = "mopa/bootstrap-bundle";
-    public static $twitterBootstrapName = "twbs/bootstrap";
+    public static $mopaBootstrapBundleName = 'mopa/bootstrap-bundle';
+    public static $twitterBootstrapName = 'twbs/bootstrap';
 
     protected function getTwitterBootstrapName()
     {
@@ -30,7 +30,8 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 
         $this
             ->setName('mopa:bootstrap:symlink:less')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking/mirroring the twitters/bootstrap library.
 
 By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twbs/bootstrap in your vendors.

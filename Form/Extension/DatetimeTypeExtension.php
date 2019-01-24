@@ -56,15 +56,15 @@ class DatetimeTypeExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         if (method_exists($resolver, 'setDefined')) {
-            $resolver->setDefined(array(
+            $resolver->setDefined([
                 'datetimepicker',
                 'widget_reset_icon',
-            ));
+            ]);
         } else { // Symfony <2.6 BC
-            $resolver->setOptional(array(
+            $resolver->setOptional([
                 'datetimepicker',
                 'widget_reset_icon',
-            ));
+            ]);
         }
     }
 
@@ -80,7 +80,7 @@ class DatetimeTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

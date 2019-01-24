@@ -64,10 +64,10 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'error_type' => $this->errorType,
             'error_delay' => false,
-        ));
+        ]);
     }
 
     /**
@@ -82,7 +82,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getExtendedTypes()
     {

@@ -7,17 +7,18 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testTextPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
-                'widget_addon_prepend' => array(
+            ->createNamed('name', $this->getFormType('text'), null, [
+                'widget_addon_prepend' => [
                     'text' => 'foo',
-                ),
-            ))
+                ],
+            ])
             ->createView()
         ;
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -31,17 +32,18 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
-                'widget_addon_prepend' => array(
+            ->createNamed('name', $this->getFormType('text'), null, [
+                'widget_addon_prepend' => [
                     'icon' => 'cog',
-                ),
-            ))
+                ],
+            ])
             ->createView()
         ;
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -58,17 +60,18 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testTextAppend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
-                'widget_addon_append' => array(
+            ->createNamed('name', $this->getFormType('text'), null, [
+                'widget_addon_append' => [
                     'text' => 'foo',
-                ),
-            ))
+                ],
+            ])
             ->createView()
         ;
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [
@@ -82,17 +85,18 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconAppend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, array(
-                'widget_addon_append' => array(
+            ->createNamed('name', $this->getFormType('text'), null, [
+                'widget_addon_append' => [
                     'icon' => 'cog',
-                ),
-            ))
+                ],
+            ])
             ->createView()
         ;
 
         $html = $this->renderWidget($view);
 
-        $this->assertMatchesXpath($html,
+        $this->assertMatchesXpath(
+            $html,
 '
 /div[@class="input-group"]
     [

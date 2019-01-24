@@ -16,7 +16,7 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
  */
 class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
 {
-    public static $twitterBootstrapName = "twbs/bootstrap-sass";
+    public static $twitterBootstrapName = 'twbs/bootstrap-sass';
     public static $targetSuffix = '-sass';
     public static $pathName = 'TwitterBootstrapSass';
 
@@ -31,7 +31,8 @@ class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
 
         $this
             ->setName('mopa:bootstrap:symlink:sass')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 The <info>mopa:bootstrap:symlink:sass</info> command helps you checking and symlinking/mirroring the twbs/bootstrap-sass library.
 
 By default, the command uses composer to retrieve the paths of MopaBootstrapBundle and twbs/bootstrap-sass in your vendors.

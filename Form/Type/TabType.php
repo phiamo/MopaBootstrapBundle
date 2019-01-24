@@ -39,11 +39,11 @@ class TabType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'icon' => null,
             'error_icon' => 'remove-sign',
             'disabled' => false,
-        ));
+        ]);
     }
 
     /**
