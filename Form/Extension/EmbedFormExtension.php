@@ -11,6 +11,7 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -24,17 +25,6 @@ use Symfony\Component\Form\FormView;
  */
 class EmbedFormExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\FormType'
-            : 'form' // SF <2.8 BC
-        ;
-    }
-
     /**
      * {@inheritdoc}
      *
@@ -62,5 +52,26 @@ class EmbedFormExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['embed_form'] = $options['embed_form'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? FormType::class
+            : 'form' // SF <2.8 BC
+        ;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getExtendedTypes()
+    {
+        return [
+            FormType::class,
+        ];
     }
 }

@@ -12,6 +12,7 @@
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -73,8 +74,18 @@ class DatetimeTypeExtension extends AbstractTypeExtension
     public function getExtendedType()
     {
         return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+            ? DateTimeType::class
             : 'datetime' // SF <2.8 BC
         ;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getExtendedTypes()
+    {
+        return [
+            DateTimeType::class,
+        ];
     }
 }

@@ -12,6 +12,7 @@
 namespace Mopa\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,17 +25,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class IconButtonExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\ButtonType'
-            : 'button' // SF <2.8 BC
-        ;
-    }
-
     /**
      * {@inheritdoc}
      *
@@ -63,5 +53,26 @@ class IconButtonExtension extends AbstractTypeExtension
     {
         $view->vars['icon'] = $options['icon'];
         $view->vars['icon_inverted'] = $options['icon_inverted'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? ButtonType::class
+            : 'form' // SF <2.8 BC
+        ;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getExtendedTypes()
+    {
+        return [
+            ButtonType::class,
+        ];
     }
 }
