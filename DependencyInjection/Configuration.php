@@ -11,9 +11,11 @@
 
 namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
+use function method_exists;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 class Configuration implements ConfigurationInterface
 {
@@ -24,8 +26,13 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder(self::KEY);
-        $rootNode = $treeBuilder->root(self::KEY);
+        if (Kernel::VERSION_ID >= 40200) {
+            $treeBuilder = new TreeBuilder(self::KEY);
+        } else {
+            $treeBuilder = new TreeBuilder();
+        }
+        $rootNode = method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root(self::KEY);
+
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
         $this->addMenuConfig($rootNode);
@@ -436,8 +443,13 @@ class Configuration implements ConfigurationInterface
 
     protected function addTooltipNode()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('tooltip');
+        if (Kernel::VERSION_ID >= 40200) {
+            $builder = new TreeBuilder('tooltip');
+        } else {
+            $builder = new TreeBuilder();
+        }
+
+        $node = method_exists($builder, 'getRootNode') ? $builder->getRootNode() : $builder->root('tooltip');
 
         return $node
             ->addDefaultsIfNotSet()
@@ -460,8 +472,13 @@ class Configuration implements ConfigurationInterface
 
     protected function addPopoverNode()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('popover');
+        if (Kernel::VERSION_ID >= 40200) {
+            $builder = new TreeBuilder('popover');
+        } else {
+            $builder = new TreeBuilder();
+        }
+
+        $node = method_exists($builder, 'getRootNode') ? $builder->getRootNode() : $builder->root('popover');
 
         return $node
             ->addDefaultsIfNotSet()
