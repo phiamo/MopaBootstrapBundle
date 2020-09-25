@@ -16,10 +16,10 @@ use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Form\FormRenderer;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
+use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
@@ -322,9 +322,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @param FormView $view
-     * @param array    $vars
-     *
      * @return string
      */
     protected function renderForm(FormView $view, array $vars = [])
@@ -333,9 +330,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @param FormView $view
-     * @param array    $vars
-     *
      * @return string
      */
     protected function renderRow(FormView $view, array $vars = [])
@@ -344,9 +338,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @param FormView $view
-     * @param array    $vars
-     *
      * @return string
      */
     protected function renderWidget(FormView $view, array $vars = [])
@@ -355,9 +346,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     }
 
     /**
-     * @param FormView $view
-     * @param string   $label
-     * @param array    $vars
+     * @param string $label
      *
      * @return string
      */

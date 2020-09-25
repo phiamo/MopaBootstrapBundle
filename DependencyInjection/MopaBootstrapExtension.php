@@ -119,9 +119,7 @@ class MopaBootstrapExtension extends Extension
     /**
      * Remap parameters.
      *
-     * @param ContainerBuilder $container
-     * @param string           $prefix
-     * @param array            $config
+     * @param string $prefix
      */
     private function remapParameters(ContainerBuilder $container, $prefix, array $config)
     {

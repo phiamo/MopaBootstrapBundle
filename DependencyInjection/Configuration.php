@@ -307,8 +307,6 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition $rootNode
-     *
      * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
      */
     protected function addInitializrConfig(ArrayNodeDefinition $rootNode)

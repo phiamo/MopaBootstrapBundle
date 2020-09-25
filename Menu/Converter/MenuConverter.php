@@ -52,9 +52,6 @@ class MenuConverter
      * set to a string of possibleNavs.
      *
      * Additional options may be specified and code tightened.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
      */
     public function convert(ItemInterface $item, array $options)
     {
@@ -72,9 +69,6 @@ class MenuConverter
      * set to a string of possibleNavs
      *
      * Additional options may be specified and code tightened.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
      */
     public function convertChildren(ItemInterface $item, array $options)
     {
@@ -91,8 +85,6 @@ class MenuConverter
 
     /**
      * Gets the options for the Root element.
-     *
-     * @param array $options
      *
      * @return array
      *
@@ -111,9 +103,6 @@ class MenuConverter
 
     /**
      * Gets guessed values for different menu/nav types.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
      *
      * @return array
      */
