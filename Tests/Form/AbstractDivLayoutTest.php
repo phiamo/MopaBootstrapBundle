@@ -298,17 +298,16 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
         $xpath = new \DOMXPath($dom);
         $nodeList = $xpath->evaluate('/root'.$expression);
-        if ($nodeList->length != $count) {
-            $dom->formatOutput = true;
-            $this->fail(sprintf(
-                "Failed asserting that \n\n%s\n\nmatches exactly %s. Matches %s in \n\n%s",
-                $expression,
-                $count == 1 ? 'once' : $count.' times',
-                $nodeList->length == 1 ? 'once' : $nodeList->length.' times',
-                // strip away <root> and </root>
-                substr($dom->saveHTML(), 6, -8)
-            ));
-        }
+
+        $dom->formatOutput = true;
+        $this->assertTrue($nodeList->length === $count, sprintf(
+            "Failed asserting that \n\n%s\n\nmatches exactly %s. Matches %s in \n\n%s",
+            $expression,
+            $count == 1 ? 'once' : $count.' times',
+            $nodeList->length == 1 ? 'once' : $nodeList->length.' times',
+            // strip away <root> and </root>
+            substr($dom->saveHTML(), 6, -8)
+        ));
     }
 
     /**
