@@ -25,7 +25,9 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder(self::KEY);
-        $rootNode = $treeBuilder->root(self::KEY);
+        // Keep compatibility with symfony/config < 4.2
+        $rootNode = !method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->root(self::KEY) : $treeBuilder->getRootNode();
+
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
         $this->addMenuConfig($rootNode);
@@ -436,8 +438,9 @@ class Configuration implements ConfigurationInterface
 
     protected function addTooltipNode()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('tooltip');
+        $builder = new TreeBuilder('tooltip');
+        // Keep compatibility with symfony/config < 4.2
+        $node = !method_exists($builder, 'getRootNode') ? $builder->root('tooltip') : $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()
@@ -460,8 +463,9 @@ class Configuration implements ConfigurationInterface
 
     protected function addPopoverNode()
     {
-        $builder = new TreeBuilder();
-        $node = $builder->root('popover');
+        $builder = new TreeBuilder('popover');
+        // Keep compatibility with symfony/config < 4.2
+        $node = !method_exists($builder, 'getRootNode') ? $builder->root('popover') : $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()
