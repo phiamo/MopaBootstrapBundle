@@ -20,9 +20,6 @@ class MenuDecorator
 {
     /**
      * Builds a menu item based.
-     *
-     * @param ItemInterface $item
-     * @param array         $options
      */
     public function buildItem(ItemInterface $item, array $options)
     {
@@ -98,8 +95,6 @@ class MenuDecorator
 
     /**
      * Builds the options for extension.
-     *
-     * @param array $options
      *
      * @return array $options
      */

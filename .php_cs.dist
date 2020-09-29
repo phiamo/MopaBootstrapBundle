@@ -1,10 +1,5 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
-    ->exclude('vendor')
-    ->in(__DIR__)
-;
-
 return PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
@@ -12,5 +7,9 @@ return PhpCsFixer\Config::create()
         'yoda_style' => false,
         'array_syntax' => ['syntax' => 'short'],
     ])
-    ->setFinder($finder)
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->exclude('vendor')
+            ->in(__DIR__)
+    )
 ;

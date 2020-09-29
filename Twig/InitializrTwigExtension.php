@@ -26,8 +26,6 @@ class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension
 
     /**
      * Constructor.
-     *
-     * @param array $parameters
      */
     public function __construct(array $parameters = [])
     {

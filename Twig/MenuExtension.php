@@ -41,7 +41,6 @@ class MenuExtension extends \Twig_Extension
     protected $menuConverter;
 
     /**
-     * @param Helper $helper
      * @param string $menuTemplate
      */
     public function __construct(Helper $helper, $menuTemplate)
@@ -64,7 +63,6 @@ class MenuExtension extends \Twig_Extension
      * Renders the Menu with the specified renderer.
      *
      * @param ItemInterface|string|array $menu
-     * @param array                      $options
      * @param string                     $renderer
      *
      * @throws \InvalidArgumentException

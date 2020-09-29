@@ -25,8 +25,6 @@ class FlashExtension extends \Twig_Extension
 
     /**
      * Constructor.
-     *
-     * @param array $mapping
      */
     public function __construct(array $mapping)
     {

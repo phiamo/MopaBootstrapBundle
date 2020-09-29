@@ -32,8 +32,6 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
 
     /**
      * Constructor.
-     *
-     * @param array $options
      */
     public function __construct(array $options)
     {
