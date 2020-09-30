@@ -31,6 +31,8 @@ class InstallFontCommand extends ContainerAwareCommand
         'zmdi' => 'fonts/zmdi',
     ];
 
+    protected static $defaultName = 'mopa:bootstrap:install:font';
+
     /**
      * {@inheritdoc}
      */
