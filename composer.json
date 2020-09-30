@@ -15,9 +15,12 @@
         }
     ],
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Mopa\\Bundle\\BootstrapBundle\\": ""
-        }
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
