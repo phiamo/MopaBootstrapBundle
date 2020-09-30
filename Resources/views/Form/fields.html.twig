@@ -7,7 +7,7 @@
 {% endblock button_attributes %}
 
 {% block button_widget %}
-{% spaceless %}
+{% apply spaceless %}
     {% if label is empty %}
         {%- if label_format is defined and label_format is not empty -%}
             {% set label = label_format|replace({
@@ -23,11 +23,11 @@
             {{ mopa_bootstrap_icon(icon, icon_inverted|default(false)) }}
     {% endif %}
     {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
-{% endspaceless %}
+{% endapply %}
 {% endblock button_widget %}
 
 {% block button_row %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% if button_offset is defined and button_offset is not empty %}
             {% set attr = attr|merge({'for': id, 'class': button_offset }) %}
             <div class="form-group">
@@ -40,7 +40,7 @@
                 {{ form_widget(form) }}
             </div>
         {% endif %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock button_row %}
 
 {# Widgets #}
@@ -65,7 +65,7 @@
 {% endblock textarea_widget %}
 
 {% block form_widget_simple %}
-{% spaceless %}
+{% apply spaceless %}
     {% set type = type|default('text') %}
     {% if type != 'hidden' and ( widget_addon_prepend|default(null) is not null or widget_addon_append|default(null) is not null or widget_btn_prepend|default(null) is not null or widget_btn_append|default(null) is not null ) %}
     <div class="input-group">
@@ -98,11 +98,11 @@
         {% endif %}
     </div>
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_widget_simple %}
 
 {% block form_widget_compound %}
-{% spaceless %}
+{% apply spaceless %}
     {% if form.parent == null %}
         {% if render_fieldset %}<fieldset>{% endif %}
         {% if show_legend %}{{ block('form_legend') }}{% endif %}
@@ -124,7 +124,7 @@
     {% if form.parent == null %}
         {% if render_fieldset %}</fieldset>{% endif %}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_widget_compound %}
 
 {% block form_tabs %}
@@ -134,7 +134,7 @@
 {% endblock %}
 
 {% block tabs_widget %}
-{% spaceless %}
+{% apply spaceless %}
 <ul class="{{ form.vars.attr.class }}">
     {% for tab in form.vars.tabs %}
         {% set class = ((tab.active ? 'active ' : '') ~ (tab.disabled ? 'disabled' : ''))|trim %}
@@ -146,7 +146,7 @@
         </li>
     {% endfor %}
 </ul>
-{% endspaceless %}
+{% endapply %}
 {% endblock %}
 
 {% block form_tab %}
@@ -157,7 +157,7 @@
 {% endblock %}
 
 {% block collection_widget %}
-{% spaceless %}
+{% apply spaceless %}
     {% if prototype is defined %}
         {% set prototype_markup = form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
@@ -184,7 +184,7 @@
     {% endif %}
     {{ block('form_widget') }}
     </div>
-{% endspaceless %}
+{% endapply %}
 {% endblock collection_widget %}
 
 {% block choice_widget_collapsed %}
@@ -197,7 +197,7 @@
 {% endblock choice_widget_collapsed %}
 
 {% block choice_widget_expanded %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% set tagName = 'label' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default(''))}) %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class ~ ' ' ~ (widget_type != '' ? (multiple ? 'checkbox' : 'radio') ~ '-' ~ widget_type : ''))}) %}
@@ -246,11 +246,11 @@
         {% if layout is same as(false) %}
             </div>
         {% endif %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock choice_widget_expanded %}
 
 {% block checkbox_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% if label is not same as(false) and label is empty %}
             {%- if label_format is defined and label_format is not empty -%}
                 {% set label = label_format|replace({
@@ -295,11 +295,11 @@
         {% if form.parent != null and 'choice' not in form.parent.vars.block_prefixes %}
             </div>
         {% endif %}
-    {% endspaceless %}
+    {% endapply %}
 {% endblock checkbox_widget %}
 
 {% block date_widget %}
-{% spaceless %}
+{% apply spaceless %}
 {% if widget == 'single_text' %}
     {% if datepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'calendar'  %}
@@ -328,11 +328,11 @@
         })|raw }}
         </div>
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock date_widget %}
 
 {% block time_widget %}
-{% spaceless %}
+{% apply spaceless %}
 {% if widget == 'single_text' %}
     {% if timepicker is defined %}
         {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'time'  %}
@@ -353,7 +353,7 @@
     {% endif %}
 {% else %}
     {% set attr = attr|merge({'class': attr.class|default('')}) %}
-    {% spaceless %}
+    {% apply spaceless %}
     {{ form_widget(form.hour, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
     {% if with_minutes %}
         {{ form_widget(form.minute, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
@@ -361,13 +361,13 @@
     {% if with_seconds %}
         :{{ form_widget(form.second, { 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2') }) }}
     {% endif %}
-    {% endspaceless %}
+    {% endapply %}
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock time_widget %}
 
 {% block datetime_widget %}
-{% spaceless %}
+{% apply spaceless %}
     {% if widget == 'single_text' %}
         {% if datetimepicker is defined %}
             {% set widget_addon_icon = widget_addon_append.icon is defined ? widget_addon_append.icon : 'th'  %}
@@ -395,25 +395,25 @@
                 {{ form_widget(form.time, {'attr': {'class': attr.widget_class|default('')}, 'horizontal_input_wrapper_class': horizontal_input_wrapper_class|default('col-sm-2')}) }}
             </div>
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock datetime_widget %}
 
 {% block percent_widget %}
-{% spaceless %}
+{% apply spaceless %}
     {% set widget_addon_append = widget_addon_append|merge({'text': widget_addon_append.text|default('%')}) %}
     {{ block('form_widget_simple') }}
-{% endspaceless %}
+{% endapply %}
 {% endblock percent_widget %}
 
 {% block money_widget %}
-{% spaceless %}
+{% apply spaceless %}
     {% set widget_addon_prepend = (widget_addon_prepend != false or widget_addon_prepend == null) and money_pattern != '{{ widget }}' ? {'text': money_pattern|replace({ '{{ widget }}': ''})|trim} : widget_addon_prepend|default(null) %}
     {{ block('form_widget_simple') }}
-{% endspaceless %}
+{% endapply %}
 {% endblock money_widget %}
 
 {% block file_widget %}
-{% spaceless %}
+{% apply spaceless %}
 {% set type = type|default('file') %}
     {% if widget_addon_prepend|default(null) is not null %}
         {% set widget_addon = widget_addon_prepend %}
@@ -426,13 +426,13 @@
         {{ block('widget_addon') }}
     {% endif %}
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock file_widget %}
 
 {# Labels #}
 
 {% block form_legend %}
-{% spaceless %}
+{% apply spaceless %}
     {% if label is empty %}
         {%- if label_format is defined and label_format is not empty -%}
             {% set label = label_format|replace({
@@ -444,12 +444,12 @@
         {%- endif -%}
     {% endif %}
     <{{ legend_tag }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</{{ legend_tag }}>
-{% endspaceless %}
+{% endapply %}
 {% endblock form_legend %}
 
 {% block form_label %}
 {% if 'checkbox' not in block_prefixes or widget_checkbox_label in ['label', 'both'] %}
-{% spaceless %}
+{% apply spaceless %}
     {% if label is not same as(false) %}
         {% if label is empty %}
             {%- if label_format is defined and label_format is not empty -%}
@@ -492,7 +492,7 @@
         </div>
         {% endif %}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endif %}
 {% endblock form_label %}
 
@@ -548,7 +548,7 @@
 {% endblock %}
 
 {% block form_rows_visible %}
-{% spaceless %}
+{% apply spaceless %}
      {% if errors|length > 0 %}
         <div class="symfony-form-errors">
             {{ form_errors(form) }}
@@ -559,11 +559,11 @@
             {{ form_row(child) }}
         {% endif %}
     {% endfor %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_rows_visible %}
 
 {% block form_row %}
-{% spaceless %}
+{% apply spaceless %}
     {% if 'tab' in form.vars.block_prefixes %}
         {{ block('form_tab') }}
     {% elseif embed_form is same as(true) %}
@@ -595,25 +595,25 @@
         {% endif -%}
         {{ block('widget_form_group_end') }}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_row %}
 
 {# Support #}
 
 {% block form_message %}
-{% spaceless %}
+{% apply spaceless %}
     {{ form_errors(form) }}
 
     {% if ('checkbox' not in block_prefixes or widget_checkbox_label != 'label') and help_block %}
         {{ block('form_help') }}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_message %}
 
 {# Help #}
 
 {% block form_help %}
-{% spaceless %}
+{% apply spaceless %}
     {% if help_block %}<p class="help-block">{{ help_block|trans({}, translation_domain)|raw }}</p>{%endif %}
     {% if help_block_tooltip.title %}
         &nbsp;{{ block('help_block_tooltip') }}
@@ -621,21 +621,21 @@
     {% if help_block_popover.title %}
         &nbsp;{{ block('help_block_popover') }}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_help %}
 
 {% block form_widget_add_btn %}
-{% spaceless %}
+{% apply spaceless %}
     {% if widget_add_btn|default(null) %}
         {% set button_type = 'add' %}
         {% set button_values = widget_add_btn %}
         {{ block('collection_button') }}
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_widget_add_btn %}
 
 {% block form_widget_remove_btn %}
-{% spaceless %}
+{% apply spaceless %}
     {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not same as(false) %}
         <div class="{{ widget_remove_btn.wrapper_div.class }}">
     {% endif %}
@@ -653,7 +653,7 @@
     {% if widget_remove_btn.wrapper_div is defined and widget_remove_btn.wrapper_div is not same as(false) %}
         </div>
     {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_widget_remove_btn %}
 
 {% block collection_button %}
@@ -677,15 +677,15 @@
 {% endblock label_asterisk %}
 
 {% block widget_addon %}
-{% spaceless %}
+{% apply spaceless %}
 {% set widget_addon_icon = widget_addon.icon is defined ? widget_addon.icon : null  %}
 {% set widget_addon_icon_inverted = widget_addon.icon_inverted is defined ? widget_addon.icon_inverted : false  %}
     <span class="input-group-addon">{{ (widget_addon.text|default(false) ? widget_addon.text|trans({}, translation_domain)|raw : mopa_bootstrap_icon(widget_addon_icon, widget_addon_icon_inverted)) }}</span>
-{% endspaceless %}
+{% endapply %}
 {% endblock widget_addon %}
 
 {% block widget_btns %}
-{% spaceless %}
+{% apply spaceless %}
     <span class="input-group-btn">
     {% for widget_btn in widget_btns %}
         <button type="{{ widget_btn.type | default('button') }}" class="{{ 'btn ' ~ widget_btn.class | default('btn-default') }}">
@@ -695,13 +695,13 @@
         {{ widget_btn.label | default("") | trans({}, translation_domain) }}</button>
     {% endfor %}
     </span>
-{% endspaceless %}
+{% endapply %}
 {% endblock widget_btns %}
 
 {# Errors #}
 
 {% block form_errors %}
-{% spaceless %}
+{% apply spaceless %}
 {% if error_delay %}
     {% for child in form %}
         {% if loop.index == 1 %}
@@ -724,13 +724,13 @@
         {% endif %}
     {% endif %}
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock form_errors %}
 
 {# used to determine which type of error #}
 
 {% block error_type %}
-{% spaceless %}
+{% apply spaceless %}
 {% if error_type %}
     {{ error_type }}
 {% elseif form.parent == null %}
@@ -738,7 +738,7 @@
 {% else %}
     block
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock error_type %}
 
 {# widget helper blocks #}
@@ -782,17 +782,17 @@
 {% endblock widget_form_group_start %}
 
 {% block help_widget_popover %}
- {% spaceless %}
+ {% apply spaceless %}
  {% for attrname,attrvalue in help_widget_popover %}
  data-{{attrname}}="{{attrvalue|trans({}, domain|default('messages'))}}"
  {% endfor %}
- {% endspaceless %}
+ {% endapply %}
 {% endblock help_widget_popover %}
 
 {% block widget_form_group_end %}
-{% spaceless %}
+{% apply spaceless %}
 {% if widget_form_group|default(false) or form.parent == null %}
     </div>
 {% endif %}
-{% endspaceless %}
+{% endapply %}
 {% endblock widget_form_group_end %}
