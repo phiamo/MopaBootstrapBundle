@@ -1,7 +1,7 @@
 {% extends '@KnpMenu/menu.html.twig' %}
 
 {% block linkElement %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% import 'knp_menu.html.twig' as macros %}
         <a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
             {% if item.extras.icon|default(false) %}
@@ -16,5 +16,5 @@
                 <b class="caret"></b>
             {% endif -%}
         </a>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock %}
