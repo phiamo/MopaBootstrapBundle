@@ -31,7 +31,6 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
         parent::configure();
 
         $this
-            ->setName('mopa:bootstrap:symlink:less')
             ->setHelp(
                 <<<EOT
 The <info>mopa:bootstrap:symlink:less</info> command helps you checking and symlinking/mirroring the twitters/bootstrap library.
