@@ -22,7 +22,6 @@
             "/Tests/"
         ]
     },
-    "target-dir": "Mopa/Bundle/BootstrapBundle",
     "require": {
         "symfony/framework-bundle": "~2.3|~3.0|^4.0",
         "symfony/twig-bundle": "~2.3|~3.0|^4.0",
