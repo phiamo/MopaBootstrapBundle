@@ -32,7 +32,6 @@ class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
         parent::configure();
 
         $this
-            ->setName('mopa:bootstrap:symlink:sass')
             ->setHelp(
                 <<<EOT
 The <info>mopa:bootstrap:symlink:sass</info> command helps you checking and symlinking/mirroring the twbs/bootstrap-sass library.

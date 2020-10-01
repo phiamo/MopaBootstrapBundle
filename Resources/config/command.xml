@@ -2,12 +2,16 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand" class="Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkLessCommand" public="true">
+            <argument>%mopa_bootstrap.bootstrap.install_path%</argument>
             <tag name="console.command"/>
         </service>
         <service id="Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand" class="Mopa\Bundle\BootstrapBundle\Command\BootstrapSymlinkSassCommand" public="true">
+            <argument>%mopa_bootstrap.bootstrap.install_path%</argument>
             <tag name="console.command"/>
         </service>
         <service id="Mopa\Bundle\BootstrapBundle\Command\InstallFontCommand" class="Mopa\Bundle\BootstrapBundle\Command\InstallFontCommand" public="true">
+            <argument type="service" id="kernel"/>
+            <argument>%mopa_bootstrap.icons.icon_set%</argument>
             <tag name="console.command"/>
         </service>
     </services>

@@ -13,7 +13,7 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
 
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -25,7 +25,7 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * @author phiamo <phiamo@googlemail.com>
  */
-abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
+abstract class BaseBootstrapSymlinkCommand extends Command
 {
     public static $mopaBootstrapBundleName = 'mopa/bootstrap-bundle';
     public static $targetSuffix = '';
@@ -38,6 +38,18 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
      * @var OutputInterface
      */
     protected $output;
+
+    /**
+     * @var string
+     */
+    private $bootstrapInstallPath;
+
+    public function __construct($bootstrapInstallPath)
+    {
+        $this->bootstrapInstallPath = $bootstrapInstallPath;
+
+        parent::__construct();
+    }
 
     /**
      * Checks symlink's existence.
@@ -127,6 +139,7 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
+            ->setName(static::$defaultName)
             ->setDescription('Check and if possible install symlink to '.static::$targetSuffix)
             ->addArgument('pathTo'.static::$pathName, InputArgument::OPTIONAL, 'Where is twitters/bootstrap located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
@@ -154,10 +167,9 @@ abstract class BaseBootstrapSymlinkCommand extends ContainerAwareCommand
         if ($input->getOption('manual')) {
             list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsFromUser();
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
-            $targetPath = $this->getContainer()->getParameter('mopa_bootstrap.bootstrap.install_path');
             $cmanager = new ComposerPathFinder($composer);
             $options = [
-                'targetSuffix' => DIRECTORY_SEPARATOR.$targetPath.static::$targetSuffix,
+                'targetSuffix' => DIRECTORY_SEPARATOR.$this->bootstrapInstallPath.static::$targetSuffix,
                 'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
             ];
             list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
