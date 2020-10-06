@@ -55,7 +55,7 @@ class DatetimeTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (method_exists($resolver, 'setDefined')) {
+        if (\method_exists($resolver, 'setDefined')) {
             $resolver->setDefined([
                 'datetimepicker',
                 'widget_reset_icon',
@@ -73,7 +73,7 @@ class DatetimeTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? DateTimeType::class
             : 'datetime' // SF <2.8 BC
         ;

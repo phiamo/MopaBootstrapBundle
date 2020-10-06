@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder(self::KEY);
         // Keep compatibility with symfony/config < 4.2
-        $rootNode = !method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->root(self::KEY) : $treeBuilder->getRootNode();
+        $rootNode = !\method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->root(self::KEY) : $treeBuilder->getRootNode();
 
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
@@ -252,11 +252,11 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('icon_set')
-                            ->info('Icon set to use: '.json_encode($iconSets))
+                            ->info('Icon set to use: '.\json_encode($iconSets))
                             ->defaultValue('glyphicons')
                             ->validate()
                                 ->ifNotInArray($iconSets)
-                                ->thenInvalid('Must choose one of '.json_encode($iconSets))
+                                ->thenInvalid('Must choose one of '.\json_encode($iconSets))
                             ->end()
                         ->end()
                         ->scalarNode('shortcut')
@@ -384,7 +384,7 @@ class Configuration implements ConfigurationInterface
     protected function addFlashConfig(ArrayNodeDefinition $rootNode)
     {
         $fnTest = function ($v) {
-            return !is_array($v);
+            return !\is_array($v);
         };
         $fnThen = function ($v) {
             return [$v];
@@ -438,7 +438,7 @@ class Configuration implements ConfigurationInterface
     {
         $builder = new TreeBuilder('tooltip');
         // Keep compatibility with symfony/config < 4.2
-        $node = !method_exists($builder, 'getRootNode') ? $builder->root('tooltip') : $builder->getRootNode();
+        $node = !\method_exists($builder, 'getRootNode') ? $builder->root('tooltip') : $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()
@@ -463,7 +463,7 @@ class Configuration implements ConfigurationInterface
     {
         $builder = new TreeBuilder('popover');
         // Keep compatibility with symfony/config < 4.2
-        $node = !method_exists($builder, 'getRootNode') ? $builder->root('popover') : $builder->getRootNode();
+        $node = !\method_exists($builder, 'getRootNode') ? $builder->root('popover') : $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()

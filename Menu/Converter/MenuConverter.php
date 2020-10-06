@@ -92,11 +92,11 @@ class MenuConverter
      */
     protected function getRootOptions(array $options)
     {
-        if (!in_array($options['automenu'], $this->possibleNavs, true)) {
-            throw new \RuntimeException("Value 'automenu' is '".$options['automenu']."' not one of ".implode("', '", $this->possibleNavs));
+        if (!\in_array($options['automenu'], $this->possibleNavs, true)) {
+            throw new \RuntimeException("Value 'automenu' is '".$options['automenu']."' not one of ".\implode("', '", $this->possibleNavs));
         }
 
-        return array_merge($options, [
+        return \array_merge($options, [
             $options['automenu'] => true, // navbar, pills etc => true
         ]);
     }
@@ -112,19 +112,19 @@ class MenuConverter
 
         $hasChildren = $item->hasChildren() && (!isset($options['depth']) || $options['depth'] > $item->getLevel());
 
-        if (in_array($options['automenu'], ['navbar'], true) && $hasChildren) {
+        if (\in_array($options['automenu'], ['navbar'], true) && $hasChildren) {
             $childOptions = [
                 'dropdown' => !isset($options['dropdown']) || $options['dropdown'],
                 'caret' => !isset($options['caret']) || $options['caret'],
             ];
         }
 
-        if (in_array($options['automenu'], ['list-group'], true)) {
+        if (\in_array($options['automenu'], ['list-group'], true)) {
             $childOptions = [
                 'list-group-item' => true,
             ];
         }
 
-        return array_merge($options, $childOptions);
+        return \array_merge($options, $childOptions);
     }
 }
