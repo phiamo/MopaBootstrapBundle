@@ -15,7 +15,6 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -87,23 +86,8 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_checkbox_label' => $this->options['checkbox_label'],
         ]);
 
-        if (\version_compare(Kernel::VERSION, '2.6', '>=')) {
-            $resolver->setAllowedValues('widget_type', ['inline', 'inline-btn', '']);
-            $resolver->setAllowedValues('widget_checkbox_label', ['label', 'widget', 'both']);
-        } else {
-            $resolver->setAllowedValues([
-                'widget_type' => [
-                    'inline',
-                    'inline-btn',
-                    '',
-                ],
-                'widget_checkbox_label' => [
-                    'label',
-                    'widget',
-                    'both',
-                ],
-            ]);
-        }
+        $resolver->setAllowedValues('widget_type', ['inline', 'inline-btn', '']);
+        $resolver->setAllowedValues('widget_checkbox_label', ['label', 'widget', 'both']);
     }
 
     /**

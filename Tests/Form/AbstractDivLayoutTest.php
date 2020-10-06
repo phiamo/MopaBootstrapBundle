@@ -35,7 +35,6 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
-use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
@@ -76,29 +75,10 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'fields.html.twig',
         ], $this->environment);
 
-        if (\version_compare(SymfonyKernel::VERSION, '3.0.0', '<')) {
-            $this->setUpVersion2();
-        } else {
-            $this->setUpVersion3Plus();
-        }
+        $this->setUpVersion4Plus();
     }
 
-    private function setUpVersion2()
-    {
-        $csrfProvider = $this->getMockBuilder('Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface')->getMock();
-        $this->renderer = new TwigRenderer($this->rendererEngine, $csrfProvider);
-        $this->environment->addExtension($extension = new FormExtension($this->renderer));
-        $extension->initRuntime($this->environment);
-
-        // Add runtime loader
-        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
-        $loader->expects($this->any())->method('load')->will($this->returnValueMap([
-            ['Symfony\Bridge\Twig\Form\TwigRenderer', $this->renderer],
-        ]));
-        $this->environment->addRuntimeLoader($loader);
-    }
-
-    private function setUpVersion3Plus()
+    private function setUpVersion4Plus()
     {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
         $loaders = [

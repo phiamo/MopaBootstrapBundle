@@ -18,7 +18,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -75,14 +74,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $finder = new Finder();
-
-        if (Kernel::VERSION_ID >= 40200) {
-            $webPath = $this->kernel->getProjectDir().DIRECTORY_SEPARATOR.'web';
-        } else {
-            $webPath = $this->kernel->getRootDir().DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web';
-        }
-
-        $iconWebPath = $webPath.DIRECTORY_SEPARATOR.'fonts';
+        $iconWebPath = $this->kernel->getProjectDir().DIRECTORY_SEPARATOR.'web'.DIRECTORY_SEPARATOR.'fonts';
 
         $fs = new Filesystem();
 
