@@ -60,7 +60,7 @@ class IconButtonExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? ButtonType::class
             : 'form' // SF <2.8 BC
         ;

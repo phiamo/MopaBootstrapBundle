@@ -54,7 +54,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        $view->vars = array_replace($view->vars, [
+        $view->vars = \array_replace($view->vars, [
             'layout' => $layout,
             'horizontal' => 'horizontal' === $layout, // BC
             'horizontal_label_class' => $options['horizontal_label_class'],
@@ -105,7 +105,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
 
         $allowedValues = [false, null, 'horizontal', 'inline'];
 
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             $resolver->setAllowedValues('layout', $allowedValues);
         } else {
             $resolver->setAllowedValues(['layout' => $allowedValues]); // SF <2.8 BC
@@ -117,7 +117,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? FormType::class
             : 'form' // SF <2.8 BC
         ;

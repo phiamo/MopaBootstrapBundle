@@ -47,7 +47,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
         $view->vars['help_block'] = $options['help_block'];
         $view->vars['help_label'] = $options['help_label'];
 
-        if (null !== $options['help_label_tooltip'] && !is_array($options['help_label_tooltip'])) {
+        if (null !== $options['help_label_tooltip'] && !\is_array($options['help_label_tooltip'])) {
             throw new InvalidArgumentException('The "help_label_tooltip" option must be an "array".');
         }
 
@@ -66,7 +66,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        if (null !== $options['help_label_popover'] && !is_array($options['help_label_popover'])) {
+        if (null !== $options['help_label_popover'] && !\is_array($options['help_label_popover'])) {
             throw new InvalidArgumentException('The "help_label_popover" option must be an "array".');
         }
 
@@ -88,7 +88,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        if (null !== $options['help_block_tooltip'] && !is_array($options['help_block_tooltip'])) {
+        if (null !== $options['help_block_tooltip'] && !\is_array($options['help_block_tooltip'])) {
             throw new InvalidArgumentException('The "help_block_tooltip" option must be an "array".');
         }
 
@@ -107,7 +107,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        if (null !== $options['help_block_popover'] && !is_array($options['help_block_popover'])) {
+        if (null !== $options['help_block_popover'] && !\is_array($options['help_block_popover'])) {
             throw new InvalidArgumentException('The "help_block_popover" option must be an "array".');
         }
 
@@ -129,7 +129,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             }
         }
 
-        if (null !== $options['help_widget_popover'] && !is_array($options['help_widget_popover'])) {
+        if (null !== $options['help_widget_popover'] && !\is_array($options['help_widget_popover'])) {
             throw new InvalidArgumentException('The "help_widget_popover" option must be an "array".');
         }
 
@@ -192,7 +192,7 @@ class HelpFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? FormType::class
             : 'form' // SF <2.8 BC
         ;

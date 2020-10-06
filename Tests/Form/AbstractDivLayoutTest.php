@@ -59,9 +59,9 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         parent::setUp();
 
-        $reflectionClass = class_exists('Symfony\Bridge\Twig\Form\TwigRenderer') ? 'Symfony\Bridge\Twig\Form\TwigRenderer' : 'Symfony\Bridge\Twig\Form\TwigRendererEngine';
+        $reflectionClass = \class_exists('Symfony\Bridge\Twig\Form\TwigRenderer') ? 'Symfony\Bridge\Twig\Form\TwigRenderer' : 'Symfony\Bridge\Twig\Form\TwigRendererEngine';
         $reflection = new \ReflectionClass($reflectionClass);
-        $bridgeDirectory = dirname($reflection->getFileName()).'/../Resources/views/Form';
+        $bridgeDirectory = \dirname($reflection->getFileName()).'/../Resources/views/Form';
 
         $loader = new \Twig_Loader_Filesystem([
             $bridgeDirectory,
@@ -81,7 +81,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'fields.html.twig',
         ], $this->environment);
 
-        if (version_compare(SymfonyKernel::VERSION, '3.0.0', '<')) {
+        if (\version_compare(SymfonyKernel::VERSION, '3.0.0', '<')) {
             $this->setUpVersion2();
         } else {
             $this->setUpVersion3Plus();
@@ -114,7 +114,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         $runtime = 'Symfony\Component\Form\FormRenderer';
 
-        if (class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
+        if (\class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
             $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function () use ($csrfProvider) {
                 return new TwigRenderer($this->rendererEngine, $csrfProvider);
             };
@@ -299,7 +299,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             // the top level
             $dom->loadXml('<root>'.$html.'</root>');
         } catch (\Exception $e) {
-            $this->fail(sprintf(
+            $this->fail(\sprintf(
                 "Failed loading HTML:\n\n%s\n\nError: %s",
                 $html,
                 $e->getMessage()
@@ -309,13 +309,13 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         $nodeList = $xpath->evaluate('/root'.$expression);
 
         $dom->formatOutput = true;
-        $this->assertTrue($nodeList->length === $count, sprintf(
+        $this->assertTrue($nodeList->length === $count, \sprintf(
             "Failed asserting that \n\n%s\n\nmatches exactly %s. Matches %s in \n\n%s",
             $expression,
             $count == 1 ? 'once' : $count.' times',
             $nodeList->length == 1 ? 'once' : $nodeList->length.' times',
             // strip away <root> and </root>
-            substr($dom->saveHTML(), 6, -8)
+            \substr($dom->saveHTML(), 6, -8)
         ));
     }
 
@@ -326,7 +326,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
      */
     protected function removeBreaks($html)
     {
-        return str_replace('&nbsp;', '', $html);
+        return \str_replace('&nbsp;', '', $html);
     }
 
     /**
@@ -369,7 +369,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
     protected function getFormType($name)
     {
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             return $this->formTypeMap[$name];
         }
 
@@ -378,7 +378,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
     protected function getCollectionTypeKey()
     {
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             return 'entry_type';
         }
 
@@ -387,7 +387,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
     protected function getCollectionOptionsKey()
     {
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             return 'entry_options';
         }
 
