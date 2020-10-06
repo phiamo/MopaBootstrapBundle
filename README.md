@@ -11,6 +11,21 @@ MopaBootstrapBundle is a collection of code to integrate twitter's bootstrap
 
 To use MopaBootstrapBundle and Twitter's Bootstrap 3 in your project add it via [composer](Resources/doc/install/1-getting-started.md)
 
+Versions and dependencies
+-------------------------
+
+| MopaBootstrapBundle                                                                     | Bootstrap | Symfony                  |
+| --------------------------------------------------------------------------------------- | --------- | ------------------------ |
+| [**3.3**] (**master**)                                                                  | ^3.0      | ^2.3 \|\| ^3.0 \|\| ^4.0 |
+| [**3.2**] (*unmaintained*)                                                              | ^3.0      | ^2.3 \|\| ^3.0           |
+| [**3.1**] (*unmaintained*)                                                              | ^3.0      | ^2.3 \|\| ^3.0           |
+| [**3.0**] (*unmaintained*)                                                              | ^3.0      | ^2.3 \|\| ^3.0           |
+| [**2.3**] (*unmaintained*)                                                              | ^2.0      | ^2.3                     |
+| [**2.2**] (*unmaintained*)                                                              | ^2.0      | >=2.1,<2.4               |
+| [**2.1**] (*unmaintained*)                                                              | ^2.0      | ~2.1.0                   |
+| [**2.0**] (*unmaintained*)                                                              | ^2.0      | ~2.0.0                   |
+| [**1.x**] (*unmaintained*)                                                              | ^1.0      | ^2.0                     |
+
 Updates
 -------
 
