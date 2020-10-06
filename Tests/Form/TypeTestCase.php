@@ -51,7 +51,7 @@ class TypeTestCase extends KernelTestCase
     /**
      * Set up.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         self::bootKernel();
         $this->container = self::$kernel->getContainer();
