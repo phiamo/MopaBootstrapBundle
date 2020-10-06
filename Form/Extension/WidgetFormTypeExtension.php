@@ -44,11 +44,11 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (in_array('percent', $view->vars['block_prefixes']) && null === $options['widget_addon_append']) {
+        if (in_array('percent', $view->vars['block_prefixes'], true) && null === $options['widget_addon_append']) {
             $options['widget_addon_append'] = [];
         }
 
-        if (in_array('money', $view->vars['block_prefixes']) && null === $options['widget_addon_prepend']) {
+        if (in_array('money', $view->vars['block_prefixes'], true) && null === $options['widget_addon_prepend']) {
             $options['widget_addon_prepend'] = [];
         }
 

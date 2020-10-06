@@ -87,7 +87,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $tabs = [];
 
         foreach ($view->children as $child) {
-            if (in_array('tab', $child->vars['block_prefixes'])) {
+            if (in_array('tab', $child->vars['block_prefixes'], true)) {
                 $child->vars['tab_index'] = $tabIndex;
                 $valid = $child->vars['valid'];
 
