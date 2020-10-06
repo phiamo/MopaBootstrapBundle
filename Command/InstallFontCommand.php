@@ -58,7 +58,6 @@ class InstallFontCommand extends Command
     protected function configure()
     {
         $this
-            ->setName(self::$defaultName)
             ->setDescription('Install font to web/fonts')
             ->setHelp(
                 <<<EOT

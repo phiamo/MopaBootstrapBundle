@@ -139,7 +139,6 @@ abstract class BaseBootstrapSymlinkCommand extends Command
     protected function configure()
     {
         $this
-            ->setName(static::$defaultName)
             ->setDescription('Check and if possible install symlink to '.static::$targetSuffix)
             ->addArgument('pathTo'.static::$pathName, InputArgument::OPTIONAL, 'Where is twitters/bootstrap located?')
             ->addArgument('pathToMopaBootstrapBundle', InputArgument::OPTIONAL, 'Where is MopaBootstrapBundle located?')
