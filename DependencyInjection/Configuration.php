@@ -25,8 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder(self::KEY);
-        // Keep compatibility with symfony/config < 4.2
-        $rootNode = !\method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->root(self::KEY) : $treeBuilder->getRootNode();
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addFormConfig($rootNode);
         $this->addIconsConfig($rootNode);
@@ -45,9 +44,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('form')
                     ->children()
-                        ->booleanNode('allow_legacy')
-                            ->defaultFalse()
-                        ->end()
                         ->scalarNode('templating')
                             ->defaultValue('@MopaBootstrap/Form/fields.html.twig')
                         ->end()
@@ -437,8 +433,7 @@ class Configuration implements ConfigurationInterface
     protected function addTooltipNode()
     {
         $builder = new TreeBuilder('tooltip');
-        // Keep compatibility with symfony/config < 4.2
-        $node = !\method_exists($builder, 'getRootNode') ? $builder->root('tooltip') : $builder->getRootNode();
+        $node = $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()
@@ -462,8 +457,7 @@ class Configuration implements ConfigurationInterface
     protected function addPopoverNode()
     {
         $builder = new TreeBuilder('popover');
-        // Keep compatibility with symfony/config < 4.2
-        $node = !\method_exists($builder, 'getRootNode') ? $builder->root('popover') : $builder->getRootNode();
+        $node = $builder->getRootNode();
 
         return $node
             ->addDefaultsIfNotSet()

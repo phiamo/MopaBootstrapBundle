@@ -11,12 +11,15 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class SimpleDivLayoutTest extends AbstractDivLayoutTest
 {
     public function testHorizontalRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('email'), null, [
+            ->createNamed('name', EmailType::class, null, [
                 'layout' => 'horizontal',
             ])
             ->createView()
@@ -38,7 +41,7 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
     public function testInlineRow()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'horizontal' => false,
             ])
             ->createView()

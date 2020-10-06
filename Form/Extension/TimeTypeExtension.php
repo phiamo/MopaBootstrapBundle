@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Time type.
@@ -42,41 +41,13 @@ class TimeTypeExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (\method_exists($resolver, 'setDefined')) {
-            $resolver->setDefined([
-                'timepicker',
-                'widget_reset_icon',
-            ]);
-        } else { // Symfony <2.6 BC
-            $resolver->setOptional([
-                'timepicker',
-                'widget_reset_icon',
-            ]);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? TimeType::class
-            : 'form' // SF <2.8 BC
-        ;
+        $resolver->setDefined([
+            'timepicker',
+            'widget_reset_icon',
+        ]);
     }
 
     /**

@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Button Icons handling.
@@ -25,16 +24,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class IconButtonExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -53,17 +42,6 @@ class IconButtonExtension extends AbstractTypeExtension
     {
         $view->vars['icon'] = $options['icon'];
         $view->vars['icon_inverted'] = $options['icon_inverted'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? ButtonType::class
-            : 'form' // SF <2.8 BC
-        ;
     }
 
     /**

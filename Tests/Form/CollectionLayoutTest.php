@@ -11,6 +11,10 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class CollectionLayoutTest extends AbstractDivLayoutTest
 {
     /**
@@ -18,11 +22,11 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
      */
     public function testDefaultCollection()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+        $view = $this->factory->createNamedBuilder('name', FormType::class, [
             'names' => ['name1', 'name2', 'name3'],
         ])
-            ->add('names', $this->getFormType('collection'), [
-                $this->getCollectionTypeKey() => $this->getFormType('text'),
+            ->add('names', CollectionType::class, [
+                'entry_type' => TextType::class,
             ])
             ->getForm()
             ->createView()
@@ -104,12 +108,12 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
      */
     public function testChildrenNotHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+        $view = $this->factory->createNamedBuilder('name', FormType::class, [
             'names' => ['name1', 'name2', 'name3'],
         ])
-            ->add('names', $this->getFormType('collection'), [
-                $this->getCollectionTypeKey() => $this->getFormType('text'),
-                $this->getCollectionOptionsKey() => ['horizontal' => false],
+            ->add('names', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => ['horizontal' => false],
             ])
             ->getForm()
             ->createView()
@@ -182,12 +186,12 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
      */
     public function testChildrenHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+        $view = $this->factory->createNamedBuilder('name', FormType::class, [
             'names' => ['name1', 'name2', 'name3'],
         ])
-            ->add('names', $this->getFormType('collection'), [
-                $this->getCollectionTypeKey() => $this->getFormType('text'),
-                $this->getCollectionOptionsKey() => ['layout' => 'horizontal'],
+            ->add('names', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => ['layout' => 'horizontal'],
                 'layout' => false,
             ])
             ->getForm()
@@ -268,11 +272,11 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
      */
     public function testAllNotHorizontal()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), [
+        $view = $this->factory->createNamedBuilder('name', FormType::class, [
             'names' => ['name1', 'name2', 'name3'],
         ])
-            ->add('names', $this->getFormType('collection'), [
-                $this->getCollectionTypeKey() => $this->getFormType('text'),
+            ->add('names', CollectionType::class, [
+                'entry_type' => TextType::class,
                 'layout' => false,
             ])
             ->getForm()

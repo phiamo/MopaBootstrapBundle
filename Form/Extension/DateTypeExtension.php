@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Date type.
@@ -57,45 +56,17 @@ class DateTypeExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (\method_exists($resolver, 'setDefined')) {
-            $resolver->setDefined([
-                'datepicker',
-                'widget_reset_icon',
-            ]);
-        } else { // Symfony <2.6 BC
-            $resolver->setOptional([
-                'datepicker',
-                'widget_reset_icon',
-            ]);
-        }
+        $resolver->setDefined([
+            'datepicker',
+            'widget_reset_icon',
+        ]);
 
         $resolver->setDefaults([
             'date_wrapper_class' => $this->options['date_wrapper_class'],
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? DateType::class
-            : 'date' // SF <2.8 BC
-        ;
     }
 
     /**

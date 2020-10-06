@@ -15,7 +15,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Type for FormTab handling.
@@ -24,16 +23,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class TabType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -57,16 +46,6 @@ class TabType extends AbstractType
         $view->vars['disabled'] = $options['disabled'];
 
         $view->parent->vars['tabbed'] = true;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * SF <2.8 BC
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     /**

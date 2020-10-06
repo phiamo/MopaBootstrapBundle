@@ -28,12 +28,13 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
-use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
@@ -41,13 +42,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected $rendererEngine;
     protected $environment;
     protected $tabFactory;
-    protected $formTypeMap = [
-        'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-        'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
-        'collection' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-        'tab' => 'Mopa\Bundle\BootstrapBundle\Form\Type\TabType',
-    ];
 
     /**
      * @throws \Twig_Error_Loader
@@ -81,29 +75,10 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'fields.html.twig',
         ], $this->environment);
 
-        if (\version_compare(SymfonyKernel::VERSION, '3.0.0', '<')) {
-            $this->setUpVersion2();
-        } else {
-            $this->setUpVersion3Plus();
-        }
+        $this->setUpVersion4Plus();
     }
 
-    private function setUpVersion2()
-    {
-        $csrfProvider = $this->getMockBuilder('Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface')->getMock();
-        $this->renderer = new TwigRenderer($this->rendererEngine, $csrfProvider);
-        $this->environment->addExtension($extension = new FormExtension($this->renderer));
-        $extension->initRuntime($this->environment);
-
-        // Add runtime loader
-        $loader = $this->getMockBuilder('Twig_RuntimeLoaderInterface')->getMock();
-        $loader->expects($this->any())->method('load')->will($this->returnValueMap([
-            ['Symfony\Bridge\Twig\Form\TwigRenderer', $this->renderer],
-        ]));
-        $this->environment->addRuntimeLoader($loader);
-    }
-
-    private function setUpVersion3Plus()
+    private function setUpVersion4Plus()
     {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
         $loaders = [
@@ -137,7 +112,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         return [new PreloadedExtension([
             'tab' => new TabType(),
         ], [
-            $this->getFormType('form') => [
+            FormType::class => [
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
                 $this->getLegendFormTypeExtension(),
@@ -147,7 +122,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getTabbedFormTypeExtension(),
                 $this->getWidgetCollectionFormTypeExtension(),
             ],
-            $this->getFormType('text') => [
+            TextType::class => [
                 $this->getStaticTextFormTypeExtension(),
             ],
         ])];
@@ -365,32 +340,5 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
 
         return (string) $this->renderer->searchAndRenderBlock($view, 'label', $vars);
-    }
-
-    protected function getFormType($name)
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return $this->formTypeMap[$name];
-        }
-
-        return $name;
-    }
-
-    protected function getCollectionTypeKey()
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'entry_type';
-        }
-
-        return 'type';
-    }
-
-    protected function getCollectionOptionsKey()
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'entry_options';
-        }
-
-        return 'options';
     }
 }

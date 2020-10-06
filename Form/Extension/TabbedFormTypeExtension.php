@@ -18,7 +18,6 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Adding Tabs to Form type.
@@ -42,16 +41,6 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
     {
         $this->formFactory = $formFactory;
         $this->options = $options;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**
@@ -112,11 +101,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $activeTab->vars['tab_active'] = true;
         $tabs[$activeTab->vars['tab_index']]['active'] = true;
 
-        $tabsType = \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Mopa\Bundle\BootstrapBundle\Form\Type\TabsType'
-            : new TabsType() // SF <2.8 BC
-        ;
-        $tabsForm = $this->formFactory->create($tabsType, null, [
+        $tabsForm = $this->formFactory->create(TabsType::class, null, [
             'tabs' => $tabs,
             'attr' => [
                 'class' => $options['tabs_class'],
@@ -126,17 +111,6 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $view->vars['tabs'] = $tabs;
         $view->vars['tabbed'] = true;
         $view->vars['tabsView'] = $tabsForm->createView();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? FormType::class
-            : 'form' // SF <2.8 BC
-        ;
     }
 
     /**

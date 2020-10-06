@@ -46,29 +46,13 @@ class MopaBootstrapExtension extends Extension
             $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
                 if (\is_array($value)) {
-                    $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $config['form'][$key]);
+                    $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $value);
                 } else {
                     $container->setParameter(
                         'mopa_bootstrap.form.'.$key,
                         $value
                     );
                 }
-            }
-
-            // Get legacy bit
-            $allowLegacy = $container->getParameter('mopa_bootstrap.form.allow_legacy');
-            $addLegacy = $allowLegacy || !\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
-
-            // Set tags
-            $types = [
-                'mopa_bootstrap.form.type.tab' => 'tab',
-                'mopa_bootstrap.form.type.form_actions' => 'form_actions',
-            ];
-
-            foreach ($types as $type => $alias) {
-                $legacyTag = $addLegacy ? ['alias' => $alias] : [];
-                $typeDefinition = $container->getDefinition($type);
-                $typeDefinition->addTag('form.type', $legacyTag);
             }
         }
 

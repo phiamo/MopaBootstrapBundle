@@ -6,23 +6,19 @@
 
     <services>
         <service id="mopa_bootstrap.form.type_extension.embed_form" class="Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.static_text" class="Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.offset_button" class="Mopa\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="button" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.button" class="Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="button" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.help" class="Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension">
@@ -34,8 +30,7 @@
                 <argument key="help_widget_popover">%mopa_bootstrap.form.help_widget.popover%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.legend" class="Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension">
@@ -48,8 +43,7 @@
                 <argument key="render_optional_text">%mopa_bootstrap.form.render_optional_text%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.error" class="Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension">
@@ -57,8 +51,7 @@
                 <argument key="error_type">%mopa_bootstrap.form.error_type%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.widget" class="Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension">
@@ -66,8 +59,7 @@
                 <argument key="checkbox_label">%mopa_bootstrap.form.checkbox_label%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.horizontal" class="Mopa\Bundle\BootstrapBundle\Form\Extension\LayoutFormTypeExtension">
@@ -79,8 +71,7 @@
                 <argument key="horizontal_input_wrapper_class">%mopa_bootstrap.form.horizontal_input_wrapper_class%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.widget_collection" class="Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension">
@@ -90,8 +81,7 @@
                 <argument key="widget_remove_btn">%mopa_bootstrap.form.collection.widget_remove_btn%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.date" class="Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension">
@@ -103,18 +93,15 @@
                 </argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="date" extended-type="Symfony\Component\Form\Extension\Core\Type\DateType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.datetime" class="Mopa\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="datetime" extended-type="Symfony\Component\Form\Extension\Core\Type\DateTimeType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.time" class="Mopa\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension">
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="time" extended-type="Symfony\Component\Form\Extension\Core\Type\TimeType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type_extension.tabbed" class="Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension">
@@ -123,16 +110,15 @@
                 <argument key="class">%mopa_bootstrap.form.tabs.class%</argument>
             </argument>
 
-            <!-- "alias" option for SF <2.8 -->
-            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" />
         </service>
 
         <service id="mopa_bootstrap.form.type.tab" class="Mopa\Bundle\BootstrapBundle\Form\Type\TabType">
-            <!-- form.type tag added dynamically -->
+            <tag name="form.type" />
         </service>
 
         <service id="mopa_bootstrap.form.type.form_actions" class="Mopa\Bundle\BootstrapBundle\Form\Type\FormActionsType">
-            <!-- form.type tag added dynamically -->
+            <tag name="form.type" />
         </service>
     </services>
 </container>
