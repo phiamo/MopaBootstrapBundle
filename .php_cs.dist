@@ -1,8 +1,18 @@
 <?php
 
+$header = <<<EOF
+This file is part of the MopaBootstrapBundle.
+
+(c) Philipp A. Mohrenweiser <phiamo@googlemail.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+EOF;
+
 return PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
+        'header_comment' => ['header' => $header],
         'full_opening_tag' => false,
         'yoda_style' => false,
         'array_syntax' => ['syntax' => 'short'],
