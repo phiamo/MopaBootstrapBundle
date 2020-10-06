@@ -46,7 +46,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     /**
      * @throws \Twig_Error_Loader
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         // Setup factory for tabs
         $this->tabFactory = Forms::createFormFactory();
