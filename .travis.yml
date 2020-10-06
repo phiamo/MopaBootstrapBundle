@@ -9,6 +9,7 @@ matrix:
       env: SYMFONY_REQUIRE="^4.4"
     - php: 7.3
     - php: 7.4
+    - php: nightly
 
 cache:
   directories:
