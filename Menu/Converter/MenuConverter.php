@@ -92,7 +92,7 @@ class MenuConverter
      */
     protected function getRootOptions(array $options)
     {
-        if (!in_array($options['automenu'], $this->possibleNavs)) {
+        if (!in_array($options['automenu'], $this->possibleNavs, true)) {
             throw new \RuntimeException("Value 'automenu' is '".$options['automenu']."' not one of ".implode("', '", $this->possibleNavs));
         }
 
@@ -112,14 +112,14 @@ class MenuConverter
 
         $hasChildren = $item->hasChildren() && (!isset($options['depth']) || $options['depth'] > $item->getLevel());
 
-        if (in_array($options['automenu'], ['navbar']) && $hasChildren) {
+        if (in_array($options['automenu'], ['navbar'], true) && $hasChildren) {
             $childOptions = [
                 'dropdown' => !isset($options['dropdown']) || $options['dropdown'],
                 'caret' => !isset($options['caret']) || $options['caret'],
             ];
         }
 
-        if (in_array($options['automenu'], ['list-group'])) {
+        if (in_array($options['automenu'], ['list-group'], true)) {
             $childOptions = [
                 'list-group-item' => true,
             ];
