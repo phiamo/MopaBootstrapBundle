@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Datetime type.
@@ -42,41 +41,13 @@ class DatetimeTypeExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (\method_exists($resolver, 'setDefined')) {
-            $resolver->setDefined([
-                'datetimepicker',
-                'widget_reset_icon',
-            ]);
-        } else { // Symfony <2.6 BC
-            $resolver->setOptional([
-                'datetimepicker',
-                'widget_reset_icon',
-            ]);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? DateTimeType::class
-            : 'datetime' // SF <2.8 BC
-        ;
+        $resolver->setDefined([
+            'datetimepicker',
+            'widget_reset_icon',
+        ]);
     }
 
     /**

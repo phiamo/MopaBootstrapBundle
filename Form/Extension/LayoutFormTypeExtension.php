@@ -17,7 +17,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension to customize forms layout.
@@ -74,16 +73,6 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -103,24 +92,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
             'horizontal_label_div_class' => $this->options['horizontal_label_div_class'],
         ]);
 
-        $allowedValues = [false, null, 'horizontal', 'inline'];
-
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $resolver->setAllowedValues('layout', $allowedValues);
-        } else {
-            $resolver->setAllowedValues(['layout' => $allowedValues]); // SF <2.8 BC
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? FormType::class
-            : 'form' // SF <2.8 BC
-        ;
+        $resolver->setAllowedValues('layout', [false, null, 'horizontal', 'inline']);
     }
 
     /**

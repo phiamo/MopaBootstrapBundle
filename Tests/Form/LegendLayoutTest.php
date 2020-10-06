@@ -11,12 +11,15 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class LegendLayoutTest extends AbstractDivLayoutTest
 {
     public function testAsterisk()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'render_required_asterisk' => true,
             ])
             ->createView()
@@ -35,8 +38,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testRenderFieldset()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'))
-            ->add('field1', $this->getFormType('text'))
+        $view = $this->factory->createNamedBuilder('name', FormType::class)
+            ->add('field1', TextType::class)
             ->getForm()
             ->createView()
         ;
@@ -59,8 +62,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderFieldset()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['render_fieldset' => false])
-            ->add('field1', $this->getFormType('text'))
+        $view = $this->factory->createNamedBuilder('name', FormType::class, null, ['render_fieldset' => false])
+            ->add('field1', TextType::class)
             ->getForm()
             ->createView()
         ;
@@ -80,8 +83,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testRenderLegend()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'))
-            ->add('field1', $this->getFormType('text'))
+        $view = $this->factory->createNamedBuilder('name', FormType::class)
+            ->add('field1', TextType::class)
             ->getForm()
             ->createView()
         ;
@@ -105,8 +108,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testNoRenderLegend()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['show_legend' => false])
-            ->add('field1', $this->getFormType('text'))
+        $view = $this->factory->createNamedBuilder('name', FormType::class, null, ['show_legend' => false])
+            ->add('field1', TextType::class)
             ->getForm()
             ->createView()
         ;
@@ -129,8 +132,8 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
     public function testLegendTag()
     {
-        $view = $this->factory->createNamedBuilder('name', $this->getFormType('form'), null, ['legend_tag' => 'bar'])
-            ->add('field1', $this->getFormType('text'))
+        $view = $this->factory->createNamedBuilder('name', FormType::class, null, ['legend_tag' => 'bar'])
+            ->add('field1', TextType::class)
             ->getForm()
             ->createView()
         ;
@@ -155,7 +158,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
     public function testLabelRender()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'label_render' => false,
             ])
             ->createView()

@@ -11,13 +11,17 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class TabsTest extends AbstractDivLayoutTest
 {
     public function testAsterisk()
     {
-        $form = $this->factory->createNamedBuilder('form', $this->getFormType('form'));
-        $tab = $form->create('tab1', $this->getFormType('tab'));
-        $tab->add('test1', $this->getFormType('text'));
+        $form = $this->factory->createNamedBuilder('form', FormType::class);
+        $tab = $form->create('tab1', TabType::class);
+        $tab->add('test1', TextType::class);
         $form->add($tab);
 
         $view = $form->getForm()->createView();

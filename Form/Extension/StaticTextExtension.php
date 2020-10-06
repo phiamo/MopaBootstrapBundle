@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for creating static text (form-control-static).
@@ -27,24 +26,12 @@ class StaticTextExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            [
-                'static_text' => null,
-            ]
-        );
+        $resolver->setDefaults([
+            'static_text' => null,
+        ]);
     }
 
     /**
@@ -56,17 +43,6 @@ class StaticTextExtension extends AbstractTypeExtension
         if ($options['static_text'] === true) {
             $view->vars['disabled'] = true;
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? FormType::class
-            : 'form' // SF <2.8 BC
-        ;
     }
 
     /**

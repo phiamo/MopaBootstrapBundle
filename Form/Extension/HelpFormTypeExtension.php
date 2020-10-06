@@ -17,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Extension for Help Forms handling.
@@ -163,16 +162,6 @@ class HelpFormTypeExtension extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -185,17 +174,6 @@ class HelpFormTypeExtension extends AbstractTypeExtension
             'help_block_popover' => $this->options['help_block_popover'],
             'help_widget_popover' => $this->options['help_widget_popover'],
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getExtendedType()
-    {
-        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? FormType::class
-            : 'form' // SF <2.8 BC
-        ;
     }
 
     /**

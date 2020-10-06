@@ -28,6 +28,8 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
@@ -41,13 +43,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected $rendererEngine;
     protected $environment;
     protected $tabFactory;
-    protected $formTypeMap = [
-        'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
-        'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-        'email' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
-        'collection' => 'Symfony\Component\Form\Extension\Core\Type\CollectionType',
-        'tab' => 'Mopa\Bundle\BootstrapBundle\Form\Type\TabType',
-    ];
 
     /**
      * @throws \Twig_Error_Loader
@@ -137,7 +132,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         return [new PreloadedExtension([
             'tab' => new TabType(),
         ], [
-            $this->getFormType('form') => [
+            FormType::class => [
                 $this->getHelpFormTypeExtension(),
                 $this->getWidgetFormTypeExtension(),
                 $this->getLegendFormTypeExtension(),
@@ -147,7 +142,7 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
                 $this->getTabbedFormTypeExtension(),
                 $this->getWidgetCollectionFormTypeExtension(),
             ],
-            $this->getFormType('text') => [
+            TextType::class => [
                 $this->getStaticTextFormTypeExtension(),
             ],
         ])];
@@ -365,32 +360,5 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
         }
 
         return (string) $this->renderer->searchAndRenderBlock($view, 'label', $vars);
-    }
-
-    protected function getFormType($name)
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return $this->formTypeMap[$name];
-        }
-
-        return $name;
-    }
-
-    protected function getCollectionTypeKey()
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'entry_type';
-        }
-
-        return 'type';
-    }
-
-    protected function getCollectionOptionsKey()
-    {
-        if (\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'entry_options';
-        }
-
-        return 'options';
     }
 }

@@ -128,11 +128,11 @@
         </service>
 
         <service id="mopa_bootstrap.form.type.tab" class="Mopa\Bundle\BootstrapBundle\Form\Type\TabType">
-            <!-- form.type tag added dynamically -->
+            <tag name="form.type" />
         </service>
 
         <service id="mopa_bootstrap.form.type.form_actions" class="Mopa\Bundle\BootstrapBundle\Form\Type\FormActionsType">
-            <!-- form.type tag added dynamically -->
+            <tag name="form.type" />
         </service>
     </services>
 </container>

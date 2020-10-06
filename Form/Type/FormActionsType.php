@@ -17,7 +17,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class FormActionsType.
@@ -58,16 +57,6 @@ class FormActionsType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @deprecated Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -85,16 +74,6 @@ class FormActionsType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['button_offset'] = $options['button_offset'];
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * SF <2.8 BC
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     /**

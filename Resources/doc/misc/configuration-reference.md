@@ -6,7 +6,6 @@ Default configuration for extension with alias: "mopa_bootstrap"
 ```yaml
 mopa_bootstrap:
     form:
-        allow_legacy:         false
         templating:           @MopaBootstrap/Form/fields.html.twig
         # Default form layout
         layout:               ~ # One of false; "horizontal"

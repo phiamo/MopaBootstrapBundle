@@ -11,12 +11,14 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Tests\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class AddonLayoutTest extends AbstractDivLayoutTest
 {
     public function testTextPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'widget_addon_prepend' => [
                     'text' => 'foo',
                 ],
@@ -41,7 +43,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconPrepend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'widget_addon_prepend' => [
                     'icon' => 'cog',
                 ],
@@ -69,7 +71,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testTextAppend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'widget_addon_append' => [
                     'text' => 'foo',
                 ],
@@ -94,7 +96,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
     public function testIconAppend()
     {
         $view = $this->factory
-            ->createNamed('name', $this->getFormType('text'), null, [
+            ->createNamed('name', TextType::class, null, [
                 'widget_addon_append' => [
                     'icon' => 'cog',
                 ],

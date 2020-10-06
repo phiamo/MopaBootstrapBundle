@@ -36,12 +36,12 @@ public function buildForm(FormBuilderInterface $builder, array $options)
         ->add($social);
 }
 
-public function setDefaultOptions(OptionsResolverInterface $resolver)
+public function configureOptions(OptionsResolver $resolver)
 {
-    $resolver->setDefaults(array(
+    $resolver->setDefaults([
         'tabs_class' => 'nav nav-pills nav-stacked',
         'data_class' => 'Acme\Bundle\WebsiteBundle\Entity\User',
-    ));
+    ]);
 }
 ```
 
