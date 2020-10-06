@@ -87,7 +87,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $tabs = [];
 
         foreach ($view->children as $child) {
-            if (in_array('tab', $child->vars['block_prefixes'])) {
+            if (\in_array('tab', $child->vars['block_prefixes'], true)) {
                 $child->vars['tab_index'] = $tabIndex;
                 $valid = $child->vars['valid'];
 
@@ -112,7 +112,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
         $activeTab->vars['tab_active'] = true;
         $tabs[$activeTab->vars['tab_index']]['active'] = true;
 
-        $tabsType = method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        $tabsType = \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? 'Mopa\Bundle\BootstrapBundle\Form\Type\TabsType'
             : new TabsType() // SF <2.8 BC
         ;
@@ -133,7 +133,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? FormType::class
             : 'form' // SF <2.8 BC
         ;

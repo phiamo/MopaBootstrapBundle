@@ -55,7 +55,7 @@ class MenuDecorator
         if ($options['dropdown']) {
             $item
                 ->setUri('#')
-                ->setAttribute('class', trim('dropdown '.$item->getAttribute('class')))
+                ->setAttribute('class', \trim('dropdown '.$item->getAttribute('class')))
                 ->setLinkAttribute('class', 'dropdown-toggle')
                 ->setLinkAttribute('data-toggle', 'dropdown')
                 ->setChildrenAttribute('class', 'dropdown-menu')
@@ -100,7 +100,7 @@ class MenuDecorator
      */
     public function buildOptions(array $options)
     {
-        return array_merge([
+        return \array_merge([
             'navbar' => false,
             'navbar-right' => false,
             'pills' => false,

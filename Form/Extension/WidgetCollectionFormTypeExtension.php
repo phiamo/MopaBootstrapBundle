@@ -44,29 +44,29 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (in_array('collection', $view->vars['block_prefixes'])) {
-            if ($options['widget_add_btn'] !== null && !is_array($options['widget_add_btn'])) {
+        if (\in_array('collection', $view->vars['block_prefixes'], true)) {
+            if ($options['widget_add_btn'] !== null && !\is_array($options['widget_add_btn'])) {
                 throw new InvalidArgumentException('The "widget_add_btn" option must be an "array".');
             }
 
             if ((isset($options['allow_add']) && true === $options['allow_add']) && $options['widget_add_btn']) {
-                if (isset($options['widget_add_btn']['attr']) && !is_array($options['widget_add_btn']['attr'])) {
+                if (isset($options['widget_add_btn']['attr']) && !\is_array($options['widget_add_btn']['attr'])) {
                     throw new InvalidArgumentException('The "widget_add_btn.attr" option must be an "array".');
                 }
-                $options['widget_add_btn'] = array_replace_recursive($this->options['widget_add_btn'], $options['widget_add_btn']);
+                $options['widget_add_btn'] = \array_replace_recursive($this->options['widget_add_btn'], $options['widget_add_btn']);
             }
         }
 
-        if ($view->parent && in_array('collection', $view->parent->vars['block_prefixes'])) {
-            if ($options['widget_remove_btn'] !== null && !is_array($options['widget_remove_btn'])) {
+        if ($view->parent && \in_array('collection', $view->parent->vars['block_prefixes'], true)) {
+            if ($options['widget_remove_btn'] !== null && !\is_array($options['widget_remove_btn'])) {
                 throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
             }
 
             if ((isset($view->parent->vars['allow_delete']) && true === $view->parent->vars['allow_delete']) && $options['widget_remove_btn']) {
-                if (isset($options['widget_remove_btn']) && !is_array($options['widget_remove_btn'])) {
+                if (isset($options['widget_remove_btn']) && !\is_array($options['widget_remove_btn'])) {
                     throw new InvalidArgumentException('The "widget_remove_btn" option must be an "array".');
                 }
-                $options['widget_remove_btn'] = array_replace_recursive($this->options['widget_remove_btn'], $options['widget_remove_btn']);
+                $options['widget_remove_btn'] = \array_replace_recursive($this->options['widget_remove_btn'], $options['widget_remove_btn']);
             }
         }
 
@@ -104,7 +104,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? FormType::class
             : 'form' // SF <2.8 BC
         ;

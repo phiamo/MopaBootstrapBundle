@@ -71,7 +71,7 @@ class MenuExtension extends \Twig_Extension
      */
     public function renderMenu($menu, array $options = [], $renderer = null)
     {
-        $options = array_merge([
+        $options = \array_merge([
             'template' => $this->menuTemplate,
             'currentClass' => 'active',
             'ancestorClass' => 'active',
@@ -80,12 +80,12 @@ class MenuExtension extends \Twig_Extension
 
         if (!$menu instanceof ItemInterface) {
             $path = [];
-            if (is_array($menu)) {
+            if (\is_array($menu)) {
                 if (empty($menu)) {
                     throw new \InvalidArgumentException('The array cannot be empty');
                 }
                 $path = $menu;
-                $menu = array_shift($path);
+                $menu = \array_shift($path);
             }
 
             $menu = $this->helper->get($menu, $path, $options);

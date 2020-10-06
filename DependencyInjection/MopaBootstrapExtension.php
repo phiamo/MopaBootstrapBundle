@@ -45,7 +45,7 @@ class MopaBootstrapExtension extends Extension
         if (isset($config['form'])) {
             $loader->load('form.xml');
             foreach ($config['form'] as $key => $value) {
-                if (is_array($value)) {
+                if (\is_array($value)) {
                     $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $config['form'][$key]);
                 } else {
                     $container->setParameter(
@@ -57,7 +57,7 @@ class MopaBootstrapExtension extends Extension
 
             // Get legacy bit
             $allowLegacy = $container->getParameter('mopa_bootstrap.form.allow_legacy');
-            $addLegacy = $allowLegacy || !method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
+            $addLegacy = $allowLegacy || !\method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
 
             // Set tags
             $types = [
@@ -78,7 +78,7 @@ class MopaBootstrapExtension extends Extension
         if ($this->isConfigEnabled($container, $config['menu']) || $this->isConfigEnabled($container, $config['navbar'])) {
             // @deprecated: remove this BC layer
             if ($this->isConfigEnabled($container, $config['navbar'])) {
-                trigger_error(sprintf('mopa_bootstrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
+                \trigger_error(\sprintf('mopa_bootstrap.navbar is deprecated. Use mopa_bootstrap.menu.'), E_USER_DEPRECATED);
             }
             $loader->load('menu.xml');
             $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
@@ -124,7 +124,7 @@ class MopaBootstrapExtension extends Extension
     private function remapParameters(ContainerBuilder $container, $prefix, array $config)
     {
         foreach ($config as $key => $value) {
-            $container->setParameter(sprintf('%s.%s', $prefix, $key), $value);
+            $container->setParameter(\sprintf('%s.%s', $prefix, $key), $value);
         }
     }
 }

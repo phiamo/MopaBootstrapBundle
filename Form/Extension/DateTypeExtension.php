@@ -70,7 +70,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (method_exists($resolver, 'setDefined')) {
+        if (\method_exists($resolver, 'setDefined')) {
             $resolver->setDefined([
                 'datepicker',
                 'widget_reset_icon',
@@ -92,7 +92,7 @@ class DateTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? DateType::class
             : 'date' // SF <2.8 BC
         ;

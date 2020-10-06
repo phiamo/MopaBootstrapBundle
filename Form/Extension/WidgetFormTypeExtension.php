@@ -44,11 +44,11 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (in_array('percent', $view->vars['block_prefixes']) && null === $options['widget_addon_append']) {
+        if (\in_array('percent', $view->vars['block_prefixes'], true) && null === $options['widget_addon_append']) {
             $options['widget_addon_append'] = [];
         }
 
-        if (in_array('money', $view->vars['block_prefixes']) && null === $options['widget_addon_prepend']) {
+        if (\in_array('money', $view->vars['block_prefixes'], true) && null === $options['widget_addon_prepend']) {
             $options['widget_addon_prepend'] = [];
         }
 
@@ -98,7 +98,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
             'widget_checkbox_label' => $this->options['checkbox_label'],
         ]);
 
-        if (version_compare(Kernel::VERSION, '2.6', '>=')) {
+        if (\version_compare(Kernel::VERSION, '2.6', '>=')) {
             $resolver->setAllowedValues('widget_type', ['inline', 'inline-btn', '']);
             $resolver->setAllowedValues('widget_checkbox_label', ['label', 'widget', 'both']);
         } else {
@@ -122,7 +122,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+        return \method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
             ? FormType::class
             : 'form' // SF <2.8 BC
         ;
