@@ -23,16 +23,16 @@
     "require": {
         "php": "^7.2",
         "mopa/composer-bridge": "^1.3",
-        "symfony/console": "^4.4",
-        "symfony/form": "^4.4",
-        "symfony/framework-bundle": "^4.4",
-        "symfony/twig-bundle": "^4.4",
+        "symfony/console": "^4.4 || ^5.1",
+        "symfony/form": "^4.4 || ^5.1",
+        "symfony/framework-bundle": "^4.4 || ^5.1",
+        "symfony/twig-bundle": "^4.4 || ^5.1",
         "twig/twig": "^1.40 || ^2.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5 || ^9.4",
-        "symfony/security-bundle": "^4.4",
-        "symfony/translation": "^4.4"
+        "symfony/security-bundle": "^4.4 || ^5.1",
+        "symfony/translation": "^4.4 || ^5.1"
     },
     "suggest": {
         "craue/formflow-bundle": "~2.0",
