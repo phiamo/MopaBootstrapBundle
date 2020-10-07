@@ -164,14 +164,14 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         $this->output = $output;
 
         if ($input->getOption('manual')) {
-            list($symlinkTarget, $symlinkName) = $this->getBootstrapPathsFromUser();
+            [$symlinkTarget, $symlinkName] = $this->getBootstrapPathsFromUser();
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
             $cmanager = new ComposerPathFinder($composer);
             $options = [
                 'targetSuffix' => DIRECTORY_SEPARATOR.$this->bootstrapInstallPath.static::$targetSuffix,
                 'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
             ];
-            list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+            [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
                 self::$mopaBootstrapBundleName,
                 $this->getTwitterBootstrapName(),
                 $options
