@@ -30,7 +30,7 @@ class ScriptHandler
             'targetSuffix' => self::getTargetSuffix(),
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         ];
-        list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+        [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
             BootstrapSymlinkLessCommand::$twitterBootstrapName,
             $options
@@ -53,7 +53,7 @@ class ScriptHandler
             'targetSuffix' => self::getTargetSuffix(),
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         ];
-        list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+        [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
             BootstrapSymlinkLessCommand::$twitterBootstrapName,
             $options
@@ -76,7 +76,7 @@ class ScriptHandler
             'targetSuffix' => self::getTargetSuffix('-sass'),
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         ];
-        list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+        [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
             BootstrapSymlinkSassCommand::$twitterBootstrapName,
             $options
@@ -99,7 +99,7 @@ class ScriptHandler
             'targetSuffix' => self::getTargetSuffix('-sass'),
             'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
         ];
-        list($symlinkTarget, $symlinkName) = $cmanager->getSymlinkFromComposer(
+        [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
             BootstrapSymlinkSassCommand::$twitterBootstrapName,
             $options
