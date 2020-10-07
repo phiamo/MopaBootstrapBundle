@@ -6,7 +6,9 @@ matrix:
   fast_finish: true
   include:
     - php: 7.2
-      env: SYMFONY_REQUIRE="^4.4"
+      env:
+        - SYMFONY_REQUIRE="^4.4"
+        - TWIG_VERSION="^2.9"
     - php: 7.3
     - php: 7.4
     - php: nightly
@@ -20,8 +22,8 @@ before_install:
   - composer global require --no-progress --no-scripts --no-plugins symfony/flex dev-master
 
 install:
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
-  - composer update --prefer-source --no-interaction --no-scripts $COMPOSER_FLAGS
+  - if [ "$TWIG_VERSION" != "" ]; then composer require "twig/twig:${TWIG_VERSION}" --no-update; fi;
+  - composer update --prefer-dist --no-interaction --no-scripts $COMPOSER_FLAGS
 
 script:
   - vendor/bin/phpunit

@@ -14,6 +14,8 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Twig\Helper;
 use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Twig Extension for rendering a Bootstrap menu.
@@ -23,7 +25,7 @@ use Mopa\Bundle\BootstrapBundle\Menu\Converter\MenuConverter;
  *
  * @author phiamo <phiamo@googlemail.com>
  */
-class MenuExtension extends \Twig_Extension
+class MenuExtension extends AbstractExtension
 {
     /**
      * @var Helper
@@ -49,13 +51,10 @@ class MenuExtension extends \Twig_Extension
         $this->menuTemplate = $menuTemplate;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('mopa_bootstrap_menu', [$this, 'renderMenu'], ['is_safe' => ['html']]),
+            new TwigFunction('mopa_bootstrap_menu', [$this, 'renderMenu'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -110,13 +109,5 @@ class MenuExtension extends \Twig_Extension
         }
 
         return $this->menuConverter;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'mopa_bootstrap_menu';
     }
 }

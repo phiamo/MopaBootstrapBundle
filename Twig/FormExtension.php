@@ -11,6 +11,9 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 /**
  * Twig extension for form.
  *
@@ -19,34 +22,19 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  * @author Charles Sanquer <charles.sanquer@gmail.com>
  */
-class FormExtension extends \Twig_Extension
+class FormExtension extends AbstractExtension
 {
-    /**
-     * Returns a list of functions to add to the existing list.
-     *
-     * @return array An array of functions
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('form_help', null, [
+            new TwigFunction('form_help', null, [
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => ['html'],
             ]),
-            new \Twig_SimpleFunction('form_tabs', null, [
+            new TwigFunction('form_tabs', null, [
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => ['html'],
             ]),
         ];
-    }
-
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
-    public function getName()
-    {
-        return 'bootstrap_form';
     }
 }

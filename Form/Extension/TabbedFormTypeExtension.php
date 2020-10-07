@@ -87,6 +87,7 @@ class TabbedFormTypeExtension extends AbstractTypeExtension
 
                 $tabs[$tabIndex] = [
                     'id' => $child->vars['id'],
+                    'name' => $child->vars['name'],
                     'label' => $child->vars['label'],
                     'icon' => $child->vars['icon'],
                     'active' => false,

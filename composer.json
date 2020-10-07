@@ -27,12 +27,12 @@
         "symfony/form": "^4.4 || ^5.1",
         "symfony/framework-bundle": "^4.4 || ^5.1",
         "symfony/twig-bundle": "^4.4 || ^5.1",
-        "twig/twig": "^1.40 || ^2.9"
+        "twig/twig": "^2.9 || ^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5 || ^9.4",
         "symfony/security-bundle": "^4.4 || ^5.1",
-        "symfony/translation": "^4.4 || ^5.1"
+        "symfony/translation-contracts": "^2.0"
     },
     "suggest": {
         "craue/formflow-bundle": "~2.0",
