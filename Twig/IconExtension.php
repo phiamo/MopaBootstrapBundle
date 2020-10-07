@@ -13,7 +13,7 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
-use Twig\Template;
+use Twig\TemplateWrapper;
 use Twig\TwigFunction;
 
 /**
@@ -29,18 +29,18 @@ class IconExtension extends AbstractExtension
     protected $iconSet;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $shortcut;
 
     /**
-     * @var Template
+     * @var TemplateWrapper|null
      */
     protected $iconTemplate;
 
     /**
-     * @param string $iconSet
-     * @param string $shortcut
+     * @param string      $iconSet
+     * @param string|null $shortcut
      */
     public function __construct($iconSet, $shortcut = null)
     {
@@ -83,10 +83,10 @@ class IconExtension extends AbstractExtension
         return $template->renderBlock($this->iconSet, $context);
     }
 
-    protected function getIconTemplate(Environment $env): Template
+    protected function getIconTemplate(Environment $env): TemplateWrapper
     {
         if ($this->iconTemplate === null) {
-            $this->iconTemplate = $env->loadTemplate('@MopaBootstrap/icons.html.twig');
+            $this->iconTemplate = $env->load('@MopaBootstrap/icons.html.twig');
         }
 
         return $this->iconTemplate;
