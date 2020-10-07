@@ -21,13 +21,12 @@ use Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension;
 use Mopa\Bundle\BootstrapBundle\Form\Type\TabType;
+use Mopa\Bundle\BootstrapBundle\Tests\Stub\StubTranslator;
 use Mopa\Bundle\BootstrapBundle\Twig\FormExtension as TwigFormExtension;
 use Mopa\Bundle\BootstrapBundle\Twig\IconExtension;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
-use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubTranslator;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormRenderer;
@@ -35,6 +34,9 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 {
@@ -43,9 +45,6 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
     protected $environment;
     protected $tabFactory;
 
-    /**
-     * @throws \Twig_Error_Loader
-     */
     protected function setUp(): void
     {
         // Setup factory for tabs
@@ -53,18 +52,17 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
 
         parent::setUp();
 
-        $reflectionClass = \class_exists('Symfony\Bridge\Twig\Form\TwigRenderer') ? 'Symfony\Bridge\Twig\Form\TwigRenderer' : 'Symfony\Bridge\Twig\Form\TwigRendererEngine';
-        $reflection = new \ReflectionClass($reflectionClass);
+        $reflection = new \ReflectionClass(TwigRendererEngine::class);
         $bridgeDirectory = \dirname($reflection->getFileName()).'/../Resources/views/Form';
 
-        $loader = new \Twig_Loader_Filesystem([
+        $loader = new FilesystemLoader([
             $bridgeDirectory,
             __DIR__.'/../../Resources/views/Form',
         ]);
 
         $loader->addPath(__DIR__.'/../../Resources/views', 'MopaBootstrap');
 
-        $this->environment = new \Twig_Environment($loader, ['strict_variables' => true]);
+        $this->environment = new Environment($loader, ['strict_variables' => true]);
         $this->environment->addExtension(new TranslationExtension(new StubTranslator()));
         $this->environment->addExtension(new IconExtension('fontawesome'));
         $this->environment->addExtension(new TwigFormExtension());
@@ -75,31 +73,15 @@ abstract class AbstractDivLayoutTest extends FormIntegrationTestCase
             'fields.html.twig',
         ], $this->environment);
 
-        $this->setUpVersion4Plus();
-    }
-
-    private function setUpVersion4Plus()
-    {
         $csrfProvider = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
-        $loaders = [
-            'Symfony\Component\Form\FormRenderer' => function () use ($csrfProvider) {
-                return new FormRenderer($this->rendererEngine, $csrfProvider);
-            },
-        ];
-
-        $runtime = 'Symfony\Component\Form\FormRenderer';
-
-        if (\class_exists('Symfony\Bridge\Twig\Form\TwigRenderer')) {
-            $loaders['Symfony\Bridge\Twig\Form\TwigRenderer'] = function () use ($csrfProvider) {
-                return new TwigRenderer($this->rendererEngine, $csrfProvider);
-            };
-
-            $runtime = 'Symfony\Bridge\Twig\Form\TwigRenderer';
-        }
 
         // Add runtime loader
-        $this->environment->addRuntimeLoader(new \Twig_FactoryRuntimeLoader($loaders));
-        $this->renderer = $this->environment->getRuntime($runtime);
+        $this->environment->addRuntimeLoader(new FactoryRuntimeLoader([
+            FormRenderer::class => function () use ($csrfProvider) {
+                return new FormRenderer($this->rendererEngine, $csrfProvider);
+            },
+        ]));
+        $this->renderer = $this->environment->getRuntime(FormRenderer::class);
 
         $this->environment->addExtension(new FormExtension());
     }

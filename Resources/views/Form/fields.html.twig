@@ -141,7 +141,11 @@
         <li{% if class|trim is not empty %} class="{{ class }}"{% endif %}>
             <a data-toggle="tab" href="#{{ tab.id }}">
                 {% if tab.icon %}{{ mopa_bootstrap_icon(tab.icon) }}{% endif %}
-                {{ tab.translation_domain is same as(false) ? tab.label : tab.label|trans({}, tab.translation_domain) }}
+                {%- if tab.label is not empty -%}
+                    {{ tab.translation_domain is same as(false) ? tab.label : tab.label|trans({}, tab.translation_domain) }}
+                {%- elseif tab.label is not same as(false) -%}
+                    {{ tab.translation_domain is same as(false) ? tab.name|humanize : tab.name|humanize|trans({}, tab.translation_domain) }}
+                {%- endif -%}
             </a>
         </li>
     {% endfor %}
