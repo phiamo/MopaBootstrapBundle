@@ -11,33 +11,30 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 /**
  * MopaBootstrap Flash Extension.
  *
  * @author Nikolai Zujev (jaymecd) <nikolai.zujev@gmail.com>
  */
-class FlashExtension extends \Twig_Extension
+class FlashExtension extends AbstractExtension
 {
     /**
      * @var array
      */
     protected $mapping = [];
 
-    /**
-     * Constructor.
-     */
     public function __construct(array $mapping)
     {
         $this->mapping = $mapping;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('mopa_bootstrap_flash_mapping', [$this, 'getMapping'], ['is_safe' => ['html']]),
+            new TwigFunction('mopa_bootstrap_flash_mapping', [$this, 'getMapping'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -49,13 +46,5 @@ class FlashExtension extends \Twig_Extension
     public function getMapping()
     {
         return $this->mapping;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'mopa_bootstrap_flash';
     }
 }

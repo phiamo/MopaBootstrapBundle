@@ -11,31 +11,29 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
+use Twig\TwigFunction;
+
 /**
  * Reads Initializr configuration file and generates
  * corresponding Twig Globals.
  *
  * @author Paweł Madej (nysander) <pawel.madej@profarmaceuta.pl>
  */
-class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class InitializrTwigExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var array
      */
     protected $parameters;
 
-    /**
-     * Constructor.
-     */
     public function __construct(array $parameters = [])
     {
         $this->parameters = $parameters;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'dns_prefetch' => $this->parameters['dns_prefetch'],
@@ -45,24 +43,13 @@ class InitializrTwigExtension extends \Twig_Extension implements \Twig_Extension
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('form_help', null, [
+            new TwigFunction('form_help', null, [
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => ['html'],
             ]),
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'initializr';
     }
 }

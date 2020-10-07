@@ -11,14 +11,17 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Twig;
 
-use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\Template;
+use Twig\TwigFunction;
 
 /**
  * MopaBootstrap Icon Extension.
  *
  * @author Craig Blanchette (isometriks) <craig.blanchette@gmail.com>
  */
-class IconExtension extends \Twig_Extension
+class IconExtension extends AbstractExtension
 {
     /**
      * @var string
@@ -31,13 +34,11 @@ class IconExtension extends \Twig_Extension
     protected $shortcut;
 
     /**
-     * @var \Twig_Template
+     * @var Template
      */
     protected $iconTemplate;
 
     /**
-     * Constructor.
-     *
      * @param string $iconSet
      * @param string $shortcut
      */
@@ -47,10 +48,7 @@ class IconExtension extends \Twig_Extension
         $this->shortcut = $shortcut;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         $options = [
             'is_safe' => ['html'],
@@ -58,11 +56,11 @@ class IconExtension extends \Twig_Extension
         ];
 
         $functions = [
-            new \Twig_SimpleFunction('mopa_bootstrap_icon', [$this, 'renderIcon'], $options),
+            new TwigFunction('mopa_bootstrap_icon', [$this, 'renderIcon'], $options),
         ];
 
         if ($this->shortcut) {
-            $functions[] = new \Twig_SimpleFunction($this->shortcut, [$this, 'renderIcon'], $options);
+            $functions[] = new TwigFunction($this->shortcut, [$this, 'renderIcon'], $options);
         }
 
         return $functions;
@@ -73,10 +71,8 @@ class IconExtension extends \Twig_Extension
      *
      * @param string $icon
      * @param bool   $inverted
-     *
-     * @return Response
      */
-    public function renderIcon(\Twig_Environment $env, $icon, $inverted = false)
+    public function renderIcon(Environment $env, $icon, $inverted = false): string
     {
         $template = $this->getIconTemplate($env);
         $context = [
@@ -87,18 +83,7 @@ class IconExtension extends \Twig_Extension
         return $template->renderBlock($this->iconSet, $context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'mopa_bootstrap_icon';
-    }
-
-    /**
-     * @return \Twig_Template
-     */
-    protected function getIconTemplate(\Twig_Environment $env)
+    protected function getIconTemplate(Environment $env): Template
     {
         if ($this->iconTemplate === null) {
             $this->iconTemplate = $env->loadTemplate('@MopaBootstrap/icons.html.twig');
