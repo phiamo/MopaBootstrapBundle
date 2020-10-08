@@ -73,7 +73,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $finder = new Finder();
-        $iconWebPath = $this->kernel->getProjectDir().DIRECTORY_SEPARATOR.'web'.DIRECTORY_SEPARATOR.'fonts';
+        $iconWebPath = $this->kernel->getProjectDir().\DIRECTORY_SEPARATOR.'web'.\DIRECTORY_SEPARATOR.'fonts';
 
         $fs = new Filesystem();
 
@@ -89,12 +89,12 @@ EOT
 
         $bsbPath = $composer->getInstallationManager()->getInstallPath($sourcePackage);
 
-        $iconSetPath = $bsbPath.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.self::$iconSetsPaths[$this->iconSet];
+        $iconSetPath = $bsbPath.\DIRECTORY_SEPARATOR.'Resources'.\DIRECTORY_SEPARATOR.'public'.\DIRECTORY_SEPARATOR.self::$iconSetsPaths[$this->iconSet];
 
         $finder->files()->in($iconSetPath);
 
         foreach ($finder as $file) {
-            $fs->copy($file->getRealpath(), $iconWebPath.DIRECTORY_SEPARATOR.$file->getRelativePathname());
+            $fs->copy($file->getRealpath(), $iconWebPath.\DIRECTORY_SEPARATOR.$file->getRelativePathname());
         }
 
         $output->writeln('Font: '.$this->iconSet.' Installed... <info>OK</info>');

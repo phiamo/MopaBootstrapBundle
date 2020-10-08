@@ -28,7 +28,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = [
             'targetSuffix' => self::getTargetSuffix(),
-            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
+            'sourcePrefix' => '..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
         ];
         [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
@@ -51,7 +51,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = [
             'targetSuffix' => self::getTargetSuffix(),
-            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
+            'sourcePrefix' => '..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
         ];
         [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkLessCommand::$mopaBootstrapBundleName,
@@ -74,7 +74,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = [
             'targetSuffix' => self::getTargetSuffix('-sass'),
-            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
+            'sourcePrefix' => '..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
         ];
         [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
@@ -97,7 +97,7 @@ class ScriptHandler
         $cmanager = new ComposerPathFinder($composer);
         $options = [
             'targetSuffix' => self::getTargetSuffix('-sass'),
-            'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
+            'sourcePrefix' => '..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
         ];
         [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
             BootstrapSymlinkSassCommand::$mopaBootstrapBundleName,
@@ -115,6 +115,6 @@ class ScriptHandler
 
     protected static function getTargetSuffix($end = '')
     {
-        return DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'bootstrap'.$end;
+        return \DIRECTORY_SEPARATOR.'Resources'.\DIRECTORY_SEPARATOR.'public'.\DIRECTORY_SEPARATOR.'bootstrap'.$end;
     }
 }

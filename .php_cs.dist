@@ -16,6 +16,7 @@ return PhpCsFixer\Config::create()
         'header_comment' => ['header' => $header],
         'full_opening_tag' => false,
         'list_syntax' => ['syntax' => 'short'],
+        'native_constant_invocation' => true,
         'native_function_invocation' => true,
         'yoda_style' => false,
     ])

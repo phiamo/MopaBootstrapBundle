@@ -74,7 +74,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
                 if (!$forceSymlink) {
                     throw new \Exception(\sprintf('Symlink "%s" points to "%s" instead of "%s"', $symlinkName, $linkTarget, $symlinkTarget));
                 }
-                if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN' && \is_dir($linkTarget)) {
+                if (\strtoupper(\substr(\PHP_OS, 0, 3)) === 'WIN' && \is_dir($linkTarget)) {
                     \rmdir($symlinkName);
                 } else {
                     \unlink($symlinkName);
@@ -126,7 +126,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         $filesystem = new Filesystem();
         $filesystem->mkdir($symlinkName);
         $filesystem->mirror(
-            $symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget,
+            $symlinkName.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.$symlinkTarget,
             $symlinkName,
             null,
             ['copy_on_windows' => true, 'delete' => true, 'override' => true]
@@ -168,8 +168,8 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         } elseif (false !== $composer = ComposerAdapter::getComposer($input, $output)) {
             $cmanager = new ComposerPathFinder($composer);
             $options = [
-                'targetSuffix' => DIRECTORY_SEPARATOR.$this->bootstrapInstallPath.static::$targetSuffix,
-                'sourcePrefix' => '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR,
+                'targetSuffix' => \DIRECTORY_SEPARATOR.$this->bootstrapInstallPath.static::$targetSuffix,
+                'sourcePrefix' => '..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
             ];
             [$symlinkTarget, $symlinkName] = $cmanager->getSymlinkFromComposer(
                 self::$mopaBootstrapBundleName,
@@ -183,7 +183,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         }
 
         // Automatically detect if on Win XP where symlink will allways fail
-        if ($input->getOption('no-symlink') || PHP_OS == 'WINNT') {
+        if ($input->getOption('no-symlink') || \PHP_OS == 'WINNT') {
             $this->output->write('Checking destination');
 
             if (true === self::checkSymlink($symlinkTarget, $symlinkName)) {
@@ -191,7 +191,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
             } else {
                 $this->output->writeln(' ... <comment>not existing</comment>');
                 $this->output->writeln(\sprintf('Mirroring to: %s', $symlinkName));
-                $this->output->write(\sprintf('from target: %s', \realpath($symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget)));
+                $this->output->write(\sprintf('from target: %s', \realpath($symlinkName.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.$symlinkTarget)));
                 self::createMirror($symlinkTarget, $symlinkName);
             }
         } else {
@@ -230,7 +230,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
                 throw new \Exception('Target path '.$symlinkTarget.'is not a directory!');
             }
         } else {
-            $symlinkTarget = $symlinkName.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.$symlinkTarget;
+            $symlinkTarget = $symlinkName.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.$symlinkTarget;
         }
 
         if (!\is_dir($symlinkTarget)) {
