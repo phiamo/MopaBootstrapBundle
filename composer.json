@@ -36,7 +36,7 @@
     },
     "suggest": {
         "craue/formflow-bundle": "~2.0",
-        "knplabs/knp-menu-bundle": "~2.0@dev",
+        "knplabs/knp-menu-bundle": "~3.0",
         "knplabs/knp-paginator-bundle": "~2.3",
         "mopa/bootstrap-sandbox-bundle": "~2.3",
         "twbs/bootstrap": ">2.0,<4.0-dev",

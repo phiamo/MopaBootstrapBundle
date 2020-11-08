@@ -11,17 +11,18 @@
 
 namespace Mopa\Bundle\BootstrapBundle\Menu\Factory;
 
+use Knp\Menu\Factory\ExtensionInterface;
 use Knp\Menu\ItemInterface;
 
 /**
  * Decorator for integrating Bootstrap Menus into KnpMenu.
  */
-class MenuDecorator
+class MenuDecorator implements ExtensionInterface
 {
     /**
      * Builds a menu item based.
      */
-    public function buildItem(ItemInterface $item, array $options)
+    public function buildItem(ItemInterface $item, array $options): void
     {
         if ($options['navbar']) {
             $item->setChildrenAttribute('class', 'nav navbar-nav'.($options['navbar-right'] ? ' navbar-right' : ''));
@@ -98,7 +99,7 @@ class MenuDecorator
      *
      * @return array $options
      */
-    public function buildOptions(array $options)
+    public function buildOptions(array $options): array
     {
         return \array_merge([
             'navbar' => false,
