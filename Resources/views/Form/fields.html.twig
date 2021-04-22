@@ -291,7 +291,7 @@
                     {% endif %}
                     {{ choice_translation_domain is same as(false) ? label|raw : label|trans({}, choice_translation_domain)|raw }}
                 {% else %}
-                    {{ block('form_help') }}
+                    {{ form_help(form) }}
                 {% endif %}
                 </label>
             {% endif %}
@@ -609,7 +609,7 @@
     {{ form_errors(form) }}
 
     {% if ('checkbox' not in block_prefixes or widget_checkbox_label != 'label') and help_block %}
-        {{ block('form_help') }}
+        {{ form_help(form) }}
     {% endif %}
 {% endapply %}
 {% endblock form_message %}
