@@ -162,7 +162,7 @@
 
 {% block collection_widget %}
 {% apply spaceless %}
-    {% if prototype is defined %}
+    {% if prototype is defined and not prototype.rendered %}
         {% set prototype_markup = form_row(prototype) %}
         {% set data_prototype_name = form.vars.form.vars.prototype.vars.name|default('__name__') %}
         {% set data_prototype_label = form.vars.form.vars.prototype.vars.label|default('__name__label__') %}
