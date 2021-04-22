@@ -27,10 +27,6 @@ class FormExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('form_help', null, [
-                'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                'is_safe' => ['html'],
-            ]),
             new TwigFunction('form_tabs', null, [
                 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 'is_safe' => ['html'],

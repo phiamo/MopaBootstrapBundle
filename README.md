@@ -1,7 +1,7 @@
 MopaBootstrapBundle
 ===================
 
-[![Build Status](https://travis-ci.org/phiamo/MopaBootstrapBundle.svg?branch=master)](https://travis-ci.org/phiamo/MopaBootstrapBundle)
+[![Build Status](https://github.com/phiamo/MopaBootstrapBundle/workflows/Continuous%20integration/badge.svg?branch=master)](https://github.com/phiamo/MopaBootstrapBundle/actions?query=workflow%3A%22Continuous%20integration%22%20branch%3Amaster)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0a6dbd4c-714b-47a4-b662-254cdf6ec208/mini.png)](https://insight.sensiolabs.com/projects/0a6dbd4c-714b-47a4-b662-254cdf6ec208)
 [![Coverage Status](https://coveralls.io/repos/phiamo/MopaBootstrapBundle/badge.svg)](https://coveralls.io/r/phiamo/MopaBootstrapBundle)
 

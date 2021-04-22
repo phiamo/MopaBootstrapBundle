@@ -13,7 +13,6 @@ namespace Mopa\Bundle\BootstrapBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
-use Twig\TwigFunction;
 
 /**
  * Reads Initializr configuration file and generates
@@ -40,16 +39,6 @@ class InitializrTwigExtension extends AbstractExtension implements GlobalsInterf
             'meta' => $this->parameters['meta'],
             'google' => $this->parameters['google'],
             'diagnostic_mode' => $this->parameters['diagnostic_mode'],
-        ];
-    }
-
-    public function getFunctions(): array
-    {
-        return [
-            new TwigFunction('form_help', null, [
-                'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                'is_safe' => ['html'],
-            ]),
         ];
     }
 }
