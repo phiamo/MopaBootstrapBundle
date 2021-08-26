@@ -31,7 +31,7 @@ class TypeTestCase extends KernelTestCase
     /**
      * @var ContainerInterface
      */
-    protected $container;
+    protected static $container;
 
     /**
      * @var FormFactoryInterface
