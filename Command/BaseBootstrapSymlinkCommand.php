@@ -179,7 +179,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         } else {
             $this->output->writeln('<error>Could not find composer and manual option not specified!</error>');
 
-            return;
+            return 0;
         }
 
         // Automatically detect if on Win XP where symlink will allways fail
