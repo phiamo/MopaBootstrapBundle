@@ -16,9 +16,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * Command to create Bootstrap symlink to MopaBootstrapBundle.
  */
-#[AsCommand(
-    name: 'mopa:bootstrap:symlink:less',
-)]
+#[AsCommand(name: 'mopa:bootstrap:symlink:less')]
 class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
 {
     public static $mopaBootstrapBundleName = 'mopa/bootstrap-bundle';

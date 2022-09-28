@@ -24,9 +24,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * Command to create Bootstrap symlink to MopaBootstrapBundle.
  */
-#[AsCommand(
-    name: 'mopa:bootstrap:install:font',
-)]
+#[AsCommand(name: 'mopa:bootstrap:install:font')]
 class InstallFontCommand extends Command
 {
     public static $iconSetsPaths = [

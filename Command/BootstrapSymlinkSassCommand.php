@@ -16,9 +16,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 /**
  * Command to create Bootstrap (SASS) symlink to MopaBootstrapBundle.
  */
-#[AsCommand(
-    name: 'mopa:bootstrap:symlink:sass',
-)]
+#[AsCommand(name: 'mopa:bootstrap:symlink:sass')]
 class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
 {
     public static $twitterBootstrapName = 'twbs/bootstrap-sass';
