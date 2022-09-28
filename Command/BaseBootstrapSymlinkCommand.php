@@ -158,7 +158,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input = $input;
         $this->output = $output;
@@ -205,6 +205,8 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         }
 
         $this->output->writeln(' ... <info>OK</info>');
+
+        return 0;
     }
 
     protected function getBootstrapPathsFromUser()
