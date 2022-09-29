@@ -30,27 +30,19 @@ jobs:
 
   phpunit:
     runs-on: 'ubuntu-20.04'
-    name: 'PHPUnit (PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, Twig ${{ matrix.twig }})'
+    name: 'PHPUnit (PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }})'
     timeout-minutes: 10
     strategy:
       matrix:
-        php:
-          - '7.2'
-          - '7.3'
-          - '7.4'
-          - '8.0'
-          - '8.1'
-        symfony:
-          - '5.*'
-        twig:
-          - '3.*'
-        composer_flags:
-          - '--no-scripts --prefer-dist --prefer-stable'
+        php: ['8.1', '8.0']
+        symfony: ['6.*', '5.*', '4.*']
         include:
           - php: '7.2'
-            symfony: '4.4.*'
+            symfony: '5.*'
             twig: '2.*'
-            composer_flags: '--no-scripts --prefer-dist --prefer-lowest'
+          - php: '7.2'
+            symfony: '4.*'
+            twig: '2.*'
       fail-fast: false
     steps:
       - name: 'Checkout'
@@ -82,8 +74,9 @@ jobs:
         env:
           SYMFONY_REQUIRE: '${{ matrix.symfony }}'
         run: |
-          composer require --no-progress --no-scripts --no-plugins symfony/flex
-          composer update --no-interaction --no-progress --ansi ${{ matrix.composer_flags }}
+          composer require --no-progress --no-scripts --no-plugins --no-update symfony/flex
+          [[ -n "${{ matrix.twig }}" ]] && composer require --no-progress --no-scripts --no-plugins --no-update twig/twig:${{ matrix.twig }} || true
+          composer update --no-interaction --no-progress --no-scripts --ansi ${{ matrix.composer_flags }}
 
       - name: 'Run unit tests'
         run: |

@@ -179,7 +179,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
         } else {
             $this->output->writeln('<error>Could not find composer and manual option not specified!</error>');
 
-            return 0;
+            return \defined(Command::class.'::SUCCESS') ? Command::SUCCESS : 0;
         }
 
         // Automatically detect if on Win XP where symlink will allways fail
@@ -206,7 +206,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
 
         $this->output->writeln(' ... <info>OK</info>');
 
-        return 0;
+        return \defined(Command::class.'::SUCCESS') ? Command::SUCCESS : 0;
     }
 
     protected function getBootstrapPathsFromUser()
