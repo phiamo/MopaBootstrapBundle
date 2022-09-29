@@ -27,7 +27,6 @@ Versions and dependencies
 | [**2.0**] (*unmaintained*) | ^2.0      | ~2.0.0                   |                |
 | [**1.x**] (*unmaintained*) | ^1.0      | ^2.0                     |                |
 
-
 Updates
 -------
 
