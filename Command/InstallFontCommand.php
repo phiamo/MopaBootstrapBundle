@@ -101,7 +101,7 @@ EOT
 
         $output->writeln('Font: '.$this->iconSet.' Installed... <info>OK</info>');
 
-        return 0;
+        return \defined(Command::class.'::SUCCESS') ? Command::SUCCESS : 0;
     }
 
     public static function installFonts()
