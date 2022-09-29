@@ -13,6 +13,7 @@ namespace Mopa\Bundle\BootstrapBundle\Command;
 
 use Mopa\Bridge\Composer\Adapter\ComposerAdapter;
 use Mopa\Bridge\Composer\Util\ComposerPathFinder;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 /**
  * Command to create Bootstrap symlink to MopaBootstrapBundle.
  */
+#[AsCommand(name: 'mopa:bootstrap:install:font')]
 class InstallFontCommand extends Command
 {
     public static $iconSetsPaths = [
@@ -70,7 +72,7 @@ EOT
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $finder = new Finder();
         $iconWebPath = $this->kernel->getProjectDir().\DIRECTORY_SEPARATOR.'web'.\DIRECTORY_SEPARATOR.'fonts';
@@ -98,6 +100,8 @@ EOT
         }
 
         $output->writeln('Font: '.$this->iconSet.' Installed... <info>OK</info>');
+
+        return 0;
     }
 
     public static function installFonts()
