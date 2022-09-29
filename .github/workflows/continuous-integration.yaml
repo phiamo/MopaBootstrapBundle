@@ -81,7 +81,7 @@ jobs:
         env:
           SYMFONY_REQUIRE: '${{ matrix.symfony }}'
         run: |
-          composer global require --no-progress --no-scripts --no-plugins symfony/flex
+          composer require --no-progress --no-scripts --no-plugins symfony/flex
           composer update --no-interaction --no-progress --ansi ${{ matrix.composer_flags }}
 
       - name: 'Run unit tests'
