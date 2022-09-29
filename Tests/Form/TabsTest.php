@@ -29,7 +29,7 @@ class TabsTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /fieldset
 [
     (
@@ -49,7 +49,7 @@ class TabsTest extends AbstractDivLayoutTest
         ]
     )
 ]
-'
+EOT
         );
     }
 }

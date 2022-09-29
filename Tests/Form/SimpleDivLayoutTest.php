@@ -29,12 +29,13 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'/div[@class="form-group"]
+            <<<'EOT'
+/div[@class="form-group"]
     [
         ./label[@for="name"][@class="control-label col-sm-3 required"]
         /following-sibling::div[@class="col-sm-9"]
     ]
-'
+EOT
         );
     }
 
@@ -51,13 +52,13 @@ class SimpleDivLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /div[@class="form-group"]
     [
         ./label[@for="name"][@class="required"]
         /following-sibling::input[@type="text"][@id="name"][@name="name"][@required="required"]
     ]
-'
+EOT
         );
     }
 }
