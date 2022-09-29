@@ -35,7 +35,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderWidget($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /fieldset
     [
         ./div[@class="form-group"]
@@ -99,7 +99,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             ]
         ]
     ]
-'
+EOT
         );
     }
 
@@ -122,7 +122,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderWidget($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /fieldset
     [
         ./div[@class="form-group"]
@@ -177,7 +177,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             ]
         ]
     ]
-'
+EOT
         );
     }
 
@@ -201,7 +201,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderWidget($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /fieldset
     [
         ./div[@class="form-group"]
@@ -263,7 +263,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             ]
         ]
     ]
-'
+EOT
         );
     }
 
@@ -286,7 +286,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderWidget($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /fieldset
     [
         ./div[@class="form-group"]
@@ -338,7 +338,7 @@ class CollectionLayoutTest extends AbstractDivLayoutTest
             ]
         ]
     ]
-'
+EOT
         );
     }
 }

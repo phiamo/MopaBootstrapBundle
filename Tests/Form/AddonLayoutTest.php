@@ -30,13 +30,13 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /div[@class="input-group"]
     [
         ./span[@class="input-group-addon"][.="[trans]foo[/trans]"]
         /following-sibling::input[@type="text"][@id="name"][@name="name"]
     ]
-'
+EOT
         );
     }
 
@@ -55,7 +55,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /div[@class="input-group"]
     [
         ./span[@class="input-group-addon"]
@@ -64,7 +64,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
             ]
         /following-sibling::input[@type="text"][@id="name"][@name="name"]
     ]
-'
+EOT
         );
     }
 
@@ -83,13 +83,13 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /div[@class="input-group"]
     [
         ./input[@type="text"][@id="name"][@name="name"]
         /following-sibling::span[@class="input-group-addon"][.="[trans]foo[/trans]"]
     ]
-'
+EOT
         );
     }
 
@@ -108,7 +108,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /div[@class="input-group"]
     [
         ./input[@type="text"][@id="name"][@name="name"]
@@ -117,7 +117,7 @@ class AddonLayoutTest extends AbstractDivLayoutTest
                 ./i[@class="icon-cog"]
             ]
     ]
-'
+EOT
         );
     }
 }

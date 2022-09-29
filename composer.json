@@ -1,7 +1,8 @@
 {
     "name": "mopa/bootstrap-bundle",
-    "type": "symfony-bundle",
     "description": "Easy integration of twitters bootstrap into symfony2",
+    "license": "MIT",
+    "type": "symfony-bundle",
     "keywords": [
         "form",
         "extra form",
@@ -9,7 +10,6 @@
         "bootstrap form",
         "template"
     ],
-    "license": "MIT",
     "authors": [
         {
             "name": "Philipp A. Mohrenweiser",
@@ -42,11 +42,6 @@
         "twbs/bootstrap": ">2.0,<4.0-dev",
         "twbs/bootstrap-sass": "v3.1.1"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
-    },
     "autoload": {
         "psr-4": {
             "Mopa\\Bundle\\BootstrapBundle\\": ""
@@ -54,6 +49,17 @@
         "exclude-from-classmap": [
             "/Tests/"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
     },
     "scripts": {
         "post-install-cmd": [
