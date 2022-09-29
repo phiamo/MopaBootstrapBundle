@@ -17,7 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    const KEY = 'mopa_bootstrap';
+    public const KEY = 'mopa_bootstrap';
 
     /**
      * {@inheritdoc}

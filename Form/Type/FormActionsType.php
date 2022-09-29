@@ -42,9 +42,9 @@ class FormActionsType extends AbstractType
      * @param $name
      * @param $config
      *
-     * @throws \InvalidArgumentException
-     *
      * @return ButtonBuilder
+     *
+     * @throws \InvalidArgumentException
      */
     protected function createButton($builder, $name, $config)
     {

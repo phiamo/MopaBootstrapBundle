@@ -64,9 +64,9 @@ class MenuExtension extends AbstractExtension
      * @param ItemInterface|string|array $menu
      * @param string                     $renderer
      *
-     * @throws \InvalidArgumentException
-     *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function renderMenu($menu, array $options = [], $renderer = null)
     {

@@ -27,12 +27,12 @@ class LegendLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderLabel($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /label[@for="name"][@class="control-label col-sm-3 required"]
     [
         ./span[@class="asterisk"][.="*"]
     ]
-'
+EOT
         );
     }
 
@@ -48,7 +48,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /form
     [
         ./fieldset
@@ -56,7 +56,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
                 ./div[@class="form-group"]
             ]
     ]
-'
+EOT
         );
     }
 
@@ -72,12 +72,12 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /form
     [
         ./div[@class="form-group"]
     ]
-'
+EOT
         );
     }
 
@@ -93,7 +93,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /form
     [
         ./fieldset
@@ -102,7 +102,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
                 /following-sibling::div[@class="form-group"]
             ]
     ]
-'
+EOT
         );
     }
 
@@ -118,7 +118,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /form
     [
         ./fieldset
@@ -126,7 +126,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
                 not(./legend)
             ]
     ]
-'
+EOT
         );
     }
 
@@ -142,7 +142,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
 
         $this->assertMatchesXpath(
             $html,
-'
+            <<<'EOT'
 /form
     [
         ./fieldset
@@ -151,7 +151,7 @@ class LegendLayoutTest extends AbstractDivLayoutTest
                 /following-sibling::div[@class="form-group"]
             ]
     ]
-'
+EOT
         );
     }
 
@@ -166,12 +166,12 @@ class LegendLayoutTest extends AbstractDivLayoutTest
         $html = $this->renderRow($view);
         $this->assertMatchesXpath(
             $this->removeBreaks($html),
-'
+            <<<'EOT'
 /div[@class="form-group"]
     [
         not(./label)
     ]
-'
+EOT
         );
     }
 }
