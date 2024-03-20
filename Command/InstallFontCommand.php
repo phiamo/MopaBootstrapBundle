@@ -57,7 +57,7 @@ class InstallFontCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Install font to web/fonts')

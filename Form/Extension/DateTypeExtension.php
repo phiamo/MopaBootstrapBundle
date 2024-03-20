@@ -40,7 +40,7 @@ class DateTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if ('single_text' === $options['widget']) {
             if (isset($options['datepicker'])) {
@@ -57,7 +57,7 @@ class DateTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined([
             'datepicker',

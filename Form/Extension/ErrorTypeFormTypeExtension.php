@@ -40,7 +40,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['error_type'] = $options['error_type'];
         $view->vars['error_delay'] = $options['error_delay'];
@@ -49,7 +49,7 @@ class ErrorTypeFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'error_type' => $this->errorType,

@@ -28,7 +28,7 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         foreach ($options['buttons'] as $name => $config) {
             $this->createButton($builder, $name, $config);
@@ -46,7 +46,7 @@ class FormActionsType extends AbstractType
      *
      * @throws \InvalidArgumentException
      */
-    protected function createButton($builder, $name, $config)
+    protected function createButton($builder, $name, $config): ButtonBuilder|FormBuilderInterface
     {
         $options = (isset($config['options'])) ? $config['options'] : [];
 
@@ -58,7 +58,7 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'buttons' => [],
@@ -71,7 +71,7 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['button_offset'] = $options['button_offset'];
     }
@@ -79,7 +79,7 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'form_actions';
     }

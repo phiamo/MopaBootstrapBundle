@@ -21,7 +21,7 @@ class MopaBootstrapExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -105,7 +105,7 @@ class MopaBootstrapExtension extends Extension
      *
      * @param string $prefix
      */
-    private function remapParameters(ContainerBuilder $container, $prefix, array $config)
+    private function remapParameters(ContainerBuilder $container, $prefix, array $config): void
     {
         foreach ($config as $key => $value) {
             $container->setParameter(\sprintf('%s.%s', $prefix, $key), $value);
