@@ -40,7 +40,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         if (\in_array('percent', $view->vars['block_prefixes'], true) && null === $options['widget_addon_append']) {
             $options['widget_addon_append'] = [];
@@ -67,7 +67,7 @@ class WidgetFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'widget_form_control_class' => 'form-control',

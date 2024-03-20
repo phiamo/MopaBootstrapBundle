@@ -41,7 +41,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $layout = $options['layout'];
 
@@ -63,7 +63,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
         ]);
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if (!$view->parent && $options['compound'] && $view->vars['layout']) {
             $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'].' ' : '';
@@ -74,7 +74,7 @@ class LayoutFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'layout' => function (Options $options) {

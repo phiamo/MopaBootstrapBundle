@@ -41,7 +41,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         if (\in_array('collection', $view->vars['block_prefixes'], true)) {
             if ($options['widget_add_btn'] !== null && !\is_array($options['widget_add_btn'])) {
@@ -78,7 +78,7 @@ class WidgetCollectionFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'omit_collection_item' => true === $this->options['render_collection_item'] ? false : true,

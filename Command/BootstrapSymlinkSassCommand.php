@@ -30,7 +30,7 @@ class BootstrapSymlinkSassCommand extends BaseBootstrapSymlinkCommand
         return static::$twitterBootstrapName;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

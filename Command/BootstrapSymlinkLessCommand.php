@@ -29,7 +29,7 @@ class BootstrapSymlinkLessCommand extends BaseBootstrapSymlinkCommand
         return self::$twitterBootstrapName;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
