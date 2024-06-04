@@ -136,7 +136,7 @@ abstract class BaseBootstrapSymlinkCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Check and if possible install symlink to '.static::$targetSuffix)

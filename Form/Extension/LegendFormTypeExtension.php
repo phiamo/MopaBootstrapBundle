@@ -47,7 +47,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['render_fieldset'] = $options['render_fieldset'];
         $view->vars['show_legend'] = $options['show_legend'];
@@ -61,7 +61,7 @@ class LegendFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'render_fieldset' => $this->renderFieldset,
