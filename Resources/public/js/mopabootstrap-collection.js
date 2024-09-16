@@ -23,8 +23,7 @@
     /* Collection PUBLIC CLASS DEFINITION
      * ============================== */
 
-    var Collection = function (element, options) {
-        this.$element = $(element);
+    var Collection = function (options) {
         this.options = $.extend({}, $.fn.collection.defaults, options);
 
         // This must work with "collections" inside "collections", and should
@@ -43,6 +42,9 @@
     };
     Collection.prototype = {
         constructor: Collection,
+        setElement: function (element) {
+            this.$element = $(element);
+        },
         add: function () {
             if (typeof this.options.max == 'number' && this.getItems().length >= this.options.max) {
                 return;
@@ -148,7 +150,7 @@
         return this.each(function () {
             var $this = $(this),
                 collection_id = $this.data('collection-add-btn'),
-                data = $this.data('collection'),
+                data,
                 options = typeof option == 'object' ? option : {};
 
             if (collection_id) {
@@ -162,9 +164,11 @@
                     throw new Error('Could not load collection id');
                 }
             }
+            data = $(options.collection_id).data('collection');
             if (!data) {
-                $this.data('collection', (data = new Collection(this, options)));
+                $(options.collection_id).data('collection', (data = new Collection(options)));
             }
+            data.setElement(this);
             if (coll_args.length > 1) {
                 var arg1 = coll_args[1];
                 var returnval;
