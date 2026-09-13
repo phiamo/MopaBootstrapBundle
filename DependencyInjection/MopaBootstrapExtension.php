@@ -13,8 +13,8 @@ namespace Mopa\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class MopaBootstrapExtension extends Extension
 {
@@ -26,10 +26,10 @@ class MopaBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('bootstrap.xml');
-        $loader->load('twig.xml');
-        $loader->load('command.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('bootstrap.php');
+        $loader->load('twig.php');
+        $loader->load('command.php');
 
         if (isset($config['bootstrap'])) {
             if (!isset($config['bootstrap']['install_path'])) {
@@ -43,7 +43,7 @@ class MopaBootstrapExtension extends Extension
          * Form
          */
         if (isset($config['form'])) {
-            $loader->load('form.xml');
+            $loader->load('form.php');
             foreach ($config['form'] as $key => $value) {
                 if (\is_array($value)) {
                     $this->remapParameters($container, 'mopa_bootstrap.form.'.$key, $value);
@@ -64,7 +64,7 @@ class MopaBootstrapExtension extends Extension
             if ($this->isConfigEnabled($container, $config['navbar'])) {
                 \trigger_error(\sprintf('mopa_bootstrap.navbar is deprecated. Use mopa_bootstrap.menu.'), \E_USER_DEPRECATED);
             }
-            $loader->load('menu.xml');
+            $loader->load('menu.php');
             $this->remapParameters($container, 'mopa_bootstrap.menu', $config['menu']);
         }
 
@@ -79,7 +79,7 @@ class MopaBootstrapExtension extends Extension
          * Initializr
          */
         if (isset($config['initializr'])) {
-            $loader->load('initializr.xml');
+            $loader->load('initializr.php');
             $this->remapParameters($container, 'mopa_bootstrap.initializr', $config['initializr']);
         }
 
