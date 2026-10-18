@@ -55,8 +55,8 @@
 
 		this.bootcssVer = this.isInput ? (this.element.is('.form-control') ? 3 : 2) : ( this.bootcssVer = this.element.is('.input-group') ? 3 : 2 );
 
-        this.component = this.element.is('.date') ? ( this.bootcssVer == 3 ? this.element.find('.input-group-addon .glyphicon-th, .input-group-addon .glyphicon-time, .input-group-addon .glyphicon-calendar, .input-group-addon .fa-th, .input-group-addon .fa-clock-o,.input-group-addon .fa-calendar, .input-group-addon .fa-calendar-o').parent() : this.element.find('.add-on .icon-th, .add-on .icon-time, .add-on .icon-calendar').parent()) : false;
-        this.componentReset = this.element.is('.date') ? ( this.bootcssVer == 3 ? this.element.find('.input-group-addon .glyphicon-remove,.input-group-addon .fa-remove').parent() : this.element.find('.add-on .icon-remove').parent()) : false;
+        	this.component = this.element.is('.date') ? ( this.bootcssVer == 3 ? this.element.find('.input-group-addon .glyphicon-th, .input-group-addon .glyphicon-time, .input-group-addon .glyphicon-calendar, .input-group-addon .fa-th, .input-group-addon .fa-clock-o,.input-group-addon .fa-calendar, .input-group-addon .fa-calendar-o').parent() : this.element.find('.add-on .icon-th, .add-on .icon-time, .add-on .icon-calendar').parent()) : false;
+        	this.componentReset = this.element.is('.date') ? ( this.bootcssVer == 3 ? this.element.find('.input-group-addon .glyphicon-remove,.input-group-addon .fa-remove').parent() : this.element.find('.add-on .icon-remove').parent()) : false;
 		this.hasInput = this.component && this.element.find('input').length;
 		if (this.component && this.component.length === 0) {
 			this.component = false;
@@ -168,7 +168,7 @@
 				this.picker.find('.prev i, .next i')
 					.toggleClass('icon-arrow-left icon-arrow-right');
 			}
-        }
+        	}
 		$(document).on('mousedown', function (e) {
 			// Clicked outside the datetimepicker, hide it
 			if ($(e.target).closest('.datetimepicker').length === 0) {
@@ -201,6 +201,8 @@
 		this.setStartDate(options.startDate || this.element.data('date-startdate'));
 		this.setEndDate(options.endDate || this.element.data('date-enddate'));
 		this.setDaysOfWeekDisabled(options.daysOfWeekDisabled || this.element.data('date-days-of-week-disabled'));
+        	this.setMinutesDisabled(options.minutesDisabled || this.element.data('date-minute-disabled'));
+        	this.setHoursDisabled(options.hoursDisabled || this.element.data('date-hour-disabled'));
 		this.fillDow();
 		this.fillMonths();
 		this.update();
@@ -415,6 +417,30 @@
 			this.updateNavArrows();
 		},
 
+	        setMinutesDisabled: function (minutesDisabled) {
+	            this.minutesDisabled = minutesDisabled || [];
+	            if (!$.isArray(this.minutesDisabled)) {
+	                this.minutesDisabled = this.minutesDisabled.split(/,\s*/);
+	            }
+	            this.minutesDisabled = $.map(this.minutesDisabled, function (d) {
+	                return parseInt(d, 10);
+	            });
+	            this.update();
+	            this.updateNavArrows();
+	        },
+	
+	        setHoursDisabled: function (hoursDisabled) {
+	            this.hoursDisabled = hoursDisabled || [];
+	            if (!$.isArray(this.hoursDisabled)) {
+	                this.hoursDisabled = this.hoursDisabled.split(/,\s*/);
+	            }
+	            this.hoursDisabled = $.map(this.hoursDisabled, function (d) {
+	                return parseInt(d, 10);
+	            });
+	            this.update();
+	            this.updateNavArrows();
+	        },
+
 		place: function () {
 			if (this.isInline) return;
 
@@ -580,7 +606,9 @@
 
 			html = [];
 			var txt = '', meridian = '', meridianOld = '';
+    			var hoursDisabled = this.hoursDisabled || [];
 			for (var i = 0; i < 24; i++) {
+                	if (hoursDisabled.indexOf(i) !== -1) continue;
 				var actual = UTCDate(year, month, dayMonth, i);
 				clsName = '';
 				// We want the previous hour for the startDate
@@ -612,7 +640,9 @@
 
 			html = [];
 			txt = '', meridian = '', meridianOld = '';
+            		var minutesDisabled = this.minutesDisabled || [];
 			for (var i = 0; i < 60; i += this.minuteStep) {
+                	if (minutesDisabled.indexOf(i) !== -1) continue;
 				var actual = UTCDate(year, month, dayMonth, hours, i, 0);
 				clsName = '';
 				if (actual.valueOf() < this.startDate || actual.valueOf() > this.endDate) {
