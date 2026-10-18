@@ -186,6 +186,9 @@
             {{ prototype_markup|replace({'__name__': name})|raw }}
         {% endfor %}
     {% endif %}
+    {% if form.vars.allow_add == true and form.vars.label is same as (false) and widget_add_btn|default(null) %}
+        <label>{{ block('form_widget_add_btn') }}</label>
+    {% endif %}
     {{ block('form_widget') }}
     </div>
 {% endapply %}
